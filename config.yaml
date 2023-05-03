@@ -11,10 +11,10 @@
 carpentry: 'incubator'
 
 # Overall title for pages.
-title: 'Lesson Title' # FIXME
+title: 'IC with CNN'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: ~ # FIXME
+created: '2023-05-03'
 
 # Comma-separated list of keywords for the lesson
 keywords: 'software, data, lesson, The Carpentries' # FIXME
@@ -27,13 +27,13 @@ life_cycle: 'pre-alpha' # FIXME
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/carpentries/workbench-template-md' # FIXME
+source: 'https://https://github.com/erinmgraham/icwithcnn' # FIXME
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org' # FIXME
+contact: 'erin.graham@jcu.edu.au' # FIXME
 
 # Navigation ------------------------------------------------
 #

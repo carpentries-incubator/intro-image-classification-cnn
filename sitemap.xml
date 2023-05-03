@@ -1,45 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/404.html</loc>
+    <loc>https://.github.io/github.com/404.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/CODE_OF_CONDUCT.html</loc>
+    <loc>https://.github.io/github.com/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/LICENSE.html</loc>
+    <loc>https://.github.io/github.com/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/index.html</loc>
+    <loc>https://.github.io/github.com/aio.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/404.html</loc>
+    <loc>https://.github.io/github.com/images.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/CODE_OF_CONDUCT.html</loc>
+    <loc>https://.github.io/github.com/index.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/LICENSE.html</loc>
+    <loc>https://.github.io/github.com/instructor/404.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/index.html</loc>
+    <loc>https://.github.io/github.com/instructor/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/introduction.html</loc>
+    <loc>https://.github.io/github.com/instructor/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/profiles.html</loc>
+    <loc>https://.github.io/github.com/instructor/aio.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/reference.html</loc>
+    <loc>https://.github.io/github.com/instructor/images.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/introduction.html</loc>
+    <loc>https://.github.io/github.com/instructor/index.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/profiles.html</loc>
+    <loc>https://.github.io/github.com/instructor/instructor-notes.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/reference.html</loc>
+    <loc>https://.github.io/github.com/instructor/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/reference.html</loc>
   </url>
 </urlset>

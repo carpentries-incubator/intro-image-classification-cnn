@@ -1,18 +1,18 @@
 ---
-title: "Using Markdown"
+title: 'conclusion'
 teaching: 10
 exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you write a lesson using Markdown and `{sandpaper}`?
+- How do you write a lesson using R Markdown and `{sandpaper}`?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to use markdown with The Carpentries Workbench
+- Explain how to use markdown with the new lesson template
 - Demonstrate how to include pieces of code, figures, and nested challenge blocks
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -20,13 +20,13 @@ exercises: 2
 ## Introduction
 
 This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown](https://pandoc.org/MANUAL.txt) for static files and
-[R Markdown][r-markdown] for dynamic files that can render code into output. 
-Please refer to the [Introduction to The Carpentries 
-Workbench](https://carpentries.github.io/sandpaper-docs/) for full documentation.
+[Pandoc-flavored Markdown][pandoc] for static files (with extension `.md`) and
+[R Markdown][r-markdown] for dynamic files that can render code into output
+(with extension `.Rmd`). Please refer to the [Introduction to The Carpentries
+Workbench][carpentries-workbench] for full documentation.
 
 What you need to know is that there are three sections required for a valid
-Carpentries lesson:
+Carpentries lesson template:
 
  1. `questions` are displayed at the beginning of the episode to prime the
     learner for the content.
@@ -74,7 +74,7 @@ You can add a line with at least three colons and a `solution` tag.
 
 ## Figures
 
-You can use standard markdown for static figures with the following syntax:
+You can use pandoc markdown for static figures with the following syntax:
 
 `![optional caption that appears below the figure](figure url){alt='alt text for
 accessibility purposes'}`
@@ -99,4 +99,3 @@ Cool, right?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-[r-markdown]: https://rmarkdown.rstudio.com/

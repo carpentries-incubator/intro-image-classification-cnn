@@ -17,23 +17,23 @@ title: 'IC with CNN'
 created: '2023-05-03'
 
 # Comma-separated list of keywords for the lesson
-keywords: 'software, data, lesson, The Carpentries' # FIXME
+keywords: 'software, data, lesson, The Carpentries'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'pre-alpha' # FIXME
+life_cycle: 'pre-alpha'
 
-# License of the lesson
+# License of the lesson materials (recommended CC-BY 4.0)
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://https://github.com/erinmgraham/icwithcnn' # FIXME
+source: 'https://https://github.com/erinmgraham/icwithcnn'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'erin.graham@jcu.edu.au' # FIXME
+contact: 'erin.graham@jcu.edu.au'
 
 # Navigation ------------------------------------------------
 #
@@ -59,7 +59,12 @@ contact: 'erin.graham@jcu.edu.au' # FIXME
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.md
+- 01-introduction.md
+- 02-image-data.md
+- 03-build-cnn.md
+- 04-fit-cnn.md
+- 05-evaluate-predict-cnn.md
+- 06-conclusion.md
 
 # Information for Learners
 learners: 

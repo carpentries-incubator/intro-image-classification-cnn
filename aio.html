@@ -179,7 +179,67 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Using Markdown</a>
+        <a href="01-introduction.html">1. Introduction to Deep Learning</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="02-image-data.html">2. Introduction to Image Data</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="03-build-cnn.html">3. Building a CNN</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="04-fit-cnn.html">4. Fit a CNN</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="05-evaluate-predict-cnn.html">5. Evaluating a CNN and use it make predictions (classifications)</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="06-conclusion.html">6. Conclusion</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -241,11 +301,11 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-introduction"><p>Content from <a href="introduction.html">Using Markdown</a></p>
+<section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction to Deep Learning</a></p>
 <hr>
-<p> Last updated on 2023-05-03 | 
+<p> Last updated on 2023-05-11 | 
         
-        <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -257,8 +317,9 @@
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do you write a lesson using Markdown and
-<a href="https://carpentries.github.io/sandpaper/" class="external-link">sandpaper</a>?</li>
+<li>What is deep learning and what are a few common DL algorithms?</li>
+<li>What is a neural network?</li>
+<li>How do I use a neural network for image classification?</li>
 </ul>
 </div>
 </div>
@@ -268,37 +329,504 @@
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Explain how to use markdown with The Carpentries Workbench</li>
-<li>Demonstrate how to include pieces of code, figures, and nested
-challenge blocks</li>
+<li>Explain the difference between artificial intelligence, machine
+learning and deep learning</li>
+<li>Explain how machine learning is used for regression and
+classification tasks</li>
+<li>Understand what algorithms are used for image classification</li>
+<li>Demonstrate a convolutional neural network</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<section id="what-is-deep-learning"><h2 class="section-heading">What is Deep Learning?<a class="anchor" aria-label="anchor" href="#what-is-deep-learning"></a>
 </h2>
 <hr class="half-width">
-<p>This is a lesson created via The Carpentries Workbench. It is written
-in <a href="https://pandoc.org/MANUAL.txt" class="external-link">Pandoc-flavored Markdown</a>
-for static files and <a href="https://rmarkdown.rstudio.com/" class="external-link">R
-Markdown</a> for dynamic files that can render code into output. Please
-refer to the <a href="https://carpentries.github.io/sandpaper-docs/" class="external-link">Introduction to The
-Carpentries Workbench</a> for full documentation.</p>
-<p>What you need to know is that there are three sections required for a
-valid Carpentries lesson:</p>
+<div class="section level3">
+<h3 id="deep-learning-machine-learning-and-artificial-intelligence">Deep Learning, Machine Learning and Artificial Intelligence<a class="anchor" aria-label="anchor" href="#deep-learning-machine-learning-and-artificial-intelligence"></a>
+</h3>
+<p>Deep Learning (DL) is just one of many techniques collectively known
+as machine learning. Machine learning (ML) refers to techniques where a
+computer can “learn” patterns in data, usually by being shown numerous
+examples to train it. People often talk about machine learning being a
+form of artificial intelligence (AI). Definitions of artificial
+intelligence vary, but usually involve having computers mimic the
+behaviour of intelligent biological systems. Since the 1950s many works
+of science fiction have dealt with the idea of an artificial
+intelligence which matches (or exceeds) human intelligence in all areas.
+Although there have been great advances in AI and ML research recently
+we can only come close to human like intelligence in a few specialist
+areas and are still a long way from a general purpose AI. The image
+below shows some differences between artificial intelligence, Machine
+Learning and Deep Learning.</p>
+<figure><img src="fig/01_AI_ML_DL_differences.png" alt="Three nested circles describing AI as the largest circle in dark blue; enclosing machine learning in medium blue; enclosing deep learning in even lighter blue" class="figure mx-auto d-block"><figcaption>The image above is by Tukijaaliwa, CC BY-SA 4.0, via
+Wikimedia Commons, <a href="https://en.wikipedia.org/wiki/File:AI-ML-DL.svg" class="external-link">original
+source</a></figcaption></figure>
+</div>
+</section><section id="concept-differentiation-between-classical-ml-models-and-deep-learning-models"><h2 class="section-heading">Concept: Differentiation between classical ML models and Deep
+Learning models<a class="anchor" aria-label="anchor" href="#concept-differentiation-between-classical-ml-models-and-deep-learning-models"></a>
+</h2>
+<hr class="half-width">
+<p>Traditional ML algorithms can only use one (possibly two layers) of
+data transformation to calculate an output (shallow models). With high
+dimensional data and growing feature space (possible set of values for
+any given feature), shallow models quickly run out of layers to
+calculate outputs. Deep neural networks (constructed with multiple
+layers of neurons) are the extension of shallow models with three
+layers: input, hidden, and outputs layers. The hidden layer is where
+learning takes place. As a result, deep learning is best applied to
+large datasets for training and prediction. As observations and feature
+inputs decrease, shallow ML approaches begin to perform noticeably
+better.</p>
+</section><section id="concept-why-deep-learning-is-possible-and-what-infrastructure-is-best-suited-to-deep-learning"><h2 class="section-heading">Concept: Why deep learning is possible and what infrastructure is
+best suited to deep learning<a class="anchor" aria-label="anchor" href="#concept-why-deep-learning-is-possible-and-what-infrastructure-is-best-suited-to-deep-learning"></a>
+</h2>
+<hr class="half-width">
+<p>Systems with high quality GPUs and/or HPCs if available. [Comment: I
+feel this is important to note, in order to make it clear that anyone
+attempting to run neural networks on a standard laptop will quickly
+reach the upper limit of capacity. By setting this expectation clearly
+in the course, it could help prevent people from trying to do everything
+neural net related on their machines and becoming disenfranchise with ML
+as a result]</p>
+</section><section id="what-is-image-classification"><h2 class="section-heading">What is image classification?<a class="anchor" aria-label="anchor" href="#what-is-image-classification"></a>
+</h2>
+<hr class="half-width">
+<figure><img src="fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png" alt="Four types of image classification tasks include semantic segmentation where every pixel is labelled; classification and localization that detects a single object like a cat; object detection that detects multiple objects like cats and dogs; and instance segmentation that detects each pixel of multiple objects" class="figure mx-auto d-block"></figure></section><section id="deep-learning-workflow"><h2 class="section-heading">Deep Learning workflow<a class="anchor" aria-label="anchor" href="#deep-learning-workflow"></a>
+</h2>
+<hr class="half-width">
+<p>To apply Deep Learning to a problem there are several steps we need
+to go through:</p>
 <ol style="list-style-type: decimal">
-<li>
-<code>questions</code> are displayed at the beginning of the episode
-to prime the learner for the content.</li>
-<li>
-<code>objectives</code> are the learning objectives for an episode
-displayed with the questions.</li>
-<li>
-<code>keypoints</code> are displayed at the end of the episode to
-reinforce the objectives.</li>
+<li><p>Formulate/ Outline the problem Firstly we must decide what it is
+we want our Deep Learning system to do. This lesson is all about image
+classification so our aim is to put an imaget into one of a few
+categories?</p></li>
+<li><p>Identify inputs and outputs Next we need to identify what the
+inputs and outputs of the neural network will be. In our case, the data
+is images and the inputs could be the individual pixels of the
+images.</p></li>
 </ol>
+<p>For the output we are performing a classification problem and we will
+have one output for each potential class.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Prepare data Many datasets are not ready for immediate use in a
+neural network and will require some preparation. Neural networks can
+only really deal with numerical data, so any non-numerical data (eg
+images) will have to be somehow converted to numerical data.</li>
+</ol>
+<p>Next we will need to divide the data into multiple sets. One of these
+will be used by the training process and we will call it the training
+set. Another will be used to evaluate the accuracy of the training and
+we will call that one the test set. Sometimes we will also use a 3rd set
+known as a validation set to tune hyperparameters.</p>
+</section><section id="workflow"><h2 class="section-heading">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
+</h2>
+<hr class="half-width">
+<ol style="list-style-type: decimal">
+<li>Load the data</li>
+<li>Define the Model</li>
+<li>Fit the Model</li>
+<li>Evaluate the Model</li>
+<li>Make a prediction (ie classify an image)</li>
+</ol>
+<div class="section level3">
+<h3 id="load-data">Load data<a class="anchor" aria-label="anchor" href="#load-data"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the cifar dataset included with the keras packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
+</div>
+<div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-load-the-cifar10-dataset" class="callout-inner">
+<h3 class="callout-title">Challenge Load the Cifar10 dataset<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+</h3>
+<div class="callout-content">
+<p>Explain the output of these commands?</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Train: Images=</span><span class="sc">%s</span><span class="st">, Labels=</span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> (train_images.shape, train_labels.shape))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Test: Images=</span><span class="sc">%s</span><span class="st">, Labels=</span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> (test_images.shape, test_labels.shape))</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Output
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Train: Images=(50000, 32, 32, 3), Labels=(50000, 1)
+Test: Images=(10000, 32, 32, 3), Labels=(10000, 1)</code></pre>
+</div>
+<p>The training set consists of 50000 images of 32x32 pixels and 3
+channels (RGB values) and labels. The test set consists of 10000 images
+of 32x32 pixels and 3 channels (RGB values) and labels.</p>
+</div>
+</div>
+</div>
+</div>
+<p>We take a small sample of the data as training set for demonstration
+purposes.</p>
+<p>The RGB values are between 0 and 255. For input of neural networks,
+it is better to have small input values. So we normalize our data
+between 0 and 1:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normalize the RGB values to be between 0 and 1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> test_images <span class="op">/</span> <span class="fl">255.0</span></span></code></pre>
+</div>
+<p>The labels are single numbers denoting the class. We map the class
+numbers back to the class names, taken from the documentation:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a list of classnames</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'airplane'</span>, <span class="st">'automobile'</span>, <span class="st">'bird'</span>, <span class="st">'cat'</span>, <span class="st">'deer'</span>, <span class="st">'dog'</span>, <span class="st">'frog'</span>, <span class="st">'horse'</span>, <span class="st">'ship'</span>, <span class="st">'truck'</span>]</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="visualize-the-cifar10-dataset">Visualize the Cifar10 dataset<a class="anchor" aria-label="anchor" href="#visualize-the-cifar10-dataset"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a subset of the images</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">5</span>,<span class="dv">5</span>,i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    plt.imshow(train_images[i], cmap<span class="op">=</span>plt.cm.binary)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    plt.title(class_names[train_labels[i,<span class="dv">0</span>]])</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
+</div>
+<figure><img src="fig/01_cifar10.png" alt="Subset of 25 Cifar10 images displayed in five rows and five columns " class="figure mx-auto d-block"></figure><ol start="4" style="list-style-type: decimal">
+<li>Build a new architecture from scratch</li>
+</ol>
+<p>We need to think about how many input neurons it will have, how many
+hidden layers and how many outputs, what types of layers we use (we will
+explore the different types later on). This will probably need some
+experimentation and we might have to try tweaking the network design a
+few times before we see acceptable results.</p>
+</div>
+<div class="section level3">
+<h3 id="define-the-model">Define the Model<a class="anchor" aria-label="anchor" href="#define-the-model"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs, layers, and outputs of a cnn model</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create the model</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model_small"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># optimize the model</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>), metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre>
+</div>
+<ol start="6" style="list-style-type: decimal">
+<li>Train the model</li>
+</ol>
+<p>We can now go ahead and start training our neural network. We will
+probably keep doing this for a given number of iterations through our
+training dataset (referred to as epochs) or until the loss function
+gives a value under a certain threshold. The graph below show the loss
+against the number of epochs, generally the loss will go down with each
+epoch, but occasionally it will see a small rise.</p>
+</div>
+<div class="section level3">
+<h3 id="fit-the-model">Fit the Model<a class="anchor" aria-label="anchor" href="#fit-the-model"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(test_images, test_labels))</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="evaluate-the-model">Evaluate the Model<a class="anchor" aria-label="anchor" href="#evaluate-the-model"></a>
+</h3>
+<p>We can plot the training process using the history:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the accuracy from the training process</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> pd.DataFrame.from_dict(history.history)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
+</div>
+<figure><img src="fig/04_training_history_1.png" alt="Line plot of training loss in solid blue and validation loss where both lines decrease over each epoch but with a decreasing negative slope" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss from the training process</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span></code></pre>
+</div>
+<figure><img src="fig/04_training_history_loss_1.png" alt="Line plot of training accuracy in solid blue and validation accuracy in dotted orange where both line increase over each epoch with a decreasing postive slope" class="figure mx-auto d-block"></figure><p>It seems that the model is overfitting somewhat, because the
+validation accuracy and loss stagnates.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the loss and accuracy of the training process</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>test_loss, test_acc <span class="op">=</span> model.evaluate(test_images, test_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy:'</span>, <span class="bu">round</span>(test_acc,<span class="dv">2</span>))</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span><span class="va">Accuracy</span><span class="op">:</span> <span class="fl">0.68</span></span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="save-the-model">Save the model<a class="anchor" aria-label="anchor" href="#save-the-model"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">'01_intro_model.h5'</span>)</span></code></pre>
+</div>
+<ol start="7" style="list-style-type: decimal">
+<li>Perform a Prediction/Classification</li>
+</ol>
+<p>After training the network we can use it to perform predictions. This
+is the mode you would use the network in after you have fully trained it
+to a satisfactory performance. Doing predictions on a special hold-out
+set is used in the next step to measure the performance of the
+network.</p>
+</div>
+<div class="section level3">
+<h3 id="make-a-prediction">Make a prediction<a class="anchor" aria-label="anchor" href="#make-a-prediction"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.utils <span class="im">import</span> load_img</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.utils <span class="im">import</span> img_to_array</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load a new image and prepare it to match cifar10 dataset</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>new_img_pil <span class="op">=</span> load_img(<span class="st">"Jabiru_TGS.JPG"</span>, target_size<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>)) <span class="co"># Image format</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>new_img_arr <span class="op">=</span> img_to_array(new_img_pil) <span class="co"># convert to array for analysis</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>new_img_reshape <span class="op">=</span> new_img_arr.reshape(<span class="dv">1</span>, <span class="dv">32</span>, <span class="dv">32</span>, <span class="dv">3</span>) <span class="co"># reshape into single sample</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>new_img_float <span class="op">=</span>  new_img_reshape.astype(<span class="st">'float64'</span>) <span class="op">/</span> <span class="fl">255.0</span> <span class="co"># normalize</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># predict the classname</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> model.predict(new_img_float) <span class="co"># make prediction</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result) <span class="co"># probability for each class</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(class_names[result.argmax()]) <span class="co"># class with highest probability</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Result: [[-2.0185328   9.337507   -2.4551604  -0.4688053  -4.599108   -3.5822825
+   6.427376   -0.09437321  0.82065487  1.2978227 ]]
+Class name: automobile</code></pre>
+</div>
+<p>Congratulations, you just created your first image classification
+model and used it to classify an image!</p>
+<p>Unfortunately the classification was incorrect! What can we do
+about?</p>
+<p>There are many ways we can try to improve the accuracy of our model,
+such as adding or removing layers to the model definition and
+fine-tuning the hyperparameters.</p>
+<p>We will discuss these options later in the lesson but first let us
+take a step back and spend a bit more time discussing each workflow
+component in depth.</p>
+
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>Deep learning is a subset of machine learning, which is a subset of
+artificial intelligence</li>
+<li>Machine learning is used for regression and classification
+tasks</li>
+<li>Convolutional neural networks are well suited for image
+classification</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Collect your link references at the bottom of your document -->
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</div>
+</section></section><section id="aio-02-image-data"><p>Content from <a href="02-image-data.html">Introduction to Image Data</a></p>
+<hr>
+<p> Last updated on 2023-05-11 | 
+        
+        <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>Where can I find image data to train my model?</li>
+<li>How much data do you need for Deep Learning?</li>
+<li>How do I plot image data in python?</li>
+<li>How do I prepare image data for use in a CNN?</li>
+<li>What is one hot encoding?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Identify sources of image data</li>
+<li>Write code to plot image data</li>
+<li>Understand the properties of image data</li>
+<li>Prepare an image data set to train a CNN</li>
+<li>Know how to perform one-hot encoding</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="where-can-i-find-image-data"><h2 class="section-heading">Where can I find image data?<a class="anchor" aria-label="anchor" href="#where-can-i-find-image-data"></a>
+</h2>
+<hr class="half-width">
+<p>Deep Learning requires extensive training using example data which
+shows the network what output it should produce for a given input. One
+common application of Deep Learning is classifying images. In this
+workshop our network will be trained by being “shown” a series of images
+and told what they contain. Once the network is trained it should be
+able to take another image and correctly classify its contents.</p>
+<p>In some cases you will be able to download an image dataset that is
+already labelled and can be used to classify a number of different
+object like we saw with the CIFAR dataset. Other examples include:</p>
+<ul>
+<li>MNIST database - 60,000 training images of handwritten digits
+(0-9)</li>
+<li>ImageNet - 14 million hand-annotated images indicating objects from
+more than 20,000 categories. ImageNet sponsors an annual software
+contest where programs compete to avieve the highest accuracy</li>
+<li>MS COCO - &gt;200,000 labelled images used for object detection,
+instance segmentation, keypoint analysis, and captioning</li>
+</ul>
+<p>In other cases, you will need to create your own set oflabelled
+images. For image classification the label applies to the entire image;
+object detection requires bounding boxes, and instance or semantic
+segmentation require each pixel to be labelled.</p>
+<p>There are a number of different software that can be used to label
+your dataset, including: - VGG Image Annotator (VIA)</p>
+<p>::: How much data do you need for Deep Learning? The rise of Deep
+Learning is partially due to the increased availability of very large
+datasets. But how much data do you actually need to train a Deep
+Learning model? Unfortunately, this question is not easy to answer. It
+depends, among other things, on the complexity of the task (which you
+often do not know beforehand), the quality of the available dataset and
+the complexity of the network. For complex tasks with large neural
+networks, we often see that adding more data continues to improve
+performance. However, this is also not a generic truth: if the data you
+add is too similar to the data you already have, it will not give much
+new information to the neural network.</p>
+<p>In case you have too little data available to train a complex network
+from scratch, it is sometimes possible to use a pretrained network that
+was trained on a similar problem. Another trick is data augmentation,
+where you expand the dataset with artificial data points that could be
+real. An example of this is mirroring images when trying to classify
+cats and dogs. An horizontally mirrored animal retains the label, but
+exposes a different view.
+:::::::::::::::::::::::::::::::::::::::::::::::</p>
+</section><section id="plotting-image-data-in-python"><h2 class="section-heading">Plotting image data in python<a class="anchor" aria-label="anchor" href="#plotting-image-data-in-python"></a>
+</h2>
+<hr class="half-width"></section><section id="image-dimensions"><h2 class="section-heading">Image Dimensions<a class="anchor" aria-label="anchor" href="#image-dimensions"></a>
+</h2>
+<hr class="half-width"></section><section id="rgb-vs-greyscale"><h2 class="section-heading">RGB vs Greyscale<a class="anchor" aria-label="anchor" href="#rgb-vs-greyscale"></a>
+</h2>
+<hr class="half-width"></section><section id="split-data-into-training-and-test-set"><h2 class="section-heading">Split data into training and test set<a class="anchor" aria-label="anchor" href="#split-data-into-training-and-test-set"></a>
+</h2>
+<hr class="half-width">
+<p>Finally, we will split the dataset into a training set and a test
+set. As the names imply we will use the training set to train the neural
+network, while the test set is kept separate. We will use the test set
+to assess the performance of the trained neural network on unseen
+samples. In many cases a validation set is also kept separate from the
+training and test sets (i.e. the dataset is split into 3 parts). This
+validation set is then used to select the values of the parameters of
+the neural network and the training methods. For this episode we will
+keep it at just a training and test set however.</p>
+<p>To split the cleaned dataset into a training and test set we will use
+a very convenient function from sklearn called train_test_split. This
+function takes a number of parameters:</p>
+<ul>
+<li>The first two are the dataset and the corresponding targets.</li>
+<li>Next is the named parameter test_size this is the fraction of the
+dataset that is used for testing, in this case 0.2 means 20% of the data
+will be used for testing.</li>
+<li>random_state controls the shuffling of the dataset, setting this
+value will reproduce the same results (assuming you give the same
+integer) every time it is called.</li>
+<li>shuffle which can be either True or False, it controls whether the
+order of the rows of the dataset is shuffled before splitting. It
+defaults to True.</li>
+<li>stratify is a more advanced parameter that controls how the split is
+done. By setting it to target the train and test sets the function will
+return will have roughly the same proportions (with regards to the
+number of penguins of a certain species) as the dataset.</li>
+</ul></section><section id="one-hot-encoding"><h2 class="section-heading">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a>
+</h2>
+<hr class="half-width">
+<p>A neural network can only take numerical inputs and outputs, and
+learns by calculating how “far away” the species predicted by the neural
+network is from the true species. When the target is a string category
+column as we have here it is very difficult to determine this “distance”
+or error. Therefore we will transform this column into a more suitable
+format. Again there are many ways to do this, however we will be using
+the one-hot encoding. This encoding creates multiple columns, as many as
+there are unique values, and puts a 1 in the column with the
+corresponding correct class, and 0’s in the other columns.</p>
+<p>TBC</p>
+</section><section id="image-augmentation"><h2 class="section-heading">Image augmentation<a class="anchor" aria-label="anchor" href="#image-augmentation"></a>
+</h2>
+<hr class="half-width">
+<p>TBC</p>
+
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -363,20 +891,6 @@ challenge blocks?<a class="anchor" aria-label="anchor" href="#challenge2"></a>
 </div>
 </div>
 </div>
-</section><section id="figures"><h2 class="section-heading">Figures<a class="anchor" aria-label="anchor" href="#figures"></a>
-</h2>
-<hr class="half-width">
-<p>You can use standard markdown for static figures with the following
-syntax:</p>
-<p><code>![optional caption that appears below the figure](figure url){alt='alt text for accessibility purposes'}</code></p>
-<figure><img src="https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg" alt="Blue Carpentries hex person logo with no text." class="figure mx-auto d-block"><figcaption>You belong in The Carpentries!</figcaption></figure></section><section id="math"><h2 class="section-heading">Math<a class="anchor" aria-label="anchor" href="#math"></a>
-</h2>
-<hr class="half-width">
-<p>One of our episodes contains <span class="math inline">\(\LaTeX\)</span> equations when describing how to
-create dynamic reports with {knitr}, so we now use mathjax to describe
-this:</p>
-<p><code>$\alpha = \dfrac{1}{(1 - \beta)^2}$</code> becomes: <span class="math inline">\(\alpha = \dfrac{1}{(1 - \beta)^2}\)</span></p>
-<p>Cool, right?</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -398,6 +912,1526 @@ locally</li>
 </div>
 </div>
 </div>
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</section></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Building a CNN</a></p>
+<hr>
+<p> Last updated on 2023-05-11 | 
+        
+        <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How is a convolutional neural network (CNN) different from an
+ANN?</li>
+<li>What are the different layers used to build a CNN?</li>
+<li>What is an activation function?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Understand how a convolutional neural network diffs from a basic
+neural network</li>
+<li>Explain the terms: kernel, filter, back prop</li>
+<li>Define the terms: weights, bias, activation function</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="neural-networks"><h2 class="section-heading">Neural Networks<a class="anchor" aria-label="anchor" href="#neural-networks"></a>
+</h2>
+<hr class="half-width">
+<p>A neural network is an artificial intelligence technique loosely
+based on the way neurons in the brain work. A neural network consists of
+connected computational units called neurons. Each neuron …</p>
+<ul>
+<li>has one or more inputs, e.g. input data expressed as floating point
+numbers</li>
+<li>most of the time, each neuron conducts 3 main operations:
+<ul>
+<li>take the weighted sum of the inputs</li>
+<li>add an extra constant weight (i.e. a bias term) to this weighted
+sum</li>
+<li>apply a non-linear function to the output so far (using a predefined
+activation function)</li>
+</ul>
+</li>
+<li>return one output value, again a floating point number</li>
+</ul>
+<figure><img src="fig/03_neuron.png" alt="" class="figure mx-auto d-block"></figure><p>Multiple neurons can be joined together by connecting the output of
+one to the input of another. These connections are associated with
+weights that determine the ‘strength’ of the connection, the weights are
+adjusted during training. In this way, the combination of neurons and
+connections describe a computational graph, an example can be seen in
+the image below. In most neural networks neurons are aggregated into
+layers. Signals travel from the input layer to the output layer,
+possibly through one or more intermediate layers called hidden layers.
+The image below shows an example of a neural network with three layers,
+each circle is a neuron, each line is an edge and the arrows indicate
+the direction data moves in.</p>
+<figure><img src="fig/03_neural_net.png" alt="" class="figure mx-auto d-block"><figcaption>The image above is by Glosser.ca, <a href="https://creativecommons.org/licenses/by-sa/3.0" class="external-link">CC BY-SA 3.0</a>,
+via Wikimedia Commons, <a href="https://commons.wikimedia.org/wiki/File:Colored_neural_network.svg" class="external-link">original
+source</a></figcaption></figure><p>Neural networks aren’t a new technique, they have been around since
+the late 1940s. But until around 2010 neural networks tended to be quite
+small, consisting of only 10s or perhaps 100s of neurons. This limited
+them to only solving quite basic problems. Around 2010 improvements in
+computing power and the algorithms for training the networks made much
+larger and more powerful networks practical. These are known as deep
+neural networks or Deep Learning.</p>
+</section><section id="convolutional-layers"><h2 class="section-heading">Convolutional layers<a class="anchor" aria-label="anchor" href="#convolutional-layers"></a>
+</h2>
+<hr class="half-width">
+<p>A convolution matrix, or kernel, is a matrix transformation that we
+‘slide’ over the image to calculate features at each position of the
+image. For each pixel, we calculate the matrix product between the
+kernel and the pixel with its surroundings. A kernel is typically small,
+between 3x3 and 7x7 pixels. We can for example think of the 3x3
+kernel:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[[-1, -1, -1],
+ [0, 0, 0]
+ [1, 1, 1]]</code></pre>
+</div>
+<p>This kernel will give a high value to a pixel if it is on a
+horizontal border between dark and light areas. Note that for RGB
+images, the kernel should also have a depth of 3.</p>
+<p>In the following image, we see the effect of such a kernel on the
+values of a single-channel image. The red cell in the output matrix is
+the result of multiplying and summing the values of the red square in
+the input, and the kernel. Applying this kernel to a real image shows
+that it indeed detects horizontal edges.</p>
+<figure><img src="fig/03_conv_matrix.png" alt="" class="figure mx-auto d-block"></figure><figure><img src="fig/03_conv_image.png" alt="" class="figure mx-auto d-block"></figure><p>In our convolutional layer our hidden units are a number of
+convolutional matrices (or kernels), where the values of the matrices
+are the weights that we learn in the training process. The output of a
+convolutional layer is an ‘image’ for each of the kernels, that gives
+the output of the kernel applied to each pixel.</p>
+<div id="callout1" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
+<p>Playing with convolutions</p>
+<p>Convolutions applied to images can be hard to grasp at first.
+Fortunately there are resources out there that enable users to
+interactively play around with images and convolutions:</p>
+<p><a href="https://setosa.io/ev/image-kernels/" class="external-link">Image kernels
+explained</a> shows how different convolutions can achieve certain
+effects on an image, like sharpening and blurring. The <a href="https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-convolutional-neural-networks" class="external-link">convolutional
+neural network cheat sheet</a> shows animated examples of the different
+components of convolutional neural nets</p>
+</div>
+</div>
+</div>
+<div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="border-pixels" class="callout-inner">
+<h3 class="callout-title">Border pixels<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+</h3>
+<div class="callout-content">
+<p>What, do you think, happens to the border pixels when applying a
+convolution?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>There are different ways of dealing with border pixels. You can
+ignore them, which means that your output image is slightly smaller then
+your input. It is also possible to ‘pad’ the borders, e.g. with the same
+value or with zeros, so that the convolution can also be applied to the
+border pixels. In that case, the output image will have the same size as
+the input image.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge2" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="number-of-model-parameters" class="callout-inner">
+<h3 class="callout-title">Number of model parameters<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+</h3>
+<div class="callout-content">
+<p>Suppose we apply a convolutional layer with 100 kernels of size 3 * 3
+* 3 (the last dimension applies to the rgb channels) to our images of 32
+* 32 * 3 pixels. How many parameters do we have? Assume, for simplicity,
+that the kernels do not use bias terms. Compare this to the answer of
+the previous exercise</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
+* 100 = 2700 weights. This is a magnitude of 100 less than the fully
+connected layer with 100 units! Nevertheless, as we will see,
+convolutional networks work very well for image data. This illustrates
+the expressiveness of convolutional layers.</p>
+</div>
+</div>
+</div>
+</div>
+<p>So let us look at a network with a few convolutional layers. We need
+to finish with a Dense layer to connect the output cells of the
+convolutional layer to the outputs for our classes.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model_small"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre>
+</div>
+<div id="challenge3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="convolutional-neural-network" class="callout-inner">
+<h3 class="callout-title">Convolutional Neural Network<a class="anchor" aria-label="anchor" href="#challenge3"></a>
+</h3>
+<div class="callout-content">
+<p>Inspect the network above:</p>
+<ul>
+<li>What do you think is the function of the Flatten layer?</li>
+<li>Which layer has the most parameters? Do you find this
+intuitive?</li>
+<li>(optional) Pick a model from <a href="https://paperswithcode.com/sota/image-classification-on-cifar-10" class="external-link uri">https://paperswithcode.com/sota/image-classification-on-cifar-10</a>
+. Try to understand how it works.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<ul>
+<li>The Flatten layer converts the 28x28x50 output of the convolutional
+layer into a single one-dimensional vector, that can be used as input
+for a dense layer.</li>
+<li>The last dense layer has the most parameters. This layer connects
+every single output ‘pixel’ from the convolutional layer to the 10
+output classes. That results in a large number of connections, so a
+large number of parameters. This undermines a bit the expressiveness of
+the convolutional layers, that have much fewer parameters.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Often in convolutional neural networks, the convolutional layers are
+intertwined with <strong>Pooling layers</strong>. As opposed to the
+convolutional layer, the pooling layer actually alters the dimensions of
+the image and reduces it by a scaling factor. It is basically decreasing
+the resolution of your picture. The rationale behind this is that higher
+layers of the network should focus on higher-level features of the
+image. By introducing a pooling layer, the subsequent convolutional
+layer has a broader ‘view’ on the original image.</p>
+</section><section id="build-an-architecture-from-scratch"><h2 class="section-heading">4. Build an architecture from scratch<a class="anchor" aria-label="anchor" href="#build-an-architecture-from-scratch"></a>
+</h2>
+<hr class="half-width">
+<div class="section level3">
+<h3 id="keras-for-neural-networks">Keras for neural networks<a class="anchor" aria-label="anchor" href="#keras-for-neural-networks"></a>
+</h3>
+<p>For this lesson we will be using Keras to define and train our neural
+network models. Keras is a machine learning framework with ease of use
+as one of its main features. It is part of the tensorflow python package
+and can be imported using from tensorflow import keras.</p>
+<p>Keras includes functions, classes and definitions to define deep
+learning models, cost functions and optimizers (optimizers are used to
+train a model).</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="build-a-neural-network-from-scratch">Build a neural network from scratch<a class="anchor" aria-label="anchor" href="#build-a-neural-network-from-scratch"></a>
+</h3>
+<p>Now we will build a neural network from scratch, and although this
+sounds like a daunting task, with Keras it is actually surprisingly
+straightforward.</p>
+<p>With Keras you compose a neural network by creating layers and
+linking them together. We used several different types of layers in our
+model:</p>
+<ul>
+<li>
+<strong>Conv2D</strong>: 2D convolution layer (e.g. spatial
+convolution over images) defined by the tf.keras.layers.Conv2D
+class</li>
+<li>
+<strong>MaxPooling2D</strong>: Max pooling operation for 2D spatial
+data defined by the tf.keras.layers.MaxPool2D class</li>
+<li>
+<strong>Flatten</strong>: Flattens the input and is defined by the
+tf.keras.layers.Flatten class</li>
+<li>
+<strong>Dense</strong>: Fully connected or Dense layer defined by
+the keras.layers.Dense class</li>
+</ul>
+<p>A <strong>Dense</strong> layer has a number of neurons, which is a
+parameter you can choose when you create the layer. When connecting the
+layer to its input and output layers every neuron in the dense layer
+gets an edge (i.e. connection) to all of the input neurons and all of
+the output neurons.</p>
+<p>The input in Keras also gets special treatment, Keras automatically
+calculates the number of inputs and outputs a layer needs and therefore
+how many edges need to be created. This means we need to let Keras now
+how big our input is going to be. We do this by instantiating a keras.
+Input class and tell it how big our input is.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span></code></pre>
+</div>
+<p>We store a reference to this input class in a variable so we can pass
+it to the creation of our hidden layer. Creating the hidden layer can
+then be done as follows:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first layer</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span></code></pre>
+</div>
+<p>The instantiation here has 3 parameters and a seemingly strange
+combination of parentheses, so let us take a closer look. - The first
+parameter 50 is the number of neurons we want in this layer, this is one
+of the hyperparameters of our system and needs to be chosen carefully.
+We will get back to this in the section on hyperparameter tuning. - The
+second parameter is the kernel size - The third parameter is the
+activation function to use, here we choose <strong>relu</strong> which
+is 0 for inputs that are 0 and below and the identity function
+(returning the same value) for inputs above 0. This is a commonly used
+activation function in deep neural networks that is proven to work well.
+- Next we see an extra set of parenthenses with inputs in them, this
+means that after creating an instance of the Conv2D layer we call it as
+if it was a function. This tells the Conv2D layer to connect the layer
+passed as a parameter, in this case the inputs. - Finally we store a
+reference so we can pass it to the next layer.</p>
+<p>Now we can add additional layers.</p>
+<p>TODO specify these in words and then let them put it all
+together?</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add layers</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span></code></pre>
+</div>
+<p>Finally we create a final layer that will be our output layer. We use
+a Dense layer with a single argument reflecting the dimensionality of
+the output space.</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define outputs</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span></code></pre>
+</div>
+<p>Putting it all together:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create the model</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model_small"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre>
+</div>
+<div id="challenge4" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="create-the-neural-network" class="callout-inner">
+<h3 class="callout-title">Create the neural network<a class="anchor" aria-label="anchor" href="#challenge4"></a>
+</h3>
+<div class="callout-content">
+<p>Inspect the network above:</p>
+<p>With the code snippets above, we defined a Keras model with 1 hidden
+layer with 10 neurons and an output layer with 3 neurons. TODO change
+these</p>
+<ul>
+<li>How many parameters does the resulting model have?</li>
+<li>What happens to the number of parameters if we increase or decrease
+the number of neurons in the hidden layer?</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs, layers, and outputs of a cnn model</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model_small"</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+Model: "cifar_model"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #
+=================================================================
+ input_6 (InputLayer)        [(None, 32, 32, 3)]       0
+
+ conv2d_13 (Conv2D)          (None, 30, 30, 50)        1400
+
+ max_pooling2d_8 (MaxPooling  (None, 15, 15, 50)       0
+ 2D)
+
+ conv2d_14 (Conv2D)          (None, 13, 13, 50)        22550
+
+ max_pooling2d_9 (MaxPooling  (None, 6, 6, 50)         0
+ 2D)
+
+ conv2d_15 (Conv2D)          (None, 4, 4, 50)          22550
+
+ flatten_5 (Flatten)         (None, 800)               0
+
+ dense_9 (Dense)             (None, 50)                40050
+
+ dense_10 (Dense)            (None, 10)                510
+
+=================================================================
+Total params: 87,060
+Trainable params: 87,060
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+</div>
+<p>TODO modify this to reflect out model The model has 83 trainable
+parameters. If you increase the number of neurons in the hidden layer
+the number of trainable parameters in both the hidden and output layer
+increases or decreases accordingly of neurons. The name in quotes within
+the string Model: “model_1” may be different in your view; this detail
+is not important.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="how-to-choose-an-architecture"><h2 class="section-heading">How to choose an architecture?<a class="anchor" aria-label="anchor" href="#how-to-choose-an-architecture"></a>
+</h2>
+<hr class="half-width">
+<p>Even for this small neural network, we had to make a choice on the
+number of hidden neurons. Other choices to be made are the number of
+layers and type of layers (as we will see later). You might wonder how
+you should make these architectural choices. Unfortunately, there are no
+clear rules to follow here, and it often boils down to a lot of trial
+and error. However, it is recommended to look what others have done with
+similar datasets and problems. Another best practice is to start with a
+relatively simple architecture. Once running start to add layers and
+tweak the network to see if performance increases.</p>
+</section><section id="discuss"><h2 class="section-heading">Discuss<a class="anchor" aria-label="anchor" href="#discuss"></a>
+</h2>
+<hr class="half-width">
+<div id="challenge5" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-network-depth" class="callout-inner">
+<h3 class="callout-title">Challenge Network depth<a class="anchor" aria-label="anchor" href="#challenge5"></a>
+</h3>
+<div class="callout-content">
+<p>What, do you think, will be the effect of adding a convolutional
+layer to your model? Will this model have more or fewer parameters? Try
+it out. Create a model that has an additional Conv2d layer with 50
+filters after the last MaxPooling2D layer. Train it for 20 epochs and
+plot the results.</p>
+<p><strong>HINT</strong>: The model definition that we used previously
+needs to be adjusted as follows:</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your extra layer here</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5">
+  Output
+  </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>inputs = keras.Input(shape=train_images.shape[1:])
+x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
+x = keras.layers.MaxPooling2D((2, 2))(x)
+x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
+x = keras.layers.MaxPooling2D((2, 2))(x)
+x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
+x = keras.layers.Flatten()(x)
+x = keras.layers.Dense(50, activation='relu')(x)
+outputs = keras.layers.Dense(10)(x)
+
+model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model")</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>With the model defined above, we can inspect the number of
+parameters:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Model: "cifar_model"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #
+=================================================================
+ input_7 (InputLayer)        [(None, 32, 32, 3)]       0
+
+ conv2d_16 (Conv2D)          (None, 30, 30, 50)        1400
+
+ max_pooling2d_10 (MaxPoolin  (None, 15, 15, 50)       0
+ g2D)
+
+ conv2d_17 (Conv2D)          (None, 13, 13, 50)        22550
+
+ max_pooling2d_11 (MaxPoolin  (None, 6, 6, 50)         0
+ g2D)
+
+ conv2d_18 (Conv2D)          (None, 4, 4, 50)          22550
+
+ flatten_6 (Flatten)         (None, 800)               0
+
+ dense_11 (Dense)            (None, 50)                40050
+
+ dense_12 (Dense)            (None, 10)                510
+
+=================================================================
+Total params: 87,060
+Trainable params: 87,060
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+</div>
+<p>The number of parameters has decreased by adding this layer. We can
+see that the conv layer decreases the resolution from 6x6 to 4x4, as a
+result, the input of the Dense layer is smaller than in the previous
+network.</p>
+<p>TODO thinking we have two models, cifar small and this one, then
+section can compare the two?</p>
+
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>Use <code>.md</code> files for episodes when you want static
+content</li>
+<li>Use <code>.Rmd</code> files for episodes when you need to generate
+output</li>
+<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
+with your lesson</li>
+<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
+locally</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Collect your link references at the bottom of your document -->
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</section></section><section id="aio-04-fit-cnn"><p>Content from <a href="04-fit-cnn.html">Fit a CNN</a></p>
+<hr>
+<p> Last updated on 2023-05-11 | 
+        
+        <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do you fit and compile a CNN?</li>
+<li>What is an optimizer?</li>
+<li>What are hyperparameters?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Explain how you fit and compile a CNN</li>
+<li>Understand what an optimizer is and be familiar with advantages and
+disadvantages of different optimizers</li>
+<li>Define the terms: learning rate, batch size, epoch</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="choose-a-loss-function-and-optimizer"><h2 class="section-heading">5. Choose a loss function and optimizer<a class="anchor" aria-label="anchor" href="#choose-a-loss-function-and-optimizer"></a>
+</h2>
+<hr class="half-width">
+<p>We have now designed a neural network that in theory we should be
+able to train to classify images. However, we first need to select an
+appropriate loss function that we will use during training. This loss
+function tells the training algorithm how wrong, or how ‘far away’ from
+the true value the predicted value is.</p>
+<p>For the one-hot encoding that we selected before a fitting loss
+function is the Categorical Crossentropy loss. In Keras this is
+implemented in the keras.losses.CategoricalCrossentropy class. This loss
+function works well in combination with the softmax activation function
+we chose earlier. The Categorical Crossentropy works by comparing the
+probabilities that the neural network predicts with ‘true’ probabilities
+that we generated using the one-hot encoding. This is a measure for how
+close the distribution of the three neural network outputs corresponds
+to the distribution of the three values in the one-hot encoding. It is
+lower if the distributions are more similar.</p>
+<p>For more information on the available loss functions in Keras you can
+check the <a href="https://www.tensorflow.org/api_docs/python/tf/keras/losses" class="external-link">documentation</a>.</p>
+<p>Next we need to choose which optimizer to use and, if this optimizer
+has parameters, what values to use for those. Furthermore, we need to
+specify how many times to show the training samples to the
+optimizer.</p>
+<p>Once more, Keras gives us plenty of choices all of which have their
+own pros and cons, but for now let us go with the widely used Adam
+optimizer. Adam has a number of parameters, but the default values work
+well for most problems. So we will use it with its default
+parameters.</p>
+<p>Combining this with the loss function we decided on earlier we can
+now compile the model using model.compile. Compiling the model prepares
+it to start the training.</p>
+</section><section id="model-compilation"><h2 class="section-heading">Model Compilation<a class="anchor" aria-label="anchor" href="#model-compilation"></a>
+</h2>
+<hr class="half-width">
+<p>We compile the model using the adam optimizer (other optimizers could
+also be used here!). Similar to the penguin classification task, we will
+use the crossentropy function to calculate the model’s loss. This loss
+function is appropriate to use when the data has two or more label
+classes.</p>
+<p>To calculate crossentropy loss for data that has its classes
+represented by integers (i.e., not one-hot encoded), we use the
+SparseCategoricalCrossentropy() function:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre>
+</div>
+</section><section id="train-model"><h2 class="section-heading">6. Train model<a class="anchor" aria-label="anchor" href="#train-model"></a>
+</h2>
+<hr class="half-width">
+<p>We are now ready to train the model.</p>
+<p>Training the model is done using the fit method, it takes the input
+data and target data as inputs and it has several other parameters for
+certain options of the training. Here we only set a different number of
+epochs. One training epoch means that every sample in the training data
+has been shown to the neural network and used to update its
+parameters.</p>
+<p>We then train the model for 10 epochs:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(test_images, test_labels))</span></code></pre>
+</div>
+<p>The fit method returns a history object that has a history attribute
+with the training loss and potentially other metrics per training epoch.
+It can be very insightful to plot the training loss to see how the
+training progresses. Using seaborn we can do this as follows:</p>
+<p>We can plot the training process using the history:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the accuracy from the training process</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> pd.DataFrame.from_dict(history.history)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
+</div>
+<figure><img src="fig/04_training_history_1.png" alt="" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss from the training process</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span></code></pre>
+</div>
+<figure><img src="fig/04_training_history_loss_1.png" alt="" class="figure mx-auto d-block"></figure><p>This plot can be used to identify whether the training is well
+configured or whether there are problems that need to be addressed</p>
+<p>It seems that the model is overfitting somewhat, because the
+validation accuracy and loss stagnates.</p>
+<div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-the-training-curve" class="callout-inner">
+<h3 class="callout-title">Challenge The Training Curve<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+</h3>
+<div class="callout-content">
+<p>Looking at the training curve we have just made.</p>
+<ol style="list-style-type: decimal">
+<li>How does the training progress?</li>
+</ol>
+<ul>
+<li>Does the training loss increase or decrease?</li>
+<li>Does it change fast or slowly?</li>
+<li>Is the graph look very jittery?</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Do you think the resulting trained network will work well on the
+test set?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<ol style="list-style-type: decimal">
+<li>The loss curve should drop quite quickly in a smooth line with
+little jitter</li>
+<li>The results of the training give very little information on its
+performance on a test set. You should be careful not to use it as an
+indication of a well trained network.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<p>TODO Check these are the results from the second model assumming we
+put both models in 03-build</p>
+<p>To train the network and plot the results:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(test_images, test_labels))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> pd.DataFrame.from_dict(history.history)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
+</div>
+<figure><img src="fig/04_training_history_2.png" alt="" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss from the training process</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span></code></pre>
+</div>
+<figure><img src="fig/04_training_history_loss_2.png" alt="" class="figure mx-auto d-block"></figure><p>TODO Add a challenge to change the optimizer?</p>
+</section><section id="pick-the-best-model-and-use-it-to-predict"><h2 class="section-heading">Pick the best model and use it to predict<a class="anchor" aria-label="anchor" href="#pick-the-best-model-and-use-it-to-predict"></a>
+</h2>
+<hr class="half-width">
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>Use <code>.md</code> files for episodes when you want static
+content</li>
+<li>Use <code>.Rmd</code> files for episodes when you need to generate
+output</li>
+<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
+with your lesson</li>
+<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
+locally</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Collect your link references at the bottom of your document -->
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</section></section><section id="aio-05-evaluate-predict-cnn"><p>Content from <a href="05-evaluate-predict-cnn.html">Evaluating a CNN and use it make predictions (classifications)</a></p>
+<hr>
+<p> Last updated on 2023-05-11 | 
+        
+        <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do you monitor the training process?</li>
+<li>How do you detect overfitting?</li>
+<li>How do you avoid overfitting?</li>
+<li>How do you measure model accuracy?</li>
+<li>How do you use a model to make a prediction?</li>
+<li>How to you improve model performance?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Explain what loss and accuracy are</li>
+<li>Know difference between training, testing, and validation
+datasets</li>
+<li>Understand what steps to take to improve model accuracy</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="perform-a-predictionclassification"><h2 class="section-heading">Perform a Prediction/Classification<a class="anchor" aria-label="anchor" href="#perform-a-predictionclassification"></a>
+</h2>
+<hr class="half-width">
+<p>After training the network we can use it to perform predictions. This
+is the mode you would use the network in after you have fully trained it
+to a satisfactory performance. Doing predictions on a special hold-out
+set is used in the next step to measure the performance of the
+network.</p>
+</section><section id="perform-a-predictionclassification-1"><h2 class="section-heading">7. Perform a prediction/classification<a class="anchor" aria-label="anchor" href="#perform-a-predictionclassification-1"></a>
+</h2>
+<hr class="half-width">
+<p>Now that we have a trained neural network, we can use it to predict
+new samples of penguin using the predict function.</p>
+<p>We will use the neural network to predict the species of the test set
+using the predict function. We will be using this prediction in the next
+step to measure the performance of our trained network. This will return
+a numpy matrix, which we convert to a pandas dataframe to easily see the
+labels.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># predict the classname</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> model.predict(new_img_float) <span class="co"># make prediction</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result) <span class="co"># probability for each class</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Result: [[-2.0185328   9.337507   -2.4551604  -0.4688053  -4.599108   -3.5822825
+   6.427376   -0.09437321  0.82065487  1.2978227 ]]
+Class name: automobile</code></pre>
+</div>
+<p>Remember that the output of the network uses the softmax activation
+function and has three outputs, one for each species. This dataframe
+shows this nicely.</p>
+<p>We now need to transform this output to one penguin species per
+sample. We can do this by looking for the index of highest valued output
+and converting that to the corresponding species. Pandas dataframes have
+the idxmax function, which will do exactly that.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(class_names[result.argmax()]) <span class="co"># class with highest probability</span></span></code></pre>
+</div>
+<p>TODO modify all of this section for our example</p>
+</section><section id="measure-performance"><h2 class="section-heading">Measure Performance<a class="anchor" aria-label="anchor" href="#measure-performance"></a>
+</h2>
+<hr class="half-width">
+<p>Once we trained the network we want to measure its performance. To do
+this we use some additional data that was not part of the training, this
+is known as a test set. There are many different methods available for
+measuring performance and which one is best depends on the type of task
+we are attempting. These metrics are often published as an indication of
+how well our network performs.</p>
+</section><section id="measuring-performance"><h2 class="section-heading">8. Measuring performance<a class="anchor" aria-label="anchor" href="#measuring-performance"></a>
+</h2>
+<hr class="half-width">
+<p>Now that we have a trained neural network it is important to assess
+how well it performs. We want to know how well it will perform in a
+realistic prediction scenario, measuring performance will also come back
+when tuning the hyperparameters.</p>
+<p>We have created a test set during the data preparation stage which we
+will use now to create a confusion matrix.</p>
+<div class="section level3">
+<h3 id="confusion-matrix">Confusion matrix<a class="anchor" aria-label="anchor" href="#confusion-matrix"></a>
+</h3>
+<p>With the predicted species we can now create a confusion matrix and
+display it using seaborn. To create a confusion matrix we will use
+another convenient function from sklearn called confusion_matrix. This
+function takes as a first parameter the true labels of the test set. We
+can get these by using the idxmax method on the y_test dataframe. The
+second parameter is the predicted labels which we did above.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>true_species <span class="op">=</span> y_test.idxmax(axis<span class="op">=</span><span class="st">"columns"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> confusion_matrix(true_species, predicted_species)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matrix)</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[[22  0  8]
+ [ 5  0  9]
+ [ 6  0 19]]</code></pre>
+</div>
+<p>Unfortunately, this matrix is kinda hard to read. Its not clear which
+column and which row corresponds to which species. So let’s convert it
+to a pandas dataframe with its index and columns set to the species as
+follows:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a pandas dataframe</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>confusion_df <span class="op">=</span> pd.DataFrame(matrix, index<span class="op">=</span>y_test.columns.values, columns<span class="op">=</span>y_test.columns.values)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the names of the x and y axis, this helps with the readability of the heatmap.</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>confusion_df.index.name <span class="op">=</span> <span class="st">'True Label'</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>confusion_df.columns.name <span class="op">=</span> <span class="st">'Predicted Label'</span></span></code></pre>
+</div>
+<p>We can then use the heatmap function from seaborn to create a nice
+visualization of the confusion matrix. The annot=True parameter here
+will put the numbers from the confusion matrix in the heatmap.</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(confusion_df, annot<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+</div>
+<div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-confusion-matrix" class="callout-inner">
+<h3 class="callout-title">Challenge Confusion Matrix<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+</h3>
+<div class="callout-content">
+<p>Looking at the training curve we have just made.</p>
+<p>Measure the performance of the neural network you trained and
+visualize a confusion matrix.</p>
+<ul>
+<li>Did the neural network perform well on the test set?</li>
+<li>Did you expect this from the training loss you saw?</li>
+<li>What could we do to improve the performance?</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>The confusion matrix shows that the predictions for Adelie and Gentoo
+are decent, but could be improved. However, Chinstrap is not predicted
+ever.</p>
+<p>The training loss was very low, so from that perspective this may be
+surprising. But this illustrates very well why a test set is important
+when training neural networks.</p>
+<p>We can try many things to improve the performance from here. One of
+the first things we can try is to balance the dataset better. Other
+options include: changing the network architecture or changing the
+training parameters</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="tune-hyperparameters"><h2 class="section-heading">Tune Hyperparameters<a class="anchor" aria-label="anchor" href="#tune-hyperparameters"></a>
+</h2>
+<hr class="half-width">
+<p>Hyperparameters are all the parameters set by the person configuring
+the machine learning instead of those learned by the algorithm itself.
+The hyperparameters include the number of epochs or the parameters for
+the optimizer. It might be necessary to adjust these and re-run the
+training many times before we are happy with the result.</p>
+</section><section id="tune-hyperparameters-1"><h2 class="section-heading">9. Tune hyperparameters<a class="anchor" aria-label="anchor" href="#tune-hyperparameters-1"></a>
+</h2>
+<hr class="half-width">
+<p>As we discussed before the design and training of a neural network
+comes with many hyper parameter choices. We will go into more depth of
+these hyperparameters in later episodes. For now it is important to
+realize that the parameters we chose were somewhat arbitrary and more
+careful consideration needs to be taken to pick hyperparameter
+values.</p>
+</section><section id="tune-hyperparameters-2"><h2 class="section-heading">9. Tune hyperparameters<a class="anchor" aria-label="anchor" href="#tune-hyperparameters-2"></a>
+</h2>
+<hr class="half-width">
+<p>Set expectations: How difficult is the defined problem? Before we
+dive deeper into handling overfitting and (trying to) improving the
+model performance, let us ask the question: How well must a model
+perform before we consider it a good model?</p>
+<p>Now that we defined a problem (predict tomorrow’s sunshine hours), it
+makes sense to develop an intuition for how difficult the posed problem
+is. Frequently, models will be evaluated against a so called baseline. A
+baseline can be the current standard in the field or if such a thing
+does not exist it could also be an intuitive first guess or toy model.
+The latter is exactly what we would use for our case.</p>
+<p>TODO might be able to do something like this</p>
+</section><section id="watch-your-model-training-closely"><h2 class="section-heading">Watch your model training closely<a class="anchor" aria-label="anchor" href="#watch-your-model-training-closely"></a>
+</h2>
+<hr class="half-width">
+<p>As we saw when comparing the predictions for the training and the
+test set, deep learning models are prone to overfitting. Instead of
+iterating through countless cycles of model trainings and subsequent
+evaluations with a reserved test set, it is common practice to work with
+a second split off dataset to monitor the model during training. This is
+the validation set which can be regarded as a second test set. As with
+the test set, the datapoints of the validation set are not used for the
+actual model training itself. Instead, we evaluate the model with the
+validation set after every epoch during training, for instance to stop
+if we see signs of clear overfitting. Since we are adapting our model
+(tuning our hyperparameters) based on this validation set, it is very
+important that it is kept separate from the test set. If we used the
+same set, we would not know whether our model truly generalizes or is
+only overfitting.</p>
+<div id="callout1" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
+<p>Test vs. validation set</p>
+<p>Not everybody agrees on the terminology of test set versus validation
+set. You might find examples in literature where these terms are used
+the other way around.</p>
+<p>We are sticking to the definition that is consistent with the Keras
+API. In there, the validation set can be used during training, and the
+test set is reserved for afterwards.</p>
+</div>
+</div>
+</div>
+<p>TODO add new model with validation data see this section
+deep-learning 03 weather</p>
+<div id="challenge2" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-exercise-plot-the-training-progress." class="callout-inner">
+<h3 class="callout-title">Challenge Exercise: plot the training
+progress.<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+</h3>
+<div class="callout-content">
+<ol style="list-style-type: decimal">
+<li>Is there a difference between the training and validation data? And
+if so, what would this imply?</li>
+<li>(Optional) Take a pen and paper, draw the perfect training and
+validation curves. (This may seem trivial, but it will trigger you to
+think about what you actually would like to see)</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<p>The difference between training and validation data shows that
+something is not completely right here. The model predictions on the
+validation set quickly seem to reach a plateau while the performance on
+the training set keeps improving. That is a common signature of
+overfitting.</p>
+<p>Optional: Ideally you would like the training and validation curves
+to be identical and slope down steeply to 0. After that the curves will
+just consistently stay at 0.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="counteract-model-overfitting">Counteract model overfitting<a class="anchor" aria-label="anchor" href="#counteract-model-overfitting"></a>
+</h3>
+<p>Overfitting is a very common issue and there are many strategies to
+handle it. Most similar to classical machine learning might to
+<strong>reduce the number of parameters</strong>.</p>
+<p>TODO revisit this section deep-learning 03 weather TODO might need to
+break this out into new episode</p>
+
+<div id="challenge3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="open-question-what-could-be-next-steps-to-further-improve-the-model" class="callout-inner">
+<h3 class="callout-title">Open question: What could be next steps to
+further improve the model?<a class="anchor" aria-label="anchor" href="#challenge3"></a>
+</h3>
+<div class="callout-content">
+<p>With unlimited options to modify the model architecture or to play
+with the training parameters, deep learning can trigger very extensive
+hunting for better and better results. Usually models are “well
+behaving” in the sense that small chances to the architectures also only
+result in small changes of the performance (if any). It is often
+tempting to hunt for some magical settings that will lead to much better
+results. But do those settings exist? Applying common sense is often a
+good first step to make a guess of how much better could results be. In
+the present case we might certainly not expect to be able to reliably
+predict sunshine hours for the next day with 5-10 minute precision. But
+how much better our model could be exactly, often remains difficult to
+answer.</p>
+<ul>
+<li>What changes to the model architecture might make sense to
+explore?</li>
+<li>Ignoring changes to the model architecture, what might notably
+improve the prediction quality?</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<p>This is on open question. And we don’t actually know how far one
+could push this sunshine hour prediction (try it out yourself if you
+like! We’re curious!). But there is a few things that might be worth
+exploring.</p>
+<p>Regarding the model architecture:</p>
+<ul>
+<li>In the present case we do not see a magical silver bullet to
+suddenly boost the performance. But it might be worth testing if deeper
+networks do better (more layers).</li>
+</ul>
+<p>Other changes that might impact the quality notably:</p>
+<ul>
+<li>The most obvious answer here would be: more data! Even this will not
+always work (e.g. if data is very noisy and uncorrelated, more data
+might not add much).</li>
+<li>Related to more data: use data augmentation. By creating realistic
+variations of the available data, the model might improve as well.</li>
+<li>More data can mean more data points (you can test it yourself by
+taking more than the 3 years we used here!)</li>
+<li>More data can also mean more features! What about adding the
+month?</li>
+<li>The labels we used here (sunshine hours) are highly biased, many
+days with no or nearly no sunshine but few with &gt;10 hours. Techniques
+such as oversampling or undersampling might handle such biased labels
+better. Another alternative would be to not only look at data from one
+day, but use the data of a longer period such as a full week. This will
+turn the data into time series data which in turn might also make it
+worth to apply different model architectures….</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="dropout"><h2 class="section-heading">Dropout<a class="anchor" aria-label="anchor" href="#dropout"></a>
+</h2>
+<hr class="half-width">
+<p>Note that the training loss continues to decrease, while the
+validation loss stagnates, and even starts to increase over the course
+of the epochs. Similarly, the accuracy for the validation set does not
+improve anymore after some epochs. This means we are overfitting on our
+training data set.</p>
+<p>Techniques to avoid overfitting, or to improve model generalization,
+are termed <strong>regularization techniques</strong>. One of the most
+versatile regularization technique is <strong>dropout</strong>
+(Srivastava et al., 2014). Dropout essentially means that during each
+training cycle a random fraction of the dense layer nodes are turned
+off. This is described with the dropout rate between 0 and 1 which
+determines the fraction of nodes to silence at a time.</p>
+<figure><img src="fig/05-neural_network_sketch_dropout.png" alt="" class="figure mx-auto d-block"></figure><p>The intuition behind dropout is that it enforces redundancies in the
+network by constantly removing different elements of a network. The
+model can no longer rely on individual nodes and instead must create
+multiple “paths”. In addition, the model has to make predictions with
+much fewer nodes and weights (connections between the nodes). As a
+result, it becomes much harder for a network to memorize particular
+features. At first this might appear a quiet drastic approach which
+affects the network architecture strongly. In practice, however, dropout
+is computationally a very elegant solution which does not affect
+training speed. And it frequently works very well.</p>
+<p><strong>Important to note</strong>: Dropout layers will only randomly
+silence nodes during training! During a predictions step, all nodes
+remain active (dropout is off). During training, the sample of nodes
+that are silenced are different for each training instance, to give all
+nodes a chance to observe enough training data to learn its weights.</p>
+<p>Let us add one dropout layer towards the end of the network, that
+randomly drops 20% of the input units.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dropout(<span class="fl">0.8</span>)(x) <span class="co"># This is new!</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>model_dropout <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>model_dropout.summary()</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Model: "cifar_model"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #
+=================================================================
+ input_8 (InputLayer)        [(None, 32, 32, 3)]       0
+
+ conv2d_19 (Conv2D)          (None, 30, 30, 50)        1400
+
+ max_pooling2d_12 (MaxPoolin  (None, 15, 15, 50)       0
+ g2D)
+
+ conv2d_20 (Conv2D)          (None, 13, 13, 50)        22550
+
+ max_pooling2d_13 (MaxPoolin  (None, 6, 6, 50)         0
+ g2D)
+
+ conv2d_21 (Conv2D)          (None, 4, 4, 50)          22550
+
+ dropout_2 (Dropout)         (None, 4, 4, 50)          0
+
+ flatten_7 (Flatten)         (None, 800)               0
+
+ dense_13 (Dense)            (None, 50)                40050
+
+ dense_14 (Dense)            (None, 10)                510
+
+=================================================================
+Total params: 87,060
+Trainable params: 87,060
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+</div>
+<p>We can see that the dropout does not alter the dimensions of the
+image, and has zero parameters.</p>
+<p>We again compile and train the model.</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model_dropout.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>history_dropout <span class="op">=</span> model_dropout.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(test_images, test_labels))</span></code></pre>
+</div>
+<p>And inspect the training results:</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> pd.DataFrame.from_dict(history_dropout.history)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>history_df[<span class="st">'epoch'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(history_df)<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> history_df.set_index(<span class="st">'epoch'</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>test_loss, test_acc <span class="op">=</span> model_dropout.evaluate(test_images,  test_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>313/313 - 2s - loss: 1.4683 - accuracy: 0.5307</code></pre>
+</div>
+<figure><img src="fig/05_training_history_3.png" alt="" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss from the training process</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span></code></pre>
+</div>
+<figure><img src="fig/05_training_history_loss_3.png" alt="" class="figure mx-auto d-block"></figure><p>Now we see that the gap between the training accuracy and validation
+accuracy is much smaller, and that the final accuracy on the validation
+set is higher than without dropout. Nevertheless, there is still some
+difference between the training loss and validation loss, so we could
+experiment with regularization even more.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>Use <code>.md</code> files for episodes when you want static
+content</li>
+<li>Use <code>.Rmd</code> files for episodes when you need to generate
+output</li>
+<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
+with your lesson</li>
+<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
+locally</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</section></section><section id="aio-06-conclusion"><p>Content from <a href="06-conclusion.html">Conclusion</a></p>
+<hr>
+<p> Last updated on 2023-05-11 | 
+        
+        <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/06-conclusion.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What sort of problems can Deep Learning solve?</li>
+<li>What sort of problems should Deep Learning not be used for?</li>
+<li>How do I share my CNN?</li>
+<li>Where can I find pre-trained models?</li>
+<li>What is a GPU?</li>
+<li>What other problems can be solved with a CNN?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Explain when to use a CNN and when not to</li>
+<li>Understand Github</li>
+<li>Use a pre-trained model for your data</li>
+<li>Know what a GPU is and what it can do for you</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="what-sort-of-problems-can-deep-learning-solve"><h2 class="section-heading">What sort of problems can Deep Learning solve?<a class="anchor" aria-label="anchor" href="#what-sort-of-problems-can-deep-learning-solve"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>Pattern/object recognition</li>
+<li>Segmenting images (or any data)</li>
+<li>Translating between one set of data and another, for example natural
+language translation.</li>
+<li>Generating new data that looks similar to the training data, often
+used to create synthetic datasets, art or even “deepfake” videos.
+<ul>
+<li>This can also be used to give the illusion of enhancing data, for
+example making images look sharper, video look smoother or adding colour
+to black and white images. But beware of this, it is not an accurate
+recreation of the original data, but a recreation based on something
+statistically similar, effectively a digital imagination of what that
+data could look like.</li>
+</ul>
+</li>
+</ul></section><section id="what-sort-of-problems-can-deep-learning-not-solve"><h2 class="section-heading">What sort of problems can Deep Learning not solve?<a class="anchor" aria-label="anchor" href="#what-sort-of-problems-can-deep-learning-not-solve"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>Any case where only a small amount of training data is
+available.</li>
+<li>Tasks requiring an explanation of how the answer was arrived
+at.</li>
+<li>Classifying things which are nothing like their training data.</li>
+</ul></section><section id="share-model"><h2 class="section-heading">Share Model<a class="anchor" aria-label="anchor" href="#share-model"></a>
+</h2>
+<hr class="half-width">
+<p>Now that we have a trained network that performs at a level we are
+happy with we can go and use it on real data to perform a prediction. At
+this point we might want to consider publishing a file with both the
+architecture of our network and the weights which it has learned
+(assuming we did not use a pre-trained network). This will allow others
+to use it as as pre-trained network for their own purposes and for them
+to (mostly) reproduce our result.</p>
+</section><section id="share-model-1"><h2 class="section-heading">10. Share model<a class="anchor" aria-label="anchor" href="#share-model-1"></a>
+</h2>
+<hr class="half-width">
+<p>It is very useful to be able to use the trained neural network at a
+later stage without having to retrain it. This can be done by using the
+save method of the model. It takes a string as a parameter which is the
+path of a directory where the model is stored.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">'my_first_model'</span>)</span></code></pre>
+</div>
+<p>This saved model can be loaded again by using the load_model method
+as follows:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pretrained_model <span class="op">=</span> keras.models.load_model(<span class="st">'my_first_model'</span>)</span></code></pre>
+</div>
+<p>This loaded model can be used as before to predict.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the pretrained model here</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y_pretrained_pred <span class="op">=</span> pretrained_model.predict(X_test)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pretrained_prediction <span class="op">=</span> pd.DataFrame(y_pretrained_pred, columns<span class="op">=</span>target.columns.values)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># idxmax will select the column for each row with the highest value</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>pretrained_predicted_species <span class="op">=</span> pretrained_prediction.idxmax(axis<span class="op">=</span><span class="st">"columns"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pretrained_predicted_species)</span></code></pre>
+</div>
+<p>TODO modify above for our example</p>
+</section><section id="choose-a-pretrained-model"><h2 class="section-heading">Choose a pretrained model<a class="anchor" aria-label="anchor" href="#choose-a-pretrained-model"></a>
+</h2>
+<hr class="half-width">
+<p>If your data and problem is very similar to what others have done,
+you can often use a pretrained network. Even if your problem is
+different, but the data type is common (for example images), you can use
+a pretrained network and finetune it for your problem. A large number of
+openly available pretrained networks can be found in the <a href="https://modelzoo.co/" class="external-link">Model Zoo</a>, <a href="https://pytorch.org/hub/" class="external-link">pytorch hub</a> or <a href="https://pytorch.org/hub/" class="external-link">tensorflow hub</a>.</p>
+
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>Use <code>.md</code> files for episodes when you want static
+content</li>
+<li>Use <code>.Rmd</code> files for episodes when you need to generate
+output</li>
+<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
+with your lesson</li>
+<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
+locally</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Collect your link references at the bottom of your document -->
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
@@ -451,8 +2485,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/aio.html",
   "identifier": "https://.github.io/github.com/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-05-09",
-  "datePublished": "2023-05-09"
+  "dateModified": "2023-05-11",
+  "datePublished": "2023-05-11"
 }
 
   </script><script>

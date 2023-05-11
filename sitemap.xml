@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://.github.io/github.com/01-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/02-image-data.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/03-build-cnn.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/04-fit-cnn.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/05-evaluate-predict-cnn.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/06-conclusion.html</loc>
+  </url>
+  <url>
     <loc>https://.github.io/github.com/404.html</loc>
   </url>
   <url>
@@ -17,6 +35,24 @@
   </url>
   <url>
     <loc>https://.github.io/github.com/index.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/01-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/02-image-data.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/03-build-cnn.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/04-fit-cnn.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/05-evaluate-predict-cnn.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/06-conclusion.html</loc>
   </url>
   <url>
     <loc>https://.github.io/github.com/instructor/404.html</loc>
@@ -52,6 +88,9 @@
     <loc>https://.github.io/github.com/instructor/reference.html</loc>
   </url>
   <url>
+    <loc>https://.github.io/github.com/instructor/setup.html</loc>
+  </url>
+  <url>
     <loc>https://.github.io/github.com/instructor-notes.html</loc>
   </url>
   <url>
@@ -65,5 +104,8 @@
   </url>
   <url>
     <loc>https://.github.io/github.com/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/setup.html</loc>
   </url>
 </urlset>

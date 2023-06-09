@@ -4,12 +4,11 @@ teaching: 10
 exercises: 0
 ---
 
-:::::::::::::::::::::::::::::::::::::: questions 
+:::::::::::::::::::::::::::::::::::::: questions
 
-- What is deep learning and what are a few common DL algorithms?
-- What is a neural network?
+- What is machine learning and what is it used for?
+- What is deep learning?
 - How do I use a neural network for image classification?
-
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -18,49 +17,59 @@ exercises: 0
 - Explain the difference between artificial intelligence, machine learning and deep learning
 - Explain how machine learning is used for regression and classification tasks
 - Understand what algorithms are used for image classification
-- Demonstrate a convolutional neural network
+- Perform an image classification using a convolutional neural network
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## What is Deep Learning?
-### Deep Learning, Machine Learning and Artificial Intelligence
+## What is machine learning?
+Machine learning is a set of of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **convolutional neural network**, but there are many more.
 
-Deep Learning (DL) is just one of many techniques collectively known as machine learning. Machine learning (ML) refers to techniques where a computer can "learn" patterns in data, usually by being shown numerous examples to train it. People often talk about machine learning being a form of artificial intelligence (AI). Definitions of artificial intelligence vary, but usually involve having computers mimic the behaviour of intelligent biological systems. Since the 1950s many works of science fiction have dealt with the idea of an artificial intelligence which matches (or exceeds) human intelligence in all areas. Although there have been great advances in AI and ML research recently we can only come close to human like intelligence in a few specialist areas and are still a long way from a general purpose AI. The image below shows some differences between artificial intelligence, Machine Learning and Deep Learning.
+The techniques breakdown into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of value) given a set of inputs, for example trying to predict the cost of something given the economic conditions and the cost of raw materials or predicting a country’s GDP given its life expectancy. Classifiers try to classify data into different categories, for example deciding what characters are visible in a picture of some writing or if a message is spam or not.
+
+## Training Data
+
+Many (but not all) machine learning systems “learn” by taking a series of input data and output data and using it to form a model. The maths behind the machine learning doesn’t care what the data is as long as it can represented numerically or categorised. Some examples might include:
+
+* predicting a person’s weight based on their height
+* predicting house prices given stock market prices
+* classifying if an email is spam or not
+* classifying what if an image contains a person or not
+
+Typically we will need to train our models with hundreds, thousands or even millions of examples before they work well enough to do any useful predictions or classifications with them.
+
+
+## Deep Learning, Machine Learning and Artificial Intelligence
+
+Deep Learning (DL) is just one of many machine learning techniques and people often talk about machine learning being a form of artificial intelligence (AI).Definitions of artificial intelligence vary, but usually involve having computers mimic the behaviour of intelligent biological systems. Since the 1950s many works of science fiction have dealt with the idea of an artificial intelligence which matches (or exceeds) human intelligence in all areas. Although there have been great advances in AI and ML research recently we can only come close to human like intelligence in a few specialist areas and are still a long way from a general purpose AI. The image below shows some differences between artificial intelligence, Machine Learning and Deep Learning.
 
 ![The image above is by Tukijaaliwa, CC BY-SA 4.0, via Wikimedia Commons, [original source]](fig/01_AI_ML_DL_differences.png){alt='Three nested circles describing AI as the largest circle in dark blue; enclosing machine learning in medium blue; enclosing deep learning in even lighter blue'}
 
-## Concept: Differentiation between classical ML models and Deep Learning models
-Traditional ML algorithms can only use one (possibly two layers) of data transformation to calculate an output (shallow models). With high dimensional data and growing feature space (possible set of values for any given feature), shallow models quickly run out of layers to calculate outputs. Deep neural networks (constructed with multiple layers of neurons) are the extension of shallow models with three layers: input, hidden, and outputs layers. The hidden layer is where learning takes place. As a result, deep learning is best applied to large datasets for training and prediction. As observations and feature inputs decrease, shallow ML approaches begin to perform noticeably better. 
+::::::::::::::::::::::::::::::::::::::::: callout
+Concept: Differentiation between classical ML models and Deep Learning models
 
-## Concept: Why deep learning is possible and what infrastructure is best suited to deep learning
-Systems with high quality GPUs and/or HPCs if available. [Comment: I feel this is important to note, in order to make it clear that anyone attempting to run neural networks on a standard laptop will quickly reach the upper limit of capacity. By setting this expectation clearly in the course, it could help prevent people from trying to do everything neural net related on their machines and becoming disenfranchise with ML as a result]
+Traditional ML algorithms can only use one (possibly two layers) of data transformation to calculate an output (shallow models). With high dimensional data and growing feature space (possible set of values for any given feature), shallow models quickly run out of layers to calculate outputs. 
+
+Deep neural networks (constructed with multiple layers of neurons) are the extension of shallow models with three layers: input, hidden, and outputs layers. The hidden layer is where learning takes place. As a result, deep learning is best applied to large datasets for training and prediction. As observations and feature inputs decrease, shallow ML approaches begin to perform noticeably better. 
+:::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## What is image classification?
 ![](fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png){alt='Four types of image classification tasks include semantic segmentation where every pixel is labelled; classification and localization that detects a single object like a cat; object detection that detects multiple objects like cats and dogs; and instance segmentation that detects each pixel of multiple objects'}
 
-## Deep Learning workflow
+## Deep Learning Workflow
 To apply Deep Learning to a problem there are several steps we need to go through:
 
-1. Formulate/ Outline the problem
-Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an imaget into one of a few categories?
+### 1. Formulate/ Outline the problem
+Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories.
 
-2. Identify inputs and outputs
-Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images.
+### 2. Identify inputs and outputs
+Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images.We are performing a classification problem and we will have one output for each potential class.
 
-For the output we are performing a classification problem and we will have one output for each potential class.
-
-3. Prepare data
+### 3. Prepare data
 Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data.
 
 Next we will need to divide the data into multiple sets. One of these will be used by the training process and we will call it the training set. Another will be used to evaluate the accuracy of the training and we will call that one the test set. Sometimes we will also use a 3rd set known as a validation set to tune hyperparameters.
 
-## Workflow
-1. Load the data
-1. Define the Model
-1. Fit the Model
-1. Evaluate the Model
-1. Make a prediction (ie classify an image)
-
+For this lesson, we will be using an existing image dataset known as CIFAR-10 that we will discuss in more depth in the next episode.
 
 ### Load data
 
@@ -95,22 +104,21 @@ The test set consists of 10000 images of 32x32 pixels and 3 channels (RGB values
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-We take a small sample of the data as training set for demonstration purposes.
-
-The RGB values are between 0 and 255. For input of neural networks, it is better to have small input values. So we normalize our data between 0 and 1:
+Image RGB values are between 0 and 255. For input of neural networks, it is better to have small input values. So we normalize our data between 0 and 1:
 
 ```python
 # normalize the RGB values to be between 0 and 1
 train_images = train_images / 255.0
 test_images = test_images / 255.0
 ```
-The labels are single numbers denoting the class. We map the class numbers back to the class names, taken from the documentation:
+The labels are a set of single numbers denoting the class and we map the class numbers back to the class names, taken from the documentation:
 
 ```python
 # create a list of classnames
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 ```
-### Visualize the Cifar10 dataset
+
+### Visualize a subet of the Cifar10 dataset
 
 ```python
 # plot a subset of the images
@@ -126,10 +134,12 @@ plt.show()
 
 ![](fig/01_cifar10.png){alt='Subset of 25 Cifar10 images displayed in five rows and five columns '}
 
-4. Build a new architecture from scratch
+### 4. Choose a pre-trained model or build a new architecture from scratch
 
-We need to think about how many input neurons it will have, how many hidden layers and how many outputs, what types of layers we use (we will explore the different types later on). This will probably need some experimentation and we might have to try tweaking the network design a few times before we see acceptable results.
- 
+Often we can use an existing neural network instead of designing one from scratch. Training a network can take a lot of time and computational resources. There are a number of well publicised networks which have been shown to perform well at certain tasks, if you know of one which already does a similar task well then it makes sense to use one of these.
+
+If instead we decide we do want to design our own network then we need to think about how many input neurons it will have, how many hidden layers and how many outputs, what types of layers we use (we will explore the different types later on). This will probably need some experimentation and we might have to try tweaking the network design a few times before we see acceptable results.
+
 ### Define the Model
 
 ```python
@@ -145,63 +155,34 @@ outputs = keras.layers.Dense(10)(x)
 
 # create the model
 model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model_small")
+```
 
-# optimize the model
+### 5. Choose a loss function and optimizer
+
+The loss function tells the training algorithm how far away the predicted value was from the true value. We will look at choosing a loss function in more detail later on.
+
+The optimizer is responsible for taking the output of the loss function and then applying some changes to the weights within the network. It is through this process that the “learning” (adjustment of the weights) is achieved.
+
+```python
+# compile the model
 model.compile(optimizer='adam', loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 ```
-6. Train the model
 
-We can now go ahead and start training our neural network. We will probably keep doing this for a given number of iterations through our training dataset (referred to as epochs) or until the loss function gives a value under a certain threshold. The graph below show the loss against the number of epochs, generally the loss will go down with each epoch, but occasionally it will see a small rise.
+### 6. Train the model
 
-### Fit the Model
+We can now go ahead and start training our neural network. We will probably keep doing this for a given number of iterations through our training dataset (referred to as epochs) or until the loss function gives a value under a certain threshold.
 
 ```python
 # fit the model
 history = model.fit(train_images, train_labels, epochs=10, validation_data=(test_images, test_labels))
-``` 
 
-### Evaluate the Model
-
-We can plot the training process using the history:
-```python
-import seaborn as sns
-import pandas as pd
-
-# plot the accuracy from the training process
-history_df = pd.DataFrame.from_dict(history.history)
-sns.lineplot(data=history_df[['accuracy', 'val_accuracy']])
-```
-![](fig/04_training_history_1.png){alt='Line plot of training loss in solid blue and validation loss where both lines decrease over each epoch but with a decreasing negative slope'}
-
-```python
-# plot the loss from the training process
-sns.lineplot(data=history_df[['loss', 'val_loss']])
-```
-
-![](fig/04_training_history_loss_1.png){alt='Line plot of training accuracy in solid blue and validation accuracy in dotted orange where both line increase over each epoch with a decreasing postive slope'}
-
-It seems that the model is overfitting somewhat, because the validation accuracy and loss stagnates.
-
-```python
-# calculate the loss and accuracy of the training process
-test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
-print('Accuracy:', round(test_acc,2))
-``` 
-```output
-Accuracy: 0.68
-```
-
-### Save the model
-
-```python
 # save the model
 model.save('01_intro_model.h5')
 ``` 
-7. Perform a Prediction/Classification
+
+### 7. Perform a Prediction/Classification
 
 After training the network we can use it to perform predictions. This is the mode you would use the network in after you have fully trained it to a satisfactory performance. Doing predictions on a special hold-out set is used in the next step to measure the performance of the network.
-
-### Make a prediction
 
 ```python
 from tensorflow.keras.utils import load_img
@@ -227,11 +208,38 @@ Class name: automobile
 
 Congratulations, you just created your first image classification model and used it to classify an image! 
 
-Unfortunately the classification was incorrect! What can we do about?
+Unfortunately the classification was incorrect. Why might that be?
 
-There are many ways we can try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters. 
+::::::::::::::::::::::::::::::::::::: challenge 
 
-We will discuss these options later in the lesson but first let us take a step back and spend a bit more time discussing each workflow component in depth.
+Why did our model classify a bird as a plane?
+
+:::::::::::::::::::::::: solution 
+
+After resizing the original image to be the size expected by our model it looks like this:
+
+![](fig/01_Jabiru_w_ReducedPixels.png){alt='Subset of 25 Cifar10 images displayed in five rows and five columns '}
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+What can we do about? 
+
+There are many ways we can try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
+
+### 8. Measure Performance
+
+Once we trained the network we want to measure its performance. To do this we use some additional data that was not part of the training, this is known as a test set. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
+
+### 9. Tune Hyperparameters
+
+Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. The hyperparameters include the number of epochs or the parameters for the optimizer. It might be necessary to adjust these and re-run the training many times before we are happy with the result.
+
+### 10. Share Model
+Now that we have a trained network that performs at a level we are happy with we can go and use it on real data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
+
+We will return to these workflow steps throughout this lesson and discuss each component in more detail.
+
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 

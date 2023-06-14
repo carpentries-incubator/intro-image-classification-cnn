@@ -164,13 +164,7 @@
         
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#where-can-i-find-image-data">Where can I find image data?</a></li>
-<li><a href="#plotting-image-data-in-python">Plotting image data in python</a></li>
-<li><a href="#image-dimensions">Image Dimensions</a></li>
-<li><a href="#rgb-vs-greyscale">RGB vs Greyscale</a></li>
-<li><a href="#split-data-into-training-and-test-set">Split data into training and test set</a></li>
-<li><a href="#one-hot-encoding">One-hot encoding</a></li>
-<li><a href="#image-augmentation">Image augmentation</a></li>
+        <ul><li><a href="#deep-learning-workflow">Deep Learning Workflow</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -264,7 +258,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p> Last updated on 2023-05-11 | 
+        <p> Last updated on 2023-06-14 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -305,9 +299,34 @@
 </div>
 </div>
 </div>
-<section id="where-can-i-find-image-data"><h2 class="section-heading">Where can I find image data?<a class="anchor" aria-label="anchor" href="#where-can-i-find-image-data"></a>
+<section id="deep-learning-workflow"><h2 class="section-heading">Deep Learning Workflow<a class="anchor" aria-label="anchor" href="#deep-learning-workflow"></a>
 </h2>
-<hr class="half-width"><p>Deep Learning requires extensive training using example data which
+<hr class="half-width"><p>Let’s start over with the first steps in our workflow.</p>
+<div class="section level3">
+<h3 id="formulate-outline-the-problem">1. Formulate/ Outline the problem<a class="anchor" aria-label="anchor" href="#formulate-outline-the-problem"></a></h3>
+<p>Firstly we must decide what it is we want our Deep Learning system to
+do. This lesson is all about image classification so our aim is to put
+an image into one of a few categories.</p>
+</div>
+<div class="section level3">
+<h3 id="identify-inputs-and-outputs">2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#identify-inputs-and-outputs"></a></h3>
+<p>Next we need to identify what the inputs and outputs of the neural
+network will be. In our case, the data is images and the inputs could be
+the individual pixels of the images.We are performing a classification
+problem and we will have one output for each potential class.</p>
+</div>
+<div class="section level3">
+<h3 id="prepare-data">3. Prepare data<a class="anchor" aria-label="anchor" href="#prepare-data"></a></h3>
+<p>For this lesson, we will be using an existing image dataset known as
+CIFAR-10 that we saw in the last episode.Let’s explore this dataset in
+more detail and talk about steps you would take to make your own
+dataset.</p>
+</div>
+</section><div class="section level1">
+<h1 id="preexisting-datasets">Preexisting datasets<a class="anchor" aria-label="anchor" href="#preexisting-datasets"></a></h1>
+<div class="section level2">
+<h2 id="where-can-i-find-image-data">Where can I find image data?<a class="anchor" aria-label="anchor" href="#where-can-i-find-image-data"></a></h2>
+<p>Deep Learning requires extensive training using example data which
 shows the network what output it should produce for a given input. One
 common application of Deep Learning is classifying images. In this
 workshop our network will be trained by being “shown” a series of images
@@ -348,15 +367,31 @@ real. An example of this is mirroring images when trying to classify
 cats and dogs. An horizontally mirrored animal retains the label, but
 exposes a different view.
 :::::::::::::::::::::::::::::::::::::::::::::::</p>
-</section><section id="plotting-image-data-in-python"><h2 class="section-heading">Plotting image data in python<a class="anchor" aria-label="anchor" href="#plotting-image-data-in-python"></a>
-</h2>
-<hr class="half-width"></section><section id="image-dimensions"><h2 class="section-heading">Image Dimensions<a class="anchor" aria-label="anchor" href="#image-dimensions"></a>
-</h2>
-<hr class="half-width"></section><section id="rgb-vs-greyscale"><h2 class="section-heading">RGB vs Greyscale<a class="anchor" aria-label="anchor" href="#rgb-vs-greyscale"></a>
-</h2>
-<hr class="half-width"></section><section id="split-data-into-training-and-test-set"><h2 class="section-heading">Split data into training and test set<a class="anchor" aria-label="anchor" href="#split-data-into-training-and-test-set"></a>
-</h2>
-<hr class="half-width"><p>Finally, we will split the dataset into a training set and a test
+<p>In cases where the data exists, you can simply load it into
+memory:</p>
+<div class="section level3">
+<h3 id="load-data">Load data<a class="anchor" aria-label="anchor" href="#load-data"></a></h3>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the cifar dataset included with the keras packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
+</div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="plotting-image-data-in-python">Plotting image data in python<a class="anchor" aria-label="anchor" href="#plotting-image-data-in-python"></a></h2>
+</div>
+<div class="section level2">
+<h2 id="image-dimensions">Image Dimensions<a class="anchor" aria-label="anchor" href="#image-dimensions"></a></h2>
+</div>
+<div class="section level2">
+<h2 id="rgb-vs-greyscale">RGB vs Greyscale<a class="anchor" aria-label="anchor" href="#rgb-vs-greyscale"></a></h2>
+</div>
+<div class="section level2">
+<h2 id="split-data-into-training-and-test-set">Split data into training and test set<a class="anchor" aria-label="anchor" href="#split-data-into-training-and-test-set"></a></h2>
+<p>Finally, we will split the dataset into a training set and a test
 set. As the names imply we will use the training set to train the neural
 network, while the test set is kept separate. We will use the test set
 to assess the performance of the trained neural network on unseen
@@ -382,9 +417,10 @@ defaults to True.</li>
 done. By setting it to target the train and test sets the function will
 return will have roughly the same proportions (with regards to the
 number of penguins of a certain species) as the dataset.</li>
-</ul></section><section id="one-hot-encoding"><h2 class="section-heading">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a>
-</h2>
-<hr class="half-width"><p>A neural network can only take numerical inputs and outputs, and
+</ul></div>
+<div class="section level2">
+<h2 id="one-hot-encoding">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a></h2>
+<p>A neural network can only take numerical inputs and outputs, and
 learns by calculating how “far away” the species predicted by the neural
 network is from the true species. When the target is a string category
 column as we have here it is very difficult to determine this “distance”
@@ -394,9 +430,17 @@ the one-hot encoding. This encoding creates multiple columns, as many as
 there are unique values, and puts a 1 in the column with the
 corresponding correct class, and 0’s in the other columns.</p>
 <p>TBC</p>
-</section><section id="image-augmentation"><h2 class="section-heading">Image augmentation<a class="anchor" aria-label="anchor" href="#image-augmentation"></a>
-</h2>
-<hr class="half-width"><p>TBC</p>
+</div>
+<div class="section level2">
+<h2 id="image-augmentation">Image augmentation<a class="anchor" aria-label="anchor" href="#image-augmentation"></a></h2>
+<p>TBC</p>
+</div>
+</div>
+<div class="section level1">
+<h1 id="preexisting-datasets-1">Preexisting datasets<a class="anchor" aria-label="anchor" href="#preexisting-datasets-1"></a></h1>
+<p>TBD</p>
+<p>Now that our dataset is ready to go, let us move on to how to build
+an arhcitecture.</p>
 
 <div id="challenge-1-can-you-do-it" class="callout challenge">
 <div class="callout-square">
@@ -407,7 +451,7 @@ corresponding correct class, and 0’s in the other columns.</p>
 </h3>
 <div class="callout-content">
 <p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -485,7 +529,11 @@ locally</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
-</section></div> <!-- / div.lesson-content -->
+</div>
+
+
+
+      </div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="01-introduction.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="03-build-cnn.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
@@ -538,8 +586,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/02-image-data.html",
   "identifier": "https://.github.io/github.com/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-05-11",
-  "datePublished": "2023-06-13"
+  "dateModified": "2023-06-14",
+  "datePublished": "2023-06-14"
 }
 
   </script><script>

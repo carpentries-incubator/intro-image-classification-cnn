@@ -24,6 +24,20 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Deep Learning Workflow
+Let's start over with the first steps in our workflow.
+
+### 1. Formulate/ Outline the problem
+Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories.
+
+### 2. Identify inputs and outputs
+Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images.We are performing a classification problem and we will have one output for each potential class.
+
+### 3. Prepare data
+For this lesson, we will be using an existing image dataset known as CIFAR-10 that we saw in the last episode.Let's explore this dataset in more detail and talk about steps you would take to make your own dataset.
+
+# Preexisting datasets
+
 ## Where can I find image data?
 
 Deep Learning requires extensive training using example data which shows the network what output it should produce for a given input. One common application of Deep Learning is classifying images. In this workshop our network will be trained by being “shown” a series of images and told what they contain. Once the network is trained it should be able to take another image and correctly classify its contents.
@@ -44,6 +58,18 @@ The rise of Deep Learning is partially due to the increased availability of very
 
 In case you have too little data available to train a complex network from scratch, it is sometimes possible to use a pretrained network that was trained on a similar problem. Another trick is data augmentation, where you expand the dataset with artificial data points that could be real. An example of this is mirroring images when trying to classify cats and dogs. An horizontally mirrored animal retains the label, but exposes a different view.
 :::::::::::::::::::::::::::::::::::::::::::::::
+
+In cases where the data exists, you can simply load it into memory:
+
+
+### Load data
+
+```python
+# load the cifar dataset included with the keras packages
+from tensorflow import keras
+(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+```
+
 
 ## Plotting image data in python
 
@@ -71,6 +97,12 @@ TBC
 ## Image augmentation
 
 TBC
+
+# Preexisting datasets
+
+TBD
+
+Now that our dataset is ready to go, let us move on to how to build an arhcitecture.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 

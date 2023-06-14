@@ -6,17 +6,17 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions
 
+- What is a (artificial) neural network (ANN)?
 - How is a convolutional neural network (CNN) different from an ANN?
-- What are the different layers used to build a CNN?
-- What is an activation function?
+- What are the types of layers used to build a CNN?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand how a convolutional neural network diffs from a basic neural network
+- Know the different layers: input, hidden (fully connected [dense]
+- Understand how a convolutional neural network differs from an artificial neural network
 - Explain the terms: kernel, filter, back prop
-- Define the terms: weights, bias, activation function
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -38,7 +38,78 @@ Multiple neurons can be joined together by connecting the output of one to the i
 
 Neural networks aren't a new technique, they have been around since the late 1940s. But until around 2010 neural networks tended to be quite small, consisting of only 10s or perhaps 100s of neurons. This limited them to only solving quite basic problems. Around 2010 improvements in computing power and the algorithms for training the networks made much larger and more powerful networks practical. These are known as deep neural networks or Deep Learning.
 
-## Convolutional layers
+::::::::::::::::::::::::::::::::::::::::: callout
+## Concept: Why deep learning is possible and what infrastructure is best suited to deep learning
+Systems with high quality GPUs and/or HPCs if available. [Comment: I feel this is important to note, in order to make it clear that anyone attempting to run neural networks on a standard laptop will quickly reach the upper limit of capacity. By setting this expectation clearly in the course, it could help prevent people from trying to do everything neural net related on their machines and becoming disenfranchise with ML as a result]
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
+## convolutional Neural Networks
+
+A convolutional neural network (CNN) is a type of artificial neural network that is most commonly applied to analyze visual imagery. 
+https://serokell.io/blog/introduction-to-convolutional-neural-networks
+
+
+## 4. Build an architecture from scratch ~~or choose a pretrained model~~
+
+### Keras for neural networks
+
+For this lesson we will be using Keras to define and train our neural network models. Keras is a machine learning framework with ease of use as one of its main features. It is part of the tensorflow python package and can be imported using from tensorflow import keras.
+
+Keras includes functions, classes and definitions to define deep learning models, cost functions and optimizers (optimizers are used to train a model).
+
+```python
+from tensorflow import keras
+```
+
+Now we will build a neural network from scratch, and although this sounds like a daunting task, with Keras it is actually surprisingly straightforward. With Keras you compose a neural network by creating layers and linking them together. 
+
+## Parts of a neural network
+
+To convert the above conceptual model of a neural network into an algorithm we first need to understand there are three parts to a neural network: 
+- Input
+- Hidden Layers
+- Output
+
+### Input
+
+The Input in Keras gets special treatment, Keras automatically calculates the number of inputs and outputs a layer needs and therefore how many edges need to be created. This means we need to let Keras now how big our input is going to be. We do this by instantiating a keras.Input class and tell it how big our input is.
+
+In our case, the input is an image defined by its number of pixels and channels (RGB)
+
+```python
+# recall the number images in our dataset
+train_images.shape
+```
+```output
+(50000, 32, 32, 3)
+```
+```python
+# define the input
+inputs = keras.Input(shape=train_images.shape[1:])
+```
+
+### Hidden Layers
+There are several different types of so-called hidden layers that can be used to create a neural network in general or a CNN in particular.
+
+#### Dense Layer
+
+The most common of these is called a fully connected or **Dense** layer.
+
+A **Dense** layer has a number of neurons, which is a parameter you can choose when you create the layer. When connecting the layer to its input and output layers every neuron in the dense layer gets an edge (i.e. connection) to all of the input neurons and all of the output neurons.
+
+- In Keras this is defined by the keras.layers.Dense class.
+
+TODO insert image?
+
+Dense layers are often found at the end of a CNN. TODO Decide if we can present a conv layer without first talking about dense layers
+
+#### Convolutional Layer
+
+A Convolution layer is the main building block of a CNN and that applies a filters (aka kernels) to an input that convolves with the image to create an activation (aka feature) map. A convolution is a mathematical operation performed on two functions to produce a third function. It is the operation that identities unique features of an image that is then using for classification. The first convolution typically identifies 'edges' as the first feature.
+
+- **Conv2D**: 2D convolution layer (e.g. spatial convolution over images) defined by the tf.keras.layers.Conv2D class
+
+TODO Decide if this level of detail is too much, decide how to present outside of the basic components of a neural network
 
 A convolution matrix, or kernel, is a matrix transformation that we 'slide' over the image to calculate features at each position of the image. For each pixel, we calculate the matrix product between the kernel and the pixel with its surroundings. A kernel is typically small, between 3x3 and 7x7 pixels. We can for example think of the 3x3 kernel:
 
@@ -56,6 +127,9 @@ In the following image, we see the effect of such a kernel on the values of a si
 ![](fig/03_conv_image.png){alt=''}
 
 In our convolutional layer our hidden units are a number of convolutional matrices (or kernels), where the values of the matrices are the weights that we learn in the training process. The output of a convolutional layer is an 'image' for each of the kernels, that gives the output of the kernel applied to each pixel.
+
+
+TODO screenshot here or later; visualizing inside the black box
 
 :::::::::::::::::::::::::::::::::::::: callout
 Playing with convolutions
@@ -119,37 +193,31 @@ Inspect the network above:
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+#### Pooling Layers
+
 Often in convolutional neural networks, the convolutional layers are intertwined with **Pooling layers**. As opposed to the convolutional layer, the pooling layer actually alters the dimensions of the image and reduces it by a scaling factor. It is basically decreasing the resolution of your picture. The rationale behind this is that higher layers of the network should focus on higher-level features of the image. By introducing a pooling layer, the subsequent convolutional layer has a broader 'view' on the original image.
 
-## 4. Build an architecture from scratch
-
-### Keras for neural networks
-
-For this lesson we will be using Keras to define and train our neural network models. Keras is a machine learning framework with ease of use as one of its main features. It is part of the tensorflow python package and can be imported using from tensorflow import keras.
-
-Keras includes functions, classes and definitions to define deep learning models, cost functions and optimizers (optimizers are used to train a model).
-
-```python
-from tensorflow import keras
-```
-
-### Build a neural network from scratch
-Now we will build a neural network from scratch, and although this sounds like a daunting task, with Keras it is actually surprisingly straightforward.
-
-With Keras you compose a neural network by creating layers and linking them together. We used several different types of layers in our model:
-
-- **Conv2D**: 2D convolution layer (e.g. spatial convolution over images) defined by the tf.keras.layers.Conv2D class
 - **MaxPooling2D**: Max pooling operation for 2D spatial data defined by the tf.keras.layers.MaxPool2D class
-- **Flatten**: Flattens the input and is defined by the tf.keras.layers.Flatten class
-- **Dense**: Fully connected or Dense layer defined by the keras.layers.Dense class
 
-A **Dense** layer has a number of neurons, which is a parameter you can choose when you create the layer. When connecting the layer to its input and output layers every neuron in the dense layer gets an edge (i.e. connection) to all of the input neurons and all of the output neurons.
 
-The input in Keras also gets special treatment, Keras automatically calculates the number of inputs and outputs a layer needs and therefore how many edges need to be created. This means we need to let Keras now how big our input is going to be. We do this by instantiating a keras. Input class and tell it how big our input is.
+### Putting it all together
+
+We saw in the first episode the full architecture of our model. Recall:
+
 
 ```python
-# define the inputs
+# define the inputs, layers, and outputs of a cnn model
 inputs = keras.Input(shape=train_images.shape[1:])
+x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
+x = keras.layers.MaxPooling2D((2, 2))(x)
+x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
+x = keras.layers.MaxPooling2D((2, 2))(x)
+x = keras.layers.Flatten()(x)
+x = keras.layers.Dense(50, activation='relu')(x)
+outputs = keras.layers.Dense(10)(x)
+
+# create the model
+model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model_small")
 ```
 
 We store a reference to this input class in a variable so we can pass it to the creation of our hidden layer. Creating the hidden layer can then be done as follows:
@@ -361,7 +429,7 @@ associated with the lessons. They appear in the "Instructor View"
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use `.md` files for episodes when you want static content
+- Artificial neural networks are a machine learning technique based on a model inspired by groups of neurons in the brain.
 - Use `.Rmd` files for episodes when you need to generate output
 - Run `sandpaper::check_lesson()` to identify any issues with your lesson
 - Run `sandpaper::build_lesson()` to preview your lesson locally

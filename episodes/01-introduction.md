@@ -30,10 +30,10 @@ The techniques breakdown into two broad categories, predictors and classifiers. 
 
 Many (but not all) machine learning systems “learn” by taking a series of input data and output data and using it to form a model. The maths behind the machine learning doesn’t care what the data is as long as it can represented numerically or categorised. Some examples might include:
 
-* predicting a person’s weight based on their height
-* predicting house prices given stock market prices
-* classifying if an email is spam or not
-* classifying what if an image contains a person or not
+- predicting a person’s weight based on their height
+- predicting house prices given stock market prices
+- classifying if an email is spam or not
+- classifying what if an image contains a person or not
 
 Typically we will need to train our models with hundreds, thousands or even millions of examples before they work well enough to do any useful predictions or classifications with them.
 
@@ -118,7 +118,7 @@ The labels are a set of single numbers denoting the class and we map the class n
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 ```
 
-### Visualize a subet of the Cifar10 dataset
+### Visualize a subset of the Cifar10 dataset
 
 ```python
 # plot a subset of the images
@@ -250,10 +250,11 @@ associated with the lessons. They appear in the "Instructor View"
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Deep learning is a subset of machine learning, which is a subset of artificial intelligence
+- Machine learning is the process where computers learn to recognise patterns of data
 - Machine learning is used for regression and classification tasks
+- Deep learning is a subset of machine learning, which is a subset of artificial intelligence
 - Convolutional neural networks are well suited for image classification
-
+- To use Deep Learning effectively we need to go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, choosing a loss function, training the model, tuning Hyperparameters, measuring performance before we can classify data.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 [r-markdown]: https://rmarkdown.rstudio.com/

@@ -140,7 +140,9 @@ Often we can use an existing neural network instead of designing one from scratc
 
 If instead we decide we do want to design our own network then we need to think about how many input neurons it will have, how many hidden layers and how many outputs, what types of layers we use (we will explore the different types later on). This will probably need some experimentation and we might have to try tweaking the network design a few times before we see acceptable results.
 
-### Define the Model
+TODO decide to simplify this model or present as is
+
+#### Define the Model
 
 ```python
 # define the inputs, layers, and outputs of a cnn model
@@ -154,7 +156,7 @@ x = keras.layers.Dense(50, activation='relu')(x)
 outputs = keras.layers.Dense(10)(x)
 
 # create the model
-model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model_small")
+model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model")
 ```
 
 ### 5. Choose a loss function and optimizer
@@ -189,7 +191,7 @@ from tensorflow.keras.utils import load_img
 from tensorflow.keras.utils import img_to_array
 
 # load a new image and prepare it to match cifar10 dataset
-new_img_pil = load_img("Jabiru_TGS.JPG", target_size=(32,32)) # Image format
+new_img_pil = load_img("01_Jabiru_TGS.JPG", target_size=(32,32)) # Image format
 new_img_arr = img_to_array(new_img_pil) # convert to array for analysis
 new_img_reshape = new_img_arr.reshape(1, 32, 32, 3) # reshape into single sample
 new_img_float =  new_img_reshape.astype('float64') / 255.0 # normalize

@@ -1,5 +1,5 @@
 ---
-title: "Building a CNN"
+title: "Build a CNN"
 teaching: 10
 exercises: 2
 ---
@@ -486,6 +486,12 @@ _________________________________________________________________
 
 The number of parameters has decreased by adding this layer. We can see that the conv layer decreases the resolution from 6x6 to 4x4, as a result, the input of the Dense layer is smaller than in the previous network.
 
+:::::::::::::::::::::::::::::::::::::: callout
+## Other types of data
+
+Convolutional and Pooling layers are also applicable to different types of data than image data. Whenever the data is ordered in a (spatial) dimension, and translation invariant features are expected to be useful, convolutions can be used. Think for example of time series data from an accelerometer, audio data for speech recognition, or 3d structures of chemical compounds.
+::::::::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
 Inline instructor notes can help inform instructors of timing challenges
@@ -501,7 +507,8 @@ associated with the lessons. They appear in the "Instructor View"
 - Convolution neural networks (CNN) are a type of ANN designed for image classification and object detection
 - The filter size determines the size of the receptive field where information is extracted and the kernel size changes the mathematical structure
 - A CNN can consist of many types of layers including dense (fully connected), convolutional, pooling, and flatten layers
-
+- Convolutional layers make efficient reuse of model parameters.
+- Pooling layers decrease the resolution of your input
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

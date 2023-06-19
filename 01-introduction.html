@@ -178,7 +178,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-build-cnn.html">3. Building a CNN</a>
+        <a href="03-build-cnn.html">3. Build a CNN</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -187,7 +187,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04-fit-cnn.html">4. Fit a CNN</a>
+        <a href="04-fit-cnn.html">4. Compile and Train a CNN</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -196,7 +196,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="05-evaluate-predict-cnn.html">5. Evaluating a CNN and use it make predictions (classifications)</a>
+        <a href="05-evaluate-predict-cnn.html">5. Evaluate a CNN and use it make predictions (classifications)</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -262,7 +262,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p> Last updated on 2023-06-14 | 
+        <p> Last updated on 2023-06-19 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -504,9 +504,9 @@ layers and how many outputs, what types of layers we use (we will
 explore the different types later on). This will probably need some
 experimentation and we might have to try tweaking the network design a
 few times before we see acceptable results.</p>
-</div>
-<div class="section level3">
-<h3 id="define-the-model">Define the Model<a class="anchor" aria-label="anchor" href="#define-the-model"></a></h3>
+<p>TODO decide to simplify this model or present as is</p>
+<div class="section level4">
+<h4 id="define-the-model">Define the Model<a class="anchor" aria-label="anchor" href="#define-the-model"></a></h4>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -521,7 +521,8 @@ few times before we see acceptable results.</p>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create the model</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model_small"</span>)</span></code></pre>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model"</span>)</span></code></pre>
+</div>
 </div>
 </div>
 <div class="section level3">
@@ -570,7 +571,7 @@ network.</p>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.utils <span class="im">import</span> img_to_array</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load a new image and prepare it to match cifar10 dataset</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>new_img_pil <span class="op">=</span> load_img(<span class="st">"Jabiru_TGS.JPG"</span>, target_size<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>)) <span class="co"># Image format</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>new_img_pil <span class="op">=</span> load_img(<span class="st">"01_Jabiru_TGS.JPG"</span>, target_size<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>)) <span class="co"># Image format</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>new_img_arr <span class="op">=</span> img_to_array(new_img_pil) <span class="co"># convert to array for analysis</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>new_img_reshape <span class="op">=</span> new_img_arr.reshape(<span class="dv">1</span>, <span class="dv">32</span>, <span class="dv">32</span>, <span class="dv">3</span>) <span class="co"># reshape into single sample</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>new_img_float <span class="op">=</span>  new_img_reshape.astype(<span class="st">'float64'</span>) <span class="op">/</span> <span class="fl">255.0</span> <span class="co"># normalize</span></span>
@@ -713,7 +714,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.3" class="external-link">sandpaper (0.12.3)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.4" class="external-link">sandpaper (0.12.4)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.2.17" class="external-link">varnish (0.2.17)</a>.</p>
 			</div>
@@ -736,8 +737,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/01-introduction.html",
   "identifier": "https://.github.io/github.com/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-06-14",
-  "datePublished": "2023-06-14"
+  "dateModified": "2023-06-19",
+  "datePublished": "2023-06-19"
 }
 
   </script><script>

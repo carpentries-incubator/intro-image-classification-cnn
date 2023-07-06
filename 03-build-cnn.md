@@ -79,13 +79,13 @@ Here we can see there are three main components of a neural network:
 
 #### 1. Input
 
-The Input in Keras gets special treatment when images are used. Keras automatically calculates the number of inputs and outputs a specific layer needs and therefore how many edges need to be created. This means we need to let Keras now how big our input is going to be. We do this by instantiating a keras.Input class and pass it a tuple that indicates the dimensionality of the input data.
+The Input in Keras gets special treatment when images are used. Keras automatically calculates the number of inputs and outputs a specific layer needs and therefore how many edges need to be created. This means we need to let Keras now how big our input is going to be. We do this by instantiating a not the.Input class and pass it a tuple that indicates the dimensionality of the input data.
 
 In our case, the shape of an image is defined by its pixel dimensions and number of channels:
 
 ```python
 # recall the shape of the images in our dataset
-train_images.shape
+print(train_images.shape)
 ```
 ```output
 (50000, 32, 32, 3) # RGB
@@ -99,7 +99,7 @@ inputs = keras.Input(shape=train_images.shape[1:])
 
 The next component consists of the so-called hidden layers of the network. The reason they are referred to as hidden is because the true values of theirs nodes are unknown - this is the black box. In a CNN, the hidden layers typically consist of dense, convolutional, and pooling layers, although there are other layers we will see later on.
 
-TODO Also flatten, dropout, normalizatinon - do we want to mention here or below / ep 5-6
+TODO Also flatten, dropout, normalization - do we want to mention here or below / ep 5-6
 
 ##### **Dense layers**
 
@@ -143,16 +143,16 @@ n_hidden_neurons = 100
 n_bias = 100
 n_input_items = width * height * 3
 n_parameters = (n_input_items * n_hidden_neurons) + n_bias
-n_parameters
+print(n_parameters)
 ```
 ```output
 307300
 ```
 We can also check this by building the layer in Keras:
 ```python
-inputs = keras.Input(shape=dim)
-outputs = keras.layers.Dense(100)(inputs)
-model_ex = keras.models.Model(inputs=inputs, outputs=outputs)
+inputs_ex = keras.Input(shape=dim)
+outputs_ex = keras.layers.Dense(100)(inputs_ex)
+model_ex = keras.models.Model(inputs=inputs_ex, outputs=outputs_ex)
 model_ex.summary()
 ```
 ```output

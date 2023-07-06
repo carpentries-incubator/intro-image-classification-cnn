@@ -258,7 +258,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p> Last updated on 2023-06-14 | 
+        <p> Last updated on 2023-07-06 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -280,7 +280,8 @@
 <ul><li>Where can I find image data to train my model?</li>
 <li>How much data do you need for Deep Learning?</li>
 <li>How do I plot image data in python?</li>
-<li>How do I prepare image data for use in a CNN?</li>
+<li>How do I prepare image data for use in a convolutional neural
+network (CNN)?</li>
 <li>What is one hot encoding?</li>
 </ul></div>
 </div>
@@ -292,7 +293,8 @@
 <ul><li>Identify sources of image data</li>
 <li>Write code to plot image data</li>
 <li>Understand the properties of image data</li>
-<li>Prepare an image data set to train a CNN</li>
+<li>Prepare an image data set to train a convolutional neural network
+(CNN)</li>
 <li>Know how to perform one-hot encoding</li>
 </ul></div>
 </div>
@@ -312,13 +314,13 @@ an image into one of a few categories.</p>
 <h3 id="identify-inputs-and-outputs">2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#identify-inputs-and-outputs"></a></h3>
 <p>Next we need to identify what the inputs and outputs of the neural
 network will be. In our case, the data is images and the inputs could be
-the individual pixels of the images.We are performing a classification
+the individual pixels of the images. We are performing a classification
 problem and we will have one output for each potential class.</p>
 </div>
 <div class="section level3">
 <h3 id="prepare-data">3. Prepare data<a class="anchor" aria-label="anchor" href="#prepare-data"></a></h3>
 <p>For this lesson, we will be using an existing image dataset known as
-CIFAR-10 that we saw in the last episode.Let’s explore this dataset in
+CIFAR-10 that we saw in the last episode. Let’s explore this dataset in
 more detail and talk about steps you would take to make your own
 dataset.</p>
 </div>
@@ -339,16 +341,18 @@ object like we saw with the CIFAR dataset. Other examples include:</p>
 (0-9)</li>
 <li>ImageNet - 14 million hand-annotated images indicating objects from
 more than 20,000 categories. ImageNet sponsors an annual software
-contest where programs compete to avieve the highest accuracy</li>
+contest where programs compete to achieve the highest accuracy</li>
 <li>MS COCO - &gt;200,000 labelled images used for object detection,
 instance segmentation, keypoint analysis, and captioning</li>
-</ul><p>In other cases, you will need to create your own set oflabelled
+</ul><p>In other cases, you will need to create your own set of labelled
 images. For image classification the label applies to the entire image;
 object detection requires bounding boxes, and instance or semantic
 segmentation require each pixel to be labelled.</p>
 <p>There are a number of different software that can be used to label
-your dataset, including: - VGG Image Annotator (VIA)</p>
-<p>::: How much data do you need for Deep Learning? The rise of Deep
+your dataset, including:</p>
+<ul><li>(Visual Geometry Group) <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" class="external-link">VGG Image
+Annotator</a> (VIA)</li>
+</ul><p>::: How much data do you need for Deep Learning? The rise of Deep
 Learning is partially due to the increased availability of very large
 datasets. But how much data do you actually need to train a Deep
 Learning model? Unfortunately, this question is not easy to answer. It
@@ -415,8 +419,7 @@ order of the rows of the dataset is shuffled before splitting. It
 defaults to True.</li>
 <li>stratify is a more advanced parameter that controls how the split is
 done. By setting it to target the train and test sets the function will
-return will have roughly the same proportions (with regards to the
-number of penguins of a certain species) as the dataset.</li>
+return will have roughly the same proportions as the dataset.</li>
 </ul></div>
 <div class="section level2">
 <h2 id="one-hot-encoding">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a></h2>
@@ -440,72 +443,8 @@ corresponding correct class, and 0’s in the other columns.</p>
 <h1 id="preexisting-datasets-1">Preexisting datasets<a class="anchor" aria-label="anchor" href="#preexisting-datasets-1"></a></h1>
 <p>TBD</p>
 <p>Now that our dataset is ready to go, let us move on to how to build
-an arhcitecture.</p>
+an architecture.</p>
 
-<div id="challenge-1-can-you-do-it" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="challenge-1-can-you-do-it" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Can you do it?<a class="anchor" aria-label="anchor" href="#challenge-1-can-you-do-it"></a>
-</h3>
-<div class="callout-content">
-<p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">paste</span><span class="op">(</span><span class="st">"This"</span>, <span class="st">"new"</span>, <span class="st">"lesson"</span>, <span class="st">"looks"</span>, <span class="st">"good"</span><span class="op">)</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  Output
-  </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within
-challenge blocks?<a class="anchor" aria-label="anchor" href="#challenge-2-how-do-you-nest-solutions-within-challenge-blocks"></a>
-</h3>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">
-  Show me the solution
-  </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
-<div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
-</div>
-</div>
-</div>
-</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -525,6 +464,7 @@ locally</li>
 </ul></div>
 </div>
 </div>
+<!-- Collect your link references at the bottom of your document -->
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
@@ -586,8 +526,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/02-image-data.html",
   "identifier": "https://.github.io/github.com/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-06-14",
-  "datePublished": "2023-07-04"
+  "dateModified": "2023-07-06",
+  "datePublished": "2023-07-06"
 }
 
   </script><script>

@@ -17,12 +17,12 @@ exercises: 0
 - Explain the difference between artificial intelligence, machine learning and deep learning
 - Explain how machine learning is used for regression and classification tasks
 - Understand what algorithms are used for image classification
-- Perform an image classification using a convolutional neural network
+- Perform an image classification using a convolutional neural network (CNN)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## What is machine learning?
-Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **convolutional neural network**, but there are many more.
+Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **convolutional neural network**, abbreviated as **CNN**, but there are many more.
 
 The techniques breakdown into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs, for example trying to predict the cost of something given the economic conditions and the cost of raw materials or predicting a country’s GDP given its life expectancy. Classifiers try to classify data into different categories, or assign a label; for example, deciding what characters are visible in a picture of some writing or if a message is spam or not.
 
@@ -258,8 +258,6 @@ associated with the lessons. They appear in the "Instructor View"
 - Convolutional neural networks are well suited for image classification
 - To use Deep Learning effectively we need to go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, choosing a loss function, training the model, tuning Hyperparameters, measuring performance before we can classify data.
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-[r-markdown]: https://rmarkdown.rstudio.com/
 
 <!-- Collect your link references at the bottom of your document -->
 [original source]: https://en.wikipedia.org/wiki/File:AI-ML-DL.svg

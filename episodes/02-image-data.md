@@ -9,7 +9,7 @@ exercises: 2
 - Where can I find image data to train my model?
 - How much data do you need for Deep Learning?
 - How do I plot image data in python?
-- How do I prepare image data for use in a CNN?
+- How do I prepare image data for use in a convolutional neural network (CNN)?
 - What is one hot encoding?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -19,7 +19,7 @@ exercises: 2
 - Identify sources of image data
 - Write code to plot image data
 - Understand the properties of image data
-- Prepare an image data set to train a CNN
+- Prepare an image data set to train a convolutional neural network (CNN)
 - Know how to perform one-hot encoding
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -31,10 +31,10 @@ Let's start over with the first steps in our workflow.
 Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories.
 
 ### 2. Identify inputs and outputs
-Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images.We are performing a classification problem and we will have one output for each potential class.
+Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
 
 ### 3. Prepare data
-For this lesson, we will be using an existing image dataset known as CIFAR-10 that we saw in the last episode.Let's explore this dataset in more detail and talk about steps you would take to make your own dataset.
+For this lesson, we will be using an existing image dataset known as CIFAR-10 that we saw in the last episode. Let's explore this dataset in more detail and talk about steps you would take to make your own dataset.
 
 # Preexisting datasets
 
@@ -45,13 +45,14 @@ Deep Learning requires extensive training using example data which shows the net
 In some cases you will be able to download an image dataset that is already labelled and can be used to classify a number of different object like we saw with the CIFAR dataset. Other examples include:
 
 - MNIST database - 60,000 training images of handwritten digits (0-9)
-- ImageNet - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an annual software contest where programs compete to avieve the highest accuracy
+- ImageNet - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an annual software contest where programs compete to achieve the highest accuracy
 - MS COCO - >200,000 labelled images used for object detection, instance segmentation, keypoint analysis, and captioning
 
-In other cases, you will need to create your own set oflabelled images. For image classification the label applies to the entire image; object detection requires bounding boxes, and instance or semantic segmentation require each pixel to be labelled.
+In other cases, you will need to create your own set of labelled images. For image classification the label applies to the entire image; object detection requires bounding boxes, and instance or semantic segmentation require each pixel to be labelled.
 
 There are a number of different software that can be used to label your dataset, including:
-- VGG Image Annotator (VIA)
+
+- (Visual Geometry Group) [VGG Image Annotator] (VIA)
 
 ::: How much data do you need for Deep Learning?
 The rise of Deep Learning is partially due to the increased availability of very large datasets. But how much data do you actually need to train a Deep Learning model? Unfortunately, this question is not easy to answer. It depends, among other things, on the complexity of the task (which you often do not know beforehand), the quality of the available dataset and the complexity of the network. For complex tasks with large neural networks, we often see that adding more data continues to improve performance. However, this is also not a generic truth: if the data you add is too similar to the data you already have, it will not give much new information to the neural network.
@@ -86,10 +87,11 @@ To split the cleaned dataset into a training and test set we will use a very con
 - Next is the named parameter test_size this is the fraction of the dataset that is used for testing, in this case 0.2 means 20% of the data will be used for testing.
 - random_state controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
 - shuffle which can be either True or False, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to True.
-- stratify is a more advanced parameter that controls how the split is done. By setting it to target the train and test sets the function will return will have roughly the same proportions (with regards to the number of penguins of a certain species) as the dataset.
+- stratify is a more advanced parameter that controls how the split is done. By setting it to target the train and test sets the function will return will have roughly the same proportions as the dataset.
 
 
 ## One-hot encoding
+
 A neural network can only take numerical inputs and outputs, and learns by calculating how “far away” the species predicted by the neural network is from the true species. When the target is a string category column as we have here it is very difficult to determine this “distance” or error. Therefore we will transform this column into a more suitable format. Again there are many ways to do this, however we will be using the one-hot encoding. This encoding creates multiple columns, as many as there are unique values, and puts a 1 in the column with the corresponding correct class, and 0’s in the other columns.
 
 TBC
@@ -102,7 +104,7 @@ TBC
 
 TBD
 
-Now that our dataset is ready to go, let us move on to how to build an arhcitecture.
+Now that our dataset is ready to go, let us move on to how to build an architecture.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -110,36 +112,6 @@ Inline instructor notes can help inform instructors of timing challenges
 associated with the lessons. They appear in the "Instructor View"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge 
-
-## Challenge 1: Can you do it?
-
-What is the output of this command?
-
-```r
-paste("This", "new", "lesson", "looks", "good")
-```
-
-:::::::::::::::::::::::: solution 
-
-## Output
- 
-```output
-[1] "This new lesson looks good"
-```
-
-:::::::::::::::::::::::::::::::::
-
-
-## Challenge 2: how do you nest solutions within challenge blocks?
-
-:::::::::::::::::::::::: solution 
-
-You can add a line with at least three colons and a `solution` tag.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
@@ -150,3 +122,6 @@ You can add a line with at least three colons and a `solution` tag.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+<!-- Collect your link references at the bottom of your document -->
+
+[VGG Image Annotator]: https://www.robots.ox.ac.uk/~vgg/software/via/

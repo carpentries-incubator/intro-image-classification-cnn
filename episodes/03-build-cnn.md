@@ -79,7 +79,7 @@ Here we can see there are three main components of a neural network:
 
 #### 1. Input
 
-The Input in Keras gets special treatment when images are used. Keras automatically calculates the number of inputs and outputs a specific layer needs and therefore how many edges need to be created. This means we need to let Keras now how big our input is going to be. We do this by instantiating a keras.Input class and pass it a tuple that indicates the dimensionality of the input data.
+The Input in Keras gets special treatment when images are used. Keras automatically calculates the number of inputs and outputs a specific layer needs and therefore how many edges need to be created. This means we need to let Keras now how big our input is going to be. We do this by instantiating a not the.Input class and pass it a tuple that indicates the dimensionality of the input data.
 
 In our case, the shape of an image is defined by its pixel dimensions and number of channels:
 

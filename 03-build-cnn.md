@@ -106,7 +106,7 @@ TODO Also flatten, dropout, normalization - do we want to mention here or below 
 A **dense** layer has a number of neurons, which is a parameter you can choose when you create the layer. When connecting the layer to its input and output layers every neuron in the dense layer gets an edge (i.e. connection) to **all** of the input neurons and **all** of the output neurons.
 
 - **Dense**: Just your regular densely-connected NN layer 
-- defined by the tf.keras.layers.Dense class
+- defined by the keras.layers.Dense class
 
 TODO insert image?
 
@@ -117,7 +117,7 @@ This layer is called fully connected, because all input neurons are taken into a
 A **convolutional** layer transforms the input image in order to extract features from it. 
 
 - **Conv2D**: 2D convolution layer (e.g. spatial convolution over images) 
-- defined by the tf.keras.layers.Conv2D class
+- defined by the keras.layers.Conv2D class
 
 With image classification, note that our input dimension is now quite high (even with small pictures of 32x32 pixels), we have:
 
@@ -292,14 +292,14 @@ _________________________________________________________________
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 - **Flatten**: Flattens the input. Does not affect the batch size
-- defined by the tf.keras.layers.Flatten class
+- defined by the keras.layers.Flatten class
 
 #### **Pooling Layers**
 
 Often in convolutional neural networks, the convolutional layers are intertwined with **Pooling** layers. As opposed to the convolutional layer, the pooling layer actually alters the dimensions of the image and reduces it by a scaling factor. It is basically decreasing the resolution of your picture. The rationale behind this is that higher layers of the network should focus on higher-level features of the image. By introducing a pooling layer, the subsequent convolutional layer has a broader 'view' on the original image.
 
 - **MaxPooling2D**: Max pooling operation for 2D spatial data 
-- defined by the tf.keras.layers.MaxPooling2D class
+- defined by the keras.layers.MaxPooling2D class
 
 
 ## Putting it all together

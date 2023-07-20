@@ -301,7 +301,7 @@
         
 <section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction to Deep Learning</a></p>
 <hr>
-<p> Last updated on 2023-07-06 | 
+<p> Last updated on 2023-07-20 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 10 minutes </p>
@@ -333,6 +333,8 @@ learning and deep learning</li>
 <li>Explain how machine learning is used for regression and
 classification tasks</li>
 <li>Understand what algorithms are used for image classification</li>
+<li>Know difference between training, testing, and validation
+datasets</li>
 <li>Perform an image classification using a convolutional neural network
 (CNN)</li>
 </ul>
@@ -447,10 +449,11 @@ will require some preparation. Neural networks can only really deal with
 numerical data, so any non-numerical data (eg images) will have to be
 somehow converted to numerical data.</p>
 <p>Next we will need to divide the data into multiple sets. One of these
-will be used by the training process and we will call it the training
-set. Another will be used to evaluate the accuracy of the training and
-we will call that one the test set. Sometimes we will also use a 3rd set
-known as a validation set to tune hyperparameters.</p>
+will be used by the training process and we will call it the
+<strong>training set</strong>. Another set, called the
+<strong>validation set</strong>, will be used during the training
+process to tune hyperparameters. A third <strong>test set</strong> is
+used to assess the final performance of the trained model.</p>
 <p>For this lesson, we will be using an existing image dataset known as
 CIFAR-10 that we will discuss in more depth in the next episode.</p>
 </div>
@@ -462,7 +465,8 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the cifar dataset included with the keras packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (val_images, val_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
 </div>
 <div id="challenge-load-the-cifar10-dataset" class="callout challenge">
 <div class="callout-square">
@@ -477,7 +481,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Train: Images=</span><span class="sc">%s</span><span class="st">, Labels=</span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> (train_images.shape, train_labels.shape))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Test: Images=</span><span class="sc">%s</span><span class="st">, Labels=</span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> (test_images.shape, test_labels.shape))</span></code></pre>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Validate: Images=</span><span class="sc">%s</span><span class="st">, Labels=</span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> (val_images.shape, val_labels.shape))</span></code></pre>
 </div>
 </div>
 </div>
@@ -495,24 +499,76 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>Train: Images=(50000, 32, 32, 3), Labels=(50000, 1)
-Test: Images=(10000, 32, 32, 3), Labels=(10000, 1)</code></pre>
+Validate: Images=(10000, 32, 32, 3), Labels=(10000, 1)</code></pre>
 </div>
 <p>The training set consists of 50000 images of 32x32 pixels and 3
-channels (RGB values) and labels. The test set consists of 10000 images
-of 32x32 pixels and 3 channels (RGB values) and labels.</p>
+channels (RGB values) and labels. The validation set consists of 10000
+images of 32x32 pixels and 3 channels (RGB values) and labels.</p>
 </div>
 </div>
 </div>
 </div>
 <p>Image RGB values are between 0 and 255. For input of neural networks,
 it is better to have small input values. So we normalize our data
-between 0 and 1:</p>
+between 0 and 1.</p>
+<div id="callout2" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+</h3>
+<div class="callout-content">
+<p>ChatGPT Normalizing the RGB values to be between 0 and 1 is a common
+pre-processing step in machine learning tasks, especially when dealing
+with image data. This normalization has several benefits:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Numerical Stability</strong>: By scaling the RGB values
+to a range between 0 and 1, you avoid potential numerical instability
+issues that can arise when working with large values. Neural networks
+and many other machine learning algorithms are sensitive to the scale of
+input features, and normalizing helps to keep the values within a
+manageable range.</p></li>
+<li><p><strong>Faster Convergence</strong>: Normalizing the RGB values
+often helps in faster convergence during the training process. Neural
+networks and other optimization algorithms rely on gradient descent
+techniques, and having inputs in a consistent range aids in smoother and
+faster convergence.</p></li>
+<li><p><strong>Equal Weightage for All Channels</strong>: In RGB images,
+each channel (Red, Green, Blue) represents different color intensities.
+By normalizing to the range [0, 1], you ensure that each channel is
+treated with equal weightage during training. This is important because
+some machine learning algorithms could assign more importance to larger
+values.</p></li>
+<li><p><strong>Generalization</strong>: Normalization helps the model to
+generalize better to unseen data. When the input features are in the
+same range, the learned weights and biases can be more effectively
+applied to new examples, making the model more robust.</p></li>
+<li><p><strong>Compatibility</strong>: Many image-related libraries,
+algorithms, and models expect pixel values to be in the range of [0, 1].
+By normalizing the RGB values, you ensure compatibility and seamless
+integration with these tools.</p></li>
+</ol>
+<p>The normalization process is typically done by dividing each RGB
+value (ranging from 0 to 255) by 255, which scales the values to the
+range [0, 1].</p>
+<p>For example, if you have an RGB image with pixel values (100, 150,
+200), after normalization, the pixel values would become (100/255,
+150/255, 200/255) ≈ (0.39, 0.59, 0.78).</p>
+<p>Remember that normalization is not always mandatory, and there could
+be cases where other scaling techniques might be more suitable based on
+the specific problem and data distribution. However, for most
+image-related tasks in machine learning, normalizing RGB values to [0,
+1] is a good starting point.</p>
+</div>
+</div>
+</div>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normalize the RGB values to be between 0 and 1</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="fl">255.0</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> test_images <span class="op">/</span> <span class="fl">255.0</span></span></code></pre>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>val_images <span class="op">=</span> val_images <span class="op">/</span> <span class="fl">255.0</span></span></code></pre>
 </div>
 <p>The labels are a set of single numbers denoting the class and we map
 the class numbers back to the class names, taken from the
@@ -530,15 +586,19 @@ documentation:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a subset of the images</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">5</span>,<span class="dv">5</span>,i<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    plt.imshow(train_images[i], cmap<span class="op">=</span>plt.cm.binary)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    plt.title(class_names[train_labels[i,<span class="dv">0</span>]])</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a figure object and specify width, height in inches</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a subset of the images </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">5</span>,<span class="dv">5</span>,i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    plt.imshow(train_images[i], cmap<span class="op">=</span>plt.cm.binary)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    plt.title(class_names[train_labels[i,<span class="dv">0</span>]])</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <figure><img src="../fig/01_cifar10.png" alt="Subset of 25 Cifar10 images displayed in five rows and five columns " class="figure mx-auto d-block"></figure>
 </div>
@@ -608,7 +668,7 @@ gives a value under a certain threshold.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(test_images, test_labels))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(val_images, val_labels))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">'01_intro_model.h5'</span>)</span></code></pre>
@@ -688,11 +748,11 @@ workflow.</p>
 <h3 id="measure-performance">8. Measure Performance<a class="anchor" aria-label="anchor" href="#measure-performance"></a>
 </h3>
 <p>Once we trained the network we want to measure its performance. To do
-this we use some additional data that was not part of the training, this
-is known as a test set. There are many different methods available for
-measuring performance and which one is best depends on the type of task
-we are attempting. These metrics are often published as an indication of
-how well our network performs.</p>
+this we use some additional data that was <strong>not</strong> part of
+the training; this is known as a test set. There are many different
+methods available for measuring performance and which one is best
+depends on the type of task we are attempting. These metrics are often
+published as an indication of how well our network performs.</p>
 </div>
 <div class="section level3">
 <h3 id="tune-hyperparameters">9. Tune Hyperparameters<a class="anchor" aria-label="anchor" href="#tune-hyperparameters"></a>
@@ -766,7 +826,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-02-image-data"><p>Content from <a href="02-image-data.html">Introduction to Image Data</a></p>
 <hr>
-<p> Last updated on 2023-07-19 | 
+<p> Last updated on 2023-07-20 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -898,7 +958,8 @@ memory:</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the cifar dataset included with the keras packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (val_images, val_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
 </div>
 </div>
 </div>
@@ -915,35 +976,147 @@ memory:</p>
 </h2>
 </div>
 <div class="section level2">
-<h2 id="split-data-into-training-and-test-set">Split data into training and test set<a class="anchor" aria-label="anchor" href="#split-data-into-training-and-test-set"></a>
+<h2 id="split-data-into-training-and-validation-set">Split data into training and validation set<a class="anchor" aria-label="anchor" href="#split-data-into-training-and-validation-set"></a>
 </h2>
-<p>Finally, we will split the dataset into a training set and a test
-set. As the names imply we will use the training set to train the neural
-network, while the test set is kept separate. We will use the test set
-to assess the performance of the trained neural network on unseen
-samples. In many cases a validation set is also kept separate from the
-training and test sets (i.e. the dataset is split into 3 parts). This
-validation set is then used to select the values of the parameters of
-the neural network and the training methods. For this episode we will
-keep it at just a training and test set however.</p>
-<p>To split the cleaned dataset into a training and test set we will use
-a very convenient function from sklearn called train_test_split. This
-function takes a number of parameters:</p>
+<p>In the previous episode we saw that the keras installation includes
+the Cifar-10 dataset and that by using the cifar10.load_data() method
+the returned data is already split into two. In this instance, there is
+no test data.</p>
+<p>When using a different dataset, or loading a your own, you will need
+to do the split yourself. Keep in mind you will also need to a
+validation set.</p>
+<div id="callout1" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
+<p>ChatGPT</p>
+<p>Data is typically split into the training, validation, and test data
+sets using a process called data splitting or data partitioning. There
+are various methods to perform this split, and the choice of technique
+depends on the specific problem, dataset size, and the nature of the
+data. Here are some common approaches:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Hold-Out Method:</strong></li>
+</ol>
 <ul>
-<li>The first two are the dataset and the corresponding targets.</li>
-<li>Next is the named parameter test_size this is the fraction of the
-dataset that is used for testing, in this case 0.2 means 20% of the data
-will be used for testing.</li>
-<li>random_state controls the shuffling of the dataset, setting this
-value will reproduce the same results (assuming you give the same
-integer) every time it is called.</li>
-<li>shuffle which can be either True or False, it controls whether the
-order of the rows of the dataset is shuffled before splitting. It
-defaults to True.</li>
-<li>stratify is a more advanced parameter that controls how the split is
-done. By setting it to target the train and test sets the function will
-return will have roughly the same proportions as the dataset.</li>
+<li><p>In the hold-out method, the dataset is divided into two parts
+initially: a training set and a test set.</p></li>
+<li><p>The training set is used to train the model, and the test set is
+kept completely separate to evaluate the model’s final
+performance.</p></li>
+<li><p>This method is straightforward and widely used when the dataset
+is sufficiently large.</p></li>
 </ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Train-Validation-Test Split:</strong></li>
+</ol>
+<ul>
+<li><p>The dataset is split into three parts: the training set, the
+validation set, and the test set.</p></li>
+<li><p>The training set is used to train the model, the validation set
+is used to tune hyperparameters and prevent overfitting during training,
+and the test set is used to assess the final model performance.</p></li>
+<li><p>This method is commonly used when fine-tuning model
+hyperparameters is necessary.</p></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>K-Fold Cross-Validation:</strong></li>
+</ol>
+<ul>
+<li><p>In k-fold cross-validation, the dataset is divided into k subsets
+(folds) of roughly equal size.</p></li>
+<li><p>The model is trained and evaluated k times, each time using a
+different fold as the test set while the remaining k-1 folds are used as
+the training set.</p></li>
+<li><p>The final performance metric is calculated as the average of the
+k evaluation results, providing a more robust estimate of model
+performance.</p></li>
+<li><p>This method is particularly useful when the dataset size is
+limited, and it helps in better utilizing available data.</p></li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Stratified Sampling:</strong></li>
+</ol>
+<ul>
+<li><p>Stratified sampling is used when the dataset is imbalanced,
+meaning some classes or categories are underrepresented.</p></li>
+<li><p>The data is split in such a way that each subset (training,
+validation, or test) maintains the same class distribution as the
+original dataset.</p></li>
+<li><p>This ensures that all classes are well-represented in each
+subset, which is important to avoid biased model evaluation.</p></li>
+</ul>
+<p>It’s important to note that the exact split ratios (e.g., 80-10-10 or
+70-15-15) may vary depending on the problem, dataset size, and specific
+requirements. Additionally, data splitting should be performed randomly
+to avoid introducing any biases into the model training and evaluation
+process.</p>
+</div>
+</div>
+</div>
+<p>To split a cleaned dataset into a training and test set we will use a
+very convenient function from sklearn called
+<code>train_test_split</code>.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(your_data, target, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>, shuffle<span class="op">=</span><span class="va">True</span>, stratify<span class="op">=</span>target)</span></code></pre>
+</div>
+<p>TODO need some test data - maybe not use cifar in this section?</p>
+<p>This function takes a number of parameters:</p>
+<ul>
+<li><p>The first two are the dataset and the corresponding
+targets.</p></li>
+<li><p>Next is the named parameter test_size this is the fraction of the
+dataset that is used for testing, in this case 0.2 means 20% of the data
+will be used for testing.</p></li>
+<li><p>random_state controls the shuffling of the dataset, setting this
+value will reproduce the same results (assuming you give the same
+integer) every time it is called.</p></li>
+<li><p>shuffle which can be either True or False, it controls whether
+the order of the rows of the dataset is shuffled before splitting. It
+defaults to True.</p></li>
+<li><p>stratify is a more advanced parameter that controls how the split
+is done. By setting it to target the train and test sets the function
+will return will have roughly the same proportions as the
+dataset.</p></li>
+</ul>
+<div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+</h3>
+<div class="callout-content">
+<p>TRAINING AND TEST SETS</p>
+<p>Take a look at the training and test set we created. - How many
+samples do the training and test sets have? - Are the classes in the
+training set well balanced?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>TODO will depend on data - see ep02 deep learning for ex on
+penguins</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="one-hot-encoding">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a>
@@ -979,7 +1152,7 @@ an architecture.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -1867,7 +2040,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-04-fit-cnn"><p>Content from <a href="04-fit-cnn.html">Compile and Train a CNN</a></p>
 <hr>
-<p> Last updated on 2023-07-19 | 
+<p> Last updated on 2023-07-20 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -2030,7 +2203,7 @@ update its parameters.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(test_images, test_labels))</span></code></pre>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
 </div>
 <p>The fit method returns a history object that has a history attribute
 with the training loss and potentially other metrics per training
@@ -2201,7 +2374,7 @@ image, and has zero parameters.</p>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>history_dropout <span class="op">=</span> model_dropout.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(test_images, test_labels))</span></code></pre>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
 </div>
 <p>And inspect the training results:</p>
 <div class="codewrapper sourceCode" id="cb10">
@@ -2212,7 +2385,7 @@ image, and has zero parameters.</p>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> history_df.set_index(<span class="st">'epoch'</span>)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>test_loss, test_acc <span class="op">=</span> model_dropout.evaluate(test_images,  test_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>val_loss, val_acc <span class="op">=</span> model_dropout.evaluate(val_images,  val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2260,18 +2433,18 @@ model performance, what is the term associated to this procedure?</li>
 <li>Varying the dropout rate The code below instantiates and trains a
 model with varying dropout rates. You can see from the resulting plot
 that the ideal dropout rate in this case is around 0.45. This is where
-the test loss is lowest.</li>
+the validation loss is lowest.</li>
 </ol>
 <ul>
 <li>NB1: It takes a while to train these 5 networks.</li>
-<li>NB2: In the real world you should do this with a validation set and
-not with the test set!</li>
+<li>NB2: In the real world you should do this with a test set and not
+with the validation set!</li>
 </ul>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dropout_rates <span class="op">=</span> [<span class="fl">0.15</span>, <span class="fl">0.3</span>, <span class="fl">0.45</span>, <span class="fl">0.6</span>, <span class="fl">0.75</span>]</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>test_losses <span class="op">=</span> []</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>val_losses <span class="op">=</span> []</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dropout_rate <span class="kw">in</span> dropout_rates:</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
@@ -2291,14 +2464,14 @@ not with the test set!</li>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    model_dropout.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(test_images, test_labels))</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span>
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    test_loss, test_acc <span class="op">=</span> model_dropout.evaluate(test_images,  test_labels)</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    test_losses.append(test_loss)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    val_loss, val_acc <span class="op">=</span> model_dropout.evaluate(val_images,  val_labels)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    val_losses.append(val_loss)</span>
 <span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>loss_df <span class="op">=</span> pd.DataFrame({<span class="st">'dropout_rate'</span>: dropout_rates, <span class="st">'test_loss'</span>: test_losses})</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>loss_df <span class="op">=</span> pd.DataFrame({<span class="st">'dropout_rate'</span>: dropout_rates, <span class="st">'val_loss'</span>: val_losses})</span>
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>loss_df, x<span class="op">=</span><span class="st">'dropout_rate'</span>, y<span class="op">=</span><span class="st">'test_loss'</span>)</span></code></pre>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>loss_df, x<span class="op">=</span><span class="st">'dropout_rate'</span>, y<span class="op">=</span><span class="st">'val_loss'</span>)</span></code></pre>
 </div>
 <figure><img src="../fig/04_vary_dropout_rate.png" alt="" class="figure mx-auto d-block"></figure><ol start="2" style="list-style-type: decimal">
 <li>Term associated to this procedure This is called hyperparameter
@@ -2354,7 +2527,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-05-evaluate-predict-cnn"><p>Content from <a href="05-evaluate-predict-cnn.html">Evaluate a CNN and use it make predictions (classifications)</a></p>
 <hr>
-<p> Last updated on 2023-06-19 | 
+<p> Last updated on 2023-07-20 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -2384,9 +2557,9 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Explain what loss and accuracy are</li>
-<li>Know difference between training, testing, and validation
-datasets</li>
+<li>Explain what overfitting is</li>
+<li>Expain how to measure the performance of model fitting (loss and
+accuracy) compared to test accuracy</li>
 <li>Understand what steps to take to improve model accuracy</li>
 </ul>
 </div>
@@ -2409,28 +2582,31 @@ network.</p>
 <p>This will return a vector of probabilities, one for each class. By
 finding the highest probability we can select the most likely class name
 of the object.</p>
-<pre><code>y_pred = model.predict(testimages)
-prediction = pd.DataFrame(y_pred, columns=target.columns)
-prediction
-TODO Maybe first we do this on the test samples to see it do well and then on a new image.
-This will let us get a list of predicted species we can then use to demonstrate how to calculate confusion matrix values.
-
-
-```python
-from tensorflow.keras.utils import load_img
-from tensorflow.keras.utils import img_to_array
-
-# load a new image and prepare it to match cifar10 dataset
-new_img_pil = load_img("01_Jabiru_TGS.JPG", target_size=(32,32)) # Image format
-new_img_arr = img_to_array(new_img_pil) # convert to array for analysis
-new_img_reshape = new_img_arr.reshape(1, 32, 32, 3) # reshape into single sample
-new_img_float =  new_img_reshape.astype('float64') / 255.0 # normalize
-
-# predict the classname
-result = model.predict(new_img_float) # make prediction
-print('Result: ', result) # probability for each class
-print('Classes: ', class_names) # original list of names
-print('Class name: ', class_names[result.argmax()]) # class with highest probability</code></pre>
+<pre><code><span><span class="va">y_pred</span> <span class="op">=</span> <span class="fu">model.predict</span><span class="op">(</span><span class="va">testimages</span><span class="op">)</span></span>
+<span><span class="va">prediction</span> <span class="op">=</span> <span class="fu">pd.DataFrame</span><span class="op">(</span><span class="va">y_pred</span>, columns<span class="op">=</span><span class="va">target.columns</span><span class="op">)</span></span>
+<span><span class="va">prediction</span></span></code></pre>
+<p>TODO Maybe first we do this on the test samples to see it do well and
+then on a new image. This will let us get a list of predicted species we
+can then use to demonstrate how to calculate confusion matrix
+values.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.utils <span class="im">import</span> load_img</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.utils <span class="im">import</span> img_to_array</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load a new image and prepare it to match cifar10 dataset</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>new_img_pil <span class="op">=</span> load_img(<span class="st">"01_Jabiru_TGS.JPG"</span>, target_size<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>)) <span class="co"># Image format</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>new_img_arr <span class="op">=</span> img_to_array(new_img_pil) <span class="co"># convert to array for analysis</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>new_img_reshape <span class="op">=</span> new_img_arr.reshape(<span class="dv">1</span>, <span class="dv">32</span>, <span class="dv">32</span>, <span class="dv">3</span>) <span class="co"># reshape into single sample</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>new_img_float <span class="op">=</span>  new_img_reshape.astype(<span class="st">'float64'</span>) <span class="op">/</span> <span class="fl">255.0</span> <span class="co"># normalize</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># predict the classname</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> model.predict(new_img_float) <span class="co"># make prediction</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Result: '</span>, result) <span class="co"># probability for each class</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Classes: '</span>, class_names) <span class="co"># original list of names</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Class name: '</span>, class_names[result.argmax()]) <span class="co"># class with highest probability</span></span></code></pre>
+</div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2456,6 +2632,8 @@ realistic prediction scenario, measuring performance will also come back
 when tuning the hyperparameters.</p>
 <p>We have created a test set during the data preparation stage which we
 will use now to create a confusion matrix.</p>
+<p>TODO should we do this in ep02 or create our own (maybe with
+everyone’s images?)</p>
 <div class="section level4">
 <h4 id="confusion-matrix">Confusion matrix<a class="anchor" aria-label="anchor" href="#confusion-matrix"></a>
 </h4>
@@ -2465,15 +2643,15 @@ another convenient function from sklearn called confusion_matrix. This
 function takes as a first parameter the true labels of the test set. We
 can get these by using the idxmax method on the y_test dataframe. The
 second parameter is the predicted labels which we did above.</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>true_species <span class="op">=</span> y_test.idxmax(axis<span class="op">=</span><span class="st">"columns"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> confusion_matrix(true_species, predicted_species)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matrix)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>true_species <span class="op">=</span> y_test.idxmax(axis<span class="op">=</span><span class="st">"columns"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> confusion_matrix(true_species, predicted_species)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matrix)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2486,23 +2664,23 @@ second parameter is the predicted labels which we did above.</p>
 column and which row corresponds to which species. So let’s convert it
 to a pandas dataframe with its index and columns set to the species as
 follows:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a pandas dataframe</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>confusion_df <span class="op">=</span> pd.DataFrame(matrix, index<span class="op">=</span>y_test.columns.values, columns<span class="op">=</span>y_test.columns.values)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the names of the x and y axis, this helps with the readability of the heatmap.</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>confusion_df.index.name <span class="op">=</span> <span class="st">'True Label'</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>confusion_df.columns.name <span class="op">=</span> <span class="st">'Predicted Label'</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a pandas dataframe</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>confusion_df <span class="op">=</span> pd.DataFrame(matrix, index<span class="op">=</span>y_test.columns.values, columns<span class="op">=</span>y_test.columns.values)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the names of the x and y axis, this helps with the readability of the heatmap.</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>confusion_df.index.name <span class="op">=</span> <span class="st">'True Label'</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>confusion_df.columns.name <span class="op">=</span> <span class="st">'Predicted Label'</span></span></code></pre>
 </div>
 <p>We can then use the heatmap function from seaborn to create a nice
 visualization of the confusion matrix. The annot=True parameter here
 will put the numbers from the confusion matrix in the heatmap.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(confusion_df, annot<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(confusion_df, annot<span class="op">=</span><span class="va">True</span>)</span></code></pre>
 </div>
 <div id="challenge-confusion-matrix" class="callout challenge">
 <div class="callout-square">
@@ -2530,7 +2708,7 @@ visualize a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The confusion matrix shows that the predictions for Adelie and Gentoo
 are decent, but could be improved. However, Chinstrap is not predicted
@@ -2596,24 +2774,6 @@ if we see signs of clear overfitting. Since we are adapting our model
 important that it is kept separate from the test set. If we used the
 same set, we would not know whether our model truly generalizes or is
 only overfitting.</p>
-<div id="callout1" class="callout callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
-</h3>
-<div class="callout-content">
-<p>Test vs. validation set</p>
-<p>Not everybody agrees on the terminology of test set versus validation
-set. You might find examples in literature where these terms are used
-the other way around.</p>
-<p>We are sticking to the definition that is consistent with the Keras
-API. In there, the validation set can be used during training, and the
-test set is reserved for afterwards.</p>
-</div>
-</div>
-</div>
 <p>TODO add new model with validation data see this section
 deep-learning 03 weather</p>
 <div id="exercise-plot-the-training-progress" class="callout challenge">
@@ -2641,7 +2801,7 @@ think about what you actually would like to see)</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The difference between training and validation data shows that
 something is not completely right here. The model predictions on the
@@ -2701,7 +2861,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>This is on open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you
@@ -2744,7 +2904,7 @@ worth to apply different model architectures….</li>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -2781,7 +2941,7 @@ any links that you are not going to use.
 </div>
 </div></section><section id="aio-06-conclusion"><p>Content from <a href="06-conclusion.html">Conclusion</a></p>
 <hr>
-<p> Last updated on 2023-05-11 | 
+<p> Last updated on 2023-07-20 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/06-conclusion.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -2849,23 +3009,16 @@ available.</li>
 <li>Tasks requiring an explanation of how the answer was arrived
 at.</li>
 <li>Classifying things which are nothing like their training data.</li>
-</ul></section><section id="share-model"><h2 class="section-heading">Share Model<a class="anchor" aria-label="anchor" href="#share-model"></a>
+</ul></section><section id="share-model"><h2 class="section-heading">10. Share model<a class="anchor" aria-label="anchor" href="#share-model"></a>
 </h2>
 <hr class="half-width">
 <p>Now that we have a trained network that performs at a level we are
-happy with we can go and use it on real data to perform a prediction. At
-this point we might want to consider publishing a file with both the
-architecture of our network and the weights which it has learned
-(assuming we did not use a pre-trained network). This will allow others
-to use it as as pre-trained network for their own purposes and for them
-to (mostly) reproduce our result.</p>
-</section><section id="share-model-1"><h2 class="section-heading">10. Share model<a class="anchor" aria-label="anchor" href="#share-model-1"></a>
-</h2>
-<hr class="half-width">
-<p>It is very useful to be able to use the trained neural network at a
-later stage without having to retrain it. This can be done by using the
-save method of the model. It takes a string as a parameter which is the
-path of a directory where the model is stored.</p>
+happy with and can maintain high prediction accuracy on a test dataset
+we might want to consider publishing a file with both the architecture
+of our network and the weights which it has learned (assuming we did not
+use a pre-trained network). This will allow others to use it as as
+pre-trained network for their own purposes and for them to (mostly)
+reproduce our result.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2891,7 +3044,7 @@ as follows:</p>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pretrained_predicted_species)</span></code></pre>
 </div>
 <p>TODO modify above for our example</p>
-</section><section id="choose-a-pretrained-model"><h2 class="section-heading">Choose a pretrained model<a class="anchor" aria-label="anchor" href="#choose-a-pretrained-model"></a>
+</section><section id="choosing-a-pretrained-model"><h2 class="section-heading">Choosing a pretrained model<a class="anchor" aria-label="anchor" href="#choosing-a-pretrained-model"></a>
 </h2>
 <hr class="half-width">
 <p>If your data and problem is very similar to what others have done,
@@ -2991,8 +3144,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/aio.html",
   "identifier": "https://.github.io/github.com/instructor/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-07-19",
-  "datePublished": "2023-07-19"
+  "dateModified": "2023-07-20",
+  "datePublished": "2023-07-20"
 }
 
   </script><script>

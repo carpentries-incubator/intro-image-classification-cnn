@@ -258,7 +258,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p> Last updated on 2023-07-19 | 
+        <p> Last updated on 2023-07-20 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -380,7 +380,8 @@ memory:</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the cifar dataset included with the keras packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (val_images, val_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
 </div>
 </div>
 </div>
@@ -394,33 +395,129 @@ memory:</p>
 <h2 id="rgb-vs-greyscale">RGB vs Greyscale<a class="anchor" aria-label="anchor" href="#rgb-vs-greyscale"></a></h2>
 </div>
 <div class="section level2">
-<h2 id="split-data-into-training-and-test-set">Split data into training and test set<a class="anchor" aria-label="anchor" href="#split-data-into-training-and-test-set"></a></h2>
-<p>Finally, we will split the dataset into a training set and a test
-set. As the names imply we will use the training set to train the neural
-network, while the test set is kept separate. We will use the test set
-to assess the performance of the trained neural network on unseen
-samples. In many cases a validation set is also kept separate from the
-training and test sets (i.e. the dataset is split into 3 parts). This
-validation set is then used to select the values of the parameters of
-the neural network and the training methods. For this episode we will
-keep it at just a training and test set however.</p>
-<p>To split the cleaned dataset into a training and test set we will use
-a very convenient function from sklearn called train_test_split. This
-function takes a number of parameters:</p>
-<ul><li>The first two are the dataset and the corresponding targets.</li>
-<li>Next is the named parameter test_size this is the fraction of the
+<h2 id="split-data-into-training-and-validation-set">Split data into training and validation set<a class="anchor" aria-label="anchor" href="#split-data-into-training-and-validation-set"></a></h2>
+<p>In the previous episode we saw that the keras installation includes
+the Cifar-10 dataset and that by using the cifar10.load_data() method
+the returned data is already split into two. In this instance, there is
+no test data.</p>
+<p>When using a different dataset, or loading a your own, you will need
+to do the split yourself. Keep in mind you will also need to a
+validation set.</p>
+<div id="callout1" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
+<p>ChatGPT</p>
+<p>Data is typically split into the training, validation, and test data
+sets using a process called data splitting or data partitioning. There
+are various methods to perform this split, and the choice of technique
+depends on the specific problem, dataset size, and the nature of the
+data. Here are some common approaches:</p>
+<ol style="list-style-type: decimal"><li><strong>Hold-Out Method:</strong></li>
+</ol><ul><li><p>In the hold-out method, the dataset is divided into two parts
+initially: a training set and a test set.</p></li>
+<li><p>The training set is used to train the model, and the test set is
+kept completely separate to evaluate the model’s final
+performance.</p></li>
+<li><p>This method is straightforward and widely used when the dataset
+is sufficiently large.</p></li>
+</ul><ol start="2" style="list-style-type: decimal"><li><strong>Train-Validation-Test Split:</strong></li>
+</ol><ul><li><p>The dataset is split into three parts: the training set, the
+validation set, and the test set.</p></li>
+<li><p>The training set is used to train the model, the validation set
+is used to tune hyperparameters and prevent overfitting during training,
+and the test set is used to assess the final model performance.</p></li>
+<li><p>This method is commonly used when fine-tuning model
+hyperparameters is necessary.</p></li>
+</ul><ol start="3" style="list-style-type: decimal"><li><strong>K-Fold Cross-Validation:</strong></li>
+</ol><ul><li><p>In k-fold cross-validation, the dataset is divided into k subsets
+(folds) of roughly equal size.</p></li>
+<li><p>The model is trained and evaluated k times, each time using a
+different fold as the test set while the remaining k-1 folds are used as
+the training set.</p></li>
+<li><p>The final performance metric is calculated as the average of the
+k evaluation results, providing a more robust estimate of model
+performance.</p></li>
+<li><p>This method is particularly useful when the dataset size is
+limited, and it helps in better utilizing available data.</p></li>
+</ul><ol start="4" style="list-style-type: decimal"><li><strong>Stratified Sampling:</strong></li>
+</ol><ul><li><p>Stratified sampling is used when the dataset is imbalanced,
+meaning some classes or categories are underrepresented.</p></li>
+<li><p>The data is split in such a way that each subset (training,
+validation, or test) maintains the same class distribution as the
+original dataset.</p></li>
+<li><p>This ensures that all classes are well-represented in each
+subset, which is important to avoid biased model evaluation.</p></li>
+</ul><p>It’s important to note that the exact split ratios (e.g., 80-10-10 or
+70-15-15) may vary depending on the problem, dataset size, and specific
+requirements. Additionally, data splitting should be performed randomly
+to avoid introducing any biases into the model training and evaluation
+process.</p>
+</div>
+</div>
+</div>
+<p>To split a cleaned dataset into a training and test set we will use a
+very convenient function from sklearn called
+<code>train_test_split</code>.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(your_data, target, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>, shuffle<span class="op">=</span><span class="va">True</span>, stratify<span class="op">=</span>target)</span></code></pre>
+</div>
+<p>TODO need some test data - maybe not use cifar in this section?</p>
+<p>This function takes a number of parameters:</p>
+<ul><li><p>The first two are the dataset and the corresponding
+targets.</p></li>
+<li><p>Next is the named parameter test_size this is the fraction of the
 dataset that is used for testing, in this case 0.2 means 20% of the data
-will be used for testing.</li>
-<li>random_state controls the shuffling of the dataset, setting this
+will be used for testing.</p></li>
+<li><p>random_state controls the shuffling of the dataset, setting this
 value will reproduce the same results (assuming you give the same
-integer) every time it is called.</li>
-<li>shuffle which can be either True or False, it controls whether the
-order of the rows of the dataset is shuffled before splitting. It
-defaults to True.</li>
-<li>stratify is a more advanced parameter that controls how the split is
-done. By setting it to target the train and test sets the function will
-return will have roughly the same proportions as the dataset.</li>
-</ul></div>
+integer) every time it is called.</p></li>
+<li><p>shuffle which can be either True or False, it controls whether
+the order of the rows of the dataset is shuffled before splitting. It
+defaults to True.</p></li>
+<li><p>stratify is a more advanced parameter that controls how the split
+is done. By setting it to target the train and test sets the function
+will return will have roughly the same proportions as the
+dataset.</p></li>
+</ul><div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+</h3>
+<div class="callout-content">
+<p>TRAINING AND TEST SETS</p>
+<p>Take a look at the training and test set we created. - How many
+samples do the training and test sets have? - Are the classes in the
+training set well balanced?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>TODO will depend on data - see ep02 deep learning for ex on
+penguins</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="section level2">
 <h2 id="one-hot-encoding">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a></h2>
 <p>A neural network can only take numerical inputs and outputs, and
@@ -526,8 +623,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/02-image-data.html",
   "identifier": "https://.github.io/github.com/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-07-19",
-  "datePublished": "2023-07-19"
+  "dateModified": "2023-07-20",
+  "datePublished": "2023-07-20"
 }
 
   </script><script>

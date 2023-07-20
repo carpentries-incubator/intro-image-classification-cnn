@@ -262,7 +262,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p> Last updated on 2023-07-06 | 
+        <p> Last updated on 2023-07-20 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -296,6 +296,8 @@ learning and deep learning</li>
 <li>Explain how machine learning is used for regression and
 classification tasks</li>
 <li>Understand what algorithms are used for image classification</li>
+<li>Know difference between training, testing, and validation
+datasets</li>
 <li>Perform an image classification using a convolutional neural network
 (CNN)</li>
 </ul></div>
@@ -399,10 +401,11 @@ will require some preparation. Neural networks can only really deal with
 numerical data, so any non-numerical data (eg images) will have to be
 somehow converted to numerical data.</p>
 <p>Next we will need to divide the data into multiple sets. One of these
-will be used by the training process and we will call it the training
-set. Another will be used to evaluate the accuracy of the training and
-we will call that one the test set. Sometimes we will also use a 3rd set
-known as a validation set to tune hyperparameters.</p>
+will be used by the training process and we will call it the
+<strong>training set</strong>. Another set, called the
+<strong>validation set</strong>, will be used during the training
+process to tune hyperparameters. A third <strong>test set</strong> is
+used to assess the final performance of the trained model.</p>
 <p>For this lesson, we will be using an existing image dataset known as
 CIFAR-10 that we will discuss in more depth in the next episode.</p>
 </div>
@@ -413,7 +416,8 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the cifar dataset included with the keras packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (val_images, val_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
 </div>
 <div id="challenge-load-the-cifar10-dataset" class="callout challenge">
 <div class="callout-square">
@@ -428,7 +432,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Train: Images=</span><span class="sc">%s</span><span class="st">, Labels=</span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> (train_images.shape, train_labels.shape))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Test: Images=</span><span class="sc">%s</span><span class="st">, Labels=</span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> (test_images.shape, test_labels.shape))</span></code></pre>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Validate: Images=</span><span class="sc">%s</span><span class="st">, Labels=</span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> (val_images.shape, val_labels.shape))</span></code></pre>
 </div>
 </div>
 </div>
@@ -446,24 +450,74 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>Train: Images=(50000, 32, 32, 3), Labels=(50000, 1)
-Test: Images=(10000, 32, 32, 3), Labels=(10000, 1)</code></pre>
+Validate: Images=(10000, 32, 32, 3), Labels=(10000, 1)</code></pre>
 </div>
 <p>The training set consists of 50000 images of 32x32 pixels and 3
-channels (RGB values) and labels. The test set consists of 10000 images
-of 32x32 pixels and 3 channels (RGB values) and labels.</p>
+channels (RGB values) and labels. The validation set consists of 10000
+images of 32x32 pixels and 3 channels (RGB values) and labels.</p>
 </div>
 </div>
 </div>
 </div>
 <p>Image RGB values are between 0 and 255. For input of neural networks,
 it is better to have small input values. So we normalize our data
-between 0 and 1:</p>
+between 0 and 1.</p>
+<div id="callout2" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+</h3>
+<div class="callout-content">
+<p>ChatGPT Normalizing the RGB values to be between 0 and 1 is a common
+pre-processing step in machine learning tasks, especially when dealing
+with image data. This normalization has several benefits:</p>
+<ol style="list-style-type: decimal"><li><p><strong>Numerical Stability</strong>: By scaling the RGB values
+to a range between 0 and 1, you avoid potential numerical instability
+issues that can arise when working with large values. Neural networks
+and many other machine learning algorithms are sensitive to the scale of
+input features, and normalizing helps to keep the values within a
+manageable range.</p></li>
+<li><p><strong>Faster Convergence</strong>: Normalizing the RGB values
+often helps in faster convergence during the training process. Neural
+networks and other optimization algorithms rely on gradient descent
+techniques, and having inputs in a consistent range aids in smoother and
+faster convergence.</p></li>
+<li><p><strong>Equal Weightage for All Channels</strong>: In RGB images,
+each channel (Red, Green, Blue) represents different color intensities.
+By normalizing to the range [0, 1], you ensure that each channel is
+treated with equal weightage during training. This is important because
+some machine learning algorithms could assign more importance to larger
+values.</p></li>
+<li><p><strong>Generalization</strong>: Normalization helps the model to
+generalize better to unseen data. When the input features are in the
+same range, the learned weights and biases can be more effectively
+applied to new examples, making the model more robust.</p></li>
+<li><p><strong>Compatibility</strong>: Many image-related libraries,
+algorithms, and models expect pixel values to be in the range of [0, 1].
+By normalizing the RGB values, you ensure compatibility and seamless
+integration with these tools.</p></li>
+</ol><p>The normalization process is typically done by dividing each RGB
+value (ranging from 0 to 255) by 255, which scales the values to the
+range [0, 1].</p>
+<p>For example, if you have an RGB image with pixel values (100, 150,
+200), after normalization, the pixel values would become (100/255,
+150/255, 200/255) ≈ (0.39, 0.59, 0.78).</p>
+<p>Remember that normalization is not always mandatory, and there could
+be cases where other scaling techniques might be more suitable based on
+the specific problem and data distribution. However, for most
+image-related tasks in machine learning, normalizing RGB values to [0,
+1] is a good starting point.</p>
+</div>
+</div>
+</div>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normalize the RGB values to be between 0 and 1</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="fl">255.0</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> test_images <span class="op">/</span> <span class="fl">255.0</span></span></code></pre>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>val_images <span class="op">=</span> val_images <span class="op">/</span> <span class="fl">255.0</span></span></code></pre>
 </div>
 <p>The labels are a set of single numbers denoting the class and we map
 the class numbers back to the class names, taken from the
@@ -480,15 +534,19 @@ documentation:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a subset of the images</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">5</span>,<span class="dv">5</span>,i<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    plt.imshow(train_images[i], cmap<span class="op">=</span>plt.cm.binary)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    plt.title(class_names[train_labels[i,<span class="dv">0</span>]])</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a figure object and specify width, height in inches</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a subset of the images </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">5</span>,<span class="dv">5</span>,i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    plt.imshow(train_images[i], cmap<span class="op">=</span>plt.cm.binary)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    plt.title(class_names[train_labels[i,<span class="dv">0</span>]])</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <figure><img src="fig/01_cifar10.png" alt="Subset of 25 Cifar10 images displayed in five rows and five columns " class="figure mx-auto d-block"></figure></div>
 <div class="section level3">
@@ -553,7 +611,7 @@ gives a value under a certain threshold.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(test_images, test_labels))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(val_images, val_labels))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">'01_intro_model.h5'</span>)</span></code></pre>
@@ -630,11 +688,11 @@ workflow.</p>
 <div class="section level3">
 <h3 id="measure-performance">8. Measure Performance<a class="anchor" aria-label="anchor" href="#measure-performance"></a></h3>
 <p>Once we trained the network we want to measure its performance. To do
-this we use some additional data that was not part of the training, this
-is known as a test set. There are many different methods available for
-measuring performance and which one is best depends on the type of task
-we are attempting. These metrics are often published as an indication of
-how well our network performs.</p>
+this we use some additional data that was <strong>not</strong> part of
+the training; this is known as a test set. There are many different
+methods available for measuring performance and which one is best
+depends on the type of task we are attempting. These metrics are often
+published as an indication of how well our network performs.</p>
 </div>
 <div class="section level3">
 <h3 id="tune-hyperparameters">9. Tune Hyperparameters<a class="anchor" aria-label="anchor" href="#tune-hyperparameters"></a></h3>
@@ -739,8 +797,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/01-introduction.html",
   "identifier": "https://.github.io/github.com/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-07-06",
-  "datePublished": "2023-07-19"
+  "dateModified": "2023-07-20",
+  "datePublished": "2023-07-20"
 }
 
   </script><script>

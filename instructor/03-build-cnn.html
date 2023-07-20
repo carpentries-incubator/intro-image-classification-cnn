@@ -441,7 +441,7 @@ neurons and <strong>all</strong> of the output neurons.</p>
 <ul><li>
 <strong>Dense</strong>: Just your regular densely-connected NN
 layer</li>
-<li>defined by the tf.keras.layers.Dense class</li>
+<li>defined by the keras.layers.Dense class</li>
 </ul><p>TODO insert image?</p>
 <p>This layer is called fully connected, because all input neurons are
 taken into account by each output neuron. The number of parameters that
@@ -455,7 +455,7 @@ order to extract features from it.</p>
 <ul><li>
 <strong>Conv2D</strong>: 2D convolution layer (e.g. spatial
 convolution over images)</li>
-<li>defined by the tf.keras.layers.Conv2D class</li>
+<li>defined by the keras.layers.Conv2D class</li>
 </ul><p>With image classification, note that our input dimension is now quite
 high (even with small pictures of 32x32 pixels), we have:</p>
 <div class="codewrapper sourceCode" id="cb5">
@@ -490,7 +490,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -612,7 +612,7 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -647,7 +647,7 @@ the previous exercise</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 100 less than the fully
@@ -715,7 +715,7 @@ intuitive?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -760,7 +760,7 @@ the convolutional layers, that have much fewer parameters.</li>
 <ul><li>
 <strong>Flatten</strong>: Flattens the input. Does not affect the
 batch size</li>
-<li>defined by the tf.keras.layers.Flatten class</li>
+<li>defined by the keras.layers.Flatten class</li>
 </ul><div class="section level4">
 <h4 id="pooling-layers"><strong>Pooling Layers</strong><a class="anchor" aria-label="anchor" href="#pooling-layers"></a></h4>
 <p>Often in convolutional neural networks, the convolutional layers are
@@ -774,7 +774,7 @@ layer has a broader ‘view’ on the original image.</p>
 <ul><li>
 <strong>MaxPooling2D</strong>: Max pooling operation for 2D spatial
 data</li>
-<li>defined by the tf.keras.layers.MaxPooling2D class</li>
+<li>defined by the keras.layers.MaxPooling2D class</li>
 </ul></div>
 </section><section id="putting-it-all-together"><h2 class="section-heading">Putting it all together<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a>
 </h2>
@@ -945,7 +945,7 @@ needs to be adjusted as follows:</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1035,7 +1035,7 @@ structures of chemical compounds.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor

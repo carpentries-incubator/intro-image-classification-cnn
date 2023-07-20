@@ -348,8 +348,8 @@ datasets</li>
 <hr class="half-width">
 <p>Machine learning is a set of tools and techniques which let us find
 patterns in data. This lesson will introduce you to only one of these
-techniques, <strong>Deep Learning</strong> with <strong>convolutional
-neural network</strong>, abbreviated as <strong>CNN</strong>, but there
+techniques, <strong>Deep Learning</strong> with <strong>Convolutional
+Neural etwork</strong>, abbreviated as <strong>CNN</strong>, but there
 are many more.</p>
 <p>The techniques breakdown into two broad categories, predictors and
 classifiers. Predictors are used to predict a value (or set of values)
@@ -493,7 +493,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -729,7 +729,7 @@ be?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>After resizing the original image to be the size expected by our
 model it looks like this:</p>
@@ -783,7 +783,7 @@ discuss each component in more detail.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -1109,7 +1109,7 @@ training set well balanced?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>TODO will depend on data - see ep02 deep learning for ex on
 penguins</p>
@@ -1152,7 +1152,7 @@ an architecture.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -1382,7 +1382,7 @@ neurons and <strong>all</strong> of the output neurons.</p>
 <li>
 <strong>Dense</strong>: Just your regular densely-connected NN
 layer</li>
-<li>defined by the tf.keras.layers.Dense class</li>
+<li>defined by the keras.layers.Dense class</li>
 </ul>
 <p>TODO insert image?</p>
 <p>This layer is called fully connected, because all input neurons are
@@ -1400,7 +1400,7 @@ order to extract features from it.</p>
 <li>
 <strong>Conv2D</strong>: 2D convolution layer (e.g. spatial
 convolution over images)</li>
-<li>defined by the tf.keras.layers.Conv2D class</li>
+<li>defined by the keras.layers.Conv2D class</li>
 </ul>
 <p>With image classification, note that our input dimension is now quite
 high (even with small pictures of 32x32 pixels), we have:</p>
@@ -1436,7 +1436,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -1558,7 +1558,7 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -1593,7 +1593,7 @@ the previous exercise</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 100 less than the fully
@@ -1665,7 +1665,7 @@ intuitive?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1713,7 +1713,7 @@ the convolutional layers, that have much fewer parameters.</li>
 <li>
 <strong>Flatten</strong>: Flattens the input. Does not affect the
 batch size</li>
-<li>defined by the tf.keras.layers.Flatten class</li>
+<li>defined by the keras.layers.Flatten class</li>
 </ul>
 <div class="section level4">
 <h4 id="pooling-layers">
@@ -1731,7 +1731,7 @@ layer has a broader ‘view’ on the original image.</p>
 <li>
 <strong>MaxPooling2D</strong>: Max pooling operation for 2D spatial
 data</li>
-<li>defined by the tf.keras.layers.MaxPooling2D class</li>
+<li>defined by the keras.layers.MaxPooling2D class</li>
 </ul>
 </div>
 </section><section id="putting-it-all-together"><h2 class="section-heading">Putting it all together<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a>
@@ -1910,7 +1910,7 @@ needs to be adjusted as follows:</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2000,7 +2000,7 @@ structures of chemical compounds.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -2069,10 +2069,10 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Explain how you compile and train a CNN</li>
+<li>Explain the difference between compiling and training a CNN</li>
+<li>Know how to select a loss function for your model</li>
 <li>Understand what an optimizer is and be familiar with advantages and
 disadvantages of different optimizers</li>
-<li>Know how to select a loss function for you model</li>
 <li>Define the terms: learning rate, batch size, epoch TODO</li>
 </ul>
 </div>
@@ -2091,9 +2091,9 @@ we will use during training.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),               </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#model.compile(optimizer = 'adam', </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#              **loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True)**,               </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#              metrics = ['accuracy'])</span></span></code></pre>
 </div>
 <div class="section level4">
 <h4 id="loss-function">Loss function<a class="anchor" aria-label="anchor" href="#loss-function"></a>
@@ -2111,9 +2111,67 @@ integers (i.e., not one-hot encoded) and the model predictions.</p>
 <ul>
 <li>This loss function is appropriate to use when the data has two or
 more label classes.</li>
-<li>defined by the tf.keras.losses.SparseCategoricalCrossentropy
-class</li>
+<li>defined by the keras.losses.SparseCategoricalCrossentropy class</li>
 </ul>
+<div id="callout1" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
+<p>ChatGPT</p>
+<p>Logits</p>
+<p><strong>Logits</strong> are the raw, unnormalized predictions that a
+model generates before they are transformed into probabilities. In many
+cases, the final layer of a neural network produces logits, and these
+logits are then passed through a function (usually the softmax function)
+to obtain probabilities for each class. The softmax function converts
+the logits into a probability distribution, where the values for each
+class range between 0 and 1 and sum up to 1.</p>
+<p>Here’s an example to illustrate this:</p>
+<p>Suppose you have a neural network that performs image classification
+with three classes: “Cat,” “Dog,” and “Bird.” After feeding an image
+through the model, it generates logits as follows:</p>
+<p>Logits: [2.5, 1.2, -0.8]</p>
+<p>Now, to turn these logits into probabilities, we apply the softmax
+function:</p>
+<p>Probabilities: [0.755, 0.223, 0.022]</p>
+<p>The highest probability (0.755) corresponds to the “Cat” class,
+suggesting that the model predicts the image contains a cat with a
+probability of approximately 75.5%.</p>
+<p>Now, let’s bring in the ‘from_logits’ argument in the context of
+defining the loss function. When training a neural network for
+multi-class classification tasks, the most common loss function is the
+categorical cross-entropy. This loss function takes in probabilities and
+the true labels of the data to compute the difference between the
+predicted probabilities and the ground truth.</p>
+<p>However, sometimes, the model may not produce probabilities directly
+but instead produces logits. In such cases, you have two options:</p>
+<ol style="list-style-type: decimal">
+<li><p>Use the ‘from_logits=False’ (default): In this case, Keras will
+apply the softmax function to the logits internally before computing the
+loss function. It means that you provide the logits, but Keras handles
+the transformation to probabilities before calculating the
+loss.</p></li>
+<li><p>Use ‘from_logits=True’: If you set this argument to True, you are
+telling Keras that the provided values are already logits and no further
+transformation is needed. The loss function will directly use the
+provided logits to compute the loss, avoiding the internal application
+of the softmax function.</p></li>
+</ol>
+<p>In summary, ‘from_logits=True’ is useful when your model outputs
+logits, and you want to manually handle the conversion to probabilities
+(e.g., when using the logits for other purposes), or if you want to
+avoid the additional computational overhead of applying the softmax
+function twice (once by you and once by the loss function). On the other
+hand, if you provide probabilities or set ‘from_logits=False’, Keras
+will handle the conversion to probabilities internally before computing
+the loss.</p>
+</div>
+</div>
+</div>
 <p>For regression tasks, we might want to stipulate that the predicted
 numerical values are as close as possible to the true values. This is
 commonly done by using the <strong>mean squared error</strong> (mse) or
@@ -2123,17 +2181,16 @@ which should work. Often, mse is preferred over mae because it
 <ul>
 <li>defined by the keras.losses.MeanSquaredError class</li>
 <li>this can be provided into the model.compile method with the loss
-parameter and setting it to mse, e.g.</li>
+parameter and setting it to mse:</li>
 </ul>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model_ex.<span class="bu">compile</span>(loss<span class="op">=</span><span class="st">'mse'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model_ex.<span class="bu">compile</span>(loss <span class="op">=</span> <span class="st">'mse'</span>)</span></code></pre>
 </div>
 <p>For more information on these and other available loss functions in
-Keras you can check the <a href="https://www.tensorflow.org/api_docs/python/tf/keras/losses" class="external-link">loss
+Keras you can check the <a href="https://keras.io/api/losses/" class="external-link">loss
 documentation</a>.</p>
-<p>TODO pick Keras or Tensorflow doc and be consistent</p>
 </div>
 <div class="section level4">
 <h4 id="optimizer">Optimizer<a class="anchor" aria-label="anchor" href="#optimizer"></a>
@@ -2145,6 +2202,13 @@ the provided loss function.</p>
 parameters, what values to use for those. Furthermore, we need to
 specify how many times to show the training samples to the
 optimizer.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#model.compile(**optimizer = 'adam'**, </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#              metrics = ['accuracy'])</span></span></code></pre>
+</div>
 <p><strong>Adam</strong></p>
 <p>Here we picked one of the most common optimizers that works well for
 most tasks: the <strong>Adam</strong> optimizer. Similar to activation
@@ -2154,39 +2218,115 @@ point though, which is why we chose it. Adam has a number of parameters,
 but the default values work well for most problems. So we will use it
 with its default parameters.</p>
 <ul>
-<li>defined by the tf.keras.optimizers.Adam class</li>
+<li>defined by the keras.optimizers.Adam class</li>
 </ul>
-<p>There are many optimizers to choose from so check the <a href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers" class="external-link">optimizer
-documentation</a>. A couple more popular or famous ones include:</p>
+<p>There are many optimizers to choose from so check the <a href="https://keras.io/api/optimizers/" class="external-link">optimizer documentation</a>. A
+couple more popular or famous ones include:</p>
 <p><strong>Stochastic Gradient Descent (sgd)</strong></p>
-<p>TODO</p>
+<p>Stochastic Gradient Descent (SGD) is one of the fundamental
+optimization algorithms used to train machine learning models,
+especially neural networks. It is a variant of the gradient descent
+algorithm, designed to handle large datasets efficiently.</p>
+<div id="callout2" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+</h3>
+<div class="callout-content">
+<p>ChatGPT Let’s break down the concept of Stochastic Gradient Descent
+for beginners:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Optimization Algorithm</strong>: In the context of
+machine learning, an optimization algorithm is used to minimize (or
+maximize) an objective function. In the case of training a machine
+learning model, the objective function is the loss function, which
+measures how well the model is performing on the training data.</p></li>
+<li><p><strong>Gradient Descent</strong>: Gradient Descent is a simple
+optimization algorithm used to find the minimum (or maximum) of a
+function. It does this by iteratively updating the parameters of the
+model in the direction of the steepest decrease of the loss
+function.</p></li>
+<li><p><strong>Batch Gradient Descent</strong> vs. <strong>Stochastic
+Gradient Descent</strong>: In traditional batch gradient descent, the
+algorithm computes the gradient of the loss function with respect to all
+training examples in the dataset and then updates the model parameters.
+This means it processes the entire dataset at once in each iteration,
+which can be computationally expensive for large datasets.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p>In practice, variations of SGD, such as Mini-Batch Gradient Descent,
+Momentum, and Adam, are often used, which combine the advantages of SGD
+with additional techniques to overcome some of its challenges.</p>
 <p><strong>Root Mean Square (rms)prop</strong></p>
-<p>TODO</p>
-<p>TODO Learning rate</p>
-<p>Combining the optimizer with the loss function we can now compile the
-model using model.compile. Compiling the model prepares it to start the
-training.</p>
+<p>RMSprop is widely used in various deep learning frameworks and is one
+of the predecessors of more advanced optimizers like Adam, which further
+refines the concept of adaptive learning rates. It is an extension of
+the basic Stochastic Gradient Descent (SGD) algorithm and addresses some
+of the challenges of SGD.</p>
+<p>For example, one of the main issues with the basic SGD is that it
+uses a fixed learning rate for all model parameters throughout the
+training process. This fixed learning rate can lead to slow convergence
+or divergence (over-shooting) in some cases. RMSprop introduces an
+adaptive learning rate mechanism to address this problem.</p>
+<p>For more information on these and other available loss functions in
+Keras you can check the <a href="https://keras.io/api/optimizers/" class="external-link">optimizer documentation</a>.</p>
+<div id="callout3" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout3"></a>
+</h3>
+<div class="callout-content">
+<p>ChatGPT</p>
+<p>Learning Rate</p>
+<p>Learning rate is a hyperparameter that determines the step size at
+which the model’s parameters are updated during training. A higher
+learning rate allows for more substantial parameter updates, which can
+lead to faster convergence, but it may risk overshooting the optimal
+solution. On the other hand, a lower learning rate leads to smaller
+updates, providing more cautious convergence, but it may take longer to
+reach the optimal solution. Finding an appropriate learning rate is
+crucial for effectively training machine learning models.</p>
 </div>
 </div>
-<section id="model-compilation"><h2 class="section-heading">Model Compilation<a class="anchor" aria-label="anchor" href="#model-compilation"></a>
-</h2>
-<hr class="half-width">
+</div>
+<p>Most optimizers include a <code>learning_rate</code> argument that
+defaults to <code>0.01'. or '0.001</code>.</p>
+</div>
+<div class="section level4">
+<h4 id="metrics">Metrics<a class="anchor" aria-label="anchor" href="#metrics"></a>
+</h4>
 <p>After we select the desired optimizer and loss function we want to
 specify the metric(s) to be evaluated by the model during training and
-testing. Typically you will use ‘accuracy’ which calculates how often
-predictions matches labels.</p>
+testing. A metric is a function that is used to judge the performance of
+your model.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#model.compile(optimizer = adam', </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#              **metrics = ['accuracy']**)</span></span></code></pre>
+</div>
+<p>Metric functions are similar to loss functions, except that the
+results from evaluating a metric are not used when training the model.
+Note that you may use any loss function as a metric.</p>
+<p>Typically you will use <code>accuracy</code> which calculates how
+often predictions matches labels.</p>
 <p>The accuracy function creates two local variables, total and count
 that are used to compute the frequency with which predictions matches
 labels. This frequency is ultimately returned as accuracy: an idempotent
 operation that simply divides total by count.</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),               </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre>
+<p>For a list of metrics in Keras see <a href="https://keras.io/api/metrics/" class="external-link">metrics</a>.</p>
+<p>Now that we have decided on which loss function, optimizer, and
+metric to use we can compile the model using model.compile. Compiling
+the model prepares it to start the training.</p>
 </div>
-<p>TODO explain logits (log-odds vs probability, default=FALSE) #<a href="https://www.tensorflow.org/api_docs/python/tf/keras/losses/SparseCategoricalCrossentropy" class="external-link uri">https://www.tensorflow.org/api_docs/python/tf/keras/losses/SparseCategoricalCrossentropy</a></p>
+</div>
 <div class="section level3">
 <h3 id="train-model">6. Train model<a class="anchor" aria-label="anchor" href="#train-model"></a>
 </h3>
@@ -2197,35 +2337,87 @@ certain options of the training. Here we only set a different number of
 epochs. One training <strong>epoch</strong> means that every sample in
 the training data has been shown to the neural network and used to
 update its parameters.</p>
-<p>TODO batch_size</p>
 <p>We want to train the model for 10 epochs:</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
 </div>
 <p>The fit method returns a history object that has a history attribute
 with the training loss and potentially other metrics per training
 epoch.</p>
+<p>Note there are other arguments we could use to fit our model, see the
+documentation for <a href="https://keras.io/api/models/model_training_apis/" class="external-link">fit
+method</a></p>
+<div id="callout4" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout4"></a>
+</h3>
+<div class="callout-content">
+<p>ChatGPT</p>
+<p>Batch size</p>
+<p>The batch size is an important hyperparameter that determines the
+number of training samples processed together before updating the
+model’s parameters during each iteration (or mini-batch) of training.
+The choice of batch size can have various implications, and there are
+situations where using different batch sizes can be beneficial.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Large Datasets and Memory Constraints</strong>: If you
+have a large dataset and limited memory, using a smaller batch size can
+help fit the data into memory during training. This allows you to train
+larger models or use more complex architectures that might not fit with
+larger batch sizes.</p></li>
+<li><p><strong>Training on GPUs</strong>: Modern deep learning
+frameworks and libraries are optimized for parallel processing on GPUs.
+Using larger batch sizes can fully leverage the parallelism of GPUs and
+lead to faster training times. However, the choice of batch size should
+consider the available GPU memory.</p></li>
+<li><p><strong>Noise in Parameter Updates</strong>: Smaller batch sizes
+introduce more noise in the gradients, which can help models escape
+sharp minima and potentially find better solutions. This regularization
+effect is similar to the impact of stochasticity in Stochastic Gradient
+Descent (SGD).</p></li>
+<li><p><strong>Generalization</strong>: Using smaller batch sizes may
+improve the generalization of the model. It prevents the model from
+overfitting to the training data, as it gets updated more frequently and
+experiences more diverse samples during training.</p></li>
+</ol>
+<p>However, it’s essential to consider the trade-offs of using different
+batch sizes. Smaller batch sizes may require more iterations to cover
+the entire dataset, which can lead to longer training times. Larger
+batch sizes can provide more stable gradients but might suffer from
+generalization issues. There is no one-size-fits-all answer, and you may
+need to experiment with different batch sizes to find the one that works
+best for your specific model, architecture, and dataset.</p>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="monitor-training-progress-aka-model-evaluation-during-training">Monitor Training Progress (aka Model Evaluation during
+Training)<a class="anchor" aria-label="anchor" href="#monitor-training-progress-aka-model-evaluation-during-training"></a>
+</h4>
 <p>It can be very insightful to plot the training loss to see how the
 training progresses.</p>
 <p>Using seaborn we can plot the training process using the history:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the accuracy from the training process</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> pd.DataFrame.from_dict(history.history)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the accuracy from the training process</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> pd.DataFrame.from_dict(history.history)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
 </div>
-<figure><img src="../fig/04_training_history_1.png" alt="" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb6">
+<figure><img src="../fig/04_training_history_1.png" alt="" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss from the training process</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss from the training process</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span></code></pre>
 </div>
 <figure><img src="../fig/04_training_history_loss_1.png" alt="" class="figure mx-auto d-block"></figure><p>This plot can be used to identify whether the training is well
 configured or whether there are problems that need to be addressed.</p>
@@ -2250,7 +2442,7 @@ metrics as well if we want to present those and compare</p>
 <li>Does it change fast or slowly?</li>
 <li>Is the graph look very jittery?</li>
 </ul>
-<ol style="list-style-type: decimal">
+<ol start="2" style="list-style-type: decimal">
 <li>Do you think the resulting trained network will work well on the
 test set?</li>
 </ol>
@@ -2264,7 +2456,7 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>The loss curve should drop quite quickly in a smooth line with
@@ -2278,9 +2470,13 @@ indication of a well trained network.</li>
 </div>
 </div>
 </div>
-</section><section id="dropout"><h2 class="section-heading">Dropout<a class="anchor" aria-label="anchor" href="#dropout"></a>
-</h2>
-<hr class="half-width">
+<div class="section level4">
+<h4 id="improve-model-generalization-avoid-overfitting">Improve Model Generalization (avoid Overfitting)<a class="anchor" aria-label="anchor" href="#improve-model-generalization-avoid-overfitting"></a>
+</h4>
+</div>
+<div class="section level4">
+<h4 id="dropout">Dropout<a class="anchor" aria-label="anchor" href="#dropout"></a>
+</h4>
 <p>Note that the training loss continues to decrease, while the
 validation loss stagnates, and even starts to increase over the course
 of the epochs. Similarly, the accuracy for the validation set does not
@@ -2310,23 +2506,23 @@ that are silenced are different for each training instance, to give all
 nodes a chance to observe enough training data to learn its weights.</p>
 <p>Let us add one dropout layer towards the end of the network, that
 randomly drops 20% of the input units.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dropout(<span class="fl">0.8</span>)(x) <span class="co"># This is new!</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model_dropout <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model"</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>model_dropout.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dropout(<span class="fl">0.8</span>)(x_dropout) <span class="co"># This is new!</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Flatten()(x_dropout)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>outputs_dropout <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_dropout)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>model_dropout <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs_dropout, name<span class="op">=</span><span class="st">"cifar_model_dropout"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>model_dropout.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2366,43 +2562,108 @@ _________________________________________________________________</code></pre>
 <p>We can see that the dropout does not alter the dimensions of the
 image, and has zero parameters.</p>
 <p>We again compile and train the model.</p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model_dropout.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>history_dropout <span class="op">=</span> model_dropout.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
-</div>
-<p>And inspect the training results:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> pd.DataFrame.from_dict(history_dropout.history)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>history_df[<span class="st">'epoch'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(history_df)<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> history_df.set_index(<span class="st">'epoch'</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>val_loss, val_acc <span class="op">=</span> model_dropout.evaluate(val_images,  val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model_dropout.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>              metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>history_dropout <span class="op">=</span> model_dropout.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
+</div>
+<p>And inspect the training results:</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> pd.DataFrame.from_dict(history_dropout.history)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>history_df[<span class="st">'epoch'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(history_df)<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> history_df.set_index(<span class="st">'epoch'</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>val_loss_dropout, val_acc_dropout <span class="op">=</span> model_dropout.evaluate(val_images,  val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>313/313 - 2s - loss: 1.4683 - accuracy: 0.5307</code></pre>
 </div>
-<figure><img src="../fig/05_training_history_3.png" alt="" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb12">
+<figure><img src="../fig/05_training_history_3.png" alt="" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss from the training process</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss from the training process</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'loss_dropout'</span>, <span class="st">'val_loss_dropout'</span>]])</span></code></pre>
 </div>
 <figure><img src="../fig/05_training_history_loss_3.png" alt="" class="figure mx-auto d-block"></figure><p>Now we see that the gap between the training accuracy and validation
 accuracy is much smaller, and that the final accuracy on the validation
 set is higher than without dropout. Nevertheless, there is still some
 difference between the training loss and validation loss, so we could
 experiment with regularization even more.</p>
+<div id="callout5" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout5"></a>
+</h3>
+<div class="callout-content">
+<p>ChatGPT</p>
+<p>Regularization methods for Convolutional Neural Networks (CNNs)</p>
+<p>Regularization methods introduce constraints or penalties to the
+training process, encouraging the model to be simpler and less prone to
+overfitting. Here are some common regularization methods for CNNs:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>L1 and L2 Regularization</strong>: L1 and L2 regularization
+are the two most common regularization techniques used in deep learning.
+They add a penalty term to the loss function during training to restrict
+the model’s weights.</li>
+</ol>
+<ul>
+<li><p>L1 regularization adds the absolute value of the weights to the
+loss function. It tends to produce sparse weight vectors, forcing some
+of the less important features to have exactly zero weights.</p></li>
+<li><p>L2 regularization adds the square of the weights to the loss
+function. It encourages the model to have smaller weights overall,
+preventing extreme values and reducing the impact of individual
+features.</p></li>
+</ul>
+<p>The regularization strength is controlled by a hyperparameter, often
+denoted as lambda (λ), that determines how much weight should be given
+to the regularization term. A larger λ value increases the impact of
+regularization, making the model simpler and more regularized.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p><strong>Dropout</strong>: Dropout is a regularization technique
+that involves randomly “dropping out” a fraction of neurons during
+training. This means that during each training iteration, some neurons
+are temporarily removed from the network. Dropout effectively reduces
+the interdependence between neurons, preventing the network from relying
+too heavily on specific neurons and making it more robust.</p></li>
+<li><p><strong>Batch Normalization</strong>: While not explicitly a
+regularization technique, Batch Normalization has a regularizing effect
+on the model. It normalizes the activations of each layer in the
+network, reducing internal covariate shift. This can improve training
+stability and reduce the need for aggressive dropout or weight
+decay.</p></li>
+<li><p><strong>Data Augmentation</strong>: Data augmentation is a
+technique where the training data is artificially augmented by applying
+various transformations like rotation, scaling, flipping, and cropping
+to create new examples. This increases the diversity of the training
+data and helps the model generalize better to unseen data.</p></li>
+<li><p><strong>Early Stopping</strong>: Early stopping is a form of
+regularization that stops the training process when the model’s
+performance on a validation set starts to degrade. This prevents the
+model from overfitting by avoiding further training after the point of
+best validation performance.</p></li>
+</ol>
+<p>By using regularization techniques, you can improve the
+generalization performance of CNNs and reduce the risk of overfitting.
+It’s essential to experiment with different regularization methods and
+hyperparameters to find the optimal combination for your specific CNN
+architecture and dataset.</p>
+</div>
+</div>
+</div>
 <div id="vary-dropout-rate" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -2427,7 +2688,7 @@ model performance, what is the term associated to this procedure?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Varying the dropout rate The code below instantiates and trains a
@@ -2440,38 +2701,38 @@ the validation loss is lowest.</li>
 <li>NB2: In the real world you should do this with a test set and not
 with the validation set!</li>
 </ul>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dropout_rates <span class="op">=</span> [<span class="fl">0.15</span>, <span class="fl">0.3</span>, <span class="fl">0.45</span>, <span class="fl">0.6</span>, <span class="fl">0.75</span>]</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>val_losses <span class="op">=</span> []</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dropout_rate <span class="kw">in</span> dropout_rates:</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> keras.layers.Dropout(dropout_rate)(x)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> keras.layers.Flatten()(x)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    model_dropout <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model_dropout"</span>)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    model_dropout.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    model_dropout.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    val_loss, val_acc <span class="op">=</span> model_dropout.evaluate(val_images,  val_labels)</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    val_losses.append(val_loss)</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>loss_df <span class="op">=</span> pd.DataFrame({<span class="st">'dropout_rate'</span>: dropout_rates, <span class="st">'val_loss'</span>: val_losses})</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>loss_df, x<span class="op">=</span><span class="st">'dropout_rate'</span>, y<span class="op">=</span><span class="st">'val_loss'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dropout_rates <span class="op">=</span> [<span class="fl">0.15</span>, <span class="fl">0.3</span>, <span class="fl">0.45</span>, <span class="fl">0.6</span>, <span class="fl">0.75</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>val_losses_vary <span class="op">=</span> []</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dropout_rate <span class="kw">in</span> dropout_rates:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_vary)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_vary)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_vary)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_vary)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Dropout(dropout_rate)(x_vary)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Flatten()(x_vary)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_vary)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_vary)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    model_vary <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs_vary, name<span class="op">=</span><span class="st">"cifar_model_vary"</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    model_vary.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>,</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>              metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    model_vary.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    val_loss_vary, val_acc_vary <span class="op">=</span> model_vary.evaluate(val_images,  val_labels)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    val_losses_vary.append(val_loss_vary)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>loss_df <span class="op">=</span> pd.DataFrame({<span class="st">'dropout_rate'</span>: dropout_rates, <span class="st">'val_loss_vary'</span>: val_losses_vary})</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>loss_df, x<span class="op">=</span><span class="st">'dropout_rate'</span>, y<span class="op">=</span><span class="st">'val_loss_vary'</span>)</span></code></pre>
 </div>
 <figure><img src="../fig/04_vary_dropout_rate.png" alt="" class="figure mx-auto d-block"></figure><ol start="2" style="list-style-type: decimal">
 <li>Term associated to this procedure This is called hyperparameter
@@ -2481,31 +2742,19 @@ tuning.</li>
 </div>
 </div>
 </div>
-<p>TODO Add a challenge to change the loss?</p>
-</section><section id="pick-the-best-model-and-use-it-to-predict"><h2 class="section-heading">Pick the best model and use it to predict<a class="anchor" aria-label="anchor" href="#pick-the-best-model-and-use-it-to-predict"></a>
+</div>
+</div>
+<section id="choose-the-best-model-and-use-it-to-predict"><h2 class="section-heading">Choose the best model and use it to predict<a class="anchor" aria-label="anchor" href="#choose-the-best-model-and-use-it-to-predict"></a>
 </h2>
 <hr class="half-width">
-<p>model model_dropout</p>
-<pre><code><span><span class="co"># save the model(s)</span></span>
-<span><span class="fu">model.save</span><span class="op">(</span><span class="st">'model.h5'</span><span class="op">)</span></span>
-<span><span class="fu">model_dropout</span><span class="op">(</span><span class="st">'model_dropout.h5'</span><span class="op">)</span></span></code></pre>
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  Instructor Note
-  </h3>
-</button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
-<div class="accordion-body">
-<p>Inline instructor notes can help inform instructors of timing
-challenges associated with the lessons. They appear in the “Instructor
-View”</p>
-</div>
-</div>
-</div>
-</div>
+<p>Based on our evaluation of the loss and accuracy metrics, the
+<code>model_dropout</code> appears to have better performance. The next
+step is to use these models to predict object classes on our test
+dataset.</p>
+<p>Make sure you save the model outputs!</p>
+<pre><code><span><span class="co"># save both dropout models</span></span>
+<span><span class="fu">model_dropout.save</span><span class="op">(</span><span class="st">'model_dropout.h5'</span><span class="op">)</span></span>
+<span><span class="fu">model_dropout.save</span><span class="op">(</span><span class="st">'model_vary.h5'</span><span class="op">)</span></span></code></pre>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -2515,7 +2764,12 @@ View”</p>
 </h3>
 <div class="callout-content">
 <ul>
-<li>Dropout is a way to prevent overfitting</li>
+<li>The choice of loss function will depend on your dataset and aim</li>
+<li>The choice of optimizer often depends on experimentation and
+empirical evaluation</li>
+<li>Fitting separate models with different hyperparameters and comparing
+their performance is a common and good practice in deep learning</li>
+<li>Dropout is one way to prevent overfitting</li>
 </ul>
 </div>
 </div>
@@ -2742,6 +2996,7 @@ before we are happy with the result.</p>
 <li>batch size</li>
 <li>epoch</li>
 </ul>
+<p>TODO Add a challenge to change the loss or optimizer</p>
 <div class="section level4">
 <h4 id="set-expectations-how-difficult-is-the-defined-problem">Set expectations: How difficult is the defined problem?<a class="anchor" aria-label="anchor" href="#set-expectations-how-difficult-is-the-defined-problem"></a>
 </h4>
@@ -3060,7 +3315,7 @@ openly available pretrained networks can be found in the <a href="https://modelz
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor

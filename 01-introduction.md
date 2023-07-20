@@ -17,6 +17,7 @@ exercises: 0
 - Explain the difference between artificial intelligence, machine learning and deep learning
 - Explain how machine learning is used for regression and classification tasks
 - Understand what algorithms are used for image classification
+- Know difference between training, testing, and validation datasets
 - Perform an image classification using a convolutional neural network (CNN)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -67,7 +68,7 @@ Next we need to identify what the inputs and outputs of the neural network will 
 ### 3. Prepare data
 Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data.
 
-Next we will need to divide the data into multiple sets. One of these will be used by the training process and we will call it the training set. Another will be used to evaluate the accuracy of the training and we will call that one the test set. Sometimes we will also use a 3rd set known as a validation set to tune hyperparameters.
+Next we will need to divide the data into multiple sets. One of these will be used by the training process and we will call it the **training set**. Another set, called the **validation set**, will be used during the training process to tune hyperparameters. A third **test set** is used to assess the final performance of the trained model.
 
 For this lesson, we will be using an existing image dataset known as CIFAR-10 that we will discuss in more depth in the next episode.
 
@@ -76,7 +77,8 @@ For this lesson, we will be using an existing image dataset known as CIFAR-10 th
 ```python
 # load the cifar dataset included with the keras packages
 from tensorflow import keras
-(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+
+(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
@@ -87,7 +89,7 @@ Explain the output of these commands?
 
 ```python
 print('Train: Images=%s, Labels=%s' % (train_images.shape, train_labels.shape))
-print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
+print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
 ```
 
 :::::::::::::::::::::::: solution 
@@ -96,20 +98,42 @@ print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
  
 ```output
 Train: Images=(50000, 32, 32, 3), Labels=(50000, 1)
-Test: Images=(10000, 32, 32, 3), Labels=(10000, 1)
+Validate: Images=(10000, 32, 32, 3), Labels=(10000, 1)
 ```
 The training set consists of 50000 images of 32x32 pixels and 3 channels (RGB values) and labels.
-The test set consists of 10000 images of 32x32 pixels and 3 channels (RGB values) and labels.
+The validation set consists of 10000 images of 32x32 pixels and 3 channels (RGB values) and labels.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Image RGB values are between 0 and 255. For input of neural networks, it is better to have small input values. So we normalize our data between 0 and 1:
+Image RGB values are between 0 and 255. For input of neural networks, it is better to have small input values. So we normalize our data between 0 and 1.
+
+::::::::::::::::::::::::::::::::::::::::: callout
+ChatGPT
+Normalizing the RGB values to be between 0 and 1 is a common pre-processing step in machine learning tasks, especially when dealing with image data. This normalization has several benefits:
+
+1. **Numerical Stability**: By scaling the RGB values to a range between 0 and 1, you avoid potential numerical instability issues that can arise when working with large values. Neural networks and many other machine learning algorithms are sensitive to the scale of input features, and normalizing helps to keep the values within a manageable range.
+
+2. **Faster Convergence**: Normalizing the RGB values often helps in faster convergence during the training process. Neural networks and other optimization algorithms rely on gradient descent techniques, and having inputs in a consistent range aids in smoother and faster convergence.
+
+3. **Equal Weightage for All Channels**: In RGB images, each channel (Red, Green, Blue) represents different color intensities. By normalizing to the range [0, 1], you ensure that each channel is treated with equal weightage during training. This is important because some machine learning algorithms could assign more importance to larger values.
+
+4. **Generalization**: Normalization helps the model to generalize better to unseen data. When the input features are in the same range, the learned weights and biases can be more effectively applied to new examples, making the model more robust.
+
+4. **Compatibility**: Many image-related libraries, algorithms, and models expect pixel values to be in the range of [0, 1]. By normalizing the RGB values, you ensure compatibility and seamless integration with these tools.
+
+The normalization process is typically done by dividing each RGB value (ranging from 0 to 255) by 255, which scales the values to the range [0, 1].
+
+For example, if you have an RGB image with pixel values (100, 150, 200), after normalization, the pixel values would become (100/255, 150/255, 200/255) ≈ (0.39, 0.59, 0.78).
+
+Remember that normalization is not always mandatory, and there could be cases where other scaling techniques might be more suitable based on the specific problem and data distribution. However, for most image-related tasks in machine learning, normalizing RGB values to [0, 1] is a good starting point.
+:::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ```python
 # normalize the RGB values to be between 0 and 1
 train_images = train_images / 255.0
-test_images = test_images / 255.0
+val_images = val_images / 255.0
 ```
 The labels are a set of single numbers denoting the class and we map the class numbers back to the class names, taken from the documentation:
 
@@ -121,9 +145,13 @@ class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', '
 ### Visualize a subset of the Cifar10 dataset
 
 ```python
-# plot a subset of the images
+
 import matplotlib.pyplot as plt
+
+# create a figure object and specify width, height in inches
 plt.figure(figsize=(10,10))
+
+# plot a subset of the images 
 for i in range(25):
     plt.subplot(5,5,i+1)
     plt.imshow(train_images[i], cmap=plt.cm.binary)
@@ -176,7 +204,7 @@ We can now go ahead and start training our neural network. We will probably keep
 
 ```python
 # fit the model
-history = model.fit(train_images, train_labels, epochs=10, validation_data=(test_images, test_labels))
+history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
 
 # save the model
 model.save('01_intro_model.h5')
@@ -231,7 +259,7 @@ There are many ways we can try to improve the accuracy of our model, such as add
 
 ### 8. Measure Performance
 
-Once we trained the network we want to measure its performance. To do this we use some additional data that was not part of the training, this is known as a test set. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
+Once we trained the network we want to measure its performance. To do this we use some additional data that was **not** part of the training; this is known as a test set. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
 
 ### 9. Tune Hyperparameters
 

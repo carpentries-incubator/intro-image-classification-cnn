@@ -6,7 +6,7 @@ Created on Fri Jun 30 12:56:21 2023
 """
 
 from tensorflow import keras
-(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 
 import seaborn as sns
 import pandas as pd
@@ -35,7 +35,7 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 history = model.fit(train_images, train_labels, epochs=10,
-                    validation_data=(test_images, test_labels))
+                    validation_data=(val_images, val_labels))
 
 
 # plot the accuracy from the training process
@@ -69,7 +69,7 @@ model_dropout.compile(optimizer='adam',
               metrics=['accuracy'])
 
 history_dropout = model_dropout.fit(train_images, train_labels, epochs=20,
-                    validation_data=(test_images, test_labels))
+                    validation_data=(val_images, val_labels))
 
 plt.show() #Force a new plot to be created
 
@@ -78,7 +78,7 @@ history_df['epoch'] = range(1,len(history_df)+1)
 history_df = history_df.set_index('epoch')
 sns.lineplot(data=history_df[['accuracy', 'val_accuracy']])
 
-test_loss, test_acc = model_dropout.evaluate(test_images,  test_labels, verbose=2)
+val_loss, val_acc = model_dropout.evaluate(val_images,  val_labels, verbose=2)
 
 plt.show() #Force a new plot to be created
 
@@ -88,7 +88,7 @@ sns.lineplot(data=history_df[['loss', 'val_loss']])
 
 
 dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]
-test_losses = []
+val_losses = []
 for dropout_rate in dropout_rates:
     inputs = keras.Input(shape=train_images.shape[1:])
     x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
@@ -108,16 +108,16 @@ for dropout_rate in dropout_rates:
               metrics=['accuracy'])
 
     model_dropout.fit(train_images, train_labels, epochs=20,
-                    validation_data=(test_images, test_labels))
+                    validation_data=(val_images, val_labels))
 
-    test_loss, test_acc = model_dropout.evaluate(test_images,  test_labels)
-    test_losses.append(test_loss)
+    val_loss, val_acc = model_dropout.evaluate(val_images,  val_labels)
+    val_losses.append(val_loss)
 
-loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'test_loss': test_losses})
+loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss': val_losses})
 
 plt.show() #Force a new plot to be created
 
-sns.lineplot(data=loss_df, x='dropout_rate', y='test_loss')
+sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss')
 
 
 

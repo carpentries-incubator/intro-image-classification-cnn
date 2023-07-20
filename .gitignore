@@ -49,3 +49,5 @@ docs/
 # translation temp files
 po/*~
 
+# outputs from running code
+episodes/scripts/fit_outputs/*

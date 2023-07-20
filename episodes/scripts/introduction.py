@@ -7,16 +7,16 @@ Created on Fri Jun 30 09:37:03 2023
 
 # load the cifar dataset included with the keras packages
 from tensorflow import keras
-(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 
 
 print('Train: Images=%s, Labels=%s' % (train_images.shape, train_labels.shape))
-print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
+print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
 
 
 # normalize the RGB values to be between 0 and 1
 train_images = train_images / 255.0
-test_images = test_images / 255.0
+val_images = val_images / 255.0
 
 # create a list of classnames
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
@@ -53,7 +53,7 @@ model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model")
 model.compile(optimizer='adam', loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
 
 # fit the model
-history = model.fit(train_images, train_labels, epochs=10, validation_data=(test_images, test_labels))
+history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
 
 # save the model
 model.save('01_intro_model.h5')

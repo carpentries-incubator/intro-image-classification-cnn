@@ -1,12 +1,12 @@
 ---
-title: 'Compile and Train a CNN'
+title: 'Compile and Train a Convolutional Neural Network'
 teaching: 10
 exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you compile a CNN?
+- How do you compile a convolutional neural network (CNN)?
 - What is a loss function?
 - What is an optimizer?
 - How do you train a CNN?
@@ -25,7 +25,7 @@ exercises: 2
 
 ### 5. Choose a loss function and optimizer
 
-We have designed a convolutional neural network that in theory we should be able to train to classify images. 
+We have designed a convolutional neural network (CNN) that in theory we should be able to train to classify images. 
 
 We now need to select an appropriate optimizer and loss function that we will use during training. 
 

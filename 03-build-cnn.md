@@ -1,5 +1,5 @@
 ---
-title: "Build a CNN"
+title: "Build a Convolutional Neural Network"
 teaching: 10
 exercises: 2
 ---
@@ -14,7 +14,7 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand how a convolutional neural network differs from an artificial neural network
+- Understand how a convolutional neural network (CNN) differs from an artificial neural network (ANN)
 - Explain the terms: kernel, filter
 - Know the different layers: dense, convolutional, pooling, flatten
 
@@ -46,7 +46,7 @@ Systems with high quality GPUs and/or HPCs if available. [Comment: I feel this i
 
 ## Convolutional Neural Networks
 
-A convolutional neural network (CNN) is a type of artificial neural network that is most commonly applied to analyze visual imagery. They are designed to recognize the spatial structure of images when extracting features.
+A convolutional neural network (CNN) is a type of artificial neural network (ANN) that is most commonly applied to analyze visual imagery. They are designed to recognize the spatial structure of images when extracting features.
 
 ### 4. Build an architecture from scratch or choose a pretrained model
 
@@ -55,7 +55,7 @@ Now we will build a neural network from scratch, and although this sounds like a
 Let's look at our network from the introduction:
 
 ```python
-# define the inputs, layers, and outputs of a cnn model
+# define the inputs, layers, and outputs of a convolutional neural network
 inputs = keras.Input(shape=train_images.shape[1:])
 x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
 x = keras.layers.MaxPooling2D((2, 2))(x)

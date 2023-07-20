@@ -1,5 +1,5 @@
 ---
-title: 'Evaluate a CNN and use it make predictions (classifications)'
+title: 'Evaluate a Convolutional Neural Network and Make Predictions (Classifications)'
 teaching: 10
 exercises: 2
 ---

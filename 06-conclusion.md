@@ -8,7 +8,7 @@ exercises: 2
 
 - What sort of problems can Deep Learning solve?
 - What sort of problems should Deep Learning not be used for?
-- How do I share my CNN?
+- How do I share my convolutional neural network (CNN)?
 - Where can I find pre-trained models?
 - What is a GPU?
 - What other problems can be solved with a CNN?

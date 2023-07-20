@@ -113,7 +113,7 @@ We want to train the model for 10 epochs:
 
 ```python
 history = model.fit(train_images, train_labels, epochs=10,
-                    validation_data=(test_images, test_labels))
+                    validation_data=(val_images, val_labels))
 ```
 
 The fit method returns a history object that has a history attribute with the training loss and potentially other metrics per training epoch. 
@@ -239,7 +239,7 @@ model_dropout.compile(optimizer='adam',
               metrics=['accuracy'])
 
 history_dropout = model_dropout.fit(train_images, train_labels, epochs=20,
-                    validation_data=(test_images, test_labels))
+                    validation_data=(val_images, val_labels))
 ```
 And inspect the training results:
 ```python
@@ -248,7 +248,7 @@ history_df['epoch'] = range(1,len(history_df)+1)
 history_df = history_df.set_index('epoch')
 sns.lineplot(data=history_df[['accuracy', 'val_accuracy']])
 
-test_loss, test_acc = model_dropout.evaluate(test_images,  test_labels, verbose=2)
+val_loss, val_acc = model_dropout.evaluate(val_images,  val_labels, verbose=2)
 ```
 ```output
 313/313 - 2s - loss: 1.4683 - accuracy: 0.5307
@@ -275,14 +275,14 @@ Now we see that the gap between the training accuracy and validation accuracy is
 :::::::::::::::::::::::: solution 
 
 1. Varying the dropout rate
-The code below instantiates and trains a model with varying dropout rates. You can see from the resulting plot that the ideal dropout rate in this case is around 0.45. This is where the test loss is lowest.
+The code below instantiates and trains a model with varying dropout rates. You can see from the resulting plot that the ideal dropout rate in this case is around 0.45. This is where the validation loss is lowest.
 
 - NB1: It takes a while to train these 5 networks.
-- NB2: In the real world you should do this with a validation set and not with the test set!
+- NB2: In the real world you should do this with a test set and not with the validation set!
 
 ```python
 dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]
-test_losses = []
+val_losses = []
 for dropout_rate in dropout_rates:
     inputs = keras.Input(shape=train_images.shape[1:])
     x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
@@ -302,14 +302,14 @@ for dropout_rate in dropout_rates:
               metrics=['accuracy'])
 
     model_dropout.fit(train_images, train_labels, epochs=20,
-                    validation_data=(test_images, test_labels))
+                    validation_data=(val_images, val_labels))
 
-    test_loss, test_acc = model_dropout.evaluate(test_images,  test_labels)
-    test_losses.append(test_loss)
+    val_loss, val_acc = model_dropout.evaluate(val_images,  val_labels)
+    val_losses.append(val_loss)
 
-loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'test_loss': test_losses})
+loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss': val_losses})
 
-sns.lineplot(data=loss_df, x='dropout_rate', y='test_loss')
+sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss')
 ```
 ![](fig/04_vary_dropout_rate.png){alt=''}
 

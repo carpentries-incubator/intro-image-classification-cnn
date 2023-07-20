@@ -17,8 +17,8 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain what loss and accuracy are
-- Know difference between training, testing, and validation datasets
+- Explain what overfitting is
+- Expain how to measure the performance of model fitting (loss and accuracy) compared to test accuracy
 - Understand what steps to take to improve model accuracy
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -35,6 +35,8 @@ This will return a vector of probabilities, one for each class. By finding the h
 y_pred = model.predict(testimages)
 prediction = pd.DataFrame(y_pred, columns=target.columns)
 prediction
+```
+
 TODO Maybe first we do this on the test samples to see it do well and then on a new image.
 This will let us get a list of predicted species we can then use to demonstrate how to calculate confusion matrix values.
 
@@ -71,6 +73,8 @@ Once we trained the network we want to measure its performance. To do this we us
 Now that we have a trained neural network it is important to assess how well it performs. We want to know how well it will perform in a realistic prediction scenario, measuring performance will also come back when tuning the hyperparameters.
 
 We have created a test set during the data preparation stage which we will use now to create a confusion matrix.
+
+TODO should we do this in ep02 or create our own (maybe with everyone's images?)
 
 #### Confusion matrix
 
@@ -153,14 +157,6 @@ TODO might be able to do something like this
 
 As we saw when comparing the predictions for the training and the test set, deep learning models are prone to overfitting. Instead of iterating through countless cycles of model trainings and subsequent evaluations with a reserved test set, it is common practice to work with a second split off dataset to monitor the model during training. This is the validation set which can be regarded as a second test set. As with the test set, the datapoints of the validation set are not used for the actual model training itself. Instead, we evaluate the model with the validation set after every epoch during training, for instance to stop if we see signs of clear overfitting. Since we are adapting our model (tuning our hyperparameters) based on this validation set, it is very important that it is kept separate from the test set. If we used the same set, we would not know whether our model truly generalizes or is only overfitting.
 
-:::::::::::::::::::::::::::::::::::::: callout
-Test vs. validation set
-
-Not everybody agrees on the terminology of test set versus validation set. You might find examples in literature where these terms are used the other way around.
-
-We are sticking to the definition that is consistent with the Keras API. In there, the validation set can be used during training, and the test set is reserved for afterwards.
-
-:::::::::::::::::::::::::::::::::::::::::::::::
 
 TODO add new model with validation data
 see this section deep-learning 03 weather

@@ -68,7 +68,8 @@ In cases where the data exists, you can simply load it into memory:
 ```python
 # load the cifar dataset included with the keras packages
 from tensorflow import keras
-(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+
+(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 ```
 
 
@@ -78,17 +79,87 @@ from tensorflow import keras
 
 ## RGB vs Greyscale
 
-## Split data into training and test set
-Finally, we will split the dataset into a training set and a test set. As the names imply we will use the training set to train the neural network, while the test set is kept separate. We will use the test set to assess the performance of the trained neural network on unseen samples. In many cases a validation set is also kept separate from the training and test sets (i.e. the dataset is split into 3 parts). This validation set is then used to select the values of the parameters of the neural network and the training methods. For this episode we will keep it at just a training and test set however.
+## Split data into training and validation set
 
-To split the cleaned dataset into a training and test set we will use a very convenient function from sklearn called train_test_split. This function takes a number of parameters:
+In the previous episode we saw that the keras installation includes the Cifar-10 dataset and that by using the cifar10.load_data() method the returned data is already split into two. In this instance, there is no test data.
+
+When using a different dataset, or loading a your own, you will need to do the split yourself. Keep in mind you will also need to a validation set.
+
+::::::::::::::::::::::::::::::::::::::::: callout
+ChatGPT
+
+Data is typically split into the training, validation, and test data sets using a process called data splitting or data partitioning. There are various methods to perform this split, and the choice of technique depends on the specific problem, dataset size, and the nature of the data. Here are some common approaches:
+
+1. **Hold-Out Method:**
+
+- In the hold-out method, the dataset is divided into two parts initially: a training set and a test set.
+
+- The training set is used to train the model, and the test set is kept completely separate to evaluate the model's final performance.
+
+- This method is straightforward and widely used when the dataset is sufficiently large.
+
+2. **Train-Validation-Test Split:**
+
+- The dataset is split into three parts: the training set, the validation set, and the test set.
+
+- The training set is used to train the model, the validation set is used to tune hyperparameters and prevent overfitting during training, and the test set is used to assess the final model performance.
+
+- This method is commonly used when fine-tuning model hyperparameters is necessary.
+
+3. **K-Fold Cross-Validation:**
+
+- In k-fold cross-validation, the dataset is divided into k subsets (folds) of roughly equal size.
+
+- The model is trained and evaluated k times, each time using a different fold as the test set while the remaining k-1 folds are used as the training set.
+
+- The final performance metric is calculated as the average of the k evaluation results, providing a more robust estimate of model performance.
+
+- This method is particularly useful when the dataset size is limited, and it helps in better utilizing available data.
+
+4. **Stratified Sampling:**
+
+- Stratified sampling is used when the dataset is imbalanced, meaning some classes or categories are underrepresented.
+
+- The data is split in such a way that each subset (training, validation, or test) maintains the same class distribution as the original dataset.
+
+- This ensures that all classes are well-represented in each subset, which is important to avoid biased model evaluation.
+
+It's important to note that the exact split ratios (e.g., 80-10-10 or 70-15-15) may vary depending on the problem, dataset size, and specific requirements. Additionally, data splitting should be performed randomly to avoid introducing any biases into the model training and evaluation process.
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
+To split a cleaned dataset into a training and test set we will use a very convenient function from sklearn called `train_test_split`.
+
+```python
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(your_data, target, test_size=0.2, random_state=0, shuffle=True, stratify=target)
+```
+
+TODO need some test data - maybe not use cifar in this section?
+
+This function takes a number of parameters:
 
 - The first two are the dataset and the corresponding targets.
+
 - Next is the named parameter test_size this is the fraction of the dataset that is used for testing, in this case 0.2 means 20% of the data will be used for testing.
+
 - random_state controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
+
 - shuffle which can be either True or False, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to True.
+
 - stratify is a more advanced parameter that controls how the split is done. By setting it to target the train and test sets the function will return will have roughly the same proportions as the dataset.
 
+::::::::::::::::::::::::::::::::::::: challenge
+TRAINING AND TEST SETS
+
+Take a look at the training and test set we created. - How many samples do the training and test sets have? - Are the classes in the training set well balanced?
+
+:::::::::::::::::::::::: solution 
+
+TODO will depend on data - see ep02 deep learning for ex on penguins
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## One-hot encoding
 

@@ -25,6 +25,7 @@ exercises: 2
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## What sort of problems can Deep Learning solve?
+
 * Pattern/object recognition
 * Segmenting images (or any data)
 * Translating between one set of data and another, for example natural language translation.
@@ -37,12 +38,9 @@ exercises: 2
 * Tasks requiring an explanation of how the answer was arrived at.
 * Classifying things which are nothing like their training data.
 
-## Share Model
-
-Now that we have a trained network that performs at a level we are happy with we can go and use it on real data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
-
 ## 10. Share model
-It is very useful to be able to use the trained neural network at a later stage without having to retrain it. This can be done by using the save method of the model. It takes a string as a parameter which is the path of a directory where the model is stored.
+
+Now that we have a trained network that performs at a level we are happy with and can maintain high prediction accuracy on a test dataset we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
 ```python
 model.save('my_first_model')
@@ -67,7 +65,7 @@ print(pretrained_predicted_species)
 ```
 TODO modify above for our example
 
-## Choose a pretrained model
+## Choosing a pretrained model
 
 If your data and problem is very similar to what others have done, you can often use a pretrained network. Even if your problem is different, but the data type is common (for example images), you can use a pretrained network and finetune it for your problem. A large number of openly available pretrained networks can be found in the [Model Zoo], [pytorch hub] or [tensorflow hub].
 

@@ -23,7 +23,7 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## What is machine learning?
-Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **convolutional neural network**, abbreviated as **CNN**, but there are many more.
+Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural etwork**, abbreviated as **CNN**, but there are many more.
 
 The techniques breakdown into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs, for example trying to predict the cost of something given the economic conditions and the cost of raw materials or predicting a country’s GDP given its life expectancy. Classifiers try to classify data into different categories, or assign a label; for example, deciding what characters are visible in a picture of some writing or if a message is spam or not.
 

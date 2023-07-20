@@ -146,6 +146,9 @@ The hyperparameters include:
 - batch size
 - epoch
 
+
+TODO Add a challenge to change the loss or optimizer
+
 #### Set expectations: How difficult is the defined problem?
 Before we dive deeper into handling overfitting and (trying to) improving the model performance, let us ask the question: How well must a model perform before we consider it a good model?
 

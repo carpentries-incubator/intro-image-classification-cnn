@@ -173,7 +173,7 @@ TODO decide to simplify this model or present as is
 #### Define the Model
 
 ```python
-# define the inputs, layers, and outputs of a cnn model
+# define the inputs, layers, and outputs of a convolutional neural network
 inputs = keras.Input(shape=train_images.shape[1:])
 x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
 x = keras.layers.MaxPooling2D((2, 2))(x)

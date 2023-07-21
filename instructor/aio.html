@@ -493,7 +493,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -625,18 +625,21 @@ few times before we see acceptable results.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs, layers, and outputs of a convolutional neural network</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_intro)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>inputs_intro <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Convolutional layer</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create the model</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model_intro <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs_intro, name<span class="op">=</span><span class="st">"cifar_model_intro"</span>)</span></code></pre>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Output layer with 10 units (one for each class)</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_intro)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># create the model</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>model_intro <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_intro, outputs<span class="op">=</span>outputs_intro, name<span class="op">=</span><span class="st">"cifar_model_intro"</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -776,7 +779,7 @@ discuss each component in more detail.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -1101,7 +1104,7 @@ training set well balanced?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>TODO will depend on data - see ep02 deep learning for ex on
 penguins</p>
@@ -1144,7 +1147,7 @@ an architecture.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -1181,7 +1184,7 @@ any links that you are not going to use.
  -->
 </div></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Build a Convolutional Neural Network</a></p>
 <hr>
-<p> Last updated on 2023-07-20 | 
+<p> Last updated on 2023-07-21 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -1299,17 +1302,14 @@ layers and linking them together.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs, layers, and outputs of a convolutional neural network</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create the model</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model"</span>)</span></code></pre>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#inputs_intro = keras.Input(shape=train_images.shape[1:])</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#x_intro = keras.layers.Flatten()(x_intro)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#outputs_intro = keras.layers.Dense(10)(x_intro)</span></span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -1347,8 +1347,8 @@ and number of channels:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the input</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#inputs_intro = keras.Input(shape=train_images.shape[1:])</span></span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -1356,11 +1356,11 @@ and number of channels:</p>
 </h4>
 <p>The next component consists of the so-called hidden layers of the
 network. The reason they are referred to as hidden is because the true
-values of theirs nodes are unknown - this is the black box. In a CNN,
-the hidden layers typically consist of dense, convolutional, and pooling
-layers, although there are other layers we will see later on.</p>
-<p>TODO Also flatten, dropout, normalization - do we want to mention
-here or below / ep 5-6</p>
+values of their nodes are unknown - this is the black box.</p>
+<p>In a CNN, the hidden layers typically consist of dense,
+convolutional, reshaping (e.g., Flatten), and pooling layers. Check out
+the <a href="https://keras.io/api/layers/" class="external-link">Layers API</a> section of the
+Keras documentation.</p>
 <div class="section level5">
 <h5 id="dense-layers">
 <strong>Dense layers</strong><a class="anchor" aria-label="anchor" href="#dense-layers"></a>
@@ -1376,8 +1376,7 @@ neurons and <strong>all</strong> of the output neurons.</p>
 layer</li>
 <li>defined by the keras.layers.Dense class</li>
 </ul>
-<p>TODO insert image?</p>
-<p>This layer is called fully connected, because all input neurons are
+<figure><img src="../fig/03-neural_network_sketch_dense.png" alt="" class="figure mx-auto d-block"></figure><p>This layer is called fully connected, because all input neurons are
 taken into account by each output neuron. The number of parameters that
 need to be learned by the network is thus in the order of magnitude of
 the number of input neurons times the number of hidden neurons.</p>
@@ -1428,7 +1427,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -1550,7 +1549,7 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -1585,7 +1584,7 @@ the previous exercise</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 100 less than the fully
@@ -1596,6 +1595,14 @@ the expressiveness of convolutional layers.</p>
 </div>
 </div>
 </div>
+</div>
+<div class="section level5">
+<h5 id="shaping-layers-flatten">
+<strong>Shaping Layers: Flatten</strong><a class="anchor" aria-label="anchor" href="#shaping-layers-flatten"></a>
+</h5>
+<p>The third type of hidden layer used in our introductory model is a
+<strong>Flatten</strong> layer. Let’s hold off on discussion this for
+just a moment.</p>
 </div>
 </div>
 <div class="section level4">
@@ -1609,28 +1616,74 @@ convolutional layer to the outputs for our 10 classes.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span></code></pre>
-</div>
-<p>TODO could jump straight in here or talk about pooling and then
-present whole model from intro</p>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output layer with 10 units (one for each class)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#outputs = keras.layers.Dense(10)(x)</span></span></code></pre>
 </div>
 </div>
-</section><section id="small-network-example"><h2 class="section-heading">Small network example<a class="anchor" aria-label="anchor" href="#small-network-example"></a>
+</div>
+</section><section id="putting-it-all-together"><h2 class="section-heading">Putting it all together<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a>
 </h2>
 <hr class="half-width">
-<p>So let us look at a small network with only a couple convolutional
-layers.</p>
+<p>So let us look again at the small network used in our
+introduction:</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>inputs_sm <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x_sm <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_sm)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x_sm <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_sm)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>x_sm <span class="op">=</span> keras.layers.Flatten()(x_sm)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>outputs_sm <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_sm)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>model_sm <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_sm, outputs<span class="op">=</span>outputs_sm, name<span class="op">=</span><span class="st">"cifar_model_small"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>inputs_intro <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Convolutional layer</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Output layer with 10 units (one for each class)</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_intro)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># create the model</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>model_intro <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_intro, outputs<span class="op">=</span>outputs_intro, name<span class="op">=</span><span class="st">"cifar_model_intro"</span>)</span></code></pre>
 </div>
+<p>We first store a reference to the input class in a variable
+‘inputs_intro’ so we can pass it to the creation of our first hidden
+layer. Creating the convolutional layers can then be done as
+follows:</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)</span></span></code></pre>
+</div>
+<p>The instantiation here has 3 parameters and a seemingly strange
+combination of parentheses, so let us take a closer look.</p>
+<ul>
+<li><p>The first parameter 50 is the number of neurons we want in this
+layer, this is one of the hyperparameters of our system and needs to be
+chosen carefully. We will get back to this in the section on
+hyperparameter tuning.</p></li>
+<li><p>The second parameter is the kernel size.</p></li>
+<li><p>The third parameter is the activation function to use, here we
+choose <strong>relu</strong> which is 0 for inputs that are 0 and below
+and the identity function (returning the same value) for inputs above 0.
+This is a commonly used activation function in deep neural networks that
+is proven to work well. We will discuss activation functions in a
+subsequent episode.</p></li>
+<li><p>Next we see an extra set of parenthenses with inputs in them,
+this means that after creating an instance of the Conv2D layer we call
+it as if it was a function. This tells the Conv2D layer to connect the
+layer passed as a parameter, in this case the inputs.</p></li>
+<li><p>Finally we store a reference so we can pass it to the next
+layer.</p></li>
+</ul>
+<p>Adding a second Conv2D layer we use the same arguments but change the
+input to be the output of the first Conv2D layer.</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)</span></span></code></pre>
+</div>
+<p>Now let’s take a closer look at that <strong>Flatten</strong>
+layer:</p>
 <div id="convolutional-neural-network" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1644,8 +1697,6 @@ layers.</p>
 <li>What do you think is the function of the Flatten layer?</li>
 <li>Which layer has the most parameters? Do you find this
 intuitive?</li>
-<li>(optional) Pick a model from <a href="https://paperswithcode.com/sota/image-classification-on-cifar-10" class="external-link uri">https://paperswithcode.com/sota/image-classification-on-cifar-10</a>
-. Try to understand how it works.</li>
 </ul>
 </div>
 </div>
@@ -1657,17 +1708,17 @@ intuitive?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model_sm.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model_intro.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>Model: "cifar_model_small"
+<pre class="output" tabindex="0"><code>Model: "cifar_model_intro"
 _________________________________________________________________
  Layer (type)                Output Shape              Param #   
 =================================================================
@@ -1706,7 +1757,79 @@ the convolutional layers, that have much fewer parameters.</li>
 <strong>Flatten</strong>: Flattens the input. Does not affect the
 batch size</li>
 <li>defined by the keras.layers.Flatten class</li>
+</ul></section><section id="we-have-a-model-now-what"><h2 class="section-heading">We have a model now what?<a class="anchor" aria-label="anchor" href="#we-have-a-model-now-what"></a>
+</h2>
+<hr class="half-width">
+<p>This minimal CNN should be able to run with the CIFAR-10 dataset and
+provide reasonable results for basic classification tasks. However, do
+keep in mind that this model is relatively simple, and its performance
+may not be as high as more complex architectures. The reason it’s called
+deep learning is because in most cases, the more layers we have, ie, the
+deeper and more sophisticated CNN architecture we use, the better the
+performance.</p>
+<p>How can we tell? We can look at a couple metrics during the training
+process to detect whether our model is underfitting or underfitting. To
+do that, we first need to continue with the next steps in our Deep
+Learning workflow, <strong>5. Choose a loss function and
+optimizer</strong> and <strong>6. Train model</strong>. We will go into
+more details of these steps in the next lesson, but for now we just need
+to run this code to access the training history:</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>model_intro.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>, loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>), </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>history_intro <span class="op">=</span> model_intro.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
+</div>
+<div class="section level4">
+<h4 id="monitor-training-progress-aka-model-evaluation-during-training">Monitor Training Progress (aka Model Evaluation during
+Training)<a class="anchor" aria-label="anchor" href="#monitor-training-progress-aka-model-evaluation-during-training"></a>
+</h4>
+<p>It can be very insightful to plot the training loss to see how the
+training progresses.</p>
+<p>Using seaborn we can plot the training process using the history:</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the history to a dataframe for plotting </span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>history_intro_df <span class="op">=</span> pd.DataFrame.from_dict(history_intro.history)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss and accuracy from the training process</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'cifar_model_intro'</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_intro_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_intro_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
+</div>
+<figure><img src="../fig/03_model_intro_accuracy_loss.png" alt="" class="figure mx-auto d-block"></figure><p>This plot can be used to identify whether the training is well
+configured or whether there are problems that need to be addressed. When
+your validation loss is decreasing, the model is underfit. Underfitting
+occurs when the model is too simple or lacks the capacity to capture the
+underlying patterns and relationships present in the data. As a result,
+the model’s predictions are not accurate, and it fails to generalize
+well to unseen data.</p>
+<p>Key characteristics of an underfit model include:</p>
+<ul>
+<li><p>Low Validation Accuracy: This indicates that the model is not
+learning from the data effectively.</p></li>
+<li><p>Large Training Loss: The training loss (error) is high,
+indicating that the model’s predictions are far from the true labels in
+the training set.</p></li>
 </ul>
+<p>How to Address Underfitting:</p>
+<ul>
+<li>Increase the model’s complexity by adding more layers or units to
+the existing layers.</li>
+<li>Train the model for more epochs to give it more time to learn from
+the data.</li>
+<li>Perform data augmentation or feature engineering to provide the
+model with more informative input features.</li>
+</ul>
+<p>Given we intentionally started with a shallow model, let’s try adding
+more layers! Now is a good time to discuss the pooling layer.</p>
+</div>
 <div class="section level4">
 <h4 id="pooling-layers">
 <strong>Pooling Layers</strong><a class="anchor" aria-label="anchor" href="#pooling-layers"></a>
@@ -1725,45 +1848,13 @@ layer has a broader ‘view’ on the original image.</p>
 data</li>
 <li>defined by the keras.layers.MaxPooling2D class</li>
 </ul>
-</div>
-</section><section id="putting-it-all-together"><h2 class="section-heading">Putting it all together<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a>
-</h2>
-<hr class="half-width">
-<p>We first store a reference to the input class in a variable ‘inputs’
-so we can pass it to the creation of our hidden layer. Creating the
-hidden layer can then be done as follows:</p>
-<div class="codewrapper sourceCode" id="cb16">
+<p>Let us create a new model that includes a pooling layer after each
+Conv2D layer:</p>
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span></code></pre>
-</div>
-<p>The instantiation here has 3 parameters and a seemingly strange
-combination of parentheses, so let us take a closer look.</p>
-<ul>
-<li><p>The first parameter 50 is the number of neurons we want in this
-layer, this is one of the hyperparameters of our system and needs to be
-chosen carefully. We will get back to this in the section on
-hyperparameter tuning.</p></li>
-<li><p>The second parameter is the kernel size.</p></li>
-<li><p>The third parameter is the activation function to use, here we
-choose <strong>relu</strong> which is 0 for inputs that are 0 and below
-and the identity function (returning the same value) for inputs above 0.
-This is a commonly used activation function in deep neural networks that
-is proven to work well. We will discuss activation functions in a
-subsequent episode.</p></li>
-<li><p>Next we see an extra set of parenthenses with inputs in them,
-this means that after creating an instance of the Conv2D layer we call
-it as if it was a function. This tells the Conv2D layer to connect the
-layer passed as a parameter, in this case the inputs.</p></li>
-<li><p>Finally we store a reference so we can pass it to the next
-layer.</p></li>
-</ul>
-<p>Now we can add hidden layers:</p>
-<div class="codewrapper sourceCode" id="cb17">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># second layer</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pooling layer</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#x_pool = keras.layers.MaxPooling2D((2, 2))(x_pool)</span></span></code></pre>
 </div>
 <p>The instantiation here has a single parameter, pool_size.</p>
 <ul>
@@ -1774,49 +1865,55 @@ size defined by pool_size) for each channel of the input.</p></li>
 option, has a spatial shape (number of rows or columns) of:</p></li>
 </ul>
 <pre><code>$$output_shape = math.floor\frac{(input_shape - pool_size)}{strides} + 1$$ &amp; when input_shape &gt;= pool_size</code></pre>
+<p>TODO LaTEX help for formula see Maths section <a href="https://carpentries.github.io/sandpaper-docs/episodes.html" class="external-link uri">https://carpentries.github.io/sandpaper-docs/episodes.html</a></p>
 <ul>
 <li>And again we store a reference so we can pass it to the next
 layer.</li>
 </ul>
-<p>We add a second set of convolutional and pooling layers before
-flattening the result and passing it a final dense layer.</p>
-<div class="codewrapper sourceCode" id="cb19">
+<p>We will also add a second set of convolutional and pooling layers
+before flattening the result and passing it to an additional dense
+layer.</p>
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add layers</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dense layer</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#x_pool = keras.layers.Dense(50, activation='relu')(x_pool)</span></span></code></pre>
 </div>
 <p>The instantiation of this Dense layer has 2 parameters, the number of
 neurons and the activation function.</p>
-<p>Finally we create a final layer that will be our output layer.</p>
-<div class="codewrapper sourceCode" id="cb20">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define outputs</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span></code></pre>
-</div>
-<p>We again use a Dense layer but this time with only a single argument
-reflecting the dimensionality of the output space (ie number of output
-classes).</p>
+<p>We then add our final output layer and reassemble, compile, and train
+the deeper model with pooling.</p>
 <p>Putting it all together:</p>
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create the model</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model"</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs, layers, and outputs of a cnn model with pooling</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>inputs_pool <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_pool)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_pool)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_pool)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_pool)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Flatten()(x_pool)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_pool)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>outputs_pool <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_pool)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create the pooling model</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>model_pool <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_pool, outputs<span class="op">=</span>outputs_pool, name<span class="op">=</span><span class="st">"cifar_model_pool"</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>model_pool.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>, loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>), </span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>history_pool <span class="op">=</span> model_pool.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(val_images, val_labels))</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>model_pool.summary()</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co"># save pool model</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>model_pool.save(<span class="st">'model_pool.h5'</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>Model: "cifar_model"
+<pre class="output" tabindex="0"><code>Model: "cifar_model_pool"
 _________________________________________________________________
  Layer (type)                Output Shape              Param #   
 =================================================================
@@ -1852,12 +1949,12 @@ _________________________________________________________________</code></pre>
 <h3 class="callout-title">How to choose an architecture?<a class="anchor" aria-label="anchor" href="#how-to-choose-an-architecture"></a>
 </h3>
 <div class="callout-content">
-<p>Even for this small neural network, we had to make a choice on the
-number of hidden neurons. Other choices to be made are the number of
-layers and type of layers (as we will see later). You might wonder how
-you should make these architectural choices. Unfortunately, there are no
-clear rules to follow here, and it often boils down to a lot of trial
-and error. However, it is recommended to look what others have done with
+<p>Even for this neural network, we had to make a choice on the number
+of hidden neurons. Other choices to be made are the number of layers and
+type of layers (as we will see later). You might wonder how you should
+make these architectural choices. Unfortunately, there are no clear
+rules to follow here, and it often boils down to a lot of trial and
+error. However, it is recommended to look what others have done with
 similar datasets and problems. Another best practice is to start with a
 relatively simple architecture. Once running start to add layers and
 tweak the network to see if performance increases.</p>
@@ -1879,18 +1976,18 @@ filters after the last MaxPooling2D layer. Train it for 20 epochs and
 plot the results.</p>
 <p><strong>HINT</strong>: The model definition that we used previously
 needs to be adjusted as follows:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your extra layer here</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>inputs_cnd <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_cnd)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_cnd)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_cnd)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_cnd)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your extra layer here</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Flatten()(x_cnd)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_cnd)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>outputs_cnd <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_cnd)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1902,22 +1999,22 @@ needs to be adjusted as follows:</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>inputs = keras.Input(shape=train_images.shape[1:])
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
-x = keras.layers.MaxPooling2D((2, 2))(x)
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
-x = keras.layers.MaxPooling2D((2, 2))(x)
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
-x = keras.layers.Flatten()(x)
-x = keras.layers.Dense(50, activation='relu')(x)
-outputs = keras.layers.Dense(10)(x)
+<pre class="output" tabindex="0"><code>inputs_cnd = keras.Input(shape=train_images.shape[1:])
+x_cnd = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_cnd)
+x_cnd = keras.layers.MaxPooling2D((2, 2))(x_cnd)
+x_cnd = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_cnd)
+x_cnd = keras.layers.MaxPooling2D((2, 2))(x_cnd)
+x_cnd = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_cnd)
+x_cnd = keras.layers.Flatten()(x_cnd)
+x_cnd = keras.layers.Dense(50, activation='relu')(x_cnd)
+outputs_cnd = keras.layers.Dense(10)(x_cnd)
 
-model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model")</code></pre>
+model_cnd = keras.Model(inputs=inputs_cnd, outputs=outputs_cnd, name="cifar_model_Challenge_network_depth")</code></pre>
 </div>
 </div>
 </div>
@@ -1925,15 +2022,15 @@ model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model")</code></
 </div>
 <p>With the model defined above, we can inspect the number of
 parameters:</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>Model: "cifar_model"
+<pre class="output" tabindex="0"><code>Model: "cifar_model_Challenge_network_depth"
 _________________________________________________________________
  Layer (type)                Output Shape              Param #
 =================================================================
@@ -1984,23 +2081,11 @@ structures of chemical compounds.</p>
 </div>
 </div>
 </div>
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  Instructor Note
-  </h3>
-</button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
-<div class="accordion-body">
-<p>Inline instructor notes can help inform instructors of timing
-challenges associated with the lessons. They appear in the “Instructor
-View”</p>
-</div>
-</div>
-</div>
-</div>
+<p>Adding more layers to our model should increase the accuracy of its
+predictions. But before we look at the training metrics for our pooling
+model, let’s take a step back and discuss in more detail steps
+<strong>5. Choose a loss function and optimizer</strong> and <strong>6.
+Train model</strong>.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -2030,9 +2115,10 @@ connected), convolutional, pooling, and flatten layers</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
+</div>
 </section></section><section id="aio-04-fit-cnn"><p>Content from <a href="04-fit-cnn.html">Compile and Train a Convolutional Neural Network</a></p>
 <hr>
-<p> Last updated on 2023-07-20 | 
+<p> Last updated on 2023-07-21 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -2050,7 +2136,7 @@ any links that you are not going to use.
 <li>How do you compile a convolutional neural network (CNN)?</li>
 <li>What is a loss function?</li>
 <li>What is an optimizer?</li>
-<li>How do you train a CNN?</li>
+<li>How do you train (fit) a CNN?</li>
 <li>What are hyperparameters?</li>
 </ul>
 </div>
@@ -2333,15 +2419,14 @@ update its parameters.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))</span></span></code></pre>
 </div>
-<p>The fit method returns a history object that has a history attribute
-with the training loss and potentially other metrics per training
-epoch.</p>
+<p>As we saw in the previous episode, the fit method returns a history
+object that has a history attribute with the training loss and
+potentially other metrics per training epoch.</p>
 <p>Note there are other arguments we could use to fit our model, see the
 documentation for <a href="https://keras.io/api/models/model_training_apis/" class="external-link">fit
-method</a></p>
+method</a>.</p>
 <div id="callout4" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -2392,32 +2477,23 @@ best for your specific model, architecture, and dataset.</p>
 <h4 id="monitor-training-progress-aka-model-evaluation-during-training">Monitor Training Progress (aka Model Evaluation during
 Training)<a class="anchor" aria-label="anchor" href="#monitor-training-progress-aka-model-evaluation-during-training"></a>
 </h4>
-<p>It can be very insightful to plot the training loss to see how the
-training progresses.</p>
-<p>Using seaborn we can plot the training process using the history:</p>
+<p>Now that we know more about the compilation and training of CNN’s let
+us take a look at the training metrics for our pooling model.</p>
+<p>Using seaborn again we can plot the training process using the
+history:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the history to a dataframe for plotting </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>history_pool_df <span class="op">=</span> pd.DataFrame.from_dict(history_pool.history)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the accuracy from the training process</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> pd.DataFrame.from_dict(history.history)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss and accuracy from the training process</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'cifar_model_pool'</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_pool_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_pool_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
 </div>
-<figure><img src="../fig/04_training_history_1.png" alt="" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss from the training process</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span></code></pre>
-</div>
-<figure><img src="../fig/04_training_history_loss_1.png" alt="" class="figure mx-auto d-block"></figure><p>This plot can be used to identify whether the training is well
-configured or whether there are problems that need to be addressed.</p>
-<p>It seems that the model is overfitting somewhat, because the
-validation accuracy and loss stagnates.</p>
-<p>TODO note the network depth challenge at the end of 03 has accuracy
-metrics as well if we want to present those and compare</p>
-<div id="challenge-the-training-curve" class="callout challenge">
+<figure><img src="../fig/04_model_pool_accuracy_loss.png" alt="" class="figure mx-auto d-block"></figure><div id="challenge-the-training-curve" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -2461,6 +2537,34 @@ indication of a well trained network.</li>
 </div>
 </div>
 </div>
+<p>If we look at these plots we can see signs of overfitting. If a model
+is overfitting, it means that the model performs exceptionally well on
+the training data but poorly on the validation or test data. Overfitting
+occurs when the model has learned to memorize the noise and specific
+patterns in the training data instead of generalizing the underlying
+relationships. As a result, the model fails to perform well on new,
+unseen data because it has become too specialized to the training
+set.</p>
+<p>Key characteristics of an overfit model include:</p>
+<ul>
+<li><p>High Training Accuracy, Low Validation Accuracy: The model
+achieves high accuracy on the training data but significantly lower
+accuracy on the validation (or test) data.</p></li>
+<li><p>Small Training Loss, Large Validation Loss: The training loss is
+low, indicating that the model’s predictions closely match the true
+labels in the training set. However, the validation loss is high,
+indicating that the model’s predictions are far from the true labels in
+the validation set.</p></li>
+</ul>
+<p>How to Address Overfitting:</p>
+<ul>
+<li>Reduce the model’s complexity by using fewer layers or units to make
+it less prone to overfitting.</li>
+<li>Collect more training data if possible to provide the model with a
+diverse and representative dataset.</li>
+<li>Perform data augmentation to artificially increase the size of the
+training data and introduce variability.</li>
+</ul>
 </div>
 <div class="section level4">
 <h4 id="improve-model-generalization-avoid-overfitting">Improve Model Generalization (avoid Overfitting)<a class="anchor" aria-label="anchor" href="#improve-model-generalization-avoid-overfitting"></a>
@@ -2481,7 +2585,7 @@ versatile regularization technique is <strong>dropout</strong>
 training cycle a random fraction of the dense layer nodes are turned
 off. This is described with the dropout rate between 0 and 1 which
 determines the fraction of nodes to silence at a time.</p>
-<figure><img src="../fig/05-neural_network_sketch_dropout.png" alt="" class="figure mx-auto d-block"></figure><p>The intuition behind dropout is that it enforces redundancies in the
+<figure><img src="../fig/04-neural_network_sketch_dropout.png" alt="" class="figure mx-auto d-block"></figure><p>The intuition behind dropout is that it enforces redundancies in the
 network by constantly removing different elements of a network. The
 model can no longer rely on individual nodes and instead must create
 multiple “paths”. In addition, the model has to make predictions with
@@ -2498,23 +2602,23 @@ that are silenced are different for each training instance, to give all
 nodes a chance to observe enough training data to learn its weights.</p>
 <p>Let us add one dropout layer towards the end of the network, that
 randomly drops 20% of the input units.</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dropout(<span class="fl">0.8</span>)(x_dropout) <span class="co"># This is new!</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Flatten()(x_dropout)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>outputs_dropout <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_dropout)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>model_dropout <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs_dropout, name<span class="op">=</span><span class="st">"cifar_model_dropout"</span>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>model_dropout.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dropout(<span class="fl">0.8</span>)(x_dropout) <span class="co"># This is new!</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Flatten()(x_dropout)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>outputs_dropout <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_dropout)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model_dropout <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs_dropout, name<span class="op">=</span><span class="st">"cifar_model_dropout"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>model_dropout.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2554,39 +2658,42 @@ _________________________________________________________________</code></pre>
 <p>We can see that the dropout does not alter the dimensions of the
 image, and has zero parameters.</p>
 <p>We again compile and train the model.</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model_dropout.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>              metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>history_dropout <span class="op">=</span> model_dropout.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
+</div>
+<p>And inspect the training results:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model_dropout.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>              metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>history_dropout <span class="op">=</span> model_dropout.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
-</div>
-<p>And inspect the training results:</p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> pd.DataFrame.from_dict(history_dropout.history)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>history_df[<span class="st">'epoch'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(history_df)<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>history_df <span class="op">=</span> history_df.set_index(<span class="st">'epoch'</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>val_loss_dropout, val_acc_dropout <span class="op">=</span> model_dropout.evaluate(val_images,  val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>history_dropout_df <span class="op">=</span> pd.DataFrame.from_dict(history_dropout.history)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>history_dropout_df[<span class="st">'epoch'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(history_df)<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>history_dropout_df <span class="op">=</span> history_dropout_df.set_index(<span class="st">'epoch'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>val_loss_dropout, val_acc_dropout <span class="op">=</span> model_dropout.evaluate(val_images,  val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>313/313 - 2s - loss: 1.4683 - accuracy: 0.5307</code></pre>
 </div>
-<figure><img src="../fig/05_training_history_3.png" alt="" class="figure mx-auto d-block"></figure><div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss from the training process</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>history_df[[<span class="st">'loss_dropout'</span>, <span class="st">'val_loss_dropout'</span>]])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss and accuracy from the training process</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'cifar_model_dropout'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
 </div>
-<figure><img src="../fig/05_training_history_loss_3.png" alt="" class="figure mx-auto d-block"></figure><p>Now we see that the gap between the training accuracy and validation
+<figure><img src="../fig/04_model_dropout_accuracy_loss.png" alt="" class="figure mx-auto d-block"></figure><p>Now we see that the gap between the training accuracy and validation
 accuracy is much smaller, and that the final accuracy on the validation
 set is higher than without dropout. Nevertheless, there is still some
 difference between the training loss and validation loss, so we could
@@ -2693,38 +2800,38 @@ the validation loss is lowest.</li>
 <li>NB2: In the real world you should do this with a test set and not
 with the validation set!</li>
 </ul>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dropout_rates <span class="op">=</span> [<span class="fl">0.15</span>, <span class="fl">0.3</span>, <span class="fl">0.45</span>, <span class="fl">0.6</span>, <span class="fl">0.75</span>]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>val_losses_vary <span class="op">=</span> []</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dropout_rate <span class="kw">in</span> dropout_rates:</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_vary)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_vary)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_vary)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_vary)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Dropout(dropout_rate)(x_vary)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Flatten()(x_vary)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_vary)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_vary)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    model_vary <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs_vary, name<span class="op">=</span><span class="st">"cifar_model_vary"</span>)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    model_vary.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>,</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>              metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    model_vary.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    val_loss_vary, val_acc_vary <span class="op">=</span> model_vary.evaluate(val_images,  val_labels)</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    val_losses_vary.append(val_loss_vary)</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>loss_df <span class="op">=</span> pd.DataFrame({<span class="st">'dropout_rate'</span>: dropout_rates, <span class="st">'val_loss_vary'</span>: val_losses_vary})</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>loss_df, x<span class="op">=</span><span class="st">'dropout_rate'</span>, y<span class="op">=</span><span class="st">'val_loss_vary'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dropout_rates <span class="op">=</span> [<span class="fl">0.15</span>, <span class="fl">0.3</span>, <span class="fl">0.45</span>, <span class="fl">0.6</span>, <span class="fl">0.75</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>val_losses_vary <span class="op">=</span> []</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dropout_rate <span class="kw">in</span> dropout_rates:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    inputs_vary <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_vary)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_vary)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_vary)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_vary)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_vary)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Dropout(dropout_rate)(x_vary)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Flatten()(x_vary)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    x_vary <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_vary)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    outputs_vary <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_vary)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    model_vary <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_vary, outputs<span class="op">=</span>outputs_vary, name<span class="op">=</span><span class="st">"cifar_model_vary"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    model_vary.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>              metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    model_vary.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(val_images, val_labels))</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    val_loss_vary, val_acc_vary <span class="op">=</span> model_vary.evaluate(val_images,  val_labels)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    val_losses_vary.append(val_loss_vary)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>loss_df <span class="op">=</span> pd.DataFrame({<span class="st">'dropout_rate'</span>: dropout_rates, <span class="st">'val_loss_vary'</span>: val_losses_vary})</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>loss_df, x<span class="op">=</span><span class="st">'dropout_rate'</span>, y<span class="op">=</span><span class="st">'val_loss_vary'</span>)</span></code></pre>
 </div>
 <figure><img src="../fig/04_vary_dropout_rate.png" alt="" class="figure mx-auto d-block"></figure><ol start="2" style="list-style-type: decimal">
 <li>Term associated to this procedure This is called hyperparameter
@@ -2740,13 +2847,18 @@ tuning.</li>
 </h2>
 <hr class="half-width">
 <p>Based on our evaluation of the loss and accuracy metrics, the
-<code>model_dropout</code> appears to have better performance. The next
-step is to use these models to predict object classes on our test
+<code>model_dropout</code> appears to have the best performance
+<strong>of the models we have examined thus far</strong>. The next step
+is to use these models to predict object classes on our test
 dataset.</p>
 <p>Make sure you save the model outputs!</p>
-<pre><code><span><span class="co"># save both dropout models</span></span>
-<span><span class="fu">model_dropout.save</span><span class="op">(</span><span class="st">'model_dropout.h5'</span><span class="op">)</span></span>
-<span><span class="fu">model_dropout.save</span><span class="op">(</span><span class="st">'model_vary.h5'</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save both dropout models</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>model_dropout.save(<span class="st">'model_dropout.h5'</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>model_vary.save(<span class="st">'model_vary.h5'</span>)</span></code></pre>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -2773,7 +2885,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-05-evaluate-predict-cnn"><p>Content from <a href="05-evaluate-predict-cnn.html">Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a></p>
 <hr>
-<p> Last updated on 2023-07-20 | 
+<p> Last updated on 2023-07-21 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -2983,6 +3095,10 @@ before we are happy with the result.</p>
 <ul>
 <li>number of neurons</li>
 <li>activation function</li>
+</ul>
+<p>TODO how to choose activation function - here or back in build with a
+callout?</p>
+<ul>
 <li>optimizer</li>
 <li>learning rate</li>
 <li>batch size</li>

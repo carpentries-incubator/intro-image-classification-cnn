@@ -9,14 +9,14 @@ exercises: 2
 - How do you compile a convolutional neural network (CNN)?
 - What is a loss function?
 - What is an optimizer?
-- How do you train a CNN?
+- How do you train (fit) a CNN?
 - What are hyperparameters?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the difference between compiling  and training a CNN
+- Explain the difference between compiling and training a CNN
 - Know how to select a loss function for your model
 - Understand what an optimizer is and be familiar with advantages and disadvantages of different optimizers
 - Define the terms: learning rate, batch size, epoch TODO
@@ -174,13 +174,12 @@ Training the model is done using the fit method. It takes the input data and tar
 We want to train the model for 10 epochs:
 
 ```python
-history = model.fit(train_images, train_labels, epochs=10,
-                    validation_data=(val_images, val_labels))
+#history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
 ```
 
-The fit method returns a history object that has a history attribute with the training loss and potentially other metrics per training epoch.
+As we saw in the previous episode, the fit method returns a history object that has a history attribute with the training loss and potentially other metrics per training epoch.
 
-Note there are other arguments we could use to fit our model, see the documentation for [fit method]
+Note there are other arguments we could use to fit our model, see the documentation for [fit method].
 
 :::::::::::::::::::::::::::::::::::::: callout
 ChatGPT
@@ -202,33 +201,22 @@ However, it's essential to consider the trade-offs of using different batch size
 
 #### Monitor Training Progress (aka Model Evaluation during Training)
 
-It can be very insightful to plot the training loss to see how the training progresses. 
+Now that we know more about the compilation and training of CNN's let us take a look at the training metrics for our pooling model.
 
-Using seaborn we can plot the training process using the history:
-
-```python
-import seaborn as sns
-import pandas as pd
-
-# plot the accuracy from the training process
-history_df = pd.DataFrame.from_dict(history.history)
-sns.lineplot(data=history_df[['accuracy', 'val_accuracy']])
-```
-![](fig/04_training_history_1.png){alt=''}
+Using seaborn again we can plot the training process using the history:
 
 ```python
-# plot the loss from the training process
-sns.lineplot(data=history_df[['loss', 'val_loss']])
+# convert the history to a dataframe for plotting 
+history_pool_df = pd.DataFrame.from_dict(history_pool.history)
+
+# plot the loss and accuracy from the training process
+fig, axes = plt.subplots(1, 2)
+fig.suptitle('cifar_model_pool')
+sns.lineplot(ax=axes[0], data=history_pool_df[['loss', 'val_loss']])
+sns.lineplot(ax=axes[1], data=history_pool_df[['accuracy', 'val_accuracy']])
 ```
 
-![](fig/04_training_history_loss_1.png){alt=''}
-
-This plot can be used to identify whether the training is well configured or whether there are problems that need to be addressed.
-
-It seems that the model is overfitting somewhat, because the validation accuracy and loss stagnates.
-
-TODO note the network depth challenge at the end of 03 has accuracy metrics as well if
-we want to present those and compare
+![](fig/04_model_pool_accuracy_loss.png){alt=''}
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -252,6 +240,21 @@ Looking at the training curve we have just made.
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+If we look at these plots we can see signs of overfitting. If a model is overfitting, it means that the model performs exceptionally well on the training data but poorly on the validation or test data. Overfitting occurs when the model has learned to memorize the noise and specific patterns in the training data instead of generalizing the underlying relationships. As a result, the model fails to perform well on new, unseen data because it has become too specialized to the training set.
+
+Key characteristics of an overfit model include:
+
+- High Training Accuracy, Low Validation Accuracy: The model achieves high accuracy on the training data but significantly lower accuracy on the validation (or test) data.
+
+- Small Training Loss, Large Validation Loss: The training loss is low, indicating that the model's predictions closely match the true labels in the training set. However, the validation loss is high, indicating that the model's predictions are far from the true labels in the validation set.
+
+How to Address Overfitting:
+
+- Reduce the model's complexity by using fewer layers or units to make it less prone to overfitting.
+- Collect more training data if possible to provide the model with a diverse and representative dataset.
+- Perform data augmentation to artificially increase the size of the training data and introduce variability.
+
+
 #### Improve Model Generalization (avoid Overfitting)
 
 #### Dropout
@@ -260,7 +263,7 @@ Note that the training loss continues to decrease, while the validation loss sta
 
 Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques**. One of the most versatile regularization technique is **dropout** (Srivastava et al., 2014). Dropout essentially means that during each training cycle a random fraction of the dense layer nodes are turned off. This is described with the dropout rate between 0 and 1 which determines the fraction of nodes to silence at a time. 
 
-![](fig/05-neural_network_sketch_dropout.png){alt=''}
+![](fig/04-neural_network_sketch_dropout.png){alt=''}
 
 The intuition behind dropout is that it enforces redundancies in the network by constantly removing different elements of a network. The model can no longer rely on individual nodes and instead must create multiple "paths". In addition, the model has to make predictions with much fewer nodes and weights (connections between the nodes). As a result, it becomes much harder for a network to memorize particular features. At first this might appear a quiet drastic approach which affects the network architecture strongly. In practice, however, dropout is computationally a very elegant solution which does not affect training speed. And it frequently works very well.
 
@@ -333,9 +336,9 @@ history_dropout = model_dropout.fit(train_images, train_labels, epochs=20,
 And inspect the training results:
 
 ```python
-history_df = pd.DataFrame.from_dict(history_dropout.history)
-history_df['epoch'] = range(1,len(history_df)+1)
-history_df = history_df.set_index('epoch')
+history_dropout_df = pd.DataFrame.from_dict(history_dropout.history)
+history_dropout_df['epoch'] = range(1,len(history_df)+1)
+history_dropout_df = history_dropout_df.set_index('epoch')
 sns.lineplot(data=history_df[['accuracy', 'val_accuracy']])
 
 val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images,  val_labels, verbose=2)
@@ -344,14 +347,15 @@ val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images,  val_labe
 313/313 - 2s - loss: 1.4683 - accuracy: 0.5307
 ```
 
-![](fig/05_training_history_3.png){alt=''}
-
 ```python
-# plot the loss from the training process
-sns.lineplot(data=history_df[['loss_dropout', 'val_loss_dropout']])
+# plot the loss and accuracy from the training process
+fig, axes = plt.subplots(1, 2)
+fig.suptitle('cifar_model_dropout')
+sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
+sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
 ```
 
-![](fig/05_training_history_loss_3.png){alt=''}
+![](fig/04_model_dropout_accuracy_loss.png){alt=''}
 
 Now we see that the gap between the training accuracy and validation accuracy is much smaller, and that the final accuracy on the validation set is higher than without dropout. Nevertheless, there is still some difference between the training loss and validation loss, so we could experiment with regularization even more.
 
@@ -400,8 +404,8 @@ The code below instantiates and trains a model with varying dropout rates. You c
 dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]
 val_losses_vary = []
 for dropout_rate in dropout_rates:
-    inputs = keras.Input(shape=train_images.shape[1:])
-    x_vary = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
+    inputs_vary = keras.Input(shape=train_images.shape[1:])
+    x_vary = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_vary)
     x_vary = keras.layers.MaxPooling2D((2, 2))(x_vary)
     x_vary = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_vary)
     x_vary = keras.layers.MaxPooling2D((2, 2))(x_vary)
@@ -409,9 +413,9 @@ for dropout_rate in dropout_rates:
     x_vary = keras.layers.Dropout(dropout_rate)(x_vary)
     x_vary = keras.layers.Flatten()(x_vary)
     x_vary = keras.layers.Dense(50, activation='relu')(x_vary)
-    outputs = keras.layers.Dense(10)(x_vary)
+    outputs_vary = keras.layers.Dense(10)(x_vary)
 
-    model_vary = keras.Model(inputs=inputs, outputs=outputs_vary, name="cifar_model_vary")
+    model_vary = keras.Model(inputs=inputs_vary, outputs=outputs_vary, name="cifar_model_vary")
 
     model_vary.compile(optimizer = 'adam',
               loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),
@@ -438,14 +442,14 @@ This is called hyperparameter tuning.
 
 ## Choose the best model and use it to predict
 
-Based on our evaluation of the loss and accuracy metrics, the `model_dropout` appears to have better performance. The next step is to use these models to predict object classes on our test dataset.
+Based on our evaluation of the loss and accuracy metrics, the `model_dropout` appears to have the best performance **of the models we have examined thus far**. The next step is to use these models to predict object classes on our test dataset.
 
 Make sure you save the model outputs!
 
-```
+```python
 # save both dropout models
 model_dropout.save('model_dropout.h5')
-model_dropout.save('model_vary.h5')
+model_vary.save('model_vary.h5')
 ```
 
 ::::::::::::::::::::::::::::::::::::: keypoints 

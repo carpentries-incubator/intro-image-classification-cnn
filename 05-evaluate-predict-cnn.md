@@ -141,6 +141,9 @@ The hyperparameters include:
 
 - number of neurons
 - activation function
+
+TODO how to choose activation function - here or back in build with a callout?
+
 - optimizer
 - learning rate
 - batch size

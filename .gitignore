@@ -51,3 +51,4 @@ po/*~
 
 # outputs from running code
 episodes/scripts/fit_outputs/*
+episodes/scripts/__pycache__

@@ -120,7 +120,7 @@ Normalizing the RGB values to be between 0 and 1 is a common pre-processing step
 
 4. **Generalization**: Normalization helps the model to generalize better to unseen data. When the input features are in the same range, the learned weights and biases can be more effectively applied to new examples, making the model more robust.
 
-4. **Compatibility**: Many image-related libraries, algorithms, and models expect pixel values to be in the range of [0, 1]. By normalizing the RGB values, you ensure compatibility and seamless integration with these tools.
+5. **Compatibility**: Many image-related libraries, algorithms, and models expect pixel values to be in the range of [0, 1]. By normalizing the RGB values, you ensure compatibility and seamless integration with these tools.
 
 The normalization process is typically done by dividing each RGB value (ranging from 0 to 255) by 255, which scales the values to the range [0, 1].
 
@@ -173,18 +173,21 @@ TODO decide to simplify this model or present as is
 #### Define the Model
 
 ```python
-# define the inputs, layers, and outputs of a convolutional neural network
-inputs = keras.Input(shape=train_images.shape[1:])
-x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
-x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+# Input layer of 32x32 images with three channels (RGB)
+inputs_intro = keras.Input(shape=train_images.shape[1:])
+
+# Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)
+# Second Convolutional layer
 x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
-x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+# Flatten layer to convert 2D feature maps into a 1D vector
 x_intro = keras.layers.Flatten()(x_intro)
-x_intro = keras.layers.Dense(50, activation='relu')(x_intro)
+
+# Output layer with 10 units (one for each class)
 outputs_intro = keras.layers.Dense(10)(x_intro)
 
 # create the model
-model_intro = keras.Model(inputs=inputs, outputs=outputs_intro, name="cifar_model_intro")
+model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
 ```
 
 ### 5. Choose a loss function and optimizer

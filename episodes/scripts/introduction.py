@@ -37,20 +37,14 @@ for i in range(25):
 plt.show()
 
 
-
-
 # define the inputs, layers, and outputs of a cnn model
-inputs = keras.Input(shape=train_images.shape[1:])
-x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
-x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+inputs_intro = keras.Input(shape=train_images.shape[1:])
+x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)
 x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
-x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
 x_intro = keras.layers.Flatten()(x_intro)
-x_intro = keras.layers.Dense(50, activation='relu')(x_intro)
 outputs_intro = keras.layers.Dense(10)(x_intro)
 
-# create the model
-model_intro = keras.Model(inputs=inputs, outputs=outputs_intro, name="cifar_model_intro")
+model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
 
 # compile the model
 model_intro.compile(optimizer = 'adam', 

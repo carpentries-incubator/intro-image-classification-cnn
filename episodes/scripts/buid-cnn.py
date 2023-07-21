@@ -4,7 +4,9 @@ Created on Fri Jun 30 11:41:57 2023
 
 @author: bellf
 """
-
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
 from tensorflow import keras
 (train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 
@@ -58,8 +60,31 @@ model_sm = keras.Model(inputs=inputs_sm, outputs=outputs_sm, name="cifar_model_s
 
 model_sm.summary()
 
+inputs_pool = keras.Input(shape=train_images.shape[1:])
+x_pool = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_pool)
+x_pool = keras.layers.MaxPooling2D((2, 2))(x_pool)
+x_pool = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_pool)
+x_pool = keras.layers.MaxPooling2D((2, 2))(x_pool)
+x_pool = keras.layers.Flatten()(x_pool)
+x_pool = keras.layers.Dense(50, activation='relu')(x_pool)
+outputs_pool = keras.layers.Dense(10)(x_pool)
 
+model_pool = keras.Model(inputs=inputs_pool, outputs=outputs_pool, name="cifar_model_pool")
 
+model_pool.summary()
+
+model_pool.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), 
+    metrics = ['accuracy'])
+
+history_pool = model_pool.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
+
+# convert the history to a dataframe for plotting 
+history_pool_df = pd.DataFrame.from_dict(history_pool.history)
+
+fig, axes = plt.subplots(1, 2)
+fig.suptitle('cifar_model_pool')
+sns.lineplot(ax=axes[0], data=history_pool_df[['loss', 'val_loss']])
+sns.lineplot(ax=axes[1], data=history_pool_df[['accuracy', 'val_accuracy']])
 
 # x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
 

@@ -47,19 +47,20 @@ plt.show() #Force a new plot to be created
 # plot the loss from the training process
 sns.lineplot(data=history_df[['loss', 'val_loss']])
 
+# Dropout
 
-inputs = keras.Input(shape=train_images.shape[1:])
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
-x = keras.layers.MaxPooling2D((2, 2))(x)
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
-x = keras.layers.MaxPooling2D((2, 2))(x)
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
-x = keras.layers.Dropout(0.8)(x) # This is new!
-x = keras.layers.Flatten()(x)
-x = keras.layers.Dense(50, activation='relu')(x)
-outputs = keras.layers.Dense(10)(x)
+inputs_dropout = keras.Input(shape=train_images.shape[1:])
+x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_dropout)
+x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
+x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_dropout)
+x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
+x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_dropout)
+x_dropout = keras.layers.Dropout(0.8)(x_dropout) # This is new!
+x_dropout = keras.layers.Flatten()(x_dropout)
+x_dropout = keras.layers.Dense(50, activation='relu')(x_dropout)
+outputs_dropout = keras.layers.Dense(10)(x_dropout)
 
-model_dropout = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model")
+model_dropout = keras.Model(inputs=inputs_dropout, outputs=outputs_dropout, name="cifar_model_dropout")
 
 model_dropout.summary()
 
@@ -70,6 +71,12 @@ model_dropout.compile(optimizer='adam',
 
 history_dropout = model_dropout.fit(train_images, train_labels, epochs=20,
                     validation_data=(val_images, val_labels))
+
+history_dropout_df = pd.DataFrame.from_dict(history_dropout.history)
+fig, axes = plt.subplots(1, 2)
+fig.suptitle('cifar_model_dropout')
+sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
+sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
 
 plt.show() #Force a new plot to be created
 

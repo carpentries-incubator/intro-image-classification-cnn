@@ -6,7 +6,7 @@ Created on Fri Jun 30 11:41:57 2023
 """
 
 from tensorflow import keras
-(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 
 
 # define the inputs, layers, and outputs of a cnn model

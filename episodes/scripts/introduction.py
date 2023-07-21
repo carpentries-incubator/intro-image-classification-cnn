@@ -25,7 +25,10 @@ class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', '
 
 # plot a subset of the images
 import matplotlib.pyplot as plt
+
+# create a figure object and specify width, height in inches
 plt.figure(figsize=(10,10))
+
 for i in range(25):
     plt.subplot(5,5,i+1)
     plt.imshow(train_images[i], cmap=plt.cm.binary)
@@ -38,38 +41,38 @@ plt.show()
 
 # define the inputs, layers, and outputs of a cnn model
 inputs = keras.Input(shape=train_images.shape[1:])
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
-x = keras.layers.MaxPooling2D((2, 2))(x)
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
-x = keras.layers.MaxPooling2D((2, 2))(x)
-x = keras.layers.Flatten()(x)
-x = keras.layers.Dense(50, activation='relu')(x)
-outputs = keras.layers.Dense(10)(x)
+x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
+x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
+x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+x_intro = keras.layers.Flatten()(x_intro)
+x_intro = keras.layers.Dense(50, activation='relu')(x_intro)
+outputs_intro = keras.layers.Dense(10)(x_intro)
 
 # create the model
-model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model")
+model_intro = keras.Model(inputs=inputs, outputs=outputs_intro, name="cifar_model_intro")
 
 # compile the model
-model.compile(optimizer='adam', loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+model_intro.compile(optimizer = 'adam', 
+                    loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), 
+                    metrics = ['accuracy'])
 
 # fit the model
-history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
+history_intro = model_intro.fit(train_images, train_labels, 
+                                epochs = 10, 
+                                validation_data = (val_images, val_labels))
 
 # save the model
-model.save('01_intro_model.h5')
+model_intro.save('fit_outputs/01_intro_model.h5')
 
+# specify a new image and prepare it to match cifar10 dataset
+from icwithcnn_functions import prepare_image_icwithcnn
 
-from tensorflow.keras.utils import load_img
-from tensorflow.keras.utils import img_to_array
-
-# load a new image and prepare it to match cifar10 dataset
-new_img_pil = load_img("01_Jabiru_TGS.JPG", target_size=(32,32)) # Image format
-new_img_arr = img_to_array(new_img_pil) # convert to array for analysis
-new_img_reshape = new_img_arr.reshape(1, 32, 32, 3) # reshape into single sample
-new_img_float =  new_img_reshape.astype('float64') / 255.0 # normalize
+new_img_path = "../data/Jabiru_TGS.JPG" # path to image
+new_img_prepped = prepare_image_icwithcnn(new_img_path)
 
 # predict the classname
-result = model.predict(new_img_float) # make prediction
-print(result) # probability for each class
-print(class_names[result.argmax()]) # class with highest probability
+result_intro = model_intro.predict(new_img_prepped) # make prediction
+print(result_intro) # probability for each class
+print(class_names[result_intro.argmax()]) # class with highest probability
 

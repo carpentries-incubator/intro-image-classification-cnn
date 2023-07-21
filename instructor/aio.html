@@ -301,7 +301,7 @@
         
 <section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction to Deep Learning</a></p>
 <hr>
-<p> Last updated on 2023-07-20 | 
+<p> Last updated on 2023-07-21 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 10 minutes </p>
@@ -627,16 +627,16 @@ few times before we see acceptable results.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs, layers, and outputs of a convolutional neural network</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Flatten()(x)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_intro)</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create the model</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">"cifar_model"</span>)</span></code></pre>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model_intro <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs_intro, name<span class="op">=</span><span class="st">"cifar_model_intro"</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -654,7 +654,9 @@ the weights) is achieved.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span>keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>), metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model_intro.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>			        loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>), </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>					metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -668,10 +670,12 @@ gives a value under a certain threshold.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(val_images, val_labels))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">'01_intro_model.h5'</span>)</span></code></pre>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>history_intro <span class="op">=</span> model_intro.fit(train_images, train_labels, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                epochs <span class="op">=</span> <span class="dv">10</span>, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>								validation_data <span class="op">=</span> (val_images, val_labels))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>model_intro.save(<span class="st">'fit_outputs/01_intro_model.h5'</span>)</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -685,19 +689,16 @@ network.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.utils <span class="im">import</span> load_img</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.utils <span class="im">import</span> img_to_array</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a new image and prepare it to match cifar10 dataset</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> icwithcnn_functions <span class="im">import</span> prepare_image_icwithcnn</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load a new image and prepare it to match cifar10 dataset</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>new_img_pil <span class="op">=</span> load_img(<span class="st">"01_Jabiru_TGS.JPG"</span>, target_size<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>)) <span class="co"># Image format</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>new_img_arr <span class="op">=</span> img_to_array(new_img_pil) <span class="co"># convert to array for analysis</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>new_img_reshape <span class="op">=</span> new_img_arr.reshape(<span class="dv">1</span>, <span class="dv">32</span>, <span class="dv">32</span>, <span class="dv">3</span>) <span class="co"># reshape into single sample</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>new_img_float <span class="op">=</span>  new_img_reshape.astype(<span class="st">'float64'</span>) <span class="op">/</span> <span class="fl">255.0</span> <span class="co"># normalize</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># predict the classname</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> model.predict(new_img_float) <span class="co"># make prediction</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result) <span class="co"># probability for each class</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(class_names[result.argmax()]) <span class="co"># class with highest probability</span></span></code></pre>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>new_img_path <span class="op">=</span> <span class="st">"../data/Jabiru_TGS.JPG"</span> <span class="co"># path to image</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>new_img_prepped <span class="op">=</span> prepare_image_icwithcnn(new_img_path)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># predict the classname</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>result_intro <span class="op">=</span> model_intro.predict(new_img_prepped) <span class="co"># make prediction</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result_intro) <span class="co"># probability for each class</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(class_names[result_intro.argmax()]) <span class="co"># class with highest probability</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -706,39 +707,31 @@ network.</p>
    6.427376   -0.09437321  0.82065487  1.2978227 ]]
 Class name: automobile</code></pre>
 </div>
-<p>Congratulations, you just created your first image classification
-model and used it to classify an image!</p>
-<p>Unfortunately the classification was incorrect. Why might that
-be?</p>
-<div id="challenge2" class="callout challenge">
+<div id="callout3" class="callout callout">
 <div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<i class="callout-icon" data-feather="bell"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout3"></a>
 </h3>
 <div class="callout-content">
-<p>Why did our model classify a bird as a plane?</p>
+<p>My result is different!</p>
+<p>While the neural network itself is deterministic, various factors in
+the training process, system setup, and data variability can lead to
+small variations in the output. These variations are usually minor and
+should not significantly impact the overall performance or behavior of
+the model.</p>
+<p>If you are finding significant differences in the model predictions,
+this could be a sign that the model is not fully converged, where
+“convergence” refers to the point where the model has reached an optimal
+or near-optimal state in terms of learning from the training data.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">
-  Show me the solution
-  </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
-<div class="accordion-body">
-<p>After resizing the original image to be the size expected by our
-model it looks like this:</p>
-<figure><img src="../fig/01_Jabiru_w_ReducedPixels.png" alt="Subset of 25 Cifar10 images displayed in five rows and five columns " class="figure mx-auto d-block"></figure>
-</div>
-</div>
-</div>
-</div>
-<p>What can we do about?</p>
+<p>Congratulations, you just created your first image classification
+model and used it to classify an image!</p>
+<p>Unfortunately the classification was incorrect. Why might that be?
+and What can we do about?</p>
 <p>There are many ways we can try to improve the accuracy of our model,
 such as adding or removing layers to the model definition and
 fine-tuning the hyperparameters, which takes us to the next steps in our
@@ -811,9 +804,8 @@ artificial intelligence</li>
 classification</li>
 <li>To use Deep Learning effectively we need to go through a workflow
 of: defining the problem, identifying inputs and outputs, preparing
-data, choosing the type of network, choosing a loss function, training
-the model, tuning Hyperparameters, measuring performance before we can
-classify data.</li>
+data, choosing the type of network, training the model, tuning
+hyperparameters, measuring performance before we can classify data.</li>
 </ul>
 </div>
 </div>
@@ -2456,7 +2448,7 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>The loss curve should drop quite quickly in a smooth line with
@@ -2688,7 +2680,7 @@ model performance, what is the term associated to this procedure?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Varying the dropout rate The code below instantiates and trains a
@@ -2962,7 +2954,7 @@ visualize a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The confusion matrix shows that the predictions for Adelie and Gentoo
 are decent, but could be improved. However, Chinstrap is not predicted
@@ -3056,7 +3048,7 @@ think about what you actually would like to see)</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The difference between training and validation data shows that
 something is not completely right here. The model predictions on the
@@ -3116,7 +3108,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>This is on open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you
@@ -3159,7 +3151,7 @@ worth to apply different model architectures….</li>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -3315,7 +3307,7 @@ openly available pretrained networks can be found in the <a href="https://modelz
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -3399,8 +3391,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/aio.html",
   "identifier": "https://.github.io/github.com/instructor/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-07-20",
-  "datePublished": "2023-07-20"
+  "dateModified": "2023-07-21",
+  "datePublished": "2023-07-21"
 }
 
   </script><script>

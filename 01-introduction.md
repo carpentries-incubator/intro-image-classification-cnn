@@ -175,16 +175,16 @@ TODO decide to simplify this model or present as is
 ```python
 # define the inputs, layers, and outputs of a convolutional neural network
 inputs = keras.Input(shape=train_images.shape[1:])
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
-x = keras.layers.MaxPooling2D((2, 2))(x)
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
-x = keras.layers.MaxPooling2D((2, 2))(x)
-x = keras.layers.Flatten()(x)
-x = keras.layers.Dense(50, activation='relu')(x)
-outputs = keras.layers.Dense(10)(x)
+x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
+x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
+x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+x_intro = keras.layers.Flatten()(x_intro)
+x_intro = keras.layers.Dense(50, activation='relu')(x_intro)
+outputs_intro = keras.layers.Dense(10)(x_intro)
 
 # create the model
-model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model")
+model_intro = keras.Model(inputs=inputs, outputs=outputs_intro, name="cifar_model_intro")
 ```
 
 ### 5. Choose a loss function and optimizer
@@ -195,7 +195,9 @@ The optimizer is responsible for taking the output of the loss function and then
 
 ```python
 # compile the model
-model.compile(optimizer='adam', loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+model_intro.compile(optimizer = 'adam', 
+			        loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), 
+					metrics=['accuracy'])
 ```
 
 ### 6. Train the model
@@ -204,10 +206,12 @@ We can now go ahead and start training our neural network. We will probably keep
 
 ```python
 # fit the model
-history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
+history_intro = model_intro.fit(train_images, train_labels, 
+                                epochs = 10, 
+								validation_data = (val_images, val_labels))
 
 # save the model
-model.save('01_intro_model.h5')
+model_intro.save('fit_outputs/01_intro_model.h5')
 ``` 
 
 ### 7. Perform a Prediction/Classification
@@ -215,19 +219,16 @@ model.save('01_intro_model.h5')
 After training the network we can use it to perform predictions. This is the mode you would use the network in after you have fully trained it to a satisfactory performance. Doing predictions on a special hold-out set is used in the next step to measure the performance of the network.
 
 ```python
-from tensorflow.keras.utils import load_img
-from tensorflow.keras.utils import img_to_array
+# specify a new image and prepare it to match cifar10 dataset
+from icwithcnn_functions import prepare_image_icwithcnn
 
-# load a new image and prepare it to match cifar10 dataset
-new_img_pil = load_img("01_Jabiru_TGS.JPG", target_size=(32,32)) # Image format
-new_img_arr = img_to_array(new_img_pil) # convert to array for analysis
-new_img_reshape = new_img_arr.reshape(1, 32, 32, 3) # reshape into single sample
-new_img_float =  new_img_reshape.astype('float64') / 255.0 # normalize
+new_img_path = "../data/Jabiru_TGS.JPG" # path to image
+new_img_prepped = prepare_image_icwithcnn(new_img_path)
 
 # predict the classname
-result = model.predict(new_img_float) # make prediction
-print(result) # probability for each class
-print(class_names[result.argmax()]) # class with highest probability
+result_intro = model_intro.predict(new_img_prepped) # make prediction
+print(result_intro) # probability for each class
+print(class_names[result_intro.argmax()]) # class with highest probability
 ```
 
 ```output
@@ -236,24 +237,17 @@ Result: [[-2.0185328   9.337507   -2.4551604  -0.4688053  -4.599108   -3.5822825
 Class name: automobile
 ```
 
+::::::::::::::::::::::::::::::::::::::::: callout
+My result is different!
+
+While the neural network itself is deterministic, various factors in the training process, system setup, and data variability can lead to small variations in the output. These variations are usually minor and should not significantly impact the overall performance or behavior of the model.
+
+If you are finding significant differences in the model predictions, this could be a sign that the model is not fully converged, where "convergence" refers to the point where the model has reached an optimal or near-optimal state in terms of learning from the training data.
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
 Congratulations, you just created your first image classification model and used it to classify an image! 
 
-Unfortunately the classification was incorrect. Why might that be?
-
-::::::::::::::::::::::::::::::::::::: challenge 
-
-Why did our model classify a bird as a plane?
-
-:::::::::::::::::::::::: solution 
-
-After resizing the original image to be the size expected by our model it looks like this:
-
-![](fig/01_Jabiru_w_ReducedPixels.png){alt='Subset of 25 Cifar10 images displayed in five rows and five columns '}
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-What can we do about? 
+Unfortunately the classification was incorrect. Why might that be?  and  What can we do about? 
 
 There are many ways we can try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
 
@@ -266,6 +260,7 @@ Once we trained the network we want to measure its performance. To do this we us
 Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. The hyperparameters include the number of epochs or the parameters for the optimizer. It might be necessary to adjust these and re-run the training many times before we are happy with the result.
 
 ### 10. Share Model
+
 Now that we have a trained network that performs at a level we are happy with we can go and use it on real data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
 We will return to these workflow steps throughout this lesson and discuss each component in more detail.
@@ -284,7 +279,7 @@ associated with the lessons. They appear in the "Instructor View"
 - Machine learning is used for regression and classification tasks
 - Deep learning is a subset of machine learning, which is a subset of artificial intelligence
 - Convolutional neural networks are well suited for image classification
-- To use Deep Learning effectively we need to go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, choosing a loss function, training the model, tuning Hyperparameters, measuring performance before we can classify data.
+- To use Deep Learning effectively we need to go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, training the model, tuning hyperparameters, measuring performance before we can classify data.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->

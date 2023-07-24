@@ -9,6 +9,8 @@ exercises: 2
 - What is a (artificial) neural network (ANN)?
 - How is a convolutional neural network (CNN) different from an ANN?
 - What are the types of layers used to build a CNN?
+- How do you monitor the training process?
+- What is underfitting?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -17,7 +19,7 @@ exercises: 2
 - Understand how a convolutional neural network (CNN) differs from an artificial neural network (ANN)
 - Explain the terms: kernel, filter
 - Know the different layers: dense, convolutional, pooling, flatten
-
+- Explain what underfitting is; how you detect underfitting; and ways to address underfitting
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -444,7 +446,7 @@ history_pool = model_pool.fit(train_images, train_labels, epochs=10, validation_
 model_pool.summary()
 
 # save pool model
-model_pool.save('model_pool.h5')
+model_pool.save('fit_outputs/model_pool.h5')
 
 ```
 ```output

@@ -11,6 +11,8 @@ exercises: 2
 - What is an optimizer?
 - How do you train (fit) a CNN?
 - What are hyperparameters?
+- How do you detect overfitting?
+- How do you avoid overfitting?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -19,7 +21,8 @@ exercises: 2
 - Explain the difference between compiling and training a CNN
 - Know how to select a loss function for your model
 - Understand what an optimizer is and be familiar with advantages and disadvantages of different optimizers
-- Define the terms: learning rate, batch size, epoch TODO
+- Define the terms: learning rate, batch size, epoch
+- Explain overfitting
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -82,7 +85,7 @@ For regression tasks, we might want to stipulate that the predicted numerical va
 - this can be provided into the model.compile method with the loss parameter and setting it to mse:
 
 ```python
-model_ex.compile(loss = 'mse')
+#model_ex.compile(loss = 'mse')
 ```
  
 For more information on these and other available loss functions in Keras you can check the [loss documentation].
@@ -169,17 +172,21 @@ Now that we have decided on which loss function, optimizer, and metric to use we
 
 We are now ready to train the model.
 
-Training the model is done using the fit method. It takes the input data and target data as inputs and it has several other parameters for certain options of the training. Here we only set a different number of epochs. One training **epoch** means that every sample in the training data has been shown to the neural network and used to update its parameters.
+Training the model is done using the fit method. It takes the input data and target data as inputs and it has several other parameters for certain options of the training. Here we only set a different number of epochs. 
+
+One training **epoch** means that every sample in the training data has been shown to the neural network and used to update its parameters. In general, CNN models improve with more epochs of training, but only to a point.
+
 
 We want to train the model for 10 epochs:
 
 ```python
-#history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
+#history_pool = model_pool.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
 ```
 
 As we saw in the previous episode, the fit method returns a history object that has a history attribute with the training loss and potentially other metrics per training epoch.
 
 Note there are other arguments we could use to fit our model, see the documentation for [fit method].
+ 
 
 :::::::::::::::::::::::::::::::::::::: callout
 ChatGPT
@@ -272,8 +279,8 @@ The intuition behind dropout is that it enforces redundancies in the network by 
 Let us add one dropout layer towards the end of the network, that randomly drops 20% of the input units.
 
 ```python
-inputs = keras.Input(shape=train_images.shape[1:])
-x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
+inputs_dropout = keras.Input(shape=train_images.shape[1:])
+x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_dropout)
 x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
 x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_dropout)
 x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
@@ -283,7 +290,7 @@ x_dropout = keras.layers.Flatten()(x_dropout)
 x_dropout = keras.layers.Dense(50, activation='relu')(x_dropout)
 outputs_dropout = keras.layers.Dense(10)(x_dropout)
 
-model_dropout = keras.Model(inputs=inputs, outputs=outputs_dropout, name="cifar_model_dropout")
+model_dropout = keras.Model(inputs=inputs_dropout, outputs=outputs_dropout, name="cifar_model_dropout")
 
 model_dropout.summary()
 ```
@@ -332,14 +339,20 @@ model_dropout.compile(optimizer = 'adam',
 
 history_dropout = model_dropout.fit(train_images, train_labels, epochs=20,
                     validation_data=(val_images, val_labels))
+
+# save dropout model
+model_dropout.save('fit_outputs/model_dropout.h5')
+
 ```
 And inspect the training results:
 
 ```python
 history_dropout_df = pd.DataFrame.from_dict(history_dropout.history)
-history_dropout_df['epoch'] = range(1,len(history_df)+1)
-history_dropout_df = history_dropout_df.set_index('epoch')
-sns.lineplot(data=history_df[['accuracy', 'val_accuracy']])
+
+fig, axes = plt.subplots(1, 2)
+fig.suptitle('cifar_model_dropout')
+sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
+sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
 
 val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images,  val_labels, verbose=2)
 ```
@@ -347,15 +360,9 @@ val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images,  val_labe
 313/313 - 2s - loss: 1.4683 - accuracy: 0.5307
 ```
 
-```python
-# plot the loss and accuracy from the training process
-fig, axes = plt.subplots(1, 2)
-fig.suptitle('cifar_model_dropout')
-sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
-sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
-```
-
 ![](fig/04_model_dropout_accuracy_loss.png){alt=''}
+
+TODO CHECK OH NO Dropout model is terrible now!
 
 Now we see that the gap between the training accuracy and validation accuracy is much smaller, and that the final accuracy on the validation set is higher than without dropout. Nevertheless, there is still some difference between the training loss and validation loss, so we could experiment with regularization even more.
 
@@ -430,6 +437,9 @@ for dropout_rate in dropout_rates:
 loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss_vary': val_losses_vary})
 
 sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss_vary')
+
+model_vary.save('fit_outputs/model_vary.h5')
+
 ```
 ![](fig/04_vary_dropout_rate.png){alt=''}
 

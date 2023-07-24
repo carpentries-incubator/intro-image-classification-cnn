@@ -6,10 +6,8 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you monitor the training process?
-- How do you detect overfitting?
-- How do you avoid overfitting?
-- How do you measure model accuracy?
+
+- How do you measure model prediction accuracy?
 - How do you use a model to make a prediction?
 - How to you improve model performance?
 
@@ -17,68 +15,139 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain what overfitting is
-- Expain how to measure the performance of model fitting (loss and accuracy) compared to test accuracy
+- Expain how to measure the performance of model predictions
 - Understand what steps to take to improve model accuracy
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### 7. Perform a Prediction/Classification
 
-After training the network we can use it to perform predictions. This is the mode you would use the network in after you have fully trained it to a satisfactory performance. Doing predictions on a special hold-out set is used in the next step to measure the performance of the network.
+After you have fully trained the network to a satisfactory performance on the training and validation sets, we can use it to perform predictions on a special hold-out set, the **test** set. The prediction accuracy of the model on new images is used in the next step to measure the performance of the network.
 
-We will use our convolutional neural network to predict the class names of the test set using the predict function. We will be using these predictions in the next step to measure the performance of our trained network. 
+#### Choosing a test set
 
-This will return a vector of probabilities, one for each class. By finding the highest probability we can select the most likely class name of the object.
+The test set should only contain images that the model has never seen before. We will use the [CINIC-10 dataset] (CINIC-10 Is Not ImageNet or CIFAR-10) for out test data. CINIC-10 was designed to be used as a benchmarking dataset as a drop-in alternative to CIFAR-10 and therefore the images are the same size.
 
-```
-y_pred = model.predict(testimages)
-prediction = pd.DataFrame(y_pred, columns=target.columns)
-prediction
-```
+::::::::::::::::::::::::::::::::::::: challenge 
 
-TODO Maybe first we do this on the test samples to see it do well and then on a new image.
-This will let us get a list of predicted species we can then use to demonstrate how to calculate confusion matrix values.
+Is the CINIC-10 model a good test data set? Hint: Read the 'Details' and 'Construction' sections of the [CINIC-10 dataset].
+
+:::::::::::::::::::::::: solution 
+
+No! "The entirety of the original CIFAR-10 test set is within the above mentioned new test set."
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+TODO Find a different set?
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+How big should our test data set be?
+
+:::::::::::::::::::::::: solution 
+
+Depends! Recall in Episode 02 we talked about the different ways to partition the data into training, validation and test data sets. For **Stratified Sampling**, for example, we might split the data using these rations: 80-10-10 or 70-15-15.
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+TODO Set this test images set up in Ep 02 instead so it's ready to go OR use the Tiny Images and use the same construction (uhoh -  http://groups.csail.mit.edu/vision/TinyImages)
+
+We will use our convolutional neural network to predict the class names of the test set using the predict function and use these predictions in the next step to measure the performance of our trained network.
+
+TODO talk about this website somewhere:
+https://franky07724-57962.medium.com/once-upon-a-time-in-cifar-10-c26bb056b4ce
+
+Recall our model will return a vector of probabilities, one for each class. By finding the class with the highest probability, we can select the most likely class name of the object.
 
 
 ```python
-from tensorflow.keras.utils import load_img
-from tensorflow.keras.utils import img_to_array
+# CINAC-10 uses the same class names
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-# load a new image and prepare it to match cifar10 dataset
-new_img_pil = load_img("01_Jabiru_TGS.JPG", target_size=(32,32)) # Image format
-new_img_arr = img_to_array(new_img_pil) # convert to array for analysis
-new_img_reshape = new_img_arr.reshape(1, 32, 32, 3) # reshape into single sample
-new_img_float =  new_img_reshape.astype('float64') / 255.0 # normalize
+# read in the real class values
+test_labels = load_CINIC_labels(filepath)
 
-# predict the classname
-result = model.predict(new_img_float) # make prediction
-print('Result: ', result) # probability for each class
-print('Classes: ', class_names) # original list of names
-print('Class name: ', class_names[result.argmax()]) # class with highest probability
+# read in test images
+test_images = load_CINIC_images(filepath) # TODO 
+
+# use our current best model to predict probability of each class on new test set
+predicted_prob = model_dropout.predict(test_images)
+
+# convert probability predictions to table using class names for column names
+prediction_df = pd.DataFrame(predicted_prob, columns=class_names)
+
+# inspect 
+prediction_df.head()
 ```
 
 ```output
-Result:  [[ 8.610077  10.412511   8.109443   8.799986   1.3238649  5.4381804
-  16.520676   7.8476925 10.562257   2.2948816]]
-Classes:  ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
-Class name:  frog
+     airplane  automobile        bird  ...       horse        ship       truck
+0 -122.712860 -129.267731 -167.219070  ... -123.657021 -159.014191 -163.177200
+1 -124.170799 -130.616486 -169.133301  ... -125.039940 -160.607788 -164.996490
+2 -122.743195 -129.151138 -167.131165  ... -123.587769 -158.856171 -163.279022
+3 -123.213806 -129.727814 -167.872360  ... -124.088776 -159.516998 -163.856964
+4 -122.018211 -128.308029 -165.941437  ... -122.628334 -157.797241 -162.291702
 ```
 
-TODO modify all of this section for our example
+```python
+# now find the maximum probability for each image
+predicted_labels = predicted_prob.argmax(axis=1)
+```
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+Try your own image!
+
+```python
+# specify a new image and prepare it to match CIFAR-10 dataset
+from icwithcnn_functions import prepare_image_icwithcnn
+
+new_img_path = "../data/Jabiru_TGS.JPG" # path to image
+new_img_prepped = prepare_image_icwithcnn(new_img_path)
+
+# predict the classname
+result_intro = model_intro.predict(new_img_prepped) # make prediction
+print(result_intro) # probability for each class
+print(class_names[result_intro.argmax()]) # class with highest probability
+```
+
+:::::::::::::::::::::::: solution 
+
+## Output
+ 
+```output
+Result: [[-2.0185328   9.337507   -2.4551604  -0.4688053  -4.599108   -3.5822825
+   6.427376   -0.09437321  0.82065487  1.2978227 ]]
+Class name: automobile
+
+```
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+TODO move this challenge somewhere else
+
 
 ### 8. Measuring performance
-Once we trained the network we want to measure its performance. To do this we use some additional data that was not part of the training, this is known as a test set. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
 
-Now that we have a trained neural network it is important to assess how well it performs. We want to know how well it will perform in a realistic prediction scenario, measuring performance will also come back when tuning the hyperparameters.
+Once we trained the network we want to measure its performance. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
 
-We have created a test set during the data preparation stage which we will use now to create a confusion matrix.
+An easy way to visually check the observed versus predicted classes is to plot the index of each:
 
-TODO should we do this in ep02 or create our own (maybe with everyone's images?)
+```python
+# plot the predicted (y_pred) versus the true class (XTest)
+plt.plot(test_labels, predicted_labels, xlab='Test Class', ylab='Predicted Class')
+
+```
+
+TODO add unitary line
+
+To obtain more quantitave measures of model performance, we we will create a confusion matrix.
 
 #### Confusion matrix
 
-With the predicted species we can now create a confusion matrix and display it using seaborn. To create a confusion matrix we will use another convenient function from sklearn called confusion_matrix. This function takes as a first parameter the true labels of the test set. We can get these by using the idxmax method on the y_test dataframe. The second parameter is the predicted labels which we did above.
+With the predicted species we can now create a confusion matrix and display it using seaborn. To create a confusion matrix we will use another convenient function from sklearn called confusion_matrix. This function takes as a first parameter the true labels of the test set. We can get these by using the idxmax method on the 'y_test dataframe. The second parameter is the predicted labels which we did above.
 
 ```python
 from sklearn.metrics import confusion_matrix
@@ -235,4 +304,7 @@ associated with the lessons. They appear in the "Instructor View"
 - Run `sandpaper::build_lesson()` to preview your lesson locally
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- Collect your link references at the bottom of your document -->
+[CINIC-10 dataset]: https://github.com/BayesWatch/cinic-10/
 

@@ -44,9 +44,9 @@ Deep Learning requires extensive training using example data which shows the net
 
 In some cases you will be able to download an image dataset that is already labelled and can be used to classify a number of different object like we saw with the CIFAR dataset. Other examples include:
 
-- MNIST database - 60,000 training images of handwritten digits (0-9)
-- ImageNet - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an annual software contest where programs compete to achieve the highest accuracy
-- MS COCO - >200,000 labelled images used for object detection, instance segmentation, keypoint analysis, and captioning
+- [MNIST database] - 60,000 training images of handwritten digits (0-9)
+- [ImageNet] - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an [annual software contest] where programs compete to achieve the highest accuracy. When choosing a pretrained network, the winners of these sorts of competitions are generally a good place to start.
+- [MS COCO] - >200,000 labelled images used for object detection, instance segmentation, keypoint analysis, and captioning
 
 In other cases, you will need to create your own set of labelled images. For image classification the label applies to the entire image; object detection requires bounding boxes, and instance or semantic segmentation require each pixel to be labelled.
 
@@ -54,7 +54,10 @@ There are a number of different software that can be used to label your dataset,
 
 - (Visual Geometry Group) [VGG Image Annotator] (VIA)
 
-::: How much data do you need for Deep Learning?
+:::::::::::::::::::::::::::::::::::::: callout
+
+How much data do you need for Deep Learning?
+
 The rise of Deep Learning is partially due to the increased availability of very large datasets. But how much data do you actually need to train a Deep Learning model? Unfortunately, this question is not easy to answer. It depends, among other things, on the complexity of the task (which you often do not know beforehand), the quality of the available dataset and the complexity of the network. For complex tasks with large neural networks, we often see that adding more data continues to improve performance. However, this is also not a generic truth: if the data you add is too similar to the data you already have, it will not give much new information to the neural network.
 
 In case you have too little data available to train a complex network from scratch, it is sometimes possible to use a pretrained network that was trained on a similar problem. Another trick is data augmentation, where you expand the dataset with artificial data points that could be real. An example of this is mirroring images when trying to classify cats and dogs. An horizontally mirrored animal retains the label, but exposes a different view.
@@ -194,5 +197,9 @@ associated with the lessons. They appear in the "Instructor View"
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
+[MNIST database]: https://en.wikipedia.org/wiki/MNIST_database
+[ImageNet]: https://www.image-net.org/
+[annual software contest]: https://www.image-net.org/challenges/LSVRC/#:~:text=The%20ImageNet%20Large%20Scale%20Visual,image%20classification%20at%20large%20scale.
+https://cocodataset.org/#home
 
 [VGG Image Annotator]: https://www.robots.ox.ac.uk/~vgg/software/via/

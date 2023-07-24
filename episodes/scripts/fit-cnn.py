@@ -15,37 +15,28 @@ import time
 
 start = time.time()
 
+#model.compile(optimizer = 'adam', 
+#              **loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True)**,               
+#              metrics = ['accuracy'])
 
-inputs = keras.Input(shape=train_images.shape[1:])
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
-x = keras.layers.MaxPooling2D((2, 2))(x)
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
-x = keras.layers.MaxPooling2D((2, 2))(x)
-x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
-x = keras.layers.Flatten()(x)
-x = keras.layers.Dense(50, activation='relu')(x)
-outputs = keras.layers.Dense(10)(x)
+# Dropout
 
-model = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model")
-model.summary()
+#model_ex.compile(loss = 'mse')
 
+#history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
+# convert the history to a dataframe for plotting 
 
-model.compile(optimizer='adam', 
-              loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),               
-              metrics=['accuracy'])
+# NOTE this should already be in memory from previous episode
 
-history = model.fit(train_images, train_labels, epochs=10,
-                    validation_data=(val_images, val_labels))
+#history_pool = model_pool.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
 
+history_pool_df = pd.DataFrame.from_dict(history_pool.history)
 
-# plot the accuracy from the training process
-history_df = pd.DataFrame.from_dict(history.history)
-sns.lineplot(data=history_df[['accuracy', 'val_accuracy']])
-
-plt.show() #Force a new plot to be created
-
-# plot the loss from the training process
-sns.lineplot(data=history_df[['loss', 'val_loss']])
+# plot the loss and accuracy from the training process
+fig, axes = plt.subplots(1, 2)
+fig.suptitle('cifar_model_pool')
+sns.lineplot(ax=axes[0], data=history_pool_df[['loss', 'val_loss']])
+sns.lineplot(ax=axes[1], data=history_pool_df[['accuracy', 'val_accuracy']])
 
 # Dropout
 
@@ -72,63 +63,53 @@ model_dropout.compile(optimizer='adam',
 history_dropout = model_dropout.fit(train_images, train_labels, epochs=20,
                     validation_data=(val_images, val_labels))
 
+# save dropout model
+model_dropout.save('fit_outputs/model_dropout.h5')
+
 history_dropout_df = pd.DataFrame.from_dict(history_dropout.history)
+
 fig, axes = plt.subplots(1, 2)
 fig.suptitle('cifar_model_dropout')
 sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
 sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
 
-plt.show() #Force a new plot to be created
-
-history_df = pd.DataFrame.from_dict(history_dropout.history)
-history_df['epoch'] = range(1,len(history_df)+1)
-history_df = history_df.set_index('epoch')
-sns.lineplot(data=history_df[['accuracy', 'val_accuracy']])
-
 val_loss, val_acc = model_dropout.evaluate(val_images,  val_labels, verbose=2)
 
 plt.show() #Force a new plot to be created
 
-# plot the loss from the training process
-sns.lineplot(data=history_df[['loss', 'val_loss']])
-
-
+# Challenge Vary Dropout Rate
 
 dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]
-val_losses = []
+val_losses_vary = []
 for dropout_rate in dropout_rates:
-    inputs = keras.Input(shape=train_images.shape[1:])
-    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
-    x = keras.layers.MaxPooling2D((2, 2))(x)
-    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
-    x = keras.layers.MaxPooling2D((2, 2))(x)
-    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
-    x = keras.layers.Dropout(dropout_rate)(x)
-    x = keras.layers.Flatten()(x)
-    x = keras.layers.Dense(50, activation='relu')(x)
-    outputs = keras.layers.Dense(10)(x)
+    inputs_vary = keras.Input(shape=train_images.shape[1:])
+    x_vary = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_vary)
+    x_vary = keras.layers.MaxPooling2D((2, 2))(x_vary)
+    x_vary = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_vary)
+    x_vary = keras.layers.MaxPooling2D((2, 2))(x_vary)
+    x_vary = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_vary)
+    x_vary = keras.layers.Dropout(dropout_rate)(x_vary)
+    x_vary = keras.layers.Flatten()(x_vary)
+    x_vary = keras.layers.Dense(50, activation='relu')(x_vary)
+    outputs_vary = keras.layers.Dense(10)(x_vary)
 
-    model_dropout = keras.Model(inputs=inputs, outputs=outputs, name="cifar_model_dropout")
+    model_vary = keras.Model(inputs=inputs_vary, outputs=outputs_vary, name="cifar_model_vary")
 
-    model_dropout.compile(optimizer='adam',
-              loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-              metrics=['accuracy'])
+    model_vary.compile(optimizer = 'adam',
+              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              metrics = ['accuracy'])
 
-    model_dropout.fit(train_images, train_labels, epochs=20,
+    model_vary.fit(train_images, train_labels, epochs=20,
                     validation_data=(val_images, val_labels))
 
-    val_loss, val_acc = model_dropout.evaluate(val_images,  val_labels)
-    val_losses.append(val_loss)
+    val_loss_vary, val_acc_vary = model_vary.evaluate(val_images,  val_labels)
+    val_losses_vary.append(val_loss_vary)
 
-loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss': val_losses})
+loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss_vary': val_losses_vary})
 
-plt.show() #Force a new plot to be created
+sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss_vary')
 
-sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss')
-
-
-
-
+model_vary.save('fit_outputs/model_vary.h5')
 
 end = time.time()
 

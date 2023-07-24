@@ -75,7 +75,7 @@ For this lesson, we will be using an existing image dataset known as CIFAR-10 th
 ### Load data
 
 ```python
-# load the cifar dataset included with the keras packages
+# load the CIFAR-10 dataset included with the keras packages
 from tensorflow import keras
 
 (train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
@@ -83,7 +83,7 @@ from tensorflow import keras
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge Load the Cifar10 dataset
+## Challenge Load the CIFAR-10 dataset
 
 Explain the output of these commands?
 
@@ -142,7 +142,7 @@ The labels are a set of single numbers denoting the class and we map the class n
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 ```
 
-### Visualize a subset of the Cifar10 dataset
+### Visualize a subset of the CIFAR-10 dataset
 
 ```python
 
@@ -160,15 +160,13 @@ for i in range(25):
 plt.show()
 ```
 
-![](fig/01_cifar10.png){alt='Subset of 25 Cifar10 images displayed in five rows and five columns '}
+![](fig/01_cifar10.png){alt='Subset of 25 CIFAR-10 images displayed in five rows and five columns '}
 
 ### 4. Choose a pre-trained model or build a new architecture from scratch
 
 Often we can use an existing neural network instead of designing one from scratch. Training a network can take a lot of time and computational resources. There are a number of well publicised networks which have been shown to perform well at certain tasks, if you know of one which already does a similar task well then it makes sense to use one of these.
 
 If instead we decide we do want to design our own network then we need to think about how many input neurons it will have, how many hidden layers and how many outputs, what types of layers we use (we will explore the different types later on). This will probably need some experimentation and we might have to try tweaking the network design a few times before we see acceptable results.
-
-TODO decide to simplify this model or present as is
 
 #### Define the Model
 
@@ -222,7 +220,7 @@ model_intro.save('fit_outputs/01_intro_model.h5')
 After training the network we can use it to perform predictions. This is the mode you would use the network in after you have fully trained it to a satisfactory performance. Doing predictions on a special hold-out set is used in the next step to measure the performance of the network.
 
 ```python
-# specify a new image and prepare it to match cifar10 dataset
+# specify a new image and prepare it to match CIFAR-10 dataset
 from icwithcnn_functions import prepare_image_icwithcnn
 
 new_img_path = "../data/Jabiru_TGS.JPG" # path to image

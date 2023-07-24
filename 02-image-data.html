@@ -258,7 +258,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p> Last updated on 2023-07-20 | 
+        <p> Last updated on 2023-07-24 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -337,12 +337,17 @@ able to take another image and correctly classify its contents.</p>
 <p>In some cases you will be able to download an image dataset that is
 already labelled and can be used to classify a number of different
 object like we saw with the CIFAR dataset. Other examples include:</p>
-<ul><li>MNIST database - 60,000 training images of handwritten digits
-(0-9)</li>
-<li>ImageNet - 14 million hand-annotated images indicating objects from
-more than 20,000 categories. ImageNet sponsors an annual software
-contest where programs compete to achieve the highest accuracy</li>
-<li>MS COCO - &gt;200,000 labelled images used for object detection,
+<ul><li>
+<a href="https://en.wikipedia.org/wiki/MNIST_database" class="external-link">MNIST
+database</a> - 60,000 training images of handwritten digits (0-9)</li>
+<li>
+<a href="https://www.image-net.org/" class="external-link">ImageNet</a> - 14 million
+hand-annotated images indicating objects from more than 20,000
+categories. ImageNet sponsors an <a href="https://www.image-net.org/challenges/LSVRC/#:~:text=The%20ImageNet%20Large%20Scale%20Visual,image%20classification%20at%20large%20scale." class="external-link">annual
+software contest</a> where programs compete to achieve the highest
+accuracy. When choosing a pretrained network, the winners of these sorts
+of competitions are generally a good place to start.</li>
+<li>[MS COCO] - &gt;200,000 labelled images used for object detection,
 instance segmentation, keypoint analysis, and captioning</li>
 </ul><p>In other cases, you will need to create your own set of labelled
 images. For image classification the label applies to the entire image;
@@ -352,25 +357,35 @@ segmentation require each pixel to be labelled.</p>
 your dataset, including:</p>
 <ul><li>(Visual Geometry Group) <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" class="external-link">VGG Image
 Annotator</a> (VIA)</li>
-</ul><p>::: How much data do you need for Deep Learning? The rise of Deep
-Learning is partially due to the increased availability of very large
-datasets. But how much data do you actually need to train a Deep
-Learning model? Unfortunately, this question is not easy to answer. It
-depends, among other things, on the complexity of the task (which you
-often do not know beforehand), the quality of the available dataset and
-the complexity of the network. For complex tasks with large neural
-networks, we often see that adding more data continues to improve
-performance. However, this is also not a generic truth: if the data you
-add is too similar to the data you already have, it will not give much
-new information to the neural network.</p>
+</ul><div id="callout1" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
+<p>How much data do you need for Deep Learning?</p>
+<p>The rise of Deep Learning is partially due to the increased
+availability of very large datasets. But how much data do you actually
+need to train a Deep Learning model? Unfortunately, this question is not
+easy to answer. It depends, among other things, on the complexity of the
+task (which you often do not know beforehand), the quality of the
+available dataset and the complexity of the network. For complex tasks
+with large neural networks, we often see that adding more data continues
+to improve performance. However, this is also not a generic truth: if
+the data you add is too similar to the data you already have, it will
+not give much new information to the neural network.</p>
 <p>In case you have too little data available to train a complex network
 from scratch, it is sometimes possible to use a pretrained network that
 was trained on a similar problem. Another trick is data augmentation,
 where you expand the dataset with artificial data points that could be
 real. An example of this is mirroring images when trying to classify
 cats and dogs. An horizontally mirrored animal retains the label, but
-exposes a different view.
-:::::::::::::::::::::::::::::::::::::::::::::::</p>
+exposes a different view.</p>
+</div>
+</div>
+</div>
 <p>In cases where the data exists, you can simply load it into
 memory:</p>
 <div class="section level3">
@@ -403,12 +418,12 @@ no test data.</p>
 <p>When using a different dataset, or loading a your own, you will need
 to do the split yourself. Keep in mind you will also need to a
 validation set.</p>
-<div id="callout1" class="callout callout">
+<div id="callout2" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
 </h3>
 <div class="callout-content">
 <p>ChatGPT</p>
@@ -509,7 +524,7 @@ training set well balanced?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>TODO will depend on data - see ep02 deep learning for ex on
 penguins</p>
@@ -562,6 +577,7 @@ locally</li>
 </div>
 </div>
 <!-- Collect your link references at the bottom of your document -->
+<p><a href="https://cocodataset.org/#home" class="external-link uri">https://cocodataset.org/#home</a></p>
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
@@ -623,8 +639,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/02-image-data.html",
   "identifier": "https://.github.io/github.com/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-07-20",
-  "datePublished": "2023-07-21"
+  "dateModified": "2023-07-24",
+  "datePublished": "2023-07-24"
 }
 
   </script><script>

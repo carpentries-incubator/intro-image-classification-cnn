@@ -261,7 +261,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p> Last updated on 2023-07-21 | 
+        <p> Last updated on 2023-07-24 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -415,17 +415,17 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the cifar dataset included with the keras packages</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the CIFAR-10 dataset included with the keras packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (val_images, val_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
 </div>
-<div id="challenge-load-the-cifar10-dataset" class="callout challenge">
+<div id="challenge-load-the-cifar-10-dataset" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-load-the-cifar10-dataset" class="callout-inner">
-<h3 class="callout-title">Challenge Load the Cifar10 dataset<a class="anchor" aria-label="anchor" href="#challenge-load-the-cifar10-dataset"></a>
+<div id="challenge-load-the-cifar-10-dataset" class="callout-inner">
+<h3 class="callout-title">Challenge Load the CIFAR-10 dataset<a class="anchor" aria-label="anchor" href="#challenge-load-the-cifar-10-dataset"></a>
 </h3>
 <div class="callout-content">
 <p>Explain the output of these commands?</p>
@@ -445,7 +445,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -531,7 +531,7 @@ documentation:</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="visualize-a-subset-of-the-cifar10-dataset">Visualize a subset of the Cifar10 dataset<a class="anchor" aria-label="anchor" href="#visualize-a-subset-of-the-cifar10-dataset"></a></h3>
+<h3 id="visualize-a-subset-of-the-cifar-10-dataset">Visualize a subset of the CIFAR-10 dataset<a class="anchor" aria-label="anchor" href="#visualize-a-subset-of-the-cifar-10-dataset"></a></h3>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -549,7 +549,7 @@ documentation:</p>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    plt.title(class_names[train_labels[i,<span class="dv">0</span>]])</span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/01_cifar10.png" alt="Subset of 25 Cifar10 images displayed in five rows and five columns " class="figure mx-auto d-block"></figure></div>
+<figure><img src="../fig/01_cifar10.png" alt="Subset of 25 CIFAR-10 images displayed in five rows and five columns " class="figure mx-auto d-block"></figure></div>
 <div class="section level3">
 <h3 id="choose-a-pre-trained-model-or-build-a-new-architecture-from-scratch">4. Choose a pre-trained model or build a new architecture from
 scratch<a class="anchor" aria-label="anchor" href="#choose-a-pre-trained-model-or-build-a-new-architecture-from-scratch"></a></h3>
@@ -565,7 +565,6 @@ layers and how many outputs, what types of layers we use (we will
 explore the different types later on). This will probably need some
 experimentation and we might have to try tweaking the network design a
 few times before we see acceptable results.</p>
-<p>TODO decide to simplify this model or present as is</p>
 <div class="section level4">
 <h4 id="define-the-model">Define the Model<a class="anchor" aria-label="anchor" href="#define-the-model"></a></h4>
 <div class="codewrapper sourceCode" id="cb7">
@@ -635,7 +634,7 @@ network.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a new image and prepare it to match cifar10 dataset</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a new image and prepare it to match CIFAR-10 dataset</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> icwithcnn_functions <span class="im">import</span> prepare_image_icwithcnn</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>new_img_path <span class="op">=</span> <span class="st">"../data/Jabiru_TGS.JPG"</span> <span class="co"># path to image</span></span>
@@ -719,7 +718,7 @@ discuss each component in more detail.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -810,8 +809,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/01-introduction.html",
   "identifier": "https://.github.io/github.com/instructor/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-07-21",
-  "datePublished": "2023-07-21"
+  "dateModified": "2023-07-24",
+  "datePublished": "2023-07-24"
 }
 
   </script><script>

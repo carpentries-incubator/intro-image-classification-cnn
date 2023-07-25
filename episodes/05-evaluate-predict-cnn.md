@@ -96,6 +96,91 @@ prediction_df.head()
 predicted_labels = predicted_prob.argmax(axis=1)
 ```
 
+### 8. Measuring performance
+
+Once we trained the network we want to measure its performance. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
+
+An easy way to visually check the observed versus predicted classes is to plot the index of each:
+
+```python
+# plot the predicted versus the true class
+plt.plot(test_labels, predicted_labels, xlab='Test Class', ylab='Predicted Class')
+
+```
+
+![](fig/05_pred_v_true_plot.png){alt=''}
+
+
+To obtain more quantitative measures of model performance, we we will create a confusion matrix.
+
+
+#### Confusion matrix
+
+With the predicted species we can now create a confusion matrix and display it using seaborn. To create a confusion matrix we will use another convenient function from sklearn called confusion_matrix. This function takes as a first parameter the true labels of the test set. The second parameter is the predicted labels which we did above.
+
+```python
+from sklearn.metrics import confusion_matrix
+
+true_class = TODO
+
+matrix = confusion_matrix(true_species, predicted_species)
+print(matrix)
+```
+```output
+[[ 0  0  0  0 50  0  0  0  0  0]
+ [ 0  0  0  0 42  0  8  0  0  0]
+ [ 0  0  0  0 44  0  6  0  0  0]
+ [ 0  0  0  0 39  0 11  0  0  0]
+ [ 0  0  0  0 50  0  0  0  0  0]
+ [ 0  0  0  0 45  0  5  0  0  0]
+ [ 0  0  0  0 36  0 14  0  0  0]
+ [ 0  0  0  0 46  0  4  0  0  0]
+ [ 0  0  0  0 45  0  5  0  0  0]
+ [ 0  0  0  0 38  0 12  0  0  0]]
+ ```
+
+Unfortunately, this matrix is kinda hard to read. Its not clear which column and which row corresponds to which species. So let's convert it to a pandas dataframe with its index and columns set to the species as follows:
+
+```python
+# Convert to a pandas dataframe
+confusion_df = pd.DataFrame(matrix, index=class_namess, columns=class_names)
+
+# Set the names of the x and y axis, this helps with the readability of the heatmap.
+confusion_df.index.name = 'True Label'
+confusion_df.columns.name = 'Predicted Label'
+```
+
+We can then use the heatmap function from seaborn to create a nice visualization of the confusion matrix. The annot=True parameter here will put the numbers from the confusion matrix in the heatmap.
+
+```python
+sns.heatmap(confusion_df, annot=True)
+```
+
+![](fig/05_pred_v_true_confusion_matrix.png){alt=''}
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Challenge Confusion Matrix
+
+Looking at the training curve we have just made.
+
+Measure the performance of the neural network you trained and visualize a confusion matrix.
+
+- Did the neural network perform well on the test set?
+- Did you expect this from the training loss you saw?
+- What could we do to improve the performance?
+
+:::::::::::::::::::::::: solution 
+
+The confusion matrix shows that the predictions for Adelie and Gentoo are decent, but could be improved. However, Chinstrap is not predicted ever.
+
+The training loss was very low, so from that perspective this may be surprising. But this illustrates very well why a test set is important when training neural networks.
+
+We can try many things to improve the performance from here. One of the first things we can try is to balance the dataset better. Other options include: changing the network architecture or changing the training parameters
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 Try your own image!
@@ -126,102 +211,33 @@ Class name: automobile
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
-TODO move this challenge somewhere else
 
-
-### 8. Measuring performance
-
-Once we trained the network we want to measure its performance. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
-
-An easy way to visually check the observed versus predicted classes is to plot the index of each:
-
-```python
-# plot the predicted (y_pred) versus the true class (XTest)
-plt.plot(test_labels, predicted_labels, xlab='Test Class', ylab='Predicted Class')
-
-```
-
-TODO add unitary line
-
-To obtain more quantitave measures of model performance, we we will create a confusion matrix.
-
-#### Confusion matrix
-
-With the predicted species we can now create a confusion matrix and display it using seaborn. To create a confusion matrix we will use another convenient function from sklearn called confusion_matrix. This function takes as a first parameter the true labels of the test set. We can get these by using the idxmax method on the 'y_test dataframe. The second parameter is the predicted labels which we did above.
-
-```python
-from sklearn.metrics import confusion_matrix
-
-true_species = y_test.idxmax(axis="columns")
-
-matrix = confusion_matrix(true_species, predicted_species)
-print(matrix)
-```
-```output
-[[22  0  8]
- [ 5  0  9]
- [ 6  0 19]]
- ```
-
-Unfortunately, this matrix is kinda hard to read. Its not clear which column and which row corresponds to which species. So let's convert it to a pandas dataframe with its index and columns set to the species as follows:
-
-```python
-# Convert to a pandas dataframe
-confusion_df = pd.DataFrame(matrix, index=y_test.columns.values, columns=y_test.columns.values)
-
-# Set the names of the x and y axis, this helps with the readability of the heatmap.
-confusion_df.index.name = 'True Label'
-confusion_df.columns.name = 'Predicted Label'
-```
-
-We can then use the heatmap function from seaborn to create a nice visualization of the confusion matrix. The annot=True parameter here will put the numbers from the confusion matrix in the heatmap.
-
-```python
-sns.heatmap(confusion_df, annot=True)
-```
-
-::::::::::::::::::::::::::::::::::::: challenge 
-
-## Challenge Confusion Matrix
-
-Looking at the training curve we have just made.
-
-Measure the performance of the neural network you trained and visualize a confusion matrix.
-
-- Did the neural network perform well on the test set?
-- Did you expect this from the training loss you saw?
-- What could we do to improve the performance?
-
-:::::::::::::::::::::::: solution 
-
-The confusion matrix shows that the predictions for Adelie and Gentoo are decent, but could be improved. However, Chinstrap is not predicted ever.
-
-The training loss was very low, so from that perspective this may be surprising. But this illustrates very well why a test set is important when training neural networks.
-
-We can try many things to improve the performance from here. One of the first things we can try is to balance the dataset better. Other options include: changing the network architecture or changing the training parameters
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### 9. Tune hyperparameters
+
 Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. It might be necessary to adjust these and re-run the training many times before we are happy with the result.
 
-The hyperparameters include:
+Some hyperparameters include:
 
+Build:
 - number of neurons
 - activation function
 
-TODO how to choose activation function - here or back in build with a callout?
-
+Compile:
+- loss function
 - optimizer
-- learning rate
-- batch size
+    - learning rate
+    - batch size
+    
+Train:
 - epoch
+- batch size
 
-
+TODO how to choose activation function - here or back in build with a callout?
 TODO Add a challenge to change the loss or optimizer
 
 #### Set expectations: How difficult is the defined problem?
+
 Before we dive deeper into handling overfitting and (trying to) improving the model performance, let us ask the question: How well must a model perform before we consider it a good model?
 
 Now that we defined a problem (classify an image into one of 10 different classes), it makes sense to develop an intuition for how difficult the posed problem is. Frequently, models will be evaluated against a so called **baseline**. A baseline can be the current standard in the field or if such a thing does not exist it could also be an intuitive first guess or toy model. The latter is exactly what we would use for our case.

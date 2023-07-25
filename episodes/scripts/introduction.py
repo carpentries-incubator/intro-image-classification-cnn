@@ -21,8 +21,6 @@ val_images = val_images / 255.0
 # create a list of classnames
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-
-
 # plot a subset of the images
 import matplotlib.pyplot as plt
 

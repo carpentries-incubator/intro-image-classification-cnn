@@ -1,8 +1,8 @@
 ---
-title: "Setup - CPU"
+title: "Setup - GPU"
 ---
 
-These instructions are for setting up tensorflow in a CPU only environment
+These instructions are for setting up tensorflow in a GPU capable environment
 
 ## Installing Python using Anaconda
 

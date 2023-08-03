@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>IC with CNN: Key Points</title>
+<title>Image Classification with Convolutional Neural Networks: Key Points</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="assets/styles.css">
 <script src="assets/scripts.js" type="text/javascript"></script><!-- mathjax --><script type="text/x-mathjax-config">
@@ -65,7 +65,7 @@
       <img class="small-logo" alt="Carpentries Incubator" src="assets/images/incubator-logo-sm.svg">
 </div>
     <div class="lesson-title-md">
-      IC with CNN
+      Image Classification with Convolutional Neural Networks
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -76,7 +76,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            IC with CNN
+            Image Classification with Convolutional Neural Networks
           </span>
         </li>
         <li class="nav-item">
@@ -92,10 +92,7 @@
           <button class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             More <i data-feather="chevron-down"></i>
           </button>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-<li><a class="dropdown-item" href="reference.html">Reference</a></li>
-<li><a class="dropdown-item" href="setup-gpu.html">Setup - GPU</a></li>
-          </ul>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul>
 </li>
       </ul>
 </div>
@@ -109,7 +106,7 @@
   </div>
 <!--/div.container-fluid -->
 </nav><div class="col-md-12 mobile-title">
-  IC with CNN
+  Image Classification with Convolutional Neural Networks
 </div>
 
 <aside class="col-md-12 lesson-progress"><div style="width: %" class="percentage">
@@ -180,7 +177,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="01-introduction.html">1. Introduction to Deep Learning</a>
+        <a href="setup-gpu.html">1. Setup - GPU</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -192,7 +189,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-image-data.html">2. Introduction to Image Data</a>
+        <a href="01-introduction.html">2. Introduction to Deep Learning</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -204,7 +201,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-build-cnn.html">3. Build a Convolutional Neural Network</a>
+        <a href="02-image-data.html">3. Introduction to Image Data</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -216,7 +213,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04-fit-cnn.html">4. Compile and Train a Convolutional Neural Network</a>
+        <a href="03-build-cnn.html">4. Build a Convolutional Neural Network</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -228,7 +225,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="05-evaluate-predict-cnn.html">5. Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a>
+        <a href="04-fit-cnn.html">5. Compile and Train a Convolutional Neural Network</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -240,7 +237,19 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="06-conclusion.html">6. Conclusion</a>
+        <a href="05-evaluate-predict-cnn.html">6. Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush8">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading8">
+        <a href="06-conclusion.html">7. Conclusion</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -273,8 +282,7 @@
                       <li>
                         <a href="profiles.html">Learner Profiles</a>
                       </li>
-                      <li><a href="reference.html">Reference</a></li>
-<li><a href="setup-gpu.html">Setup - GPU</a></li>
+                      
                     </ul>
 </div>
                 </div>
@@ -303,7 +311,8 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="01-introduction"><h2 class="section-heading"><a href="01-introduction.html">Introduction to Deep Learning</a></h2>
+<section id="setup-gpu"><h2 class="section-heading"><a href="setup-gpu.html">Setup - GPU</a></h2>
+<hr class="half-width"></section><section id="01-introduction"><h2 class="section-heading"><a href="01-introduction.html">Introduction to Deep Learning</a></h2>
 <hr class="half-width">
 <ul>
 <li>Machine learning is the process where computers learn to recognise
@@ -318,7 +327,7 @@ classification</li>
 of: defining the problem, identifying inputs and outputs, preparing
 data, choosing the type of network, training the model, tuning
 hyperparameters, measuring performance before we can classify data.</li>
-</ul></section><section id="02-image-data"><h2 class="section-heading"><a href="02-image-data.html">Introduction to Image DataPreexisting datasets<a class="anchor" aria-label="anchor" href="#preexisting-datasets"></a>Preexisting datasets<a class="anchor" aria-label="anchor" href="#preexisting-datasets-1"></a></a></h2>
+</ul></section><section id="02-image-data"><h2 class="section-heading"><a href="02-image-data.html">Introduction to Image DataPreexisting datasets<a class="anchor" aria-label="anchor" href="#preexisting-datasets"></a></a></h2>
 <hr class="half-width">
 <ul>
 <li>Use <code>.md</code> files for episodes when you want static

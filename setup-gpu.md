@@ -1,7 +1,5 @@
 ---
-layout: page
 title: "Setup - GPU"
-permalink: /setup/
 ---
 
 These instructions are for setting up tensorflow in a GPU capable environment
@@ -189,3 +187,4 @@ TODO cifar comes with keras; need to work out if we want to provide ahead of tim
 [pip]: (https://pip.pypa.io/en/stable/)
 [these instructions]: https://docs.anaconda.com/anaconda/install/update-version/
 [Google colab]: https://colab.research.google.com/
+

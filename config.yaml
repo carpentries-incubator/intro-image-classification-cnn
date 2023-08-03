@@ -11,7 +11,7 @@
 carpentry: 'incubator'
 
 # Overall title for pages.
-title: 'IC with CNN'
+title: 'Image Classification with Convolutional Neural Networks'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: '2023-05-03'
@@ -59,6 +59,7 @@ contact: 'erin.graham@jcu.edu.au'
 
 # Order of episodes in your lesson
 episodes: 
+- setup-gpu.md
 - 01-introduction.md
 - 02-image-data.md
 - 03-build-cnn.md
@@ -68,6 +69,8 @@ episodes:
 
 # Information for Learners
 learners: 
+- setup.md
+#- setup-gpu.md ignored TODO how to have two setup files
 
 # Information for Instructors
 instructors: 

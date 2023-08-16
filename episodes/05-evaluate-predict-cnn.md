@@ -248,7 +248,61 @@ The table below describes each activation function, its benefits, and drawbacks.
 | Softmax             | - Used for multi-class classification <br/> - Outputs a probability distribution | - Used only in the output layer for classification tasks |
 | SELU                | - Self-normalizing properties <br/> - Can outperform ReLU in deeper networks | - Requires specific weight initialization <br/> - May not perform well outside of deep architectures |
 
+##### Assessing activiation function performance
 
+The code below serves as a practical means for exploring activation performance on an image dataset.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras.datasets import cifar10
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D
+
+# Load data
+(train_images, train_labels), (test_images, test_labels) = cifar10.load_data()
+
+# Preprocess the data
+train_images = train_images / 255.0
+test_images = test_images / 255.0
+
+# Define a function to create a model with a given activation function
+def create_model(activation_function):
+    model = Sequential([
+        Conv2D(32, (3, 3), activation=activation_function, input_shape=(32, 32, 3)),
+        MaxPooling2D(2, 2),
+        Flatten(),
+        Dense(128, activation=activation_function),
+        Dense(10, activation='softmax')
+    ])
+    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    return model
+
+# List of activation functions to try
+activations = ['relu', 'sigmoid', 'tanh', 'selu', tf.keras.layers.LeakyReLU()]
+
+history_data = {}
+
+# Train a model with each activation function and store the history
+for activation in activations:
+    model = create_model(activation)
+    history = model.fit(train_images, train_labels, epochs=10, validation_data=(test_images, test_labels))
+    history_data[str(activation)] = history
+
+# Plot the validation accuracy for each activation function
+plt.figure(figsize=(12, 6))
+
+for activation, history in history_data.items():
+    plt.plot(history.history['val_accuracy'], label=activation)
+
+plt.title('Validation accuracy for different activation functions')
+plt.xlabel('Epochs')
+plt.ylabel('Validation Accuracy')
+plt.legend()
+plt.show()
+```
+TODO include output for the above
 TODO how to choose activation function - here or back in build with a callout?
 TODO Add a challenge to change the loss or optimizer
 

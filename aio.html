@@ -2609,17 +2609,28 @@ crucial for effectively training machine learning models.</p>
 traverse toward the minima of the gradient descent algorithm in a timely
 manner i.e. number of epochs.</p>
 <figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg" alt="" class="figure mx-auto d-block"><figcaption>Small learning rate leads to inefficient approach to
-loss minima</figcaption></figure><p>On the other hand, specifying a learning rate that is <em>too
+loss minima</figcaption></figure><p>(This image was obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
+Developers Machine Learning Crash Course</a> and is licenced under the
+<a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons
+4.0 Attribution Licence</a>.</p>
+<p>On the other hand, specifying a learning rate that is <em>too
 high</em> will result in a loss value that never approaches the minima.
 That is, ‘bouncing between the sides’, thus never reaching a minima to
 cease learning.</p>
 <figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg" alt="" class="figure mx-auto d-block"><figcaption>A large learning rate results in overshooting the
-gradient descent minima</figcaption></figure><p>Lastly, we can observe below that a modest learning rate will ensure
+gradient descent minima</figcaption></figure><p>(This image was obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
+Developers Machine Learning Crash Course</a> and is licenced under the
+<a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons
+4.0 Attribution Licence</a>.</p>
+<p>Lastly, we can observe below that a modest learning rate will ensure
 that the product of multiplying the scalar gradient value, and the
 learning rate does not result in too small steps, nor a chaotic bounce
 between sides of the gradient where steepness is greatest.</p>
 <figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg" alt="" class="figure mx-auto d-block"><figcaption>An optimal learning rate supports a gradual approach
-to the minima</figcaption></figure>
+to the minima</figcaption></figure><p>(This image was obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
+Developers Machine Learning Crash Course</a> and is licenced under the
+<a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons
+4.0 Attribution Licence</a>.</p>
 </div>
 </div>
 </div>
@@ -2776,7 +2787,7 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>The loss curve should drop quite quickly in a smooth line with
@@ -3036,7 +3047,7 @@ model performance, what is the term associated to this procedure?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Varying the dropout rate The code below instantiates and trains a
@@ -3206,7 +3217,7 @@ and ‘Construction’ sections of the <a href="https://github.com/BayesWatch/ci
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>No! “The entirety of the original CIFAR-10 test set is within the
 above mentioned new test set.”</p>
@@ -3234,7 +3245,7 @@ above mentioned new test set.”</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Depends! Recall in Episode 02 we talked about the different ways to
 partition the data into training, validation and test data sets. For
@@ -3391,7 +3402,7 @@ visualize a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The confusion matrix shows that the predictions for Adelie and Gentoo
 are decent, but could be improved. However, Chinstrap is not predicted
@@ -3440,7 +3451,7 @@ training parameters</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3589,7 +3600,7 @@ think about what you actually would like to see)</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The difference between training and validation data shows that
 something is not completely right here. The model predictions on the
@@ -3649,7 +3660,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>This is on open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you

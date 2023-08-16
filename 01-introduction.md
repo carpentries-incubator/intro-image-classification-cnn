@@ -258,7 +258,38 @@ Once we trained the network we want to measure its performance. To do this we us
 
 ### 9. Tune Hyperparameters
 
-Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. The hyperparameters include the number of epochs or the parameters for the optimizer. It might be necessary to adjust these and re-run the training many times before we are happy with the result.
+When building image recognition models in Python, especially using libraries like TensorFlow or Keras, the process involves not only designing a neural network but also choosing the best values for various hyperparameters that govern the training process.
+
+#### What are hyperparameters? 
+
+Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimize the model's performance. One common method for hyperparameter tuning is **grid search**. 
+
+#### What is Grid Search?
+
+Grid Search or **GridSearch** (as per the library function call) is foundation method for hyperparameter tuning. The aim of hyperparameter tuning is to define a grid of possible values for each hyperparameter you want to tune. GridSearch will then evaluate the model performance for each combination of hyperparameters in a brute-force manner, iterating through every possible combination in the grid.
+
+For instance, suppose you're tuning two hyperparameters:
+
+Learning rate: with possible values [0.01, 0.1, 1]
+Batch size: with possible values [10, 50, 100]
+
+GridSearch will evaluate the model for all 3x3 = 9 combinations (e.g., {0.01, 10}, {0.01, 50}, {0.1, 10}, and so on).
+
+We can use our previous introductory model to demonstrate how GridSearch is expressed in code.
+
+```python
+# create the model
+model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
+
+# Define the grid search parameters
+optimizer = ['SGD', 'RMSprop', 'Adam']
+param_grid = dict(optimizer=optimizer)
+grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=-1)
+grid_result = grid.fit(X, Y)
+
+# Summarize results
+print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
+```
 
 ### 10. Share Model
 

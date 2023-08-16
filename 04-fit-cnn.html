@@ -266,7 +266,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Compile and Train a Convolutional Neural Network</h1>
-        <p> Last updated on 2023-07-24 | 
+        <p> Last updated on 2023-08-16 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -500,7 +500,7 @@ Keras you can check the <a href="https://keras.io/api/optimizers/" class="extern
 </h3>
 <div class="callout-content">
 <p>ChatGPT</p>
-<p>Learning Rate</p>
+<p><strong>Learning Rate</strong></p>
 <p>Learning rate is a hyperparameter that determines the step size at
 which the model’s parameters are updated during training. A higher
 learning rate allows for more substantial parameter updates, which can
@@ -509,7 +509,21 @@ solution. On the other hand, a lower learning rate leads to smaller
 updates, providing more cautious convergence, but it may take longer to
 reach the optimal solution. Finding an appropriate learning rate is
 crucial for effectively training machine learning models.</p>
-</div>
+<p>In the figure below, we can see that a small learning rate will not
+traverse toward the minima of the gradient descent algorithm in a timely
+manner i.e. number of epochs.</p>
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg" alt="" class="figure mx-auto d-block"><figcaption>Small learning rate leads to inefficient approach to
+loss minima</figcaption></figure><p>On the other hand, specifying a learning rate that is <em>too
+high</em> will result in a loss value that never approaches the minima.
+That is, ‘bouncing between the sides’, thus never reaching a minima to
+cease learning.</p>
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg" alt="" class="figure mx-auto d-block"><figcaption>A large learning rate results in overshooting the
+gradient descent minima</figcaption></figure><p>Lastly, we can observe below that a modest learning rate will ensure
+that the product of multiplying the scalar gradient value, and the
+learning rate does not result in too small steps, nor a chaotic bounce
+between sides of the gradient where steepness is greatest.</p>
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg" alt="" class="figure mx-auto d-block"><figcaption>An optimal learning rate supports a gradual approach
+to the minima</figcaption></figure></div>
 </div>
 </div>
 <p>Most optimizers include a <code>learning_rate</code> argument that
@@ -654,7 +668,7 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>The loss curve should drop quite quickly in a smooth line with
 little jitter.</li>
@@ -898,7 +912,7 @@ model performance, what is the term associated to this procedure?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>Varying the dropout rate The code below instantiates and trains a
 model with varying dropout rates. You can see from the resulting plot
@@ -1040,7 +1054,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/04-fit-cnn.html",
   "identifier": "https://.github.io/github.com/04-fit-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-07-24",
+  "dateModified": "2023-08-16",
   "datePublished": "2023-08-16"
 }
 

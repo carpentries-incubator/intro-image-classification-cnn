@@ -710,7 +710,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3121,7 +3121,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-05-evaluate-predict-cnn"><p>Content from <a href="05-evaluate-predict-cnn.html">Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a></p>
 <hr>
-<p> Last updated on 2023-07-25 | 
+<p> Last updated on 2023-08-16 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3452,8 +3452,69 @@ before we are happy with the result.</p>
 <p>Build: - number of neurons - activation function</p>
 <p>Compile: - loss function - optimizer - learning rate - batch size</p>
 <p>Train: - epoch - batch size</p>
+<div class="section level4">
+<h4 id="how-do-you-know-what-activation-function-to-choose">How do you know what activation function to choose?<a class="anchor" aria-label="anchor" href="#how-do-you-know-what-activation-function-to-choose"></a>
+</h4>
+<p>Neural networks can be tuned to leverage many different types of
+activation functions. In fact, it is a crucial decision as the choice of
+activation function will have a direct impact on the performance of the
+model.</p>
+<p>The table below describes each activation function, its benefits, and
+drawbacks.</p>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="16%">
+<col width="50%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Activation Function</th>
+<th>Positives</th>
+<th>Negatives</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>ReLU</td>
+<td>- Addresses vanishing gradient problem <br> - Computationally
+efficient</td>
+<td>- Can cause “dying neurons” <br> - Not zero-centered</td>
+</tr>
+<tr class="even">
+<td>Leaky ReLU</td>
+<td>- Addresses the “dying ReLU” problem <br> - Computationally
+efficient</td>
+<td>- Empirical results can be inconsistent <br> - Not
+zero-centered</td>
+</tr>
+<tr class="odd">
+<td>Sigmoid</td>
+<td>- Outputs between 0 and 1 <br> - Smooth gradient</td>
+<td>- Can cause vanishing gradient problem <br> - Computationally more
+expensive</td>
+</tr>
+<tr class="even">
+<td>Tanh</td>
+<td>- Outputs between -1 and 1 <br> - Zero-centered</td>
+<td>- Can still suffer from vanishing gradients to some extent</td>
+</tr>
+<tr class="odd">
+<td>Softmax</td>
+<td>- Used for multi-class classification <br> - Outputs a probability
+distribution</td>
+<td>- Used only in the output layer for classification tasks</td>
+</tr>
+<tr class="even">
+<td>SELU</td>
+<td>- Self-normalizing properties <br> - Can outperform ReLU in deeper
+networks</td>
+<td>- Requires specific weight initialization <br> - May not perform
+well outside of deep architectures</td>
+</tr>
+</tbody>
+</table>
 <p>TODO how to choose activation function - here or back in build with a
 callout? TODO Add a challenge to change the loss or optimizer</p>
+</div>
 <div class="section level4">
 <h4 id="set-expectations-how-difficult-is-the-defined-problem">Set expectations: How difficult is the defined problem?<a class="anchor" aria-label="anchor" href="#set-expectations-how-difficult-is-the-defined-problem"></a>
 </h4>

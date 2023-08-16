@@ -233,6 +233,22 @@ Train:
 - epoch
 - batch size
 
+#### How do you know what activation function to choose?
+
+Neural networks can be tuned to leverage many different types of activation functions. In fact, it is a crucial decision as the choice of activation function will have a direct impact on the performance of the model.
+
+The table below describes each activation function, its benefits, and drawbacks.
+
+| Activation Function | Positives                                                        | Negatives                                  |
+|---------------------|------------------------------------------------------------------|--------------------------------------------|
+| ReLU                | - Addresses vanishing gradient problem <br/> - Computationally efficient | - Can cause "dying neurons" <br/> - Not zero-centered |
+| Leaky ReLU          | - Addresses the "dying ReLU" problem <br/> - Computationally efficient | - Empirical results can be inconsistent <br/> - Not zero-centered |
+| Sigmoid             | - Outputs between 0 and 1 <br/> - Smooth gradient               | - Can cause vanishing gradient problem <br/> - Computationally more expensive |
+| Tanh                | - Outputs between -1 and 1 <br/> - Zero-centered                | - Can still suffer from vanishing gradients to some extent |
+| Softmax             | - Used for multi-class classification <br/> - Outputs a probability distribution | - Used only in the output layer for classification tasks |
+| SELU                | - Self-normalizing properties <br/> - Can outperform ReLU in deeper networks | - Requires specific weight initialization <br/> - May not perform well outside of deep architectures |
+
+
 TODO how to choose activation function - here or back in build with a callout?
 TODO Add a challenge to change the loss or optimizer
 

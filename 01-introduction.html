@@ -270,7 +270,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p> Last updated on 2023-07-24 | 
+        <p> Last updated on 2023-08-16 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -452,7 +452,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -700,11 +700,52 @@ published as an indication of how well our network performs.</p>
 </div>
 <div class="section level3">
 <h3 id="tune-hyperparameters">9. Tune Hyperparameters<a class="anchor" aria-label="anchor" href="#tune-hyperparameters"></a></h3>
+<p>When building image recognition models in Python, especially using
+libraries like TensorFlow or Keras, the process involves not only
+designing a neural network but also choosing the best values for various
+hyperparameters that govern the training process.</p>
+<div class="section level4">
+<h4 id="what-are-hyperparameters">What are hyperparameters?<a class="anchor" aria-label="anchor" href="#what-are-hyperparameters"></a></h4>
 <p>Hyperparameters are all the parameters set by the person configuring
 the machine learning instead of those learned by the algorithm itself.
-The hyperparameters include the number of epochs or the parameters for
-the optimizer. It might be necessary to adjust these and re-run the
-training many times before we are happy with the result.</p>
+These hyperparameters can include the learning rate, the number of
+layers in the network, the number of neurons per layer, and many more.
+Hyperparameter tuning refers to the process of systematically searching
+for the best combination of hyperparameters that will optimize the
+model’s performance. One common method for hyperparameter tuning is
+<strong>grid search</strong>.</p>
+</div>
+<div class="section level4">
+<h4 id="what-is-grid-search">What is Grid Search?<a class="anchor" aria-label="anchor" href="#what-is-grid-search"></a></h4>
+<p>Grid Search or <strong>GridSearch</strong> (as per the library
+function call) is foundation method for hyperparameter tuning. The aim
+of hyperparameter tuning is to define a grid of possible values for each
+hyperparameter you want to tune. GridSearch will then evaluate the model
+performance for each combination of hyperparameters in a brute-force
+manner, iterating through every possible combination in the grid.</p>
+<p>For instance, suppose you’re tuning two hyperparameters:</p>
+<p>Learning rate: with possible values [0.01, 0.1, 1] Batch size: with
+possible values [10, 50, 100]</p>
+<p>GridSearch will evaluate the model for all 3x3 = 9 combinations
+(e.g., {0.01, 10}, {0.01, 50}, {0.1, 10}, and so on).</p>
+<p>We can use our previous introductory model to demonstrate how
+GridSearch is expressed in code.</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create the model</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>model_intro <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_intro, outputs<span class="op">=</span>outputs_intro, name<span class="op">=</span><span class="st">"cifar_model_intro"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the grid search parameters</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> [<span class="st">'SGD'</span>, <span class="st">'RMSprop'</span>, <span class="st">'Adam'</span>]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> <span class="bu">dict</span>(optimizer<span class="op">=</span>optimizer)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> GridSearchCV(estimator<span class="op">=</span>model, param_grid<span class="op">=</span>param_grid, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>grid_result <span class="op">=</span> grid.fit(X, Y)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize results</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best: </span><span class="sc">%f</span><span class="st"> using </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> (grid_result.best_score_, grid_result.best_params_))</span></code></pre>
+</div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="share-model">10. Share Model<a class="anchor" aria-label="anchor" href="#share-model"></a></h3>
@@ -800,8 +841,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/01-introduction.html",
   "identifier": "https://.github.io/github.com/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-07-24",
-  "datePublished": "2023-08-15"
+  "dateModified": "2023-08-16",
+  "datePublished": "2023-08-16"
 }
 
   </script><script>

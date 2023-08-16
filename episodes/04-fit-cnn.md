@@ -138,9 +138,21 @@ For more information on these and other available loss functions in Keras you ca
 :::::::::::::::::::::::::::::::::::::: callout
 ChatGPT
 
-Learning Rate
+**Learning Rate**
 
 Learning rate is a hyperparameter that determines the step size at which the model's parameters are updated during training. A higher learning rate allows for more substantial parameter updates, which can lead to faster convergence, but it may risk overshooting the optimal solution. On the other hand, a lower learning rate leads to smaller updates, providing more cautious convergence, but it may take longer to reach the optimal solution. Finding an appropriate learning rate is crucial for effectively training machine learning models.
+
+In the figure below, we can see that a small learning rate will not traverse toward the minima of the gradient descent algorithm in a timely manner i.e. number of epochs.
+
+![Small learning rate leads to inefficient approach to loss minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg)
+
+On the other hand, specifying a learning rate that is *too high* will result in a loss value that never approaches the minima. That is, 'bouncing between the sides', thus never reaching a minima to cease learning.
+
+![A large learning rate results in overshooting the gradient descent minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg)
+
+Lastly, we can observe below that a modest learning rate will ensure that the product of multiplying the scalar gradient value, and the learning rate does not result in too small steps, nor a chaotic bounce between sides of the gradient where steepness is greatest.
+
+![An optimal learning rate supports a gradual approach to the minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg)
 
 ::::::::::::::::::::::::::::::::::::::::::::::
 

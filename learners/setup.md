@@ -4,7 +4,10 @@ title: "Setup - CPU"
 
 These instructions are for setting up tensorflow in a **CPU** only environment.
 
-## Installing Anaconda
+## Software Setup
+
+::::::::::::::::::::::::::::::::::::: challenge
+## Installing Python Using Anaconda
 
 [Python] is a popular language for scientific computing, and a frequent choice for machine learning as well. Installing all of its scientific packages individually can be a bit difficult, however, so we recommend the installer [Anaconda] which includes most (but not all) of the software you will need.
 
@@ -12,22 +15,31 @@ Regardless of how you choose to install it, please make sure you install Python 
 
 Also, please set up your python environment at least a day in advance of the workshop. If you encounter problems with the installation procedure, ask your workshop organizers via e-mail for assistance so you are ready to go as soon as the workshop begins.
 
-### [Windows - Video tutorial]
+:::::::::::::::::::::::: solution
+### Windows
+
+Check out the [Windows - Video tutorial] or:
 
 1. Open [https://www.anaconda.com/products/distribution] with your web browser.
 
 2. Download the Python 3 installer for Windows.
 
 3. Double-click the executable and install Python 3 using _MOST_ of the default settings. The only exception is to check the **Make Anaconda the default Python** option.
+::::::::::::::::::::::::::::::::::
 
-### [Mac OS X - Video tutorial]
+:::::::::::::::::::::::: solution
+### MacOS
+
+Check out the [Mac OS X - Video tutorial] or:
 
 1. Open [https://www.anaconda.com/products/distribution] with your web browser.
 
 2. Download the Python 3 installer for Mac.
 
 3. Install Python 3 using all of the defaults for installation.
+::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::: solution 
 ### Linux
 
 Note that the following installation steps require you to work from the shell.
@@ -59,6 +71,9 @@ If you run into any difficulties, please request help before the workshop begins
         enter again to approve the default location for the files. Type `yes` and
         press enter to prepend Anaconda to your `PATH` (this makes the Anaconda
         distribution the default Python).
+
+:::::::::::::::::::::::::::::::::: 
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Installing the required packages
 
@@ -119,7 +134,8 @@ We will teach using Python in [Spyder] (Scientific Python Development Environmen
 To start Spyder, open a terminal and type the command:
 
 ```conda
-(cnn_workshop) C:\Users\Lab>spyder
+(base) C:\Users\Lab> conda activate cnn_workshop
+(cnn_workshop) C:\Users\Lab> spyder
 ```
 
 ## Check your setup

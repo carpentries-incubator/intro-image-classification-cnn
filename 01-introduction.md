@@ -196,9 +196,9 @@ The optimizer is responsible for taking the output of the loss function and then
 
 ```python
 # compile the model
-model_intro.compile(optimizer = 'adam', 
-			        loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), 
-					metrics=['accuracy'])
+model_intro.compile(optimizer = 'adam',
+                    loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                    metrics=['accuracy'])
 ```
 
 ### 6. Train the model
@@ -207,9 +207,8 @@ We can now go ahead and start training our neural network. We will probably keep
 
 ```python
 # fit the model
-history_intro = model_intro.fit(train_images, train_labels, 
-                                epochs = 10, 
-								validation_data = (val_images, val_labels))
+history_intro = model_intro.fit(train_images, train_labels, epochs = 10, 
+                                validation_data = (val_images, val_labels))
 
 # save the model
 model_intro.save('fit_outputs/01_intro_model.h5')

@@ -270,7 +270,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p> Last updated on 2023-08-16 | 
+        <p> Last updated on 2023-08-18 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -608,9 +608,9 @@ the weights) is achieved.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model_intro.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>, </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>			        loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>), </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>					metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model_intro.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                    loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                    metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -623,12 +623,11 @@ gives a value under a certain threshold.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>history_intro <span class="op">=</span> model_intro.fit(train_images, train_labels, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                epochs <span class="op">=</span> <span class="dv">10</span>, </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>								validation_data <span class="op">=</span> (val_images, val_labels))</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>model_intro.save(<span class="st">'fit_outputs/01_intro_model.h5'</span>)</span></code></pre>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>history_intro <span class="op">=</span> model_intro.fit(train_images, train_labels, epochs <span class="op">=</span> <span class="dv">10</span>, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                validation_data <span class="op">=</span> (val_images, val_labels))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>model_intro.save(<span class="st">'fit_outputs/01_intro_model.h5'</span>)</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -841,8 +840,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/01-introduction.html",
   "identifier": "https://.github.io/github.com/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-08-16",
-  "datePublished": "2023-08-16"
+  "dateModified": "2023-08-18",
+  "datePublished": "2023-08-18"
 }
 
   </script><script>

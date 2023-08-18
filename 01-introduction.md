@@ -145,7 +145,6 @@ class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', '
 ### Visualize a subset of the CIFAR-10 dataset
 
 ```python
-
 import matplotlib.pyplot as plt
 
 # create a figure object and specify width, height in inches

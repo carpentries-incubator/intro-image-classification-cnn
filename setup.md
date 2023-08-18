@@ -24,7 +24,7 @@ Also, please set up your python environment at least a day in advance of the wor
 
 1. Open [https://www.anaconda.com/products/distribution] with your web browser.
 
-2. Download the Python 3 installer for Mac/OS X.
+2. Download the Python 3 installer for Mac.
 
 3. Install Python 3 using all of the defaults for installation.
 
@@ -71,22 +71,22 @@ Conda should already be available in your system once you installed Anaconda suc
 To create a conda environment called `cnn_workshop` with the required packages, open a terminal and type the command:
 
 ```code
-conda create --name cnn_workshop python spyder seaborn scikit-learn pandas
+(base) C:\Users\Lab> conda create --name cnn_workshop python spyder seaborn scikit-learn pandas
 ```
 
 Activate the newly created environment:
 
 ```code
-conda activate cnn_workshop
+(base) C:\Users\Lab> conda activate cnn_workshop
 ```
 
 Install tensorflow using [pip] (python's package manager):
 
 ```code
-pip install tensorflow
+(cnn_workshop) C:\Users\Lab>pip install tensorflow
 ```
 
-Note that modern versions of Tensorflow make Keras available as a module.
+Note that modern versions of Tensorflow make Keras available as a module: `from tensorflow import keras`
 
 
 ### Troubleshooting for Windows
@@ -119,12 +119,12 @@ We will teach using Python in [Spyder] (Scientific Python Development Environmen
 To start Spyder, open a terminal and type the command:
 
 ```conda
-spyder
+(cnn_workshop) C:\Users\Lab>spyder
 ```
 
 ## Check your setup
 
-To check whether all packages installed correctly, start a jupyter notebook in jupyter lab as explained above. Run the following lines of code:
+To check whether all packages installed correctly, go to the interactive `IPython Console` in Spyder (lower right hand side panel) and type in the following commands:
 
 ```python
 import sklearn

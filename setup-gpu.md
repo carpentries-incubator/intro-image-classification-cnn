@@ -2,7 +2,7 @@
 title: "Setup - GPU"
 ---
 
-These instructions are for setting up tensorflow in a GPU capable environment
+These instructions are for setting up tensorflow in a **GPU** capable environment. These instructions assume you understand conda environments and are familiar with creating and using them. Because this is a more advanced topic and varies depending on your computer's architecture, please make sure you set up and test this up ahead of time. We will not be able to spend class time assisting on GPU setups.
 
 ## Installing Python using Anaconda
 
@@ -10,28 +10,24 @@ These instructions are for setting up tensorflow in a GPU capable environment
 individually can be a bit difficult, however, so we recommend the installer [Anaconda] which includes most (but not all) of the software you will need.
 
 Regardless of how you choose to install it, please make sure you install Python
-version 3.x (e.g., 3.4 is fine). Also, please set up your python environment at
+version 3.x (e.g., 3.9 is fine). Also, please set up your python environment at
 least a day in advance of the workshop. If you encounter problems with the
 installation procedure, ask your workshop organizers via e-mail for assistance so
 you are ready to go as soon as the workshop begins.
 
 ### [Windows - Video tutorial]
 
-1. Open [https://www.anaconda.com/products/distribution]
-   with your web browser.
+1. Open [https://www.anaconda.com/products/distribution] with your web browser.
 
 2. Download the Python 3 installer for Windows.
 
-3. Double-click the executable and install Python 3 using _MOST_ of the
-   default settings. The only exception is to check the
-   **Make Anaconda the default Python** option.
+3. Double-click the executable and install Python 3 using _MOST_ of the default settings. The only exception is to check the **Make Anaconda the default Python** option. (Note this may already be checked.)
 
 ### [Mac OS X - Video tutorial]
 
-1. Open [https://www.anaconda.com/products/distribution]
-   with your web browser.
+1. Open [https://www.anaconda.com/products/distribution] with your web browser.
 
-2. Download the Python 3 installer for OS X.
+2. Download the Python 3 installer for Mac.
 
 3. Install Python 3 using all of the defaults for installation.
 
@@ -75,33 +71,53 @@ If you run into any difficulties, please request help before the workshop begins
 Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-To create a conda environment called `cnn_workshop` with the required packages, open a terminal and type the command:
+To create a conda environment called `cnn_workshop_gpu` with the required packages, launch an Anaconda Prompt (terminal) and type the command:
 
 ```code
-conda create --name cnn_workshop python spyder seaborn scikit-learn pandas
+(base) C:\Users\Lab> conda create --name cnn_workshop_gpu python=3.9 spyder seaborn scikit-learn pandas
 ```
 
 Activate the newly created environment:
 
 ```code
-conda activate cnn_workshop
+(base) C:\Users\Lab> conda activate cnn_workshop_gpu
 ```
 
-Install tensorflow using [pip] (python's package manager):
+NOTE the prompt should change to reflect you are in the (cnn_workshop_gpu) environment.
+
+::::::::::::::::::::::::::::::::::::::::: callout
+To setup a GPU environment you need to make sure that you have the appropriate hardware, system, and software necessary for GPU support. Here we are following the [Windows TensorFlow installation instructions] starting at **Step 5. GPU setup** but using Anaconda instead of Miniconda. Specific instructions can also be found there for [MacOS] and [Linux] environments.
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
+First install [NVIDIA GPU driver] if you have not.
+
+TODO add links to other manufacturers' GPU drivers
+
+Then install the CUDA, cuDNN with conda.
 
 ```code
-pip install tensorflow
+(cnn_workshop_gpu) C:\Users\Lab> conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
 ```
 
-Note that modern versions of Tensorflow make Keras available as a module.
+Install tensorflow using [pip] (python's package manager), first making sure you have a recent version of pip:
+
+```code
+(cnn_workshop_gpu) C:\Users\Lab>pip install --upgrade pip
+
+# Anything above 2.10 is not supported on the GPU on Windows Native
+(cnn_workshop_gpu) C:\Users\Lab>pip install "tensorflow<2.11" 
+```
+
+Note that modern versions of Tensorflow make Keras available as a module: `from tensorflow import keras`
 
 
+TODO Check if this troublshooting section is still relevant:
 ### Troubleshooting for Windows
 
 It is possible that Windows users will run into version conflicts. If you are on Windows and get errors running the command, you can try installing the packages using pip within a conda environment:
 
 ```code
-conda create -n cnn_workshop python spyder
+conda create -n cnn_workshop_gpu python spyder
 conda activate cnn_workshop
 pip install tensorflow>=2.5 seaborn scikit-learn pandas
 ```
@@ -116,29 +132,23 @@ If you get errors running the installation command or conda hangs endlessly,
 you can try installing Tensorflow for Mac with pip:
 
 ```conda
-pip install tensorflow-macos
+pip install tensorflow-macos # TODO check if diff GPU version
 ```
 
 ## Starting Spyder
 
 We will teach using Python in [Spyder] (Scientific Python Development Environment) , a free integrated development environment (IDE) written in Python that comes with Anaconda.Editing, interactive testing, debugging, and introspection tools are all included in Spyder. If you installed Python using Anaconda, Spyder should already be on your system. If you did not use Anaconda, use the Python package manager pip (see the [Spyder website] for details.)
 
-To start Spyder, open a terminal and type the command:
+To start Spyder, open an Anaconda prompt (terminal), activate the tensorflow environment for this workshop of not already, and launch the app:
 
 ```conda
-spyder
-```
-
-To start the Python interpreter without jupyter lab, open a terminal
-or git bash and type the command:
-
-```conda
-python
+(cnn_workshop_gpu) C:\Users\Lab>conda activate cnn_workshop_gpu
+(cnn_workshop_gpu) C:\Users\Lab>spyder
 ```
 
 ## Check your setup
 
-To check whether all packages installed correctly, start a jupyter notebook in jupyter lab as explained above. Run the following lines of code:
+To check whether all packages installed correctly, go to the interactive `IPython Console` in Spyder (lower right hand side panel) and type in the following commands:
 
 ```python
 import sklearn
@@ -186,5 +196,7 @@ TODO cifar comes with keras; need to work out if we want to provide ahead of tim
 [The CIFAR-10 dataset]: https://www.cs.toronto.edu/~kriz/cifar.html
 [pip]: (https://pip.pypa.io/en/stable/)
 [these instructions]: https://docs.anaconda.com/anaconda/install/update-version/
-[Google colab]: https://colab.research.google.com/
-
+[Windows TensorFlow installation instructions]: https://www.tensorflow.org/install/pip#windows-native_1
+[MacOS]: https://www.tensorflow.org/install/pip#macos_1
+[Linux]: https://www.tensorflow.org/install/pip#linux_1
+[NVIDIA GPU driver]: https://www.nvidia.com/Download/index.aspx

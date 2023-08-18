@@ -2,35 +2,49 @@
 title: "Setup - GPU"
 ---
 
-These instructions are for setting up tensorflow in a **GPU** capable environment. These instructions assume you understand conda environments and are familiar with creating and using them. Because this is a more advanced topic and varies depending on your computer's architecture, please make sure you set up and test this up ahead of time. We will not be able to spend class time assisting on GPU setups.
+These instructions are for setting up tensorflow in a **GPU** capable environment. Because this is a more advanced topic and installation varies depending on your computer's architecture, please make sure you set up and test this up ahead of time. We will not be able to spend class time assisting on GPU setups.
 
+## Software Setup
+
+::::::::::::::::::::::::::::::::::::: challenge
 ## Installing Python using Anaconda
 
 [Python] is a popular language for scientific computing, and a frequent choice for machine learning as well. Installing all of its scientific packages
 individually can be a bit difficult, however, so we recommend the installer [Anaconda] which includes most (but not all) of the software you will need.
 
 Regardless of how you choose to install it, please make sure you install Python
-version 3.x (e.g., 3.9 is fine). Also, please set up your python environment at
+version 3.x (e.g., 3.9 is fine). 
+
+Also, please set up your python environment at
 least a day in advance of the workshop. If you encounter problems with the
 installation procedure, ask your workshop organizers via e-mail for assistance so
 you are ready to go as soon as the workshop begins.
 
-### [Windows - Video tutorial]
+:::::::::::::::::::::::: solution
+### Windows
+
+Check out the [Windows - Video tutorial] or:
 
 1. Open [https://www.anaconda.com/products/distribution] with your web browser.
 
 2. Download the Python 3 installer for Windows.
 
 3. Double-click the executable and install Python 3 using _MOST_ of the default settings. The only exception is to check the **Make Anaconda the default Python** option. (Note this may already be checked.)
+::::::::::::::::::::::::::::::::::
 
-### [Mac OS X - Video tutorial]
+:::::::::::::::::::::::: solution
+### MacOS
+
+Check out the [Mac OS X - Video tutorial] or:
 
 1. Open [https://www.anaconda.com/products/distribution] with your web browser.
 
 2. Download the Python 3 installer for Mac.
 
 3. Install Python 3 using all of the defaults for installation.
+::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::: solution 
 ### Linux
 
 Note that the following installation steps require you to work from the shell.
@@ -63,6 +77,9 @@ If you run into any difficulties, please request help before the workshop begins
         press enter to prepend Anaconda to your `PATH` (this makes the Anaconda
         distribution the default Python).
 
+:::::::::::::::::::::::::::::::::: 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Installing the required packages
 
 ::::::::::::::::::::::::::::::::::::::::: callout
@@ -86,7 +103,7 @@ Activate the newly created environment:
 NOTE the prompt should change to reflect you are in the (cnn_workshop_gpu) environment.
 
 ::::::::::::::::::::::::::::::::::::::::: callout
-To setup a GPU environment you need to make sure that you have the appropriate hardware, system, and software necessary for GPU support. Here we are following the [Windows TensorFlow installation instructions] starting at **Step 5. GPU setup** but using Anaconda instead of Miniconda. Specific instructions can also be found there for [MacOS] and [Linux] environments.
+To set up a GPU environment you need to make sure that you have the appropriate hardware, system, and software necessary for GPU support. Here we are following the [Windows TensorFlow installation instructions] starting at **Step 5. GPU setup** but using Anaconda instead of Miniconda. Specific instructions can also be found there for [MacOS] and [Linux] environments.
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 First install [NVIDIA GPU driver] if you have not.
@@ -112,6 +129,7 @@ Note that modern versions of Tensorflow make Keras available as a module: `from 
 
 
 TODO Check if this troublshooting section is still relevant:
+
 ### Troubleshooting for Windows
 
 It is possible that Windows users will run into version conflicts. If you are on Windows and get errors running the command, you can try installing the packages using pip within a conda environment:

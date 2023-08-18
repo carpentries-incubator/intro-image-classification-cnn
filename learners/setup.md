@@ -2,36 +2,29 @@
 title: "Setup - CPU"
 ---
 
-These instructions are for setting up tensorflow in a CPU only environment
+These instructions are for setting up tensorflow in a **CPU** only environment.
 
-## Installing Python using Anaconda
+## Installing Anaconda
 
-[Python] is a popular language for scientific computing, and a frequent choice for machine learning as well. Installing all of its scientific packages
-individually can be a bit difficult, however, so we recommend the installer [Anaconda] which includes most (but not all) of the software you will need.
+[Python] is a popular language for scientific computing, and a frequent choice for machine learning as well. Installing all of its scientific packages individually can be a bit difficult, however, so we recommend the installer [Anaconda] which includes most (but not all) of the software you will need.
 
-Regardless of how you choose to install it, please make sure you install Python
-version 3.x (e.g., 3.4 is fine). Also, please set up your python environment at
-least a day in advance of the workshop. If you encounter problems with the
-installation procedure, ask your workshop organizers via e-mail for assistance so
-you are ready to go as soon as the workshop begins.
+Regardless of how you choose to install it, please make sure you install Python version 3.x (e.g., 3.9 is fine).
+
+Also, please set up your python environment at least a day in advance of the workshop. If you encounter problems with the installation procedure, ask your workshop organizers via e-mail for assistance so you are ready to go as soon as the workshop begins.
 
 ### [Windows - Video tutorial]
 
-1. Open [https://www.anaconda.com/products/distribution]
-   with your web browser.
+1. Open [https://www.anaconda.com/products/distribution] with your web browser.
 
 2. Download the Python 3 installer for Windows.
 
-3. Double-click the executable and install Python 3 using _MOST_ of the
-   default settings. The only exception is to check the
-   **Make Anaconda the default Python** option.
+3. Double-click the executable and install Python 3 using _MOST_ of the default settings. The only exception is to check the **Make Anaconda the default Python** option.
 
 ### [Mac OS X - Video tutorial]
 
-1. Open [https://www.anaconda.com/products/distribution]
-   with your web browser.
+1. Open [https://www.anaconda.com/products/distribution] with your web browser.
 
-2. Download the Python 3 installer for OS X.
+2. Download the Python 3 installer for Mac/OS X.
 
 3. Install Python 3 using all of the defaults for installation.
 
@@ -127,13 +120,6 @@ To start Spyder, open a terminal and type the command:
 
 ```conda
 spyder
-```
-
-To start the Python interpreter without jupyter lab, open a terminal
-or git bash and type the command:
-
-```conda
-python
 ```
 
 ## Check your setup

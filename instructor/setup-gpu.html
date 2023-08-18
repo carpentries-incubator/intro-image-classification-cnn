@@ -154,7 +154,7 @@
         
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#installing-python-using-anaconda">Installing Python using Anaconda</a></li>
+        <ul><li><a href="#software-setup">Software Setup</a></li>
 <li><a href="#installing-the-required-packages">Installing the required packages</a></li>
 <li><a href="#starting-spyder">Starting Spyder</a></li>
 <li><a href="#check-your-setup">Check your setup</a></li>
@@ -286,28 +286,46 @@
         
 
 <p>These instructions are for setting up tensorflow in a
-<strong>GPU</strong> capable environment. These instructions assume you
-understand conda environments and are familiar with creating and using
-them. Because this is a more advanced topic and varies depending on your
-computer’s architecture, please make sure you set up and test this up
-ahead of time. We will not be able to spend class time assisting on GPU
+<strong>GPU</strong> capable environment. Because this is a more
+advanced topic and installation varies depending on your computer’s
+architecture, please make sure you set up and test this up ahead of
+time. We will not be able to spend class time assisting on GPU
 setups.</p>
-<section id="installing-python-using-anaconda"><h2 class="section-heading">Installing Python using Anaconda<a class="anchor" aria-label="anchor" href="#installing-python-using-anaconda"></a>
+<section id="software-setup"><h2 class="section-heading">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
 </h2>
-<hr class="half-width"><p><a href="https://python.org" class="external-link">Python</a> is a popular language for
+<hr class="half-width"><div id="installing-python-using-anaconda" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="installing-python-using-anaconda" class="callout-inner">
+<h3 class="callout-title">Installing Python using Anaconda<a class="anchor" aria-label="anchor" href="#installing-python-using-anaconda"></a>
+</h3>
+<div class="callout-content">
+<p><a href="https://python.org" class="external-link">Python</a> is a popular language for
 scientific computing, and a frequent choice for machine learning as
 well. Installing all of its scientific packages individually can be a
 bit difficult, however, so we recommend the installer <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> which
 includes most (but not all) of the software you will need.</p>
 <p>Regardless of how you choose to install it, please make sure you
-install Python version 3.x (e.g., 3.9 is fine). Also, please set up your
-python environment at least a day in advance of the workshop. If you
-encounter problems with the installation procedure, ask your workshop
-organizers via e-mail for assistance so you are ready to go as soon as
-the workshop begins.</p>
-<div class="section level3">
-<h3 id="windows---video-tutorial"><a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows -
-Video tutorial</a><a class="anchor" aria-label="anchor" href="#windows---video-tutorial"></a></h3>
+install Python version 3.x (e.g., 3.9 is fine).</p>
+<p>Also, please set up your python environment at least a day in advance
+of the workshop. If you encounter problems with the installation
+procedure, ask your workshop organizers via e-mail for assistance so you
+are ready to go as soon as the workshop begins.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Windows
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
+tutorial</a> or:</p>
 <ol style="list-style-type: decimal"><li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
 your web browser.</p></li>
 <li><p>Download the Python 3 installer for Windows.</p></li>
@@ -316,17 +334,38 @@ your web browser.</p></li>
 the <strong>Make Anaconda the default Python</strong> option. (Note this
 may already be checked.)</p></li>
 </ol></div>
-<div class="section level3">
-<h3 id="mac-os-x---video-tutorial"><a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X -
-Video tutorial</a><a class="anchor" aria-label="anchor" href="#mac-os-x---video-tutorial"></a></h3>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  MacOS
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
+tutorial</a> or:</p>
 <ol style="list-style-type: decimal"><li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
 your web browser.</p></li>
 <li><p>Download the Python 3 installer for Mac.</p></li>
 <li><p>Install Python 3 using all of the defaults for
 installation.</p></li>
 </ol></div>
-<div class="section level3">
-<h3 id="linux">Linux<a class="anchor" aria-label="anchor" href="#linux"></a></h3>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
+  Linux
+  </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
 <p>Note that the following installation steps require you to work from
 the shell. If you run into any difficulties, please request help before
 the workshop begins.</p>
@@ -356,6 +395,9 @@ Anaconda to your <code>PATH</code> (this makes the Anaconda distribution
 the default Python).</p></li>
 </ol></li>
 </ol></div>
+</div>
+</div>
+</div>
 </section><section id="installing-the-required-packages"><h2 class="section-heading">Installing the required packages<a class="anchor" aria-label="anchor" href="#installing-the-required-packages"></a>
 </h2>
 <hr class="half-width"><div id="callout1" class="callout callout">
@@ -393,7 +435,7 @@ type the command:</p>
 <h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
 </h3>
 <div class="callout-content">
-<p>To setup a GPU environment you need to make sure that you have the
+<p>To set up a GPU environment you need to make sure that you have the
 appropriate hardware, system, and software necessary for GPU support.
 Here we are following the <a href="https://www.tensorflow.org/install/pip#windows-native_1" class="external-link">Windows
 TensorFlow installation instructions</a> starting at <strong>Step 5. GPU
@@ -416,8 +458,9 @@ manager), first making sure you have a recent version of pip:</p>
 (cnn_workshop_gpu) C:\Users\Lab&gt;pip install "tensorflow&lt;2.11" </code></pre>
 <p>Note that modern versions of Tensorflow make Keras available as a
 module: <code>from tensorflow import keras</code></p>
-<p>TODO Check if this troublshooting section is still relevant: ###
-Troubleshooting for Windows</p>
+<p>TODO Check if this troublshooting section is still relevant:</p>
+<div class="section level3">
+<h3 id="troubleshooting-for-windows">Troubleshooting for Windows<a class="anchor" aria-label="anchor" href="#troubleshooting-for-windows"></a></h3>
 <p>It is possible that Windows users will run into version conflicts. If
 you are on Windows and get errors running the command, you can try
 installing the packages using pip within a conda environment:</p>
@@ -428,6 +471,7 @@ pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas</code></pre>
 package management system for Python software packages. It is integrated
 into your local Python installation and runs regardless of your
 operating system too.</p>
+</div>
 <div class="section level3">
 <h3 id="troubleshooting-for-macs-with-apple-silicon-chip">Troubleshooting for Macs with Apple silicon chip<a class="anchor" aria-label="anchor" href="#troubleshooting-for-macs-with-apple-silicon-chip"></a></h3>
 <p>Newer Macs (from 2020 onwards) often have a different kind of chip,

@@ -271,7 +271,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Setup - GPU</h1>
-        <p> Last updated on 2023-08-03 | 
+        <p> Last updated on 2023-08-18 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -283,8 +283,13 @@
 
         
 
-<p>These instructions are for setting up tensorflow in a GPU capable
-environment</p>
+<p>These instructions are for setting up tensorflow in a
+<strong>GPU</strong> capable environment. These instructions assume you
+understand conda environments and are familiar with creating and using
+them. Because this is a more advanced topic and varies depending on your
+computer’s architecture, please make sure you set up and test this up
+ahead of time. We will not be able to spend class time assisting on GPU
+setups.</p>
 <section id="installing-python-using-anaconda"><h2 class="section-heading">Installing Python using Anaconda<a class="anchor" aria-label="anchor" href="#installing-python-using-anaconda"></a>
 </h2>
 <hr class="half-width"><p><a href="https://python.org" class="external-link">Python</a> is a popular language for
@@ -293,7 +298,7 @@ well. Installing all of its scientific packages individually can be a
 bit difficult, however, so we recommend the installer <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> which
 includes most (but not all) of the software you will need.</p>
 <p>Regardless of how you choose to install it, please make sure you
-install Python version 3.x (e.g., 3.4 is fine). Also, please set up your
+install Python version 3.x (e.g., 3.9 is fine). Also, please set up your
 python environment at least a day in advance of the workshop. If you
 encounter problems with the installation procedure, ask your workshop
 organizers via e-mail for assistance so you are ready to go as soon as
@@ -306,14 +311,15 @@ your web browser.</p></li>
 <li><p>Download the Python 3 installer for Windows.</p></li>
 <li><p>Double-click the executable and install Python 3 using
 <em>MOST</em> of the default settings. The only exception is to check
-the <strong>Make Anaconda the default Python</strong> option.</p></li>
+the <strong>Make Anaconda the default Python</strong> option. (Note this
+may already be checked.)</p></li>
 </ol></div>
 <div class="section level3">
 <h3 id="mac-os-x---video-tutorial"><a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X -
 Video tutorial</a><a class="anchor" aria-label="anchor" href="#mac-os-x---video-tutorial"></a></h3>
 <ol style="list-style-type: decimal"><li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
 your web browser.</p></li>
-<li><p>Download the Python 3 installer for OS X.</p></li>
+<li><p>Download the Python 3 installer for Mac.</p></li>
 <li><p>Install Python 3 using all of the defaults for
 installation.</p></li>
 </ol></div>
@@ -369,29 +375,57 @@ instructions</a> for updating Conda if required.</p>
 </div>
 </div>
 </div>
-<p>To create a conda environment called <code>cnn_workshop</code> with
-the required packages, open a terminal and type the command:</p>
-<pre class="code"><code>conda create --name cnn_workshop python spyder seaborn scikit-learn pandas</code></pre>
+<p>To create a conda environment called <code>cnn_workshop_gpu</code>
+with the required packages, launch an Anaconda Prompt (terminal) and
+type the command:</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop_gpu python=3.9 spyder seaborn scikit-learn pandas</code></pre>
 <p>Activate the newly created environment:</p>
-<pre class="code"><code>conda activate cnn_workshop</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu</code></pre>
+<p>NOTE the prompt should change to reflect you are in the
+(cnn_workshop_gpu) environment.</p>
+<div id="callout2" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+</h3>
+<div class="callout-content">
+<p>To setup a GPU environment you need to make sure that you have the
+appropriate hardware, system, and software necessary for GPU support.
+Here we are following the <a href="https://www.tensorflow.org/install/pip#windows-native_1" class="external-link">Windows
+TensorFlow installation instructions</a> starting at <strong>Step 5. GPU
+setup</strong> but using Anaconda instead of Miniconda. Specific
+instructions can also be found there for <a href="https://www.tensorflow.org/install/pip#macos_1" class="external-link">MacOS</a> and <a href="https://www.tensorflow.org/install/pip#linux_1" class="external-link">Linux</a>
+environments.</p>
+</div>
+</div>
+</div>
+<p>First install <a href="https://www.nvidia.com/Download/index.aspx" class="external-link">NVIDIA GPU driver</a>
+if you have not.</p>
+<p>TODO add links to other manufacturers’ GPU drivers</p>
+<p>Then install the CUDA, cuDNN with conda.</p>
+<pre class="code"><code>(cnn_workshop_gpu) C:\Users\Lab&gt; conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</code></pre>
 <p>Install tensorflow using <a href="" title="https://pip.pypa.io/en/stable/">pip</a> (python’s package
-manager):</p>
-<pre class="code"><code>pip install tensorflow</code></pre>
+manager), first making sure you have a recent version of pip:</p>
+<pre class="code"><code>(cnn_workshop_gpu) C:\Users\Lab&gt;pip install --upgrade pip
+
+# Anything above 2.10 is not supported on the GPU on Windows Native
+(cnn_workshop_gpu) C:\Users\Lab&gt;pip install "tensorflow&lt;2.11" </code></pre>
 <p>Note that modern versions of Tensorflow make Keras available as a
-module.</p>
-<div class="section level3">
-<h3 id="troubleshooting-for-windows">Troubleshooting for Windows<a class="anchor" aria-label="anchor" href="#troubleshooting-for-windows"></a></h3>
+module: <code>from tensorflow import keras</code></p>
+<p>TODO Check if this troublshooting section is still relevant: ###
+Troubleshooting for Windows</p>
 <p>It is possible that Windows users will run into version conflicts. If
 you are on Windows and get errors running the command, you can try
 installing the packages using pip within a conda environment:</p>
-<pre class="code"><code>conda create -n cnn_workshop python spyder
+<pre class="code"><code>conda create -n cnn_workshop_gpu python spyder
 conda activate cnn_workshop
 pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas</code></pre>
 <p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
 package management system for Python software packages. It is integrated
 into your local Python installation and runs regardless of your
 operating system too.</p>
-</div>
 <div class="section level3">
 <h3 id="troubleshooting-for-macs-with-apple-silicon-chip">Troubleshooting for Macs with Apple silicon chip<a class="anchor" aria-label="anchor" href="#troubleshooting-for-macs-with-apple-silicon-chip"></a></h3>
 <p>Newer Macs (from 2020 onwards) often have a different kind of chip,
@@ -399,7 +433,7 @@ manufactured by Apple instead of Intel. This can lead to problems
 installing Tensorflow . If you get errors running the installation
 command or conda hangs endlessly, you can try installing Tensorflow for
 Mac with pip:</p>
-<pre class="conda"><code>pip install tensorflow-macos</code></pre>
+<pre class="conda"><code>pip install tensorflow-macos # TODO check if diff GPU version</code></pre>
 </div>
 </section><section id="starting-spyder"><h2 class="section-heading">Starting Spyder<a class="anchor" aria-label="anchor" href="#starting-spyder"></a>
 </h2>
@@ -411,16 +445,16 @@ If you installed Python using Anaconda, Spyder should already be on your
 system. If you did not use Anaconda, use the Python package manager pip
 (see the <a href="https://docs.spyder-ide.org/current/installation.html" class="external-link">Spyder
 website</a> for details.)</p>
-<p>To start Spyder, open a terminal and type the command:</p>
-<pre class="conda"><code><span><span class="va">spyder</span></span></code></pre>
-<p>To start the Python interpreter without jupyter lab, open a terminal
-or git bash and type the command:</p>
-<pre class="conda"><code><span><span class="va">python</span></span></code></pre>
+<p>To start Spyder, open an Anaconda prompt (terminal), activate the
+tensorflow environment for this workshop of not already, and launch the
+app:</p>
+<pre class="conda"><code>(cnn_workshop_gpu) C:\Users\Lab&gt;conda activate cnn_workshop_gpu
+(cnn_workshop_gpu) C:\Users\Lab&gt;spyder</code></pre>
 </section><section id="check-your-setup"><h2 class="section-heading">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a>
 </h2>
-<hr class="half-width"><p>To check whether all packages installed correctly, start a jupyter
-notebook in jupyter lab as explained above. Run the following lines of
-code:</p>
+<hr class="half-width"><p>To check whether all packages installed correctly, go to the
+interactive <code>IPython Console</code> in Spyder (lower right hand
+side panel) and type in the following commands:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -510,7 +544,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/setup-gpu.html",
   "identifier": "https://.github.io/github.com/setup-gpu.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-08-03",
+  "dateModified": "2023-08-18",
   "datePublished": "2023-08-18"
 }
 

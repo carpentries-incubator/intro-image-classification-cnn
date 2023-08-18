@@ -308,7 +308,7 @@ the <strong>Make Anaconda the default Python</strong> option.</p></li>
 Video tutorial</a><a class="anchor" aria-label="anchor" href="#mac-os-x---video-tutorial"></a></h3>
 <ol style="list-style-type: decimal"><li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
 your web browser.</p></li>
-<li><p>Download the Python 3 installer for Mac/OS X.</p></li>
+<li><p>Download the Python 3 installer for Mac.</p></li>
 <li><p>Install Python 3 using all of the defaults for
 installation.</p></li>
 </ol></div>
@@ -366,14 +366,14 @@ instructions</a> for updating Conda if required.</p>
 </div>
 <p>To create a conda environment called <code>cnn_workshop</code> with
 the required packages, open a terminal and type the command:</p>
-<pre class="code"><code>conda create --name cnn_workshop python spyder seaborn scikit-learn pandas</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop python spyder seaborn scikit-learn pandas</code></pre>
 <p>Activate the newly created environment:</p>
-<pre class="code"><code>conda activate cnn_workshop</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop</code></pre>
 <p>Install tensorflow using <a href="" title="https://pip.pypa.io/en/stable/">pip</a> (python’s package
 manager):</p>
-<pre class="code"><code>pip install tensorflow</code></pre>
+<pre class="code"><code>(cnn_workshop) C:\Users\Lab&gt;pip install tensorflow</code></pre>
 <p>Note that modern versions of Tensorflow make Keras available as a
-module.</p>
+module: <code>from tensorflow import keras</code></p>
 <div class="section level3">
 <h3 id="troubleshooting-for-windows">Troubleshooting for Windows<a class="anchor" aria-label="anchor" href="#troubleshooting-for-windows"></a></h3>
 <p>It is possible that Windows users will run into version conflicts. If
@@ -407,12 +407,12 @@ system. If you did not use Anaconda, use the Python package manager pip
 (see the <a href="https://docs.spyder-ide.org/current/installation.html" class="external-link">Spyder
 website</a> for details.)</p>
 <p>To start Spyder, open a terminal and type the command:</p>
-<pre class="conda"><code><span><span class="va">spyder</span></span></code></pre>
+<pre class="conda"><code>(cnn_workshop) C:\Users\Lab&gt;spyder</code></pre>
 </section><section id="check-your-setup"><h2 class="section-heading">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a>
 </h2>
-<hr class="half-width"><p>To check whether all packages installed correctly, start a jupyter
-notebook in jupyter lab as explained above. Run the following lines of
-code:</p>
+<hr class="half-width"><p>To check whether all packages installed correctly, go to the
+interactive <code>IPython Console</code> in Spyder (lower right hand
+side panel) and type in the following commands:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>

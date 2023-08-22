@@ -28,6 +28,12 @@
     <loc>https://.github.io/github.com/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://.github.io/github.com/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/images.html</loc>
+  </url>
+  <url>
     <loc>https://.github.io/github.com/index.html</loc>
   </url>
   <url>
@@ -58,13 +64,31 @@
     <loc>https://.github.io/github.com/instructor/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://.github.io/github.com/instructor/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/images.html</loc>
+  </url>
+  <url>
     <loc>https://.github.io/github.com/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor/key-points.html</loc>
   </url>
   <url>
     <loc>https://.github.io/github.com/instructor/profiles.html</loc>
   </url>
   <url>
     <loc>https://.github.io/github.com/instructor/setup-gpu.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://.github.io/github.com/key-points.html</loc>
   </url>
   <url>
     <loc>https://.github.io/github.com/profiles.html</loc>

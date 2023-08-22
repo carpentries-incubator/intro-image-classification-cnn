@@ -61,7 +61,6 @@ model_intro.save('fit_outputs/01_intro_model.h5')
 from icwithcnn_functions import prepare_image_icwithcnn
 
 new_img_path = "../data/Jabiru_TGS.JPG" # path to image
-new_img_path = "../data/helena-lopes-7FC4WpyYcfQ-unsplash_Horse.JPG" # path to image
 new_img_prepped = prepare_image_icwithcnn(new_img_path)
 
 # predict the classname

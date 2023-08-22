@@ -23,7 +23,7 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## What is machine learning?
-Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural etwork**, abbreviated as **CNN**, but there are many more.
+Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural Network**, abbreviated as **CNN**, but there are many more.
 
 The techniques breakdown into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs, for example trying to predict the cost of something given the economic conditions and the cost of raw materials or predicting a country’s GDP given its life expectancy. Classifiers try to classify data into different categories, or assign a label; for example, deciding what characters are visible in a picture of some writing or if a message is spam or not.
 
@@ -54,7 +54,20 @@ Deep neural networks (constructed with multiple layers of neurons) are the exten
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## What is image classification?
+
+Image classification is a fundamental task in computer vision, which is a field of artificial intelligence focused on teaching computers to interpret and understand visual information from the world. Image classification specifically involves the process of assigning a label or category to an input image. The goal is to enable computers to recognize and categorize objects, scenes, or patterns within images, just as a human would. Image classification can refer to one of several tasks:
+
 ![](fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png){alt='Four types of image classification tasks include semantic segmentation where every pixel is labelled; classification and localization that detects a single object like a cat; object detection that detects multiple objects like cats and dogs; and instance segmentation that detects each pixel of multiple objects'}
+
+Image classification has numerous practical applications, including:
+
+- **Object Recognition**: Identifying objects within images, such as cars, animals, or household items.
+- **Medical Imaging**: Diagnosing diseases from medical images like X-rays or MRIs.
+- **Quality Control**: Inspecting products for defects on manufacturing lines.
+- **Autonomous Vehicles**: Identifying pedestrians, traffic signs, and other vehicles in self-driving cars.
+- **Security and Surveillance**: Detecting anomalies or unauthorized objects in security footage.
+
+Convolutional Neural Networks (CNNs) have become a cornerstone in image classification due to their ability to automatically learn hierarchical features from images and achieve remarkable performance on a wide range of tasks.
 
 ## Deep Learning Workflow
 To apply Deep Learning to a problem there are several steps we need to go through:
@@ -66,7 +79,9 @@ Firstly we must decide what it is we want our Deep Learning system to do. This l
 Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
 
 ### 3. Prepare data
-Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data.
+Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data. Information on how this is done and what the data looks like will be explored in Episode 2. 
+
+TODO add link after ep 02 is developed
 
 Next we will need to divide the data into multiple sets. One of these will be used by the training process and we will call it the **training set**. Another set, called the **validation set**, will be used during the training process to tune hyperparameters. A third **test set** is used to assess the final performance of the trained model.
 
@@ -224,16 +239,17 @@ from icwithcnn_functions import prepare_image_icwithcnn
 new_img_path = "../data/Jabiru_TGS.JPG" # path to image
 new_img_prepped = prepare_image_icwithcnn(new_img_path)
 
-# predict the classname
+# predict the class name
 result_intro = model_intro.predict(new_img_prepped) # make prediction
-print(result_intro) # probability for each class
-print(class_names[result_intro.argmax()]) # class with highest probability
+
+print(' The predicted probability of each class is: \n', result_intro.round(4))
+print('The class with the highest predicted probability is: ', [result_intro.argmax()])
 ```
 
 ```output
-Result: [[-2.0185328   9.337507   -2.4551604  -0.4688053  -4.599108   -3.5822825
-   6.427376   -0.09437321  0.82065487  1.2978227 ]]
-Class name: automobile
+ The predicted probability of each class is: 
+ [[-50.365475 -44.362732 -36.384968 -48.386 -32.87043 -66.691696 -29.284208 -51.06697  -36.475967 -43.751118]]
+The class with the highest predicted probability is:  frog
 ```
 
 ::::::::::::::::::::::::::::::::::::::::: callout

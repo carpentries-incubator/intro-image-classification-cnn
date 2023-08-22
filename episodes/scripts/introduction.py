@@ -40,7 +40,7 @@ inputs_intro = keras.Input(shape=train_images.shape[1:])
 x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)
 x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
 x_intro = keras.layers.Flatten()(x_intro)
-outputs_intro = keras.layers.Dense(10)(x_intro)
+outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 
 model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
 
@@ -61,10 +61,11 @@ model_intro.save('fit_outputs/01_intro_model.h5')
 from icwithcnn_functions import prepare_image_icwithcnn
 
 new_img_path = "../data/Jabiru_TGS.JPG" # path to image
+new_img_path = "../data/helena-lopes-7FC4WpyYcfQ-unsplash_Horse.JPG" # path to image
 new_img_prepped = prepare_image_icwithcnn(new_img_path)
 
 # predict the classname
 result_intro = model_intro.predict(new_img_prepped) # make prediction
-print(result_intro) # probability for each class
-print(class_names[result_intro.argmax()]) # class with highest probability
+print(' The predicted probability of each class is: ', result_intro.round(4))
+print('The class with the highest predicted probability is: ', class_names[result_intro.argmax()])
 

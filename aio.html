@@ -357,7 +357,7 @@ are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -381,7 +381,7 @@ may already be checked.)</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -403,7 +403,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Note that the following installation steps require you to work from
 the shell. If you run into any difficulties, please request help before
@@ -815,7 +815,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1182,6 +1182,7 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
+<li>How are images represented in digital format?</li>
 <li>Where can I find image data to train my model?</li>
 <li>How do I plot image data in python?</li>
 <li>How do I prepare image data for use in a convolutional neural
@@ -1241,7 +1242,7 @@ be able to take another image and correctly classify its contents.</p>
 in the introduction. Let’s explore this dataset in more detail and talk
 about steps you would take to make your own dataset.</p>
 <div class="section level4">
-<h4 id="where-can-i-find-image-data">Where can I find image data?<a class="anchor" aria-label="anchor" href="#where-can-i-find-image-data"></a>
+<h4 id="pre-existing-image-data">Pre-existing image data<a class="anchor" aria-label="anchor" href="#pre-existing-image-data"></a>
 </h4>
 <p>In some cases you will be able to download an image dataset that is
 already labelled and can be used to classify a number of different
@@ -1261,8 +1262,29 @@ of competitions are generally a good place to start.</li>
 <li>[MS COCO] - &gt;200,000 labelled images used for object detection,
 instance segmentation, keypoint analysis, and captioning</li>
 </ul>
+<p>Where labelled data exists, in most cases the data provider or other
+users will have created functions that you can use to help load the
+data:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the CINIC-10 dataset</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cinic10 <span class="co"># python script needs to be in available</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>image_dir <span class="op">=</span> <span class="st">'/path/to/dataset/folder'</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (val_images, val_labels) <span class="op">=</span> cinic10.loadData(<span class="st">"/path/to/dataset/folder"</span>, oneHot<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+</div>
+<p>In this instance the data is likely already prepared for use in a
+CNN. However, it is always a good idea to read any associated
+documentation to find out what steps the data providers took.</p>
+</div>
+<div class="section level4">
+<h4 id="custom-image-data">Custom image data<a class="anchor" aria-label="anchor" href="#custom-image-data"></a>
+</h4>
+<p><strong>Step 1. Data collection and Labeling:</strong></p>
 <p>In other cases, you will need to create your own set of labelled
-images. For image classification the label applies to the entire image;
+images.</p>
+<p>For image classification the label applies to the entire image;
 object detection requires bounding boxes, and instance or semantic
 segmentation requires each pixel to be labelled.</p>
 <p>There are a number of different software that can be used to label
@@ -1300,32 +1322,245 @@ exposes a different view.</p>
 </div>
 </div>
 </div>
-<p>In cases where labelled data exists, you can simply load it into
-memory:</p>
+<p><strong>Step 2. Data preprocessing:</strong></p>
+<p>This step involves various tasks to enhance the quality and
+consistency of the data:</p>
+<ul>
+<li><p><strong>Resizing</strong>: Resize images to a consistent
+resolution (e.g., 224x224) to ensure uniformity and reduce computational
+load.</p></li>
+<li><p><strong>Normalization</strong>: Scale pixel values to a common
+range, often between 0 and 1 or -1 and 1. Normalization helps the model
+converge faster during training.</p></li>
+<li><p><strong>Data Augmentation</strong>: Apply random transformations
+(e.g., rotations, flips, shifts) to create new variations of the same
+image. This helps improve the model’s robustness and generalization by
+exposing it to more diverse data.</p></li>
+<li><p><strong>Handling Color Channels</strong>: Depending on the model
+and library you use, you might need to handle different color channel
+orders (RGB, BGR, etc.).</p></li>
+<li><p><strong>Handling Data Formats</strong>: Convert image data to a
+format suitable for your deep learning framework (e.g., NumPy arrays or
+TensorFlow tensors).</p></li>
+</ul>
+<p>Before we look at some of these tasks in more detail we need to
+understand that the images we see on hard copy, view with our electronic
+devices, or process with our programs are represented and stored in the
+computer as numeric abstractions, or approximations of what we see with
+our eyes in the real world. And before we begin to learn how to process
+images with Python programs, we need to spend some time understanding
+how these abstractions work.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="load-data">Load data<a class="anchor" aria-label="anchor" href="#load-data"></a>
+<h3 id="pixels">Pixels<a class="anchor" aria-label="anchor" href="#pixels"></a>
 </h3>
-<div class="codewrapper sourceCode" id="cb1">
+<p>It is important to realise that images are stored as rectangular
+arrays of hundreds, thousands, or millions of discrete “picture
+elements,” otherwise known as pixels. Each pixel can be thought of as a
+single square point of coloured light.</p>
+<p>For example, consider this image of a maize seedling, with a square
+area designated by a red box:</p>
+<figure><img src="fig/02_Jabiru_TGS_marked.jpg" alt="Original size image of a Jabiru with a red square surrounding an area to zoom in on" class="figure mx-auto d-block"></figure><p>Now, if we zoomed in close enough to see the pixels in the red box,
+we would see something like this:</p>
+<figure><img src="fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg" alt="Enlarged image area of Jabiru" class="figure mx-auto d-block"></figure><p>Note that each square in the enlarged image area - each pixel - is
+all one colour, but that each pixel can have a different colour from its
+neighbors. Viewed from a distance, these pixels seem to blend together
+to form the image we see.</p>
+</div>
+<div class="section level3">
+<h3 id="working-with-pixels">Working with Pixels<a class="anchor" aria-label="anchor" href="#working-with-pixels"></a>
+</h3>
+<p>As noted, in practice, real world images will typically be made up of
+a vast number of pixels, and each of these pixels will be one of
+potentially millions of colours. In python, an image can be represented
+as a multidimensional array, also known as a tensor, where each element
+in the array corresponds to a pixel value in the image. In the context
+of images, these arrays often have dimensions for height, width, and
+color channels (if applicable).</p>
+<div id="callout2" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+</h3>
+<div class="callout-content">
+<p>Matrices, arrays, images and pixels</p>
+<p>The matrix is mathematical concept - numbers evenly arranged in a
+rectangle. This can be a two dimensional rectangle, like the shape of
+the screen you’re looking at now. Or it could be a three dimensional
+equivalent, a cuboid, or have even more dimensions, but always keeping
+the evenly spaced arrangement of numbers. In computing, array refers to
+a structure in the computer’s memory where data is stored in
+evenly-spaced elements. This is strongly analogous to a matrix. A NumPy
+array is a type of variable (a simpler example of a type is an integer).
+For our purposes, the distinction between matrices and arrays is not
+important, we don’t really care how the computer arranges our data in
+its memory. The important thing is that the computer stores values
+describing the pixels in images, as arrays. And the terms matrix and
+array can be used interchangeably.</p>
+</div>
+</div>
+</div>
+<div id="callout3" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout3"></a>
+</h3>
+<div class="callout-content">
+<p>Python image libraries</p>
+<p>Two of the most commonly used libraries for image representation and
+manipulation are NumPy and Pillow (PIL). Additionally, when working with
+deep learning frameworks like TensorFlow and PyTorch, images are often
+represented as tensors within these frameworks.</p>
+<ul>
+<li>NumPy is a powerful library for numerical computing in Python. It
+provides support for creating and manipulating arrays, which can be used
+to represent images as multidimensional arrays.
+<ul>
+<li><code>import numpy as np</code></li>
+</ul>
+</li>
+<li>The Pillow library (PIL fork) provides functions to open,
+manipulate, and save various image file formats. It represents images
+using its own Image class.
+<ul>
+<li><code>from PIL import Image</code></li>
+</ul>
+</li>
+<li>TensorFlow images are often represented as tensors that have
+dimensions for batch size, height, width, and color channels. This
+framework provide tools to load, preprocess, and work with image data
+seamlessly. Note -<code>from tensorflow import keras</code>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Let us start by looking at the image we used in the introduction.</p>
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the CINIC-10 dataset</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cinic10 <span class="co"># python script needs to be in available</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>image_dir <span class="op">=</span> <span class="st">'/path/to/dataset/folder'</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (val_images, val_labels) <span class="op">=</span> cinic10.loadData(<span class="st">"/path/to/dataset/folder"</span>, oneHot<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the libraries required</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.utils <span class="im">import</span> img_to_array</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.utils <span class="im">import</span> load_img</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># specify the image path</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>new_img_path <span class="op">=</span> <span class="st">"../data/Jabiru_TGS.JPG"</span> <span class="co"># path to image</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the image with default arguments</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>new_img_pil <span class="op">=</span> load_img(new_img_path)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># confirm the data class and size</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The new image is of type :'</span>, new_img.__class__, <span class="st">'and has the size'</span>, new_img.size)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the Image into an array for processing</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>new_img_arr <span class="op">=</span> img_to_array(new_img_pil)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># confirm the data class and shape</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The new image is of type :'</span>, new_img_arr.__class__, <span class="st">'and has the shape'</span>, new_img_arr.shape)</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>The new image is of type : &lt;class 'PIL.JpegImagePlugin.JpegImageFile'&gt; and has the size (552, 573)
+The new image is of type : &lt;class 'numpy.ndarray'&gt; and has the shape (573, 552, 3)</code></pre>
 </div>
 </div>
-</section><section id="plotting-image-data-in-python"><h2 class="section-heading">Plotting image data in python<a class="anchor" aria-label="anchor" href="#plotting-image-data-in-python"></a>
-</h2>
-<hr class="half-width">
-<p>See <a href="https://datacarpentry.org/image-processing/02-image-basics.html" class="external-link uri">https://datacarpentry.org/image-processing/02-image-basics.html</a></p>
-</section><section id="image-dimensions"><h2 class="section-heading">Image Dimensions<a class="anchor" aria-label="anchor" href="#image-dimensions"></a>
-</h2>
-<hr class="half-width"></section><section id="rgb-vs-greyscale"><h2 class="section-heading">RGB vs Greyscale<a class="anchor" aria-label="anchor" href="#rgb-vs-greyscale"></a>
-</h2>
-<hr class="half-width"></section><section id="split-data-into-training-and-validation-set"><h2 class="section-heading">Split data into training and validation set<a class="anchor" aria-label="anchor" href="#split-data-into-training-and-validation-set"></a>
+<div class="section level3">
+<h3 id="image-dimensions---resizing">Image Dimensions - Resizing<a class="anchor" aria-label="anchor" href="#image-dimensions---resizing"></a>
+</h3>
+<p>Here we see our new image has shape <code>(573, 552, 3)</code>,
+meaning it is much larger in size, 573x552 pixels, and also consists of
+3 colour channels.</p>
+<p>Recall from the introduction that our training data set consists of
+50000 images of 32x32 pixels and 3 channels (RGB values) and labels.</p>
+<p>To reduce the computational load and ensure all of our images have a
+uniform size, we need to choose an image resolution (or size in pixels)
+and ensure that all of the images we use are resized to that shape to be
+consistent.</p>
+<p>There are a couple of ways to do this in python but one way is to
+specify the size you want using an argument to the ‘load_image()’
+function from <code>keras.utils</code>.</p>
+<pre><code># read in the new image and specify the size to be the same as our training images
+new_img_pil_small = load_img(path_to_img, target_size=(32,32))
+
+# confirm the data class and shape
+print('The new image is still of type:', new_img_pil_small.__class__, 'and has the reduced shape', new_img_pil_small.shape)</code></pre>
+</div>
+<div class="section level3">
+<h3 id="image-colours">Image Colours<a class="anchor" aria-label="anchor" href="#image-colours"></a>
+</h3>
+<p>RGB Images:</p>
+<ul>
+<li><p>For image classification tasks, RGB images are used because they
+capture the full spectrum of colors that human vision can perceive,
+allowing the model to learn intricate features and patterns present in
+the images.</p></li>
+<li><p>RGB (Red, Green, Blue) images have three color channels: red,
+green, and blue, with each channel having an intensity value that ranges
+from 0 to 255. Each channel represents the intensity of the
+corresponding color for each pixel. This results in a 3D array, where
+the dimensions are height, width, and color channel.</p></li>
+</ul>
+<p>While RGB is the most common representation, there are scenarios
+where other color spaces might be considered, such as:</p>
+<p>Grayscale Images:</p>
+<ul>
+<li><p>Grayscale images have only one channel, representing the
+intensity of the pixels. Each pixel’s intensity is usually represented
+by a single numerical value that ranges from 0 (black) to 255 (white).
+The image is essentially a 2D array where each element holds the
+intensity value of the corresponding pixel.</p></li>
+<li><p>In cases where color information isn’t critical, you might
+convert RGB images to grayscale to reduce the computational
+load.</p></li>
+</ul>
+<div id="callout4" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout4"></a>
+</h3>
+<div class="callout-content">
+<p>Keras Image data loading</p>
+<p>Note that the keras.utils for image data loading offer far more
+capability than we are using here. For example:</p>
+<ul>
+<li>use load_img() to specify the image size and the colour
+pallette</li>
+<li>use image_dataset_from_directory() to perform these actions are
+multiple images</li>
+</ul>
+<p>See the Keras API for more [Image data loading] capabilities.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="normalization">Normalization<a class="anchor" aria-label="anchor" href="#normalization"></a>
+</h3>
+<p>Image RGB values are between 0 and 255. As input for neural networks,
+it is better to have small input values. The process of converting the
+RGB values to be between 0 and 1 is called normalization.</p>
+<p>We already saw how to do this in the introduction:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check the image values</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The new image is still of type:'</span>, new_img_pil_small.__class__, <span class="st">'and has the reduced shape'</span>, new_img_pil_small.values)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># normalize the RGB values to be between 0 and 1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>new_img_pil_small_norm <span class="op">=</span> new_img_pil_small <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span></code></pre>
+</div>
+</div>
+</section><section id="split-data-into-training-and-validation-set"><h2 class="section-heading">Split data into training and validation set<a class="anchor" aria-label="anchor" href="#split-data-into-training-and-validation-set"></a>
 </h2>
 <hr class="half-width">
 <p>In the previous episode we saw that the keras installation includes
@@ -1335,12 +1570,12 @@ no test data.</p>
 <p>When using a different dataset, or loading a your own, you will need
 to do the split yourself. Keep in mind you will also need to a
 validation set.</p>
-<div id="callout2" class="callout callout">
+<div id="callout5" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout5"></a>
 </h3>
 <div class="callout-content">
 <p>ChatGPT</p>
@@ -1411,12 +1646,12 @@ process.</p>
 <p>To split a cleaned dataset into a training and test set we will use a
 very convenient function from sklearn called
 <code>train_test_split</code>.</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(your_data, target, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>, shuffle<span class="op">=</span><span class="va">True</span>, stratify<span class="op">=</span>target)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(your_data, target, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>, shuffle<span class="op">=</span><span class="va">True</span>, stratify<span class="op">=</span>target)</span></code></pre>
 </div>
 <p>TODO need some test data - maybe not use cifar in this section?</p>
 <p>This function takes a number of parameters:</p>
@@ -1459,7 +1694,7 @@ training set well balanced?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>TODO will depend on data - see ep02 deep learning for ex on
 penguins</p>
@@ -1514,6 +1749,7 @@ locally</li>
 </div>
 <!-- Collect your link references at the bottom of your document -->
 <p><a href="https://cocodataset.org/#home" class="external-link uri">https://cocodataset.org/#home</a></p>
+<p>[[Image data loading]: <a href="https://keras.io/api/data_loading/image/" class="external-link uri">https://keras.io/api/data_loading/image/</a></p>
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
@@ -1766,7 +2002,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -1888,7 +2124,7 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -1923,7 +2159,7 @@ the previous exercise</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 100 less than the fully
@@ -2047,7 +2283,7 @@ intuitive?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2338,7 +2574,7 @@ needs to be adjusted as follows:</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2893,7 +3129,7 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>The loss curve should drop quite quickly in a smooth line with
@@ -3153,7 +3389,7 @@ model performance, what is the term associated to this procedure?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Varying the dropout rate The code below instantiates and trains a
@@ -3323,7 +3559,7 @@ and ‘Construction’ sections of the <a href="https://github.com/BayesWatch/ci
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>No! “The entirety of the original CIFAR-10 test set is within the
 above mentioned new test set.”</p>
@@ -3351,7 +3587,7 @@ above mentioned new test set.”</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Depends! Recall in Episode 02 we talked about the different ways to
 partition the data into training, validation and test data sets. For
@@ -3508,7 +3744,7 @@ visualize a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The confusion matrix shows that the predictions for Adelie and Gentoo
 are decent, but could be improved. However, Chinstrap is not predicted
@@ -3557,7 +3793,7 @@ training parameters</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3765,7 +4001,7 @@ think about what you actually would like to see)</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The difference between training and validation data shows that
 something is not completely right here. The model predictions on the
@@ -3825,7 +4061,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>This is on open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you

@@ -79,8 +79,11 @@ image_dir = '/path/to/dataset/folder'
 (train_images, train_labels), (val_images, val_labels) = cinic10.loadData("/path/to/dataset/folder", oneHot=True)
 ```
 
-
 ## Plotting image data in python
+See https://datacarpentry.org/image-processing/02-image-basics.html
+
+
+
 
 ## Image Dimensions
 

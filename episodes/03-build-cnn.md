@@ -73,7 +73,7 @@ Let's look at our network from the introduction:
 Here we can see there are three main components of a neural network:  
 
 CNN Part 1. Input Layer
-CNN Part 2. Hidden Layer(s)
+CNN Part 2. Hidden Layers
 CNN Part 3. Output Layer
 
 #### CNN Part 1. Input Layer
@@ -87,7 +87,7 @@ In our case, the shape of an image is defined by its pixel dimensions and number
 print(train_images.shape)
 ```
 ```output
-(50000, 32, 32, 3) # RGB
+(50000, 32, 32, 3) # number of images, image width in pixels, image height in pixels, number of channels (RGB)
 ```
 
 ```python
@@ -95,7 +95,7 @@ print(train_images.shape)
 #inputs_intro = keras.Input(shape=train_images.shape[1:])
 ```
 
-#### CNN Part 2(s). Hidden Layers
+#### CNN Part 2. Hidden Layers
 
 The next component consists of the so-called hidden layers of the network. The reason they are referred to as hidden is because the true values of their nodes are unknown - this is the black box. 
 
@@ -197,10 +197,10 @@ In our convolutional layer our hidden units are a number of convolutional matric
 
 ## Playing with convolutions
 
-Convolutions applied to images can be hard to grasp at first. Fortunately there are resources out there that enable users to interactively play around with images and convolutions:
+Convolutions applied to images can be hard to grasp at first. Fortunately, there are resources out there that enable users to interactively play around with images and convolutions:
 
 [Image kernels explained] shows how different convolutions can achieve certain effects on an image, like sharpening and blurring.
-The [convolutional neural network cheat sheet] shows animated examples of the different components of convolutional neural nets
+The [convolutional neural network cheat sheet] shows animated examples of the different components of convolutional neural nets.
 :::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -217,7 +217,7 @@ There are different ways of dealing with border pixels. You can ignore them, whi
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Number of model parameters
-Suppose we apply a convolutional layer with 100 kernels of size 3 * 3 * 3 (the last dimension applies to the rgb channels) to our images of 32 * 32 * 3 pixels. How many parameters do we have? Assume, for simplicity, that the kernels do not use bias terms. Compare this to the answer of the previous exercise
+Suppose we apply a convolutional layer with 100 kernels of size 3 * 3 * 3 (the last dimension applies to the rgb channels) to our images of 32 * 32 * 3 pixels. How many parameters do we have? Assume, for simplicity, that the kernels do not use bias terms. Compare this to the answer of the previous exercise.
 
 :::::::::::::::::::::::: solution
 
@@ -335,12 +335,13 @@ _________________________________________________________________
 
 This minimal CNN should be able to run with the CIFAR-10 dataset and provide reasonable results for basic classification tasks. However, do keep in mind that this model is relatively simple, and its performance may not be as high as more complex architectures. The reason it's called deep learning is because in most cases, the more layers we have, ie, the deeper and more sophisticated CNN architecture we use, the better the performance.
 
-How can we tell? We can look at a couple metrics during the training process to detect whether our model is underfitting or underfitting. To do that, we first need to continue with the next steps in our Deep Learning workflow, **5. Choose a loss function and optimizer** and **6. Train model**. We will go into more details of these steps in the next lesson, but for now we just need to run this code to access the training history:
+How can we tell? We can look at a couple metrics during the training process to detect whether our model is underfitting or overfitting. To do that, we first need to continue with the next steps in our Deep Learning workflow, **Step 5. Choose a loss function and optimizer** and **Step 6. Train model**. We will go into more details of these steps in the next lesson, but for now we just need to run this code to access the training history:
 
 ```python
-model_intro.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), 
-    metrics = ['accuracy'])
-history_intro = model_intro.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
+model_intro.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+     metrics = ['accuracy'])
+history_intro = model_intro.fit(train_images, train_labels, epochs=10, 
+     validation_data=(val_images, val_labels))
 ```
 
 #### Monitor Training Progress (aka Model Evaluation during Training)
@@ -401,12 +402,7 @@ The instantiation here has a single parameter, pool_size.
 - The function downsamples the input along its spatial dimensions (height and width) by taking the maximum value over an input window (of size defined by pool_size) for each channel of the input.
 
 - The resulting output, when using the default "valid" padding option, has a spatial shape (number of rows or columns) of:
-```
-$$output_shape = math.floor\frac{(input_shape - pool_size)}{strides} + 1$$ & when input_shape >= pool_size
-```
-
-TODO LaTEX help for formula
-see Maths section https://carpentries.github.io/sandpaper-docs/episodes.html
+![](fig/03_shape_equation.png){alt=''}
 
 
 - And again we store a reference so we can pass it to the next layer.
@@ -571,7 +567,7 @@ The number of parameters has decreased by adding this layer. We can see that the
 Convolutional and Pooling layers are also applicable to different types of data than image data. Whenever the data is ordered in a (spatial) dimension, and translation invariant features are expected to be useful, convolutions can be used. Think for example of time series data from an accelerometer, audio data for speech recognition, or 3d structures of chemical compounds.
 ::::::::::::::::::::::::::::::::::::::::::::::
 
-Adding more layers to our model should increase the accuracy of its predictions. But before we look at the training metrics for our pooling model, let's take a step back and discuss in more detail steps **5. Choose a loss function and optimizer** and **6. Train model**.
+Adding more layers to our model should increase the accuracy of its predictions. But before we look at the training metrics for our pooling model, let's take a step back and discuss in more detail **Step 5. Choose a loss function and optimizer** and **Step 6. Train model**.
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 

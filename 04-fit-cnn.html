@@ -689,7 +689,7 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>The loss curve should drop quite quickly in a smooth line with
 little jitter.</li>
@@ -919,11 +919,11 @@ architecture and dataset.</p>
 <h3 class="callout-title">Vary dropout rate<a class="anchor" aria-label="anchor" href="#vary-dropout-rate"></a>
 </h3>
 <div class="callout-content">
-<ol style="list-style-type: decimal"><li>What do you think would happen if you lower the dropout rate? Try it
-out, and see how it affects the model training.</li>
-<li>You are varying the dropout rate and checking its effect on the
-model performance, what is the term associated to this procedure?</li>
-</ol></div>
+<p>Q1. What do you think would happen if you lower the dropout rate? Try
+it out, and see how it affects the model training. Q2. You are varying
+the dropout rate and checking its effect on the model performance, what
+is the term associated to this procedure?</p>
+</div>
 </div>
 </div>
 <div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
@@ -933,13 +933,13 @@ model performance, what is the term associated to this procedure?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<ol style="list-style-type: decimal"><li>Varying the dropout rate The code below instantiates and trains a
+<p>Q1. Varying the dropout rate The code below instantiates and trains a
 model with varying dropout rates. You can see from the resulting plot
 that the ideal dropout rate in this case is around 0.45. This is where
-the validation loss is lowest.</li>
-</ol><ul><li>NB1: It takes a while to train these 5 networks.</li>
+the validation loss is lowest.</p>
+<ul><li>NB1: It takes a while to train these 5 networks.</li>
 <li>NB2: In the real world you should do this with a test set and not
 with the validation set!</li>
 </ul><div class="codewrapper sourceCode" id="cb12">
@@ -977,9 +977,9 @@ with the validation set!</li>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>model_vary.save(<span class="st">'fit_outputs/model_vary.h5'</span>)</span></code></pre>
 </div>
-<figure><img src="fig/04_vary_dropout_rate.png" alt="" class="figure mx-auto d-block"></figure><ol start="2" style="list-style-type: decimal"><li>Term associated to this procedure This is called hyperparameter
-tuning.</li>
-</ol></div>
+<figure><img src="fig/04_vary_dropout_rate.png" alt="" class="figure mx-auto d-block"></figure><p>Q2. Term associated to this procedure This is called hyperparameter
+tuning.</p>
+</div>
 </div>
 </div>
 </div>

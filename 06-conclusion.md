@@ -38,7 +38,7 @@ exercises: 2
 * Tasks requiring an explanation of how the answer was arrived at.
 * Classifying things which are nothing like their training data.
 
-## 10. Share model
+## Step 10. Share model
 
 Now that we have a trained network that performs at a level we are happy with and can maintain high prediction accuracy on a test dataset we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 

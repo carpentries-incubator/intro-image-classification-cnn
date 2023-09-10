@@ -29,17 +29,17 @@ exercises: 2
 
 Let's start over with the first steps in our workflow.
 
-### 1. Formulate/ Outline the problem
+### Step 1. Formulate/ Outline the problem
 
 Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories.
 
-### 2. Identify inputs and outputs
+### Step 2. Identify inputs and outputs
 
 Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. 
 
 We are performing a classification problem and we will have one output for each potential class.
 
-### 3. Prepare data
+### Step 3. Prepare data
 
 Deep Learning requires extensive training using example data which shows the network what output it should produce for a given input. In this workshop our network will be trained by being “shown” a series of images and told what they contain. Once the network is trained it should be able to take another image and correctly classify its contents.
 
@@ -67,9 +67,9 @@ In this instance the data is likely already prepared for use in a CNN. However, 
 
 #### Custom image data
 
-**Step 1. Data collection and Labeling:**
-
 In other cases, you will need to create your own set of labelled images. 
+
+**Custom data i. Data collection and Labeling:**
 
 For image classification the label applies to the entire image; object detection requires bounding boxes, and instance or semantic segmentation requires each pixel to be labelled.
 
@@ -86,7 +86,7 @@ The rise of Deep Learning is partially due to the increased availability of very
 In case you have too little data available to train a complex network from scratch, it is sometimes possible to use a pretrained network that was trained on a similar problem. Another trick is data augmentation, where you expand the dataset with artificial data points that could be real. An example of this is mirroring images when trying to classify cats and dogs. An horizontally mirrored animal retains the label, but exposes a different view.
 :::::::::::::::::::::::::::::::::::::::::::::::
 
-**Step 2. Data preprocessing:**
+**Custom data ii. Data preprocessing:**
 
 This step involves various tasks to enhance the quality and consistency of the data:
 
@@ -249,7 +249,7 @@ ChatGPT
 
 Data is typically split into the training, validation, and test data sets using a process called data splitting or data partitioning. There are various methods to perform this split, and the choice of technique depends on the specific problem, dataset size, and the nature of the data. Here are some common approaches:
 
-1. **Hold-Out Method:**
+a. **Hold-Out Method:**
 
 - In the hold-out method, the dataset is divided into two parts initially: a training set and a test set.
 
@@ -257,7 +257,7 @@ Data is typically split into the training, validation, and test data sets using 
 
 - This method is straightforward and widely used when the dataset is sufficiently large.
 
-2. **Train-Validation-Test Split:**
+b. **Train-Validation-Test Split:**
 
 - The dataset is split into three parts: the training set, the validation set, and the test set.
 
@@ -265,7 +265,7 @@ Data is typically split into the training, validation, and test data sets using 
 
 - This method is commonly used when fine-tuning model hyperparameters is necessary.
 
-3. **K-Fold Cross-Validation:**
+c. **K-Fold Cross-Validation:**
 
 - In k-fold cross-validation, the dataset is divided into k subsets (folds) of roughly equal size.
 
@@ -275,7 +275,7 @@ Data is typically split into the training, validation, and test data sets using 
 
 - This method is particularly useful when the dataset size is limited, and it helps in better utilizing available data.
 
-4. **Stratified Sampling:**
+d. **Stratified Sampling:**
 
 - Stratified sampling is used when the dataset is imbalanced, meaning some classes or categories are underrepresented.
 

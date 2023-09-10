@@ -106,7 +106,7 @@ Before we look at some of these tasks in more detail we need to understand that 
 
 It is important to realise that images are stored as rectangular arrays of hundreds, thousands, or millions of discrete "picture elements," otherwise known as pixels. Each pixel can be thought of as a single square point of coloured light.
 
-For example, consider this image of a maize seedling, with a square area designated by a red box:
+For example, consider this image of a Jabiru, with a square area designated by a red box:
 
 ![](fig/02_Jabiru_TGS_marked.jpg){alt='Original size image of a Jabiru with a red square surrounding an area to zoom in on'}
 
@@ -139,9 +139,12 @@ Two of the most commonly used libraries for image representation and manipulatio
 
 - The Pillow library (PIL fork) provides functions to open, manipulate, and save various image file formats. It represents images using its own Image class.
   - `from PIL import Image`
+  - see [PIL Image Module]
 
-- TensorFlow images are often represented as tensors that have dimensions for batch size, height, width, and color channels. This framework provide tools to load, preprocess, and work with image data seamlessly. Note 
+- TensorFlow images are often represented as tensors that have dimensions for batch size, height, width, and color channels. This framework provide tools to load, preprocess, and work with image data seamlessly.
   -`from tensorflow import keras`
+  - see [image preprocessing] documentation
+  - Note Keras image functions also use PIL 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -159,17 +162,10 @@ new_img_path = "../data/Jabiru_TGS.JPG" # path to image
 new_img_pil = load_img(new_img_path)
 
 # confirm the data class and size
-print('The new image is of type :', new_img.__class__, 'and has the size', new_img.size)
-
-# convert the Image into an array for processing
-new_img_arr = img_to_array(new_img_pil)
-
-# confirm the data class and shape
-print('The new image is of type :', new_img_arr.__class__, 'and has the shape', new_img_arr.shape)
+print('The new image is of type :', new_img_pil.__class__, 'and has the size', new_img_pil.size)
 ```
 ```output
 The new image is of type : <class 'PIL.JpegImagePlugin.JpegImageFile'> and has the size (552, 573)
-The new image is of type : <class 'numpy.ndarray'> and has the shape (573, 552, 3)
 ```
 
 ### Image Dimensions - Resizing
@@ -180,14 +176,17 @@ Recall from the introduction that our training data set consists of 50000 images
 
 To reduce the computational load and ensure all of our images have a uniform size, we need to choose an image resolution (or size in pixels) and ensure that all of the images we use are resized to that shape to be consistent.
 
-There are a couple of ways to do this in python but one way is to specify the size you want using an argument to the 'load_image()' function from `keras.utils`.
+There are a couple of ways to do this in python but one way is to specify the size you want using an argument to the `load_img()` function from `keras.utils`.
 
-```
-# read in the new image and specify the size to be the same as our training images
-new_img_pil_small = load_img(path_to_img, target_size=(32,32))
+```python
+# read in the new image and specify the target size to be the same as our training images
+new_img_pil_small = load_img(new_img_path, target_size=(32,32))
 
 # confirm the data class and shape
-print('The new image is still of type:', new_img_pil_small.__class__, 'and has the reduced shape', new_img_pil_small.shape)
+print('The new image is still of type:', new_img_pil_small.__class__, 'but now has the same size', new_img_pil_small.size, 'as our training data')
+```
+```output
+The new image is still of type: <class 'PIL.Image.Image'> but now has the same size (32, 32) as our training data.
 ```
 
 ### Image Colours
@@ -219,24 +218,44 @@ See the Keras API for more [Image data loading] capabilities.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+
 ### Normalization
 
 Image RGB values are between 0 and 255. As input for neural networks, it is better to have small input values. The process of converting the RGB values to be between 0 and 1 is called normalization.
 
-We already saw how to do this in the introduction:
+Before we can normalize our image values we must convert the image to an numpy array.
+
+We saw how to do this in the introduction but what you may not have noticed is that the `keras.datasets.cifar10.load_data` function did the conversion for us whereas now we will do it ourselves.
+
 ```python
+# convert the Image into an array for normalization
+new_img_arr = img_to_array(new_img_pil_small)
 
-# check the image values
-print('The new image is still of type:', new_img_pil_small.__class__, 'and has the reduced shape', new_img_pil_small.values)
-
-# normalize the RGB values to be between 0 and 1
-new_img_pil_small_norm = new_img_pil_small / 255.0
-
-
+# confirm the data class and shape
+print('The new image is now of type :', new_img_arr.__class__, 'and has the shape', new_img_arr.shape)
+```
+```output
+The new image is now of type : <class 'numpy.ndarray'> and has the shape (32, 32, 3)
 ```
 
+Now we can normalize the values. Let us also investigate the image values before and after we normalize them.
 
+```python
+# extract the min, max, and mean pixel values
+print('The min, max, and mean pixel values are', new_img_arr.min(), ',', new_img_arr.max(), ', and', new_img_arr.mean().round(), 'respectively.')
 
+# normalize the RGB values to be between 0 and 1
+new_img_arr_norm = new_img_arr / 255.0
+
+# extract the min, max, and mean pixel values AFTER
+print('After normalization, the min, max, and mean pixel values are', new_img_arr_norm.min(), ',', new_img_arr_norm.max(), ', and', new_img_arr_norm.mean().round(), 'respectively.')
+```
+```output
+The min, max, and mean pixel values are 0.0 , 255.0 , and 87.0 respectively.
+After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0 respectively.
+```
+
+Of course, if we have a large number of images to process we do not want to perform these steps one at a time. As you might have guessed, 'tf.keras.utils' also provides a function to load an entire directories: 'image_dataset_from_directory function' that returns `float32` tensors of shape (batch_size, image_size[0], image_size[1], num_channels).
 
 ## Split data into training and validation set
 
@@ -359,4 +378,7 @@ associated with the lessons. They appear in the "Instructor View"
 [MS COCO]: https://cocodataset.org/#home
 
 [VGG Image Annotator]: https://www.robots.ox.ac.uk/~vgg/software/via/
-[[Image data loading]: https://keras.io/api/data_loading/image/
+[Image data loading]: https://keras.io/api/data_loading/image/
+
+[PIL Image Module]: https://pillow.readthedocs.io/en/latest/reference/Image.html
+[image preprocessing]: https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image

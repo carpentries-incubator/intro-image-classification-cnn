@@ -356,7 +356,7 @@ associated with the lessons. They appear in the "Instructor View"
 [MNIST database]: https://en.wikipedia.org/wiki/MNIST_database
 [ImageNet]: https://www.image-net.org/
 [annual software contest]: https://www.image-net.org/challenges/LSVRC/#:~:text=The%20ImageNet%20Large%20Scale%20Visual,image%20classification%20at%20large%20scale.
-https://cocodataset.org/#home
+[MS COCO]: https://cocodataset.org/#home
 
 [VGG Image Annotator]: https://www.robots.ox.ac.uk/~vgg/software/via/
 [[Image data loading]: https://keras.io/api/data_loading/image/

@@ -50,7 +50,7 @@ Systems with high quality GPUs and/or HPCs if available. [Comment: I feel this i
 
 A convolutional neural network (CNN) is a type of artificial neural network (ANN) that is most commonly applied to analyze visual imagery. They are designed to recognize the spatial structure of images when extracting features.
 
-### 4. Build an architecture from scratch or choose a pretrained model
+### Step 4. Build an architecture from scratch or choose a pretrained model
 
 Now we will build a neural network from scratch, and although this sounds like a daunting task, with Keras it is actually surprisingly straightforward. With Keras you compose a neural network by creating layers and linking them together.
 
@@ -72,11 +72,11 @@ Let's look at our network from the introduction:
 
 Here we can see there are three main components of a neural network:  
 
-1. Input
-2. Hidden Layers
-3. Output
+CNN Part 1. Input Layer
+CNN Part 2. Hidden Layer(s)
+CNN Part 3. Output Layer
 
-#### 1. Input
+#### CNN Part 1. Input Layer
 
 The Input in Keras gets special treatment when images are used. Keras automatically calculates the number of inputs and outputs a specific layer needs and therefore how many edges need to be created. This means we need to let Keras now how big our input is going to be. We do this by instantiating a not the.Input class and pass it a tuple that indicates the dimensionality of the input data.
 
@@ -95,7 +95,7 @@ print(train_images.shape)
 #inputs_intro = keras.Input(shape=train_images.shape[1:])
 ```
 
-#### 2. Hidden Layers
+#### CNN Part 2(s). Hidden Layers
 
 The next component consists of the so-called hidden layers of the network. The reason they are referred to as hidden is because the true values of their nodes are unknown - this is the black box. 
 
@@ -230,7 +230,7 @@ We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27 * 100 = 27
 The third type of hidden layer used in our introductory model is a **Flatten** layer. Let's hold off on discussion this for just a moment.
 
 
-#### 3. Output
+#### CNN Part 3. Output Layer
 
 Recall for the outputs we will need to look at what we want to identify from the data. If we are performing a classification problem then typically we will have one output for each potential class. We need to finish with a Dense layer to connect the output cells of the convolutional layer to the outputs for our 10 classes.
 

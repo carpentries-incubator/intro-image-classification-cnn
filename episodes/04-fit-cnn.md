@@ -26,7 +26,7 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### 5. Choose a loss function and optimizer
+### Step 5. Choose a loss function and optimizer
 
 We have designed a convolutional neural network (CNN) that in theory we should be able to train to classify images. 
 
@@ -118,11 +118,11 @@ Stochastic Gradient Descent (SGD) is one of the fundamental optimization algorit
 ChatGPT
 Let's break down the concept of Stochastic Gradient Descent for beginners:
 
-1. **Optimization Algorithm**: In the context of machine learning, an optimization algorithm is used to minimize (or maximize) an objective function. In the case of training a machine learning model, the objective function is the loss function, which measures how well the model is performing on the training data.
+**Optimization Algorithm**: In the context of machine learning, an optimization algorithm is used to minimize (or maximize) an objective function. In the case of training a machine learning model, the objective function is the loss function, which measures how well the model is performing on the training data.
 
-2. **Gradient Descent**: Gradient Descent is a simple optimization algorithm used to find the minimum (or maximum) of a function. It does this by iteratively updating the parameters of the model in the direction of the steepest decrease of the loss function.
+**Gradient Descent**: Gradient Descent is a simple optimization algorithm used to find the minimum (or maximum) of a function. It does this by iteratively updating the parameters of the model in the direction of the steepest decrease of the loss function.
 
-3. **Batch Gradient Descent** vs. **Stochastic Gradient Descent**: In traditional batch gradient descent, the algorithm computes the gradient of the loss function with respect to all training examples in the dataset and then updates the model parameters. This means it processes the entire dataset at once in each iteration, which can be computationally expensive for large datasets.
+**Batch Gradient Descent** vs. **Stochastic Gradient Descent**: In traditional batch gradient descent, the algorithm computes the gradient of the loss function with respect to all training examples in the dataset and then updates the model parameters. This means it processes the entire dataset at once in each iteration, which can be computationally expensive for large datasets.
 ::::::::::::::::::::::::::::::::::::::::::::::
 
 In practice, variations of SGD, such as Mini-Batch Gradient Descent, Momentum, and Adam, are often used, which combine the advantages of SGD with additional techniques to overcome some of its challenges.
@@ -186,7 +186,7 @@ For a list of metrics in Keras see [metrics].
 Now that we have decided on which loss function, optimizer, and metric to use we can compile the model using model.compile. Compiling the model prepares it to start the training.
 
 
-### 6. Train model
+### Step 6. Train model
 
 We are now ready to train the model.
 
@@ -213,13 +213,13 @@ Batch size
 
 The batch size is an important hyperparameter that determines the number of training samples processed together before updating the model's parameters during each iteration (or mini-batch) of training. The choice of batch size can have various implications, and there are situations where using different batch sizes can be beneficial.
 
-1. **Large Datasets and Memory Constraints**: If you have a large dataset and limited memory, using a smaller batch size can help fit the data into memory during training. This allows you to train larger models or use more complex architectures that might not fit with larger batch sizes.
+- **Large Datasets and Memory Constraints**: If you have a large dataset and limited memory, using a smaller batch size can help fit the data into memory during training. This allows you to train larger models or use more complex architectures that might not fit with larger batch sizes.
 
-2. **Training on GPUs**: Modern deep learning frameworks and libraries are optimized for parallel processing on GPUs. Using larger batch sizes can fully leverage the parallelism of GPUs and lead to faster training times. However, the choice of batch size should consider the available GPU memory.
+- **Training on GPUs**: Modern deep learning frameworks and libraries are optimized for parallel processing on GPUs. Using larger batch sizes can fully leverage the parallelism of GPUs and lead to faster training times. However, the choice of batch size should consider the available GPU memory.
 
-3. **Noise in Parameter Updates**: Smaller batch sizes introduce more noise in the gradients, which can help models escape sharp minima and potentially find better solutions. This regularization effect is similar to the impact of stochasticity in Stochastic Gradient Descent (SGD).
+- **Noise in Parameter Updates**: Smaller batch sizes introduce more noise in the gradients, which can help models escape sharp minima and potentially find better solutions. This regularization effect is similar to the impact of stochasticity in Stochastic Gradient Descent (SGD).
 
-4. **Generalization**: Using smaller batch sizes may improve the generalization of the model. It prevents the model from overfitting to the training data, as it gets updated more frequently and experiences more diverse samples during training.
+- **Generalization**: Using smaller batch sizes may improve the generalization of the model. It prevents the model from overfitting to the training data, as it gets updated more frequently and experiences more diverse samples during training.
 
 However, it's essential to consider the trade-offs of using different batch sizes. Smaller batch sizes may require more iterations to cover the entire dataset, which can lead to longer training times. Larger batch sizes can provide more stable gradients but might suffer from generalization issues. There is no one-size-fits-all answer, and you may need to experiment with different batch sizes to find the one that works best for your specific model, architecture, and dataset.
 :::::::::::::::::::::::::::::::::::::::::::::::
@@ -391,7 +391,7 @@ Regularization methods for Convolutional Neural Networks (CNNs)
 
 Regularization methods introduce constraints or penalties to the training process, encouraging the model to be simpler and less prone to overfitting. Here are some common regularization methods for CNNs:
 
-1. **L1 and L2 Regularization**: L1 and L2 regularization are the two most common regularization techniques used in deep learning. They add a penalty term to the loss function during training to restrict the model's weights.
+a. **L1 and L2 Regularization**: L1 and L2 regularization are the two most common regularization techniques used in deep learning. They add a penalty term to the loss function during training to restrict the model's weights.
 
 - L1 regularization adds the absolute value of the weights to the loss function. It tends to produce sparse weight vectors, forcing some of the less important features to have exactly zero weights.
 
@@ -399,13 +399,13 @@ Regularization methods introduce constraints or penalties to the training proces
 
 The regularization strength is controlled by a hyperparameter, often denoted as lambda (λ), that determines how much weight should be given to the regularization term. A larger λ value increases the impact of regularization, making the model simpler and more regularized.
 
-2. **Dropout**: Dropout is a regularization technique that involves randomly "dropping out" a fraction of neurons during training. This means that during each training iteration, some neurons are temporarily removed from the network. Dropout effectively reduces the interdependence between neurons, preventing the network from relying too heavily on specific neurons and making it more robust.
+b. **Dropout**: Dropout is a regularization technique that involves randomly "dropping out" a fraction of neurons during training. This means that during each training iteration, some neurons are temporarily removed from the network. Dropout effectively reduces the interdependence between neurons, preventing the network from relying too heavily on specific neurons and making it more robust.
 
-3. **Batch Normalization**: While not explicitly a regularization technique, Batch Normalization has a regularizing effect on the model. It normalizes the activations of each layer in the network, reducing internal covariate shift. This can improve training stability and reduce the need for aggressive dropout or weight decay.
+c. **Batch Normalization**: While not explicitly a regularization technique, Batch Normalization has a regularizing effect on the model. It normalizes the activations of each layer in the network, reducing internal covariate shift. This can improve training stability and reduce the need for aggressive dropout or weight decay.
 
-4. **Data Augmentation**: Data augmentation is a technique where the training data is artificially augmented by applying various transformations like rotation, scaling, flipping, and cropping to create new examples. This increases the diversity of the training data and helps the model generalize better to unseen data.
+d. **Data Augmentation**: Data augmentation is a technique where the training data is artificially augmented by applying various transformations like rotation, scaling, flipping, and cropping to create new examples. This increases the diversity of the training data and helps the model generalize better to unseen data.
 
-5. **Early Stopping**: Early stopping is a form of regularization that stops the training process when the model's performance on a validation set starts to degrade. This prevents the model from overfitting by avoiding further training after the point of best validation performance.
+e. **Early Stopping**: Early stopping is a form of regularization that stops the training process when the model's performance on a validation set starts to degrade. This prevents the model from overfitting by avoiding further training after the point of best validation performance.
 
 By using regularization techniques, you can improve the generalization performance of CNNs and reduce the risk of overfitting. It's essential to experiment with different regularization methods and hyperparameters to find the optimal combination for your specific CNN architecture and dataset.
 ::::::::::::::::::::::::::::::::::::::::::::::::

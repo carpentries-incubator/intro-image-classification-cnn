@@ -72,13 +72,13 @@ Convolutional Neural Networks (CNNs) have become a cornerstone in image classifi
 ## Deep Learning Workflow
 To apply Deep Learning to a problem there are several steps we need to go through:
 
-### 1. Formulate/ Outline the problem
+### Step 1. Formulate/ Outline the problem
 Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories. Specifically in our case, we will be looking at 10 categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck'
 
-### 2. Identify inputs and outputs
+### Step 2. Identify inputs and outputs
 Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
 
-### 3. Prepare data
+### Step 3. Prepare data
 Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data. Information on how this is done and what the data looks like will be explored in Episode 2. 
 
 TODO add link after ep 02 is developed
@@ -176,7 +176,7 @@ plt.show()
 
 ![](fig/01_cifar10.png){alt='Subset of 25 CIFAR-10 images displayed in five rows and five columns '}
 
-### 4. Choose a pre-trained model or build a new architecture from scratch
+### Step 4. Choose a pre-trained model or build a new architecture from scratch
 
 Often we can use an existing neural network instead of designing one from scratch. Training a network can take a lot of time and computational resources. There are a number of well publicised networks which have been shown to perform well at certain tasks, if you know of one which already does a similar task well then it makes sense to use one of these.
 
@@ -202,7 +202,7 @@ outputs_intro = keras.layers.Dense(10)(x_intro)
 model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
 ```
 
-### 5. Choose a loss function and optimizer
+### Step 5. Choose a loss function and optimizer
 
 The loss function tells the training algorithm how far away the predicted value was from the true value. We will look at choosing a loss function in more detail later on.
 
@@ -215,7 +215,7 @@ model_intro.compile(optimizer = 'adam',
                     metrics=['accuracy'])
 ```
 
-### 6. Train the model
+### Step 6. Train the model
 
 We can now go ahead and start training our neural network. We will probably keep doing this for a given number of iterations through our training dataset (referred to as epochs) or until the loss function gives a value under a certain threshold.
 
@@ -228,7 +228,7 @@ history_intro = model_intro.fit(train_images, train_labels, epochs = 10,
 model_intro.save('fit_outputs/01_intro_model.h5')
 ``` 
 
-### 7. Perform a Prediction/Classification
+### Step 7. Perform a Prediction/Classification
 
 After training the network we can use it to perform predictions. This is the mode you would use the network in after you have fully trained it to a satisfactory performance. Doing predictions on a special hold-out set is used in the next step to measure the performance of the network.
 
@@ -266,11 +266,11 @@ Unfortunately the classification was incorrect. Why might that be?  and  What ca
 
 There are many ways we can try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
 
-### 8. Measure Performance
+### Step 8. Measure Performance
 
 Once we trained the network we want to measure its performance. To do this we use some additional data that was **not** part of the training; this is known as a test set. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
 
-### 9. Tune Hyperparameters
+### Step 9. Tune Hyperparameters
 
 When building image recognition models in Python, especially using libraries like TensorFlow or Keras, the process involves not only designing a neural network but also choosing the best values for various hyperparameters that govern the training process.
 
@@ -338,7 +338,7 @@ Output from the GridSearch process should look similar to:
 Best: 0.586660 using {'optimizer': 'RMSprop'}
 ```
 
-### 10. Share Model
+### Step 10. Share Model
 
 Now that we have a trained network that performs at a level we are happy with we can go and use it on real data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 

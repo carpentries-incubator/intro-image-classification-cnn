@@ -20,7 +20,7 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### 7. Perform a Prediction/Classification
+### Step 7. Perform a Prediction/Classification
 
 After you have fully trained the network to a satisfactory performance on the training and validation sets, we can use it to perform predictions on a special hold-out set, the **test** set. The prediction accuracy of the model on new images is used in the next step to measure the performance of the network.
 
@@ -96,7 +96,7 @@ prediction_df.head()
 predicted_labels = predicted_prob.argmax(axis=1)
 ```
 
-### 8. Measuring performance
+### Step 8. Measuring performance
 
 Once we trained the network we want to measure its performance. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
 
@@ -213,7 +213,7 @@ Class name: automobile
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-### 9. Tune hyperparameters
+### Step 9. Tune hyperparameters
 
 Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. It might be necessary to adjust these and re-run the training many times before we are happy with the result.
 

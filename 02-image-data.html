@@ -278,7 +278,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p> Last updated on 2023-08-25 | 
+        <p> Last updated on 2023-09-10 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -326,13 +326,13 @@ network (CNN)?</li>
 </h2>
 <hr class="half-width"><p>Let’s start over with the first steps in our workflow.</p>
 <div class="section level3">
-<h3 id="formulate-outline-the-problem">1. Formulate/ Outline the problem<a class="anchor" aria-label="anchor" href="#formulate-outline-the-problem"></a></h3>
+<h3 id="step-1--formulate-outline-the-problem">Step 1. Formulate/ Outline the problem<a class="anchor" aria-label="anchor" href="#step-1--formulate-outline-the-problem"></a></h3>
 <p>Firstly we must decide what it is we want our Deep Learning system to
 do. This lesson is all about image classification so our aim is to put
 an image into one of a few categories.</p>
 </div>
 <div class="section level3">
-<h3 id="identify-inputs-and-outputs">2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#identify-inputs-and-outputs"></a></h3>
+<h3 id="step-2--identify-inputs-and-outputs">Step 2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#step-2--identify-inputs-and-outputs"></a></h3>
 <p>Next we need to identify what the inputs and outputs of the neural
 network will be. In our case, the data is images and the inputs could be
 the individual pixels of the images.</p>
@@ -340,7 +340,7 @@ the individual pixels of the images.</p>
 output for each potential class.</p>
 </div>
 <div class="section level3">
-<h3 id="prepare-data">3. Prepare data<a class="anchor" aria-label="anchor" href="#prepare-data"></a></h3>
+<h3 id="step-3--prepare-data">Step 3. Prepare data<a class="anchor" aria-label="anchor" href="#step-3--prepare-data"></a></h3>
 <p>Deep Learning requires extensive training using example data which
 shows the network what output it should produce for a given input. In
 this workshop our network will be trained by being “shown” a series of
@@ -385,9 +385,9 @@ documentation to find out what steps the data providers took.</p>
 </div>
 <div class="section level4">
 <h4 id="custom-image-data">Custom image data<a class="anchor" aria-label="anchor" href="#custom-image-data"></a></h4>
-<p><strong>Step 1. Data collection and Labeling:</strong></p>
 <p>In other cases, you will need to create your own set of labelled
 images.</p>
+<p><strong>Custom data i. Data collection and Labeling:</strong></p>
 <p>For image classification the label applies to the entire image;
 object detection requires bounding boxes, and instance or semantic
 segmentation requires each pixel to be labelled.</p>
@@ -424,7 +424,7 @@ exposes a different view.</p>
 </div>
 </div>
 </div>
-<p><strong>Step 2. Data preprocessing:</strong></p>
+<p><strong>Custom data ii. Data preprocessing:</strong></p>
 <p>This step involves various tasks to enhance the quality and
 consistency of the data:</p>
 <ul><li><p><strong>Resizing</strong>: Resize images to a consistent
@@ -666,7 +666,7 @@ sets using a process called data splitting or data partitioning. There
 are various methods to perform this split, and the choice of technique
 depends on the specific problem, dataset size, and the nature of the
 data. Here are some common approaches:</p>
-<ol style="list-style-type: decimal"><li><strong>Hold-Out Method:</strong></li>
+<ol style="list-style-type: lower-alpha"><li><strong>Hold-Out Method:</strong></li>
 </ol><ul><li><p>In the hold-out method, the dataset is divided into two parts
 initially: a training set and a test set.</p></li>
 <li><p>The training set is used to train the model, and the test set is
@@ -674,7 +674,7 @@ kept completely separate to evaluate the model’s final
 performance.</p></li>
 <li><p>This method is straightforward and widely used when the dataset
 is sufficiently large.</p></li>
-</ul><ol start="2" style="list-style-type: decimal"><li><strong>Train-Validation-Test Split:</strong></li>
+</ul><ol start="2" style="list-style-type: lower-alpha"><li><strong>Train-Validation-Test Split:</strong></li>
 </ol><ul><li><p>The dataset is split into three parts: the training set, the
 validation set, and the test set.</p></li>
 <li><p>The training set is used to train the model, the validation set
@@ -682,7 +682,7 @@ is used to tune hyperparameters and prevent overfitting during training,
 and the test set is used to assess the final model performance.</p></li>
 <li><p>This method is commonly used when fine-tuning model
 hyperparameters is necessary.</p></li>
-</ul><ol start="3" style="list-style-type: decimal"><li><strong>K-Fold Cross-Validation:</strong></li>
+</ul><ol start="3" style="list-style-type: lower-alpha"><li><strong>K-Fold Cross-Validation:</strong></li>
 </ol><ul><li><p>In k-fold cross-validation, the dataset is divided into k subsets
 (folds) of roughly equal size.</p></li>
 <li><p>The model is trained and evaluated k times, each time using a
@@ -693,7 +693,7 @@ k evaluation results, providing a more robust estimate of model
 performance.</p></li>
 <li><p>This method is particularly useful when the dataset size is
 limited, and it helps in better utilizing available data.</p></li>
-</ul><ol start="4" style="list-style-type: decimal"><li><strong>Stratified Sampling:</strong></li>
+</ul><ol start="4" style="list-style-type: lower-alpha"><li><strong>Stratified Sampling:</strong></li>
 </ol><ul><li><p>Stratified sampling is used when the dataset is imbalanced,
 meaning some classes or categories are underrepresented.</p></li>
 <li><p>The data is split in such a way that each subset (training,
@@ -876,8 +876,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/02-image-data.html",
   "identifier": "https://.github.io/github.com/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-08-25",
-  "datePublished": "2023-09-08"
+  "dateModified": "2023-09-10",
+  "datePublished": "2023-09-10"
 }
 
   </script><script>

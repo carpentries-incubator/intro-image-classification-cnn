@@ -278,7 +278,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Build a Convolutional Neural Network</h1>
-        <p> Last updated on 2023-08-22 | 
+        <p> Last updated on 2023-09-10 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -385,8 +385,8 @@ network (ANN) that is most commonly applied to analyze visual imagery.
 They are designed to recognize the spatial structure of images when
 extracting features.</p>
 <div class="section level3">
-<h3 id="build-an-architecture-from-scratch-or-choose-a-pretrained-model">4. Build an architecture from scratch or choose a pretrained
-model<a class="anchor" aria-label="anchor" href="#build-an-architecture-from-scratch-or-choose-a-pretrained-model"></a></h3>
+<h3 id="step-4--build-an-architecture-from-scratch-or-choose-a-pretrained-model">Step 4. Build an architecture from scratch or choose a pretrained
+model<a class="anchor" aria-label="anchor" href="#step-4--build-an-architecture-from-scratch-or-choose-a-pretrained-model"></a></h3>
 <p>Now we will build a neural network from scratch, and although this
 sounds like a daunting task, with Keras it is actually surprisingly
 straightforward. With Keras you compose a neural network by creating
@@ -410,11 +410,10 @@ layers and linking them together.</p>
 <h3 id="parts-of-a-neural-network">Parts of a neural network<a class="anchor" aria-label="anchor" href="#parts-of-a-neural-network"></a></h3>
 <p>Here we can see there are three main components of a neural
 network:</p>
-<ol style="list-style-type: decimal"><li>Input</li>
-<li>Hidden Layers</li>
-<li>Output</li>
-</ol><div class="section level4">
-<h4 id="input">1. Input<a class="anchor" aria-label="anchor" href="#input"></a></h4>
+<p>CNN Part 1. Input Layer CNN Part 2. Hidden Layers CNN Part 3. Output
+Layer</p>
+<div class="section level4">
+<h4 id="cnn-part-1--input-layer">CNN Part 1. Input Layer<a class="anchor" aria-label="anchor" href="#cnn-part-1--input-layer"></a></h4>
 <p>The Input in Keras gets special treatment when images are used. Keras
 automatically calculates the number of inputs and outputs a specific
 layer needs and therefore how many edges need to be created. This means
@@ -432,7 +431,7 @@ and number of channels:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>(50000, 32, 32, 3) # RGB</code></pre>
+<pre class="output" tabindex="0"><code>(50000, 32, 32, 3) # number of images, image width in pixels, image height in pixels, number of channels (RGB)</code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -442,7 +441,7 @@ and number of channels:</p>
 </div>
 </div>
 <div class="section level4">
-<h4 id="hidden-layers">2. Hidden Layers<a class="anchor" aria-label="anchor" href="#hidden-layers"></a></h4>
+<h4 id="cnn-part-2--hidden-layers">CNN Part 2. Hidden Layers<a class="anchor" aria-label="anchor" href="#cnn-part-2--hidden-layers"></a></h4>
 <p>The next component consists of the so-called hidden layers of the
 network. The reason they are referred to as hidden is because the true
 values of their nodes are unknown - this is the black box.</p>
@@ -508,7 +507,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -600,13 +599,13 @@ the output of the kernel applied to each pixel.</p>
 </h3>
 <div class="callout-content">
 <p>Convolutions applied to images can be hard to grasp at first.
-Fortunately there are resources out there that enable users to
+Fortunately, there are resources out there that enable users to
 interactively play around with images and convolutions:</p>
 <p><a href="https://setosa.io/ev/image-kernels/" class="external-link">Image kernels
 explained</a> shows how different convolutions can achieve certain
 effects on an image, like sharpening and blurring. The <a href="https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-convolutional-neural-networks" class="external-link">convolutional
 neural network cheat sheet</a> shows animated examples of the different
-components of convolutional neural nets</p>
+components of convolutional neural nets.</p>
 </div>
 </div>
 </div>
@@ -630,7 +629,7 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -654,7 +653,7 @@ the input image.</p>
 * 3 (the last dimension applies to the rgb channels) to our images of 32
 * 32 * 3 pixels. How many parameters do we have? Assume, for simplicity,
 that the kernels do not use bias terms. Compare this to the answer of
-the previous exercise</p>
+the previous exercise.</p>
 </div>
 </div>
 </div>
@@ -665,7 +664,7 @@ the previous exercise</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 100 less than the fully
@@ -685,7 +684,7 @@ just a moment.</p>
 </div>
 </div>
 <div class="section level4">
-<h4 id="output">3. Output<a class="anchor" aria-label="anchor" href="#output"></a></h4>
+<h4 id="cnn-part-3--output-layer">CNN Part 3. Output Layer<a class="anchor" aria-label="anchor" href="#cnn-part-3--output-layer"></a></h4>
 <p>Recall for the outputs we will need to look at what we want to
 identify from the data. If we are performing a classification problem
 then typically we will have one output for each potential class. We need
@@ -781,7 +780,7 @@ intuitive?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -837,18 +836,19 @@ deep learning is because in most cases, the more layers we have, ie, the
 deeper and more sophisticated CNN architecture we use, the better the
 performance.</p>
 <p>How can we tell? We can look at a couple metrics during the training
-process to detect whether our model is underfitting or underfitting. To
+process to detect whether our model is underfitting or overfitting. To
 do that, we first need to continue with the next steps in our Deep
-Learning workflow, <strong>5. Choose a loss function and
-optimizer</strong> and <strong>6. Train model</strong>. We will go into
-more details of these steps in the next lesson, but for now we just need
-to run this code to access the training history:</p>
+Learning workflow, <strong>Step 5. Choose a loss function and
+optimizer</strong> and <strong>Step 6. Train model</strong>. We will go
+into more details of these steps in the next lesson, but for now we just
+need to run this code to access the training history:</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>model_intro.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>, loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>), </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>history_intro <span class="op">=</span> model_intro.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>model_intro.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>, loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>     metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>history_intro <span class="op">=</span> model_intro.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>     validation_data<span class="op">=</span>(val_images, val_labels))</span></code></pre>
 </div>
 <div class="section level4">
 <h4 id="monitor-training-progress-aka-model-evaluation-during-training">Monitor Training Progress (aka Model Evaluation during
@@ -921,50 +921,48 @@ Conv2D layer:</p>
 (height and width) by taking the maximum value over an input window (of
 size defined by pool_size) for each channel of the input.</p></li>
 <li><p>The resulting output, when using the default “valid” padding
-option, has a spatial shape (number of rows or columns) of:</p></li>
-</ul><pre><code>$$output_shape = math.floor\frac{(input_shape - pool_size)}{strides} + 1$$ &amp; when input_shape &gt;= pool_size</code></pre>
-<p>TODO LaTEX help for formula see Maths section <a href="https://carpentries.github.io/sandpaper-docs/episodes.html" class="external-link uri">https://carpentries.github.io/sandpaper-docs/episodes.html</a></p>
-<ul><li>And again we store a reference so we can pass it to the next
-layer.</li>
+option, has a spatial shape (number of rows or columns) of: <img src="../fig/03_shape_equation.png" alt="" class="figure"></p></li>
+<li><p>And again we store a reference so we can pass it to the next
+layer.</p></li>
 </ul><p>We will also add a second set of convolutional and pooling layers
 before flattening the result and passing it to an additional dense
 layer.</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dense layer</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#x_pool = keras.layers.Dense(50, activation='relu')(x_pool)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dense layer</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#x_pool = keras.layers.Dense(50, activation='relu')(x_pool)</span></span></code></pre>
 </div>
 <p>The instantiation of this Dense layer has 2 parameters, the number of
 neurons and the activation function.</p>
 <p>We then add our final output layer and reassemble, compile, and train
 the deeper model with pooling.</p>
 <p>Putting it all together:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs, layers, and outputs of a cnn model with pooling</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>inputs_pool <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_pool)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_pool)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_pool)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_pool)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Flatten()(x_pool)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_pool)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>outputs_pool <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_pool)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create the pooling model</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>model_pool <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_pool, outputs<span class="op">=</span>outputs_pool, name<span class="op">=</span><span class="st">"cifar_model_pool"</span>)</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>model_pool.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>, loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>), </span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>history_pool <span class="op">=</span> model_pool.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(val_images, val_labels))</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>model_pool.summary()</span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co"># save pool model</span></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>model_pool.save(<span class="st">'fit_outputs/model_pool.h5'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs, layers, and outputs of a cnn model with pooling</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>inputs_pool <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_pool)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_pool)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_pool)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_pool)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Flatten()(x_pool)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>x_pool <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_pool)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>outputs_pool <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_pool)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create the pooling model</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>model_pool <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_pool, outputs<span class="op">=</span>outputs_pool, name<span class="op">=</span><span class="st">"cifar_model_pool"</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>model_pool.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>, loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>), </span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>history_pool <span class="op">=</span> model_pool.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(val_images, val_labels))</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>model_pool.summary()</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co"># save pool model</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>model_pool.save(<span class="st">'fit_outputs/model_pool.h5'</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1032,18 +1030,18 @@ filters after the last MaxPooling2D layer. Train it for 20 epochs and
 plot the results.</p>
 <p><strong>HINT</strong>: The model definition that we used previously
 needs to be adjusted as follows:</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>inputs_cnd <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_cnd)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_cnd)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_cnd)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_cnd)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your extra layer here</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Flatten()(x_cnd)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_cnd)</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>outputs_cnd <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_cnd)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>inputs_cnd <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_cnd)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_cnd)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Conv2D(<span class="dv">50</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_cnd)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_cnd)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your extra layer here</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Flatten()(x_cnd)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>x_cnd <span class="op">=</span> keras.layers.Dense(<span class="dv">50</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_cnd)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>outputs_cnd <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>)(x_cnd)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1055,7 +1053,7 @@ needs to be adjusted as follows:</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1078,10 +1076,10 @@ model_cnd = keras.Model(inputs=inputs_cnd, outputs=outputs_cnd, name="cifar_mode
 </div>
 <p>With the model defined above, we can inspect the number of
 parameters:</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1139,9 +1137,9 @@ structures of chemical compounds.</p>
 </div>
 <p>Adding more layers to our model should increase the accuracy of its
 predictions. But before we look at the training metrics for our pooling
-model, let’s take a step back and discuss in more detail steps
-<strong>5. Choose a loss function and optimizer</strong> and <strong>6.
-Train model</strong>.</p>
+model, let’s take a step back and discuss in more detail <strong>Step 5.
+Choose a loss function and optimizer</strong> and <strong>Step 6. Train
+model</strong>.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1229,8 +1227,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/03-build-cnn.html",
   "identifier": "https://.github.io/github.com/instructor/03-build-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-08-22",
-  "datePublished": "2023-09-08"
+  "dateModified": "2023-09-10",
+  "datePublished": "2023-09-10"
 }
 
   </script><script>

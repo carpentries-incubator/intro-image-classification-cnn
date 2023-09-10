@@ -119,9 +119,8 @@ It is integrated into your local Python installation and runs regardless of your
 
 ### Troubleshooting for Macs with Apple silicon chip
 
-Newer Macs (from 2020 onwards) often have a different kind of chip, manufactured by Apple instead of Intel. This can lead to problems installing Tensorflow .
-If you get errors running the installation command or conda hangs endlessly,
-you can try installing Tensorflow for Mac with pip:
+Newer Macs (from 2020 onwards) often have a different kind of chip, manufactured by Apple instead of Intel. This can lead to problems installing Tensorflow.
+If you get errors running the installation command or conda hangs endlessly, you can try installing Tensorflow for Mac with pip:
 
 ```conda
 pip install tensorflow-macos
@@ -129,7 +128,7 @@ pip install tensorflow-macos
 
 ## Starting Spyder
 
-We will teach using Python in [Spyder] (Scientific Python Development Environment) , a free integrated development environment (IDE) written in Python that comes with Anaconda.Editing, interactive testing, debugging, and introspection tools are all included in Spyder. If you installed Python using Anaconda, Spyder should already be on your system. If you did not use Anaconda, use the Python package manager pip (see the [Spyder website] for details.)
+We will teach using Python in [Spyder] (Scientific Python Development Environment), a free integrated development environment (IDE) written in Python that comes with Anaconda.Editing, interactive testing, debugging, and introspection tools are all included in Spyder. If you installed Python using Anaconda, Spyder should already be on your system. If you did not use Anaconda, use the Python package manager pip (see the [Spyder website] for details.)
 
 To start Spyder, open a terminal and type the command:
 
@@ -152,14 +151,12 @@ print('seaborn version: ', seaborn.__version__)
 import pandas
 print('pandas version: ', pandas.__version__)
 
-from tensorflow import keras
-print('Keras version: ', keras.__version__)
-
 import tensorflow
 print('Tensorflow version: ', tensorflow.__version__)
 ```
 
-This should output the versions of all required packages without giving errors.
+This should output the versions of all required packages without giving errors. 
+
 Most versions will work fine with this lesson, but:
 
 - For Keras and Tensorflow, the minimum version is 2.2.4

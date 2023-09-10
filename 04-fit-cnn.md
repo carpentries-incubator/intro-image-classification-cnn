@@ -414,12 +414,12 @@ By using regularization techniques, you can improve the generalization performan
 
 ## Vary dropout rate
 
-1. What do you think would happen if you lower the dropout rate? Try it out, and see how it affects the model training.
-2. You are varying the dropout rate and checking its effect on the model performance, what is the term associated to this procedure?
+Q1. What do you think would happen if you lower the dropout rate? Try it out, and see how it affects the model training.
+Q2. You are varying the dropout rate and checking its effect on the model performance, what is the term associated to this procedure?
 
 :::::::::::::::::::::::: solution 
 
-1. Varying the dropout rate
+Q1. Varying the dropout rate
 The code below instantiates and trains a model with varying dropout rates. You can see from the resulting plot that the ideal dropout rate in this case is around 0.45. This is where the validation loss is lowest.
 
 - NB1: It takes a while to train these 5 networks.
@@ -461,7 +461,7 @@ model_vary.save('fit_outputs/model_vary.h5')
 ```
 ![](fig/04_vary_dropout_rate.png){alt=''}
 
-2. Term associated to this procedure
+Q2. Term associated to this procedure
 This is called hyperparameter tuning.
 
 :::::::::::::::::::::::::::::::::

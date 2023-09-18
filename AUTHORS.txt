@@ -1,1 +1,7 @@
 FIXME: list authors' names and email addresses.
+
+Erin Graham <erin.graham@jcu.edu.au>
+Isaac Jennings <i.jennings@griffith.edu.au>
+Jason Bell <j.bell@cqu.edu.au>
+Daniel Meloncelli <dmelonc1@usc.edu.au>
+Ade Adeyinka <ade.adeyinka@scu.edu.au>

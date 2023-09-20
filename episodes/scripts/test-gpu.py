@@ -2,7 +2,7 @@
 """
 Created on Fri Jun 30 17:47:33 2023
 
-@author: bellf
+@author: Jason Bell
 """
 
 import tensorflow as tf

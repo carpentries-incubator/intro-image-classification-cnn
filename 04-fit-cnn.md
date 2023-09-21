@@ -144,7 +144,7 @@ Learning rate is a hyperparameter that determines the step size at which the mod
 
 In the figure below, we can see that a small learning rate will not traverse toward the minima of the gradient descent algorithm in a timely manner i.e. number of epochs.
 
-![Small learning rate leads to inefficient approach to loss minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg "Small learning rate leads to inefficient approach to loss minima")
+![Small learning rate leads to inefficient approach to loss minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg)
 
 (This image was obtained from [Google Developers Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate) and is licenced under the [Creative Commons 4.0 Attribution Licence](https://creativecommons.org/licenses/by/4.0/).)
 

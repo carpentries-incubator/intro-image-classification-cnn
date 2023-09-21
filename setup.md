@@ -83,10 +83,6 @@ If you run into any difficulties, please request help before the workshop begins
 Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::: callout
-Please note you might want to consider installing the GPU enabled version of TensorFlow.  The GPU enabled version can run significantly quicker (especially when training models) than the CPU only version.  If you have a decent dedicated GPU on your computer, it is suggested to follow the instructions located in the [Setup - GPU]({{ site.baseurl }}{% link episodes/setup-gpu.md %}) section instead.
-:::::::::::::::::::::::::::::::::::::::::::::::::
-
 To create a conda environment called `cnn_workshop` with the required packages, open a terminal and type the command:
 
 ```code

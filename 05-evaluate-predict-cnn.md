@@ -52,7 +52,7 @@ Depends! Recall in Episode 02 we talked about the different ways to partition th
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-TODO Set this test images set up in Ep 02 instead so it's ready to go OR use the Tiny Images and use the same construction (uhoh -  https://groups.csail.mit.edu/vision/TinyImages)
+TODO Set this test images set up in Ep 02 instead so it's ready to go OR use the Tiny Images and use the same construction (uhoh -  http://groups.csail.mit.edu/vision/TinyImages)
 
 We will use our convolutional neural network to predict the class names of the test set using the predict function and use these predictions in the next step to measure the performance of our trained network.
 

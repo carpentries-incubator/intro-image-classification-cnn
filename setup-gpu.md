@@ -106,9 +106,9 @@ NOTE the prompt should change to reflect you are in the (cnn_workshop_gpu) envir
 To set up a GPU environment you need to make sure that you have the appropriate hardware, system, and software necessary for GPU support. Here we are following the [Windows TensorFlow installation instructions] starting at **Step 5. GPU setup** but using Anaconda instead of Miniconda. Specific instructions can also be found there for [MacOS] and [Linux] environments.
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-First install [NVIDIA GPU driver] if you have not.
+#### NVIDIA GPU
 
-TODO add links to other manufacturers' GPU drivers
+First install NVIDIA GPU driver [https://www.nvidia.com/download/index.aspx] if you have not.
 
 Then install the CUDA, cuDNN with conda.
 
@@ -125,8 +125,12 @@ Install tensorflow using [pip] (python's package manager), first making sure you
 (cnn_workshop_gpu) C:\Users\Lab>pip install "tensorflow<2.11" 
 ```
 
-Note that modern versions of Tensorflow make Keras available as a module: `from tensorflow import keras`
+#### AMD GPU 
 
+First install AMD GPU driver [https://www.amd.com/en/support] if you have not.
+
+
+Note that modern versions of Tensorflow make Keras available as a module: `from tensorflow import keras`
 
 TODO Check if this troublshooting section is still relevant:
 

@@ -280,7 +280,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Setup - GPU</h1>
-        <p> Last updated on 2023-08-22 | 
+        <p> Last updated on 2023-09-21 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -452,9 +452,10 @@ environments.</p>
 </div>
 </div>
 </div>
-<p>First install <a href="https://www.nvidia.com/Download/index.aspx" class="external-link">NVIDIA GPU driver</a>
-if you have not.</p>
-<p>TODO add links to other manufacturers’ GPU drivers</p>
+<div class="section level4">
+<h4 id="nvidia-gpu">NVIDIA GPU<a class="anchor" aria-label="anchor" href="#nvidia-gpu"></a></h4>
+<p>First install NVIDIA GPU driver [<a href="https://www.nvidia.com/download/index.aspx" class="external-link uri">https://www.nvidia.com/download/index.aspx</a>] if you have
+not.</p>
 <p>Then install the CUDA, cuDNN with conda.</p>
 <pre class="code"><code>(cnn_workshop_gpu) C:\Users\Lab&gt; conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</code></pre>
 <p>Install tensorflow using <a href="" title="https://pip.pypa.io/en/stable/">pip</a> (python’s package
@@ -463,9 +464,14 @@ manager), first making sure you have a recent version of pip:</p>
 
 # Anything above 2.10 is not supported on the GPU on Windows Native
 (cnn_workshop_gpu) C:\Users\Lab&gt;pip install "tensorflow&lt;2.11" </code></pre>
+</div>
+<div class="section level4">
+<h4 id="amd-gpu">AMD GPU<a class="anchor" aria-label="anchor" href="#amd-gpu"></a></h4>
+<p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
 <p>Note that modern versions of Tensorflow make Keras available as a
 module: <code>from tensorflow import keras</code></p>
 <p>TODO Check if this troublshooting section is still relevant:</p>
+</div>
 <div class="section level3">
 <h3 id="troubleshooting-for-windows">Troubleshooting for Windows<a class="anchor" aria-label="anchor" href="#troubleshooting-for-windows"></a></h3>
 <p>It is possible that Windows users will run into version conflicts. If
@@ -580,7 +586,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.13.0" class="external-link">sandpaper (0.13.0)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.13.3" class="external-link">sandpaper (0.13.3)</a>,
         <a href="https://github.com/carpentries/pegboard/tree/0.6.1" class="external-link">pegboard (0.6.1)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.3.0" class="external-link">varnish (0.3.0)</a>.</p>
 			</div>
@@ -603,8 +609,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/setup-gpu.html",
   "identifier": "https://.github.io/github.com/setup-gpu.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-08-22",
-  "datePublished": "2023-09-19"
+  "dateModified": "2023-09-21",
+  "datePublished": "2023-09-22"
 }
 
   </script><script>

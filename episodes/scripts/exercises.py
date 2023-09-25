@@ -16,3 +16,15 @@ from tensorflow import keras
 print('Train: Images=%s, Labels=%s' % (train_images.shape, train_labels.shape))
 print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
 
+"""
+
+Introduction to Deep Learning Exercies
+
+"""
+
+# Challenge Load the CIFAR-10 dataset - https://carpentries-incubator.github.io/intro-image-classification-cnn/01-introduction.html#challenge-load-the-cifar-10-dataset
+
+# Uncomment the 2 lines of code below
+# print('Train: Images=%s, Labels=%s' % (train_images.shape, train_labels.shape))
+# print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
+

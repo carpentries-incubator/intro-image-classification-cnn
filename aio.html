@@ -360,7 +360,7 @@ are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -384,7 +384,7 @@ may already be checked.)</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -406,7 +406,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Note that the following installation steps require you to work from
 the shell. If you run into any difficulties, please request help before
@@ -1218,7 +1218,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-02-image-data"><p>Content from <a href="02-image-data.html">Introduction to Image Data</a></p>
 <hr>
-<p> Last updated on 2023-09-10 | 
+<p> Last updated on 2023-09-25 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1316,16 +1316,11 @@ keypoint analysis, and captioning</li>
 </ul>
 <p>Where labelled data exists, in most cases the data provider or other
 users will have created functions that you can use to help load the
-data:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the CINIC-10 dataset</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cinic10 <span class="co"># python script needs to be in available</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>image_dir <span class="op">=</span> <span class="st">'/path/to/dataset/folder'</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (val_images, val_labels) <span class="op">=</span> cinic10.loadData(<span class="st">"/path/to/dataset/folder"</span>, oneHot<span class="op">=</span><span class="va">True</span>)</span></code></pre>
-</div>
+data. We already saw an example of this in the introduction:</p>
+<pre><code><span><span class="co"># load the CIFAR-10 dataset included with the keras packages</span></span>
+<span><span class="co">#from tensorflow import keras</span></span>
+<span></span>
+<span><span class="co">#(train_images, train_labels), (val_images, val_labels) = #keras.datasets.cifar10.load_data()</span></span></code></pre>
 <p>In this instance the data is likely already prepared for use in a
 CNN. However, it is always a good idea to read any associated
 documentation to find out what steps the data providers took.</p>
@@ -1426,10 +1421,10 @@ to form the image we see.</p>
 <p>As noted, in practice, real world images will typically be made up of
 a vast number of pixels, and each of these pixels will be one of
 potentially millions of colours. In python, an image can be represented
-as a multidimensional array, also known as a tensor, where each element
-in the array corresponds to a pixel value in the image. In the context
-of images, these arrays often have dimensions for height, width, and
-color channels (if applicable).</p>
+as a multidimensional array, also known as a <code>tensor</code>, where
+each element in the array corresponds to a pixel value in the image. In
+the context of images, these arrays often have dimensions for height,
+width, and color channels (if applicable).</p>
 <div id="callout2" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1489,8 +1484,9 @@ Image Module</a>
 <li>TensorFlow images are often represented as tensors that have
 dimensions for batch size, height, width, and color channels. This
 framework provide tools to load, preprocess, and work with image data
-seamlessly. -<code>from tensorflow import keras</code>
+seamlessly.
 <ul>
+<li><code>from tensorflow import keras</code></li>
 <li>see <a href="https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image" class="external-link">image
 preprocessing</a> documentation</li>
 <li>Note Keras image functions also use PIL</li>
@@ -1527,8 +1523,8 @@ preprocessing</a> documentation</li>
 <h3 id="image-dimensions---resizing">Image Dimensions - Resizing<a class="anchor" aria-label="anchor" href="#image-dimensions---resizing"></a>
 </h3>
 <p>Here we see our new image has shape <code>(573, 552, 3)</code>,
-meaning it is much larger in size, 573x552 pixels, and also consists of
-3 colour channels.</p>
+meaning it is much larger in size, 573x552 pixels, a rectangle instead
+of a square, and also consists of 3 colour channels.</p>
 <p>Recall from the introduction that our training data set consists of
 50000 images of 32x32 pixels and 3 channels (RGB values) and labels.</p>
 <p>To reduce the computational load and ensure all of our images have a
@@ -1569,7 +1565,7 @@ corresponding color for each pixel. This results in a 3D array, where
 the dimensions are height, width, and color channel.</p></li>
 </ul>
 <p>While RGB is the most common representation, there are scenarios
-where other color spaces might be considered, such as:</p>
+where other color palettes might be considered, such as:</p>
 <p>Grayscale Images:</p>
 <ul>
 <li><p>Grayscale images have only one channel, representing the
@@ -1593,8 +1589,7 @@ load.</p></li>
 <p>Note that the keras.utils for image data loading offer far more
 capability than we are using here. For example:</p>
 <ul>
-<li>use load_img() to specify the image size and the colour
-pallette</li>
+<li>use load_img() to specify the image size and the colour palette</li>
 <li>use image_dataset_from_directory() to perform these actions are
 multiple images</li>
 </ul>
@@ -1609,7 +1604,8 @@ capabilities.</p>
 </h3>
 <p>Image RGB values are between 0 and 255. As input for neural networks,
 it is better to have small input values. The process of converting the
-RGB values to be between 0 and 1 is called normalization.</p>
+RGB values to be between 0 and 1 is called
+<strong>normalization</strong>.</p>
 <p>Before we can normalize our image values we must convert the image to
 an numpy array.</p>
 <p>We saw how to do this in the introduction but what you may not have
@@ -1652,21 +1648,20 @@ After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0
 </div>
 <p>Of course, if we have a large number of images to process we do not
 want to perform these steps one at a time. As you might have guessed,
-‘tf.keras.utils’ also provides a function to load an entire directories:
-‘image_dataset_from_directory function’ that returns
+<code>tf.keras.utils</code> also provides a function to load an entire
+directories: <code>image_dataset_from_directory()</code> returns
 <code>float32</code> tensors of shape (batch_size, image_size[0],
 image_size[1], num_channels).</p>
 </div>
-</section><section id="split-data-into-training-and-validation-set"><h2 class="section-heading">Split data into training and validation set<a class="anchor" aria-label="anchor" href="#split-data-into-training-and-validation-set"></a>
+</section><section id="data-splitting"><h2 class="section-heading">Data Splitting<a class="anchor" aria-label="anchor" href="#data-splitting"></a>
 </h2>
 <hr class="half-width">
 <p>In the previous episode we saw that the keras installation includes
-the Cifar-10 dataset and that by using the cifar10.load_data() method
-the returned data is already split into two. In this instance, there is
-no test data.</p>
-<p>When using a different dataset, or loading a your own, you will need
-to do the split yourself. Keep in mind you will also need to a
-validation set.</p>
+the Cifar-10 dataset and that by using the ‘cifar10.load_data()’ method
+the returned data is split into two (train and validations sets) and
+there is no test dataset.</p>
+<p>When using a different dataset, or loading your own, you will need to
+do the splits yourself.</p>
 <div id="callout5" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1681,9 +1676,9 @@ sets using a process called data splitting or data partitioning. There
 are various methods to perform this split, and the choice of technique
 depends on the specific problem, dataset size, and the nature of the
 data. Here are some common approaches:</p>
-<ol style="list-style-type: lower-alpha">
-<li><strong>Hold-Out Method:</strong></li>
-</ol>
+<ul>
+<li>
+<p><strong>Hold-Out Method:</strong></p>
 <ul>
 <li><p>In the hold-out method, the dataset is divided into two parts
 initially: a training set and a test set.</p></li>
@@ -1693,9 +1688,9 @@ performance.</p></li>
 <li><p>This method is straightforward and widely used when the dataset
 is sufficiently large.</p></li>
 </ul>
-<ol start="2" style="list-style-type: lower-alpha">
-<li><strong>Train-Validation-Test Split:</strong></li>
-</ol>
+</li>
+<li>
+<p><strong>Train-Validation-Test Split:</strong></p>
 <ul>
 <li><p>The dataset is split into three parts: the training set, the
 validation set, and the test set.</p></li>
@@ -1705,9 +1700,9 @@ and the test set is used to assess the final model performance.</p></li>
 <li><p>This method is commonly used when fine-tuning model
 hyperparameters is necessary.</p></li>
 </ul>
-<ol start="3" style="list-style-type: lower-alpha">
-<li><strong>K-Fold Cross-Validation:</strong></li>
-</ol>
+</li>
+<li>
+<p><strong>K-Fold Cross-Validation:</strong></p>
 <ul>
 <li><p>In k-fold cross-validation, the dataset is divided into k subsets
 (folds) of roughly equal size.</p></li>
@@ -1720,9 +1715,9 @@ performance.</p></li>
 <li><p>This method is particularly useful when the dataset size is
 limited, and it helps in better utilizing available data.</p></li>
 </ul>
-<ol start="4" style="list-style-type: lower-alpha">
-<li><strong>Stratified Sampling:</strong></li>
-</ol>
+</li>
+<li>
+<p><strong>Stratified Sampling:</strong></p>
 <ul>
 <li><p>Stratified sampling is used when the dataset is imbalanced,
 meaning some classes or categories are underrepresented.</p></li>
@@ -1731,6 +1726,8 @@ validation, or test) maintains the same class distribution as the
 original dataset.</p></li>
 <li><p>This ensures that all classes are well-represented in each
 subset, which is important to avoid biased model evaluation.</p></li>
+</ul>
+</li>
 </ul>
 <p>It’s important to note that the exact split ratios (e.g., 80-10-10 or
 70-15-15) may vary depending on the problem, dataset size, and specific
@@ -1748,13 +1745,13 @@ very convenient function from sklearn called
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(your_data, target, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>, shuffle<span class="op">=</span><span class="va">True</span>, stratify<span class="op">=</span>target)</span></code></pre>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, shuffle<span class="op">=</span><span class="va">True</span>, stratify<span class="op">=</span>target)</span></code></pre>
 </div>
 <p>TODO need some test data - maybe not use cifar in this section?</p>
 <p>This function takes a number of parameters:</p>
 <ul>
-<li><p>The first two are the dataset and the corresponding
-targets.</p></li>
+<li><p>The first two are the dataset array (X=images) and corresponding
+targets (y=labels)</p></li>
 <li><p>Next is the named parameter test_size this is the fraction of the
 dataset that is used for testing, in this case 0.2 means 20% of the data
 will be used for testing.</p></li>
@@ -1791,7 +1788,7 @@ training set well balanced?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>TODO will depend on data - see ep02 deep learning for ex on
 penguins</p>
@@ -2094,7 +2091,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -2216,7 +2213,7 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -2251,7 +2248,7 @@ the previous exercise.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 100 less than the fully
@@ -2375,7 +2372,7 @@ intuitive?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2663,7 +2660,7 @@ needs to be adjusted as follows:</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3216,7 +3213,7 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>The loss curve should drop quite quickly in a smooth line with
@@ -3474,7 +3471,7 @@ is the term associated to this procedure?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Q1. Varying the dropout rate The code below instantiates and trains a
 model with varying dropout rates. You can see from the resulting plot
@@ -3640,7 +3637,7 @@ and ‘Construction’ sections of the <a href="https://github.com/BayesWatch/ci
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>No! “The entirety of the original CIFAR-10 test set is within the
 above mentioned new test set.”</p>
@@ -3668,7 +3665,7 @@ above mentioned new test set.”</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Depends! Recall in Episode 02 we talked about the different ways to
 partition the data into training, validation and test data sets. For
@@ -3825,7 +3822,7 @@ visualize a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>The confusion matrix shows that the predictions for Adelie and Gentoo
 are decent, but could be improved. However, Chinstrap is not predicted
@@ -3874,7 +3871,7 @@ training parameters</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4082,7 +4079,7 @@ think about what you actually would like to see)</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>The difference between training and validation data shows that
 something is not completely right here. The model predictions on the
@@ -4142,7 +4139,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>This is on open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you

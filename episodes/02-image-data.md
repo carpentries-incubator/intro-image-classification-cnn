@@ -53,14 +53,13 @@ In some cases you will be able to download an image dataset that is already labe
 - [ImageNet] - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an [annual software contest] where programs compete to achieve the highest accuracy. When choosing a pretrained network, the winners of these sorts of competitions are generally a good place to start.
 - [MS COCO] - >200,000 labelled images used for object detection, instance segmentation, keypoint analysis, and captioning
 
-Where labelled data exists, in most cases the data provider or other users will have created functions that you can use to help load the data:
+Where labelled data exists, in most cases the data provider or other users will have created functions that you can use to help load the data. We already saw an example of this in the introduction:
 
-```python
-# load the CINIC-10 dataset
-from cinic10 # python script needs to be in available
+```
+# load the CIFAR-10 dataset included with the keras packages
+#from tensorflow import keras
 
-image_dir = '/path/to/dataset/folder'
-(train_images, train_labels), (val_images, val_labels) = cinic10.loadData("/path/to/dataset/folder", oneHot=True)
+#(train_images, train_labels), (val_images, val_labels) = #keras.datasets.cifar10.load_data()
 ```
 
 In this instance the data is likely already prepared for use in a CNN. However, it is always a good idea to read any associated documentation to find out what steps the data providers took.
@@ -118,7 +117,7 @@ Note that each square in the enlarged image area - each pixel - is all one colou
 
 ### Working with Pixels
 
-As noted, in practice, real world images will typically be made up of a vast number of pixels, and each of these pixels will be one of potentially millions of colours. In python, an image can be represented as a multidimensional array, also known as a tensor, where each element in the array corresponds to a pixel value in the image. In the context of images, these arrays often have dimensions for height, width, and color channels (if applicable).
+As noted, in practice, real world images will typically be made up of a vast number of pixels, and each of these pixels will be one of potentially millions of colours. In python, an image can be represented as a multidimensional array, also known as a `tensor`, where each element in the array corresponds to a pixel value in the image. In the context of images, these arrays often have dimensions for height, width, and color channels (if applicable).
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 
@@ -134,15 +133,15 @@ Python image libraries
 
 Two of the most commonly used libraries for image representation and manipulation are NumPy and Pillow (PIL). Additionally, when working with deep learning frameworks like TensorFlow and PyTorch, images are often represented as tensors within these frameworks.
 
-- NumPy is a powerful library for numerical computing in Python. It provides support for creating and manipulating arrays, which can be used to represent images as multidimensional arrays.
+- NumPy is a powerful library for numerical computing in Python. It provides support for creating and manipulating arrays, which can be used to represent images as multidimensional arrays. 
   - `import numpy as np`
 
-- The Pillow library (PIL fork) provides functions to open, manipulate, and save various image file formats. It represents images using its own Image class.
+- The Pillow library (PIL fork) provides functions to open, manipulate, and save various image file formats. It represents images using its own Image class. 
   - `from PIL import Image`
   - see [PIL Image Module]
 
-- TensorFlow images are often represented as tensors that have dimensions for batch size, height, width, and color channels. This framework provide tools to load, preprocess, and work with image data seamlessly.
-  -`from tensorflow import keras`
+- TensorFlow images are often represented as tensors that have dimensions for batch size, height, width, and color channels. This framework provide tools to load, preprocess, and work with image data seamlessly. 
+  - `from tensorflow import keras`
   - see [image preprocessing] documentation
   - Note Keras image functions also use PIL 
 
@@ -170,7 +169,7 @@ The new image is of type : <class 'PIL.JpegImagePlugin.JpegImageFile'> and has t
 
 ### Image Dimensions - Resizing
 
-Here we see our new image has shape `(573, 552, 3)`, meaning it is much larger in size, 573x552 pixels, and also consists of 3 colour channels.
+Here we see our new image has shape `(573, 552, 3)`, meaning it is much larger in size, 573x552 pixels, a rectangle instead of a square, and also consists of 3 colour channels.
 
 Recall from the introduction that our training data set consists of 50000 images of 32x32 pixels and 3 channels (RGB values) and labels. 
 
@@ -197,7 +196,7 @@ RGB Images:
 
 - RGB (Red, Green, Blue) images have three color channels: red, green, and blue, with each channel having an intensity value that ranges from 0 to 255. Each channel represents the intensity of the corresponding color for each pixel. This results in a 3D array, where the dimensions are height, width, and color channel. 
 
-While RGB is the most common representation, there are scenarios where other color spaces might be considered, such as:
+While RGB is the most common representation, there are scenarios where other color palettes might be considered, such as:
 
 Grayscale Images:
 
@@ -211,7 +210,7 @@ Keras Image data loading
 
 Note that the keras.utils for image data loading offer far more capability than we are using here. For example:
 
-- use load_img() to specify the image size and the colour pallette
+- use load_img() to specify the image size and the colour palette
 - use image_dataset_from_directory() to perform these actions are multiple images
 
 See the Keras API for more [Image data loading] capabilities.
@@ -221,7 +220,7 @@ See the Keras API for more [Image data loading] capabilities.
 
 ### Normalization
 
-Image RGB values are between 0 and 255. As input for neural networks, it is better to have small input values. The process of converting the RGB values to be between 0 and 1 is called normalization.
+Image RGB values are between 0 and 255. As input for neural networks, it is better to have small input values. The process of converting the RGB values to be between 0 and 1 is called **normalization**.
 
 Before we can normalize our image values we must convert the image to an numpy array.
 
@@ -255,52 +254,52 @@ The min, max, and mean pixel values are 0.0 , 255.0 , and 87.0 respectively.
 After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0 respectively.
 ```
 
-Of course, if we have a large number of images to process we do not want to perform these steps one at a time. As you might have guessed, 'tf.keras.utils' also provides a function to load an entire directories: 'image_dataset_from_directory function' that returns `float32` tensors of shape (batch_size, image_size[0], image_size[1], num_channels).
+Of course, if we have a large number of images to process we do not want to perform these steps one at a time. As you might have guessed, `tf.keras.utils` also provides a function to load an entire directories: `image_dataset_from_directory()` returns `float32` tensors of shape (batch_size, image_size[0], image_size[1], num_channels).
 
-## Split data into training and validation set
+## Data Splitting
 
-In the previous episode we saw that the keras installation includes the Cifar-10 dataset and that by using the cifar10.load_data() method the returned data is already split into two. In this instance, there is no test data.
+In the previous episode we saw that the keras installation includes the Cifar-10 dataset and that by using the 'cifar10.load_data()' method the returned data is split into two (train and validations sets) and there is no test dataset.
 
-When using a different dataset, or loading a your own, you will need to do the split yourself. Keep in mind you will also need to a validation set.
+When using a different dataset, or loading your own, you will need to do the splits yourself.
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 ChatGPT
 
 Data is typically split into the training, validation, and test data sets using a process called data splitting or data partitioning. There are various methods to perform this split, and the choice of technique depends on the specific problem, dataset size, and the nature of the data. Here are some common approaches:
 
-a. **Hold-Out Method:**
+- **Hold-Out Method:**
 
-- In the hold-out method, the dataset is divided into two parts initially: a training set and a test set.
+  - In the hold-out method, the dataset is divided into two parts initially: a training set and a test set.
 
-- The training set is used to train the model, and the test set is kept completely separate to evaluate the model's final performance.
+  - The training set is used to train the model, and the test set is kept completely separate to evaluate the model's final performance.
 
-- This method is straightforward and widely used when the dataset is sufficiently large.
+  - This method is straightforward and widely used when the dataset is sufficiently large.
 
-b. **Train-Validation-Test Split:**
+- **Train-Validation-Test Split:**
 
-- The dataset is split into three parts: the training set, the validation set, and the test set.
+  - The dataset is split into three parts: the training set, the validation set, and the test set.
 
-- The training set is used to train the model, the validation set is used to tune hyperparameters and prevent overfitting during training, and the test set is used to assess the final model performance.
+  - The training set is used to train the model, the validation set is used to tune hyperparameters and prevent overfitting during training, and the test set is used to assess the final model performance.
 
-- This method is commonly used when fine-tuning model hyperparameters is necessary.
+  - This method is commonly used when fine-tuning model hyperparameters is necessary.
 
-c. **K-Fold Cross-Validation:**
+- **K-Fold Cross-Validation:**
 
-- In k-fold cross-validation, the dataset is divided into k subsets (folds) of roughly equal size.
+  - In k-fold cross-validation, the dataset is divided into k subsets (folds) of roughly equal size.
 
-- The model is trained and evaluated k times, each time using a different fold as the test set while the remaining k-1 folds are used as the training set.
+  - The model is trained and evaluated k times, each time using a different fold as the test set while the remaining k-1 folds are used as the training set.
 
-- The final performance metric is calculated as the average of the k evaluation results, providing a more robust estimate of model performance.
+  - The final performance metric is calculated as the average of the k evaluation results, providing a more robust estimate of model performance.
 
-- This method is particularly useful when the dataset size is limited, and it helps in better utilizing available data.
+  - This method is particularly useful when the dataset size is limited, and it helps in better utilizing available data.
 
-d. **Stratified Sampling:**
+- **Stratified Sampling:**
 
-- Stratified sampling is used when the dataset is imbalanced, meaning some classes or categories are underrepresented.
+  - Stratified sampling is used when the dataset is imbalanced, meaning some classes or categories are underrepresented.
 
-- The data is split in such a way that each subset (training, validation, or test) maintains the same class distribution as the original dataset.
+  - The data is split in such a way that each subset (training, validation, or test) maintains the same class distribution as the original dataset.
 
-- This ensures that all classes are well-represented in each subset, which is important to avoid biased model evaluation.
+  - This ensures that all classes are well-represented in each subset, which is important to avoid biased model evaluation.
 
 It's important to note that the exact split ratios (e.g., 80-10-10 or 70-15-15) may vary depending on the problem, dataset size, and specific requirements. Additionally, data splitting should be performed randomly to avoid introducing any biases into the model training and evaluation process.
 :::::::::::::::::::::::::::::::::::::::::::::::::
@@ -310,14 +309,14 @@ To split a cleaned dataset into a training and test set we will use a very conve
 ```python
 from sklearn.model_selection import train_test_split
 
-X_train, X_test, y_train, y_test = train_test_split(your_data, target, test_size=0.2, random_state=0, shuffle=True, stratify=target)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, shuffle=True, stratify=target)
 ```
 
 TODO need some test data - maybe not use cifar in this section?
 
 This function takes a number of parameters:
 
-- The first two are the dataset and the corresponding targets.
+- The first two are the dataset array (X=images) and corresponding targets (y=labels)
 
 - Next is the named parameter test_size this is the fraction of the dataset that is used for testing, in this case 0.2 means 20% of the data will be used for testing.
 

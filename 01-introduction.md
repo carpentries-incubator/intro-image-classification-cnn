@@ -79,7 +79,7 @@ Firstly we must decide what it is we want our Deep Learning system to do. This l
 Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
 
 ### Step 3. Prepare data
-Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data. Information on how this is done and what the data looks like will be explored in [Introduction to Image Data](episodes/02-image-data). 
+Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data. Information on how this is done and what the data looks like will be explored in the next episode [Introduction to Image Data](episodes/02-image-data). 
 
 Next we will need to divide the data into multiple sets. One of these will be used by the training process and we will call it the **training set**. Another set, called the **validation set**, will be used during the training process to tune hyperparameters. A third **test set** is used to assess the final performance of the trained model.
 
@@ -241,7 +241,7 @@ new_img_prepped = prepare_image_icwithcnn(new_img_path)
 result_intro = model_intro.predict(new_img_prepped) # make prediction
 
 print(' The predicted probability of each class is: \n', result_intro.round(4))
-print('The class with the highest predicted probability is: ', [result_intro.argmax()])
+print('The class with the highest predicted probability is: ', class_names[result_intro.argmax()])
 ```
 
 ```output

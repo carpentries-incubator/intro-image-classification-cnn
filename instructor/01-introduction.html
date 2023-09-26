@@ -449,7 +449,7 @@ problem and we will have one output for each potential class.</p>
 will require some preparation. Neural networks can only really deal with
 numerical data, so any non-numerical data (eg images) will have to be
 somehow converted to numerical data. Information on how this is done and
-what the data looks like will be explored in <a href="02-image-data">Introduction to Image Data</a>.</p>
+what the data looks like will be explored in the next episode <a href="02-image-data">Introduction to Image Data</a>.</p>
 <p>Next we will need to divide the data into multiple sets. One of these
 will be used by the training process and we will call it the
 <strong>training set</strong>. Another set, called the
@@ -494,7 +494,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -691,7 +691,7 @@ network.</p>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>result_intro <span class="op">=</span> model_intro.predict(new_img_prepped) <span class="co"># make prediction</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' The predicted probability of each class is: </span><span class="ch">\n</span><span class="st">'</span>, result_intro.<span class="bu">round</span>(<span class="dv">4</span>))</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The class with the highest predicted probability is: '</span>, [result_intro.argmax()])</span></code></pre>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The class with the highest predicted probability is: '</span>, class_names[result_intro.argmax()])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -846,7 +846,7 @@ discuss each component in more detail.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor

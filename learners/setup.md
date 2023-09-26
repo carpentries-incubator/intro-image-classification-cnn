@@ -174,7 +174,7 @@ The aim for this workshop is to create a python script that you can used as a "b
 
 In an effort to not clutter the scripts developed in the workshop with episode exercise/challenge code, this workshop will use an exercises python script for all of the exercises completed throughout the workshop.
 
-This file can be downloaded from [exercises.py](../episodes/scripts/exercises.py).
+This file can be downloaded from [exercises.py](../episodes/scripts/exercises.py#exercises.py).
 
 
 ## Fallback option: cloud environment

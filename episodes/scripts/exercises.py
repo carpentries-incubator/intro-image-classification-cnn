@@ -9,6 +9,8 @@ This exercises template file is designed to provide the required initialisation 
 
 """
 
+# This section of the code helps to set things up ready for the various exercices
+
 # load the cifar dataset included with the keras packages
 from tensorflow import keras
 from icwithcnn_functions import prepare_image_icwithcnn
@@ -20,7 +22,6 @@ print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
 
 # CINAC-10 uses the same class names
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
-
 
 
 """
@@ -115,11 +116,11 @@ Compile and Train a Convolutional Neural Network
 ### Vary dropout rate ###
 # https://carpentries-incubator.github.io/intro-image-classification-cnn/04-fit-cnn.html#vary-dropout-rate
 
+
 """
 Compile and Train a Convolutional Neural Network
 
 """
-
 
 ### Challenge 1 ###
 # https://carpentries-incubator.github.io/intro-image-classification-cnn/05-evaluate-predict-cnn.html#challenge1
@@ -155,4 +156,5 @@ new_img_prepped = prepare_image_icwithcnn(new_img_path)
 
 ### Open question: What could be next steps to further improve the model? ###
 # https://carpentries-incubator.github.io/intro-image-classification-cnn/05-evaluate-predict-cnn.html#open-question-what-could-be-next-steps-to-further-improve-the-model
+
 

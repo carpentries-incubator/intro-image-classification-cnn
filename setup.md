@@ -89,7 +89,7 @@ Please note you might want to consider installing the GPU enabled version of Ten
 
 To create a conda environment called `cnn_workshop` with the required packages, open a terminal and type the command:
 
-![](fig/00Setup.png){alt=''}
+![](fig/00_setup_anaconda_prompt.png){alt='Screenshot of the Anaconda prompt'}
 
 ```code
 (base) C:\Users\Lab> conda create --name cnn_workshop python spyder seaborn scikit-learn pandas

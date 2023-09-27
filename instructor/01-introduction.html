@@ -279,7 +279,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p> Last updated on 2023-09-26 | 
+        <p> Last updated on 2023-09-27 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -510,58 +510,9 @@ images of 32x32 pixels and 3 channels (RGB values) and labels.</p>
 </div>
 </div>
 <p>Image RGB values are between 0 and 255. For input of neural networks,
-it is better to have small input values. So we normalize our data
-between 0 and 1.</p>
-<div id="callout2" class="callout callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
-</h3>
-<div class="callout-content">
-<p>ChatGPT Normalizing the RGB values to be between 0 and 1 is a common
-pre-processing step in machine learning tasks, especially when dealing
-with image data. This normalization has several benefits:</p>
-<ol style="list-style-type: decimal"><li><p><strong>Numerical Stability</strong>: By scaling the RGB values
-to a range between 0 and 1, you avoid potential numerical instability
-issues that can arise when working with large values. Neural networks
-and many other machine learning algorithms are sensitive to the scale of
-input features, and normalizing helps to keep the values within a
-manageable range.</p></li>
-<li><p><strong>Faster Convergence</strong>: Normalizing the RGB values
-often helps in faster convergence during the training process. Neural
-networks and other optimization algorithms rely on gradient descent
-techniques, and having inputs in a consistent range aids in smoother and
-faster convergence.</p></li>
-<li><p><strong>Equal Weightage for All Channels</strong>: In RGB images,
-each channel (Red, Green, Blue) represents different color intensities.
-By normalizing to the range [0, 1], you ensure that each channel is
-treated with equal weightage during training. This is important because
-some machine learning algorithms could assign more importance to larger
-values.</p></li>
-<li><p><strong>Generalization</strong>: Normalization helps the model to
-generalize better to unseen data. When the input features are in the
-same range, the learned weights and biases can be more effectively
-applied to new examples, making the model more robust.</p></li>
-<li><p><strong>Compatibility</strong>: Many image-related libraries,
-algorithms, and models expect pixel values to be in the range of [0, 1].
-By normalizing the RGB values, you ensure compatibility and seamless
-integration with these tools.</p></li>
-</ol><p>The normalization process is typically done by dividing each RGB
-value (ranging from 0 to 255) by 255, which scales the values to the
-range [0, 1].</p>
-<p>For example, if you have an RGB image with pixel values (100, 150,
-200), after normalization, the pixel values would become (100/255,
-150/255, 200/255) ≈ (0.39, 0.59, 0.78).</p>
-<p>Remember that normalization is not always mandatory, and there could
-be cases where other scaling techniques might be more suitable based on
-the specific problem and data distribution. However, for most
-image-related tasks in machine learning, normalizing RGB values to [0,
-1] is a good starting point.</p>
-</div>
-</div>
-</div>
+it is better to have small input values. We will talk more about why
+this important in the episode on image data but for now we will
+normalize our data between 0 and 1.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -700,12 +651,12 @@ network.</p>
  [[-50.365475 -44.362732 -36.384968 -48.386 -32.87043 -66.691696 -29.284208 -51.06697  -36.475967 -43.751118]]
 The class with the highest predicted probability is:  frog</code></pre>
 </div>
-<div id="callout3" class="callout callout">
+<div id="callout2" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout3"></a>
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
 </h3>
 <div class="callout-content">
 <p>My result is different!</p>
@@ -943,7 +894,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/01-introduction.html",
   "identifier": "https://.github.io/github.com/instructor/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-09-26",
+  "dateModified": "2023-09-27",
   "datePublished": "2023-09-27"
 }
 

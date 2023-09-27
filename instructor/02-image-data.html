@@ -278,7 +278,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p> Last updated on 2023-09-25 | 
+        <p> Last updated on 2023-09-27 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -330,16 +330,17 @@ network (CNN)?</li>
 <div class="section level3">
 <h3 id="step-1--formulate-outline-the-problem">Step 1. Formulate/ Outline the problem<a class="anchor" aria-label="anchor" href="#step-1--formulate-outline-the-problem"></a></h3>
 <p>Firstly we must decide what it is we want our Deep Learning system to
-do. This lesson is all about image classification so our aim is to put
-an image into one of a few categories.</p>
+do. This lesson is all about image classification and our aim is to put
+an image into one of ten categories: airplane, automobile, bird, cat,
+deer, dog, frog, horse, ship, or truck</p>
 </div>
 <div class="section level3">
 <h3 id="step-2--identify-inputs-and-outputs">Step 2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#step-2--identify-inputs-and-outputs"></a></h3>
 <p>Next we need to identify what the inputs and outputs of the neural
 network will be. In our case, the data is images and the inputs could be
 the individual pixels of the images.</p>
-<p>We are performing a classification problem and we will have one
-output for each potential class.</p>
+<p>We are performing a classification problem and we want to output one
+category for each image.</p>
 </div>
 <div class="section level3">
 <h3 id="step-3--prepare-data">Step 3. Prepare data<a class="anchor" aria-label="anchor" href="#step-3--prepare-data"></a></h3>
@@ -372,15 +373,17 @@ of competitions are generally a good place to start.</li>
 labelled images used for object detection, instance segmentation,
 keypoint analysis, and captioning</li>
 </ul><p>Where labelled data exists, in most cases the data provider or other
-users will have created functions that you can use to help load the
-data. We already saw an example of this in the introduction:</p>
+users will have created functions that you can use to load the data. We
+already saw an example of this in the introduction:</p>
 <pre><code><span><span class="co"># load the CIFAR-10 dataset included with the keras packages</span></span>
 <span><span class="co">#from tensorflow import keras</span></span>
 <span></span>
 <span><span class="co">#(train_images, train_labels), (val_images, val_labels) = #keras.datasets.cifar10.load_data()</span></span></code></pre>
 <p>In this instance the data is likely already prepared for use in a
-CNN. However, it is always a good idea to read any associated
-documentation to find out what steps the data providers took.</p>
+CNN. However, it is always a good idea to first read any associated
+documentation to find out what steps the data providers took to prepare
+the images and second to take a closer at the images once loaded and
+query their attributes.</p>
 </div>
 <div class="section level4">
 <h4 id="custom-image-data">Custom image data<a class="anchor" aria-label="anchor" href="#custom-image-data"></a></h4>
@@ -388,12 +391,20 @@ documentation to find out what steps the data providers took.</p>
 images.</p>
 <p><strong>Custom data i. Data collection and Labeling:</strong></p>
 <p>For image classification the label applies to the entire image;
-object detection requires bounding boxes, and instance or semantic
-segmentation requires each pixel to be labelled.</p>
-<p>There are a number of different software that can be used to label
+object detection requires bounding boxes around objects of interest, and
+instance or semantic segmentation requires each pixel to be
+labelled.</p>
+<p>There are a number of open source software that can be used to label
 your dataset, including:</p>
 <ul><li>(Visual Geometry Group) <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" class="external-link">VGG Image
 Annotator</a> (VIA)</li>
+<li>
+<a href="https://imagej.net/" class="external-link">ImageJ</a> can be extended with
+plugins for annotation</li>
+<li>
+<a href="https://github.com/jsbroks/coco-annotator" class="external-link">COCO
+Annotator</a> is designed specifically for creating annotations
+compatible with Common Objects in Context (COCO) format</li>
 </ul><div id="callout1" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -427,8 +438,7 @@ exposes a different view.</p>
 <p>This step involves various tasks to enhance the quality and
 consistency of the data:</p>
 <ul><li><p><strong>Resizing</strong>: Resize images to a consistent
-resolution (e.g., 224x224) to ensure uniformity and reduce computational
-load.</p></li>
+resolution to ensure uniformity and reduce computational load.</p></li>
 <li><p><strong>Normalization</strong>: Scale pixel values to a common
 range, often between 0 and 1 or -1 and 1. Normalization helps the model
 converge faster during training.</p></li>
@@ -436,11 +446,11 @@ converge faster during training.</p></li>
 (e.g., rotations, flips, shifts) to create new variations of the same
 image. This helps improve the model’s robustness and generalization by
 exposing it to more diverse data.</p></li>
-<li><p><strong>Handling Color Channels</strong>: Depending on the model
-and library you use, you might need to handle different color channel
-orders (RGB, BGR, etc.).</p></li>
-<li><p><strong>Handling Data Formats</strong>: Convert image data to a
-format suitable for your deep learning framework (e.g., NumPy arrays or
+<li><p><strong>Color Channels</strong>: Depending on the model and
+library you use, you might need to handle different color channel orders
+(RGB, BGR, etc.).</p></li>
+<li><p><strong>Data Formats</strong>: Convert image data to a format
+suitable for your deep learning framework (e.g., NumPy arrays or
 TensorFlow tensors).</p></li>
 </ul><p>Before we look at some of these tasks in more detail we need to
 understand that the images we see on hard copy, view with our electronic
@@ -564,10 +574,10 @@ preprocessing</a> documentation</li>
 <div class="section level3">
 <h3 id="image-dimensions---resizing">Image Dimensions - Resizing<a class="anchor" aria-label="anchor" href="#image-dimensions---resizing"></a></h3>
 <p>Here we see our new image has shape <code>(573, 552, 3)</code>,
-meaning it is much larger in size, 573x552 pixels, a rectangle instead
-of a square, and also consists of 3 colour channels.</p>
+meaning it is much larger in size, 573x552 pixels; a rectangle instead
+of a square; and consists of 3 colour channels (RGB).</p>
 <p>Recall from the introduction that our training data set consists of
-50000 images of 32x32 pixels and 3 channels (RGB values) and labels.</p>
+50000 images of 32x32 pixels and 3 channels.</p>
 <p>To reduce the computational load and ensure all of our images have a
 uniform size, we need to choose an image resolution (or size in pixels)
 and ensure that all of the images we use are resized to that shape to be
@@ -613,7 +623,14 @@ intensity value of the corresponding pixel.</p></li>
 <li><p>In cases where color information isn’t critical, you might
 convert RGB images to grayscale to reduce the computational
 load.</p></li>
-</ul><div id="callout4" class="callout callout">
+</ul></div>
+<div class="section level3">
+<h3 id="normalization">Normalization<a class="anchor" aria-label="anchor" href="#normalization"></a></h3>
+<p>Image RGB values are between 0 and 255. As input for neural networks,
+it is better to have small input values. The process of converting the
+RGB values to be between 0 and 1 is called
+<strong>normalization</strong>.</p>
+<div id="callout4" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -621,24 +638,49 @@ load.</p></li>
 <h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout4"></a>
 </h3>
 <div class="callout-content">
-<p>Keras Image data loading</p>
-<p>Note that the keras.utils for image data loading offer far more
-capability than we are using here. For example:</p>
-<ul><li>use load_img() to specify the image size and the colour palette</li>
-<li>use image_dataset_from_directory() to perform these actions are
-multiple images</li>
-</ul><p>See the Keras API for more <a href="https://keras.io/api/data_loading/image/" class="external-link">Image data loading</a>
-capabilities.</p>
+<p>ChatGPT</p>
+<p>Normalizing the RGB values to be between 0 and 1 is a common
+pre-processing step in machine learning tasks, especially when dealing
+with image data. This normalization has several benefits:</p>
+<ol style="list-style-type: decimal"><li><p><strong>Numerical Stability</strong>: By scaling the RGB values
+to a range between 0 and 1, you avoid potential numerical instability
+issues that can arise when working with large values. Neural networks
+and many other machine learning algorithms are sensitive to the scale of
+input features, and normalizing helps to keep the values within a
+manageable range.</p></li>
+<li><p><strong>Faster Convergence</strong>: Normalizing the RGB values
+often helps in faster convergence during the training process. Neural
+networks and other optimization algorithms rely on gradient descent
+techniques, and having inputs in a consistent range aids in smoother and
+faster convergence.</p></li>
+<li><p><strong>Equal Weightage for All Channels</strong>: In RGB images,
+each channel (Red, Green, Blue) represents different color intensities.
+By normalizing to the range [0, 1], you ensure that each channel is
+treated with equal weightage during training. This is important because
+some machine learning algorithms could assign more importance to larger
+values.</p></li>
+<li><p><strong>Generalization</strong>: Normalization helps the model to
+generalize better to unseen data. When the input features are in the
+same range, the learned weights and biases can be more effectively
+applied to new examples, making the model more robust.</p></li>
+<li><p><strong>Compatibility</strong>: Many image-related libraries,
+algorithms, and models expect pixel values to be in the range of [0, 1].
+By normalizing the RGB values, you ensure compatibility and seamless
+integration with these tools.</p></li>
+</ol><p>The normalization process is typically done by dividing each RGB
+value (ranging from 0 to 255) by 255, which scales the values to the
+range [0, 1].</p>
+<p>For example, if you have an RGB image with pixel values (100, 150,
+200), after normalization, the pixel values would become (100/255,
+150/255, 200/255) ≈ (0.39, 0.59, 0.78).</p>
+<p>Remember that normalization is not always mandatory, and there could
+be cases where other scaling techniques might be more suitable based on
+the specific problem and data distribution. However, for most
+image-related tasks in machine learning, normalizing RGB values to [0,
+1] is a good starting point.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="normalization">Normalization<a class="anchor" aria-label="anchor" href="#normalization"></a></h3>
-<p>Image RGB values are between 0 and 255. As input for neural networks,
-it is better to have small input values. The process of converting the
-RGB values to be between 0 and 1 is called
-<strong>normalization</strong>.</p>
 <p>Before we can normalize our image values we must convert the image to
 an numpy array.</p>
 <p>We saw how to do this in the introduction but what you may not have
@@ -682,18 +724,18 @@ After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0
 <p>Of course, if we have a large number of images to process we do not
 want to perform these steps one at a time. As you might have guessed,
 <code>tf.keras.utils</code> also provides a function to load an entire
-directories: <code>image_dataset_from_directory()</code> returns
-<code>float32</code> tensors of shape (batch_size, image_size[0],
-image_size[1], num_channels).</p>
+directories: <code>image_dataset_from_directory()</code> We will use
+this function in a moment to create a test dataset but before we do let
+us talk about data splitting.</p>
 </div>
 </section><section id="data-splitting"><h2 class="section-heading">Data Splitting<a class="anchor" aria-label="anchor" href="#data-splitting"></a>
 </h2>
 <hr class="half-width"><p>In the previous episode we saw that the keras installation includes
 the Cifar-10 dataset and that by using the ‘cifar10.load_data()’ method
-the returned data is split into two (train and validations sets) and
-there is no test dataset.</p>
-<p>When using a different dataset, or loading your own, you will need to
-do the splits yourself.</p>
+the returned data is split into two (train and validations sets). There
+is no test dataset.</p>
+<p>When using a different dataset, or loading your own set of images,
+you will do the splits yourself.</p>
 <div id="callout5" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -759,34 +801,38 @@ process.</p>
 </div>
 </div>
 </div>
-<p>To split a cleaned dataset into a training and test set we will use a
-very convenient function from sklearn called
-<code>train_test_split</code>.</p>
-<div class="codewrapper sourceCode" id="cb10">
+<p>Here we will load an entire directory of images and create a test
+dataset.</p>
+<p>We set up our test image directory to have the following
+structure:</p>
+<pre><code><span><span class="va">main_directory</span><span class="op">/</span></span>
+<span><span class="va">...class_a</span><span class="op">/</span></span>
+<span><span class="va">......image_1.jpg</span></span>
+<span><span class="va">......image_2.jpg</span></span>
+<span><span class="va">...class_b</span><span class="op">/</span></span>
+<span><span class="va">......image_1.jpg</span></span>
+<span><span class="va">......image_2.jpg</span></span></code></pre>
+<p>If we using this structure and the
+[tf.keras.utils,image_dataset_from_directory()] function, keras will
+automatically infer the image labels.</p>
+<p>To split an image dataset into a different sets we could use a
+function from sklearn called <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html" class="external-link">train_test_split()</a>.
+However, because we already have training and validation sets, we just
+need a test set so we will skip the data splitting step.</p>
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, shuffle<span class="op">=</span><span class="va">True</span>, stratify<span class="op">=</span>target)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the required libraries</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.utils <span class="im">import</span> image_dataset_from_directory </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># define the image directory</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>test_image_dir <span class="op">=</span> <span class="st">'D:/20230724_CINIC10/test_images'</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the images, infer the labels, and resize to match training dataset</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> image_dataset_from_directory(test_image_dir, labels<span class="op">=</span><span class="st">'inferred'</span>, batch_size<span class="op">=</span><span class="va">None</span>, image_size<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>), shuffle<span class="op">=</span><span class="va">False</span>)</span></code></pre>
 </div>
-<p>TODO need some test data - maybe not use cifar in this section?</p>
-<p>This function takes a number of parameters:</p>
-<ul><li><p>The first two are the dataset array (X=images) and corresponding
-targets (y=labels)</p></li>
-<li><p>Next is the named parameter test_size this is the fraction of the
-dataset that is used for testing, in this case 0.2 means 20% of the data
-will be used for testing.</p></li>
-<li><p>random_state controls the shuffling of the dataset, setting this
-value will reproduce the same results (assuming you give the same
-integer) every time it is called.</p></li>
-<li><p>shuffle which can be either True or False, it controls whether
-the order of the rows of the dataset is shuffled before splitting. It
-defaults to True.</p></li>
-<li><p>stratify is a more advanced parameter that controls how the split
-is done. By setting it to target the train and test sets the function
-will return will have roughly the same proportions as the
-dataset.</p></li>
-</ul><div id="challenge1" class="callout challenge">
+<div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -808,7 +854,7 @@ training set well balanced?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>TODO will depend on data - see ep02 deep learning for ex on
 penguins</p>
@@ -844,7 +890,7 @@ an architecture.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -940,7 +986,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/02-image-data.html",
   "identifier": "https://.github.io/github.com/instructor/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-09-25",
+  "dateModified": "2023-09-27",
   "datePublished": "2023-09-27"
 }
 

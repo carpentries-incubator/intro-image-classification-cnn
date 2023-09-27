@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jun 30 10:59:45 2023
+Episode 02 Image Data
 
-@author: bellf
 """
 
 #### Pre-existing image data
@@ -61,5 +60,5 @@ test_images = image_dataset_from_directory(test_image_dir, labels='inferred', ba
 
 from sklearn.model_selection import train_test_split
 
-_, X_test, _, y_test = train_test_split(test_images,test_size=0.0, random_state=0, shuffle=True, stratify=target)
+_, X_test, _, y_test = train_test_split(test_images, test_size=1.0)
 

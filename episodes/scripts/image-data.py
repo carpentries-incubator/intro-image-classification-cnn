@@ -58,7 +58,35 @@ from keras.utils import image_dataset_from_directory
 test_image_dir = 'D:/20230724_CINIC10/test_images'
 test_images = image_dataset_from_directory(test_image_dir, labels='inferred', batch_size=None, image_size=(32,32), shuffle=False)
 
-from sklearn.model_selection import train_test_split
+# need to normalize
+import tensorflow as tf
 
-_, X_test, _, y_test = train_test_split(test_images, test_size=1.0)
+def process(image,label):
+    image = tf.cast(image/255. ,tf.float32)
+    return image,label
 
+test_images = test_images.map(process)
+
+# now a MapDataset! this will affect 
+
+# Challenge TRAINING AND TEST SETS
+
+# Q1
+print('The training set is of type', train_images.__class__)
+print('The training set has', train_images.shape[0], 'samples.\n')
+
+import numpy as np
+print('The number of labels in our training set and the number images in each class are:\n')
+np.unique(train_labels, return_counts=True)
+
+# Q2
+print('The test set is of type', test_images.__class__)
+print('The test set has', len(test_images), 'samples.\n')
+#print(test_images)
+
+labels = []
+for (image,label) in test_images:
+    labels.append(label.numpy())
+labels = pd.Series(labels)
+count = labels.value_counts().sort_index()
+print(count)

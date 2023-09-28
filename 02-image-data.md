@@ -6,12 +6,10 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How are images represented in digital format?
+- How much data do you need for Deep Learning?
 - Where can I find image data to train my model?
 - How do I plot image data in python?
 - How do I prepare image data for use in a convolutional neural network (CNN)?
-- What is one hot encoding?
-- How much data do you need for Deep Learning?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -21,7 +19,6 @@ exercises: 2
 - Write code to plot image data
 - Understand the properties of image data
 - Prepare an image data set to train a convolutional neural network (CNN)
-- Know how to perform one-hot encoding
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -64,6 +61,17 @@ Where labelled data exists, in most cases the data provider or other users will 
 
 In this instance the data is likely already prepared for use in a CNN. However, it is always a good idea to first read any associated documentation to find out what steps the data providers took to prepare the images and second to take a closer at the images once loaded and query their attributes.
 
+
+:::::::::::::::::::::::::::::::::::::: callout
+
+How much data do you need for Deep Learning?
+
+The rise of Deep Learning is partially due to the increased availability of very large datasets. But how much data do you actually need to train a Deep Learning model? Unfortunately, this question is not easy to answer. It depends, among other things, on the complexity of the task (which you often do not know beforehand), the quality of the available dataset and the complexity of the network. For complex tasks with large neural networks, we often see that adding more data continues to improve performance. However, this is also not a generic truth: if the data you add is too similar to the data you already have, it will not give much new information to the neural network.
+
+In case you have too little data available to train a complex network from scratch, it is sometimes possible to use a pretrained network that was trained on a similar problem. Another trick is data augmentation, where you expand the dataset with artificial data points that could be real. An example of this is mirroring images when trying to classify cats and dogs. An horizontally mirrored animal retains the label, but exposes a different view.
+
+:::::::::::::::::::::::::::::::::::::::::::::::
+
 #### Custom image data
 
 In other cases, you will need to create your own set of labelled images. 
@@ -78,15 +86,6 @@ There are a number of open source software that can be used to label your datase
 - [ImageJ] can be extended with plugins for annotation
 - [COCO Annotator] is designed specifically for creating annotations compatible with Common Objects in Context (COCO) format
 
-:::::::::::::::::::::::::::::::::::::: callout
-
-How much data do you need for Deep Learning?
-
-The rise of Deep Learning is partially due to the increased availability of very large datasets. But how much data do you actually need to train a Deep Learning model? Unfortunately, this question is not easy to answer. It depends, among other things, on the complexity of the task (which you often do not know beforehand), the quality of the available dataset and the complexity of the network. For complex tasks with large neural networks, we often see that adding more data continues to improve performance. However, this is also not a generic truth: if the data you add is too similar to the data you already have, it will not give much new information to the neural network.
-
-In case you have too little data available to train a complex network from scratch, it is sometimes possible to use a pretrained network that was trained on a similar problem. Another trick is data augmentation, where you expand the dataset with artificial data points that could be real. An example of this is mirroring images when trying to classify cats and dogs. An horizontally mirrored animal retains the label, but exposes a different view.
-:::::::::::::::::::::::::::::::::::::::::::::::
-
 **Custom data ii. Data preprocessing:**
 
 This step involves various tasks to enhance the quality and consistency of the data:
@@ -98,8 +97,6 @@ This step involves various tasks to enhance the quality and consistency of the d
 - **Data Augmentation**: Apply random transformations (e.g., rotations, flips, shifts) to create new variations of the same image. This helps improve the model's robustness and generalization by exposing it to more diverse data.
 
 - **Color Channels**: Depending on the model and library you use, you might need to handle different color channel orders (RGB, BGR, etc.).
-
-- **Data Formats**: Convert image data to a format suitable for your deep learning framework (e.g., NumPy arrays or TensorFlow tensors).
 
 Before we look at some of these tasks in more detail we need to understand that the images we see on hard copy, view with our electronic devices, or process with our programs are represented and stored in the computer as numeric abstractions, or approximations of what we see with our eyes in the real world. And before we begin to learn how to process images with Python programs, we need to spend some time understanding how these abstractions work.
 
@@ -190,23 +187,6 @@ print('The new image is still of type:', new_img_pil_small.__class__, 'but now h
 The new image is still of type: <class 'PIL.Image.Image'> but now has the same size (32, 32) as our training data.
 ```
 
-### Image Colours
-
-RGB Images:
-
-- For image classification tasks, RGB images are used because they capture the full spectrum of colors that human vision can perceive, allowing the model to learn intricate features and patterns present in the images.
-
-- RGB (Red, Green, Blue) images have three color channels: red, green, and blue, with each channel having an intensity value that ranges from 0 to 255. Each channel represents the intensity of the corresponding color for each pixel. This results in a 3D array, where the dimensions are height, width, and color channel. 
-
-While RGB is the most common representation, there are scenarios where other color palettes might be considered, such as:
-
-Grayscale Images:
-
-- Grayscale images have only one channel, representing the intensity of the pixels. Each pixel's intensity is usually represented by a single numerical value that ranges from 0 (black) to 255 (white). The image is essentially a 2D array where each element holds the intensity value of the corresponding pixel.
-
-- In cases where color information isn't critical, you might convert RGB images to grayscale to reduce the computational load.
-
-
 ### Normalization
 
 Image RGB values are between 0 and 255. As input for neural networks, it is better to have small input values. The process of converting the RGB values to be between 0 and 1 is called **normalization**.
@@ -266,14 +246,77 @@ After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0
 ```
 
 Of course, if we have a large number of images to process we do not want to perform these steps one at a time. As you might have guessed, `tf.keras.utils` also provides a function to load an entire directories: `image_dataset_from_directory()` 
-We will use this function in a moment to create a test dataset but before we do let us talk about data splitting.
+Here we will load an entire directory of images and create a test dataset. 
+
+We set up our test image directory to have the following structure:
+```
+main_directory/
+...class_a/
+......image_1.jpg
+......image_2.jpg
+...class_b/
+......image_1.jpg
+......image_2.jpg
+```
+
+If we use this directory structure, keras will automatically infer the image labels.
+
+```python
+# load the required libraries
+from keras.utils import image_dataset_from_directory 
+
+# define the image directory
+test_image_dir = 'D:/20230724_CINIC10/test_images'
+
+# read in the images, infer the labels, and resize to match training dataset
+test_images = image_dataset_from_directory(test_image_dir, labels='inferred', batch_size=None, image_size=(32,32), shuffle=False)
+```
+```output
+Found 10000 files belonging to 10 classes.
+```
+
+In most cases, after loading your images and preprocessing them to match your training dataset attributes, you will divide them up into training, validation, and test datasets. We already loaded training and validation data in episode 1, so this test dataset will be used to test our model predictions in a later episode. Moreover, because the CINIC-10 data is intended to be a drop-in replacement for CIFAR-10, we just need to normalize the data to be on the same scale as our training data.
+
+```python
+# normalize test images
+import tensorflow as tf
+
+# define a function to normalize each image in the test set
+def process(image,label):
+    image = tf.cast(image/255. ,tf.float32)
+    return image,label
+
+test_images = test_images.map(process)
+```
+```output
+
+```
+
+TODO now a MapDataset! this will affect challenge below too but might be good to present these different datasets...getting too complicated
 
 
-## Data Splitting
+### Data Splitting
 
-In the previous episode we saw that the keras installation includes the Cifar-10 dataset and that by using the 'cifar10.load_data()' method the returned data is split into two (train and validations sets). There is no test dataset.
+In the previous episode we saw that the keras installation includes the Cifar-10 dataset and that by using the 'cifar10.load_data()' method the returned data is split into two (train and validations sets) but there was not a test dataset.
 
 When using a different dataset, or loading your own set of images, you will do the splits yourself.
+
+To split the cleaned dataset into a training and test set we will use a very convenient function from sklearn called `train_test_split`. This function takes a number of parameters which are extensively explained [train_test_split]:
+
+```python
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(image_dataset, target, test_size=0.2, random_state=42, shuffle=True, stratify=target)
+```
+
+- The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels)
+- Next is the named parameter `test_size` this is the fraction of the dataset that is used for testing, in this case `0.2` means 20% of the data will be used for testing.
+- `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
+- `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
+- `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
+
+
+TODO could be challenge?
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 ChatGPT
@@ -315,78 +358,155 @@ Data is typically split into the training, validation, and test data sets using 
   - This ensures that all classes are well-represented in each subset, which is important to avoid biased model evaluation.
 
 It's important to note that the exact split ratios (e.g., 80-10-10 or 70-15-15) may vary depending on the problem, dataset size, and specific requirements. Additionally, data splitting should be performed randomly to avoid introducing any biases into the model training and evaluation process.
+
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-Here we will load an entire directory of images and create a test dataset. 
-
-We set up our test image directory to have the following structure:
-```
-main_directory/
-...class_a/
-......image_1.jpg
-......image_2.jpg
-...class_b/
-......image_1.jpg
-......image_2.jpg
-```
-
-If we using this structure and the [tf.keras.utils,image_dataset_from_directory()] function, keras will automatically infer the image labels.
-
-To split an image dataset into a different sets we could use a function from sklearn called [train_test_split()]. However, because we already have training and validation sets, we just need a test set so we will skip the data splitting step. 
-
-```python
-# load the required libraries
-from keras.utils import image_dataset_from_directory 
-from sklearn.model_selection import train_test_split
-
-# define the image directory
-test_image_dir = 'D:/20230724_CINIC10/test_images'
-
-# read in the images, infer the labels, and resize to match training dataset
-test_images = image_dataset_from_directory(test_image_dir, labels='inferred', batch_size=None, image_size=(32,32), shuffle=False)
-```
 
 ::::::::::::::::::::::::::::::::::::: challenge
-TRAINING AND TEST SETS
+Training and Test sets
 
-Take a look at the training and test set we created. - How many samples do the training and test sets have? - Are the classes in the training set well balanced?
+Take a look at the training and test set we created. 
+
+Q1. How many samples does the training set have and are the classes well balanced?
+Q2. How many samples does the test set have and are the classes well balanced?
 
 :::::::::::::::::::::::: solution 
 
-TODO will depend on data - see ep02 deep learning for ex on penguins
+Q1. First we need to know what class of object our training is because that will tell us what methods are available to determine its shape. To find out if the classes are well balanced, we will look at the `train_labels'.
+
+```python
+print('The training set is of type', train_images.__class__)
+print('The training set has', train_images.shape[0] 'samples.\n')
+
+import numpy as np
+print('The number of labels in our training set and the number images in each class are:\n')
+print(np.unique(train_labels, return_counts=True))
+```
+
+```output
+The training set is of type <class 'numpy.ndarray'>
+The training set has 50000 samples.
+
+The number of labels in our training set and the number images in each class are:
+
+(array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=uint8),
+ array([5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000], dtype=int64))
+```
+
+Q2. We used a different function to load the test images which means it will be of a different class. The function `image_dataset_from_directory` returns a [tf.data.Dataset] object 
+
+```python
+print('The test set is of type', test_images.__class__)
+print('The test set has', len(test_images), 'samples.\n')
+#print(test_images)
+```
+```output
+The training set is of type <class 'tensorflow.python.data.ops.dataset_ops.PrefetchDataset'>
+
+<PrefetchDataset element_spec=(TensorSpec(shape=(32, 32, 3), dtype=tf.float32, name=None), TensorSpec(shape=(), dtype=tf.int32, name=None))>
+```
+
+This is an object type we have not see before but we know keras inferred the labels from the directory structure. This dataset object was designed for performance and extracting information from it is not as straightforward.
+
+```python
+labels = []
+for (image,label) in test_images:
+    labels.append(label.numpy())
+labels = pd.Series(labels)
+count = labels.value_counts().sort_index()
+print(count)
+```
+```output
+airplane      1000
+automobile    1000
+bird          1000
+cat           1000
+deer          1000
+dog           1000
+frog          1000
+horse         1000
+ship          1000
+truck         1000
+dtype: int64
+```
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## One-hot encoding
+There are other preprocessing steps you might need to take for your particular problem. We will discuss a few commons one briefly before getting back to our model.
 
-A neural network can only take numerical inputs and outputs, and learns by calculating how “far away” the species predicted by the neural network is from the true species. When the target is a string category column as we have here it is very difficult to determine this “distance” or error. Therefore we will transform this column into a more suitable format. Again there are many ways to do this, however we will be using the one-hot encoding. This encoding creates multiple columns, as many as there are unique values, and puts a 1 in the column with the corresponding correct class, and 0’s in the other columns.
 
-TBC
+### Image Colours
 
-## Image augmentation
+RGB Images:
 
-TBC
+- For image classification tasks, RGB images are used because they capture the full spectrum of colors that human vision can perceive, allowing the model to learn intricate features and patterns present in the images.
 
-# Preexisting datasets
+- RGB (Red, Green, Blue) images have three color channels: red, green, and blue, with each channel having an intensity value that ranges from 0 to 255. Each channel represents the intensity of the corresponding color for each pixel. This results in a 3D array, where the dimensions are height, width, and color channel. 
 
-TBD
+While RGB is the most common representation, there are scenarios where other color palettes might be considered, such as:
 
-Now that our dataset is ready to go, let us move on to how to build an architecture.
+Grayscale Images:
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+- Grayscale images have only one channel, representing the intensity of the pixels. Each pixel's intensity is usually represented by a single numerical value that ranges from 0 (black) to 255 (white). The image is essentially a 2D array where each element holds the intensity value of the corresponding pixel.
 
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
+- In cases where color information isn't critical, you might convert RGB images to grayscale to reduce the computational load.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### One-hot encoding
+
+A neural network can only take numerical inputs and outputs, and learns by calculating how “far away” the class predicted by the neural network is from the true class. When the target (label) is a categorical data, or strings, it is very difficult to determine this “distance” or error. Therefore we will transform this column into a more suitable format. There are many ways to do this, however we will be using *one-hot encoding*. 
+
+one-hot encoding is a technique to represent categorical data as binary vectors, making it compatible with machine learning algorithms. Each category becomes a separate feature, and the presence or absence of a category is indicated by 1s and 0s in the respective columns.
+
+Let's say you have a dataset with a "Color" column containing three categories: Red, Blue, Green. 
+
+Table 1. Original Data.
+
+| color     |              |
+| ------    | --------------:   |
+| red       | :red_square:      |
+| green     | :green_square:    |
+| blue      | :blue_square:   |
+| red       | :red_square:      |
+
+Table 2. After One-Hot Encoding.
+
+| Color_red | Color_blue    | Color_green   |
+| ------    | :------:      | ------:       |
+| 1         | 0             | 0             |
+| 0         | 1             | 0             |
+| 0         | 0             | 1             |
+| 1         | 0             | 0             |
+
+Each category has its own binary column, and the value is set to 1 in the corresponding column for each row that matches that category.
+
+Our image data is not one-hot encoded because image data is continuous and typically represented as arrays of pixel values. While in some cases you may want to one-hot encode the labels, here we are using integer labels (0,1,2) instead. Many machine learning libraries and frameworks handle this label encoding internally.
+
+### Image augmentation
+
+There are several ways to augment your data to increase the diversity of the training data and improve model robustness.
+
+- Geometric Transformations
+  - rotation, translation, scaling, zooming, cropping
+- Flipping or Mirroring
+  - some classes, like horse, have a different shape when facing left or right and you want your model to recognize both 
+- Color properties
+  - brightness, contrast, or hue
+  - these changes simulate variations in lighting conditions
+
+
+#### Finally! 
+
+Our test dataset is ready to go and we can move on to how to build an architecture.
+
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+- Image datasets can be found online or created uniquely for your research question
+- Images consist of pixels arranged in a particular order
+- Image data is usually preprocessed before use in a CNN for efficiency, consistency, and robustness
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -405,4 +525,5 @@ associated with the lessons. They appear in the "Instructor View"
 
 
 [tf.keras.utils.image_dataset_from_directory]:  https://keras.io/api/data_loading/image/
-[train_test_split()]: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
+[train_test_split]: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
+[tf.data.Dataset]: https://www.tensorflow.org/api_docs/python/tf/data/Dataset

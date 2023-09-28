@@ -215,6 +215,7 @@
 <li><a href="#what-sort-of-problems-can-deep-learning-not-solve">What sort of problems can Deep Learning not solve?</a></li>
 <li><a href="#step-10.-share-model">Step 10. Share model</a></li>
 <li><a href="#choosing-a-pretrained-model">Choosing a pretrained model</a></li>
+<li><a href="#deep-learning-libraries">Deep Learning Libraries</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -279,7 +280,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Conclusion</h1>
-        <p> Last updated on 2023-09-10 | 
+        <p> Last updated on 2023-09-28 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/06-conclusion.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -383,7 +384,52 @@ you can often use a pretrained network. Even if your problem is
 different, but the data type is common (for example images), you can use
 a pretrained network and finetune it for your problem. A large number of
 openly available pretrained networks can be found in the <a href="https://modelzoo.co/" class="external-link">Model Zoo</a>, <a href="https://pytorch.org/hub/" class="external-link">pytorch hub</a> or <a href="https://pytorch.org/hub/" class="external-link">tensorflow hub</a>.</p>
-
+</section><section id="deep-learning-libraries"><h2 class="section-heading">Deep Learning Libraries<a class="anchor" aria-label="anchor" href="#deep-learning-libraries"></a>
+</h2>
+<hr class="half-width"><p>There are many software libraries available for Deep Learning
+including:</p>
+<div class="section level3">
+<h3 id="tensorflow">TensorFlow<a class="anchor" aria-label="anchor" href="#tensorflow"></a></h3>
+<p><a href="https://www.tensorflow.org/" class="external-link">TensorFlow</a> was developed by
+Google and is one of the older Deep Learning libraries, ported across
+many languages since it was first released to the public in 2015. It is
+very versatile and capable of much more than Deep Learning but as a
+result it often takes a lot more lines of code to write Deep Learning
+operations in TensorFlow than in other libraries. It offers (almost)
+seamless integration with GPU accelerators and Google’s own TPU (Tensor
+Processing Unit) chips that are built specially for machine
+learning.</p>
+</div>
+<div class="section level3">
+<h3 id="pytorch">PyTorch<a class="anchor" aria-label="anchor" href="#pytorch"></a></h3>
+<p><a href="https://pytorch.org/" class="external-link">PyTorch</a> was developed by Facebook
+in 2016 and is a popular choice for Deep Learning applications. It was
+developed for Python from the start and feels a lot more “pythonic” than
+TensorFlow. Like TensorFlow it was designed to do more than just Deep
+Learning and offers some very low level interfaces. <a href="https://www.pytorchlightning.ai/" class="external-link">PyTorch Lightning</a> offers a
+higher level interface to PyTorch to set up experiments. Like TensorFlow
+it is also very easy to integrate PyTorch with a GPU. In many benchmarks
+it outperforms the other libraries.</p>
+</div>
+<div class="section level3">
+<h3 id="keras">Keras<a class="anchor" aria-label="anchor" href="#keras"></a></h3>
+<p><a href="https://keras.io/" class="external-link">Keras</a> is designed to be easy to use
+and usually requires fewer lines of code than other libraries. We have
+chosen it for this workshop for that reason. Keras can actually work on
+top of TensorFlow (and several other libraries), hiding away the
+complexities of TensorFlow while still allowing you to make use of their
+features.</p>
+<p>The performance of Keras is sometimes not as good as other libraries
+and if you are going to move on to create very large networks using very
+large datasets then you might want to consider one of the other
+libraries. But for many applications the performance difference will not
+be enough to worry about and the time you will save with simpler code
+will exceed what you will save by having the code run a little
+faster.</p>
+<p>Keras also benefits from a very good set of <a href="https://keras.io/guides/" class="external-link">online documentation</a> and a large
+user community. You will find that most of the concepts from Keras
+translate very well across to the other libraries if you wish to learn
+them at a later date.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -392,14 +438,15 @@ openly available pretrained networks can be found in the <a href="https://modelz
 <h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
 </h3>
 <div class="callout-content">
-<ul><li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<ul><li>“Deep Learning is well suited to classification and prediction
+problems such as image recognition.”</li>
+<li>“To use Deep Learning effectively we need to go through a workflow
+of: defining the problem, identifying inputs and outputs, preparing
+data, choosing the type of network, choosing a loss function, training
+the model, tuning Hyperparameters, measuring performance before we can
+classify data.”</li>
+<li>“Keras is a Deep Learning library that is easier to use than many of
+the alternatives such as TensorFlow and PyTorch.”</li>
 </ul></div>
 </div>
 </div>
@@ -408,6 +455,7 @@ locally</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="05-evaluate-predict-cnn.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -467,8 +515,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/06-conclusion.html",
   "identifier": "https://.github.io/github.com/06-conclusion.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-09-10",
-  "datePublished": "2023-09-27"
+  "dateModified": "2023-09-28",
+  "datePublished": "2023-09-28"
 }
 
   </script><script>

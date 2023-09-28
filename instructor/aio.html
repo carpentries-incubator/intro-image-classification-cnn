@@ -828,7 +828,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1143,7 +1143,7 @@ discuss each component in more detail.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -1185,7 +1185,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-02-image-data"><p>Content from <a href="02-image-data.html">Introduction to Image Data</a></p>
 <hr>
-<p> Last updated on 2023-09-27 | 
+<p> Last updated on 2023-09-28 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -1200,13 +1200,11 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How are images represented in digital format?</li>
+<li>How much data do you need for Deep Learning?</li>
 <li>Where can I find image data to train my model?</li>
 <li>How do I plot image data in python?</li>
 <li>How do I prepare image data for use in a convolutional neural
 network (CNN)?</li>
-<li>What is one hot encoding?</li>
-<li>How much data do you need for Deep Learning?</li>
 </ul>
 </div>
 </div>
@@ -1221,7 +1219,6 @@ network (CNN)?</li>
 <li>Understand the properties of image data</li>
 <li>Prepare an image data set to train a convolutional neural network
 (CNN)</li>
-<li>Know how to perform one-hot encoding</li>
 </ul>
 </div>
 </div>
@@ -1295,30 +1292,6 @@ CNN. However, it is always a good idea to first read any associated
 documentation to find out what steps the data providers took to prepare
 the images and second to take a closer at the images once loaded and
 query their attributes.</p>
-</div>
-<div class="section level4">
-<h4 id="custom-image-data">Custom image data<a class="anchor" aria-label="anchor" href="#custom-image-data"></a>
-</h4>
-<p>In other cases, you will need to create your own set of labelled
-images.</p>
-<p><strong>Custom data i. Data collection and Labeling:</strong></p>
-<p>For image classification the label applies to the entire image;
-object detection requires bounding boxes around objects of interest, and
-instance or semantic segmentation requires each pixel to be
-labelled.</p>
-<p>There are a number of open source software that can be used to label
-your dataset, including:</p>
-<ul>
-<li>(Visual Geometry Group) <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" class="external-link">VGG Image
-Annotator</a> (VIA)</li>
-<li>
-<a href="https://imagej.net/" class="external-link">ImageJ</a> can be extended with
-plugins for annotation</li>
-<li>
-<a href="https://github.com/jsbroks/coco-annotator" class="external-link">COCO
-Annotator</a> is designed specifically for creating annotations
-compatible with Common Objects in Context (COCO) format</li>
-</ul>
 <div id="callout1" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1348,6 +1321,30 @@ exposes a different view.</p>
 </div>
 </div>
 </div>
+</div>
+<div class="section level4">
+<h4 id="custom-image-data">Custom image data<a class="anchor" aria-label="anchor" href="#custom-image-data"></a>
+</h4>
+<p>In other cases, you will need to create your own set of labelled
+images.</p>
+<p><strong>Custom data i. Data collection and Labeling:</strong></p>
+<p>For image classification the label applies to the entire image;
+object detection requires bounding boxes around objects of interest, and
+instance or semantic segmentation requires each pixel to be
+labelled.</p>
+<p>There are a number of open source software that can be used to label
+your dataset, including:</p>
+<ul>
+<li>(Visual Geometry Group) <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" class="external-link">VGG Image
+Annotator</a> (VIA)</li>
+<li>
+<a href="https://imagej.net/" class="external-link">ImageJ</a> can be extended with
+plugins for annotation</li>
+<li>
+<a href="https://github.com/jsbroks/coco-annotator" class="external-link">COCO
+Annotator</a> is designed specifically for creating annotations
+compatible with Common Objects in Context (COCO) format</li>
+</ul>
 <p><strong>Custom data ii. Data preprocessing:</strong></p>
 <p>This step involves various tasks to enhance the quality and
 consistency of the data:</p>
@@ -1364,9 +1361,6 @@ exposing it to more diverse data.</p></li>
 <li><p><strong>Color Channels</strong>: Depending on the model and
 library you use, you might need to handle different color channel orders
 (RGB, BGR, etc.).</p></li>
-<li><p><strong>Data Formats</strong>: Convert image data to a format
-suitable for your deep learning framework (e.g., NumPy arrays or
-TensorFlow tensors).</p></li>
 </ul>
 <p>Before we look at some of these tasks in more detail we need to
 understand that the images we see on hard copy, view with our electronic
@@ -1528,35 +1522,6 @@ specify the size you want using an argument to the
 </div>
 </div>
 <div class="section level3">
-<h3 id="image-colours">Image Colours<a class="anchor" aria-label="anchor" href="#image-colours"></a>
-</h3>
-<p>RGB Images:</p>
-<ul>
-<li><p>For image classification tasks, RGB images are used because they
-capture the full spectrum of colors that human vision can perceive,
-allowing the model to learn intricate features and patterns present in
-the images.</p></li>
-<li><p>RGB (Red, Green, Blue) images have three color channels: red,
-green, and blue, with each channel having an intensity value that ranges
-from 0 to 255. Each channel represents the intensity of the
-corresponding color for each pixel. This results in a 3D array, where
-the dimensions are height, width, and color channel.</p></li>
-</ul>
-<p>While RGB is the most common representation, there are scenarios
-where other color palettes might be considered, such as:</p>
-<p>Grayscale Images:</p>
-<ul>
-<li><p>Grayscale images have only one channel, representing the
-intensity of the pixels. Each pixel’s intensity is usually represented
-by a single numerical value that ranges from 0 (black) to 255 (white).
-The image is essentially a 2D array where each element holds the
-intensity value of the corresponding pixel.</p></li>
-<li><p>In cases where color information isn’t critical, you might
-convert RGB images to grayscale to reduce the computational
-load.</p></li>
-</ul>
-</div>
-<div class="section level3">
 <h3 id="normalization">Normalization<a class="anchor" aria-label="anchor" href="#normalization"></a>
 </h3>
 <p>Image RGB values are between 0 and 255. As input for neural networks,
@@ -1659,19 +1624,107 @@ After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0
 <p>Of course, if we have a large number of images to process we do not
 want to perform these steps one at a time. As you might have guessed,
 <code>tf.keras.utils</code> also provides a function to load an entire
-directories: <code>image_dataset_from_directory()</code> We will use
-this function in a moment to create a test dataset but before we do let
-us talk about data splitting.</p>
+directories: <code>image_dataset_from_directory()</code> Here we will
+load an entire directory of images and create a test dataset.</p>
+<p>We set up our test image directory to have the following
+structure:</p>
+<pre><code><span><span class="va">main_directory</span><span class="op">/</span></span>
+<span><span class="va">...class_a</span><span class="op">/</span></span>
+<span><span class="va">......image_1.jpg</span></span>
+<span><span class="va">......image_2.jpg</span></span>
+<span><span class="va">...class_b</span><span class="op">/</span></span>
+<span><span class="va">......image_1.jpg</span></span>
+<span><span class="va">......image_2.jpg</span></span></code></pre>
+<p>If we use this directory structure, keras will automatically infer
+the image labels.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the required libraries</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.utils <span class="im">import</span> image_dataset_from_directory </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># define the image directory</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>test_image_dir <span class="op">=</span> <span class="st">'D:/20230724_CINIC10/test_images'</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the images, infer the labels, and resize to match training dataset</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> image_dataset_from_directory(test_image_dir, labels<span class="op">=</span><span class="st">'inferred'</span>, batch_size<span class="op">=</span><span class="va">None</span>, image_size<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>), shuffle<span class="op">=</span><span class="va">False</span>)</span></code></pre>
 </div>
-</section><section id="data-splitting"><h2 class="section-heading">Data Splitting<a class="anchor" aria-label="anchor" href="#data-splitting"></a>
-</h2>
-<hr class="half-width">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Found 10000 files belonging to 10 classes.</code></pre>
+</div>
+<p>In most cases, after loading your images and preprocessing them to
+match your training dataset attributes, you will divide them up into
+training, validation, and test datasets. We already loaded training and
+validation data in episode 1, so this test dataset will be used to test
+our model predictions in a later episode. Moreover, because the CINIC-10
+data is intended to be a drop-in replacement for CIFAR-10, we just need
+to normalize the data to be on the same scale as our training data.</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normalize test images</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># define a function to normalize each image in the test set</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process(image,label):</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    image <span class="op">=</span> tf.cast(image<span class="op">/</span><span class="fl">255.</span> ,tf.float32)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> image,label</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> test_images.<span class="bu">map</span>(process)</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code></code></pre>
+</div>
+<p>TODO now a MapDataset! this will affect challenge below too but might
+be good to present these different datasets…getting too complicated</p>
+</div>
+<div class="section level3">
+<h3 id="data-splitting">Data Splitting<a class="anchor" aria-label="anchor" href="#data-splitting"></a>
+</h3>
 <p>In the previous episode we saw that the keras installation includes
 the Cifar-10 dataset and that by using the ‘cifar10.load_data()’ method
-the returned data is split into two (train and validations sets). There
-is no test dataset.</p>
+the returned data is split into two (train and validations sets) but
+there was not a test dataset.</p>
 <p>When using a different dataset, or loading your own set of images,
 you will do the splits yourself.</p>
+<p>To split the cleaned dataset into a training and test set we will use
+a very convenient function from sklearn called
+<code>train_test_split</code>. This function takes a number of
+parameters which are extensively explained <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html" class="external-link">train_test_split</a>:</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(image_dataset, target, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, shuffle<span class="op">=</span><span class="va">True</span>, stratify<span class="op">=</span>target)</span></code></pre>
+</div>
+<ul>
+<li>The first two parameters are the dataset (X) and the corresponding
+targets (y) (i.e. class labels)</li>
+<li>Next is the named parameter <code>test_size</code> this is the
+fraction of the dataset that is used for testing, in this case
+<code>0.2</code> means 20% of the data will be used for testing.</li>
+<li>
+<code>random_state</code> controls the shuffling of the dataset,
+setting this value will reproduce the same results (assuming you give
+the same integer) every time it is called.</li>
+<li>
+<code>shuffle</code> which can be either <code>True</code> or
+<code>False</code>, it controls whether the order of the rows of the
+dataset is shuffled before splitting. It defaults to
+<code>True</code>.</li>
+<li>
+<code>stratify</code> is a more advanced parameter that controls how
+the split is done. By setting it to <code>target</code> the train and
+test sets the function will return will have roughly the same
+proportions (with regards to the number of images of a certain class) as
+the dataset.</li>
+</ul>
+<p>TODO could be challenge?</p>
 <div id="callout5" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1747,37 +1800,6 @@ process.</p>
 </div>
 </div>
 </div>
-<p>Here we will load an entire directory of images and create a test
-dataset.</p>
-<p>We set up our test image directory to have the following
-structure:</p>
-<pre><code><span><span class="va">main_directory</span><span class="op">/</span></span>
-<span><span class="va">...class_a</span><span class="op">/</span></span>
-<span><span class="va">......image_1.jpg</span></span>
-<span><span class="va">......image_2.jpg</span></span>
-<span><span class="va">...class_b</span><span class="op">/</span></span>
-<span><span class="va">......image_1.jpg</span></span>
-<span><span class="va">......image_2.jpg</span></span></code></pre>
-<p>If we using this structure and the
-[tf.keras.utils,image_dataset_from_directory()] function, keras will
-automatically infer the image labels.</p>
-<p>To split an image dataset into a different sets we could use a
-function from sklearn called <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html" class="external-link">train_test_split()</a>.
-However, because we already have training and validation sets, we just
-need a test set so we will skip the data splitting step.</p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the required libraries</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.utils <span class="im">import</span> image_dataset_from_directory </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># define the image directory</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>test_image_dir <span class="op">=</span> <span class="st">'D:/20230724_CINIC10/test_images'</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the images, infer the labels, and resize to match training dataset</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> image_dataset_from_directory(test_image_dir, labels<span class="op">=</span><span class="st">'inferred'</span>, batch_size<span class="op">=</span><span class="va">None</span>, image_size<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>), shuffle<span class="op">=</span><span class="va">False</span>)</span></code></pre>
-</div>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1786,10 +1808,11 @@ need a test set so we will skip the data splitting step.</p>
 <h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge1"></a>
 </h3>
 <div class="callout-content">
-<p>TRAINING AND TEST SETS</p>
-<p>Take a look at the training and test set we created. - How many
-samples do the training and test sets have? - Are the classes in the
-training set well balanced?</p>
+<p>Training and Test sets</p>
+<p>Take a look at the training and test set we created.</p>
+<p>Q1. How many samples does the training set have and are the classes
+well balanced? Q2. How many samples does the test set have and are the
+classes well balanced?</p>
 </div>
 </div>
 </div>
@@ -1800,54 +1823,225 @@ training set well balanced?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>TODO will depend on data - see ep02 deep learning for ex on
-penguins</p>
+<p>Q1. First we need to know what class of object our training is
+because that will tell us what methods are available to determine its
+shape. To find out if the classes are well balanced, we will look at the
+`train_labels’.</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set is of type'</span>, train_images.__class__)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set has'</span>, train_images.shape[<span class="dv">0</span>] <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of labels in our training set and the number images in each class are:</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.unique(train_labels, return_counts<span class="op">=</span><span class="va">True</span>))</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>The training set is of type &lt;class 'numpy.ndarray'&gt;
+The training set has 50000 samples.
+
+The number of labels in our training set and the number images in each class are:
+
+(array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=uint8),
+ array([5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000], dtype=int64))</code></pre>
+</div>
+<p>Q2. We used a different function to load the test images which means
+it will be of a different class. The function
+<code>image_dataset_from_directory</code> returns a <a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset" class="external-link">tf.data.Dataset</a>
+object</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The test set is of type'</span>, test_images.__class__)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The test set has'</span>, <span class="bu">len</span>(test_images), <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#print(test_images)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>The training set is of type &lt;class 'tensorflow.python.data.ops.dataset_ops.PrefetchDataset'&gt;
+
+&lt;PrefetchDataset element_spec=(TensorSpec(shape=(32, 32, 3), dtype=tf.float32, name=None), TensorSpec(shape=(), dtype=tf.int32, name=None))&gt;</code></pre>
+</div>
+<p>This is an object type we have not see before but we know keras
+inferred the labels from the directory structure. This dataset object
+was designed for performance and extracting information from it is not
+as straightforward.</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> []</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (image,label) <span class="kw">in</span> test_images:</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    labels.append(label.numpy())</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> pd.Series(labels)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> labels.value_counts().sort_index()</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count)</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>airplane      1000
+automobile    1000
+bird          1000
+cat           1000
+deer          1000
+dog           1000
+frog          1000
+horse         1000
+ship          1000
+truck         1000
+dtype: int64</code></pre>
 </div>
 </div>
 </div>
 </div>
-</section><section id="one-hot-encoding"><h2 class="section-heading">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a>
-</h2>
-<hr class="half-width">
+</div>
+<p>There are other preprocessing steps you might need to take for your
+particular problem. We will discuss a few commons one briefly before
+getting back to our model.</p>
+</div>
+<div class="section level3">
+<h3 id="image-colours">Image Colours<a class="anchor" aria-label="anchor" href="#image-colours"></a>
+</h3>
+<p>RGB Images:</p>
+<ul>
+<li><p>For image classification tasks, RGB images are used because they
+capture the full spectrum of colors that human vision can perceive,
+allowing the model to learn intricate features and patterns present in
+the images.</p></li>
+<li><p>RGB (Red, Green, Blue) images have three color channels: red,
+green, and blue, with each channel having an intensity value that ranges
+from 0 to 255. Each channel represents the intensity of the
+corresponding color for each pixel. This results in a 3D array, where
+the dimensions are height, width, and color channel.</p></li>
+</ul>
+<p>While RGB is the most common representation, there are scenarios
+where other color palettes might be considered, such as:</p>
+<p>Grayscale Images:</p>
+<ul>
+<li><p>Grayscale images have only one channel, representing the
+intensity of the pixels. Each pixel’s intensity is usually represented
+by a single numerical value that ranges from 0 (black) to 255 (white).
+The image is essentially a 2D array where each element holds the
+intensity value of the corresponding pixel.</p></li>
+<li><p>In cases where color information isn’t critical, you might
+convert RGB images to grayscale to reduce the computational
+load.</p></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="one-hot-encoding">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a>
+</h3>
 <p>A neural network can only take numerical inputs and outputs, and
-learns by calculating how “far away” the species predicted by the neural
-network is from the true species. When the target is a string category
-column as we have here it is very difficult to determine this “distance”
-or error. Therefore we will transform this column into a more suitable
-format. Again there are many ways to do this, however we will be using
-the one-hot encoding. This encoding creates multiple columns, as many as
-there are unique values, and puts a 1 in the column with the
-corresponding correct class, and 0’s in the other columns.</p>
-<p>TBC</p>
-</section><section id="image-augmentation"><h2 class="section-heading">Image augmentation<a class="anchor" aria-label="anchor" href="#image-augmentation"></a>
-</h2>
-<hr class="half-width">
-<p>TBC</p>
-</section><div class="section level1">
-<h1 id="preexisting-datasets">Preexisting datasets<a class="anchor" aria-label="anchor" href="#preexisting-datasets"></a>
-</h1>
-<p>TBD</p>
-<p>Now that our dataset is ready to go, let us move on to how to build
-an architecture.</p>
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  Instructor Note
-  </h3>
-</button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
-<div class="accordion-body">
-<p>Inline instructor notes can help inform instructors of timing
-challenges associated with the lessons. They appear in the “Instructor
-View”</p>
+learns by calculating how “far away” the class predicted by the neural
+network is from the true class. When the target (label) is a categorical
+data, or strings, it is very difficult to determine this “distance” or
+error. Therefore we will transform this column into a more suitable
+format. There are many ways to do this, however we will be using
+<em>one-hot encoding</em>.</p>
+<p>one-hot encoding is a technique to represent categorical data as
+binary vectors, making it compatible with machine learning algorithms.
+Each category becomes a separate feature, and the presence or absence of
+a category is indicated by 1s and 0s in the respective columns.</p>
+<p>Let’s say you have a dataset with a “Color” column containing three
+categories: Red, Blue, Green.</p>
+<p>Table 1. Original Data.</p>
+<table class="table">
+<thead><tr class="header">
+<th>color</th>
+<th align="right"></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>red</td>
+<td align="right"><span class="emoji" data-emoji="red_square">🟥</span></td>
+</tr>
+<tr class="even">
+<td>green</td>
+<td align="right"><span class="emoji" data-emoji="green_square">🟩</span></td>
+</tr>
+<tr class="odd">
+<td>blue</td>
+<td align="right"><span class="emoji" data-emoji="blue_square">🟦</span></td>
+</tr>
+<tr class="even">
+<td>red</td>
+<td align="right"><span class="emoji" data-emoji="red_square">🟥</span></td>
+</tr>
+</tbody>
+</table>
+<p>Table 2. After One-Hot Encoding.</p>
+<table class="table">
+<thead><tr class="header">
+<th>Color_red</th>
+<th align="center">Color_blue</th>
+<th align="right">Color_green</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="center">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td align="center">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td align="center">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td align="center">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Each category has its own binary column, and the value is set to 1 in
+the corresponding column for each row that matches that category.</p>
+<p>Our image data is not one-hot encoded because image data is
+continuous and typically represented as arrays of pixel values. While in
+some cases you may want to one-hot encode the labels, here we are using
+integer labels (0,1,2) instead. Many machine learning libraries and
+frameworks handle this label encoding internally.</p>
 </div>
-</div>
-</div>
-</div>
+<div class="section level3">
+<h3 id="image-augmentation">Image augmentation<a class="anchor" aria-label="anchor" href="#image-augmentation"></a>
+</h3>
+<p>There are several ways to augment your data to increase the diversity
+of the training data and improve model robustness.</p>
+<ul>
+<li>Geometric Transformations
+<ul>
+<li>rotation, translation, scaling, zooming, cropping</li>
+</ul>
+</li>
+<li>Flipping or Mirroring
+<ul>
+<li>some classes, like horse, have a different shape when facing left or
+right and you want your model to recognize both</li>
+</ul>
+</li>
+<li>Color properties
+<ul>
+<li>brightness, contrast, or hue</li>
+<li>these changes simulate variations in lighting conditions</li>
+</ul>
+</li>
+</ul>
+<div class="section level4">
+<h4 id="finally">Finally!<a class="anchor" aria-label="anchor" href="#finally"></a>
+</h4>
+<p>Our test dataset is ready to go and we can move on to how to build an
+architecture.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1857,14 +2051,11 @@ View”</p>
 </h3>
 <div class="callout-content">
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>Image datasets can be found online or created uniquely for your
+research question</li>
+<li>Images consist of pixels arranged in a particular order</li>
+<li>Image data is usually preprocessed before use in a CNN for
+efficiency, consistency, and robustness</li>
 </ul>
 </div>
 </div>
@@ -1874,7 +2065,9 @@ locally</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
-</div></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Build a Convolutional Neural Network</a></p>
+</div>
+</div>
+</section></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Build a Convolutional Neural Network</a></p>
 <hr>
 <p> Last updated on 2023-09-10 | 
         
@@ -3668,7 +3861,7 @@ and ‘Construction’ sections of the <a href="https://github.com/BayesWatch/ci
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>No! “The entirety of the original CIFAR-10 test set is within the
 above mentioned new test set.”</p>
@@ -3696,7 +3889,7 @@ above mentioned new test set.”</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Depends! Recall in Episode 02 we talked about the different ways to
 partition the data into training, validation and test data sets. For
@@ -3853,7 +4046,7 @@ visualize a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>The confusion matrix shows that the predictions for Adelie and Gentoo
 are decent, but could be improved. However, Chinstrap is not predicted
@@ -3902,7 +4095,7 @@ training parameters</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4110,7 +4303,7 @@ think about what you actually would like to see)</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>The difference between training and validation data shows that
 something is not completely right here. The model predictions on the
@@ -4170,7 +4363,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>This is on open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you
@@ -4213,7 +4406,7 @@ worth to apply different model architectures….</li>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -4251,7 +4444,7 @@ any links that you are not going to use.
 </div>
 </div></section><section id="aio-06-conclusion"><p>Content from <a href="06-conclusion.html">Conclusion</a></p>
 <hr>
-<p> Last updated on 2023-09-10 | 
+<p> Last updated on 2023-09-28 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/06-conclusion.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -4362,23 +4555,56 @@ you can often use a pretrained network. Even if your problem is
 different, but the data type is common (for example images), you can use
 a pretrained network and finetune it for your problem. A large number of
 openly available pretrained networks can be found in the <a href="https://modelzoo.co/" class="external-link">Model Zoo</a>, <a href="https://pytorch.org/hub/" class="external-link">pytorch hub</a> or <a href="https://pytorch.org/hub/" class="external-link">tensorflow hub</a>.</p>
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  Instructor Note
-  </h3>
-</button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
-<div class="accordion-body">
-<p>Inline instructor notes can help inform instructors of timing
-challenges associated with the lessons. They appear in the “Instructor
-View”</p>
+</section><section id="deep-learning-libraries"><h2 class="section-heading">Deep Learning Libraries<a class="anchor" aria-label="anchor" href="#deep-learning-libraries"></a>
+</h2>
+<hr class="half-width">
+<p>There are many software libraries available for Deep Learning
+including:</p>
+<div class="section level3">
+<h3 id="tensorflow">TensorFlow<a class="anchor" aria-label="anchor" href="#tensorflow"></a>
+</h3>
+<p><a href="https://www.tensorflow.org/" class="external-link">TensorFlow</a> was developed by
+Google and is one of the older Deep Learning libraries, ported across
+many languages since it was first released to the public in 2015. It is
+very versatile and capable of much more than Deep Learning but as a
+result it often takes a lot more lines of code to write Deep Learning
+operations in TensorFlow than in other libraries. It offers (almost)
+seamless integration with GPU accelerators and Google’s own TPU (Tensor
+Processing Unit) chips that are built specially for machine
+learning.</p>
 </div>
+<div class="section level3">
+<h3 id="pytorch">PyTorch<a class="anchor" aria-label="anchor" href="#pytorch"></a>
+</h3>
+<p><a href="https://pytorch.org/" class="external-link">PyTorch</a> was developed by Facebook
+in 2016 and is a popular choice for Deep Learning applications. It was
+developed for Python from the start and feels a lot more “pythonic” than
+TensorFlow. Like TensorFlow it was designed to do more than just Deep
+Learning and offers some very low level interfaces. <a href="https://www.pytorchlightning.ai/" class="external-link">PyTorch Lightning</a> offers a
+higher level interface to PyTorch to set up experiments. Like TensorFlow
+it is also very easy to integrate PyTorch with a GPU. In many benchmarks
+it outperforms the other libraries.</p>
 </div>
-</div>
-</div>
+<div class="section level3">
+<h3 id="keras">Keras<a class="anchor" aria-label="anchor" href="#keras"></a>
+</h3>
+<p><a href="https://keras.io/" class="external-link">Keras</a> is designed to be easy to use
+and usually requires fewer lines of code than other libraries. We have
+chosen it for this workshop for that reason. Keras can actually work on
+top of TensorFlow (and several other libraries), hiding away the
+complexities of TensorFlow while still allowing you to make use of their
+features.</p>
+<p>The performance of Keras is sometimes not as good as other libraries
+and if you are going to move on to create very large networks using very
+large datasets then you might want to consider one of the other
+libraries. But for many applications the performance difference will not
+be enough to worry about and the time you will save with simpler code
+will exceed what you will save by having the code run a little
+faster.</p>
+<p>Keras also benefits from a very good set of <a href="https://keras.io/guides/" class="external-link">online documentation</a> and a large
+user community. You will find that most of the concepts from Keras
+translate very well across to the other libraries if you wish to learn
+them at a later date.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -4388,14 +4614,15 @@ View”</p>
 </h3>
 <div class="callout-content">
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>“Deep Learning is well suited to classification and prediction
+problems such as image recognition.”</li>
+<li>“To use Deep Learning effectively we need to go through a workflow
+of: defining the problem, identifying inputs and outputs, preparing
+data, choosing the type of network, choosing a loss function, training
+the model, tuning Hyperparameters, measuring performance before we can
+classify data.”</li>
+<li>“Keras is a Deep Learning library that is easier to use than many of
+the alternatives such as TensorFlow and PyTorch.”</li>
 </ul>
 </div>
 </div>
@@ -4405,6 +4632,7 @@ locally</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
+</div>
 </section></section>
 </div>
     </main>
@@ -4454,8 +4682,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/aio.html",
   "identifier": "https://.github.io/github.com/instructor/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-09-27",
-  "datePublished": "2023-09-27"
+  "dateModified": "2023-09-28",
+  "datePublished": "2023-09-28"
 }
 
   </script><script>

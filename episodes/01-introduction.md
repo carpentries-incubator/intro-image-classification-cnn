@@ -55,9 +55,9 @@ Concept: Differentiation between classical ML models and Deep Learning models:
 
 ## Preparing the code
 
-It is the goal of this training workshop to produce a Deep Learning program using a Convolutional Neural Network.  At the end of this workshop we hope that this code can be used as a "starting point".  We will be creating a "initial program" for this introduction chapter that will be copied and used as a foundation for the rest of the programs.
+It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope that this code can be used as a "starting point".  We will be creating an "initial program" for this introduction chapter, that will be copied and used as a foundation for the rest of the episodes.
 
-The code that is being created will load the following libraries, so the program with be initialised with the following:
+The code that is being created will load the following libraries, so the program will be initialised with the following:
 
 ```python
 # load the CIFAR-10 dataset included with the keras packages

@@ -62,6 +62,7 @@ The code that is being created will load the following libraries, so the program
 ```python
 # load the CIFAR-10 dataset included with the keras packages
 from tensorflow import keras
+import matplotlib.pyplot as plt
 ```
 
 ## What is image classification?
@@ -101,8 +102,8 @@ For this lesson, we will be using an existing image dataset known as CIFAR-10 th
 ```python
 # load the keras packages which includes the CIFAR-10 dataset that will be used.
 from tensorflow import keras
-import matplotlib.pyplot as plt
 
+(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge 

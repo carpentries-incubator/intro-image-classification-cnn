@@ -100,9 +100,7 @@ For this lesson, we will be using an existing image dataset known as CIFAR-10 th
 ### Load data
 
 ```python
-# load the keras packages which includes the CIFAR-10 dataset that will be used.
-from tensorflow import keras
-
+# load the CIFAR-10 dataset from the keras library for will be used.
 (train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 ```
 

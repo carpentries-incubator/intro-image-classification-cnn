@@ -53,6 +53,17 @@ Concept: Differentiation between classical ML models and Deep Learning models:
 **Deep neural networks** (constructed with multiple layers of neurons) are the extension of shallow models with three layers: input, hidden, and outputs layers. The hidden layer is where learning takes place. As a result, deep learning is best applied to large datasets for training and prediction. As observations and feature inputs decrease, shallow ML approaches begin to perform noticeably better. 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Preparing the code
+
+It is the goal of this training workshop to produce a Deep Learning program using a Convolutional Neural Network.  At the end of this workshop we hope that this code can be used as a "starting point".  We will be creating a "initial program" for this introduction chapter that will be copied and used as a foundation for the rest of the programs.
+
+The code that is being created will load the following libraries, so the program with be initialised with the following:
+
+```python
+# load the CIFAR-10 dataset included with the keras packages
+from tensorflow import keras
+```
+
 ## What is image classification?
 
 Image classification is a fundamental task in computer vision, which is a field of artificial intelligence focused on teaching computers to interpret and understand visual information from the world. Image classification specifically involves the process of assigning a label or category to an input image. The goal is to enable computers to recognize and categorize objects, scenes, or patterns within images, just as a human would. Image classification can refer to one of several tasks:
@@ -88,10 +99,10 @@ For this lesson, we will be using an existing image dataset known as CIFAR-10 th
 ### Load data
 
 ```python
-# load the CIFAR-10 dataset included with the keras packages
+# load the keras packages which includes the CIFAR-10 dataset that will be used.
 from tensorflow import keras
+import matplotlib.pyplot as plt
 
-(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge 

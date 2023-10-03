@@ -2,11 +2,13 @@
 """
 Created on Fri Jun 30 09:37:03 2023
 
-@author: bellf
+@author: Jason Bell
 """
+# load the keras package, which includes the CIFAR-10 dataset, that will be used later.
+from tensorflow import keras
+import matplotlib.pyplot as plt
 
 # load the cifar dataset included with the keras packages
-from tensorflow import keras
 (train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 
 
@@ -22,8 +24,6 @@ val_images = val_images / 255.0
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
 # plot a subset of the images
-import matplotlib.pyplot as plt
-
 # create a figure object and specify width, height in inches
 plt.figure(figsize=(10,10))
 

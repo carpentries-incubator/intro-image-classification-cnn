@@ -40,11 +40,11 @@ We are performing a classification problem and we want to output one category fo
 
 Deep Learning requires extensive training using example data which shows the network what output it should produce for a given input. In this workshop our network will be trained by being “shown” a series of images and told what they contain. Once the network is trained it should be able to take another image and correctly classify its contents.
 
-We will use an existing image dataset known as CINIC-10 that we saw in the introduction. Let's explore this dataset in more detail and talk about steps you would take to make your own dataset.
+You can use pre-existing data or prepare your own.
 
 #### Pre-existing image data
 
-In some cases you will be able to download an image dataset that is already labelled and can be used to classify a number of different object like we see with the CINIC-10 dataset. Other examples include:
+In some cases you will be able to download an image dataset that is already labelled and can be used to classify a number of different object like we see with the CIFAR-10 dataset. Other examples include:
 
 - [MNIST database] - 60,000 training images of handwritten digits (0-9)
 - [ImageNet] - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an [annual software contest] where programs compete to achieve the highest accuracy. When choosing a pretrained network, the winners of these sorts of competitions are generally a good place to start.
@@ -245,10 +245,16 @@ The min, max, and mean pixel values are 0.0 , 255.0 , and 87.0 respectively.
 After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0 respectively.
 ```
 
-Of course, if we have a large number of images to process we do not want to perform these steps one at a time. As you might have guessed, `tf.keras.utils` also provides a function to load an entire directories: `image_dataset_from_directory()` 
-Here we will load an entire directory of images and create a test dataset. 
+Of course, if we have a large number of images to process we do not want to perform these steps one at a time. As you might have guessed, `tf.keras.utils` also provides a function to load an entire directories: `image_dataset_from_directory()`
 
-We set up our test image directory to have the following structure:
+Here we will load an entire directory of images to create a test dataset. 
+
+**CINIC-10**
+
+Out test dataset is a sample of images from an existing image dataset known as [CINIC-10] (CINIC-10 Is Not ImageNet or CIFAR-10) that was designed to be used as a drop-in alternative to the CIFAR-10 dataset we used in the introduction.  
+
+The test image directory was set up to have the following structure:
+
 ```
 main_directory/
 ...class_a/
@@ -275,7 +281,7 @@ test_images = image_dataset_from_directory(test_image_dir, labels='inferred', ba
 Found 10000 files belonging to 10 classes.
 ```
 
-In most cases, after loading your images and preprocessing them to match your training dataset attributes, you will divide them up into training, validation, and test datasets. We already loaded training and validation data in episode 1, so this test dataset will be used to test our model predictions in a later episode. Moreover, because the CINIC-10 data is intended to be a drop-in replacement for CIFAR-10, we just need to normalize the data to be on the same scale as our training data.
+In most cases, after loading your images and preprocessing them to match your training dataset attributes, you will divide them up into training, validation, and test datasets. We already loaded training and validation data in Episode 1, so this test dataset will be used to test our model predictions in a later episode. Moreover, because the CINIC-10 data is intended to be a drop-in replacement for CIFAR-10, we just need to normalize the data to be on the same scale as our training data.
 
 ```python
 # normalize test images
@@ -527,3 +533,5 @@ Our test dataset is ready to go and we can move on to how to build an architectu
 [tf.keras.utils.image_dataset_from_directory]:  https://keras.io/api/data_loading/image/
 [train_test_split]: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
 [tf.data.Dataset]: https://www.tensorflow.org/api_docs/python/tf/data/Dataset
+
+[CINIC-10]: https://github.com/BayesWatch/cinic-10/

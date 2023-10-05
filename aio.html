@@ -845,7 +845,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2998,7 +2998,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-04-fit-cnn"><p>Content from <a href="04-fit-cnn.html">Compile and Train a Convolutional Neural Network</a></p>
 <hr>
-<p> Last updated on 2023-09-21 | 
+<p> Last updated on 2023-10-05 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3048,13 +3048,9 @@ we should be able to train to classify images.</p>
 <p>We now need to select an appropriate optimizer and loss function that
 we will use during training.</p>
 <p>Recall how we compiled our model in the introduction:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#model.compile(optimizer = 'adam', </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#              **loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True)**,               </span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#              metrics = ['accuracy'])</span></span></code></pre>
-</div>
+<pre><code><span><span class="co">#model.compile(optimizer = 'adam', </span></span>
+<span><span class="co">#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               </span></span>
+<span><span class="co">#              metrics = ['accuracy'])</span></span></code></pre>
 <div class="section level4">
 <h4 id="loss-function">Loss function<a class="anchor" aria-label="anchor" href="#loss-function"></a>
 </h4>
@@ -3063,11 +3059,12 @@ wrong, or how ‘far away’ from the true value the predicted value is. The
 purpose of loss functions is to compute the quantity that a model should
 seek to minimize during training. Which class of loss functions you
 choose depends on your task.</p>
+<p><strong>Loss for classification</strong></p>
 <p>For classification purposes, there are a number of probabilistic
 losses to choose from. We chose
-<strong>SparseCategoricalCrossentropy</strong> because we want to
-compute the crossentropy loss between our class labels represented by
-integers (i.e., not one-hot encoded) and the model predictions.</p>
+<code>SparseCategoricalCrossentropy</code> because we want to compute
+the crossentropy loss between our class labels represented by integers
+(i.e., not one-hot encoded) and the model predictions.</p>
 <ul>
 <li>This loss function is appropriate to use when the data has two or
 more label classes.</li>
@@ -3109,18 +3106,16 @@ the true labels of the data to compute the difference between the
 predicted probabilities and the ground truth.</p>
 <p>However, sometimes, the model may not produce probabilities directly
 but instead produces logits. In such cases, you have two options:</p>
-<ol style="list-style-type: decimal">
-<li><p>Use the ‘from_logits=False’ (default): In this case, Keras will
-apply the softmax function to the logits internally before computing the
-loss function. It means that you provide the logits, but Keras handles
-the transformation to probabilities before calculating the
-loss.</p></li>
-<li><p>Use ‘from_logits=True’: If you set this argument to True, you are
-telling Keras that the provided values are already logits and no further
-transformation is needed. The loss function will directly use the
-provided logits to compute the loss, avoiding the internal application
-of the softmax function.</p></li>
-</ol>
+<p>Option 1. Use the ‘from_logits=False’ (default): In this case, Keras
+will apply the softmax function to the logits internally before
+computing the loss function. It means that you provide the logits, but
+Keras handles the transformation to probabilities before calculating the
+loss.</p>
+<p>Option 2. Use ‘from_logits=True’: If you set this argument to True,
+you are telling Keras that the provided values are already logits and no
+further transformation is needed. The loss function will directly use
+the provided logits to compute the loss, avoiding the internal
+application of the softmax function.</p>
 <p>In summary, ‘from_logits=True’ is useful when your model outputs
 logits, and you want to manually handle the conversion to probabilities
 (e.g., when using the logits for other purposes), or if you want to
@@ -3132,6 +3127,7 @@ the loss.</p>
 </div>
 </div>
 </div>
+<p><strong>Loss for Regression</strong></p>
 <p>For regression tasks, we might want to stipulate that the predicted
 numerical values are as close as possible to the true values. This is
 commonly done by using the <strong>mean squared error</strong> (mse) or
@@ -3140,14 +3136,10 @@ which should work. Often, mse is preferred over mae because it
 “punishes” large prediction errors more severely.</p>
 <ul>
 <li>defined by the keras.losses.MeanSquaredError class</li>
-<li>this can be provided into the model.compile method with the loss
-parameter and setting it to mse:</li>
 </ul>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#model_ex.compile(loss = 'mse')</span></span></code></pre>
-</div>
+<p>To compile a model with mse, change the loss argument of the
+<code>compile</code> method:</p>
+<pre><code><span><span class="co">#model_ex.compile(loss = 'mse')</span></span></code></pre>
 <p>For more information on these and other available loss functions in
 Keras you can check the <a href="https://keras.io/api/losses/" class="external-link">loss
 documentation</a>.</p>
@@ -3162,16 +3154,12 @@ the provided loss function.</p>
 parameters, what values to use for those. Furthermore, we need to
 specify how many times to show the training samples to the
 optimizer.</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#model.compile(**optimizer = 'adam'**, </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               </span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#              metrics = ['accuracy'])</span></span></code></pre>
-</div>
+<pre><code><span><span class="co">#model.compile(optimizer = 'adam', </span></span>
+<span><span class="co">#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               </span></span>
+<span><span class="co">#              metrics = ['accuracy'])</span></span></code></pre>
 <p><strong>Adam</strong></p>
 <p>Here we picked one of the most common optimizers that works well for
-most tasks: the <strong>Adam</strong> optimizer. Similar to activation
+most tasks, the <strong>Adam</strong> optimizer. Similar to activation
 functions, the choice of optimizer depends on the problem you are trying
 to solve, your model architecture and your data. Adam is a good starting
 point though, which is why we chose it. Adam has a number of parameters,
@@ -3195,8 +3183,9 @@ algorithm, designed to handle large datasets efficiently.</p>
 <h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
 </h3>
 <div class="callout-content">
-<p>ChatGPT Let’s break down the concept of Stochastic Gradient Descent
-for beginners:</p>
+<p>ChatGPT</p>
+<p>Let’s break down the concept of Stochastic Gradient Descent for
+beginners:</p>
 <p><strong>Optimization Algorithm</strong>: In the context of machine
 learning, an optimization algorithm is used to minimize (or maximize) an
 objective function. In the case of training a machine learning model,
@@ -3280,22 +3269,18 @@ Developers Machine Learning Crash Course</a> and is licenced under the
 </div>
 </div>
 <p>Most optimizers include a <code>learning_rate</code> argument that
-defaults to <code>0.01'. or '0.001</code>.</p>
+defaults to <code>0.01</code>. or <code>0.001</code>.</p>
 </div>
 <div class="section level4">
 <h4 id="metrics">Metrics<a class="anchor" aria-label="anchor" href="#metrics"></a>
 </h4>
 <p>After we select the desired optimizer and loss function we want to
 specify the metric(s) to be evaluated by the model during training and
-testing. A metric is a function that is used to judge the performance of
-your model.</p>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#model.compile(optimizer = adam', </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               </span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#              **metrics = ['accuracy']**)</span></span></code></pre>
-</div>
+testing. A <strong>metric</strong> is a function that is used to judge
+the performance of your model.</p>
+<pre><code><span><span class="co">#model.compile(optimizer = adam', </span></span>
+<span><span class="co">#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               </span></span>
+<span><span class="co">#              metrics = ['accuracy'])</span></span></code></pre>
 <p>Metric functions are similar to loss functions, except that the
 results from evaluating a metric are not used when training the model.
 Note that you may use any loss function as a metric.</p>
@@ -3303,32 +3288,28 @@ Note that you may use any loss function as a metric.</p>
 often predictions matches labels.</p>
 <p>The accuracy function creates two local variables, total and count
 that are used to compute the frequency with which predictions matches
-labels. This frequency is ultimately returned as accuracy: an idempotent
-operation that simply divides total by count.</p>
+labels. This frequency is ultimately returned as accuracy: an operation
+that simply divides total by count.</p>
 <p>For a list of metrics in Keras see <a href="https://keras.io/api/metrics/" class="external-link">metrics</a>.</p>
 <p>Now that we have decided on which loss function, optimizer, and
-metric to use we can compile the model using model.compile. Compiling
-the model prepares it to start the training.</p>
+metric to use we can compile the model using <code>model.compile</code>.
+Compiling the model prepares it for training.</p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="step-6--train-model">Step 6. Train model<a class="anchor" aria-label="anchor" href="#step-6--train-model"></a>
 </h3>
 <p>We are now ready to train the model.</p>
-<p>Training the model is done using the fit method. It takes the input
-data and target data as inputs and it has several other parameters for
-certain options of the training. Here we only set a different number of
-epochs.</p>
-<p>One training <strong>epoch</strong> means that every sample in the
+<p>Training the model is done using the <code>fit</code> method. It
+takes the image data and target (label) data as inputs and has several
+other parameters for certain options of the training. Here we only set a
+different number of epochs.</p>
+<p>A training <strong>epoch</strong> means that every sample in the
 training data has been shown to the neural network and used to update
 its parameters. In general, CNN models improve with more epochs of
 training, but only to a point.</p>
-<p>We want to train the model for 10 epochs:</p>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#history_pool = model_pool.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))</span></span></code></pre>
-</div>
+<p>We want to train our model for 10 epochs:</p>
+<pre><code><span><span class="co">#history_pool = model_pool.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))</span></span></code></pre>
 <p>As we saw in the previous episode, the fit method returns a history
 object that has a history attribute with the training loss and
 potentially other metrics per training epoch.</p>
@@ -3350,27 +3331,25 @@ number of training samples processed together before updating the
 model’s parameters during each iteration (or mini-batch) of training.
 The choice of batch size can have various implications, and there are
 situations where using different batch sizes can be beneficial.</p>
-<ul>
-<li><p><strong>Large Datasets and Memory Constraints</strong>: If you
-have a large dataset and limited memory, using a smaller batch size can
-help fit the data into memory during training. This allows you to train
+<p><strong>Large Datasets and Memory Constraints</strong>: If you have a
+large dataset and limited memory, using a smaller batch size can help
+fit the data into memory during training. This allows you to train
 larger models or use more complex architectures that might not fit with
-larger batch sizes.</p></li>
-<li><p><strong>Training on GPUs</strong>: Modern deep learning
-frameworks and libraries are optimized for parallel processing on GPUs.
-Using larger batch sizes can fully leverage the parallelism of GPUs and
-lead to faster training times. However, the choice of batch size should
-consider the available GPU memory.</p></li>
-<li><p><strong>Noise in Parameter Updates</strong>: Smaller batch sizes
+larger batch sizes.</p>
+<p><strong>Training on GPUs</strong>: Modern deep learning frameworks
+and libraries are optimized for parallel processing on GPUs. Using
+larger batch sizes can fully leverage the parallelism of GPUs and lead
+to faster training times. However, the choice of batch size should
+consider the available GPU memory.</p>
+<p><strong>Noise in Parameter Updates</strong>: Smaller batch sizes
 introduce more noise in the gradients, which can help models escape
 sharp minima and potentially find better solutions. This regularization
 effect is similar to the impact of stochasticity in Stochastic Gradient
-Descent (SGD).</p></li>
-<li><p><strong>Generalization</strong>: Using smaller batch sizes may
+Descent (SGD).</p>
+<p><strong>Generalization</strong>: Using smaller batch sizes may
 improve the generalization of the model. It prevents the model from
 overfitting to the training data, as it gets updated more frequently and
-experiences more diverse samples during training.</p></li>
-</ul>
+experiences more diverse samples during training.</p>
 <p>However, it’s essential to consider the trade-offs of using different
 batch sizes. Smaller batch sizes may require more iterations to cover
 the entire dataset, which can lead to longer training times. Larger
@@ -3385,7 +3364,7 @@ best for your specific model, architecture, and dataset.</p>
 <h4 id="monitor-training-progress-aka-model-evaluation-during-training">Monitor Training Progress (aka Model Evaluation during
 Training)<a class="anchor" aria-label="anchor" href="#monitor-training-progress-aka-model-evaluation-during-training"></a>
 </h4>
-<p>Now that we know more about the compilation and training of CNN’s let
+<p>Now that we know more about the compilation and fitting of CNN’s let
 us take a look at the training metrics for our pooling model.</p>
 <p>Using seaborn again we can plot the training process using the
 history:</p>
@@ -3432,14 +3411,14 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
-<li>The loss curve should drop quite quickly in a smooth line with
-little jitter.</li>
-<li>The results of the training give very little information on its
+<li><p>The loss curve should drop quite quickly in a smooth line with
+little jitter.</p></li>
+<li><p>The results of the training give very little information on its
 performance on a test set. You should be careful not to use it as an
-indication of a well trained network.</li>
+indication of a well trained network.</p></li>
 </ol>
 </div>
 </div>
@@ -3499,7 +3478,7 @@ model can no longer rely on individual nodes and instead must create
 multiple “paths”. In addition, the model has to make predictions with
 much fewer nodes and weights (connections between the nodes). As a
 result, it becomes much harder for a network to memorize particular
-features. At first this might appear a quiet drastic approach which
+features. At first this might appear a quite drastic approach which
 affects the network architecture strongly. In practice, however, dropout
 is computationally a very elegant solution which does not affect
 training speed. And it frequently works very well.</p>
@@ -3597,7 +3576,8 @@ image, and has zero parameters.</p>
 </h3>
 <pre class="output" tabindex="0"><code>313/313 - 2s - loss: 1.4683 - accuracy: 0.5307</code></pre>
 </div>
-<figure><img src="fig/04_model_dropout_accuracy_loss.png" alt="" class="figure mx-auto d-block"></figure><p>TODO CHECK OH NO Dropout model is terrible now!</p>
+<figure><img src="fig/04_model_dropout_accuracy_loss.png" alt="" class="figure mx-auto d-block"></figure><p>TODO CHECK OH NO Dropout model is terrible now! This is a canned
+picture.</p>
 <p>Now we see that the gap between the training accuracy and validation
 accuracy is much smaller, and that the final accuracy on the validation
 set is higher than without dropout. Nevertheless, there is still some
@@ -3616,13 +3596,10 @@ experiment with regularization even more.</p>
 <p>Regularization methods introduce constraints or penalties to the
 training process, encouraging the model to be simpler and less prone to
 overfitting. Here are some common regularization methods for CNNs:</p>
-<ol style="list-style-type: lower-alpha">
-<li>
-<strong>L1 and L2 Regularization</strong>: L1 and L2 regularization
+<p><strong>L1 and L2 Regularization</strong>: L1 and L2 regularization
 are the two most common regularization techniques used in deep learning.
 They add a penalty term to the loss function during training to restrict
-the model’s weights.</li>
-</ol>
+the model’s weights.</p>
 <ul>
 <li><p>L1 regularization adds the absolute value of the weights to the
 loss function. It tends to produce sparse weight vectors, forcing some
@@ -3637,29 +3614,28 @@ denoted as lambda (λ), that determines how much weight should be given
 to the regularization term. A larger λ value increases the impact of
 regularization, making the model simpler and more regularized.</p>
 <ol start="2" style="list-style-type: lower-alpha">
-<li><p><strong>Dropout</strong>: Dropout is a regularization technique
-that involves randomly “dropping out” a fraction of neurons during
-training. This means that during each training iteration, some neurons
-are temporarily removed from the network. Dropout effectively reduces
-the interdependence between neurons, preventing the network from relying
-too heavily on specific neurons and making it more robust.</p></li>
-<li><p><strong>Batch Normalization</strong>: While not explicitly a
+<li>randomly “dropping out” a fraction of neurons during training. This
+means that during each training iteration, some neurons are temporarily
+removed from the network. Dropout effectively reduces the
+interdependence between neurons, preventing the network from relying too
+heavily on specific neurons and making it more robust.</li>
+</ol>
+<p><strong>Batch Normalization</strong>: While not explicitly a
 regularization technique, Batch Normalization has a regularizing effect
 on the model. It normalizes the activations of each layer in the
 network, reducing internal covariate shift. This can improve training
 stability and reduce the need for aggressive dropout or weight
-decay.</p></li>
-<li><p><strong>Data Augmentation</strong>: Data augmentation is a
-technique where the training data is artificially augmented by applying
-various transformations like rotation, scaling, flipping, and cropping
-to create new examples. This increases the diversity of the training
-data and helps the model generalize better to unseen data.</p></li>
-<li><p><strong>Early Stopping</strong>: Early stopping is a form of
+decay.</p>
+<p><strong>Data Augmentation</strong>: Data augmentation is a technique
+where the training data is artificially augmented by applying various
+transformations like rotation, scaling, flipping, and cropping to create
+new examples. This increases the diversity of the training data and
+helps the model generalize better to unseen data.</p>
+<p><strong>Early Stopping</strong>: Early stopping is a form of
 regularization that stops the training process when the model’s
 performance on a validation set starts to degrade. This prevents the
 model from overfitting by avoiding further training after the point of
-best validation performance.</p></li>
-</ol>
+best validation performance.</p>
 <p>By using regularization techniques, you can improve the
 generalization performance of CNNs and reduce the risk of overfitting.
 It’s essential to experiment with different regularization methods and
@@ -3677,9 +3653,9 @@ architecture and dataset.</p>
 </h3>
 <div class="callout-content">
 <p>Q1. What do you think would happen if you lower the dropout rate? Try
-it out, and see how it affects the model training. Q2. You are varying
-the dropout rate and checking its effect on the model performance, what
-is the term associated to this procedure?</p>
+it out, and see how it affects the model training.</p>
+<p>Q2. You are varying the dropout rate and checking its effect on the
+model performance, what is the term associated to this procedure?</p>
 </div>
 </div>
 </div>
@@ -3690,12 +3666,13 @@ is the term associated to this procedure?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>Q1. Varying the dropout rate The code below instantiates and trains a
-model with varying dropout rates. You can see from the resulting plot
-that the ideal dropout rate in this case is around 0.45. This is where
-the validation loss is lowest.</p>
+<p>Q1. Varying the dropout rate</p>
+<p>The code below instantiates and trains a model with varying dropout
+rates. You can see from the resulting plot that the ideal dropout rate
+in this case is around 0.45. This is where the validation loss is
+lowest.</p>
 <ul>
 <li>NB1: It takes a while to train these 5 networks.</li>
 <li>NB2: In the real world you should do this with a test set and not
@@ -3752,13 +3729,12 @@ tuning.</p>
 <strong>of the models we have examined thus far</strong>. The next step
 is to use these models to predict object classes on our test
 dataset.</p>
-<p>Make sure you save the model outputs!</p>
+<p>Make sure you save the model weights!</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save both dropout models</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>model_dropout.save(<span class="st">'model_dropout.h5'</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>model_vary.save(<span class="st">'model_vary.h5'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save dropout model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>model_dropout.save(<span class="st">'model_dropout.h5'</span>)</span></code></pre>
 </div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
@@ -3856,7 +3832,7 @@ and ‘Construction’ sections of the <a href="https://github.com/BayesWatch/ci
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>No! “The entirety of the original CIFAR-10 test set is within the
 above mentioned new test set.”</p>
@@ -3884,7 +3860,7 @@ above mentioned new test set.”</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Depends! Recall in Episode 02 we talked about the different ways to
 partition the data into training, validation and test data sets. For
@@ -4041,7 +4017,7 @@ visualize a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The confusion matrix shows that the predictions for Adelie and Gentoo
 are decent, but could be improved. However, Chinstrap is not predicted
@@ -4090,7 +4066,7 @@ training parameters</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4298,7 +4274,7 @@ think about what you actually would like to see)</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The difference between training and validation data shows that
 something is not completely right here. The model predictions on the
@@ -4358,7 +4334,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>This is on open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you
@@ -4637,7 +4613,7 @@ any links that you are not going to use.
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.14.0" class="external-link">sandpaper (0.14.0)</a>,
-        <a href="https://github.com/carpentries/pegboard/tree/0.7.0" class="external-link">pegboard (0.7.0)</a>,
+        <a href="https://github.com/carpentries/pegboard/tree/0.7.1" class="external-link">pegboard (0.7.1)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.3.0" class="external-link">varnish (0.3.0)</a>.</p>
 			</div>
 		</footer>
@@ -4660,8 +4636,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/aio.html",
   "identifier": "https://.github.io/github.com/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-10-03",
-  "datePublished": "2023-10-03"
+  "dateModified": "2023-10-05",
+  "datePublished": "2023-10-05"
 }
 
   </script><script>

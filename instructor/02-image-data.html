@@ -275,7 +275,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p> Last updated on 2023-09-28 | 
+        <p> Last updated on 2023-10-05 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -343,14 +343,12 @@ shows the network what output it should produce for a given input. In
 this workshop our network will be trained by being “shown” a series of
 images and told what they contain. Once the network is trained it should
 be able to take another image and correctly classify its contents.</p>
-<p>We will use an existing image dataset known as CINIC-10 that we saw
-in the introduction. Let’s explore this dataset in more detail and talk
-about steps you would take to make your own dataset.</p>
+<p>You can use pre-existing data or prepare your own.</p>
 <div class="section level4">
 <h4 id="pre-existing-image-data">Pre-existing image data<a class="anchor" aria-label="anchor" href="#pre-existing-image-data"></a></h4>
 <p>In some cases you will be able to download an image dataset that is
 already labelled and can be used to classify a number of different
-object like we see with the CINIC-10 dataset. Other examples
+object like we see with the CIFAR-10 dataset. Other examples
 include:</p>
 <ul><li>
 <a href="https://en.wikipedia.org/wiki/MNIST_database" class="external-link">MNIST
@@ -691,9 +689,16 @@ After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0
 <p>Of course, if we have a large number of images to process we do not
 want to perform these steps one at a time. As you might have guessed,
 <code>tf.keras.utils</code> also provides a function to load an entire
-directories: <code>image_dataset_from_directory()</code> Here we will
-load an entire directory of images and create a test dataset.</p>
-<p>We set up our test image directory to have the following
+directories: <code>image_dataset_from_directory()</code></p>
+<p>Here we will load an entire directory of images to create a test
+dataset.</p>
+<p><strong>CINIC-10</strong></p>
+<p>Out test dataset is a sample of images from an existing image dataset
+known as <a href="https://github.com/BayesWatch/cinic-10/" class="external-link">CINIC-10</a>
+(CINIC-10 Is Not ImageNet or CIFAR-10) that was designed to be used as a
+drop-in alternative to the CIFAR-10 dataset we used in the
+introduction.</p>
+<p>The test image directory was set up to have the following
 structure:</p>
 <pre><code><span><span class="va">main_directory</span><span class="op">/</span></span>
 <span><span class="va">...class_a</span><span class="op">/</span></span>
@@ -724,7 +729,7 @@ the image labels.</p>
 <p>In most cases, after loading your images and preprocessing them to
 match your training dataset attributes, you will divide them up into
 training, validation, and test datasets. We already loaded training and
-validation data in episode 1, so this test dataset will be used to test
+validation data in Episode 1, so this test dataset will be used to test
 our model predictions in a later episode. Moreover, because the CINIC-10
 data is intended to be a drop-in replacement for CIFAR-10, we just need
 to normalize the data to be on the same scale as our training data.</p>
@@ -1134,7 +1139,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/02-image-data.html",
   "identifier": "https://.github.io/github.com/instructor/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-09-28",
+  "dateModified": "2023-10-05",
   "datePublished": "2023-10-05"
 }
 

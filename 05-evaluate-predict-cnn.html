@@ -269,7 +269,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</h1>
-        <p> Last updated on 2023-09-21 | 
+        <p> Last updated on 2023-10-05 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -298,7 +298,9 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Expain how to measure the performance of model predictions</li>
+<ul><li>Use a convolutional neeural network (CNN) to make a prediction (ie
+classify an image)</li>
+<li>Explain how to measure the performance of a CNN</li>
 <li>Understand what steps to take to improve model accuracy</li>
 </ul></div>
 </div>
@@ -307,18 +309,27 @@
 </div>
 <div class="section level3">
 <h3 id="step-7--perform-a-predictionclassification">Step 7. Perform a Prediction/Classification<a class="anchor" aria-label="anchor" href="#step-7--perform-a-predictionclassification"></a></h3>
-<p>After you have fully trained the network to a satisfactory
-performance on the training and validation sets, we can use it to
-perform predictions on a special hold-out set, the <strong>test</strong>
-set. The prediction accuracy of the model on new images is used in the
-next step to measure the performance of the network.</p>
+<p>After you fully train the network to a satisfactory performance on
+the training and validation sets, we use it to perform predictions on a
+special hold-out set, the <strong>test</strong> set. The prediction
+accuracy of the model on new images will be used in <strong>Step 8.
+Measuring performance</strong> to measure the performance of the
+network.</p>
 <div class="section level4">
-<h4 id="choosing-a-test-set">Choosing a test set<a class="anchor" aria-label="anchor" href="#choosing-a-test-set"></a></h4>
-<p>The test set should only contain images that the model has never seen
-before. We will use the <a href="https://github.com/BayesWatch/cinic-10/" class="external-link">CINIC-10 dataset</a>
-(CINIC-10 Is Not ImageNet or CIFAR-10) for out test data. CINIC-10 was
-designed to be used as a benchmarking dataset as a drop-in alternative
-to CIFAR-10 and therefore the images are the same size.</p>
+<h4 id="prepare-test-dataset">Prepare test dataset<a class="anchor" aria-label="anchor" href="#prepare-test-dataset"></a></h4>
+<p>When creating a test set there are a few things to check:</p>
+<ul><li>only contains images that the model has never seen before</li>
+<li>sufficiently large to provide a meaningful evaluation of model
+performance
+<ul><li>images from every target label</li>
+<li>images of classes not in your target set</li>
+</ul></li>
+<li>processed in the same way as your training set</li>
+</ul><p>Recall in Episode 2 Introduction to Image Data we discussed how to
+split your data into training, validation and test datasets and why. In
+most cases, that means you already have a test set on hand. For example,
+in that episode we create a variable <code>test_images</code> and
+assigned a sample of the CINIC-10 dataset.</p>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -328,7 +339,7 @@ to CIFAR-10 and therefore the images are the same size.</p>
 </h3>
 <div class="callout-content">
 <p>Is the CINIC-10 model a good test data set? Hint: Read the ‘Details’
-and ‘Construction’ sections of the <a href="https://github.com/BayesWatch/cinic-10/" class="external-link">CINIC-10 dataset</a>.</p>
+and ‘Construction’ sections of the <a href="https://github.com/BayesWatch/cinic-10/" class="external-link">CINIC-10</a>.</p>
 </div>
 </div>
 </div>
@@ -347,7 +358,6 @@ above mentioned new test set.”</p>
 </div>
 </div>
 </div>
-<p>TODO Find a different set?</p>
 <div id="challenge2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -369,21 +379,21 @@ above mentioned new test set.”</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>Depends! Recall in Episode 02 we talked about the different ways to
-partition the data into training, validation and test data sets. For
-<strong>Stratified Sampling</strong>, for example, we might split the
-data using these rations: 80-10-10 or 70-15-15.</p>
+<p>Depends! Recall in an Episode 02 Introduction to Image Data Callout
+we talked about the different ways to partition the data into training,
+validation and test data sets. For example, using the <strong>Stratified
+Sampling</strong> technique, we might split the data using these
+rations: 80-10-10 or 70-15-15.</p>
 </div>
 </div>
 </div>
 </div>
-<p>TODO Set this test images set up in Ep 02 instead so it’s ready to go
-OR use the Tiny Images and use the same construction (uhoh - <a href="https://groups.csail.mit.edu/vision/TinyImages" class="external-link uri">https://groups.csail.mit.edu/vision/TinyImages</a>)</p>
-<p>We will use our convolutional neural network to predict the class
-names of the test set using the predict function and use these
-predictions in the next step to measure the performance of our trained
-network.</p>
-<p>TODO talk about this website somewhere: <a href="https://franky07724-57962.medium.com/once-upon-a-time-in-cifar-10-c26bb056b4ce" class="external-link uri">https://franky07724-57962.medium.com/once-upon-a-time-in-cifar-10-c26bb056b4ce</a></p>
+</div>
+<div class="section level4">
+<h4 id="predict">Predict<a class="anchor" aria-label="anchor" href="#predict"></a></h4>
+<p>Armed with a test dataset, We will use our CNN to predict the class
+labels using the <code>predict</code> function and use these predictions
+in the next step to measure the performance of our trained network.</p>
 <p>Recall our model will return a vector of probabilities, one for each
 class. By finding the class with the highest probability, we can select
 the most likely class name of the object.</p>
@@ -393,20 +403,16 @@ the most likely class name of the object.</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CINAC-10 uses the same class names</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'airplane'</span>, <span class="st">'automobile'</span>, <span class="st">'bird'</span>, <span class="st">'cat'</span>, <span class="st">'deer'</span>, <span class="st">'dog'</span>, <span class="st">'frog'</span>, <span class="st">'horse'</span>, <span class="st">'ship'</span>, <span class="st">'truck'</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the real class values</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>test_labels <span class="op">=</span> load_CINIC_labels(filepath)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># read in test images</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> load_CINIC_images(filepath) <span class="co"># </span><span class="al">TODO</span><span class="co"> </span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># use our current best model to predict probability of each class on new test set</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>predicted_prob <span class="op">=</span> model_dropout.predict(test_images)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># convert probability predictions to table using class names for column names</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>prediction_df <span class="op">=</span> pd.DataFrame(predicted_prob, columns<span class="op">=</span>class_names)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect </span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>prediction_df.head()</span></code></pre>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># use our current best model to predict probability of each class on new test set</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>predicted_prob <span class="op">=</span> model_dropout.predict(test_images)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># convert probability predictions to table using class names for column names</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>prediction_df <span class="op">=</span> pd.DataFrame(predicted_prob, columns<span class="op">=</span>class_names)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>prediction_df.head()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -924,7 +930,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/05-evaluate-predict-cnn.html",
   "identifier": "https://.github.io/github.com/05-evaluate-predict-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-09-21",
+  "dateModified": "2023-10-05",
   "datePublished": "2023-10-05"
 }
 

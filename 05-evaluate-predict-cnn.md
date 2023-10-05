@@ -15,22 +15,32 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Expain how to measure the performance of model predictions
+- Use a convolutional neeural network (CNN) to make a prediction (ie classify  an image)
+- Explain how to measure the performance of a CNN
 - Understand what steps to take to improve model accuracy
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Step 7. Perform a Prediction/Classification
 
-After you have fully trained the network to a satisfactory performance on the training and validation sets, we can use it to perform predictions on a special hold-out set, the **test** set. The prediction accuracy of the model on new images is used in the next step to measure the performance of the network.
+After you fully train the network to a satisfactory performance on the training and validation sets, we use it to perform predictions on a special hold-out set, the **test** set. The prediction accuracy of the model on new images will be used in **Step 8. Measuring performance** to measure the performance of the network.
 
-#### Choosing a test set
+#### Prepare test dataset
 
-The test set should only contain images that the model has never seen before. We will use the [CINIC-10 dataset] (CINIC-10 Is Not ImageNet or CIFAR-10) for out test data. CINIC-10 was designed to be used as a benchmarking dataset as a drop-in alternative to CIFAR-10 and therefore the images are the same size.
+When creating a test set there are a few things to check:
+
+- only contains images that the model has never seen before
+- sufficiently large to provide a meaningful evaluation of model performance
+  - images from every target label
+  - images of classes not in your target set
+- processed in the same way as your training set
+
+Recall in Episode 2 Introduction to Image Data we discussed how to split your data into training, validation and test datasets and why. In most cases, that means you already have a test set on hand. 
+For example, in that episode we create a variable `test_images` and assigned a sample of the CINIC-10 dataset.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-Is the CINIC-10 model a good test data set? Hint: Read the 'Details' and 'Construction' sections of the [CINIC-10 dataset].
+Is the CINIC-10 model a good test data set? Hint: Read the 'Details' and 'Construction' sections of the [CINIC-10].
 
 :::::::::::::::::::::::: solution 
 
@@ -39,25 +49,20 @@ No! "The entirety of the original CIFAR-10 test set is within the above mentione
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-TODO Find a different set?
-
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 How big should our test data set be?
 
 :::::::::::::::::::::::: solution 
 
-Depends! Recall in Episode 02 we talked about the different ways to partition the data into training, validation and test data sets. For **Stratified Sampling**, for example, we might split the data using these rations: 80-10-10 or 70-15-15.
+Depends! Recall in an Episode 02 Introduction to Image Data Callout we talked about the different ways to partition the data into training, validation and test data sets. For example, using the **Stratified Sampling** technique, we might split the data using these rations: 80-10-10 or 70-15-15.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-TODO Set this test images set up in Ep 02 instead so it's ready to go OR use the Tiny Images and use the same construction (uhoh -  https://groups.csail.mit.edu/vision/TinyImages)
+#### Predict
 
-We will use our convolutional neural network to predict the class names of the test set using the predict function and use these predictions in the next step to measure the performance of our trained network.
-
-TODO talk about this website somewhere:
-https://franky07724-57962.medium.com/once-upon-a-time-in-cifar-10-c26bb056b4ce
+Armed with a test dataset, We will use our CNN to predict the class labels using the `predict` function and use these predictions in the next step to measure the performance of our trained network.
 
 Recall our model will return a vector of probabilities, one for each class. By finding the class with the highest probability, we can select the most likely class name of the object.
 
@@ -66,11 +71,7 @@ Recall our model will return a vector of probabilities, one for each class. By f
 # CINAC-10 uses the same class names
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-# read in the real class values
-test_labels = load_CINIC_labels(filepath)
 
-# read in test images
-test_images = load_CINIC_images(filepath) # TODO 
 
 # use our current best model to predict probability of each class on new test set
 predicted_prob = model_dropout.predict(test_images)
@@ -392,5 +393,5 @@ associated with the lessons. They appear in the "Instructor View"
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
-[CINIC-10 dataset]: https://github.com/BayesWatch/cinic-10/
+[CINIC-10]: https://github.com/BayesWatch/cinic-10/
 

@@ -266,61 +266,7 @@ Hyperparameters are all the parameters set by the person configuring the machine
 
 Grid Search or **GridSearch** (as per the library function call) is foundation method for hyperparameter tuning. The aim of hyperparameter tuning is to define a grid of possible values for each hyperparameter you want to tune. GridSearch will then evaluate the model performance for each combination of hyperparameters in a brute-force manner, iterating through every possible combination in the grid.
 
-For instance, suppose you're tuning two hyperparameters:
-
-Learning rate: with possible values [0.01, 0.1, 1]
-Batch size: with possible values [10, 50, 100]
-
-GridSearch will evaluate the model for all 3x3 = 9 combinations (e.g., {0.01, 10}, {0.01, 50}, {0.1, 10}, and so on).
-
-We can use our previous introductory model to demonstrate how GridSearch is expressed in code.
-
-First, we will define a *build function* to use during GridSearch. This function will compile the model for each combination of parameters prior to evaluation.
-
-```python
-def create_model():
-    # Input layer of 32x32 images with three channels (RGB)
-    inputs_intro = keras.Input(shape=train_images.shape[1:])
-
-    # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)
-    # Second Convolutional layer
-    x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
-    # Flatten layer to convert 2D feature maps into a 1D vector
-    x_intro = keras.layers.Flatten()(x_intro)
-
-    # Output layer with 10 units (one for each class)
-    outputs_intro = keras.layers.Dense(10)(x_intro)
-
-    # create the model
-    model = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
-    model.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
-    return model
-```
-Secondly, we can define our GridSearch parameters and assign fit results to a variable for output. If you don't have the **scikeras** or **sklearn** installed already, please do so via the terminal using pip.
-
-```python
-from scikeras.wrappers import KerasClassifier
-from sklearn.model_selection import GridSearchCV
-
-#Wrap the model
-model = KerasClassifier(build_fn=create_model, epochs=2, batch_size=32, verbose=0)  # epochs, batch_size, verbose can be adjusted as required. Using low epochs to save computation time and demonstration purposes only
-
-# Define the grid search parameters
-optimizer = ['SGD', 'RMSprop', 'Adam']
-param_grid = dict(optimizer=optimizer)
-
-grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=1, cv=3)
-grid_result = grid.fit(train_images, train_labels)
-
-# Summarize results
-print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
-```
-Output from the GridSearch process should look similar to:
-
-```output
-Best: 0.586660 using {'optimizer': 'RMSprop'}
-```
+These concepts will be continued, with practical examples in Episode 05.
 
 ### Step 10. Share Model
 

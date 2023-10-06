@@ -52,41 +52,75 @@ new_img_arr_norm = new_img_arr / 255.0
 # extract the min, max, and mean pixel values AFTER
 print('After normalization, the min, max, and mean pixel values are', new_img_arr_norm.min(), ',', new_img_arr_norm.max(), ', and', new_img_arr_norm.mean().round(), 'respectively.')
 
-#### Load multiple images at the same time
+#### CINIC-10 Test Dataset Preparation
 
-from keras.utils import image_dataset_from_directory 
+# Load multiple images into single object to be able to process multiple images at the same time
+
+# main_directory/
+# ...class_a/
+# ......image_1.jpg
+# ......image_2.jpg
+# ...class_b/
+# ......image_1.jpg
+# ......image_2.jpg
+
+import os
+import numpy as np
+
+# set the mian directory  
 test_image_dir = 'D:/20230724_CINIC10/test_images'
-test_images = image_dataset_from_directory(test_image_dir, labels='inferred', batch_size=None, image_size=(32,32), shuffle=False)
 
-# need to normalize
-import tensorflow as tf
+# make two lists of the subfolders (ie class or label) and filenames
+test_filenames = []
+test_labels = []
 
-def process(image,label):
-    image = tf.cast(image/255. ,tf.float32)
-    return image,label
+for dn in os.listdir(test_image_dir):
+    
+    for fn in os.listdir(os.path.join(test_image_dir, dn)):
+        
+        test_filenames.append(fn)
+        test_labels.append(dn)
 
-test_images = test_images.map(process)
+# prepare the images
+# create an empty numpy array to hold the processed images
+test_images = np.empty((len(test_filenames), 32, 32, 3), dtype=np.float32)
 
-# now a MapDataset! this will affect 
+# use the dirnames and filenanes to process each 
+for i in range(len(test_filenames)):
+    
+    # set the path to the image
+    img_path = os.path.join(test_image_dir, test_labels[i], test_filenames[i])
+    
+    # load the image and resize at the same time
+    img = load_img(img_path, target_size=(32,32))
+    
+    # convert to an array
+    img_arr = img_to_array(img)
+    
+    # normalize
+    test_images[i] = img_arr/255.0
 
+print(test_images.shape)
+print(test_images.__class__)
+  
 # Challenge TRAINING AND TEST SETS
 
 # Q1
 print('The training set is of type', train_images.__class__)
 print('The training set has', train_images.shape[0], 'samples.\n')
 
-import numpy as np
 print('The number of labels in our training set and the number images in each class are:\n')
-np.unique(train_labels, return_counts=True)
+print(np.unique(train_labels, return_counts=True))
 
 # Q2
 print('The test set is of type', test_images.__class__)
-print('The test set has', len(test_images), 'samples.\n')
-#print(test_images)
+print('The test set has', test_images.shape[0], 'samples.\n')
 
-labels = []
-for (image,label) in test_images:
-    labels.append(label.numpy())
-labels = pd.Series(labels)
-count = labels.value_counts().sort_index()
-print(count)
+print('The number of labels in our test set and the number images in each class are:\n')
+print(np.unique(test_labels, return_counts=True))
+
+
+# Challenge Data Splitting Example
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(image_dataset, target, test_size=0.2, random_state=42, shuffle=True, stratify=target)

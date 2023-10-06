@@ -1,24 +1,49 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jun 15 16:27:34 2023
+Evaluate a Convolutional Neural Network and Make Predictions (Classifications)
 
-@author: jc140298
 """
+from tensorflow import keras
+import pandas as pd
+import matplotlib.pyplot as plt
 
-from tensorflow.keras.utils import load_img
-from tensorflow.keras.utils import img_to_array
+# load weights for your best model if not still in memory
+model_dropout = keras.models.load_model('C:/Users/jc140298/Documents/QCIF/SwC/20230316_ML_AI/scripts/outputs_cinic10/model_dropout.h5')
 
-# load a new image and prepare it to match cifar10 dataset
-new_img_pil = load_img("01_Jabiru_TGS.JPG", target_size=(32,32)) # Image format
-new_img_arr = img_to_array(new_img_pil) # convert to array for analysis
-new_img_reshape = new_img_arr.reshape(1, 32, 32, 3) # reshape into single sample
-new_img_float =  new_img_reshape.astype('float64') / 255.0 # normalize
+# recreate test_images from 'image-data.py' if not still in memory
 
-# predict the classname
-result = model.predict(new_img_float) # make prediction
-print(result) # probability for each class
-print(class_names[result.argmax()]) # class with highest probability
+# check correct model is loaded
+print('We are using ', model_dropout.name, '\n')
 
+# check test image dataset is loaded
+print('The test image dataset has the shape: ', test_images.shape)
 
-# test set
-y_pred = model.predict(test_images)
+# predict the class labels
+result = model_dropout.predict(test_images)
+
+# use our current best model to predict probability of each class on new test set
+predicted_prob = model_dropout.predict(test_images)
+
+# create a dictionary to convert from string labels to numeric labels
+label_str_int_map = {'airplane': 0, 'automobile': 1, 'bird': 2, 'cat': 3, 'deer': 4, 'dog': 5, 'frog': 6, 'horse': 7, 'ship': 8, 'truck': 9}
+#TODO 
+
+# convert probability predictions to table using class names for column names
+prediction_df = pd.DataFrame(predicted_prob, columns=class_names)
+
+# inspect 
+print(prediction_df.head())
+
+# now find the maximum probability for each image
+predicted_labels = predicted_prob.argmax(axis=1)
+
+### Step 8. Measuring Performance
+
+# plot the predicted versus the true class
+plt.plot(label_str_int_map[test_labels], predicted_labels)
+plt.xlabel('Test Class')
+plt.ylabel('Predicted Class')
+plt.xlim(0, 9)
+plt.ylim(0, 9)
+#plt.axline(xy1=(0,0), xy2=(9,9), linestyle='--')
+plt.show()

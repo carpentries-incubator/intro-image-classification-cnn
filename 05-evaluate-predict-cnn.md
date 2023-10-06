@@ -44,7 +44,9 @@ Is the CINIC-10 model a good test data set? Hint: Read the 'Details' and 'Constr
 
 :::::::::::::::::::::::: solution 
 
-No! "The entirety of the original CIFAR-10 test set is within the above mentioned new test set."
+No! "The entirety of the original CIFAR-10 test set is within the above mentioned new test set." 
+
+Make sure the images you use for test have not been used to train!
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::

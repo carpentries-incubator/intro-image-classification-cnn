@@ -211,7 +211,7 @@ The normalization process is typically done by dividing each RGB value (ranging 
 For example, if you have an RGB image with pixel values (100, 150, 200), after normalization, the pixel values would become (100/255, 150/255, 200/255) ≈ (0.39, 0.59, 0.78).
 
 Remember that normalization is not always mandatory, and there could be cases where other scaling techniques might be more suitable based on the specific problem and data distribution. However, for most image-related tasks in machine learning, normalizing RGB values to [0, 1] is a good starting point.
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::
 
 Before we can normalize our image values we must convert the image to an numpy array.
 
@@ -307,6 +307,7 @@ for i in range(len(test_filenames)):
 print(test_images.shape)
 print(test_images.__class__)
 ```
+```output
 (10000, 32, 32, 3)
 <class 'numpy.ndarray'>
 ```
@@ -317,12 +318,14 @@ Training and Test sets
 Take a look at the training and test set we created. 
 
 Q1. How many samples does the training set have and are the classes well balanced?
+
 Q2. How many samples does the test set have and are the classes well balanced?
 
 Hint1: Check the object class to understand what methods are available.
+
 Hint2: Use the `train_labels' object to find out if the classes are well balanced.
 
-:::::::::::::::::::::::: solution 
+:::::::::::::::::::::::: solution
 
 Q1. Training Set
 
@@ -364,6 +367,7 @@ The number of labels in our test set and the number images in each class are:
        'horse', 'ship', 'truck'], dtype='<U10'), array([1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
       dtype=int64))
 ```
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -378,6 +382,7 @@ In the previous episode we saw that the keras installation includes the Cifar-10
 When using a different dataset, or loading your own set of images, you may need to do the splitting yourself.
 
 ::::::::::::::::::::::::::::::::::::::::: callout
+
 ChatGPT
 
 Data Splitting Techniques
@@ -433,7 +438,7 @@ To split a dataset into training and test sets there is a very convenient functi
 
 Take a look at the help and write a function to split an imaginary dataset into a train/test split of 80/20 using stratified sampling.
 
-:::::::::::::::::::::::: solution 
+:::::::::::::::::::::::: solution
 
 Noting there are a couple ways to do this, here is one example:
 
@@ -448,13 +453,14 @@ X_train, X_test, y_train, y_test = train_test_split(image_dataset, target, test_
 - `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
 - `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
 - `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ### Image Colours
 
-RGB Images:
+**RGB** Images:
 
 - For image classification tasks, RGB images are used because they capture the full spectrum of colors that human vision can perceive, allowing the model to learn intricate features and patterns present in the images.
 
@@ -462,7 +468,7 @@ RGB Images:
 
 While RGB is the most common representation, there are scenarios where other color palettes might be considered, such as:
 
-Grayscale Images:
+**Grayscale** Images:
 
 - Grayscale images have only one channel, representing the intensity of the pixels. Each pixel's intensity is usually represented by a single numerical value that ranges from 0 (black) to 255 (white). The image is essentially a 2D array where each element holds the intensity value of the corresponding pixel.
 
@@ -471,9 +477,9 @@ Grayscale Images:
 
 ### One-hot encoding
 
-A neural network can only take numerical inputs and outputs, and learns by calculating how “far away” the class predicted by the neural network is from the true class. When the target (label) is a categorical data, or strings, it is very difficult to determine this “distance” or error. Therefore we will transform this column into a more suitable format. There are many ways to do this, however we will be using *one-hot encoding*. 
+A neural network can only take numerical inputs and outputs, and learns by calculating how “far away” the class predicted by the neural network is from the true class. When the target (label) is a categorical data, or strings, it is very difficult to determine this “distance” or error. Therefore we will transform this column into a more suitable format. There are many ways to do this, however we will be using **one-hot encoding**. 
 
-one-hot encoding is a technique to represent categorical data as binary vectors, making it compatible with machine learning algorithms. Each category becomes a separate feature, and the presence or absence of a category is indicated by 1s and 0s in the respective columns.
+One-hot encoding is a technique to represent categorical data as binary vectors, making it compatible with machine learning algorithms. Each category becomes a separate feature, and the presence or absence of a category is indicated by 1s and 0s in the respective columns.
 
 Let's say you have a dataset with a "Color" column containing three categories: Red, Blue, Green. 
 

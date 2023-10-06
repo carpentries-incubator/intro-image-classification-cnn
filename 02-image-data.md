@@ -211,7 +211,7 @@ The normalization process is typically done by dividing each RGB value (ranging 
 For example, if you have an RGB image with pixel values (100, 150, 200), after normalization, the pixel values would become (100/255, 150/255, 200/255) ≈ (0.39, 0.59, 0.78).
 
 Remember that normalization is not always mandatory, and there could be cases where other scaling techniques might be more suitable based on the specific problem and data distribution. However, for most image-related tasks in machine learning, normalizing RGB values to [0, 1] is a good starting point.
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::
 
 Before we can normalize our image values we must convert the image to an numpy array.
 
@@ -245,13 +245,13 @@ The min, max, and mean pixel values are 0.0 , 255.0 , and 87.0 respectively.
 After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0 respectively.
 ```
 
-Of course, if we have a large number of images to process we do not want to perform these steps one at a time. As you might have guessed, `tf.keras.utils` also provides a function to load an entire directories: `image_dataset_from_directory()`
+Of course, if there are a large number of images to prepare you do not want to copy and paste these steps for each image we have in our dataset.
 
-Here we will load an entire directory of images to create a test dataset. 
+Here we will use `for` loops to find all the images in a directory and prepare them to create a test dataset that aligns with our training dataset. 
 
-**CINIC-10**
+## CINIC-10 Test Dataset Preparation
 
-Out test dataset is a sample of images from an existing image dataset known as [CINIC-10] (CINIC-10 Is Not ImageNet or CIFAR-10) that was designed to be used as a drop-in alternative to the CIFAR-10 dataset we used in the introduction.  
+Our test dataset is a sample of images from an existing image dataset known as [CINIC-10] (CINIC-10 Is Not ImageNet or CIFAR-10) that was designed to be used as a drop-in alternative to the CIFAR-10 dataset we used in the introduction.  
 
 The test image directory was set up to have the following structure:
 
@@ -265,108 +265,52 @@ main_directory/
 ......image_2.jpg
 ```
 
-If we use this directory structure, keras will automatically infer the image labels.
+We will use this structure to create two lists: one for images in those folders and one for the image label. We can then use the lists to resize, convert to arrays, and normalize the images.
 
 ```python
-# load the required libraries
-from keras.utils import image_dataset_from_directory 
+import os
+import numpy as np
 
-# define the image directory
+# set the mian directory  
 test_image_dir = 'D:/20230724_CINIC10/test_images'
 
-# read in the images, infer the labels, and resize to match training dataset
-test_images = image_dataset_from_directory(test_image_dir, labels='inferred', batch_size=None, image_size=(32,32), shuffle=False)
+# make two lists of the subfolders (ie class or label) and filenames
+test_filenames = []
+test_labels = []
+
+for dn in os.listdir(test_image_dir):
+    
+    for fn in os.listdir(os.path.join(test_image_dir, dn)):
+        
+        test_filenames.append(fn)
+        test_labels.append(dn)
+
+# prepare the images
+# create an empty numpy array to hold the processed images
+test_images = np.empty((len(test_filenames), 32, 32, 3), dtype=np.float32)
+
+# use the dirnames and filenanes to process each 
+for i in range(len(test_filenames)):
+    
+    # set the path to the image
+    img_path = os.path.join(test_image_dir, test_labels[i], test_filenames[i])
+    
+    # load the image and resize at the same time
+    img = load_img(img_path, target_size=(32,32))
+    
+    # convert to an array
+    img_arr = img_to_array(img)
+    
+    # normalize
+    test_images[i] = img_arr/255.0
+
+print(test_images.shape)
+print(test_images.__class__)
 ```
 ```output
-Found 10000 files belonging to 10 classes.
+(10000, 32, 32, 3)
+<class 'numpy.ndarray'>
 ```
-
-In most cases, after loading your images and preprocessing them to match your training dataset attributes, you will divide them up into training, validation, and test datasets. We already loaded training and validation data in Episode 1, so this test dataset will be used to test our model predictions in a later episode. Moreover, because the CINIC-10 data is intended to be a drop-in replacement for CIFAR-10, we just need to normalize the data to be on the same scale as our training data.
-
-```python
-# normalize test images
-import tensorflow as tf
-
-# define a function to normalize each image in the test set
-def process(image,label):
-    image = tf.cast(image/255. ,tf.float32)
-    return image,label
-
-test_images = test_images.map(process)
-```
-```output
-
-```
-
-TODO now a MapDataset! this will affect challenge below too but might be good to present these different datasets...getting too complicated
-
-
-### Data Splitting
-
-In the previous episode we saw that the keras installation includes the Cifar-10 dataset and that by using the 'cifar10.load_data()' method the returned data is split into two (train and validations sets) but there was not a test dataset.
-
-When using a different dataset, or loading your own set of images, you will do the splits yourself.
-
-To split the cleaned dataset into a training and test set we will use a very convenient function from sklearn called `train_test_split`. This function takes a number of parameters which are extensively explained [train_test_split]:
-
-```python
-from sklearn.model_selection import train_test_split
-
-X_train, X_test, y_train, y_test = train_test_split(image_dataset, target, test_size=0.2, random_state=42, shuffle=True, stratify=target)
-```
-
-- The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels)
-- Next is the named parameter `test_size` this is the fraction of the dataset that is used for testing, in this case `0.2` means 20% of the data will be used for testing.
-- `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
-- `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
-- `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
-
-
-TODO could be challenge?
-
-::::::::::::::::::::::::::::::::::::::::: callout
-ChatGPT
-
-Data is typically split into the training, validation, and test data sets using a process called data splitting or data partitioning. There are various methods to perform this split, and the choice of technique depends on the specific problem, dataset size, and the nature of the data. Here are some common approaches:
-
-- **Hold-Out Method:**
-
-  - In the hold-out method, the dataset is divided into two parts initially: a training set and a test set.
-
-  - The training set is used to train the model, and the test set is kept completely separate to evaluate the model's final performance.
-
-  - This method is straightforward and widely used when the dataset is sufficiently large.
-
-- **Train-Validation-Test Split:**
-
-  - The dataset is split into three parts: the training set, the validation set, and the test set.
-
-  - The training set is used to train the model, the validation set is used to tune hyperparameters and prevent overfitting during training, and the test set is used to assess the final model performance.
-
-  - This method is commonly used when fine-tuning model hyperparameters is necessary.
-
-- **K-Fold Cross-Validation:**
-
-  - In k-fold cross-validation, the dataset is divided into k subsets (folds) of roughly equal size.
-
-  - The model is trained and evaluated k times, each time using a different fold as the test set while the remaining k-1 folds are used as the training set.
-
-  - The final performance metric is calculated as the average of the k evaluation results, providing a more robust estimate of model performance.
-
-  - This method is particularly useful when the dataset size is limited, and it helps in better utilizing available data.
-
-- **Stratified Sampling:**
-
-  - Stratified sampling is used when the dataset is imbalanced, meaning some classes or categories are underrepresented.
-
-  - The data is split in such a way that each subset (training, validation, or test) maintains the same class distribution as the original dataset.
-
-  - This ensures that all classes are well-represented in each subset, which is important to avoid biased model evaluation.
-
-It's important to note that the exact split ratios (e.g., 80-10-10 or 70-15-15) may vary depending on the problem, dataset size, and specific requirements. Additionally, data splitting should be performed randomly to avoid introducing any biases into the model training and evaluation process.
-
-:::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 ::::::::::::::::::::::::::::::::::::: challenge
 Training and Test sets
@@ -374,17 +318,21 @@ Training and Test sets
 Take a look at the training and test set we created. 
 
 Q1. How many samples does the training set have and are the classes well balanced?
+
 Q2. How many samples does the test set have and are the classes well balanced?
 
-:::::::::::::::::::::::: solution 
+Hint1: Check the object class to understand what methods are available.
 
-Q1. First we need to know what class of object our training is because that will tell us what methods are available to determine its shape. To find out if the classes are well balanced, we will look at the `train_labels'.
+Hint2: Use the `train_labels' object to find out if the classes are well balanced.
+
+:::::::::::::::::::::::: solution
+
+Q1. Training Set
 
 ```python
 print('The training set is of type', train_images.__class__)
 print('The training set has', train_images.shape[0] 'samples.\n')
 
-import numpy as np
 print('The number of labels in our training set and the number images in each class are:\n')
 print(np.unique(train_labels, return_counts=True))
 ```
@@ -399,52 +347,120 @@ The number of labels in our training set and the number images in each class are
  array([5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000], dtype=int64))
 ```
 
-Q2. We used a different function to load the test images which means it will be of a different class. The function `image_dataset_from_directory` returns a [tf.data.Dataset] object 
+Q2. Test Set (we can use the same code as the training set)
 
 ```python
 print('The test set is of type', test_images.__class__)
-print('The test set has', len(test_images), 'samples.\n')
-#print(test_images)
+print('The test set has', test.shape[0] 'samples.\n')
+
+print('The number of labels in our test set and the number images in each class are:\n')
+print(np.unique(test_labels, return_counts=True))
 ```
+
 ```output
-The training set is of type <class 'tensorflow.python.data.ops.dataset_ops.PrefetchDataset'>
+The test set is of type <class 'numpy.ndarray'>
+The test set has 10000 samples.
 
-<PrefetchDataset element_spec=(TensorSpec(shape=(32, 32, 3), dtype=tf.float32, name=None), TensorSpec(shape=(), dtype=tf.int32, name=None))>
-```
+The number of labels in our test set and the number images in each class are:
 
-This is an object type we have not see before but we know keras inferred the labels from the directory structure. This dataset object was designed for performance and extracting information from it is not as straightforward.
-
-```python
-labels = []
-for (image,label) in test_images:
-    labels.append(label.numpy())
-labels = pd.Series(labels)
-count = labels.value_counts().sort_index()
-print(count)
-```
-```output
-airplane      1000
-automobile    1000
-bird          1000
-cat           1000
-deer          1000
-dog           1000
-frog          1000
-horse         1000
-ship          1000
-truck         1000
-dtype: int64
+(array(['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog',
+       'horse', 'ship', 'truck'], dtype='<U10'), array([1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+      dtype=int64))
 ```
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-There are other preprocessing steps you might need to take for your particular problem. We will discuss a few commons one briefly before getting back to our model.
+TODO lables are strings, need to be numeric for predict; here or ep 05?
+
+There are other preprocessing steps you might need to take for your particular problem. We will discuss a few common ones briefly before getting back to our model.
+
+### Data Splitting
+
+In the previous episode we saw that the keras installation includes the Cifar-10 dataset and that by using the 'cifar10.load_data()' method the returned data is split into two (train and validations sets). There was not a test dataset which is why we just created one.
+
+When using a different dataset, or loading your own set of images, you may need to do the splitting yourself.
+
+::::::::::::::::::::::::::::::::::::::::: callout
+
+ChatGPT
+
+Data Splitting Techniques
+
+Data is typically split into the training, validation, and test data sets using a process called data splitting or data partitioning. There are various methods to perform this split, and the choice of technique depends on the specific problem, dataset size, and the nature of the data. Here are some common approaches:
+
+**Hold-Out Method:**
+
+  - In the hold-out method, the dataset is divided into two parts initially: a training set and a test set.
+
+  - The training set is used to train the model, and the test set is kept completely separate to evaluate the model's final performance.
+
+  - This method is straightforward and widely used when the dataset is sufficiently large.
+
+**Train-Validation-Test Split:**
+
+  - The dataset is split into three parts: the training set, the validation set, and the test set.
+
+  - The training set is used to train the model, the validation set is used to tune hyperparameters and prevent overfitting during training, and the test set is used to assess the final model performance.
+
+  - This method is commonly used when fine-tuning model hyperparameters is necessary.
+
+**K-Fold Cross-Validation:**
+
+  - In k-fold cross-validation, the dataset is divided into k subsets (folds) of roughly equal size.
+
+  - The model is trained and evaluated k times, each time using a different fold as the test set while the remaining k-1 folds are used as the training set.
+
+  - The final performance metric is calculated as the average of the k evaluation results, providing a more robust estimate of model performance.
+
+  - This method is particularly useful when the dataset size is limited, and it helps in better utilizing available data.
+
+**Stratified Sampling:**
+
+  - Stratified sampling is used when the dataset is imbalanced, meaning some classes or categories are underrepresented.
+
+  - The data is split in such a way that each subset (training, validation, or test) maintains the same class distribution as the original dataset.
+
+  - This ensures that all classes are well-represented in each subset, which is important to avoid biased model evaluation.
+
+It's important to note that the exact split ratios (e.g., 80-10-10 or 70-15-15) may vary depending on the problem, dataset size, and specific requirements. Additionally, data splitting should be performed randomly to avoid introducing any biases into the model training and evaluation process.
+
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+Data Splitting Example
+
+To split a dataset into training and test sets there is a very convenient function from sklearn called [train_test_split]. 
+
+`train_test_split` takes a number of parameters:
+
+`sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)`
+
+Take a look at the help and write a function to split an imaginary dataset into a train/test split of 80/20 using stratified sampling.
+
+:::::::::::::::::::::::: solution
+
+Noting there are a couple ways to do this, here is one example:
+
+```
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(image_dataset, target, test_size=0.2, random_state=42, shuffle=True, stratify=target)
+```
+
+- The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels)
+- Next is the named parameter `test_size` this is the fraction of the dataset that is used for testing, in this case `0.2` means 20% of the data will be used for testing.
+- `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
+- `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
+- `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ### Image Colours
 
-RGB Images:
+**RGB** Images:
 
 - For image classification tasks, RGB images are used because they capture the full spectrum of colors that human vision can perceive, allowing the model to learn intricate features and patterns present in the images.
 
@@ -452,7 +468,7 @@ RGB Images:
 
 While RGB is the most common representation, there are scenarios where other color palettes might be considered, such as:
 
-Grayscale Images:
+**Grayscale** Images:
 
 - Grayscale images have only one channel, representing the intensity of the pixels. Each pixel's intensity is usually represented by a single numerical value that ranges from 0 (black) to 255 (white). The image is essentially a 2D array where each element holds the intensity value of the corresponding pixel.
 
@@ -461,9 +477,9 @@ Grayscale Images:
 
 ### One-hot encoding
 
-A neural network can only take numerical inputs and outputs, and learns by calculating how “far away” the class predicted by the neural network is from the true class. When the target (label) is a categorical data, or strings, it is very difficult to determine this “distance” or error. Therefore we will transform this column into a more suitable format. There are many ways to do this, however we will be using *one-hot encoding*. 
+A neural network can only take numerical inputs and outputs, and learns by calculating how “far away” the class predicted by the neural network is from the true class. When the target (label) is a categorical data, or strings, it is very difficult to determine this “distance” or error. Therefore we will transform this column into a more suitable format. There are many ways to do this, however we will be using **one-hot encoding**. 
 
-one-hot encoding is a technique to represent categorical data as binary vectors, making it compatible with machine learning algorithms. Each category becomes a separate feature, and the presence or absence of a category is indicated by 1s and 0s in the respective columns.
+One-hot encoding is a technique to represent categorical data as binary vectors, making it compatible with machine learning algorithms. Each category becomes a separate feature, and the presence or absence of a category is indicated by 1s and 0s in the respective columns.
 
 Let's say you have a dataset with a "Color" column containing three categories: Red, Blue, Green. 
 

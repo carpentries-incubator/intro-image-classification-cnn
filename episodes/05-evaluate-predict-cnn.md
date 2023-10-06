@@ -27,6 +27,8 @@ After you fully train the network to a satisfactory performance on the training 
 
 #### Prepare test dataset
 
+Recall in Episode 2 Introduction to Image Data we discussed how to split your data into training, validation and test datasets and why. In most cases, that means you already have a test set on hand. For example, in that episode we create a variable `test_images` and assigned a sample of the CINIC-10 dataset.
+
 When creating a test set there are a few things to check:
 
 - only contains images that the model has never seen before
@@ -35,8 +37,21 @@ When creating a test set there are a few things to check:
   - images of classes not in your target set
 - processed in the same way as your training set
 
-Recall in Episode 2 Introduction to Image Data we discussed how to split your data into training, validation and test datasets and why. In most cases, that means you already have a test set on hand. 
-For example, in that episode we create a variable `test_images` and assigned a sample of the CINIC-10 dataset.
+Check to make sure you have a model in memory and a test dataset:
+
+```python
+# check correct model is loaded
+print(model_dropout.name)
+
+# check test image dataset is loaded
+print(test_images.shape)
+```
+```output
+We are using  cifar_model_dropout 
+
+The test image dataset has the shape:  (10000, 32, 32, 3)
+```
+
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -70,10 +85,7 @@ Recall our model will return a vector of probabilities, one for each class. By f
 
 
 ```python
-# CINAC-10 uses the same class names
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
-
-
+from tensorflow import keras
 
 # use our current best model to predict probability of each class on new test set
 predicted_prob = model_dropout.predict(test_images)
@@ -86,18 +98,21 @@ prediction_df.head()
 ```
 
 ```output
-     airplane  automobile        bird  ...       horse        ship       truck
-0 -122.712860 -129.267731 -167.219070  ... -123.657021 -159.014191 -163.177200
-1 -124.170799 -130.616486 -169.133301  ... -125.039940 -160.607788 -164.996490
-2 -122.743195 -129.151138 -167.131165  ... -123.587769 -158.856171 -163.279022
-3 -123.213806 -129.727814 -167.872360  ... -124.088776 -159.516998 -163.856964
-4 -122.018211 -128.308029 -165.941437  ... -122.628334 -157.797241 -162.291702
+airplane  automobile      bird  ...     horse      ship     truck
+0  0.165748   -0.118394  0.062156  ...  0.215477  0.013811 -0.047446
+1  0.213530   -0.126139  0.052813  ...  0.264517  0.009097 -0.091710
+2  0.211900   -0.099055  0.047890  ...  0.242345 -0.014492 -0.073153
+3  0.187883   -0.085144  0.044609  ...  0.217864  0.007502 -0.055209
+4  0.190110   -0.118892  0.054869  ...  0.252434 -0.030064 -0.061485
+
+[5 rows x 10 columns]
 ```
 
 ```python
 # now find the maximum probability for each image
 predicted_labels = predicted_prob.argmax(axis=1)
 ```
+
 
 ### Step 8. Measuring performance
 

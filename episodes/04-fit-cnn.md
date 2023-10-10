@@ -109,37 +109,15 @@ We need to choose which optimizer to use and, if this optimizer has parameters, 
 
 **Adam** 
 
-Here we picked one of the most common optimizers that works well for most tasks, the **Adam** optimizer. Similar to activation functions, the choice of optimizer depends on the problem you are trying to solve, your model architecture and your data. Adam is a good starting point though, which is why we chose it. Adam has a number of parameters, but the default values work well for most problems. So we will use it with its default parameters.
+Here we picked one of the most common optimizers that works well for most tasks, the **Adam** optimizer. Similar to activation functions, the choice of optimizer depends on the problem you are trying to solve, your model architecture and your data. Adam is a good starting point though, which is why we chose it. Adam has a number of parameters, but the default values work well for most problems so we will use it with its default parameters.
 
 - defined by the keras.optimizers.Adam class
+- takes a single parameter `learning_rate=0.01`
 
-There are many optimizers to choose from so check the [optimizer documentation]. A couple more popular or famous ones include:
+Note that most optimizers include a `learning_rate` argument that defaults to `0.01`. or `0.001`.
 
-**Stochastic Gradient Descent (sgd)**
+We will discuss optimizers in more detail in the next episode as part of **Step 9. Tune hyperparameters**.
 
-Stochastic Gradient Descent (SGD) is one of the fundamental optimization algorithms used to train machine learning models, especially neural networks. It is a variant of the gradient descent algorithm, designed to handle large datasets efficiently.
-
-:::::::::::::::::::::::::::::::::::::: callout
-ChatGPT
-
-Let's break down the concept of Stochastic Gradient Descent for beginners:
-
-**Optimization Algorithm**: In the context of machine learning, an optimization algorithm is used to minimize (or maximize) an objective function. In the case of training a machine learning model, the objective function is the loss function, which measures how well the model is performing on the training data.
-
-**Gradient Descent**: Gradient Descent is a simple optimization algorithm used to find the minimum (or maximum) of a function. It does this by iteratively updating the parameters of the model in the direction of the steepest decrease of the loss function.
-
-**Batch Gradient Descent** vs. **Stochastic Gradient Descent**: In traditional batch gradient descent, the algorithm computes the gradient of the loss function with respect to all training examples in the dataset and then updates the model parameters. This means it processes the entire dataset at once in each iteration, which can be computationally expensive for large datasets.
-::::::::::::::::::::::::::::::::::::::::::::::
-
-In practice, variations of SGD, such as Mini-Batch Gradient Descent, Momentum, and Adam, are often used, which combine the advantages of SGD with additional techniques to overcome some of its challenges.
-
-**Root Mean Square (rms)prop**
-
-RMSprop is widely used in various deep learning frameworks and is one of the predecessors of more advanced optimizers like Adam, which further refines the concept of adaptive learning rates. It is an extension of the basic Stochastic Gradient Descent (SGD) algorithm and addresses some of the challenges of SGD.
-
-For example, one of the main issues with the basic SGD is that it uses a fixed learning rate for all model parameters throughout the training process. This fixed learning rate can lead to slow convergence or divergence (over-shooting) in some cases. RMSprop introduces an adaptive learning rate mechanism to address this problem.
-
-For more information on these and other available loss functions in Keras you can check the [optimizer documentation].
 
 :::::::::::::::::::::::::::::::::::::: callout
 ChatGPT
@@ -167,8 +145,6 @@ Lastly, we can observe below that a modest learning rate will ensure that the pr
 (This image was obtained from [Google Developers Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate) and is licenced under the [Creative Commons 4.0 Attribution Licence](https://creativecommons.org/licenses/by/4.0/).)
 
 ::::::::::::::::::::::::::::::::::::::::::::::
-
-Most optimizers include a `learning_rate` argument that defaults to `0.01`. or `0.001`.
 
 
 #### Metrics
@@ -498,6 +474,5 @@ model_dropout.save('model_dropout.h5')
 
 <!-- Collect your link references at the bottom of your document -->
 [loss documentation]: https://keras.io/api/losses/
-[optimizer documentation]: https://keras.io/api/optimizers/
 [metrics]: https://keras.io/api/metrics/
 [fit method]: https://keras.io/api/models/model_training_apis/

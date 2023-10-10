@@ -6,17 +6,18 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-
-- How do you measure model prediction accuracy?
 - How do you use a model to make a prediction?
-- How to you improve model performance?
+- How do you measure model prediction accuracy?
+- What is a hyperparameter?
+- What can you do to improve model performance?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Use a convolutional neeural network (CNN) to make a prediction (ie classify  an image)
+- Use a convolutional neural network (CNN) to make a prediction (ie classify an image)
 - Explain how to measure the performance of a CNN
+- Explain hyperparameter tuning
 - Understand what steps to take to improve model accuracy
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -41,15 +42,16 @@ Check to make sure you have a model in memory and a test dataset:
 
 ```python
 # check correct model is loaded
-print(model_dropout.name)
+print('We are using', model_dropout.name)
 
 # check test image dataset is loaded
-print(test_images.shape)
+print('The number and shape of images in our test dataset is: ', test_images.shape)
+print('The number of labels in our test dataset is: ', len(test_labels))
 ```
 ```output
-We are using  cifar_model_dropout 
-
-The test image dataset has the shape:  (10000, 32, 32, 3)
+We are using  cifar_model_dropout
+The number and shape of images in our test dataset is:  (10000, 32, 32, 3)
+The number of labels in our test dataset is:  10000
 ```
 
 
@@ -79,7 +81,7 @@ Depends! Recall in an Episode 02 Introduction to Image Data Callout we talked ab
 
 #### Predict
 
-Armed with a test dataset, We will use our CNN to predict the class labels using the `predict` function and use these predictions in the next step to measure the performance of our trained network.
+Armed with a test dataset, we will use our CNN to predict their class labels using the `predict` function and then use these predictions in Step 8 to measure the performance of our trained network.
 
 Recall our model will return a vector of probabilities, one for each class. By finding the class with the highest probability, we can select the most likely class name of the object.
 
@@ -113,7 +115,6 @@ airplane  automobile      bird  ...     horse      ship     truck
 predicted_labels = predicted_prob.argmax(axis=1)
 ```
 
-
 ### Step 8. Measuring performance
 
 Once we trained the network we want to measure its performance. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
@@ -122,53 +123,71 @@ An easy way to visually check the observed versus predicted classes is to plot t
 
 ```python
 # plot the predicted versus the true class
-plt.plot(test_labels, predicted_labels, xlab='Test Class', ylab='Predicted Class')
+
+# training labels are numeric; want test labels to the same for plotting
+# need the list of classnames to convert test_labels to test_values
+# recall train_values were numeric, not strings
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+
+# use element position in class_names to generate values
+test_values = [] 
+for i in range(len(test_labels)):
+    test_values.append(class_names.index(test_labels[i]))
+    
+# make the plot
+plt.scatter(test_labels_values, predicted_labels)
+plt.xlabel('Test Class')
+plt.ylabel('Predicted Class')
+plt.xlim(0, 9)
+plt.ylim(0, 9)
+#plt.axline(xy1=(0,0), xy2=(9,9), linestyle='--') # expected
+plt.show()
 
 ```
 
-![](fig/05_pred_v_true_plot.png){alt=''}
+![](fig/05_pred_v_true_plot_scatter.png){alt=''}
 
 
-To obtain more quantitative measures of model performance, we we will create a confusion matrix.
+To obtain a more quantitative measure of model performance, we can create a confusion matrix.
 
 
 #### Confusion matrix
 
-With the predicted species we can now create a confusion matrix and display it using seaborn. To create a confusion matrix we will use another convenient function from sklearn called confusion_matrix. This function takes as a first parameter the true labels of the test set. The second parameter is the predicted labels which we did above.
+With the predicted species we can now create a confusion matrix and display it using seaborn. To create a confusion matrix we will use another convenient function from sklearn called `confusion_matrix`. This function takes as a first parameter the true labels of the test set. The second parameter is the predicted labels which we did above.
 
 ```python
 from sklearn.metrics import confusion_matrix
 
-true_class = TODO
-
-matrix = confusion_matrix(true_species, predicted_species)
-print(matrix)
+conf_matrix = confusion_matrix(test_labels_values, predicted_labels)
+print(conf_matrix)
 ```
 ```output
-[[ 0  0  0  0 50  0  0  0  0  0]
- [ 0  0  0  0 42  0  8  0  0  0]
- [ 0  0  0  0 44  0  6  0  0  0]
- [ 0  0  0  0 39  0 11  0  0  0]
- [ 0  0  0  0 50  0  0  0  0  0]
- [ 0  0  0  0 45  0  5  0  0  0]
- [ 0  0  0  0 36  0 14  0  0  0]
- [ 0  0  0  0 46  0  4  0  0  0]
- [ 0  0  0  0 45  0  5  0  0  0]
- [ 0  0  0  0 38  0 12  0  0  0]]
+[[ 24   0   0   0   0   0   0 975   1   0]
+ [ 38   0   0   0   0   0   0 962   0   0]
+ [ 25   0   0   0   0   0   0 975   0   0]
+ [ 35   0   0   0   0   0   0 965   0   0]
+ [ 23   0   0   0   0   0   0 977   0   0]
+ [ 43   0   0   0   0   0   0 957   0   0]
+ [ 26   0   0   0   0   0   0 974   0   0]
+ [ 39   0   0   0   0   0   0 961   0   0]
+ [ 22   0   0   0   0   0   0 978   0   0]
+ [ 36   0   0   0   0   0   0 964   0   0]]
  ```
 
-Unfortunately, this matrix is kinda hard to read. Its not clear which column and which row corresponds to which species. So let's convert it to a pandas dataframe with its index and columns set to the species as follows:
+Unfortunately, this matrix is kinda hard to read. Its not clear which column and which row corresponds to which class. So let's convert it to a pandas dataframe with its index and columns set to the class labels as follows:
 
 ```python
 # Convert to a pandas dataframe
-confusion_df = pd.DataFrame(matrix, index=class_namess, columns=class_names)
+confusion_df = pd.DataFrame(conf_matrix, index=class_names, columns=class_names)
 
 # Set the names of the x and y axis, this helps with the readability of the heatmap.
 confusion_df.index.name = 'True Label'
 confusion_df.columns.name = 'Predicted Label'
 ```
 
-We can then use the heatmap function from seaborn to create a nice visualization of the confusion matrix. The annot=True parameter here will put the numbers from the confusion matrix in the heatmap.
+We can then use the `heatmap` function from seaborn to create a nice visualization of the confusion matrix. 
+- the `annot=True` parameter here will put the numbers from the confusion matrix in the heatmap.
+ - the `fmt=3g' will display the values with 3 significant digits
 
 ```python
 sns.heatmap(confusion_df, annot=True)
@@ -178,23 +197,23 @@ sns.heatmap(confusion_df, annot=True)
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge Confusion Matrix
+Confusion Matrix
 
-Looking at the training curve we have just made.
+Measure the performance of the neural network you trained and visualized as a confusion matrix.
 
-Measure the performance of the neural network you trained and visualize a confusion matrix.
+Q1. Did the neural network perform well on the test set?
 
-- Did the neural network perform well on the test set?
-- Did you expect this from the training loss you saw?
-- What could we do to improve the performance?
+Q2. Did you expect this from the training loss you saw?
+
+Q3. What could we do to improve the performance?
 
 :::::::::::::::::::::::: solution 
 
-The confusion matrix shows that the predictions for Adelie and Gentoo are decent, but could be improved. However, Chinstrap is not predicted ever.
+Q1. The confusion matrix shows that the predictions for terrible and can improved.
 
-The training loss was very low, so from that perspective this may be surprising. But this illustrates very well why a test set is important when training neural networks.
+Q2. I expected the performance to be poor because the accuracy of the model I chose was only 10% on the validation set.
 
-We can try many things to improve the performance from here. One of the first things we can try is to balance the dataset better. Other options include: changing the network architecture or changing the training parameters
+Q3. We can try many things to improve the performance from here. One of the first things we can try is to change the network architecture. However, in the interest of time and given we already saw how to build a CNN we will try to change the training parameters.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -207,7 +226,7 @@ Try your own image!
 # specify a new image and prepare it to match CIFAR-10 dataset
 from icwithcnn_functions import prepare_image_icwithcnn
 
-new_img_path = "../data/Jabiru_TGS.JPG" # path to image
+new_img_path = "../data/Jabiru_TGS.JPG" # path to YOUR image
 new_img_prepped = prepare_image_icwithcnn(new_img_path)
 
 # predict the classname
@@ -217,13 +236,12 @@ print(class_names[result_intro.argmax()]) # class with highest probability
 ```
 
 :::::::::::::::::::::::: solution 
-
-## Output
- 
 ```output
 Result: [[-2.0185328   9.337507   -2.4551604  -0.4688053  -4.599108   -3.5822825
    6.427376   -0.09437321  0.82065487  1.2978227 ]]
 Class name: automobile
+
+NOTE your output will vary!
 
 ```
 
@@ -237,42 +255,51 @@ Recall the following from Episode 1:
 
 #### What are hyperparameters? 
 
-Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimize the model's performance. One common method for hyperparameter tuning is **grid search**. 
-
-#### What is Grid Search?
-
-Grid Search or **GridSearch** (as per the library function call) is foundation method for hyperparameter tuning. The aim of hyperparameter tuning is to define a grid of possible values for each hyperparameter you want to tune. GridSearch will then evaluate the model performance for each combination of hyperparameters in a brute-force manner, iterating through every possible combination in the grid.
+Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimize the model's performance.
 
 That is, hyperparameters are all parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. It might be necessary to adjust these and re-run the training many times before we are happy with the result.
 
 Some hyperparameters include:
 
 **During Build:**
+
 - number of neurons
 - activation function
 
 **When Compiling:**
+
 - loss function
 - optimizer
     - learning rate
     - batch size
     
 **During Training:**
+
 - epoch
 - batch size
 
-#### A hands-on example of hyperparameter tuning
+One common method for hyperparameter tuning is **grid search**. 
+
+#### What is Grid Search?
+
+Grid Search or `GridSearchCV` (as per the library function call) is foundation method for hyperparameter tuning. The aim of hyperparameter tuning is to define a grid of possible values for each hyperparameter you want to tune. GridSearch will then evaluate the model performance for each combination of hyperparameters in a brute-force manner, iterating through every possible combination in the grid.
 
 For instance, suppose you're tuning two hyperparameters:
 
 Learning rate: with possible values [0.01, 0.1, 1]
+
 Batch size: with possible values [10, 50, 100]
 
 GridSearch will evaluate the model for all 3x3 = 9 combinations (e.g., {0.01, 10}, {0.01, 50}, {0.1, 10}, and so on).
 
-We can use our previous introductory model to demonstrate how GridSearch is expressed in code.
 
-First, we will define a *build function* to use during GridSearch. This function will compile the model for each combination of parameters prior to evaluation.
+### Tune Hyperparameters Example: use GridSearch to tune **Optimizer**
+
+In episode 04 we talked briefly about the `Adam` optimizer used in our `model.compile` discussion. Recall the optimizer refers to the algorithm with which the model learns to optimize on the provided loss function.
+
+Here we will use our introductory model to demonstrate how GridSearch is expressed in code to search for an optimizer.
+
+First, we will define a **build function** to use during GridSearch. This function will compile the model for each combination of parameters prior to evaluation.
 
 ```python
 def create_model():
@@ -294,6 +321,7 @@ def create_model():
     model.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
     return model
 ```
+
 Secondly, we can define our GridSearch parameters and assign fit results to a variable for output. If you don't have the **scikeras** or **sklearn** installed already, please do so via the terminal using pip.
 
 ```python
@@ -321,7 +349,18 @@ Best: 0.586660 using {'optimizer': 'RMSprop'}
 
 Thus, we can interpret from this output that our best tested optimiser is the **root mean square propagation** optimiser, or RMSprop. 
 
-Curious about RMSprop? Read more here: [RMSprop in Keras](https://keras.io/api/optimizers/rmsprop/) and [RMSProp, Cornell University](https://optimization.cbe.cornell.edu/index.php?title=RMSProp)
+Curious about RMSprop? Read more here: [RMSprop in Keras] and [RMSProp, Cornell University].
+
+For more information on other optimizers available in Keras you can check the [optimizer documentation].
+
+
+### Tune Hyperparameters Example: use brute force to tune **Activation Function**
+
+In episode 03 we talked briefly about the `relu` activation function passed as an argument to our `Conv2D` hidden layers.
+
+An activation function is like a switch or a filter that we use in artificial neural networks, inspired by how our brains work. These functions play a crucial role in determining whether a neuron (a small unit in the neural network) should "fire" or become active. 
+
+Think of an activation function as a tiny decision-maker for each neuron in a neural network. It helps determine whether the neuron should 'fire', or pass on information, or stay 'off' and remain silent, much like a light switch that decides whether the light should be ON or OFF. Activation functions are crucial because they add non-linearity to the neural network. Without them, the network would be like a simple linear model, unable to learn complex patterns in data. 
 
 #### How do you know what activation function to choose?
 
@@ -338,7 +377,7 @@ The table below describes each activation function, its benefits, and drawbacks.
 | Softmax             | - Used for multi-class classification <br/> - Outputs a probability distribution | - Used only in the output layer for classification tasks |
 | SELU                | - Self-normalizing properties <br/> - Can outperform ReLU in deeper networks | - Requires specific weight initialization <br/> - May not perform well outside of deep architectures |
 
-##### Assessing activiation function performance
+#### Assessing activiation function performance
 
 The code below serves as a practical means for exploring activation performance on an image dataset.
 
@@ -393,52 +432,11 @@ plt.legend()
 plt.show()
 ```
 TODO include output for the above
-TODO how to choose activation function - here or back in build with a callout?
-TODO Add a challenge to change the loss or optimizer
-
-#### Set expectations: How difficult is the defined problem?
-
-Before we dive deeper into handling overfitting and (trying to) improving the model performance, let us ask the question: How well must a model perform before we consider it a good model?
-
-Now that we defined a problem (classify an image into one of 10 different classes), it makes sense to develop an intuition for how difficult the posed problem is. Frequently, models will be evaluated against a so called **baseline**. A baseline can be the current standard in the field or if such a thing does not exist it could also be an intuitive first guess or toy model. The latter is exactly what we would use for our case.
-
-TODO might be able to do something like this
-
-#### Watch your model training closely
-
-As we saw when comparing the predictions for the training and the test set, deep learning models are prone to overfitting. Instead of iterating through countless cycles of model trainings and subsequent evaluations with a reserved test set, it is common practice to work with a second split off dataset to monitor the model during training. This is the validation set which can be regarded as a second test set. As with the test set, the datapoints of the validation set are not used for the actual model training itself. Instead, we evaluate the model with the validation set after every epoch during training, for instance to stop if we see signs of clear overfitting. Since we are adapting our model (tuning our hyperparameters) based on this validation set, it is very important that it is kept separate from the test set. If we used the same set, we would not know whether our model truly generalizes or is only overfitting.
-
-
-TODO add new model with validation data
-see this section deep-learning 03 weather
-
-::::::::::::::::::::::::::::::::::::: challenge 
-
-## Exercise: plot the training progress
-
-1. Is there a difference between the training and validation data? And if so, what would this imply?
-1. (Optional) Take a pen and paper, draw the perfect training and validation curves. (This may seem trivial, but it will trigger you to think about what you actually would like to see)
-
-:::::::::::::::::::::::: solution 
-
-The difference between training and validation data shows that something is not completely right here. The model predictions on the validation set quickly seem to reach a plateau while the performance on the training set keeps improving. That is a common signature of overfitting.
-
-Optional: Ideally you would like the training and validation curves to be identical and slope down steeply to 0. After that the curves will just consistently stay at 0.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::
-
-#### Counteract model overfitting
-
-Overfitting is a very common issue and there are many strategies to handle it. Most similar to classical machine learning might to **reduce the number of parameters**.
-
-TODO revisit this section deep-learning 03 weather
-TODO might need to break this out into new episode
 
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Open question: What could be next steps to further improve the model?
+Open question: What could be next steps to further improve the model?
 
 With unlimited options to modify the model architecture or to play with the training parameters, deep learning can trigger very extensive hunting for better and better results. Usually models are "well behaving" in the sense that small chances to the architectures also only result in small changes of the performance (if any). It is often tempting to hunt for some magical settings that will lead to much better results. But do those settings exist? Applying common sense is often a good first step to make a guess of how much better could results be. In the present case we might certainly not expect to be able to reliably predict sunshine hours for the next day with 5-10 minute precision. But how much better our model could be exactly, often remains difficult to answer.
 
@@ -447,7 +445,7 @@ With unlimited options to modify the model architecture or to play with the trai
 
 :::::::::::::::::::::::: solution 
 
-This is on open question. And we don't actually know how far one could push this sunshine hour prediction (try it out yourself if you like! We're curious!). But there is a few things that might be worth exploring.
+This is an open question. And we don't actually know how far one could push this sunshine hour prediction (try it out yourself if you like! We're curious!). But there is a few things that might be worth exploring.
 
 Regarding the model architecture:
 
@@ -464,23 +462,16 @@ Other changes that might impact the quality notably:
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::
 
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+- Use model.predict to make a prediction with your model
+- Model accuracy must be measured on a test dataset with images your model has not seen before
+- There are many hyperparameters to choose from to improve model performance
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
 [CINIC-10]: https://github.com/BayesWatch/cinic-10/
-
+[RMSprop in Keras]: https://keras.io/api/optimizers/rmsprop/
+[RMSProp, Cornell University]: https://optimization.cbe.cornell.edu/index.php?title=RMSProp
+[optimizer documentation]: https://keras.io/api/optimizers/

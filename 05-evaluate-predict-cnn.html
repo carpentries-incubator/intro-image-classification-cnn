@@ -269,7 +269,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</h1>
-        <p> Last updated on 2023-10-06 | 
+        <p> Last updated on 2023-10-10 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -288,9 +288,10 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How do you measure model prediction accuracy?</li>
-<li>How do you use a model to make a prediction?</li>
-<li>How to you improve model performance?</li>
+<ul><li>How do you use a model to make a prediction?</li>
+<li>How do you measure model prediction accuracy?</li>
+<li>What is a hyperparameter?</li>
+<li>What can you do to improve model performance?</li>
 </ul></div>
 </div>
 </div>
@@ -298,9 +299,10 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Use a convolutional neeural network (CNN) to make a prediction (ie
+<ul><li>Use a convolutional neural network (CNN) to make a prediction (ie
 classify an image)</li>
 <li>Explain how to measure the performance of a CNN</li>
+<li>Explain hyperparameter tuning</li>
 <li>Understand what steps to take to improve model accuracy</li>
 </ul></div>
 </div>
@@ -335,17 +337,18 @@ performance
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check correct model is loaded</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_dropout.name)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'We are using'</span>, model_dropout.name)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check test image dataset is loaded</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test_images.shape)</span></code></pre>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number and shape of images in our test dataset is: '</span>, test_images.shape)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of labels in our test dataset is: '</span>, <span class="bu">len</span>(test_labels))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>We are using  cifar_model_dropout 
-
-The test image dataset has the shape:  (10000, 32, 32, 3)</code></pre>
+<pre class="output" tabindex="0"><code>We are using  cifar_model_dropout
+The number and shape of images in our test dataset is:  (10000, 32, 32, 3)
+The number of labels in our test dataset is:  10000</code></pre>
 </div>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
@@ -367,7 +370,7 @@ and ‘Construction’ sections of the <a href="https://github.com/BayesWatch/ci
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>No! “The entirety of the original CIFAR-10 test set is within the
 above mentioned new test set.”</p>
@@ -396,7 +399,7 @@ train!</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Depends! Recall in an Episode 02 Introduction to Image Data Callout
 we talked about the different ways to partition the data into training,
@@ -410,9 +413,10 @@ rations: 80-10-10 or 70-15-15.</p>
 </div>
 <div class="section level4">
 <h4 id="predict">Predict<a class="anchor" aria-label="anchor" href="#predict"></a></h4>
-<p>Armed with a test dataset, We will use our CNN to predict the class
-labels using the <code>predict</code> function and use these predictions
-in the next step to measure the performance of our trained network.</p>
+<p>Armed with a test dataset, we will use our CNN to predict their class
+labels using the <code>predict</code> function and then use these
+predictions in Step 8 to measure the performance of our trained
+network.</p>
 <p>Recall our model will return a vector of probabilities, one for each
 class. By finding the class with the highest probability, we can select
 the most likely class name of the object.</p>
@@ -463,78 +467,97 @@ is to plot the index of each:</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the predicted versus the true class</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.plot(test_labels, predicted_labels, xlab<span class="op">=</span><span class="st">'Test Class'</span>, ylab<span class="op">=</span><span class="st">'Predicted Class'</span>)</span></code></pre>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># training labels are numeric; want test labels to the same for plotting</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># need the list of classnames to convert test_labels to test_values</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># recall train_values were numeric, not strings</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'airplane'</span>, <span class="st">'automobile'</span>, <span class="st">'bird'</span>, <span class="st">'cat'</span>, <span class="st">'deer'</span>, <span class="st">'dog'</span>, <span class="st">'frog'</span>, <span class="st">'horse'</span>, <span class="st">'ship'</span>, <span class="st">'truck'</span>]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># use element position in class_names to generate values</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>test_values <span class="op">=</span> [] </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(test_labels)):</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    test_values.append(class_names.index(test_labels[i]))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># make the plot</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.scatter(test_labels_values, predicted_labels)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Test Class'</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Predicted Class'</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">9</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">9</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.axline(xy1=(0,0), xy2=(9,9), linestyle='--') # expected</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/05_pred_v_true_plot.png" alt="" class="figure mx-auto d-block"></figure><p>To obtain more quantitative measures of model performance, we we will
+<figure><img src="fig/05_pred_v_true_plot_scatter.png" alt="" class="figure mx-auto d-block"></figure><p>To obtain a more quantitative measure of model performance, we can
 create a confusion matrix.</p>
 <div class="section level4">
 <h4 id="confusion-matrix">Confusion matrix<a class="anchor" aria-label="anchor" href="#confusion-matrix"></a></h4>
 <p>With the predicted species we can now create a confusion matrix and
 display it using seaborn. To create a confusion matrix we will use
-another convenient function from sklearn called confusion_matrix. This
-function takes as a first parameter the true labels of the test set. The
-second parameter is the predicted labels which we did above.</p>
+another convenient function from sklearn called
+<code>confusion_matrix</code>. This function takes as a first parameter
+the true labels of the test set. The second parameter is the predicted
+labels which we did above.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>true_class <span class="op">=</span> TODO</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> confusion_matrix(true_species, predicted_species)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matrix)</span></code></pre>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>conf_matrix <span class="op">=</span> confusion_matrix(test_labels_values, predicted_labels)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(conf_matrix)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>[[ 0  0  0  0 50  0  0  0  0  0]
- [ 0  0  0  0 42  0  8  0  0  0]
- [ 0  0  0  0 44  0  6  0  0  0]
- [ 0  0  0  0 39  0 11  0  0  0]
- [ 0  0  0  0 50  0  0  0  0  0]
- [ 0  0  0  0 45  0  5  0  0  0]
- [ 0  0  0  0 36  0 14  0  0  0]
- [ 0  0  0  0 46  0  4  0  0  0]
- [ 0  0  0  0 45  0  5  0  0  0]
- [ 0  0  0  0 38  0 12  0  0  0]]</code></pre>
+<pre class="output" tabindex="0"><code>[[ 24   0   0   0   0   0   0 975   1   0]
+ [ 38   0   0   0   0   0   0 962   0   0]
+ [ 25   0   0   0   0   0   0 975   0   0]
+ [ 35   0   0   0   0   0   0 965   0   0]
+ [ 23   0   0   0   0   0   0 977   0   0]
+ [ 43   0   0   0   0   0   0 957   0   0]
+ [ 26   0   0   0   0   0   0 974   0   0]
+ [ 39   0   0   0   0   0   0 961   0   0]
+ [ 22   0   0   0   0   0   0 978   0   0]
+ [ 36   0   0   0   0   0   0 964   0   0]]</code></pre>
 </div>
 <p>Unfortunately, this matrix is kinda hard to read. Its not clear which
-column and which row corresponds to which species. So let’s convert it
-to a pandas dataframe with its index and columns set to the species as
+column and which row corresponds to which class. So let’s convert it to
+a pandas dataframe with its index and columns set to the class labels as
 follows:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a pandas dataframe</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>confusion_df <span class="op">=</span> pd.DataFrame(matrix, index<span class="op">=</span>class_namess, columns<span class="op">=</span>class_names)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>confusion_df <span class="op">=</span> pd.DataFrame(conf_matrix, index<span class="op">=</span>class_names, columns<span class="op">=</span>class_names)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the names of the x and y axis, this helps with the readability of the heatmap.</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>confusion_df.index.name <span class="op">=</span> <span class="st">'True Label'</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>confusion_df.columns.name <span class="op">=</span> <span class="st">'Predicted Label'</span></span></code></pre>
 </div>
-<p>We can then use the heatmap function from seaborn to create a nice
-visualization of the confusion matrix. The annot=True parameter here
-will put the numbers from the confusion matrix in the heatmap.</p>
+<p>We can then use the <code>heatmap</code> function from seaborn to
+create a nice visualization of the confusion matrix. - the
+<code>annot=True</code> parameter here will put the numbers from the
+confusion matrix in the heatmap. - the `fmt=3g’ will display the values
+with 3 significant digits</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(confusion_df, annot<span class="op">=</span><span class="va">True</span>)</span></code></pre>
 </div>
-<figure><img src="fig/05_pred_v_true_confusion_matrix.png" alt="" class="figure mx-auto d-block"></figure><div id="challenge-confusion-matrix" class="callout challenge">
+<figure><img src="fig/05_pred_v_true_confusion_matrix.png" alt="" class="figure mx-auto d-block"></figure><div id="challenge3" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-confusion-matrix" class="callout-inner">
-<h3 class="callout-title">Challenge Confusion Matrix<a class="anchor" aria-label="anchor" href="#challenge-confusion-matrix"></a>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge3"></a>
 </h3>
 <div class="callout-content">
-<p>Looking at the training curve we have just made.</p>
+<p>Confusion Matrix</p>
 <p>Measure the performance of the neural network you trained and
-visualize a confusion matrix.</p>
-<ul><li>Did the neural network perform well on the test set?</li>
-<li>Did you expect this from the training loss you saw?</li>
-<li>What could we do to improve the performance?</li>
-</ul></div>
+visualized as a confusion matrix.</p>
+<p>Q1. Did the neural network perform well on the test set?</p>
+<p>Q2. Did you expect this from the training loss you saw?</p>
+<p>Q3. What could we do to improve the performance?</p>
+</div>
 </div>
 </div>
 <div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
@@ -544,18 +567,16 @@ visualize a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<p>The confusion matrix shows that the predictions for Adelie and Gentoo
-are decent, but could be improved. However, Chinstrap is not predicted
-ever.</p>
-<p>The training loss was very low, so from that perspective this may be
-surprising. But this illustrates very well why a test set is important
-when training neural networks.</p>
-<p>We can try many things to improve the performance from here. One of
-the first things we can try is to balance the dataset better. Other
-options include: changing the network architecture or changing the
-training parameters</p>
+<p>Q1. The confusion matrix shows that the predictions for terrible and
+can improved.</p>
+<p>Q2. I expected the performance to be poor because the accuracy of the
+model I chose was only 10% on the validation set.</p>
+<p>Q3. We can try many things to improve the performance from here. One
+of the first things we can try is to change the network architecture.
+However, in the interest of time and given we already saw how to build a
+CNN we will try to change the training parameters.</p>
 </div>
 </div>
 </div>
@@ -575,7 +596,7 @@ training parameters</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a new image and prepare it to match CIFAR-10 dataset</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> icwithcnn_functions <span class="im">import</span> prepare_image_icwithcnn</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>new_img_path <span class="op">=</span> <span class="st">"../data/Jabiru_TGS.JPG"</span> <span class="co"># path to image</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>new_img_path <span class="op">=</span> <span class="st">"../data/Jabiru_TGS.JPG"</span> <span class="co"># path to YOUR image</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>new_img_prepped <span class="op">=</span> prepare_image_icwithcnn(new_img_path)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># predict the classname</span></span>
@@ -590,10 +611,10 @@ training parameters</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">
-  Output
+  Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -601,6 +622,8 @@ training parameters</p>
 <pre class="output" tabindex="0"><code>Result: [[-2.0185328   9.337507   -2.4551604  -0.4688053  -4.599108   -3.5822825
    6.427376   -0.09437321  0.82065487  1.2978227 ]]
 Class name: automobile
+
+NOTE your output will vary!
 </code></pre>
 </div>
 </div>
@@ -620,38 +643,53 @@ These hyperparameters can include the learning rate, the number of
 layers in the network, the number of neurons per layer, and many more.
 Hyperparameter tuning refers to the process of systematically searching
 for the best combination of hyperparameters that will optimize the
-model’s performance. One common method for hyperparameter tuning is
-<strong>grid search</strong>.</p>
-</div>
-<div class="section level4">
-<h4 id="what-is-grid-search">What is Grid Search?<a class="anchor" aria-label="anchor" href="#what-is-grid-search"></a></h4>
-<p>Grid Search or <strong>GridSearch</strong> (as per the library
-function call) is foundation method for hyperparameter tuning. The aim
-of hyperparameter tuning is to define a grid of possible values for each
-hyperparameter you want to tune. GridSearch will then evaluate the model
-performance for each combination of hyperparameters in a brute-force
-manner, iterating through every possible combination in the grid.</p>
+model’s performance.</p>
 <p>That is, hyperparameters are all parameters set by the person
 configuring the machine learning instead of those learned by the
 algorithm itself. It might be necessary to adjust these and re-run the
 training many times before we are happy with the result.</p>
 <p>Some hyperparameters include:</p>
-<p><strong>During Build:</strong> - number of neurons - activation
-function</p>
-<p><strong>When Compiling:</strong> - loss function - optimizer -
-learning rate - batch size</p>
-<p><strong>During Training:</strong> - epoch - batch size</p>
+<p><strong>During Build:</strong></p>
+<ul><li>number of neurons</li>
+<li>activation function</li>
+</ul><p><strong>When Compiling:</strong></p>
+<ul><li>loss function</li>
+<li>optimizer
+<ul><li>learning rate</li>
+<li>batch size</li>
+</ul></li>
+</ul><p><strong>During Training:</strong></p>
+<ul><li>epoch</li>
+<li>batch size</li>
+</ul><p>One common method for hyperparameter tuning is <strong>grid
+search</strong>.</p>
 </div>
 <div class="section level4">
-<h4 id="a-hands-on-example-of-hyperparameter-tuning">A hands-on example of hyperparameter tuning<a class="anchor" aria-label="anchor" href="#a-hands-on-example-of-hyperparameter-tuning"></a></h4>
+<h4 id="what-is-grid-search">What is Grid Search?<a class="anchor" aria-label="anchor" href="#what-is-grid-search"></a></h4>
+<p>Grid Search or <code>GridSearchCV</code> (as per the library function
+call) is foundation method for hyperparameter tuning. The aim of
+hyperparameter tuning is to define a grid of possible values for each
+hyperparameter you want to tune. GridSearch will then evaluate the model
+performance for each combination of hyperparameters in a brute-force
+manner, iterating through every possible combination in the grid.</p>
 <p>For instance, suppose you’re tuning two hyperparameters:</p>
-<p>Learning rate: with possible values [0.01, 0.1, 1] Batch size: with
-possible values [10, 50, 100]</p>
+<p>Learning rate: with possible values [0.01, 0.1, 1]</p>
+<p>Batch size: with possible values [10, 50, 100]</p>
 <p>GridSearch will evaluate the model for all 3x3 = 9 combinations
 (e.g., {0.01, 10}, {0.01, 50}, {0.1, 10}, and so on).</p>
-<p>We can use our previous introductory model to demonstrate how
-GridSearch is expressed in code.</p>
-<p>First, we will define a <em>build function</em> to use during
+</div>
+</div>
+<div class="section level3">
+<h3 id="tune-hyperparameters-example-use-gridsearch-to-tune-optimizer">Tune Hyperparameters Example: use GridSearch to tune
+<strong>Optimizer</strong>
+<a class="anchor" aria-label="anchor" href="#tune-hyperparameters-example-use-gridsearch-to-tune-optimizer"></a></h3>
+<p>In episode 04 we talked briefly about the <code>Adam</code> optimizer
+used in our <code>model.compile</code> discussion. Recall the optimizer
+refers to the algorithm with which the model learns to optimize on the
+provided loss function.</p>
+<p>Here we will use our introductory model to demonstrate how GridSearch
+is expressed in code to search for an optimizer.</p>
+<p>First, we will define a <strong>build function</strong> to use during
 GridSearch. This function will compile the model for each combination of
 parameters prior to evaluation.</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -710,8 +748,29 @@ optimiser is the <strong>root mean square propagation</strong>
 optimiser, or RMSprop.</p>
 <p>Curious about RMSprop? Read more here: <a href="https://keras.io/api/optimizers/rmsprop/" class="external-link">RMSprop in Keras</a> and
 <a href="https://optimization.cbe.cornell.edu/index.php?title=RMSProp" class="external-link">RMSProp,
-Cornell University</a></p>
+Cornell University</a>.</p>
+<p>For more information on other optimizers available in Keras you can
+check the <a href="https://keras.io/api/optimizers/" class="external-link">optimizer
+documentation</a>.</p>
 </div>
+<div class="section level3">
+<h3 id="tune-hyperparameters-example-use-brute-force-to-tune-activation-function">Tune Hyperparameters Example: use brute force to tune
+<strong>Activation Function</strong>
+<a class="anchor" aria-label="anchor" href="#tune-hyperparameters-example-use-brute-force-to-tune-activation-function"></a></h3>
+<p>In episode 03 we talked briefly about the <code>relu</code>
+activation function passed as an argument to our <code>Conv2D</code>
+hidden layers.</p>
+<p>An activation function is like a switch or a filter that we use in
+artificial neural networks, inspired by how our brains work. These
+functions play a crucial role in determining whether a neuron (a small
+unit in the neural network) should “fire” or become active.</p>
+<p>Think of an activation function as a tiny decision-maker for each
+neuron in a neural network. It helps determine whether the neuron should
+‘fire’, or pass on information, or stay ‘off’ and remain silent, much
+like a light switch that decides whether the light should be ON or OFF.
+Activation functions are crucial because they add non-linearity to the
+neural network. Without them, the network would be like a simple linear
+model, unable to learn complex patterns in data.</p>
 <div class="section level4">
 <h4 id="how-do-you-know-what-activation-function-to-choose">How do you know what activation function to choose?<a class="anchor" aria-label="anchor" href="#how-do-you-know-what-activation-function-to-choose"></a></h4>
 <p>Neural networks can be tuned to leverage many different types of
@@ -748,8 +807,9 @@ distribution</td>
 networks</td>
 <td>- Requires specific weight initialization <br> - May not perform
 well outside of deep architectures</td>
-</tr></tbody></table><div class="section level5">
-<h5 id="assessing-activiation-function-performance">Assessing activiation function performance<a class="anchor" aria-label="anchor" href="#assessing-activiation-function-performance"></a></h5>
+</tr></tbody></table></div>
+<div class="section level4">
+<h4 id="assessing-activiation-function-performance">Assessing activiation function performance<a class="anchor" aria-label="anchor" href="#assessing-activiation-function-performance"></a></h4>
 <p>The code below serves as a practical means for exploring activation
 performance on an image dataset.</p>
 <div class="codewrapper sourceCode" id="cb16">
@@ -804,97 +864,17 @@ performance on an image dataset.</p>
 <span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<p>TODO include output for the above TODO how to choose activation
-function - here or back in build with a callout? TODO Add a challenge to
-change the loss or optimizer</p>
-</div>
-</div>
-<div class="section level4">
-<h4 id="set-expectations-how-difficult-is-the-defined-problem">Set expectations: How difficult is the defined problem?<a class="anchor" aria-label="anchor" href="#set-expectations-how-difficult-is-the-defined-problem"></a></h4>
-<p>Before we dive deeper into handling overfitting and (trying to)
-improving the model performance, let us ask the question: How well must
-a model perform before we consider it a good model?</p>
-<p>Now that we defined a problem (classify an image into one of 10
-different classes), it makes sense to develop an intuition for how
-difficult the posed problem is. Frequently, models will be evaluated
-against a so called <strong>baseline</strong>. A baseline can be the
-current standard in the field or if such a thing does not exist it could
-also be an intuitive first guess or toy model. The latter is exactly
-what we would use for our case.</p>
-<p>TODO might be able to do something like this</p>
-</div>
-<div class="section level4">
-<h4 id="watch-your-model-training-closely">Watch your model training closely<a class="anchor" aria-label="anchor" href="#watch-your-model-training-closely"></a></h4>
-<p>As we saw when comparing the predictions for the training and the
-test set, deep learning models are prone to overfitting. Instead of
-iterating through countless cycles of model trainings and subsequent
-evaluations with a reserved test set, it is common practice to work with
-a second split off dataset to monitor the model during training. This is
-the validation set which can be regarded as a second test set. As with
-the test set, the datapoints of the validation set are not used for the
-actual model training itself. Instead, we evaluate the model with the
-validation set after every epoch during training, for instance to stop
-if we see signs of clear overfitting. Since we are adapting our model
-(tuning our hyperparameters) based on this validation set, it is very
-important that it is kept separate from the test set. If we used the
-same set, we would not know whether our model truly generalizes or is
-only overfitting.</p>
-<p>TODO add new model with validation data see this section
-deep-learning 03 weather</p>
-<div id="exercise-plot-the-training-progress" class="callout challenge">
+<p>TODO include output for the above</p>
+<div id="challenge5" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-plot-the-training-progress" class="callout-inner">
-<h3 class="callout-title">Exercise: plot the training progress<a class="anchor" aria-label="anchor" href="#exercise-plot-the-training-progress"></a>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge5"></a>
 </h3>
 <div class="callout-content">
-<ol style="list-style-type: decimal"><li>Is there a difference between the training and validation data? And
-if so, what would this imply?</li>
-<li>(Optional) Take a pen and paper, draw the perfect training and
-validation curves. (This may seem trivial, but it will trigger you to
-think about what you actually would like to see)</li>
-</ol></div>
-</div>
-</div>
-<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5">
-  Show me the solution
-  </h4>
-</button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
-<div class="accordion-body">
-<p>The difference between training and validation data shows that
-something is not completely right here. The model predictions on the
-validation set quickly seem to reach a plateau while the performance on
-the training set keeps improving. That is a common signature of
-overfitting.</p>
-<p>Optional: Ideally you would like the training and validation curves
-to be identical and slope down steeply to 0. After that the curves will
-just consistently stay at 0.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="section level4">
-<h4 id="counteract-model-overfitting">Counteract model overfitting<a class="anchor" aria-label="anchor" href="#counteract-model-overfitting"></a></h4>
-<p>Overfitting is a very common issue and there are many strategies to
-handle it. Most similar to classical machine learning might to
-<strong>reduce the number of parameters</strong>.</p>
-<p>TODO revisit this section deep-learning 03 weather TODO might need to
-break this out into new episode</p>
-<div id="open-question-what-could-be-next-steps-to-further-improve-the-model" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="open-question-what-could-be-next-steps-to-further-improve-the-model" class="callout-inner">
-<h3 class="callout-title">Open question: What could be next steps to
-further improve the model?<a class="anchor" aria-label="anchor" href="#open-question-what-could-be-next-steps-to-further-improve-the-model"></a>
-</h3>
-<div class="callout-content">
+<p>Open question: What could be next steps to further improve the
+model?</p>
 <p>With unlimited options to modify the model architecture or to play
 with the training parameters, deep learning can trigger very extensive
 hunting for better and better results. Usually models are “well
@@ -914,16 +894,16 @@ improve the prediction quality?</li>
 </ul></div>
 </div>
 </div>
-<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5">
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
-<p>This is on open question. And we don’t actually know how far one
+<p>This is an open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you
 like! We’re curious!). But there is a few things that might be worth
 exploring.</p>
@@ -952,7 +932,6 @@ worth to apply different model architectures….</li>
 </div>
 </div>
 </div>
-
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -961,14 +940,11 @@ worth to apply different model architectures….</li>
 <h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
 </h3>
 <div class="callout-content">
-<ul><li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<ul><li>Use model.predict to make a prediction with your model</li>
+<li>Model accuracy must be measured on a test dataset with images your
+model has not seen before</li>
+<li>There are many hyperparameters to choose from to improve model
+performance</li>
 </ul></div>
 </div>
 </div>
@@ -1041,7 +1017,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/05-evaluate-predict-cnn.html",
   "identifier": "https://.github.io/github.com/05-evaluate-predict-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-10-06",
+  "dateModified": "2023-10-10",
   "datePublished": "2023-10-10"
 }
 

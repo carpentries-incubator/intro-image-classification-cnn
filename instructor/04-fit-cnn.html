@@ -275,7 +275,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Compile and Train a Convolutional Neural Network</h1>
-        <p> Last updated on 2023-10-05 | 
+        <p> Last updated on 2023-10-10 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -437,68 +437,21 @@ most tasks, the <strong>Adam</strong> optimizer. Similar to activation
 functions, the choice of optimizer depends on the problem you are trying
 to solve, your model architecture and your data. Adam is a good starting
 point though, which is why we chose it. Adam has a number of parameters,
-but the default values work well for most problems. So we will use it
+but the default values work well for most problems so we will use it
 with its default parameters.</p>
 <ul><li>defined by the keras.optimizers.Adam class</li>
-</ul><p>There are many optimizers to choose from so check the <a href="https://keras.io/api/optimizers/" class="external-link">optimizer documentation</a>. A
-couple more popular or famous ones include:</p>
-<p><strong>Stochastic Gradient Descent (sgd)</strong></p>
-<p>Stochastic Gradient Descent (SGD) is one of the fundamental
-optimization algorithms used to train machine learning models,
-especially neural networks. It is a variant of the gradient descent
-algorithm, designed to handle large datasets efficiently.</p>
+<li>takes a single parameter <code>learning_rate=0.01</code>
+</li>
+</ul><p>Note that most optimizers include a <code>learning_rate</code>
+argument that defaults to <code>0.01</code>. or <code>0.001</code>.</p>
+<p>We will discuss optimizers in more detail in the next episode as part
+of <strong>Step 9. Tune hyperparameters</strong>.</p>
 <div id="callout2" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
-</h3>
-<div class="callout-content">
-<p>ChatGPT</p>
-<p>Let’s break down the concept of Stochastic Gradient Descent for
-beginners:</p>
-<p><strong>Optimization Algorithm</strong>: In the context of machine
-learning, an optimization algorithm is used to minimize (or maximize) an
-objective function. In the case of training a machine learning model,
-the objective function is the loss function, which measures how well the
-model is performing on the training data.</p>
-<p><strong>Gradient Descent</strong>: Gradient Descent is a simple
-optimization algorithm used to find the minimum (or maximum) of a
-function. It does this by iteratively updating the parameters of the
-model in the direction of the steepest decrease of the loss
-function.</p>
-<p><strong>Batch Gradient Descent</strong> vs. <strong>Stochastic
-Gradient Descent</strong>: In traditional batch gradient descent, the
-algorithm computes the gradient of the loss function with respect to all
-training examples in the dataset and then updates the model parameters.
-This means it processes the entire dataset at once in each iteration,
-which can be computationally expensive for large datasets.</p>
-</div>
-</div>
-</div>
-<p>In practice, variations of SGD, such as Mini-Batch Gradient Descent,
-Momentum, and Adam, are often used, which combine the advantages of SGD
-with additional techniques to overcome some of its challenges.</p>
-<p><strong>Root Mean Square (rms)prop</strong></p>
-<p>RMSprop is widely used in various deep learning frameworks and is one
-of the predecessors of more advanced optimizers like Adam, which further
-refines the concept of adaptive learning rates. It is an extension of
-the basic Stochastic Gradient Descent (SGD) algorithm and addresses some
-of the challenges of SGD.</p>
-<p>For example, one of the main issues with the basic SGD is that it
-uses a fixed learning rate for all model parameters throughout the
-training process. This fixed learning rate can lead to slow convergence
-or divergence (over-shooting) in some cases. RMSprop introduces an
-adaptive learning rate mechanism to address this problem.</p>
-<p>For more information on these and other available loss functions in
-Keras you can check the <a href="https://keras.io/api/optimizers/" class="external-link">optimizer documentation</a>.</p>
-<div id="callout3" class="callout callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout3"></a>
 </h3>
 <div class="callout-content">
 <p>ChatGPT</p>
@@ -540,8 +493,6 @@ Developers Machine Learning Crash Course</a> and is licenced under the
 </div>
 </div>
 </div>
-<p>Most optimizers include a <code>learning_rate</code> argument that
-defaults to <code>0.01</code>. or <code>0.001</code>.</p>
 </div>
 <div class="section level4">
 <h4 id="metrics">Metrics<a class="anchor" aria-label="anchor" href="#metrics"></a></h4>
@@ -586,12 +537,12 @@ potentially other metrics per training epoch.</p>
 <p>Note there are other arguments we could use to fit our model, see the
 documentation for <a href="https://keras.io/api/models/model_training_apis/" class="external-link">fit
 method</a>.</p>
-<div id="callout4" class="callout callout">
+<div id="callout3" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout4"></a>
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout3"></a>
 </h3>
 <div class="callout-content">
 <p>ChatGPT</p>
@@ -838,12 +789,12 @@ accuracy is much smaller, and that the final accuracy on the validation
 set is higher than without dropout. Nevertheless, there is still some
 difference between the training loss and validation loss, so we could
 experiment with regularization even more.</p>
-<div id="callout5" class="callout callout">
+<div id="callout4" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout5"></a>
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout4"></a>
 </h3>
 <div class="callout-content">
 <p>ChatGPT</p>
@@ -1065,7 +1016,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/04-fit-cnn.html",
   "identifier": "https://.github.io/github.com/instructor/04-fit-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-10-05",
+  "dateModified": "2023-10-10",
   "datePublished": "2023-10-10"
 }
 

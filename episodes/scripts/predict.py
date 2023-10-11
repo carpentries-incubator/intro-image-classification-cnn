@@ -116,9 +116,6 @@ print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
 
 #### Assessing activiation function performance
 
-The code below serves as a practical means for exploring activation performance on an image dataset.
-
-```python
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
@@ -168,3 +165,19 @@ plt.ylabel('Validation Accuracy')
 plt.legend()
 plt.show()
 
+
+# Step 10 Share the model
+# TODO Here or separate script?
+
+from icwithcnn_functions import prepare_image_icwithcnn
+
+# load a saved model
+pretrained_model = keras.models.load_model('C:/Users/jc140298/ext.h5')
+
+new_img_path = "../data/Jabiru_TGS.JPG" # path to image
+new_img_prepped = prepare_image_icwithcnn(new_img_path)
+
+# predict the class name
+y_pretrained_pred = pretrained_model.predict(new_img_prepped)
+pretrained_predicted_class = class_names[y_pretrained_pred.argmax()]
+print(pretrained_predicted_class)

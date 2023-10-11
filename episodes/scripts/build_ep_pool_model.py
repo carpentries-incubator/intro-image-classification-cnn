@@ -76,15 +76,15 @@ inputs_pool = keras.Input(shape=train_images.shape[1:])
 # CNN Part 2
 # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
 x_pool = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_pool)
-# Pooling layer
+# Pooling layer with input window sized 2,2
 x_pool = keras.layers.MaxPooling2D((2, 2))(x_pool)
 # Second Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
 x_pool = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_pool)
-# Second Pooling layer
+# Second Pooling layer with input window sized 2,2
 x_pool = keras.layers.MaxPooling2D((2, 2))(x_pool)
 # Flatten layer to convert 2D feature maps into a 1D vector
 x_pool = keras.layers.Flatten()(x_pool)
-# Dense layer
+# Dense layer with 50 neurons and ReLU activation
 x_pool = keras.layers.Dense(50, activation='relu')(x_pool)
 
 # CNN Part 3

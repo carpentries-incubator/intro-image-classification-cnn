@@ -18,6 +18,7 @@ exercises: 2
 - Use a convolutional neural network (CNN) to make a prediction (ie classify an image)
 - Explain how to measure the performance of a CNN
 - Explain hyperparameter tuning
+- Be familiar with advantages and disadvantages of different optimizers
 - Understand what steps to take to improve model accuracy
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

@@ -4,7 +4,7 @@ Created on Fri Jun 30 09:37:03 2023
 
 @author: Jason Bell
 """
-# load the keras package, which includes the CIFAR-10 dataset, that will be used later.
+
 from tensorflow import keras
 import matplotlib.pyplot as plt
 from icwithcnn_functions import prepare_image_icwithcnn # custom function

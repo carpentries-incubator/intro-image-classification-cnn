@@ -7,10 +7,15 @@ Created on Fri Jun 30 09:37:03 2023
 # load the keras package, which includes the CIFAR-10 dataset, that will be used later.
 from tensorflow import keras
 import matplotlib.pyplot as plt
+from icwithcnn_functions import prepare_image_icwithcnn # custom function
+import seaborn as sns
+import pandas as pd
+import time
+
+start = time.time()
 
 # load the cifar dataset included with the keras packages
 (train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
-
 
 print('Train: Images=%s, Labels=%s' % (train_images.shape, train_labels.shape))
 print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
@@ -58,13 +63,28 @@ history_intro = model_intro.fit(train_images, train_labels,
 model_intro.save('fit_outputs/01_intro_model.h5')
 
 # specify a new image and prepare it to match cifar10 dataset
-from icwithcnn_functions import prepare_image_icwithcnn
-
 new_img_path = "../data/Jabiru_TGS.JPG" # path to image
-new_img_prepped = prepare_image_icwithcnn(new_img_path)
+new_img_prepped = prepare_image_icwithcnn(new_img_path) # custom function
 
 # predict the classname
 result_intro = model_intro.predict(new_img_prepped) # make prediction
 print(' The predicted probability of each class is: ', result_intro.round(4))
 print('The class with the highest predicted probability is: ', class_names[result_intro.argmax()])
 
+
+# monitor the training progress
+
+# convert the intro model training history into a dataframe for plotting 
+history_intro_df = pd.DataFrame.from_dict(history_intro.history)
+
+# plot the loss and accuracy from the training process
+fig, axes = plt.subplots(1, 2)
+fig.suptitle('cifar_model_intro')
+sns.lineplot(ax=axes[0], data=history_intro_df[['loss', 'val_loss']])
+sns.lineplot(ax=axes[1], data=history_intro_df[['accuracy', 'val_accuracy']])
+
+end = time.time()
+
+print()
+print()
+print("Time taken to run program was:", end - start, "seconds")

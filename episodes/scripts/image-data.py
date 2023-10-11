@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-Episode 02 Image Data
+Episode 02 Introduction to Image Data
 
 """
 
-#### Pre-existing image data
-
-# load the cifar dataset included with the keras packages
 from tensorflow import keras
-
-(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
-
-#### Custom image data
-
-# load the libraries required
 from keras.utils import img_to_array
 from keras.utils import load_img
+import os
+import numpy as np
+
+#### Pre-existing image data
+
+# load the CIFAR-10 dataset included with the keras packages
+(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
+
+
+#### Custom image data
 
 # specify the image path
 new_img_path = "../data/Jabiru_TGS.JPG" # path to image
@@ -64,9 +65,6 @@ print('After normalization, the min, max, and mean pixel values are', new_img_ar
 # ......image_1.jpg
 # ......image_2.jpg
 
-import os
-import numpy as np
-
 # set the mian directory  
 test_image_dir = 'D:/20230724_CINIC10/test_images'
 
@@ -103,6 +101,7 @@ for i in range(len(test_filenames)):
 print(test_images.shape)
 print(test_images.__class__)
   
+########################################################
 # Challenge TRAINING AND TEST SETS
 
 # Q1
@@ -118,9 +117,13 @@ print('The test set has', test_images.shape[0], 'samples.\n')
 
 print('The number of labels in our test set and the number images in each class are:\n')
 print(np.unique(test_labels, return_counts=True))
+########################################################
 
-
+########################################################
 # Challenge Data Splitting Example
 
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(image_dataset, target, test_size=0.2, random_state=42, shuffle=True, stratify=target)
+
+########################################################
+

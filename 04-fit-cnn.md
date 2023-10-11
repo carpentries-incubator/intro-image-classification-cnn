@@ -20,7 +20,7 @@ exercises: 2
 
 - Explain the difference between compiling and training a CNN
 - Know how to select a loss function for your model
-- Understand what an optimizer is and be familiar with advantages and disadvantages of different optimizers
+- Understand what an optimizer is
 - Define the terms: learning rate, batch size, epoch
 - Explain overfitting
 
@@ -34,7 +34,8 @@ We now need to select an appropriate optimizer and loss function that we will us
 
 Recall how we compiled our model in the introduction:
 ```
-#model.compile(optimizer = 'adam', 
+# compile the pooling model
+#model_pool.compile(optimizer = 'adam', 
 #              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               
 #              metrics = ['accuracy'])
 ```              
@@ -102,7 +103,8 @@ Somewhat coupled to the loss function is the optimizer. The optimizer here refer
 We need to choose which optimizer to use and, if this optimizer has parameters, what values to use for those. Furthermore, we need to specify how many times to show the training samples to the optimizer.
 
 ```
-#model.compile(optimizer = 'adam', 
+# compile the pooling model
+#model_pool.compile(optimizer = 'adam', 
 #              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               
 #              metrics = ['accuracy'])
 ``` 
@@ -152,7 +154,8 @@ Lastly, we can observe below that a modest learning rate will ensure that the pr
 After we select the desired optimizer and loss function we want to specify the metric(s) to be evaluated by the model during training and testing. A **metric** is a function that is used to judge the performance of your model.
 
 ```
-#model.compile(optimizer = adam', 
+# compile the pooling model
+#model_pool.compile(optimizer = adam', 
 #              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               
 #              metrics = ['accuracy'])
 ```
@@ -179,6 +182,7 @@ A training **epoch** means that every sample in the training data has been shown
 We want to train our model for 10 epochs:
 
 ```
+# fit the pooling model
 #history_pool = model_pool.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
 ```
 
@@ -279,17 +283,35 @@ The intuition behind dropout is that it enforces redundancies in the network by 
 Let us add one dropout layer towards the end of the network, that randomly drops 20% of the input units.
 
 ```python
+# define the inputs, layers, and outputs of a CNN model with dropout
+
+# CNN Part 1
+# Input layer of 32x32 images with three channels (RGB)
 inputs_dropout = keras.Input(shape=train_images.shape[1:])
+
+# CNN Part 2
+# Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
 x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_dropout)
+# Pooling layer with input window sized 2,2
 x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
+# Second Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
 x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_dropout)
+# Second Pooling layer with input window sized 2,2
 x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
+# Third Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
 x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_dropout)
+# Dropout layer andomly drops 20% of the input units
 x_dropout = keras.layers.Dropout(0.8)(x_dropout) # This is new!
+# Flatten layer to convert 2D feature maps into a 1D vector
 x_dropout = keras.layers.Flatten()(x_dropout)
+# Dense layer with 50 neurons and ReLU activation
 x_dropout = keras.layers.Dense(50, activation='relu')(x_dropout)
+
+# CNN Part 3
+# Output layer with 10 units (one for each class)
 outputs_dropout = keras.layers.Dense(10)(x_dropout)
 
+# create the dropout model
 model_dropout = keras.Model(inputs=inputs_dropout, outputs=outputs_dropout, name="cifar_model_dropout")
 
 model_dropout.summary()
@@ -333,10 +355,12 @@ We can see that the dropout does not alter the dimensions of the image, and has 
 We again compile and train the model.
 
 ```python
+# compile the dropout model
 model_dropout.compile(optimizer = 'adam',
               loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics = ['accuracy'])
 
+# fit the dropout model
 history_dropout = model_dropout.fit(train_images, train_labels, epochs=20,
                     validation_data=(val_images, val_labels))
 
@@ -347,8 +371,10 @@ model_dropout.save('fit_outputs/model_dropout.h5')
 And inspect the training results:
 
 ```python
+# convert the history to a dataframe for plotting 
 history_dropout_df = pd.DataFrame.from_dict(history_dropout.history)
 
+# plot the loss and accuracy from the training process
 fig, axes = plt.subplots(1, 2)
 fig.suptitle('cifar_model_dropout')
 sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
@@ -394,7 +420,7 @@ By using regularization techniques, you can improve the generalization performan
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Vary dropout rate
+Vary dropout rate
 
 Q1. What do you think would happen if you lower the dropout rate? Try it out, and see how it affects the model training.
 
@@ -456,12 +482,6 @@ This is called hyperparameter tuning.
 
 Based on our evaluation of the loss and accuracy metrics, the `model_dropout` appears to have the best performance **of the models we have examined thus far**. The next step is to use these models to predict object classes on our test dataset.
 
-Make sure you save the model weights!
-
-```python
-# save dropout model
-model_dropout.save('model_dropout.h5')
-```
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 

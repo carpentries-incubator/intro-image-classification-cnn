@@ -462,6 +462,8 @@ Other changes that might impact the quality notably:
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::
 
+By now you should have a well-trained, finely-tuned model that makes accurate predictions and are ready to share the model with others.
+
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 - Use model.predict to make a prediction with your model

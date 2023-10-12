@@ -92,7 +92,7 @@ To create a conda environment called `cnn_workshop` with the required packages, 
 ![](fig/00_setup_anaconda_prompt.png){alt='Screenshot of the Anaconda prompt'}
 
 ```code
-(base) C:\Users\Lab> conda create --name cnn_workshop python spyder seaborn scikit-learn pandas
+(base) C:\Users\Lab> conda create --name cnn_workshop python spyder seaborn scikit-learn pandas scikeras
 ```
 
 Activate the newly created environment:

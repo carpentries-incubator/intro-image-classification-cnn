@@ -91,7 +91,7 @@ Conda should already be available in your system once you installed Anaconda suc
 To create a conda environment called `cnn_workshop_gpu` with the required packages, launch an Anaconda Prompt (terminal) and type the command:
 
 ```code
-(base) C:\Users\Lab> conda create --name cnn_workshop_gpu python=3.9 spyder seaborn scikit-learn pandas
+(base) C:\Users\Lab> conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas scikeras
 ```
 
 Activate the newly created environment:

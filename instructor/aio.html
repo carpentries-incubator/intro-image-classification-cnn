@@ -360,7 +360,7 @@ are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -384,7 +384,7 @@ may already be checked.)</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -406,7 +406,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Note that the following installation steps require you to work from
 the shell. If you run into any difficulties, please request help before
@@ -844,7 +844,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -983,21 +983,20 @@ gives a value under a certain threshold.</p>
 
 1563/1563 [==============================] - 5s 3ms/step - loss: 1.4011 - accuracy: 0.5046 - val_loss: 1.3644 - val_accuracy: 0.5243</code></pre>
 </div>
-<br><details><summary><strong>What does this output mean?</strong>
-</summary>
-This output printed during the fit phase i.e. training the model against
-known image labels, can be broken down as follows: - <code>Epoch</code>
-descibes the number of full passes over all <em>training data</em>. In
-the Output above there are <strong>1563 training observations</strong>.
-An epoch will conclude and move to the next epoch after a training pass
-over all 1563 observations. - <code>loss</code> and
-<code>val_loss</code> can be considered as related. Where
-<code>loss</code> is a value the model will attempt to minimise, and is
-the distance between the true label of an image and the models
-prediction. Minimising this distance is where <em>learning</em> occurs
-to adjust weights and bias which reduce <code>loss</code>. On the other
-hand <code>val_loss</code> is a value calculated against the validation
-data and is a measurement of the models performance against
+<p>::::::::::::::: What does this output mean?</p>
+<p>This output printed during the fit phase i.e. training the model
+against known image labels, can be broken down as follows: -
+<code>Epoch</code> descibes the number of full passes over all
+<em>training data</em>. In the Output above there are <strong>1563
+training observations</strong>. An epoch will conclude and move to the
+next epoch after a training pass over all 1563 observations. -
+<code>loss</code> and <code>val_loss</code> can be considered as
+related. Where <code>loss</code> is a value the model will attempt to
+minimise, and is the distance between the true label of an image and the
+models prediction. Minimising this distance is where <em>learning</em>
+occurs to adjust weights and bias which reduce <code>loss</code>. On the
+other hand <code>val_loss</code> is a value calculated against the
+validation data and is a measurement of the models performance against
 <strong>unseen data</strong>. Both values are a summation of errors made
 for each example when fitting to the training or validation sets. -
 <code>accuracy</code> and <code>val_accuracy</code> can also be
@@ -1005,8 +1004,12 @@ considered as related. Unlike <code>loss</code> and
 <code>val_loss</code>, these values are a percentage and are only
 revelent to <strong>classification problems</strong>. The
 <code>val_accuracy</code> score can be used to communicate a percentage
-value of model effectiveness on unseen data.
-</details><p><br> ### Step 7. Perform a Prediction/Classification</p>
+value of model effectiveness on unseen data.</p>
+<p>:::::::::::::::::::::::::</p>
+</div>
+<div class="section level3">
+<h3 id="step-7--perform-a-predictionclassification">Step 7. Perform a Prediction/Classification<a class="anchor" aria-label="anchor" href="#step-7--perform-a-predictionclassification"></a>
+</h3>
 <p>After training the network we can use it to perform predictions. This
 is the mode you would use the network in after you have fully trained it
 to a satisfactory performance. Doing predictions on a special hold-out
@@ -1126,7 +1129,7 @@ discuss each component in more detail.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -1706,7 +1709,7 @@ well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Q1. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -1863,7 +1866,7 @@ dataset into a train/test split of 80/20 using stratified sampling.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Noting there are a couple ways to do this, here is one example:</p>
 <pre><code>from sklearn.model_selection import train_test_split
@@ -2306,7 +2309,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -2432,7 +2435,7 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -2468,7 +2471,7 @@ the previous ‘Number of parameters’ challenge.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 100 less than the fully
@@ -2580,7 +2583,7 @@ intuitive?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2874,7 +2877,7 @@ needs to be adjusted as follows:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>

@@ -217,15 +217,16 @@ Epoch 1/10
 
 1563/1563 [==============================] - 5s 3ms/step - loss: 1.4011 - accuracy: 0.5046 - val_loss: 1.3644 - val_accuracy: 0.5243
 ```
+<br>
 <details>
-<summary>What does this output mean?</summary>
+<summary>**What does this output mean?**</summary>
 
 This output printed during the fit phase i.e. training the model against known image labels, can be broken down as follows:
 - `Epoch` descibes the number of full passes over all *training data*. In the Output above there are **1563 training observations**. An epoch will conclude and move to the next epoch after a training pass over all 1563 observations.
 - `loss` and `val_loss` can be considered as related. Where `loss` is a value the model will attempt to minimise, and is the distance between the true label of an image and the models prediction. Minimising this distance is where *learning* occurs to adjust weights and bias which reduce `loss`. On the other hand `val_loss` is a value calculated against the validation data and is a measurement of the models performance against **unseen data**. Both values are a summation of errors made for each example when fitting to the training or validation sets.
 - `accuracy` and `val_accuracy` can also be considered as related. Unlike `loss` and `val_loss`, these values are a percentage and are only revelent to **classification problems**. The `val_accuracy` score can be used to communicate a percentage value of model effectiveness on unseen data.
 </details>
-
+<br>
 ### Step 7. Perform a Prediction/Classification
 
 After training the network we can use it to perform predictions. This is the mode you would use the network in after you have fully trained it to a satisfactory performance. Doing predictions on a special hold-out set is used in the next step to measure the performance of the network.

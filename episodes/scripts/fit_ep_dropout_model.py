@@ -16,6 +16,10 @@ start = time.time()
 # load the cifar dataset included with the keras packages
 (train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 
+# normalize the RGB values to be between 0 and 1
+train_images = train_images / 255.0
+val_images = val_images / 255.0
+
 # Recall how we compiled our intro and pooling models:
     
 #model_pool.compile(optimizer = 'adam', 

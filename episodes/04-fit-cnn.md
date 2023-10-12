@@ -100,7 +100,7 @@ For more information on these and other available loss functions in Keras you ca
 
 Somewhat coupled to the loss function is the optimizer. The optimizer here refers to the algorithm with which the model learns to optimize on the provided loss function.
 
-We need to choose which optimizer to use and, if this optimizer has parameters, what values to use for those. Furthermore, we need to specify how many times to show the training samples to the optimizer.
+We need to choose which optimizer to use and, if this optimizer has parameters, what values to use for those. Furthermore, we need to specify how many times to show the training samples to the optimizer. In other words, the optimizer is responsible for taking the output of the loss function and then applying some changes to the weights within the network. It is through this process that the “learning” (adjustment of the weights) is achieved.
 
 ```
 # compile the pooling model
@@ -116,10 +116,13 @@ Here we picked one of the most common optimizers that works well for most tasks,
 - defined by the keras.optimizers.Adam class
 - takes a single parameter `learning_rate=0.01`
 
-Note that most optimizers include a `learning_rate` argument that defaults to `0.01`. or `0.001`.
+There are many optimizers to choose from so check the [optimizer documentation]. A couple more popular or famous ones include:
 
-We will discuss optimizers in more detail in the next episode as part of **Step 9. Tune hyperparameters**.
+- **Stochastic Gradient Descent (sgd)**: Stochastic Gradient Descent (SGD) is one of the fundamental optimization algorithms used to train machine learning models, especially neural networks. It is a variant of the gradient descent algorithm, designed to handle large datasets efficiently.
 
+- **Root Mean Square (rms)prop**: RMSprop is widely used in various deep learning frameworks and is one of the predecessors of more advanced optimizers like Adam, which further refines the concept of adaptive learning rates. It is an extension of the basic Stochastic Gradient Descent (SGD) algorithm and addresses some of the challenges of SGD.
+
+  - For example, one of the main issues with the basic SGD is that it uses a fixed learning rate for all model parameters throughout the training process. This fixed learning rate can lead to slow convergence or divergence (over-shooting) in some cases. RMSprop introduces an adaptive learning rate mechanism to address this problem.
 
 :::::::::::::::::::::::::::::::::::::: callout
 ChatGPT
@@ -175,7 +178,7 @@ Now that we have decided on which loss function, optimizer, and metric to use we
 
 We are now ready to train the model.
 
-Training the model is done using the `fit` method. It takes the image data and target (label) data as inputs and has several other parameters for certain options of the training. Here we only set a different number of epochs. 
+Training the model is done using the `fit` method. It takes the image data and target (label) data as inputs and has several other parameters for certain options of the training. Here we only set a different number of epochs.
 
 A training **epoch** means that every sample in the training data has been shown to the neural network and used to update its parameters. In general, CNN models improve with more epochs of training, but only to a point.
 
@@ -207,6 +210,7 @@ The batch size is an important hyperparameter that determines the number of trai
 **Generalization**: Using smaller batch sizes may improve the generalization of the model. It prevents the model from overfitting to the training data, as it gets updated more frequently and experiences more diverse samples during training.
 
 However, it's essential to consider the trade-offs of using different batch sizes. Smaller batch sizes may require more iterations to cover the entire dataset, which can lead to longer training times. Larger batch sizes can provide more stable gradients but might suffer from generalization issues. There is no one-size-fits-all answer, and you may need to experiment with different batch sizes to find the one that works best for your specific model, architecture, and dataset.
+
 :::::::::::::::::::::::::::::::::::::::::::::::
 
 #### Monitor Training Progress (aka Model Evaluation during Training)
@@ -494,5 +498,6 @@ Based on our evaluation of the loss and accuracy metrics, the `model_dropout` ap
 
 <!-- Collect your link references at the bottom of your document -->
 [loss documentation]: https://keras.io/api/losses/
+[optimizer documentation]: https://keras.io/api/optimizers/
 [metrics]: https://keras.io/api/metrics/
 [fit method]: https://keras.io/api/models/model_training_apis/

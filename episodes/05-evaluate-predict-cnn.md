@@ -348,7 +348,9 @@ Output from the GridSearch process should look similar to:
 Best: 0.586660 using {'optimizer': 'RMSprop'}
 ```
 
-Thus, we can interpret from this output that our best tested optimiser is the **root mean square propagation** optimiser, or RMSprop. 
+Thus, we can interpret from this output that our best tested optimiser is the **root mean square propagation** optimiser, or RMSprop.
+
+Curious about RMSprop? Read more here: [RMSprop in Keras] and [RMSProp, Cornell University].
 
 ### Tune Hyperparameters Example: use brute force to tune **Activation Function**
 
@@ -472,4 +474,3 @@ By now you should have a well-trained, finely-tuned model that makes accurate pr
 [CINIC-10]: https://github.com/BayesWatch/cinic-10/
 [RMSprop in Keras]: https://keras.io/api/optimizers/rmsprop/
 [RMSProp, Cornell University]: https://optimization.cbe.cornell.edu/index.php?title=RMSProp
-[optimizer documentation]: https://keras.io/api/optimizers/

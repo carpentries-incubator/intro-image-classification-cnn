@@ -218,7 +218,7 @@ Epoch 1/10
 1563/1563 [==============================] - 5s 3ms/step - loss: 1.4011 - accuracy: 0.5046 - val_loss: 1.3644 - val_accuracy: 0.5243
 ```
 <details>
-<summary>#### What does this output mean?</summary>
+<summary>What does this output mean?</summary>
 
 This output printed during the fit phase i.e. training the model against known image labels, can be broken down as follows:
 - `Epoch` descibes the number of full passes over all *training data*. In the Output above there are **1563 training observations**. An epoch will conclude and move to the next epoch after a training pass over all 1563 observations.

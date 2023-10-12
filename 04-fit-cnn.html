@@ -276,7 +276,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Compile and Train a Convolutional Neural Network</h1>
-        <p> Last updated on 2023-10-11 | 
+        <p> Last updated on 2023-10-12 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -425,8 +425,11 @@ here refers to the algorithm with which the model learns to optimize on
 the provided loss function.</p>
 <p>We need to choose which optimizer to use and, if this optimizer has
 parameters, what values to use for those. Furthermore, we need to
-specify how many times to show the training samples to the
-optimizer.</p>
+specify how many times to show the training samples to the optimizer. In
+other words, the optimizer is responsible for taking the output of the
+loss function and then applying some changes to the weights within the
+network. It is through this process that the “learning” (adjustment of
+the weights) is achieved.</p>
 <pre><code><span><span class="co"># compile the pooling model</span></span>
 <span><span class="co">#model_pool.compile(optimizer = 'adam', </span></span>
 <span><span class="co">#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               </span></span>
@@ -442,11 +445,27 @@ with its default parameters.</p>
 <ul><li>defined by the keras.optimizers.Adam class</li>
 <li>takes a single parameter <code>learning_rate=0.01</code>
 </li>
-</ul><p>Note that most optimizers include a <code>learning_rate</code>
-argument that defaults to <code>0.01</code>. or <code>0.001</code>.</p>
-<p>We will discuss optimizers in more detail in the next episode as part
-of <strong>Step 9. Tune hyperparameters</strong>.</p>
-<div id="callout2" class="callout callout">
+</ul><p>There are many optimizers to choose from so check the <a href="https://keras.io/api/optimizers/" class="external-link">optimizer documentation</a>. A
+couple more popular or famous ones include:</p>
+<ul><li><p><strong>Stochastic Gradient Descent (sgd)</strong>: Stochastic
+Gradient Descent (SGD) is one of the fundamental optimization algorithms
+used to train machine learning models, especially neural networks. It is
+a variant of the gradient descent algorithm, designed to handle large
+datasets efficiently.</p></li>
+<li>
+<p><strong>Root Mean Square (rms)prop</strong>: RMSprop is widely
+used in various deep learning frameworks and is one of the predecessors
+of more advanced optimizers like Adam, which further refines the concept
+of adaptive learning rates. It is an extension of the basic Stochastic
+Gradient Descent (SGD) algorithm and addresses some of the challenges of
+SGD.</p>
+<ul><li>For example, one of the main issues with the basic SGD is that it
+uses a fixed learning rate for all model parameters throughout the
+training process. This fixed learning rate can lead to slow convergence
+or divergence (over-shooting) in some cases. RMSprop introduces an
+adaptive learning rate mechanism to address this problem.</li>
+</ul></li>
+</ul><div id="callout2" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -1034,7 +1053,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/04-fit-cnn.html",
   "identifier": "https://.github.io/github.com/04-fit-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-10-11",
+  "dateModified": "2023-10-12",
   "datePublished": "2023-10-12"
 }
 

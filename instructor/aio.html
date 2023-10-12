@@ -360,7 +360,7 @@ are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -384,7 +384,7 @@ may already be checked.)</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -406,7 +406,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Note that the following installation steps require you to work from
 the shell. If you run into any difficulties, please request help before
@@ -983,7 +983,15 @@ gives a value under a certain threshold.</p>
 
 1563/1563 [==============================] - 5s 3ms/step - loss: 1.4011 - accuracy: 0.5046 - val_loss: 1.3644 - val_accuracy: 0.5243</code></pre>
 </div>
-<p>::::::::::::::: What does this output mean?</p>
+<div id="callout2" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+</h3>
+<div class="callout-content">
+<p><strong>What does this output mean?</strong></p>
 <p>This output printed during the fit phase i.e. training the model
 against known image labels, can be broken down as follows: -
 <code>Epoch</code> descibes the number of full passes over all
@@ -1005,7 +1013,9 @@ considered as related. Unlike <code>loss</code> and
 revelent to <strong>classification problems</strong>. The
 <code>val_accuracy</code> score can be used to communicate a percentage
 value of model effectiveness on unseen data.</p>
-<p>:::::::::::::::::::::::::</p>
+</div>
+</div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="step-7--perform-a-predictionclassification">Step 7. Perform a Prediction/Classification<a class="anchor" aria-label="anchor" href="#step-7--perform-a-predictionclassification"></a>
@@ -1037,12 +1047,12 @@ network.</p>
  [[-50.365475 -44.362732 -36.384968 -48.386 -32.87043 -66.691696 -29.284208 -51.06697  -36.475967 -43.751118]]
 The class with the highest predicted probability is:  frog</code></pre>
 </div>
-<div id="callout2" class="callout callout">
+<div id="callout3" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout3"></a>
 </h3>
 <div class="callout-content">
 <p>My result is different!</p>
@@ -1709,7 +1719,7 @@ well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Q1. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -1866,7 +1876,7 @@ dataset into a train/test split of 80/20 using stratified sampling.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Noting there are a couple ways to do this, here is one example:</p>
 <pre><code>from sklearn.model_selection import train_test_split

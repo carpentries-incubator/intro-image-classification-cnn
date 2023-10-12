@@ -11,7 +11,6 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 from scikeras.wrappers import KerasClassifier
 from sklearn.model_selection import GridSearchCV
-import numpy as np
 
 # load weights for your best model
 model_best = keras.models.load_model('fit_outputs/model_dropout.h5')
@@ -96,7 +95,7 @@ def create_model():
     inputs = keras.Input(shape=train_images.shape[1:])
 
     # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-     = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
+    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
     # Second Convolutional layer
     x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
     # Flatten layer to convert 2D feature maps into a 1D vector
@@ -106,7 +105,7 @@ def create_model():
     outputs = keras.layers.Dense(10)(x)
 
     # create the model
-    mode = keras.Model(inputs=inputs, outputs=outputs)
+    model = keras.Model(inputs=inputs, outputs=outputs)
     
     # compile the pooling model
     model.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
@@ -114,7 +113,7 @@ def create_model():
     return model
 
 # Wrap the model
-model = KerasClassifier(build_fn=create_model, epochs=2, batch_size=32, verbose=0)  # epochs, batch_size, verbose can be adjusted as required. Using low epochs to save computation time and demonstration purposes only
+model = KerasClassifier(model=create_model, epochs=2, batch_size=32, verbose=0)  # epochs, batch_size, verbose can be adjusted as required. Using low epochs to save computation time and demonstration purposes only
 
 # Define the grid search parameters
 optimizer = ['SGD', 'RMSprop', 'Adam']
@@ -155,10 +154,11 @@ def create_model(activation_function):
 # List of activation functions to try
 activations = ['relu', 'sigmoid', 'tanh', 'selu', keras.layers.LeakyReLU()]
 
-history_data = {}
+history_data = {} # dictionary
 
 # Train a model with each activation function and store the history
 for activation in activations:
+    
     model = create_model(activation)
     history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
     history_data[str(activation)] = history

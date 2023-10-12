@@ -210,7 +210,21 @@ history_intro = model_intro.fit(train_images, train_labels, epochs = 10,
 
 # save the model
 model_intro.save('fit_outputs/model_intro.h5')
-``` 
+```
+Your output will begin to print similar to the output below:
+```output
+Epoch 1/10
+
+1563/1563 [==============================] - 5s 3ms/step - loss: 1.4011 - accuracy: 0.5046 - val_loss: 1.3644 - val_accuracy: 0.5243
+```
+<details>
+<summary>#### What does this output mean?</summary>
+
+This output printed during the fit phase i.e. training the model against known image labels, can be broken down as follows:
+- `Epoch` descibes the number of full passes over all *training data*. In the Output above there are **1563 training observations**. An epoch will conclude and move to the next epoch after a training pass over all 1563 observations.
+- `loss` and `val_loss` can be considered as related. Where `loss` is a value the model will attempt to minimise, and is the distance between the true label of an image and the models prediction. Minimising this distance is where *learning* occurs to adjust weights and bias which reduce `loss`. On the other hand `val_loss` is a value calculated against the validation data and is a measurement of the models performance against **unseen data**. Both values are a summation of errors made for each example when fitting to the training or validation sets.
+- `accuracy` and `val_accuracy` can also be considered as related. Unlike `loss` and `val_loss`, these values are a percentage and are only revelent to **classification problems**. The `val_accuracy` score can be used to communicate a percentage value of model effectiveness on unseen data.
+</details>
 
 ### Step 7. Perform a Prediction/Classification
 
@@ -273,7 +287,6 @@ These concepts will be continued, with practical examples in Episode 05.
 Now that we have a trained network that performs at a level we are happy with we can go and use it on real data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
 We will return to these workflow steps throughout this lesson and discuss each component in more detail.
-
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 

@@ -362,7 +362,7 @@ are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -386,7 +386,7 @@ may already be checked.)</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -408,7 +408,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Note that the following installation steps require you to work from
 the shell. If you run into any difficulties, please request help before
@@ -845,7 +845,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2261,7 +2261,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -2387,7 +2387,7 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -2423,7 +2423,7 @@ the previous ‘Number of parameters’ challenge.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 100 less than the fully
@@ -2535,7 +2535,7 @@ intuitive?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2829,7 +2829,7 @@ needs to be adjusted as follows:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4097,10 +4097,33 @@ layers in the network, the number of neurons per layer, and many more.
 Hyperparameter tuning refers to the process of systematically searching
 for the best combination of hyperparameters that will optimize the
 model’s performance.</p>
-<p>That is, hyperparameters are all parameters set by the person
-configuring the machine learning instead of those learned by the
-algorithm itself. It might be necessary to adjust these and re-run the
-training many times before we are happy with the result.</p>
+<div class="section level5">
+<h5 id="wait-what-is-a-neuron-again">Wait, what is a neuron again?<a class="anchor" aria-label="anchor" href="#wait-what-is-a-neuron-again"></a>
+</h5>
+<p>The neurons referred to in this context are an artifical,
+mathematical representation of the most basic building blocks of an
+artificial neural network. They are modelled using inspiration from the
+biological design of neurons in our brains.</p>
+<p>Each neuron could be considered its own, local mathematical model.
+With one or more input vectors (x_0 through x_m) and weights (w_k0 and
+w_km), where weights are a quantitative representation of the importance
+of a variable. Input values are multiplied by weights and summed, before
+being passed through an <strong>activation function</strong>. The result
+of the activiation function calculation is compared against a
+<strong>threshold</strong>. If the output exceeds this threshold, a
+neuron is then <strong>activated</strong>. This means the output is
+passed to the next node in the network, repeating until complete. It is
+this process which lends to describing neural networks as
+<strong>feedforward networks</strong>.</p>
+</div>
+</div>
+<div class="section level4">
+<h4 id="back-to-hyperparameters-">Back to hyperparameters.<a class="anchor" aria-label="anchor" href="#back-to-hyperparameters-"></a>
+</h4>
+<p>Hyperparameters are all parameters set by the person configuring the
+machine learning instead of those learned by the algorithm itself. It
+might be necessary to adjust these and re-run the training many times
+before we are happy with the result.</p>
 <p>Table 1. List of some of the hyperparameters to tune and when.</p>
 <table class="table">
 <thead><tr class="header">

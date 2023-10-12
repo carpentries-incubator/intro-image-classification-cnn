@@ -362,7 +362,7 @@ are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -386,7 +386,7 @@ may already be checked.)</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -408,7 +408,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Note that the following installation steps require you to work from
 the shell. If you run into any difficulties, please request help before
@@ -605,7 +605,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction to Deep Learning</a></p>
 <hr>
-<p> Last updated on 2023-10-05 | 
+<p> Last updated on 2023-10-12 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -974,7 +974,7 @@ gives a value under a certain threshold.</p>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                validation_data <span class="op">=</span> (val_images, val_labels))</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>model_intro.save(<span class="st">'fit_outputs/01_intro_model.h5'</span>)</span></code></pre>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>model_intro.save(<span class="st">'fit_outputs/model_intro.h5'</span>)</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -1125,7 +1125,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-02-image-data"><p>Content from <a href="02-image-data.html">Introduction to Image Data</a></p>
 <hr>
-<p> Last updated on 2023-10-06 | 
+<p> Last updated on 2023-10-12 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1223,7 +1223,8 @@ already saw an example of this in the introduction:</p>
 <pre><code><span><span class="co"># load the CIFAR-10 dataset included with the keras packages</span></span>
 <span><span class="co">#from tensorflow import keras</span></span>
 <span></span>
-<span><span class="co">#(train_images, train_labels), (val_images, val_labels) = #keras.datasets.cifar10.load_data()</span></span></code></pre>
+<span><span class="co"># commented out in case these are already be in memory</span></span>
+<span><span class="co">#(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()</span></span></code></pre>
 <p>In this instance the data is likely already prepared for use in a
 CNN. However, it is always a good idea to first read any associated
 documentation to find out what steps the data providers took to prepare
@@ -1661,17 +1662,20 @@ well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Q1. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set is of type'</span>, train_images.__class__)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set has'</span>, train_images.shape[<span class="dv">0</span>] <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load training images into memory if not already</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of labels in our training set and the number images in each class are:</span><span class="ch">\n</span><span class="st">'</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.unique(train_labels, return_counts<span class="op">=</span><span class="va">True</span>))</span></code></pre>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set is of type'</span>, train_images.__class__)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set has'</span>, train_images.shape[<span class="dv">0</span>] <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of labels in our training set and the number images in each class are:</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.unique(train_labels, return_counts<span class="op">=</span><span class="va">True</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1815,7 +1819,7 @@ dataset into a train/test split of 80/20 using stratified sampling.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Noting there are a couple ways to do this, here is one example:</p>
 <pre><code>from sklearn.model_selection import train_test_split
@@ -3311,7 +3315,7 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li><p>The loss curve should drop quite quickly in a smooth line with
@@ -3589,7 +3593,7 @@ model performance, what is the term associated to this procedure?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Q1. Varying the dropout rate</p>
 <p>The code below instantiates and trains a model with varying dropout
@@ -4747,8 +4751,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/aio.html",
   "identifier": "https://.github.io/github.com/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-10-11",
-  "datePublished": "2023-10-11"
+  "dateModified": "2023-10-12",
+  "datePublished": "2023-10-12"
 }
 
   </script><script>

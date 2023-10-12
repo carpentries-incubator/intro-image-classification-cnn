@@ -276,7 +276,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p> Last updated on 2023-10-06 | 
+        <p> Last updated on 2023-10-12 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -371,7 +371,8 @@ already saw an example of this in the introduction:</p>
 <pre><code><span><span class="co"># load the CIFAR-10 dataset included with the keras packages</span></span>
 <span><span class="co">#from tensorflow import keras</span></span>
 <span></span>
-<span><span class="co">#(train_images, train_labels), (val_images, val_labels) = #keras.datasets.cifar10.load_data()</span></span></code></pre>
+<span><span class="co"># commented out in case these are already be in memory</span></span>
+<span><span class="co">#(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()</span></span></code></pre>
 <p>In this instance the data is likely already prepared for use in a
 CNN. However, it is always a good idea to first read any associated
 documentation to find out what steps the data providers took to prepare
@@ -789,17 +790,20 @@ well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Q1. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set is of type'</span>, train_images.__class__)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set has'</span>, train_images.shape[<span class="dv">0</span>] <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load training images into memory if not already</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of labels in our training set and the number images in each class are:</span><span class="ch">\n</span><span class="st">'</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.unique(train_labels, return_counts<span class="op">=</span><span class="va">True</span>))</span></code></pre>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set is of type'</span>, train_images.__class__)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set has'</span>, train_images.shape[<span class="dv">0</span>] <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of labels in our training set and the number images in each class are:</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.unique(train_labels, return_counts<span class="op">=</span><span class="va">True</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -934,7 +938,7 @@ dataset into a train/test split of 80/20 using stratified sampling.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Noting there are a couple ways to do this, here is one example:</p>
 <pre><code>from sklearn.model_selection import train_test_split
@@ -1140,8 +1144,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/02-image-data.html",
   "identifier": "https://.github.io/github.com/instructor/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-10-06",
-  "datePublished": "2023-10-11"
+  "dateModified": "2023-10-12",
+  "datePublished": "2023-10-12"
 }
 
   </script><script>

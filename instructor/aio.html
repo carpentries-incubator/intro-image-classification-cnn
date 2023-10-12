@@ -1711,7 +1711,7 @@ well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Q1. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -1868,7 +1868,7 @@ dataset into a train/test split of 80/20 using stratified sampling.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Noting there are a couple ways to do this, here is one example:</p>
 <pre><code>from sklearn.model_selection import train_test_split
@@ -3865,7 +3865,7 @@ and ‘Construction’ sections of the <a href="https://github.com/BayesWatch/ci
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>No! “The entirety of the original CIFAR-10 test set is within the
 above mentioned new test set.”</p>
@@ -3894,7 +3894,7 @@ train!</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Depends! Recall in an Episode 02 Introduction to Image Data Callout
 we talked about the different ways to partition the data into training,
@@ -4070,7 +4070,7 @@ visualized as a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Q1. The confusion matrix shows that the predictions for terrible and
 can improved.</p>
@@ -4103,7 +4103,7 @@ CNN we will try to change the training parameters.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4142,40 +4142,17 @@ NOTE your output will vary!
 <div class="section level4">
 <h4 id="what-are-hyperparameters">What are hyperparameters?<a class="anchor" aria-label="anchor" href="#what-are-hyperparameters"></a>
 </h4>
-<p>Hyperparameters are all the parameters set by the person configuring
-the machine learning instead of those learned by the algorithm itself.
-These hyperparameters can include the learning rate, the number of
+<p>Hyperparameters are the parameters set by the person configuring the
+model instead of those learned by the algorithm itself. Like the dials
+on a radio which are <em>tuned</em> to the best frequency,
+hyperparameters can be <em>tuned</em> to the best combination for a
+given model and context.</p>
+<p>These hyperparameters can include the learning rate, the number of
 layers in the network, the number of neurons per layer, and many more.
-Hyperparameter tuning refers to the process of systematically searching
-for the best combination of hyperparameters that will optimize the
-model’s performance.</p>
-<div class="section level5">
-<h5 id="wait-what-is-a-neuron-again">Wait, what is a neuron again?<a class="anchor" aria-label="anchor" href="#wait-what-is-a-neuron-again"></a>
-</h5>
-<p>The neurons referred to in this context are an artifical,
-mathematical representation of the most basic building blocks of an
-artificial neural network. They are modelled using inspiration from the
-biological design of neurons in our brains.</p>
-<p>Each neuron could be considered its own, local mathematical model.
-With one or more input vectors (x_0 through x_m) and weights (w_k0 and
-w_km), where weights are a quantitative representation of the importance
-of a variable. Input values are multiplied by weights and summed, before
-being passed through an <strong>activation function</strong>. The result
-of the activiation function calculation is compared against a
-<strong>threshold</strong>. If the output exceeds this threshold, a
-neuron is then <strong>activated</strong>. This means the output is
-passed to the next node in the network, repeating until complete. It is
-this process which lends to describing neural networks as
-<strong>feedforward networks</strong>.</p>
-</div>
-</div>
-<div class="section level4">
-<h4 id="back-to-hyperparameters-">Back to hyperparameters.<a class="anchor" aria-label="anchor" href="#back-to-hyperparameters-"></a>
-</h4>
-<p>Hyperparameters are all parameters set by the person configuring the
-machine learning instead of those learned by the algorithm itself. It
-might be necessary to adjust these and re-run the training many times
-before we are happy with the result.</p>
+The tuning process is systematic searching for the best combination of
+hyperparameters that will optimize the model’s performance.</p>
+<p>In some cases, it might be necessary to adjust these and re-run the
+training many times before we are happy with the result.</p>
 <p>Table 1. List of some of the hyperparameters to tune and when.</p>
 <table class="table">
 <thead><tr class="header">
@@ -4478,7 +4455,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>This is an open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you

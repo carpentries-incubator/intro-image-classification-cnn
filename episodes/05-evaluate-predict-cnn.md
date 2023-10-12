@@ -43,11 +43,12 @@ Check to make sure you have a model in memory and a test dataset:
 
 ```python
 # check correct model is loaded
-print('We are using', model_dropout.name)
+model_best = keras.models.load_model('fit_outputs/model_dropout.h5') # pick your best model
+print('We are using', model_best.name)
 
 # check test image dataset is loaded
-print('The number and shape of images in our test dataset is: ', test_images.shape)
-print('The number of labels in our test dataset is: ', len(test_labels))
+print('The number and shape of images in our test dataset is:', test_images.shape)
+print('The number of labels in our test dataset is:', len(test_labels))
 ```
 ```output
 We are using  cifar_model_dropout
@@ -88,16 +89,17 @@ Recall our model will return a vector of probabilities, one for each class. By f
 
 
 ```python
-from tensorflow import keras
-
 # use our current best model to predict probability of each class on new test set
-predicted_prob = model_dropout.predict(test_images)
+predicted_prob = model_best.predict(test_images)
+
+# create a list of class names 
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
 # convert probability predictions to table using class names for column names
 prediction_df = pd.DataFrame(predicted_prob, columns=class_names)
 
 # inspect 
-prediction_df.head()
+print(prediction_df.head())
 ```
 
 ```output
@@ -125,15 +127,14 @@ An easy way to visually check the observed versus predicted classes is to plot t
 ```python
 # plot the predicted versus the true class
 
-# training labels are numeric; want test labels to the same for plotting
-# need the list of classnames to convert test_labels to test_values
+# training labels are numeric; we want test labels to be the same for plotting
+# use the list of class names to convert test_labels to test_values
 # recall train_values were numeric, not strings
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-# use element position in class_names to generate values
-test_values = [] 
+# use element position in class_names to generate label values
+test_labels_values = [] 
 for i in range(len(test_labels)):
-    test_values.append(class_names.index(test_labels[i]))
+    test_labels_values.append(class_names.index(test_labels[i]))
     
 # make the plot
 plt.scatter(test_labels_values, predicted_labels)
@@ -154,7 +155,11 @@ To obtain a more quantitative measure of model performance, we can create a conf
 
 #### Confusion matrix
 
-With the predicted species we can now create a confusion matrix and display it using seaborn. To create a confusion matrix we will use another convenient function from sklearn called `confusion_matrix`. This function takes as a first parameter the true labels of the test set. The second parameter is the predicted labels which we did above.
+In the case of multiclass classifications (c.f. binary classifications), each cell value (C~i,j~) is equal to the number of observations known to be in group _i_ and predicted to be in group _j_.
+
+![](fig/05_confusion_matrix_explained.png){alt=''}
+
+To create a confusion matrix we will use another convenient function from sklearn called `confusion_matrix`. This function takes as a first parameter the true labels of the test set. The second parameter is the predicted labels which we did above.
 
 ```python
 from sklearn.metrics import confusion_matrix
@@ -175,7 +180,7 @@ print(conf_matrix)
  [ 36   0   0   0   0   0   0 964   0   0]]
  ```
 
-Unfortunately, this matrix is kinda hard to read. Its not clear which column and which row corresponds to which class. So let's convert it to a pandas dataframe with its index and columns set to the class labels as follows:
+Unfortunately, this matrix is kinda hard to read. It's not clear which column and which row corresponds to which class. So let's convert it to a pandas dataframe with its index and columns set to the class labels as follows:
 
 ```python
 # Convert to a pandas dataframe
@@ -186,9 +191,10 @@ confusion_df.index.name = 'True Label'
 confusion_df.columns.name = 'Predicted Label'
 ```
 
-We can then use the `heatmap` function from seaborn to create a nice visualization of the confusion matrix. 
-- the `annot=True` parameter here will put the numbers from the confusion matrix in the heatmap.
- - the `fmt=3g' will display the values with 3 significant digits
+We can then use the `heatmap` function from seaborn to create a nice visualization of the confusion matrix.
+
+- the `annot=True` parameter here will put the numbers from the confusion matrix in the heatmap
+ - the `fmt=3g` will display the values with 3 significant digits
 
 ```python
 sns.heatmap(confusion_df, annot=True)
@@ -223,6 +229,7 @@ Q3. We can try many things to improve the performance from here. One of the firs
 
 Try your own image!
 
+:::::::::::::::::::::::: solution
 ```python
 # specify a new image and prepare it to match CIFAR-10 dataset
 from icwithcnn_functions import prepare_image_icwithcnn
@@ -235,8 +242,6 @@ result_intro = model_intro.predict(new_img_prepped) # make prediction
 print(result_intro) # probability for each class
 print(class_names[result_intro.argmax()]) # class with highest probability
 ```
-
-:::::::::::::::::::::::: solution 
 ```output
 Result: [[-2.0185328   9.337507   -2.4551604  -0.4688053  -4.599108   -3.5822825
    6.427376   -0.09437321  0.82065487  1.2978227 ]]
@@ -260,24 +265,15 @@ Hyperparameters are all the parameters set by the person configuring the machine
 
 That is, hyperparameters are all parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. It might be necessary to adjust these and re-run the training many times before we are happy with the result.
 
-Some hyperparameters include:
+Table 1. List of some of the hyperparameters to tune and when.
 
-**During Build:**
+| During Build          | When Compiling    | During Training   |
+|-----------------------|-------------------|-------------------|
+| number of neurons     | loss function     | epoch             |
+| activation function   | optimizer         | batch size        |
+|                       | learning rate     |                   |
+|                       | batch size        |                   |
 
-- number of neurons
-- activation function
-
-**When Compiling:**
-
-- loss function
-- optimizer
-    - learning rate
-    - batch size
-    
-**During Training:**
-
-- epoch
-- batch size
 
 One common method for hyperparameter tuning is **grid search**. 
 
@@ -287,11 +283,11 @@ Grid Search or `GridSearchCV` (as per the library function call) is foundation m
 
 For instance, suppose you're tuning two hyperparameters:
 
-Learning rate: with possible values [0.01, 0.1, 1]
+- Learning rate: with possible values [0.01, 0.1, 1]
 
-Batch size: with possible values [10, 50, 100]
+- Batch size: with possible values [10, 50, 100]
 
-GridSearch will evaluate the model for all 3x3 = 9 combinations (e.g., {0.01, 10}, {0.01, 50}, {0.1, 10}, and so on).
+- GridSearch will evaluate the model for all 3x3 = 9 combinations (e.g., {0.01, 10}, {0.01, 50}, {0.1, 10}, and so on)
 
 
 ### Tune Hyperparameters Example: use GridSearch to tune **Optimizer**
@@ -304,32 +300,36 @@ First, we will define a **build function** to use during GridSearch. This functi
 
 ```python
 def create_model():
+
     # Input layer of 32x32 images with three channels (RGB)
-    inputs_intro = keras.Input(shape=train_images.shape[1:])
+    inputs = keras.Input(shape=train_images.shape[1:])
 
     # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)
+     = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
     # Second Convolutional layer
-    x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
+    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
     # Flatten layer to convert 2D feature maps into a 1D vector
-    x_intro = keras.layers.Flatten()(x_intro)
+    x = keras.layers.Flatten()(x)
 
     # Output layer with 10 units (one for each class)
-    outputs_intro = keras.layers.Dense(10)(x_intro)
+    outputs = keras.layers.Dense(10)(x)
 
     # create the model
-    model = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
+    mode = keras.Model(inputs=inputs, outputs=outputs)
+    
+    # compile the pooling model
     model.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+    
     return model
 ```
 
-Secondly, we can define our GridSearch parameters and assign fit results to a variable for output. If you don't have the **scikeras** or **sklearn** installed already, please do so via the terminal using pip.
+Secondly, we can define our GridSearch parameters and assign fit results to a variable for output.
 
 ```python
 from scikeras.wrappers import KerasClassifier
 from sklearn.model_selection import GridSearchCV
 
-#Wrap the model
+# Wrap the model
 model = KerasClassifier(build_fn=create_model, epochs=2, batch_size=32, verbose=0)  # epochs, batch_size, verbose can be adjusted as required. Using low epochs to save computation time and demonstration purposes only
 
 # Define the grid search parameters
@@ -350,11 +350,6 @@ Best: 0.586660 using {'optimizer': 'RMSprop'}
 
 Thus, we can interpret from this output that our best tested optimiser is the **root mean square propagation** optimiser, or RMSprop. 
 
-Curious about RMSprop? Read more here: [RMSprop in Keras] and [RMSProp, Cornell University].
-
-For more information on other optimizers available in Keras you can check the [optimizer documentation].
-
-
 ### Tune Hyperparameters Example: use brute force to tune **Activation Function**
 
 In episode 03 we talked briefly about the `relu` activation function passed as an argument to our `Conv2D` hidden layers.
@@ -367,7 +362,7 @@ Think of an activation function as a tiny decision-maker for each neuron in a ne
 
 Neural networks can be tuned to leverage many different types of activation functions. In fact, it is a crucial decision as the choice of activation function will have a direct impact on the performance of the model.
 
-The table below describes each activation function, its benefits, and drawbacks.
+Table 2. Descrition of each activation function, its benefits, and drawbacks.
 
 | Activation Function | Positives                                                        | Negatives                                  |
 |---------------------|------------------------------------------------------------------|--------------------------------------------|
@@ -383,41 +378,39 @@ The table below describes each activation function, its benefits, and drawbacks.
 The code below serves as a practical means for exploring activation performance on an image dataset.
 
 ```python
-import numpy as np
-import matplotlib.pyplot as plt
-import tensorflow as tf
-from tensorflow.keras.datasets import cifar10
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D
-
-# Load data
-(train_images, train_labels), (test_images, test_labels) = cifar10.load_data()
-
-# Preprocess the data
-train_images = train_images / 255.0
-test_images = test_images / 255.0
-
 # Define a function to create a model with a given activation function
 def create_model(activation_function):
-    model = Sequential([
-        Conv2D(32, (3, 3), activation=activation_function, input_shape=(32, 32, 3)),
-        MaxPooling2D(2, 2),
-        Flatten(),
-        Dense(128, activation=activation_function),
-        Dense(10, activation='softmax')
-    ])
-    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+    # Input layer of 32x32 images with three channels (RGB)
+    inputs = keras.Input(shape=train_images.shape[1:])
+
+    # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
+    x = keras.layers.Conv2D(50, (3, 3), activation=activation_function)(inputs)
+    # Second Convolutional layer
+    x = keras.layers.Conv2D(50, (3, 3), activation=activation_function)(x)
+    # Flatten layer to convert 2D feature maps into a 1D vector
+    x = keras.layers.Flatten()(x)
+
+    # Output layer with 10 units (one for each class)
+    outputs = keras.layers.Dense(10)(x)
+
+    # create the model
+    model = keras.Model(inputs=inputs, outputs=outputs)
+    
+    # create the model
+    model.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+    
     return model
 
 # List of activation functions to try
-activations = ['relu', 'sigmoid', 'tanh', 'selu', tf.keras.layers.LeakyReLU()]
+activations = ['relu', 'sigmoid', 'tanh', 'selu', keras.layers.LeakyReLU()]
 
 history_data = {}
 
 # Train a model with each activation function and store the history
 for activation in activations:
     model = create_model(activation)
-    history = model.fit(train_images, train_labels, epochs=10, validation_data=(test_images, test_labels))
+    history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
     history_data[str(activation)] = history
 
 # Plot the validation accuracy for each activation function
@@ -432,8 +425,10 @@ plt.ylabel('Validation Accuracy')
 plt.legend()
 plt.show()
 ```
-TODO include output for the above
 
+![](fig/05_tune_activation_results.png){alt=''}
+
+You can see in this figure that after 10 epochs the `relu` and `sigmoid` activation functions appear to converge around 0.60% validation accuracy. We recommend when tuning your model to ensure you use enough epochs to be confident in your results.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 

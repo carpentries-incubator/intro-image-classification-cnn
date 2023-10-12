@@ -4,23 +4,33 @@ Evaluate a Convolutional Neural Network and Make Predictions (Classifications)
 
 """
 from tensorflow import keras
+from icwithcnn_functions import prepare_testdataset_icwithcnn # custom function
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+from scikeras.wrappers import KerasClassifier
+from sklearn.model_selection import GridSearchCV
+import numpy as np
 
-# load weights for your best model if not still in memory
-model_dropout = keras.models.load_model('C:/Users/jc140298/Documents/Software_Carpentry/20230316_ML_AI/scripts/outputs_cinic10/model_dropout.h5')
+# load weights for your best model
+model_best = keras.models.load_model('fit_outputs/model_dropout.h5')
 
 # recreate test_images from 'image-data.py' if not still in memory
+test_images, test_labels = prepare_testdataset_icwithcnn('D:/20230724_CINIC10/test_images')
 
 # check correct model is loaded
-print('We are using ', model_dropout.name)
+print('We are using ', model_best.name)
 
 # check test dataset is loaded - images and labels
-print('The number and shape of images in our test dataset is: ', test_images.shape)
-print('The number of labels in our test dataset is: ', len(test_labels))
+print('The number and shape of images in our test dataset is:', test_images.shape)
+print('The number of labels in our test dataset is:', len(test_labels))
 
 # use our current best model to predict probability of each class on new test set
-predicted_prob = model_dropout.predict(test_images)
+predicted_prob = model_best.predict(test_images)
+
+# create a list of classnames 
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
 # convert probability predictions to table using class names for column names
 prediction_df = pd.DataFrame(predicted_prob, columns=class_names)
@@ -31,19 +41,18 @@ print(prediction_df.head())
 # now find the maximum probability for each image
 predicted_labels = predicted_prob.argmax(axis=1)
 
-### Step 8. Measuring Performance
+# Step 8. Measuring Performance
 
 # plot the predicted versus the true class
 
-# training labels are numeric; want test labels to the same for plotting
-# need the list of classnames to convert test_labels to test_values
+# training labels are numeric; we want test labels to be the same for plotting
+# use the list of classnames to convert test_labels to test_values
 # recall train_values were numeric, not strings
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-# use element position in class_names to generate values
-test_values = [] 
+# use element position in class_names to generate label values
+test_labels_values = [] 
 for i in range(len(test_labels)):
-    test_values.append(class_names.index(test_labels[i]))
+    test_labels_values.append(class_names.index(test_labels[i]))
     
 # make the plot
 plt.scatter(test_labels_values, predicted_labels)
@@ -56,8 +65,6 @@ plt.show()
 
 # confusion matrix
 
-from sklearn.metrics import confusion_matrix
-
 conf_matrix = confusion_matrix(test_labels_values, predicted_labels)
 print(conf_matrix)
 
@@ -69,39 +76,44 @@ confusion_df.index.name = 'True Label'
 confusion_df.columns.name = 'Predicted Label'
 
 # heatmap visualization of the confusion matrix
-import seaborn as sns
-
 sns.heatmap(confusion_df, annot=True, fmt='3g')
+
+# Step 9. Tune hyperparameters
 
 # Gridsearch
 
-# Load data
-from tensorflow import keras
-(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+# load the cifar dataset included with the keras packages
+(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 
+# normalize the RGB values to be between 0 and 1
+train_images = train_images / 255.0
+val_images = val_images / 255.0
+
+
+# use the intro model for gridsearch
 def create_model():
     # Input layer of 32x32 images with three channels (RGB)
-    inputs_intro = keras.Input(shape=train_images.shape[1:])
+    inputs = keras.Input(shape=train_images.shape[1:])
 
     # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)
+     = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
     # Second Convolutional layer
-    x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
+    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
     # Flatten layer to convert 2D feature maps into a 1D vector
-    x_intro = keras.layers.Flatten()(x_intro)
+    x = keras.layers.Flatten()(x)
 
     # Output layer with 10 units (one for each class)
-    outputs_intro = keras.layers.Dense(10)(x_intro)
+    outputs = keras.layers.Dense(10)(x)
 
     # create the model
-    model = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
+    mode = keras.Model(inputs=inputs, outputs=outputs)
+    
+    # compile the pooling model
     model.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+    
     return model
 
-from scikeras.wrappers import KerasClassifier
-from sklearn.model_selection import GridSearchCV
-
-#Wrap the model
+# Wrap the model
 model = KerasClassifier(build_fn=create_model, epochs=2, batch_size=32, verbose=0)  # epochs, batch_size, verbose can be adjusted as required. Using low epochs to save computation time and demonstration purposes only
 
 # Define the grid search parameters
@@ -116,41 +128,39 @@ print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
 
 #### Assessing activiation function performance
 
-import numpy as np
-import matplotlib.pyplot as plt
-import tensorflow as tf
-from tensorflow.keras.datasets import cifar10
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D
-
-# Load data
-(train_images, train_labels), (test_images, test_labels) = cifar10.load_data()
-
-# Preprocess the data
-train_images = train_images / 255.0
-test_images = test_images / 255.0
-
-# Define a function to create a model with a given activation function
+# use the intro model for activation function
 def create_model(activation_function):
-    model = Sequential([
-        Conv2D(32, (3, 3), activation=activation_function, input_shape=(32, 32, 3)),
-        MaxPooling2D(2, 2),
-        Flatten(),
-        Dense(128, activation=activation_function),
-        Dense(10, activation='softmax')
-    ])
-    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+    # Input layer of 32x32 images with three channels (RGB)
+    inputs = keras.Input(shape=train_images.shape[1:])
+
+    # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
+    x = keras.layers.Conv2D(50, (3, 3), activation=activation_function)(inputs)
+    # Second Convolutional layer
+    x = keras.layers.Conv2D(50, (3, 3), activation=activation_function)(x)
+    # Flatten layer to convert 2D feature maps into a 1D vector
+    x = keras.layers.Flatten()(x)
+
+    # Output layer with 10 units (one for each class)
+    outputs = keras.layers.Dense(10)(x)
+
+    # create the model
+    model = keras.Model(inputs=inputs, outputs=outputs)
+    
+    # create the model
+    model.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+    
     return model
 
 # List of activation functions to try
-activations = ['relu', 'sigmoid', 'tanh', 'selu', tf.keras.layers.LeakyReLU()]
+activations = ['relu', 'sigmoid', 'tanh', 'selu', keras.layers.LeakyReLU()]
 
 history_data = {}
 
 # Train a model with each activation function and store the history
 for activation in activations:
     model = create_model(activation)
-    history = model.fit(train_images, train_labels, epochs=10, validation_data=(test_images, test_labels))
+    history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
     history_data[str(activation)] = history
 
 # Plot the validation accuracy for each activation function

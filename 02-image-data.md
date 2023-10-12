@@ -56,7 +56,8 @@ Where labelled data exists, in most cases the data provider or other users will 
 # load the CIFAR-10 dataset included with the keras packages
 #from tensorflow import keras
 
-#(train_images, train_labels), (val_images, val_labels) = #keras.datasets.cifar10.load_data()
+# commented out in case these are already be in memory
+#(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
 ```
 
 In this instance the data is likely already prepared for use in a CNN. However, it is always a good idea to first read any associated documentation to find out what steps the data providers took to prepare the images and second to take a closer at the images once loaded and query their attributes.
@@ -330,6 +331,9 @@ Hint2: Use the `train_labels' object to find out if the classes are well balance
 Q1. Training Set
 
 ```python
+# load training images into memory if not already
+# (train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
+
 print('The training set is of type', train_images.__class__)
 print('The training set has', train_images.shape[0] 'samples.\n')
 

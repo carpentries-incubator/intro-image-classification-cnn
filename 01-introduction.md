@@ -209,7 +209,7 @@ history_intro = model_intro.fit(train_images, train_labels, epochs = 10,
                                 validation_data = (val_images, val_labels))
 
 # save the model
-model_intro.save('fit_outputs/01_intro_model.h5')
+model_intro.save('fit_outputs/model_intro.h5')
 ``` 
 
 ### Step 7. Perform a Prediction/Classification

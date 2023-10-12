@@ -263,7 +263,15 @@ Recall the following from Episode 1:
 
 Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimize the model's performance.
 
-That is, hyperparameters are all parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. It might be necessary to adjust these and re-run the training many times before we are happy with the result.
+##### Wait, what is a neuron again?
+
+The neurons referred to in this context are an artifical, mathematical representation of the most basic building blocks of an artificial neural network. They are modelled using inspiration from the biological design of neurons in our brains. 
+
+Each neuron could be considered its own, local mathematical model. With one or more input vectors (x_0 through x_m) and weights (w_k0 and w_km), where weights are a quantitative representation of the importance of a variable. Input values are multiplied by weights and summed, before being passed through an **activation function**. The result of the activiation function calculation is compared against a **threshold**. If the output exceeds this threshold, a neuron is then **activated**. This means the output is passed to the next node in the network, repeating until complete. It is this process which lends to describing neural networks as **feedforward networks**. 
+
+#### Back to hyperparameters.
+
+Hyperparameters are all parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. It might be necessary to adjust these and re-run the training many times before we are happy with the result.
 
 Table 1. List of some of the hyperparameters to tune and when.
 

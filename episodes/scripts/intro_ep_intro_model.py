@@ -72,7 +72,7 @@ history_intro = model_intro.fit(train_images, train_labels,
                                 validation_data = (val_images, val_labels))
 
 # save the model
-model_intro.save('fit_outputs/intro_model.h5')
+model_intro.save('fit_outputs/model_intro.h5')
 
 
 # use model to make a prediction on unseen image

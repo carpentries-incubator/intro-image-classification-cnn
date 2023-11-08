@@ -117,7 +117,7 @@ It is possible that Windows users will run into version conflicts. If you are on
 ```code
 conda create -n cnn_workshop python spyder
 conda activate cnn_workshop
-pip install tensorflow>=2.5 seaborn scikit-learn pandas
+pip install tensorflow>=2.5 seaborn scikit-learn pandas scikeras
 ```
 
 [pip] is the package management system for Python software packages.
@@ -134,7 +134,7 @@ pip install tensorflow-macos
 
 ## Starting Spyder
 
-We will teach using Python in [Spyder] (Scientific Python Development Environment), a free integrated development environment (IDE) written in Python that comes with Anaconda.Editing, interactive testing, debugging, and introspection tools are all included in Spyder. If you installed Python using Anaconda, Spyder should already be on your system. If you did not use Anaconda, use the Python package manager pip (see the [Spyder website] for details.)
+We will teach using Python in [Spyder] (Scientific Python Development Environment), a free integrated development environment (IDE) written in Python that comes with Anaconda. Editing, interactive testing, debugging, and introspection tools are all included in Spyder. If you installed Python using Anaconda, Spyder should already be on your system. If you did not use Anaconda, use the Python package manager pip (see the [Spyder website] for details.)
 
 To start Spyder, open a terminal and type the command:
 
@@ -174,12 +174,8 @@ The aim for this workshop is to create a python script that you can used as a "b
 
 In an effort to not clutter the scripts developed in the workshop with episode exercise/challenge code, this workshop will use an exercises python script for all of the exercises completed throughout the workshop.
 
-This file can be downloaded from [exercises.py](../episodes/scripts/exercises.py#exercises.py).
+This file can be downloaded from [exercises.py](../episodes/scripts/exercises.py).
 
-
-## Fallback option: cloud environment
-
-TODO
 
 ## Downloading the required datasets
 

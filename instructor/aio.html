@@ -316,7 +316,7 @@
         
 <section id="aio-setup-gpu"><p>Content from <a href="setup-gpu.html">Setup - GPU</a></p>
 <hr>
-<p> Last updated on 2023-10-12 | 
+<p> Last updated on 2023-11-08 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -325,9 +325,9 @@
 <p>These instructions are for setting up tensorflow in a
 <strong>GPU</strong> capable environment. Because this is a more
 advanced topic and installation varies depending on your computer’s
-architecture, please make sure you set up and test this up ahead of
-time. We will not be able to spend class time assisting on GPU
-setups.</p>
+architecture, please make sure you <strong>set up and test</strong> your
+installation before the workshop begins. We will not be able to spend
+class time assisting on GPU setups.</p>
 <section id="software-setup"><h2 class="section-heading">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
 </h2>
 <hr class="half-width">
@@ -514,7 +514,6 @@ manager), first making sure you have a recent version of pip:</p>
 <p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
 <p>Note that modern versions of Tensorflow make Keras available as a
 module: <code>from tensorflow import keras</code></p>
-<p>TODO Check if this troublshooting section is still relevant:</p>
 </div>
 <div class="section level3">
 <h3 id="troubleshooting-for-windows">Troubleshooting for Windows<a class="anchor" aria-label="anchor" href="#troubleshooting-for-windows"></a>
@@ -524,7 +523,7 @@ you are on Windows and get errors running the command, you can try
 installing the packages using pip within a conda environment:</p>
 <pre class="code"><code>conda create -n cnn_workshop_gpu python spyder
 conda activate cnn_workshop
-pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas</code></pre>
+pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
 <p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
 package management system for Python software packages. It is integrated
 into your local Python installation and runs regardless of your
@@ -585,11 +584,7 @@ giving errors. Most versions will work fine with this lesson, but:</p>
 <ul>
 <li>For Keras and Tensorflow, the minimum version is 2.2.4</li>
 <li>For sklearn, the minimum version is 0.22.</li>
-</ul></section><section id="fallback-option-cloud-environment"><h2 class="section-heading">Fallback option: cloud environment<a class="anchor" aria-label="anchor" href="#fallback-option-cloud-environment"></a>
-</h2>
-<hr class="half-width">
-<p>TODO</p>
-</section><section id="downloading-the-required-datasets"><h2 class="section-heading">Downloading the required datasets<a class="anchor" aria-label="anchor" href="#downloading-the-required-datasets"></a>
+</ul></section><section id="downloading-the-required-datasets"><h2 class="section-heading">Downloading the required datasets<a class="anchor" aria-label="anchor" href="#downloading-the-required-datasets"></a>
 </h2>
 <hr class="half-width">
 <p>Download the <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link">The CIFAR-10
@@ -1719,7 +1714,7 @@ well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Q1. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -1876,7 +1871,7 @@ dataset into a train/test split of 80/20 using stratified sampling.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Noting there are a couple ways to do this, here is one example:</p>
 <pre><code>from sklearn.model_selection import train_test_split
@@ -2319,7 +2314,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -2445,7 +2440,7 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -2481,7 +2476,7 @@ the previous ‘Number of parameters’ challenge.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 100 less than the fully
@@ -2593,7 +2588,7 @@ intuitive?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2887,7 +2882,7 @@ needs to be adjusted as follows:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4830,7 +4825,7 @@ any links that you are not going to use.
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.14.0" class="external-link">sandpaper (0.14.0)</a>,
         <a href="https://github.com/carpentries/pegboard/tree/0.7.1" class="external-link">pegboard (0.7.1)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.3.1" class="external-link">varnish (0.3.1)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.3.3" class="external-link">varnish (0.3.3)</a>.</p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -4852,8 +4847,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/aio.html",
   "identifier": "https://.github.io/github.com/instructor/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-11-07",
-  "datePublished": "2023-11-07"
+  "dateModified": "2023-11-08",
+  "datePublished": "2023-11-08"
 }
 
   </script><script>

@@ -160,7 +160,6 @@
 <li><a href="#installing-the-required-packages">Installing the required packages</a></li>
 <li><a href="#starting-spyder">Starting Spyder</a></li>
 <li><a href="#check-your-setup">Check your setup</a></li>
-<li><a href="#fallback-option-cloud-environment">Fallback option: cloud environment</a></li>
 <li><a href="#downloading-the-required-datasets">Downloading the required datasets</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -280,7 +279,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Setup - GPU</h1>
-        <p> Last updated on 2023-10-12 | 
+        <p> Last updated on 2023-11-08 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -297,9 +296,9 @@
 <p>These instructions are for setting up tensorflow in a
 <strong>GPU</strong> capable environment. Because this is a more
 advanced topic and installation varies depending on your computer’s
-architecture, please make sure you set up and test this up ahead of
-time. We will not be able to spend class time assisting on GPU
-setups.</p>
+architecture, please make sure you <strong>set up and test</strong> your
+installation before the workshop begins. We will not be able to spend
+class time assisting on GPU setups.</p>
 <section id="software-setup"><h2 class="section-heading">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
 </h2>
 <hr class="half-width"><div id="installing-python-using-anaconda" class="callout challenge">
@@ -472,7 +471,6 @@ manager), first making sure you have a recent version of pip:</p>
 <p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
 <p>Note that modern versions of Tensorflow make Keras available as a
 module: <code>from tensorflow import keras</code></p>
-<p>TODO Check if this troublshooting section is still relevant:</p>
 </div>
 <div class="section level3">
 <h3 id="troubleshooting-for-windows">Troubleshooting for Windows<a class="anchor" aria-label="anchor" href="#troubleshooting-for-windows"></a></h3>
@@ -481,7 +479,7 @@ you are on Windows and get errors running the command, you can try
 installing the packages using pip within a conda environment:</p>
 <pre class="code"><code>conda create -n cnn_workshop_gpu python spyder
 conda activate cnn_workshop
-pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas</code></pre>
+pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
 <p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
 package management system for Python software packages. It is integrated
 into your local Python installation and runs regardless of your
@@ -538,10 +536,7 @@ side panel) and type in the following commands:</p>
 giving errors. Most versions will work fine with this lesson, but:</p>
 <ul><li>For Keras and Tensorflow, the minimum version is 2.2.4</li>
 <li>For sklearn, the minimum version is 0.22.</li>
-</ul></section><section id="fallback-option-cloud-environment"><h2 class="section-heading">Fallback option: cloud environment<a class="anchor" aria-label="anchor" href="#fallback-option-cloud-environment"></a>
-</h2>
-<hr class="half-width"><p>TODO</p>
-</section><section id="downloading-the-required-datasets"><h2 class="section-heading">Downloading the required datasets<a class="anchor" aria-label="anchor" href="#downloading-the-required-datasets"></a>
+</ul></section><section id="downloading-the-required-datasets"><h2 class="section-heading">Downloading the required datasets<a class="anchor" aria-label="anchor" href="#downloading-the-required-datasets"></a>
 </h2>
 <hr class="half-width"><p>Download the <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link">The CIFAR-10
 dataset</a>.</p>
@@ -590,7 +585,7 @@ any links that you are not going to use.
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.14.0" class="external-link">sandpaper (0.14.0)</a>,
         <a href="https://github.com/carpentries/pegboard/tree/0.7.1" class="external-link">pegboard (0.7.1)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.3.1" class="external-link">varnish (0.3.1)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.3.3" class="external-link">varnish (0.3.3)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -611,8 +606,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/setup-gpu.html",
   "identifier": "https://.github.io/github.com/instructor/setup-gpu.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-10-12",
-  "datePublished": "2023-11-07"
+  "dateModified": "2023-11-08",
+  "datePublished": "2023-11-08"
 }
 
   </script><script>

@@ -2,7 +2,7 @@
 title: "Setup - GPU"
 ---
 
-These instructions are for setting up tensorflow in a **GPU** capable environment. Because this is a more advanced topic and installation varies depending on your computer's architecture, please make sure you set up and test this up ahead of time. We will not be able to spend class time assisting on GPU setups.
+These instructions are for setting up tensorflow in a **GPU** capable environment. Because this is a more advanced topic and installation varies depending on your computer's architecture, please make sure you **set up and test** your installation before the workshop begins. We will not be able to spend class time assisting on GPU setups.
 
 ## Software Setup
 
@@ -132,8 +132,6 @@ First install AMD GPU driver [https://www.amd.com/en/support] if you have not.
 
 Note that modern versions of Tensorflow make Keras available as a module: `from tensorflow import keras`
 
-TODO Check if this troublshooting section is still relevant:
-
 ### Troubleshooting for Windows
 
 It is possible that Windows users will run into version conflicts. If you are on Windows and get errors running the command, you can try installing the packages using pip within a conda environment:
@@ -141,7 +139,7 @@ It is possible that Windows users will run into version conflicts. If you are on
 ```code
 conda create -n cnn_workshop_gpu python spyder
 conda activate cnn_workshop
-pip install tensorflow>=2.5 seaborn scikit-learn pandas
+pip install tensorflow>=2.5 seaborn scikit-learn pandas scikeras
 ```
 
 [pip] is the package management system for Python software packages.
@@ -194,10 +192,6 @@ Most versions will work fine with this lesson, but:
 
 - For Keras and Tensorflow, the minimum version is 2.2.4
 - For sklearn, the minimum version is 0.22.
-
-## Fallback option: cloud environment
-
-TODO
 
 ## Downloading the required datasets
 

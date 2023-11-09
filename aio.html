@@ -318,7 +318,7 @@
         
 <section id="aio-setup-gpu"><p>Content from <a href="setup-gpu.html">Setup - GPU</a></p>
 <hr>
-<p> Last updated on 2023-11-08 | 
+<p> Last updated on 2023-11-09 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -473,7 +473,7 @@ instructions</a> for updating Conda if required.</p>
 <p>To create a conda environment called <code>cnn_workshop_gpu</code>
 with the required packages, launch an Anaconda Prompt (terminal) and
 type the command:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas scikeras</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas</code></pre>
 <p>Activate the newly created environment:</p>
 <pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu</code></pre>
 <p>NOTE the prompt should change to reflect you are in the
@@ -508,7 +508,8 @@ manager), first making sure you have a recent version of pip:</p>
 <pre class="code"><code>(cnn_workshop_gpu) C:\Users\Lab&gt;pip install --upgrade pip
 
 # Anything above 2.10 is not supported on the GPU on Windows Native
-(cnn_workshop_gpu) C:\Users\Lab&gt;pip install "tensorflow&lt;2.11" </code></pre>
+(cnn_workshop_gpu) C:\Users\Lab&gt;pip install "tensorflow&lt;2.11"
+(cnn_workshop_gpu) C:\Users\Lab&gt;pip install scikeras</code></pre>
 </div>
 <div class="section level4">
 <h4 id="amd-gpu">AMD GPU<a class="anchor" aria-label="anchor" href="#amd-gpu"></a>
@@ -523,9 +524,9 @@ module: <code>from tensorflow import keras</code></p>
 <p>It is possible that Windows users will run into version conflicts. If
 you are on Windows and get errors running the command, you can try
 installing the packages using pip within a conda environment:</p>
-<pre class="code"><code>conda create -n cnn_workshop_gpu python spyder
-conda activate cnn_workshop
-pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda create -n cnn_workshop_gpu python spyder
+(cnn_workshop_gpu) C:\Users\Lab&gt; conda activate cnn_workshop
+(cnn_workshop_gpu) C:\Users\Lab&gt; pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
 <p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
 package management system for Python software packages. It is integrated
 into your local Python installation and runs regardless of your
@@ -539,7 +540,7 @@ manufactured by Apple instead of Intel. This can lead to problems
 installing Tensorflow . If you get errors running the installation
 command or conda hangs endlessly, you can try installing Tensorflow for
 Mac with pip:</p>
-<pre class="conda"><code>pip install tensorflow-macos # TODO check if diff GPU version</code></pre>
+<pre class="conda"><code>(cnn_workshop_gpu) C:\Users\Lab&gt; pip install tensorflow-macos # TODO check if diff GPU version</code></pre>
 </div>
 </section><section id="starting-spyder"><h2 class="section-heading">Starting Spyder<a class="anchor" aria-label="anchor" href="#starting-spyder"></a>
 </h2>
@@ -553,10 +554,10 @@ system. If you did not use Anaconda, use the Python package manager pip
 (see the <a href="https://docs.spyder-ide.org/current/installation.html" class="external-link">Spyder
 website</a> for details.)</p>
 <p>To start Spyder, open an Anaconda prompt (terminal), activate the
-tensorflow environment for this workshop of not already, and launch the
-app:</p>
-<pre class="conda"><code>(cnn_workshop_gpu) C:\Users\Lab&gt;conda activate cnn_workshop_gpu
-(cnn_workshop_gpu) C:\Users\Lab&gt;spyder</code></pre>
+tensorflow environment for this workshop if it is not already activated
+(check prompt to find out), and launch the app:</p>
+<pre class="conda"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu
+(cnn_workshop_gpu) C:\Users\Lab&gt; spyder</code></pre>
 </section><section id="check-your-setup"><h2 class="section-heading">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a>
 </h2>
 <hr class="half-width">
@@ -840,7 +841,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2297,7 +2298,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -2423,7 +2424,7 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
@@ -2459,7 +2460,7 @@ the previous ‘Number of parameters’ challenge.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27
 * 100 = 2700 weights. This is a magnitude of 100 less than the fully
@@ -2571,7 +2572,7 @@ intuitive?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2865,7 +2866,7 @@ needs to be adjusted as follows:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3374,7 +3375,7 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li><p>The loss curve should drop quite quickly in a smooth line with
@@ -3652,7 +3653,7 @@ model performance, what is the term associated to this procedure?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Q1. Varying the dropout rate</p>
 <p>The code below instantiates and trains a model with varying dropout
@@ -3849,7 +3850,7 @@ and ‘Construction’ sections of the <a href="https://github.com/BayesWatch/ci
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>No! “The entirety of the original CIFAR-10 test set is within the
 above mentioned new test set.”</p>
@@ -3878,7 +3879,7 @@ train!</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Depends! Recall in an Episode 02 Introduction to Image Data Callout
 we talked about the different ways to partition the data into training,
@@ -4054,7 +4055,7 @@ visualized as a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Q1. The confusion matrix shows that the predictions for terrible and
 can improved.</p>
@@ -4087,7 +4088,7 @@ CNN we will try to change the training parameters.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4439,7 +4440,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>This is an open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you

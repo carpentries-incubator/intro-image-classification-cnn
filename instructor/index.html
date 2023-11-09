@@ -393,7 +393,7 @@ are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -414,7 +414,7 @@ the <strong>Make Anaconda the default Python</strong> option.</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -434,7 +434,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Note that the following installation steps require you to work from
 the shell. If you run into any difficulties, please request help before
@@ -508,12 +508,13 @@ GPU</a> section instead.</p>
 </div>
 <p>To create a conda environment called <code>cnn_workshop</code> with
 the required packages, open a terminal and type the command:</p>
-<figure><img src="../fig/00_setup_anaconda_prompt.png" alt="Screenshot of the Anaconda prompt" class="figure mx-auto d-block"></figure><pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop python spyder seaborn scikit-learn pandas scikeras</code></pre>
+<figure><img src="../fig/00_setup_anaconda_prompt.png" alt="Screenshot of the Anaconda prompt" class="figure mx-auto d-block"></figure><pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop python spyder seaborn scikit-learn pandas</code></pre>
 <p>Activate the newly created environment:</p>
 <pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop</code></pre>
-<p>Install tensorflow using <a href="" title="https://pip.pypa.io/en/stable/">pip</a> (python’s package
+<p>Install tensorflow and scikeras using <a href="" title="https://pip.pypa.io/en/stable/">pip</a> (python’s package
 manager):</p>
-<pre class="code"><code>(cnn_workshop) C:\Users\Lab&gt;pip install tensorflow</code></pre>
+<pre class="code"><code>(cnn_workshop) C:\Users\Lab&gt; pip install tensorflow
+(cnn_workshop) C:\Users\Lab&gt; pip install scikeras</code></pre>
 <p>Note that modern versions of Tensorflow make Keras available as a
 module: <code>from tensorflow import keras</code></p>
 <div class="section level3">
@@ -521,9 +522,9 @@ module: <code>from tensorflow import keras</code></p>
 <p>It is possible that Windows users will run into version conflicts. If
 you are on Windows and get errors running the command, you can try
 installing the packages using pip within a conda environment:</p>
-<pre class="code"><code>conda create -n cnn_workshop python spyder
-conda activate cnn_workshop
-pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda create -n cnn_workshop python spyder
+(base) C:\Users\Lab&gt; conda activate cnn_workshop
+(cnn_workshop) C:\Users\Lab&gt; pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
 <p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
 package management system for Python software packages. It is integrated
 into your local Python installation and runs regardless of your
@@ -536,7 +537,7 @@ manufactured by Apple instead of Intel. This can lead to problems
 installing Tensorflow. If you get errors running the installation
 command or conda hangs endlessly, you can try installing Tensorflow for
 Mac with pip:</p>
-<pre class="conda"><code>pip install tensorflow-macos</code></pre>
+<pre class="conda"><code>(cnn_workshop) C:\Users\Lab&gt; pip install tensorflow-macos</code></pre>
 </div>
 </section><section id="starting-spyder"><h2 class="section-heading">Starting Spyder<a class="anchor" aria-label="anchor" href="#starting-spyder"></a>
 </h2>

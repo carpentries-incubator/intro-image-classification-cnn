@@ -279,7 +279,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Setup - GPU</h1>
-        <p> Last updated on 2023-11-08 | 
+        <p> Last updated on 2023-11-09 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -430,7 +430,7 @@ instructions</a> for updating Conda if required.</p>
 <p>To create a conda environment called <code>cnn_workshop_gpu</code>
 with the required packages, launch an Anaconda Prompt (terminal) and
 type the command:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas scikeras</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas</code></pre>
 <p>Activate the newly created environment:</p>
 <pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu</code></pre>
 <p>NOTE the prompt should change to reflect you are in the
@@ -464,7 +464,8 @@ manager), first making sure you have a recent version of pip:</p>
 <pre class="code"><code>(cnn_workshop_gpu) C:\Users\Lab&gt;pip install --upgrade pip
 
 # Anything above 2.10 is not supported on the GPU on Windows Native
-(cnn_workshop_gpu) C:\Users\Lab&gt;pip install "tensorflow&lt;2.11" </code></pre>
+(cnn_workshop_gpu) C:\Users\Lab&gt;pip install "tensorflow&lt;2.11"
+(cnn_workshop_gpu) C:\Users\Lab&gt;pip install scikeras</code></pre>
 </div>
 <div class="section level4">
 <h4 id="amd-gpu">AMD GPU<a class="anchor" aria-label="anchor" href="#amd-gpu"></a></h4>
@@ -477,9 +478,9 @@ module: <code>from tensorflow import keras</code></p>
 <p>It is possible that Windows users will run into version conflicts. If
 you are on Windows and get errors running the command, you can try
 installing the packages using pip within a conda environment:</p>
-<pre class="code"><code>conda create -n cnn_workshop_gpu python spyder
-conda activate cnn_workshop
-pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda create -n cnn_workshop_gpu python spyder
+(cnn_workshop_gpu) C:\Users\Lab&gt; conda activate cnn_workshop
+(cnn_workshop_gpu) C:\Users\Lab&gt; pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
 <p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
 package management system for Python software packages. It is integrated
 into your local Python installation and runs regardless of your
@@ -492,7 +493,7 @@ manufactured by Apple instead of Intel. This can lead to problems
 installing Tensorflow . If you get errors running the installation
 command or conda hangs endlessly, you can try installing Tensorflow for
 Mac with pip:</p>
-<pre class="conda"><code>pip install tensorflow-macos # TODO check if diff GPU version</code></pre>
+<pre class="conda"><code>(cnn_workshop_gpu) C:\Users\Lab&gt; pip install tensorflow-macos # TODO check if diff GPU version</code></pre>
 </div>
 </section><section id="starting-spyder"><h2 class="section-heading">Starting Spyder<a class="anchor" aria-label="anchor" href="#starting-spyder"></a>
 </h2>
@@ -505,10 +506,10 @@ system. If you did not use Anaconda, use the Python package manager pip
 (see the <a href="https://docs.spyder-ide.org/current/installation.html" class="external-link">Spyder
 website</a> for details.)</p>
 <p>To start Spyder, open an Anaconda prompt (terminal), activate the
-tensorflow environment for this workshop of not already, and launch the
-app:</p>
-<pre class="conda"><code>(cnn_workshop_gpu) C:\Users\Lab&gt;conda activate cnn_workshop_gpu
-(cnn_workshop_gpu) C:\Users\Lab&gt;spyder</code></pre>
+tensorflow environment for this workshop if it is not already activated
+(check prompt to find out), and launch the app:</p>
+<pre class="conda"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu
+(cnn_workshop_gpu) C:\Users\Lab&gt; spyder</code></pre>
 </section><section id="check-your-setup"><h2 class="section-heading">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a>
 </h2>
 <hr class="half-width"><p>To check whether all packages installed correctly, go to the
@@ -606,7 +607,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/setup-gpu.html",
   "identifier": "https://.github.io/github.com/instructor/setup-gpu.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-11-08",
+  "dateModified": "2023-11-09",
   "datePublished": "2023-11-09"
 }
 

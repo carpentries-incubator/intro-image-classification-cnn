@@ -92,7 +92,7 @@ To create a conda environment called `cnn_workshop` with the required packages, 
 ![](fig/00_setup_anaconda_prompt.png){alt='Screenshot of the Anaconda prompt'}
 
 ```code
-(base) C:\Users\Lab> conda create --name cnn_workshop python spyder seaborn scikit-learn pandas scikeras
+(base) C:\Users\Lab> conda create --name cnn_workshop python spyder seaborn scikit-learn pandas
 ```
 
 Activate the newly created environment:
@@ -101,10 +101,11 @@ Activate the newly created environment:
 (base) C:\Users\Lab> conda activate cnn_workshop
 ```
 
-Install tensorflow using [pip] (python's package manager):
+Install tensorflow and scikeras using [pip] (python's package manager):
 
 ```code
-(cnn_workshop) C:\Users\Lab>pip install tensorflow
+(cnn_workshop) C:\Users\Lab> pip install tensorflow
+(cnn_workshop) C:\Users\Lab> pip install scikeras
 ```
 
 Note that modern versions of Tensorflow make Keras available as a module: `from tensorflow import keras`
@@ -115,9 +116,9 @@ Note that modern versions of Tensorflow make Keras available as a module: `from 
 It is possible that Windows users will run into version conflicts. If you are on Windows and get errors running the command, you can try installing the packages using pip within a conda environment:
 
 ```code
-conda create -n cnn_workshop python spyder
-conda activate cnn_workshop
-pip install tensorflow>=2.5 seaborn scikit-learn pandas scikeras
+(base) C:\Users\Lab> conda create -n cnn_workshop python spyder
+(base) C:\Users\Lab> conda activate cnn_workshop
+(cnn_workshop) C:\Users\Lab> pip install tensorflow>=2.5 seaborn scikit-learn pandas scikeras
 ```
 
 [pip] is the package management system for Python software packages.
@@ -129,7 +130,7 @@ Newer Macs (from 2020 onwards) often have a different kind of chip, manufactured
 If you get errors running the installation command or conda hangs endlessly, you can try installing Tensorflow for Mac with pip:
 
 ```conda
-pip install tensorflow-macos
+(cnn_workshop) C:\Users\Lab> pip install tensorflow-macos
 ```
 
 ## Starting Spyder

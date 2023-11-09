@@ -91,7 +91,7 @@ Conda should already be available in your system once you installed Anaconda suc
 To create a conda environment called `cnn_workshop_gpu` with the required packages, launch an Anaconda Prompt (terminal) and type the command:
 
 ```code
-(base) C:\Users\Lab> conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas scikeras
+(base) C:\Users\Lab> conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas
 ```
 
 Activate the newly created environment:
@@ -122,7 +122,8 @@ Install tensorflow using [pip] (python's package manager), first making sure you
 (cnn_workshop_gpu) C:\Users\Lab>pip install --upgrade pip
 
 # Anything above 2.10 is not supported on the GPU on Windows Native
-(cnn_workshop_gpu) C:\Users\Lab>pip install "tensorflow<2.11" 
+(cnn_workshop_gpu) C:\Users\Lab>pip install "tensorflow<2.11"
+(cnn_workshop_gpu) C:\Users\Lab>pip install scikeras
 ```
 
 #### AMD GPU 
@@ -137,9 +138,9 @@ Note that modern versions of Tensorflow make Keras available as a module: `from 
 It is possible that Windows users will run into version conflicts. If you are on Windows and get errors running the command, you can try installing the packages using pip within a conda environment:
 
 ```code
-conda create -n cnn_workshop_gpu python spyder
-conda activate cnn_workshop
-pip install tensorflow>=2.5 seaborn scikit-learn pandas scikeras
+(base) C:\Users\Lab> conda create -n cnn_workshop_gpu python spyder
+(cnn_workshop_gpu) C:\Users\Lab> conda activate cnn_workshop
+(cnn_workshop_gpu) C:\Users\Lab> pip install tensorflow>=2.5 seaborn scikit-learn pandas scikeras
 ```
 
 [pip] is the package management system for Python software packages.
@@ -152,18 +153,18 @@ If you get errors running the installation command or conda hangs endlessly,
 you can try installing Tensorflow for Mac with pip:
 
 ```conda
-pip install tensorflow-macos # TODO check if diff GPU version
+(cnn_workshop_gpu) C:\Users\Lab> pip install tensorflow-macos # TODO check if diff GPU version
 ```
 
 ## Starting Spyder
 
 We will teach using Python in [Spyder] (Scientific Python Development Environment) , a free integrated development environment (IDE) written in Python that comes with Anaconda.Editing, interactive testing, debugging, and introspection tools are all included in Spyder. If you installed Python using Anaconda, Spyder should already be on your system. If you did not use Anaconda, use the Python package manager pip (see the [Spyder website] for details.)
 
-To start Spyder, open an Anaconda prompt (terminal), activate the tensorflow environment for this workshop of not already, and launch the app:
+To start Spyder, open an Anaconda prompt (terminal), activate the tensorflow environment for this workshop if it is not already activated (check prompt to find out), and launch the app:
 
 ```conda
-(cnn_workshop_gpu) C:\Users\Lab>conda activate cnn_workshop_gpu
-(cnn_workshop_gpu) C:\Users\Lab>spyder
+(base) C:\Users\Lab> conda activate cnn_workshop_gpu
+(cnn_workshop_gpu) C:\Users\Lab> spyder
 ```
 
 ## Check your setup

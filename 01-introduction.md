@@ -17,7 +17,7 @@ exercises: 0
 - Explain the difference between artificial intelligence, machine learning and deep learning
 - Explain how machine learning is used for regression and classification tasks
 - Understand what algorithms are used for image classification
-- Know difference between training, testing, and validation datasets
+- Know the difference between training, testing, and validation datasets
 - Perform an image classification using a convolutional neural network (CNN)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -25,7 +25,7 @@ exercises: 0
 ## What is machine learning?
 Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural Network**, abbreviated as **CNN**, but there are many more.
 
-The techniques breakdown into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs, for example trying to predict the cost of something given the economic conditions and the cost of raw materials or predicting a country’s GDP given its life expectancy. Classifiers try to classify data into different categories, or assign a label; for example, deciding what characters are visible in a picture of some writing or if a message is spam or not.
+The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs, for example trying to predict the cost of something given the economic conditions and the cost of raw materials or predicting a country’s GDP given its life expectancy. Classifiers try to classify data into different categories, or assign a label; for example, deciding what characters are visible in a picture of some writing or if a message is spam or not.
 
 ## Training Data
 
@@ -41,12 +41,12 @@ Typically we will need to train our models with hundreds, thousands or even mill
 
 ## Deep Learning, Machine Learning and Artificial Intelligence
 
-Deep Learning (DL) is just one of many machine learning techniques, in which people often talk about machine learning being a form of artificial intelligence (AI). Definitions of artificial intelligence vary, but usually involve having computers mimic the behaviour of intelligent biological systems. Since the 1950s many works of science fiction have dealt with the idea of an artificial intelligence which matches (or exceeds) human intelligence in all areas. Although there have been great advances in AI and ML research recently, we can only come close to human like intelligence in a few specialist areas and are still a long way from a general purpose AI. The image below shows some differences between artificial intelligence, Machine Learning and Deep Learning.
+Deep Learning (DL) is just one of many machine learning techniques, in which people often talk about machine learning being a form of artificial intelligence (AI). Definitions of artificial intelligence vary, but usually involve having computers mimic the behaviour of intelligent biological systems. Since the 1950s many works of science fiction have dealt with the idea of an artificial intelligence which matches (or exceeds) human intelligence in all areas. Although there have been great advances in AI and ML research recently, we can only come close to human like intelligence in a few specialist areas and are still a long way from a general purpose AI. The image below shows some differences between artificial intelligence, machine learning and deep learning.
 
 ![The image above is by Tukijaaliwa, CC BY-SA 4.0, via Wikimedia Commons, [original source]](fig/01_AI_ML_DL_differences.png){alt='Three nested circles describing AI as the largest circle in dark blue; enclosing machine learning in medium blue; enclosing deep learning in even lighter blue'}
 
 ::::::::::::::::::::::::::::::::::::::::: callout
-Concept: Differentiation between classical ML models and Deep Learning models:
+Concept: Differentiation between traditional Machine Learning models and Deep Learning models:
 
 **Traditional ML algorithms** can only use one (possibly two layers) of data transformation to calculate an output (shallow models). With high dimensional data and growing feature space (possible set of values for any given feature), shallow models quickly run out of layers to calculate outputs. 
 
@@ -85,7 +85,7 @@ Convolutional Neural Networks (CNNs) have become a cornerstone in image classifi
 To apply Deep Learning to a problem there are several steps we need to go through:
 
 ### Step 1. Formulate / Outline the problem
-Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories. Specifically in our case, we will be looking at 10 categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck'
+Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories. Specifically in our case, we will be looking at 10 categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck
 
 ### Step 2. Identify inputs and outputs
 Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
@@ -124,12 +124,13 @@ Train: Images=(50000, 32, 32, 3), Labels=(50000, 1)
 Validate: Images=(10000, 32, 32, 3), Labels=(10000, 1)
 ```
 The training set consists of 50000 images of 32x32 pixels and 3 channels (RGB values) and labels.
+
 The validation set consists of 10000 images of 32x32 pixels and 3 channels (RGB values) and labels.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Image RGB values are between 0 and 255. For input of neural networks, it is better to have small input values. We will talk more about why this important in the episode on image data but for now we will normalize our data between 0 and 1.
+Image RGB values are between 0 and 255. As input for neural networks, it is better to have small values. We will talk more about why this important in the episode on image data but for now we will normalize our data between 0 and 1.
 
 ```python
 # normalize the RGB values to be between 0 and 1
@@ -162,7 +163,7 @@ plt.show()
 
 ### Step 4. Choose a pre-trained model or build a new architecture from scratch
 
-Often we can use an existing neural network instead of designing one from scratch. Training a network can take a lot of time and computational resources. There are a number of well publicised networks which have been shown to perform well at certain tasks, if you know of one which already does a similar task well then it makes sense to use one of these.
+Often we can use an existing neural network instead of designing one from scratch. Training a network can take a lot of time and computational resources. There are a number of well publicised networks which have been shown to perform well at certain tasks. If you know of one which already does a similar task well, then it makes sense to use one of these.
 
 If instead we decide we do want to design our own network then we need to think about how many input neurons it will have, how many hidden layers and how many outputs, what types of layers we use (we will explore the different types later on). This will probably need some experimentation and we might have to try tweaking the network design a few times before we see acceptable results.
 
@@ -217,13 +218,16 @@ Epoch 1/10
 
 1563/1563 [==============================] - 5s 3ms/step - loss: 1.4011 - accuracy: 0.5046 - val_loss: 1.3644 - val_accuracy: 0.5243
 ```
-::::::::::::::::::::::::::::::::::::::::: callout 
+::::::::::::::::::::::::::::::::::::::::: spoiler 
 
 **What does this output mean?**
 
 This output printed during the fit phase i.e. training the model against known image labels, can be broken down as follows:
+
 - `Epoch` descibes the number of full passes over all *training data*. In the Output above there are **1563 training observations**. An epoch will conclude and move to the next epoch after a training pass over all 1563 observations.
+
 - `loss` and `val_loss` can be considered as related. Where `loss` is a value the model will attempt to minimise, and is the distance between the true label of an image and the models prediction. Minimising this distance is where *learning* occurs to adjust weights and bias which reduce `loss`. On the other hand `val_loss` is a value calculated against the validation data and is a measurement of the models performance against **unseen data**. Both values are a summation of errors made for each example when fitting to the training or validation sets.
+
 - `accuracy` and `val_accuracy` can also be considered as related. Unlike `loss` and `val_loss`, these values are a percentage and are only revelent to **classification problems**. The `val_accuracy` score can be used to communicate a percentage value of model effectiveness on unseen data.
 
 :::::::::::::::::::::::::::::::::::::::::

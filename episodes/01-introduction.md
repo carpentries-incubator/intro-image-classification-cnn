@@ -221,7 +221,7 @@ Epoch 1/10
 ```
 ::::::::::::::::::::::::::::::::::::::::: spoiler 
 
-**What does this output mean?**
+### What does this output mean?
 
 This output printed during the fit phase, i.e. training the model against known image labels, can be broken down as follows:
 

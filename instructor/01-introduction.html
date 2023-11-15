@@ -280,7 +280,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p> Last updated on 2023-11-14 | 
+        <p> Last updated on 2023-11-15 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -510,7 +510,7 @@ CIFAR-10 that we will discuss in more depth in the next episode.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -631,10 +631,11 @@ gives a value under a certain threshold.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>history_intro <span class="op">=</span> model_intro.fit(train_images, train_labels, epochs <span class="op">=</span> <span class="dv">10</span>, </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                validation_data <span class="op">=</span> (val_images, val_labels))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>model_intro.save(<span class="st">'fit_outputs/model_intro.h5'</span>)</span></code></pre>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                validation_data <span class="op">=</span> (val_images, val_labels),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                                batch_size<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>model_intro.save(<span class="st">'fit_outputs/model_intro.h5'</span>)</span></code></pre>
 </div>
 <p>Your output will begin to print similar to the output below:</p>
 <div class="codewrapper">
@@ -649,18 +650,19 @@ gives a value under a certain threshold.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">
   <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Show details
+  What does this output mean?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
-<p><strong>What does this output mean?</strong></p>
-<p>This output printed during the fit phase i.e. training the model
+<p>This output printed during the fit phase, i.e. training the model
 against known image labels, can be broken down as follows:</p>
-<ul><li><p><code>Epoch</code> descibes the number of full passes over all
-<em>training data</em>. In the Output above there are <strong>1563
-training observations</strong>. An epoch will conclude and move to the
-next epoch after a training pass over all 1563 observations.</p></li>
+<ul><li><p><code>Epoch</code> describes the number of full passes over all
+<em>training data</em>. In the output above there are <strong>1563
+training observations</strong>. This number is calculated as the total
+number of images used as input divided by the batch size (50000/32). An
+epoch will conclude and move to the next epoch after a training pass
+over all 1563 observations.</p></li>
 <li><p><code>loss</code> and <code>val_loss</code> can be considered as
 related. Where <code>loss</code> is a value the model will attempt to
 minimise, and is the distance between the true label of an image and the
@@ -674,7 +676,7 @@ sets.</p></li>
 <li><p><code>accuracy</code> and <code>val_accuracy</code> can also be
 considered as related. Unlike <code>loss</code> and
 <code>val_loss</code>, these values are a percentage and are only
-revelent to <strong>classification problems</strong>. The
+revelant to <strong>classification problems</strong>. The
 <code>val_accuracy</code> score can be used to communicate a percentage
 value of model effectiveness on unseen data.</p></li>
 </ul></div>
@@ -798,7 +800,7 @@ discuss each component in more detail.</p>
   Instructor Note
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -895,8 +897,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/01-introduction.html",
   "identifier": "https://.github.io/github.com/instructor/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-11-14",
-  "datePublished": "2023-11-14"
+  "dateModified": "2023-11-15",
+  "datePublished": "2023-11-15"
 }
 
   </script><script>

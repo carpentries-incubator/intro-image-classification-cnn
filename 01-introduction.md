@@ -53,17 +53,6 @@ Concept: Differentiation between traditional Machine Learning models and Deep Le
 **Deep neural networks** (constructed with multiple layers of neurons) are the extension of shallow models with three layers: input, hidden, and outputs layers. The hidden layer is where learning takes place. As a result, deep learning is best applied to large datasets for training and prediction. As observations and feature inputs decrease, shallow ML approaches begin to perform noticeably better. 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Preparing the code
-
-It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope that this code can be used as a "starting point".  We will be creating an "initial program" for this introduction chapter, that will be copied and used as a foundation for the rest of the episodes.
-
-The code that is being created will load the following libraries, so the program will be initialised with the following:
-
-```python
-# load the keras package, which includes the CIFAR-10 dataset, that will be used later.
-from tensorflow import keras
-import matplotlib.pyplot as plt
-```
 
 ## What is image classification?
 
@@ -91,28 +80,50 @@ Firstly we must decide what it is we want our Deep Learning system to do. This l
 Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
 
 ### Step 3. Prepare data
-Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data. Information on how this is done and what the data looks like will be explored in the next episode [Introduction to Image Data](episodes/02-image-data). 
+Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data. Information on how this is done and what the data looks like will be explored in the next episode [Introduction to Image Data](episodes/02-image-data).
 
-Next we will need to divide the data into multiple sets. One of these will be used by the training process and we will call it the **training set**. Another set, called the **validation set**, will be used during the training process to tune hyperparameters. A third **test set** is used to assess the final performance of the trained model.
+For this lesson, we will use an existing image dataset known as CIFAR-10. We will introduce this dataset and the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalize the image pixel values to be between 0 and 1; and one-hot encode our image labels.
 
-For this lesson, we will be using an existing image dataset known as CIFAR-10 that we will discuss in more depth in the next episode.
+#### Preparing the code
 
-### Load data
+It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope that this code can be used as a "starting point".  We will be creating an "initial program" for this introduction chapter, that will be copied and used as a foundation for the rest of the episodes.
 
 ```python
-# load the cifar dataset included with the keras packages
-(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
+# load the required packages
+from tensorflow import keras # library for neural networks 
+import matplotlib.pyplot as plt # library for plotting
+from icwithcnn_functions import prepare_image_icwithcnn # custom function
+
+# load the CIFAR-10 dataset included with the keras library
+(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+
+# normalize the RGB values to be between 0 and 1
+train_images = train_images / 255.0
+val_images = val_images / 255.0
+
+# create a list of class names
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+
+# one-hot encode labels
+train_labels = keras.utils.to_categorical(train_labels, len(class_names))
+val_labels = keras.utils.to_categorical(val_labels, len(class_names))
+
+# split the training data into training and validation sets
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge Load the CIFAR-10 dataset
+## Challenge Examine the CIFAR-10 dataset
 
 Explain the output of these commands?
 
 ```python
 print('Train: Images=%s, Labels=%s' % (train_images.shape, train_labels.shape))
 print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
+print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
+
 ```
 
 :::::::::::::::::::::::: solution 
@@ -120,31 +131,20 @@ print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
 ## Output
  
 ```output
-Train: Images=(50000, 32, 32, 3), Labels=(50000, 1)
-Validate: Images=(10000, 32, 32, 3), Labels=(10000, 1)
+Train: Images=(50000, 32, 32, 3), Labels=(50000, 10)
+Validate: Images=(10000, 32, 32, 3), Labels=(10000, 10)
+Test: Images=(10000, 32, 32, 3), Labels=(10000, 10)
 ```
 The training set consists of 50000 images of 32x32 pixels and 3 channels (RGB values) and labels.
 
-The validation set consists of 10000 images of 32x32 pixels and 3 channels (RGB values) and labels.
+The validation and test datasets consist of 10000 images of 32x32 pixels and 3 channels (RGB values) and labels.
+
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Image RGB values are between 0 and 255. As input for neural networks, it is better to have small values. We will talk more about why this important in the episode on image data but for now we will normalize our data between 0 and 1.
 
-```python
-# normalize the RGB values to be between 0 and 1
-train_images = train_images / 255.0
-val_images = val_images / 255.0
-```
-The labels are a set of single numbers denoting the class and we map the class numbers back to the class names, taken from the documentation:
-
-```python
-# create a list of classnames
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
-```
-
-### Visualize a subset of the CIFAR-10 dataset
+#### Visualize a subset of the CIFAR-10 dataset
 
 ```python
 # create a figure object and specify width, height in inches
@@ -155,7 +155,7 @@ for i in range(25):
     plt.subplot(5,5,i+1)
     plt.imshow(train_images[i], cmap=plt.cm.binary)
     plt.axis('off')
-    plt.title(class_names[train_labels[i,0]])
+    plt.title(class_names[train_labels[i,].argmax()])
 plt.show()
 ```
 
@@ -167,21 +167,32 @@ Often we can use an existing neural network instead of designing one from scratc
 
 If instead we decide we do want to design our own network then we need to think about how many input neurons it will have, how many hidden layers and how many outputs, what types of layers we use (we will explore the different types later on). This will probably need some experimentation and we might have to try tweaking the network design a few times before we see acceptable results.
 
+Here we present an initial model that will be explained in detail later on:
+
 #### Define the Model
 
 ```python
+# CNN Part 1
 # Input layer of 32x32 images with three channels (RGB)
 inputs_intro = keras.Input(shape=train_images.shape[1:])
 
-# Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)
-# Second Convolutional layer
-x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
+# CNN Part 2
+# Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)
+# Pooling layer with input window sized 2,2
+x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+# Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_intro)
+# Second Pooling layer with input window sized 2,2
+x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
 # Flatten layer to convert 2D feature maps into a 1D vector
 x_intro = keras.layers.Flatten()(x_intro)
+# Dense layer with 128 neurons and ReLU activation
+x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
 
+# CNN Part 3
 # Output layer with 10 units (one for each class)
-outputs_intro = keras.layers.Dense(10)(x_intro)
+outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 
 # create the model
 model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
@@ -196,7 +207,7 @@ The optimizer is responsible for taking the output of the loss function and then
 ```python
 # compile the model
 model_intro.compile(optimizer = 'adam',
-                    loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                    loss = keras.losses.CategoricalCrossentropy(),
                     metrics=['accuracy'])
 ```
 
@@ -211,13 +222,13 @@ history_intro = model_intro.fit(train_images, train_labels, epochs = 10,
                                 batch_size=32)
 
 # save the model
-model_intro.save('fit_outputs/model_intro.h5')
+model_intro.save('fit_outputs/model_intro.keras')
 ```
 Your output will begin to print similar to the output below:
 ```output
 Epoch 1/10
 
-1563/1563 [==============================] - 5s 3ms/step - loss: 1.4011 - accuracy: 0.5046 - val_loss: 1.3644 - val_accuracy: 0.5243
+1250/1250 [==============================] - 15s 12ms/step - loss: 1.4651 - accuracy: 0.4738 - val_loss: 1.2736 - val_accuracy: 0.5507
 ```
 ::::::::::::::::::::::::::::::::::::::::: spoiler 
 
@@ -225,7 +236,7 @@ Epoch 1/10
 
 This output printed during the fit phase, i.e. training the model against known image labels, can be broken down as follows:
 
-- `Epoch` describes the number of full passes over all *training data*. In the output above there are **1563 training observations**. This number is calculated as the total number of images used as input divided by the batch size (50000/32). An epoch will conclude and move to the next epoch after a training pass over all 1563 observations.
+- `Epoch` describes the number of full passes over all *training data*. In the output above there are **1250 training observations**. This number is calculated as the total number of images used as input divided by the batch size (40000/32). An epoch will conclude and move to the next epoch after a training pass over all 1563 observations.
 
 - `loss` and `val_loss` can be considered as related. Where `loss` is a value the model will attempt to minimise, and is the distance between the true label of an image and the models prediction. Minimising this distance is where *learning* occurs to adjust weights and bias which reduce `loss`. On the other hand `val_loss` is a value calculated against the validation data and is a measurement of the models performance against **unseen data**. Both values are a summation of errors made for each example when fitting to the training or validation sets.
 
@@ -252,9 +263,8 @@ print('The class with the highest predicted probability is: ', class_names[resul
 ```
 
 ```output
- The predicted probability of each class is: 
- [[-50.365475 -44.362732 -36.384968 -48.386 -32.87043 -66.691696 -29.284208 -51.06697  -36.475967 -43.751118]]
-The class with the highest predicted probability is:  frog
+The predicted probability of each class is:  [[0.0058 0.714  0.     0.0024 0.     0.     0.2777 0.     0.     0.    ]]
+The class with the highest predicted probability is:  automobile
 ```
 
 ::::::::::::::::::::::::::::::::::::::::: callout
@@ -287,13 +297,13 @@ Hyperparameters are all the parameters set by the person configuring the machine
 
 Grid Search or **GridSearch** (as per the library function call) is foundation method for hyperparameter tuning. The aim of hyperparameter tuning is to define a grid of possible values for each hyperparameter you want to tune. GridSearch will then evaluate the model performance for each combination of hyperparameters in a brute-force manner, iterating through every possible combination in the grid.
 
-These concepts will be continued, with practical examples in Episode 05.
+These concepts will be continued, with practical examples, in Episode 05.
 
 ### Step 10. Share Model
 
 Now that we have a trained network that performs at a level we are happy with we can go and use it on real data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
-We will return to these workflow steps throughout this lesson and discuss each component in more detail.
+We will return to each of these workflow steps throughout this lesson and discuss each component in more detail.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 

@@ -52,12 +52,12 @@ In some cases you will be able to download an image dataset that is already labe
 
 Where labelled data exists, in most cases the data provider or other users will have created functions that you can use to load the data. We already saw an example of this in the introduction:
 
-```
+```python
 # load the CIFAR-10 dataset included with the keras packages
-#from tensorflow import keras
+from tensorflow import keras
 
 # commented out in case these are already be in memory
-#(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
+(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 ```
 
 In this instance the data is likely already prepared for use in a CNN. However, it is always a good idea to first read any associated documentation to find out what steps the data providers took to prepare the images and second to take a closer at the images once loaded and query their attributes.
@@ -95,9 +95,9 @@ This step involves various tasks to enhance the quality and consistency of the d
 
 - **Normalization**: Scale pixel values to a common range, often between 0 and 1 or -1 and 1. Normalization helps the model converge faster during training.
 
-- **Data Augmentation**: Apply random transformations (e.g., rotations, flips, shifts) to create new variations of the same image. This helps improve the model's robustness and generalization by exposing it to more diverse data.
+- **Label encoding** is a technique used to represent categorical data with numerical labels.
 
-- **Color Channels**: Depending on the model and library you use, you might need to handle different color channel orders (RGB, BGR, etc.).
+- **Data Augmentation**: Apply random transformations (e.g., rotations, flips, shifts) to create new variations of the same image. This helps improve the model's robustness and generalization by exposing it to more diverse data.
 
 Before we look at some of these tasks in more detail we need to understand that the images we see on hard copy, view with our electronic devices, or process with our programs are represented and stored in the computer as numeric abstractions, or approximations of what we see with our eyes in the real world. And before we begin to learn how to process images with Python programs, we need to spend some time understanding how these abstractions work.
 
@@ -127,9 +127,9 @@ The matrix is mathematical concept - numbers evenly arranged in a rectangle. Thi
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::: callout
+::::::::::::::::::::::::::::::::::::::::: spoiler
 
-Python image libraries
+### WANT TO KNOW MORE: Python image libraries
 
 Two of the most commonly used libraries for image representation and manipulation are NumPy and Pillow (PIL). Additionally, when working with deep learning frameworks like TensorFlow and PyTorch, images are often represented as tensors within these frameworks.
 
@@ -192,7 +192,10 @@ The new image is still of type: <class 'PIL.Image.Image'> but now has the same s
 
 Image RGB values are between 0 and 255. As input for neural networks, it is better to have small input values. The process of converting the RGB values to be between 0 and 1 is called **normalization**.
 
-::::::::::::::::::::::::::::::::::::::::: callout
+::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### WANT TO KNOW MORE: Why Normalize?
+
 ChatGPT
 
 Normalizing the RGB values to be between 0 and 1 is a common pre-processing step in machine learning tasks, especially when dealing with image data. This normalization has several benefits:
@@ -246,96 +249,92 @@ The min, max, and mean pixel values are 0.0 , 255.0 , and 87.0 respectively.
 After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0 respectively.
 ```
 
-Of course, if there are a large number of images to prepare you do not want to copy and paste these steps for each image we have in our dataset.
+Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, keras has a solution for that: [tf.keras.utils.image_dataset_from_directory]
 
-Here we will use `for` loops to find all the images in a directory and prepare them to create a test dataset that aligns with our training dataset. 
 
-## CINIC-10 Test Dataset Preparation
+### One-hot encoding
 
-Our test dataset is a sample of images from an existing image dataset known as [CINIC-10] (CINIC-10 Is Not ImageNet or CIFAR-10) that was designed to be used as a drop-in alternative to the CIFAR-10 dataset we used in the introduction.  
+A neural network can only take numerical inputs and outputs, and learns by calculating how “far away” the class predicted by the neural network is from the true class. When the target (label) is a categorical data, or strings, it is very difficult to determine this “distance” or error. Therefore we will transform this column into a more suitable format. There are many ways to do this, however we will be using **one-hot encoding**. 
 
-The test image directory was set up to have the following structure:
+One-hot encoding is a technique to represent categorical data as binary vectors, making it compatible with machine learning algorithms. Each category becomes a separate feature, and the presence or absence of a category is indicated by 1s and 0s in the respective columns.
 
-```
-main_directory/
-...class_a/
-......image_1.jpg
-......image_2.jpg
-...class_b/
-......image_1.jpg
-......image_2.jpg
-```
+Let's say you have a dataset with a "Color" column containing three categories: Red, Blue, Green. 
 
-We will use this structure to create two lists: one for images in those folders and one for the image label. We can then use the lists to resize, convert to arrays, and normalize the images.
+Table 1. Original Data.
+
+| color     |              |
+| ------    | --------------:   |
+| red       | :red_square:      |
+| green     | :green_square:    |
+| blue      | :blue_square:   |
+| red       | :red_square:      |
+
+Table 2. After One-Hot Encoding.
+
+| Color_red | Color_blue    | Color_green   |
+| ------    | :------:      | ------:       |
+| 1         | 0             | 0             |
+| 0         | 1             | 0             |
+| 0         | 0             | 1             |
+| 1         | 0             | 0             |
+
+Each category has its own binary column, and the value is set to 1 in the corresponding column for each row that matches that category.
+
+
+### Image augmentation
+
+There are several ways to augment your data to increase the diversity of the training data and improve model robustness.
+
+- Geometric Transformations
+  - rotation, translation, scaling, zooming, cropping
+- Flipping or Mirroring
+  - some classes, like horse, have a different shape when facing left or right and you want your model to recognize both 
+- Color properties
+  - brightness, contrast, or hue
+  - these changes simulate variations in lighting conditions
+ 
+We will look at image augmentation in a later episode.
+
+
+### Data Splitting
+
+The typical practice in machine learning is to split your data into two subsets: a **training** set and a **test** set. This initial split separates the data you will use to train your model from the data you will use to evaluate its performance.
+
+After this initial split, you can choose to further split the training set into a training set and a **validation set**. This is often done when you need to fine-tune hyperparameters, select the best model from a set of candidate models, or prevent overfitting.
+
+In the previous episode we saw that the keras installation includes the Cifar-10 dataset and that by using the 'cifar10.load_data()' method the returned data is split into two (train and test sets). Now we just need to split the training data into training and validation sets.
+
+To split a dataset into training and test sets there is a very convenient function from sklearn called [train_test_split]: 
+
+`sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)`
+
+- The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels)
+- Next is the named parameter `test_size` this is the fraction of the dataset that is used for testing, in this case `0.2` means 20% of the data will be used for testing.
+- `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
+- `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
+- `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
 
 ```python
-import os
-import numpy as np
-
-# set the mian directory  
-test_image_dir = 'D:/20230724_CINIC10/test_images'
-
-# make two lists of the subfolders (ie class or label) and filenames
-test_filenames = []
-test_labels = []
-
-for dn in os.listdir(test_image_dir):
-    
-    for fn in os.listdir(os.path.join(test_image_dir, dn)):
-        
-        test_filenames.append(fn)
-        test_labels.append(dn)
-
-# prepare the images
-# create an empty numpy array to hold the processed images
-test_images = np.empty((len(test_filenames), 32, 32, 3), dtype=np.float32)
-
-# use the dirnames and filenanes to process each 
-for i in range(len(test_filenames)):
-    
-    # set the path to the image
-    img_path = os.path.join(test_image_dir, test_labels[i], test_filenames[i])
-    
-    # load the image and resize at the same time
-    img = load_img(img_path, target_size=(32,32))
-    
-    # convert to an array
-    img_arr = img_to_array(img)
-    
-    # normalize
-    test_images[i] = img_arr/255.0
-
-print(test_images.shape)
-print(test_images.__class__)
-```
-```output
-(10000, 32, 32, 3)
-<class 'numpy.ndarray'>
+# split the training data into training and validation sets
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
-Training and Test sets
+Training and Validation
 
-Take a look at the training and test set we created. 
+Take a look at the training and validation sets we created. 
 
-Q1. How many samples does the training set have and are the classes well balanced?
+How many samples does each set have and are the classes well balanced?
 
-Q2. How many samples does the test set have and are the classes well balanced?
-
-Hint1: Check the object class to understand what methods are available.
-
-Hint2: Use the `train_labels' object to find out if the classes are well balanced.
+Hint: Use `np.unique` and the `*_labels' objects to find out if the classes are well balanced.
 
 :::::::::::::::::::::::: solution
 
-Q1. Training Set
+A. Training Set
 
 ```python
-# load training images into memory if not already
-# (train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
-
 print('The training set is of type', train_images.__class__)
-print('The training set has', train_images.shape[0] 'samples.\n')
+print('The training set has', train_images.shape[0], 'samples.\n')
 
 print('The number of labels in our training set and the number images in each class are:\n')
 print(np.unique(train_labels, return_counts=True))
@@ -347,49 +346,38 @@ The training set has 50000 samples.
 
 The number of labels in our training set and the number images in each class are:
 
-(array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=uint8),
- array([5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000], dtype=int64))
+(array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=uint8), array([4027, 4021, 3970, 3977, 4067, 3985, 4004, 4006, 3983, 3960],
+      dtype=int64))
 ```
-
-Q2. Test Set (we can use the same code as the training set)
+B. Vaildation Set (we can use the same code as the training set)
 
 ```python
-print('The test set is of type', test_images.__class__)
-print('The test set has', test.shape[0] 'samples.\n')
+print('The validation set is of type', val_images.__class__)
+print('The validation set has', val_images.shape[0] 'samples.\n')
 
-print('The number of labels in our test set and the number images in each class are:\n')
-print(np.unique(test_labels, return_counts=True))
+print('The number of labels in our validation set and the number images in each class are:\n')
+print(np.unique(val_labels, return_counts=True))
 ```
 
 ```output
-The test set is of type <class 'numpy.ndarray'>
-The test set has 10000 samples.
+The validation set is of type <class 'numpy.ndarray'>
+The validation set has 10000 samples.
 
-The number of labels in our test set and the number images in each class are:
+The number of labels in our validation set and the number images in each class are:
 
-(array(['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog',
-       'horse', 'ship', 'truck'], dtype='<U10'), array([1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+(array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=uint8), array([ 973,  979, 1030, 1023,  933, 1015,  996,  994, 1017, 1040],
       dtype=int64))
 ```
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-TODO lables are strings, need to be numeric for predict; here or ep 05?
 
-There are other preprocessing steps you might need to take for your particular problem. We will discuss a few common ones briefly before getting back to our model.
+::::::::::::::::::::::::::::::::::::::::: spoiler
 
-### Data Splitting
-
-In the previous episode we saw that the keras installation includes the Cifar-10 dataset and that by using the 'cifar10.load_data()' method the returned data is split into two (train and validations sets). There was not a test dataset which is why we just created one.
-
-When using a different dataset, or loading your own set of images, you may need to do the splitting yourself.
-
-::::::::::::::::::::::::::::::::::::::::: callout
+### WANT TO KNOW MORE: Data Splitting Techniques
 
 ChatGPT
-
-Data Splitting Techniques
 
 Data is typically split into the training, validation, and test data sets using a process called data splitting or data partitioning. There are various methods to perform this split, and the choice of technique depends on the specific problem, dataset size, and the nature of the data. Here are some common approaches:
 
@@ -431,100 +419,9 @@ It's important to note that the exact split ratios (e.g., 80-10-10 or 70-15-15) 
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: challenge
-Data Splitting Example
+## Finally! 
 
-To split a dataset into training and test sets there is a very convenient function from sklearn called [train_test_split]. 
-
-`train_test_split` takes a number of parameters:
-
-`sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)`
-
-Take a look at the help and write a function to split an imaginary dataset into a train/test split of 80/20 using stratified sampling.
-
-:::::::::::::::::::::::: solution
-
-Noting there are a couple ways to do this, here is one example:
-
-```
-from sklearn.model_selection import train_test_split
-
-X_train, X_test, y_train, y_test = train_test_split(image_dataset, target, test_size=0.2, random_state=42, shuffle=True, stratify=target)
-```
-
-- The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels)
-- Next is the named parameter `test_size` this is the fraction of the dataset that is used for testing, in this case `0.2` means 20% of the data will be used for testing.
-- `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
-- `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
-- `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-### Image Colours
-
-**RGB** Images:
-
-- For image classification tasks, RGB images are used because they capture the full spectrum of colors that human vision can perceive, allowing the model to learn intricate features and patterns present in the images.
-
-- RGB (Red, Green, Blue) images have three color channels: red, green, and blue, with each channel having an intensity value that ranges from 0 to 255. Each channel represents the intensity of the corresponding color for each pixel. This results in a 3D array, where the dimensions are height, width, and color channel. 
-
-While RGB is the most common representation, there are scenarios where other color palettes might be considered, such as:
-
-**Grayscale** Images:
-
-- Grayscale images have only one channel, representing the intensity of the pixels. Each pixel's intensity is usually represented by a single numerical value that ranges from 0 (black) to 255 (white). The image is essentially a 2D array where each element holds the intensity value of the corresponding pixel.
-
-- In cases where color information isn't critical, you might convert RGB images to grayscale to reduce the computational load.
-
-
-### One-hot encoding
-
-A neural network can only take numerical inputs and outputs, and learns by calculating how “far away” the class predicted by the neural network is from the true class. When the target (label) is a categorical data, or strings, it is very difficult to determine this “distance” or error. Therefore we will transform this column into a more suitable format. There are many ways to do this, however we will be using **one-hot encoding**. 
-
-One-hot encoding is a technique to represent categorical data as binary vectors, making it compatible with machine learning algorithms. Each category becomes a separate feature, and the presence or absence of a category is indicated by 1s and 0s in the respective columns.
-
-Let's say you have a dataset with a "Color" column containing three categories: Red, Blue, Green. 
-
-Table 1. Original Data.
-
-| color     |              |
-| ------    | --------------:   |
-| red       | :red_square:      |
-| green     | :green_square:    |
-| blue      | :blue_square:   |
-| red       | :red_square:      |
-
-Table 2. After One-Hot Encoding.
-
-| Color_red | Color_blue    | Color_green   |
-| ------    | :------:      | ------:       |
-| 1         | 0             | 0             |
-| 0         | 1             | 0             |
-| 0         | 0             | 1             |
-| 1         | 0             | 0             |
-
-Each category has its own binary column, and the value is set to 1 in the corresponding column for each row that matches that category.
-
-Our image data is not one-hot encoded because image data is continuous and typically represented as arrays of pixel values. While in some cases you may want to one-hot encode the labels, here we are using integer labels (0,1,2) instead. Many machine learning libraries and frameworks handle this label encoding internally.
-
-### Image augmentation
-
-There are several ways to augment your data to increase the diversity of the training data and improve model robustness.
-
-- Geometric Transformations
-  - rotation, translation, scaling, zooming, cropping
-- Flipping or Mirroring
-  - some classes, like horse, have a different shape when facing left or right and you want your model to recognize both 
-- Color properties
-  - brightness, contrast, or hue
-  - these changes simulate variations in lighting conditions
-
-
-#### Finally! 
-
-Our test dataset is ready to go and we can move on to how to build an architecture.
+Our dataset is preprocessed and split into three sets which means we are ready to look at how we built our CNN in the introduction.
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 

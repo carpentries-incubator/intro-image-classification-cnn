@@ -8,6 +8,7 @@ from tensorflow import keras
 from keras.utils import img_to_array
 from keras.utils import load_img
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 #### Pre-existing image data
 
@@ -52,30 +53,27 @@ new_img_arr_norm = new_img_arr / 255.0
 # extract the min, max, and mean pixel values AFTER
 print('After normalization, the min, max, and mean pixel values are', new_img_arr_norm.min(), ',', new_img_arr_norm.max(), ', and', new_img_arr_norm.mean().round(), 'respectively.')
 
+### Data Splitting
+# split the training data into training and validation sets
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
 
 ########################################################
-# Challenge TRAINING AND TEST SETS
+# Challenge Training and Validation Sets
 
-# Q1
+#A. Training Set
 print('The training set is of type', train_images.__class__)
 print('The training set has', train_images.shape[0], 'samples.\n')
 
 print('The number of labels in our training set and the number images in each class are:\n')
 print(np.unique(train_labels, return_counts=True))
 
-# Q2
-print('The test set is of type', test_images.__class__)
-print('The test set has', test_images.shape[0], 'samples.\n')
+#B. Validation Set
+print('The validation set is of type', val_images.__class__)
+print('The validation set has', val_images.shape[0], 'samples.\n')
 
-print('The number of labels in our test set and the number images in each class are:\n')
-print(np.unique(test_labels, return_counts=True))
+print('The number of labels in our validation set and the number images in each class are:\n')
+print(np.unique(val_labels, return_counts=True))
 ########################################################
 
-########################################################
-# Challenge Data Splitting Example
 
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(image_dataset, target, test_size=0.2, random_state=42, shuffle=True, stratify=target)
-
-########################################################
 

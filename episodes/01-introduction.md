@@ -53,17 +53,6 @@ Concept: Differentiation between traditional Machine Learning models and Deep Le
 **Deep neural networks** (constructed with multiple layers of neurons) are the extension of shallow models with three layers: input, hidden, and outputs layers. The hidden layer is where learning takes place. As a result, deep learning is best applied to large datasets for training and prediction. As observations and feature inputs decrease, shallow ML approaches begin to perform noticeably better. 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Preparing the code
-
-It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope that this code can be used as a "starting point".  We will be creating an "initial program" for this introduction chapter, that will be copied and used as a foundation for the rest of the episodes.
-
-The code that is being created will load the following libraries, so the program will be initialised with the following:
-
-```python
-# load the keras package, which includes the CIFAR-10 dataset, that will be used later.
-from tensorflow import keras
-import matplotlib.pyplot as plt
-```
 
 ## What is image classification?
 
@@ -97,7 +86,19 @@ Next we will need to divide the data into multiple sets. One of these will be us
 
 For this lesson, we will be using an existing image dataset known as CIFAR-10 that we will discuss in more depth in the next episode.
 
-### Load data
+#### Preparing the code
+
+It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope that this code can be used as a "starting point".  We will be creating an "initial program" for this introduction chapter, that will be copied and used as a foundation for the rest of the episodes.
+
+The code that is being created will load the following libraries, so the program will be initialised with the following:
+
+```python
+# load the keras package, which includes the CIFAR-10 dataset, that will be used later.
+from tensorflow import keras
+import matplotlib.pyplot as plt
+```
+
+#### Load data
 
 ```python
 # load the cifar dataset included with the keras packages
@@ -144,7 +145,7 @@ The labels are a set of single numbers denoting the class and we map the class n
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 ```
 
-### Visualize a subset of the CIFAR-10 dataset
+#### Visualize a subset of the CIFAR-10 dataset
 
 ```python
 # create a figure object and specify width, height in inches

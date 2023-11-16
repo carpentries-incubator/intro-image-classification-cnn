@@ -8,30 +8,36 @@ Created on Fri Jun 30 09:37:03 2023
 # load the required packages
 from tensorflow import keras
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 from icwithcnn_functions import prepare_image_icwithcnn # custom function
 import time
 
 start = time.time()
 
 # load the cifar dataset included with the keras library
-(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
+(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
 # normalize the RGB values to be between 0 and 1
 train_images = train_images / 255.0
-val_images = val_images / 255.0
+test_images = test_images / 255.0
 
 # create a list of classnames
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
 # one-hot encode labels
 train_labels = keras.utils.to_categorical(train_labels, len(class_names))
-val_labels = keras.utils.to_categorical(val_labels, len(class_names))
+test_labels = keras.utils.to_categorical(test_labels, len(class_names))
+
+# split the training data into training and validation sets
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
 
 ########################################################
 # Challenge: Examine the CIFAR-10 dataset
 
 print('Train: Images=%s, Labels=%s' % (train_images.shape, train_labels.shape))
 print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
+print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
+
 
 ########################################################
 

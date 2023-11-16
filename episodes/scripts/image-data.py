@@ -7,17 +7,13 @@ Episode 02 Introduction to Image Data
 from tensorflow import keras
 from keras.utils import img_to_array
 from keras.utils import load_img
-import os
 import numpy as np
 
 #### Pre-existing image data
 
 # load the CIFAR-10 dataset included with the keras packages
-(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
+(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
-# normalize the RGB values to be between 0 and 1
-train_images = train_images / 255.0
-val_images = val_images / 255.0
 
 #### Custom image data
 
@@ -56,54 +52,7 @@ new_img_arr_norm = new_img_arr / 255.0
 # extract the min, max, and mean pixel values AFTER
 print('After normalization, the min, max, and mean pixel values are', new_img_arr_norm.min(), ',', new_img_arr_norm.max(), ', and', new_img_arr_norm.mean().round(), 'respectively.')
 
-#### CINIC-10 Test Dataset Preparation
 
-# Load multiple images into single object to be able to process multiple images at the same time
-
-# main_directory/
-# ...class_a/
-# ......image_1.jpg
-# ......image_2.jpg
-# ...class_b/
-# ......image_1.jpg
-# ......image_2.jpg
-
-# set the mian directory  
-test_image_dir = 'D:/20230724_CINIC10/test_images'
-
-# make two lists of the subfolders (ie class or label) and filenames
-test_filenames = []
-test_labels = []
-
-for dn in os.listdir(test_image_dir):
-    
-    for fn in os.listdir(os.path.join(test_image_dir, dn)):
-        
-        test_filenames.append(fn)
-        test_labels.append(dn)
-
-# prepare the images
-# create an empty numpy array to hold the processed images
-test_images = np.empty((len(test_filenames), 32, 32, 3), dtype=np.float32)
-
-# use the dirnames and filenanes to process each 
-for i in range(len(test_filenames)):
-    
-    # set the path to the image
-    img_path = os.path.join(test_image_dir, test_labels[i], test_filenames[i])
-    
-    # load the image and resize at the same time
-    img = load_img(img_path, target_size=(32,32))
-    
-    # convert to an array
-    img_arr = img_to_array(img)
-    
-    # normalize
-    test_images[i] = img_arr/255.0
-
-print(test_images.shape)
-print(test_images.__class__)
-  
 ########################################################
 # Challenge TRAINING AND TEST SETS
 

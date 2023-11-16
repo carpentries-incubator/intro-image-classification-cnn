@@ -82,7 +82,7 @@ Next we need to identify what the inputs and outputs of the neural network will 
 ### Step 3. Prepare data
 Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data. Information on how this is done and what the data looks like will be explored in the next episode [Introduction to Image Data](episodes/02-image-data).
 
-For this lesson, we will use an existing image dataset known as CIFAR-10. We will introduce this dataset and the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training** and **validation** subsets; normalize the image pixel values to be between 0 and 1; and one-hot encode our image labels.
+For this lesson, we will use an existing image dataset known as CIFAR-10. We will introduce this dataset and the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalize the image pixel values to be between 0 and 1; and one-hot encode our image labels.
 
 #### Preparing the code
 
@@ -94,8 +94,8 @@ from tensorflow import keras # library for neural networks
 import matplotlib.pyplot as plt # library for plotting
 from icwithcnn_functions import prepare_image_icwithcnn # custom function
 
-# load the cifar dataset included with the keras library
-(train_images, train_labels), (val_images, val_labels) = keras.datasets.cifar10.load_data()
+# load the CIFAR-10 dataset included with the keras library
+(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
 # normalize the RGB values to be between 0 and 1
 train_images = train_images / 255.0
@@ -107,6 +107,10 @@ class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', '
 # one-hot encode labels
 train_labels = keras.utils.to_categorical(train_labels, len(class_names))
 val_labels = keras.utils.to_categorical(val_labels, len(class_names))
+
+# split the training data into training and validation sets
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
@@ -118,6 +122,8 @@ Explain the output of these commands?
 ```python
 print('Train: Images=%s, Labels=%s' % (train_images.shape, train_labels.shape))
 print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
+print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
+
 ```
 
 :::::::::::::::::::::::: solution 
@@ -127,10 +133,12 @@ print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
 ```output
 Train: Images=(50000, 32, 32, 3), Labels=(50000, 10)
 Validate: Images=(10000, 32, 32, 3), Labels=(10000, 10)
+Test: Images=(10000, 32, 32, 3), Labels=(10000, 10)
 ```
 The training set consists of 50000 images of 32x32 pixels and 3 channels (RGB values) and labels.
 
-The validation set consists of 10000 images of 32x32 pixels and 3 channels (RGB values) and labels.
+The validation and test datasets consist of 10000 images of 32x32 pixels and 3 channels (RGB values) and labels.
+
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -214,13 +222,13 @@ history_intro = model_intro.fit(train_images, train_labels, epochs = 10,
                                 batch_size=32)
 
 # save the model
-model_intro.save('fit_outputs/model_intro.h5')
+model_intro.save('fit_outputs/model_intro.keras')
 ```
 Your output will begin to print similar to the output below:
 ```output
 Epoch 1/10
 
-1563/1563 [==============================] - 5s 3ms/step - loss: 1.4011 - accuracy: 0.5046 - val_loss: 1.3644 - val_accuracy: 0.5243
+1250/1250 [==============================] - 15s 12ms/step - loss: 1.4651 - accuracy: 0.4738 - val_loss: 1.2736 - val_accuracy: 0.5507
 ```
 ::::::::::::::::::::::::::::::::::::::::: spoiler 
 
@@ -228,7 +236,7 @@ Epoch 1/10
 
 This output printed during the fit phase, i.e. training the model against known image labels, can be broken down as follows:
 
-- `Epoch` describes the number of full passes over all *training data*. In the output above there are **1563 training observations**. This number is calculated as the total number of images used as input divided by the batch size (50000/32). An epoch will conclude and move to the next epoch after a training pass over all 1563 observations.
+- `Epoch` describes the number of full passes over all *training data*. In the output above there are **1250 training observations**. This number is calculated as the total number of images used as input divided by the batch size (40000/32). An epoch will conclude and move to the next epoch after a training pass over all 1563 observations.
 
 - `loss` and `val_loss` can be considered as related. Where `loss` is a value the model will attempt to minimise, and is the distance between the true label of an image and the models prediction. Minimising this distance is where *learning* occurs to adjust weights and bias which reduce `loss`. On the other hand `val_loss` is a value calculated against the validation data and is a measurement of the models performance against **unseen data**. Both values are a summation of errors made for each example when fitting to the training or validation sets.
 

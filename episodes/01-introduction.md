@@ -221,8 +221,6 @@ history_intro = model_intro.fit(train_images, train_labels, epochs = 10,
                                 validation_data = (val_images, val_labels),
                                 batch_size=32)
 
-# save the model
-model_intro.save('fit_outputs/model_intro.keras')
 ```
 Your output will begin to print similar to the output below:
 ```output

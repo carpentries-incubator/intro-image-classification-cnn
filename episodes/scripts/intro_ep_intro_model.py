@@ -7,8 +7,8 @@ Created on Fri Jun 30 09:37:03 2023
 
 # load the required packages
 from tensorflow import keras
-import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 from icwithcnn_functions import prepare_image_icwithcnn # custom function
 import time
 
@@ -91,9 +91,6 @@ history_intro = model_intro.fit(train_images, train_labels,
                                 epochs = 10, 
                                 validation_data = (val_images, val_labels),
                                 batch_size=32)
-
-# save the model
-model_intro.save('fit_outputs/model_intro.keras')
 
 
 #### Perform a Prediction/Classification

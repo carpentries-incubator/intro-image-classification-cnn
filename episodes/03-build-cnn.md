@@ -18,12 +18,12 @@ exercises: 2
 
 - Understand how a convolutional neural network (CNN) differs from an artificial neural network (ANN)
 - Explain the terms: kernel, filter
-- Know the different layers: dense, convolutional, pooling, flatten
-- Explain what underfitting is; how you detect underfitting; and ways to address underfitting
+- Know the different layers: convolutional, pooling, flatten, dense
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Neural Networks
+
 A neural network is an artificial intelligence technique loosely based on the way neurons in the brain work. A neural network consists of connected computational units called neurons. Each neuron ...
 
 - has one or more inputs, e.g. input data expressed as floating point numbers
@@ -41,33 +41,35 @@ Multiple neurons can be joined together by connecting the output of one to the i
 
 Neural networks aren't a new technique, they have been around since the late 1940s. But until around 2010 neural networks tended to be quite small, consisting of only 10s or perhaps 100s of neurons. This limited them to only solving quite basic problems. Around 2010 improvements in computing power and the algorithms for training the networks made much larger and more powerful networks practical. These are known as deep neural networks or Deep Learning
 
-::::::::::::::::::::::::::::::::::::::::: callout
-Concept: Why deep learning is possible and what infrastructure is best suited to deep learning
-Systems with high quality GPUs and/or HPCs if available. [Comment: I feel this is important to note, in order to make it clear that anyone attempting to run neural networks on a standard laptop will quickly reach the upper limit of capacity. By setting this expectation clearly in the course, it could help prevent people from trying to do everything neural net related on their machines and becoming disenfranchise with ML as a result]
-:::::::::::::::::::::::::::::::::::::::::::::::::
-
 ## Convolutional Neural Networks
 
 A convolutional neural network (CNN) is a type of artificial neural network (ANN) that is most commonly applied to analyze visual imagery. They are designed to recognize the spatial structure of images when extracting features.
 
 ### Step 4. Build an architecture from scratch or choose a pretrained model
 
-Now we will build a neural network from scratch, and although this sounds like a daunting task, with Keras it is actually surprisingly straightforward. With Keras you compose a neural network by creating layers and linking them together.
+Let us look at how to build a neural network from scratch. Although this sounds like a daunting task, with Keras it is surprisingly straightforward. With Keras you compose a neural network by creating layers and linking them together.
 
 Let's look at our network from the introduction:
 
 ```
+# CNN Part 1
 # # CNN Part 1
 # # Input layer of 32x32 images with three channels (RGB)
 # inputs_intro = keras.Input(shape=train_images.shape[1:])
 
 # # CNN Part 2
-# # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-# x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)
-# # Second Convolutional layer
-# x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
+# # Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+# x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)
+# # Pooling layer with input window sized 2,2
+# x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+# # Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
+# x_intro = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_intro)
+# # Second Pooling layer with input window sized 2,2
+# x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
 # # Flatten layer to convert 2D feature maps into a 1D vector
 # x_intro = keras.layers.Flatten()(x_intro)
+# # Dense layer with 128 neurons and ReLU activation
+# x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
 
 # # CNN Part 3
 # # Output layer with 10 units (one for each class)
@@ -82,6 +84,8 @@ Here we can see there are three main components of a neural network:
 - CNN Part 2. Hidden Layers
 - CNN Part 3. Output Layer
 
+The output from each layer becomes the input to the next layer.
+
 #### CNN Part 1. Input Layer
 
 The Input in Keras gets special treatment when images are used. Keras automatically calculates the number of inputs and outputs a specific layer needs and therefore how many edges need to be created. This means we need to let Keras know how big our input is going to be. We do this by instantiating a `keras.Input` class and pass it a tuple that indicates the dimensionality of the input data.
@@ -93,47 +97,143 @@ In our case, the shape of an image is defined by its pixel dimensions and number
 print(train_images.shape)
 ```
 ```output
-(50000, 32, 32, 3) # number of images, image width in pixels, image height in pixels, number of channels (RGB)
+(40000, 32, 32, 3) # number of images, image width in pixels, image height in pixels, number of channels (RGB)
 ```
+
+The input layer is created with the `tf.keras.Input` function and its first parameter is the expected shape of the input. 
+
+Because the shape of our input dataset includes the total number of images, we want to take a slice of the shape related to an individual image, hence:
 
 ```
 # Input layer of 32x32 images with three channels (RGB)
 #inputs_intro = keras.Input(shape=train_images.shape[1:])
 ```
 
+
 #### CNN Part 2. Hidden Layers
 
-The next component consists of the so-called hidden layers of the network. The reason they are referred to as hidden is because the true values of their nodes are unknown - this is the black box. 
+The next component consists of the so-called hidden layers of the network. The reason they are referred to as hidden is because the true values of their nodes are unknown.
 
-In a CNN, the hidden layers typically consist of dense, convolutional, reshaping (e.g., Flatten), and pooling layers. Check out the [Layers API] section of the Keras documentation.
+In a CNN, the hidden layers typically consist of convolutional, pooling, reshaping (e.g., Flatten), and dense layers. 
+
+Check out the [Layers API] section of the Keras documentation for each layer type and its parameters.
+
+
+##### **Convolutional Layers**
+
+A **convolutional** layer is a fundamental building block in a CNN designed for processing structured grid data, such as images. It applies convolution operations to input data using learnable filters or kernels, extracting local patterns and features (e.g. edges, corners). These filters enable the network to capture hierarchical representations of visual information, allowing for effective feature learning.
+
+To find the particular features of an image, CNN's make use of a concept from image processing that precedes Deep Learning.
+
+A **convolution matrix**, or **kernel**, is a matrix transformation that we 'slide' over the image to calculate features at each position of the image. For each pixel, we calculate the matrix product between the kernel and the pixel with its surroundings. A kernel is typically small, between 3x3 and 7x7 pixels. We can for example think of the 3x3 kernel:
+
+```
+[[-1, -1, -1],
+ [0,   0,  0]
+ [1,   1,  1]]
+```
+This kernel will give a high value to a pixel if it is on a horizontal border between dark and light areas. Note that for RGB images, the kernel should also have a depth of 3, one for each colour channel.
+
+In the following image, we see the effect of such a kernel on the values of a single-channel image. The red cell in the output matrix is the result of multiplying and summing the values of the red square in the input, and the kernel. Applying this kernel to a real image shows that it indeed detects horizontal edges.
+
+![](fig/03_conv_matrix.png){alt=''}
+
+![](fig/03_conv_image.png){alt=''}
+
+Within our convolutional layer, the hidden units comprise multiple convolutional matrices, also known as kernels. The matrix values, serving as weights, are learned during the training process. The convolutional layer produces an 'image' for each kernel, representing the output derived by applying the kernel to each pixel.
+
+There are several types of convolutional layers available in Keras depending on your application. We use the two-dimensional layer typically used for images, `tf.keras.layers.Conv2D`.
+
+We define arguments for the number of filters, the kernel size, and the activation function.
+
+```
+# # Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+# x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)
+```
+
+The instantiation here has three parameters and a seemingly strange combination of parentheses, so let us take a closer look.
+
+- The first parameter is the number of filters we want in this layer and this is one of the hyperparameters of our system and needs to be chosen carefully. 
+
+The term *filter* in the context of CNN's is often used synonymously with kernel. However, a filter refers to the learned parameters (weights) that are applied during the convolution operation. For example, in a convolutional layer, you might have multiple filters (or kernels), each responsible for detecting different features in the input data. The parameter here specifies the number of output filters in the convolution.
+
+It's good practice to start with a relatively small number of filters in the first layer to prevent overfitting and choosing a number of filters as a power of 2 (e.g., 32, 64, 128) is common.
+
+- The second parameter is the kernel size which we already discussed. Smaller kernels are often used to capture fine-grained features and odd-sized filters are preferred because they have a centre pixel which helps maintain spatial symmetry during covolutions.
+
+- The third parameter is the activation function to use; here we choose **relu** which is 0 for inputs that are 0 and below and the identity function (returning the same value) for inputs above 0. This is a commonly used activation function in deep neural networks that is proven to work well. We will discuss activation functions later in **Step 9. Tune hyperparameters** but to satisfy your curiosity, `ReLU` stands for Rectified Linear Unit (ReLU).
+
+- Next we see an extra set of parenthenses with inputs in them, this means that after creating an instance of the Conv2D layer we call it as if it was a function. This tells the Conv2D layer to connect the layer passed as a parameter, in this case the inputs.
+
+- Finally, we store a reference so we can pass it to the next layer.
+
+
+:::::::::::::::::::::::::::::::::::::: callout
+
+## Playing with convolutions
+
+Convolutions applied to images can be hard to grasp at first. Fortunately, there are resources out there that enable users to interactively play around with images and convolutions:
+
+- [Image kernels explained] shows how different convolutions can achieve certain effects on an image, like sharpening and blurring.
+
+- The [convolutional neural network cheat sheet] shows animated examples of the different components of convolutional neural nets.
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+Border pixels
+
+What do you think happens to the border pixels when applying a convolution?
+
+:::::::::::::::::::::::: solution
+
+There are different ways of dealing with border pixels. You can ignore them, which means that your output image is slightly smaller then your input. It is also possible to 'pad' the borders, e.g. with the same value or with zeros, so that the convolution can also be applied to the border pixels. In that case, the output image will have the same size as the input image.
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+#### **Pooling Layers**
+
+The convolutional layers are often intertwined with **Pooling** layers. As opposed to the convolutional layer used in feature extraction, the pooling layer alters the dimensions of the image and reduces it by a scaling factor. It is basically decreasing the resolution of your picture. The rationale behind this is that higher layers of the network should focus on higher-level features of the image. By introducing a pooling layer, the subsequent convolutional layer has a broader 'view' on the original image.
+
+As we saw with convolutional layers, Keras offers several pooling layers and one used for images (2D spatial data) is the `tf.keras.layers.MaxPooling2D` class.
+
+```
+# # Pooling layer with input window sized 2,2
+# x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+```
+
+The instantiation here has a single parameter, pool_size.
+
+The function downsamples the input along its spatial dimensions (height and width) by taking the **maximum** value over an input window (of size defined by pool_size) for each channel of the input. By taking the maximum instead of the average, the most prominent features in the window are emphasized.
+
+A 2x2 pooling size reduces the width and height of the input by a factor of 2. Empirically, a 2x2 pooling size has been found to work well in various for image classification tasks and also strikes a balance between down-sampling for computational efficiency and retaining important spatial information.
+
+:::::::::::::::::::::::::::::::::::::: callout
+## Other types of data
+
+Convolutional and Pooling layers are also applicable to different types of data than image data. Whenever the data is ordered in a (spatial) dimension, and translation invariant features are expected to be useful, convolutions can be used. Think for example of time series data from an accelerometer, audio data for speech recognition, or 3d structures of chemical compounds.
+::::::::::::::::::::::::::::::::::::::::::::::
 
 ##### **Dense layers**
 
 A **dense** layer has a number of neurons, which is a parameter you can choose when you create the layer. When connecting the layer to its input and output layers every neuron in the dense layer gets an edge (i.e. connection) to **all** of the input neurons and **all** of the output neurons.
 
-- **Dense**: Just your regular densely-connected NN layer 
-- defined by the keras.layers.Dense class
-
 ![](fig/03-neural_network_sketch_dense.png){alt=''}
 
-This layer is called fully connected, because all input neurons are taken into account by each output neuron. The number of parameters that need to be learned by the network is thus in the order of magnitude of the number of input neurons times the number of hidden neurons.
+This layer is called fully connected, because all input neurons are taken into account by each output neuron. It aggregates global information about the features learned in previous layers to make a decision about the class of the input.
 
-##### **Convolutional Layers**
+In Keras, a regular densely-connected NN layer is defined by the `tf.keras.layers.Dense` class.
 
-A **convolutional** layer transforms the input image in order to extract features from it. 
-
-- **Conv2D**: 2D convolution layer (e.g. spatial convolution over images) 
-- defined by the keras.layers.Conv2D class
-
-With image classification, note that our input dimension is now quite high (even with small pictures of 32x32 pixels), we have:
-
-```python
-dim = train_images.shape[1] * train_images.shape[2] * train_images.shape[3]
-print(dim)
 ```
-```output
-3072
+# # Dense layer with 128 neurons and ReLU activation
+# x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
 ```
+
+This instantiation has two parameters: the number of neurons and the activation function as we saw in the convolutional layer.
+
+The choice of how many neurons to specify is often determined through experimentation and can impact the performance of our CNN. Too few neurons may not capture complex patterns in the data but too many neurons may lead to overfitting. 
+
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -179,65 +279,17 @@ Non-trainable params: 0
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-We can decrease the number of units in our hidden layer, but this also decreases the number of patterns our network can remember. Moreover, if we increase the image size, the number of weights will ‘explode’, even though the task of recognizing large images is not necessarily more difficult than the task of recognizing small images.
 
-The solution is that we make the network learn in a ‘smart’ way. The features that we learn should be similar both for small and large images, and similar features (e.g. edges, corners) can appear anywhere in the image (in mathematical terms: translation invariant). We do this by making use of a concepts from image processing that precede Deep Learning.
+##### **Reshaping Layers: Flatten**
 
-A **convolution matrix**, or **kernel**, is a matrix transformation that we 'slide' over the image to calculate features at each position of the image. For each pixel, we calculate the matrix product between the kernel and the pixel with its surroundings. A kernel is typically small, between 3x3 and 7x7 pixels. We can for example think of the 3x3 kernel:
+The next type of hidden layer used in our introductory model is a type of reshaping layer defined in Keras by the `tf.keras.layers.Flatten` class. It is necessary when transitioning from convolutional and pooling layers to fully connected layers.
 
 ```
-[[-1, -1, -1],
- [0,   0,  0]
- [1,   1,  1]]
+# # Flatten layer to convert 2D feature maps into a 1D vector
+# x_intro = keras.layers.Flatten()(x_intro)
 ```
-This kernel will give a high value to a pixel if it is on a horizontal border between dark and light areas. Note that for RGB images, the kernel should also have a depth of 3.
 
-In the following image, we see the effect of such a kernel on the values of a single-channel image. The red cell in the output matrix is the result of multiplying and summing the values of the red square in the input, and the kernel. Applying this kernel to a real image shows that it indeed detects horizontal edges.
-
-![](fig/03_conv_matrix.png){alt=''}
-
-![](fig/03_conv_image.png){alt=''}
-
-In our convolutional layer our hidden units are a number of convolutional matrices (or kernels), where the values of the matrices are the weights that we learn in the training process. The output of a convolutional layer is an 'image' for each of the kernels, that gives the output of the kernel applied to each pixel.
-
-:::::::::::::::::::::::::::::::::::::: callout
-
-## Playing with convolutions
-
-Convolutions applied to images can be hard to grasp at first. Fortunately, there are resources out there that enable users to interactively play around with images and convolutions:
-
-- [Image kernels explained] shows how different convolutions can achieve certain effects on an image, like sharpening and blurring.
-
-- The [convolutional neural network cheat sheet] shows animated examples of the different components of convolutional neural nets.
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-Border pixels
-
-What do you think happens to the border pixels when applying a convolution?
-
-:::::::::::::::::::::::: solution
-
-There are different ways of dealing with border pixels. You can ignore them, which means that your output image is slightly smaller then your input. It is also possible to 'pad' the borders, e.g. with the same value or with zeros, so that the convolution can also be applied to the border pixels. In that case, the output image will have the same size as the input image.
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-Number of model parameters
-
-Suppose we apply a convolutional layer with 100 kernels of size 3 * 3 * 3 (the last dimension applies to the rgb channels) to our images of 32 * 32 * 3 pixels. How many parameters do we have? Assume, for simplicity, that the kernels do not use bias terms. Compare this to the answer of the previous 'Number of parameters' challenge.
-
-:::::::::::::::::::::::: solution
-
-We have 100 matrices with 3 * 3 * 3 = 27 values each so that gives 27 * 100 = 2700 weights. This is a magnitude of 100 less than the fully connected layer with 100 units! Nevertheless, as we will see, convolutional networks work very well for image data. This illustrates the expressiveness of convolutional layers.
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-##### **Shaping Layers: Flatten**
-
-The third type of hidden layer used in our introductory model is a **Flatten** layer. Let's hold off on discussion this for just a moment.
+The **Flatten** layer converts the output of the previous layer into a single one-dimensional vector that can be used as input for a dense layer.
 
 
 #### CNN Part 3. Output Layer
@@ -245,361 +297,97 @@ The third type of hidden layer used in our introductory model is a **Flatten** l
 Recall for the outputs we will need to look at what we want to identify from the data. If we are performing a classification problem then typically we will have one output for each potential class. We need to finish with a Dense layer to connect the output cells of the convolutional layer to the outputs for our 10 classes.
 
 ```
-# Output layer with 10 units (one for each class)
-#outputs = keras.layers.Dense(10)(x)
+# # Output layer with 10 units (one for each class)
+# outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro))
 ```
+
 
 ## Putting it all together
 
-So let us look again at the small network used in our introduction:
-
 ```python
+#### Define the Model
+
+# CNN Part 1
 # Input layer of 32x32 images with three channels (RGB)
 inputs_intro = keras.Input(shape=train_images.shape[1:])
 
-# Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)
-# Second Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
+# CNN Part 2
+# Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)
+# Pooling layer with input window sized 2,2
+x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+# Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_intro)
+# Second Pooling layer with input window sized 2,2
+x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
 # Flatten layer to convert 2D feature maps into a 1D vector
 x_intro = keras.layers.Flatten()(x_intro)
+# Dense layer with 128 neurons and ReLU activation
+x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
 
+# CNN Part 3
 # Output layer with 10 units (one for each class)
-outputs_intro = keras.layers.Dense(10)(x_intro)
+outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 
 # create the model
 model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
-```
 
-We first store a reference to the input class in a variable 'inputs_intro' so we can pass it to the creation of our first hidden layer. Creating the convolutional layers can then be done as follows:
-
-```
-#x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_intro)
-```
-
-The instantiation here has 3 parameters and a seemingly strange combination of parentheses, so let us take a closer look.
-
-- The first parameter 50 is the number of neurons we want in this layer, this is one of the hyperparameters of our system and needs to be chosen carefully.
-
-- The second parameter is the kernel size.
-
-- The third parameter is the activation function to use; here we choose **relu** which is 0 for inputs that are 0 and below and the identity function (returning the same value) for inputs above 0. This is a commonly used activation function in deep neural networks that is proven to work well. We will discuss activation functions later in **Step 9. Tune hyperparameters**.
-
-- Next we see an extra set of parenthenses with inputs in them, this means that after creating an instance of the Conv2D layer we call it as if it was a function. This tells the Conv2D layer to connect the layer passed as a parameter, in this case the inputs.
-
-- Finally we store a reference so we can pass it to the next layer.
-
-Adding a second Conv2D layer we use the same arguments but change the input to be the output of the first Conv2D layer.
-
-```
-#x_intro = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_intro)
-```
-
-Now let's take a closer look at that **Flatten** layer: 
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-Flatten
-
-Inspect the network above:
-
-- What do you think is the function of the Flatten layer?
-- Which layer has the most parameters? Do you find this intuitive?
-
-
-:::::::::::::::::::::::: solution
-```python
+# view the model summary
 model_intro.summary()
+
 ```
 ```output
 Model: "cifar_model_intro"
 _________________________________________________________________
  Layer (type)                Output Shape              Param #   
 =================================================================
- input_2 (InputLayer)        [(None, 32, 32, 3)]       0         
-                                                                 
- conv2d (Conv2D)             (None, 30, 30, 50)        1400      
-                                                                 
- conv2d_1 (Conv2D)           (None, 28, 28, 50)        22550     
-                                                                 
- flatten (Flatten)           (None, 39200)             0         
-                                                                 
- dense_1 (Dense)             (None, 10)                392010    
-                                                                 
-=================================================================
-Total params: 415,960
-Trainable params: 415,960
-Non-trainable params: 0
-_________________________________________________________________
-```
-
-- The Flatten layer converts the 28x28x50 output of the convolutional layer into a single one-dimensional vector, that can be used as input for a dense layer.
-
-- The last dense layer has the most parameters. This layer connects every single output 'pixel' from the convolutional layer to the 10 output classes. That results in a large number of connections, so a large number of parameters. This undermines a bit the expressiveness of the convolutional layers that have much fewer parameters.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-- **Flatten**: Flattens the input. Does not affect the batch size
-- defined by the keras.layers.Flatten class
-
-## We have a model now what?
-
-This minimal CNN should be able to run with the CIFAR-10 dataset and provide reasonable results for basic classification tasks. However, do keep in mind that this model is relatively simple, and its performance may not be as high as more complex architectures. The reason it's called deep learning is because in most cases, the more layers we have, ie, the deeper and more sophisticated CNN architecture we use, the better the performance.
-
-How can we tell? We can look at a couple metrics during the training process to detect whether our model is underfitting or overfitting. To do that, we first need to continue with the next steps in our Deep Learning workflow, **Step 5. Choose a loss function and optimizer** and **Step 6. Train model**. We will go into more details of these steps in the next episode, but for now we just need to run this code to create and access the training history:
-
-```
-#model_intro.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-     metrics = ['accuracy'])
-#history_intro = model_intro.fit(train_images, train_labels, epochs=10, 
-     validation_data=(val_images, val_labels))
-```
-
-#### Monitor Training Progress (aka Model Evaluation during Training)
-
-It can be very insightful to plot the training loss to see how the training progresses. 
-
-Using seaborn we can plot the training process using the history:
-
-```python
-import seaborn as sns
-import pandas as pd
-
-# convert the history to a dataframe for plotting 
-history_intro_df = pd.DataFrame.from_dict(history_intro.history)
-
-# plot the loss and accuracy from the training process
-fig, axes = plt.subplots(1, 2)
-fig.suptitle('cifar_model_intro')
-sns.lineplot(ax=axes[0], data=history_intro_df[['loss', 'val_loss']])
-sns.lineplot(ax=axes[1], data=history_intro_df[['accuracy', 'val_accuracy']])
-```
-
-![](fig/03_model_intro_accuracy_loss.png){alt=''}
-
-This plot can be used to identify whether the training is well configured or whether there are problems that need to be addressed. When your validation loss is decreasing, the model is underfit. Underfitting occurs when the model is too simple or lacks the capacity to capture the underlying patterns and relationships present in the data. As a result, the model's predictions are not accurate, and it fails to generalize well to unseen data.
-
-Key characteristics of an underfit model include:
-
-- Low Validation Accuracy: This indicates that the model is not learning from the data effectively.
-
-- Large Training Loss: The training loss (error) is high, indicating that the model's predictions are far from the true labels in the training set.
-
-How to Address Underfitting:
-
-- Increase the model's complexity by adding more layers or units to the existing layers.
-- Train the model for more epochs to give it more time to learn from the data.
-- Perform data augmentation or feature engineering to provide the model with more informative input features.
-
-Given we intentionally started with a shallow model, let's try adding more layers! Now is a good time to discuss the pooling layer.
-
-
-#### **Pooling Layers**
-
-Often in convolutional neural networks, the convolutional layers are intertwined with **Pooling** layers. As opposed to the convolutional layer, the pooling layer actually alters the dimensions of the image and reduces it by a scaling factor. It is basically decreasing the resolution of your picture. The rationale behind this is that higher layers of the network should focus on higher-level features of the image. By introducing a pooling layer, the subsequent convolutional layer has a broader 'view' on the original image.
-
-- **MaxPooling2D**: Max pooling operation for 2D spatial data 
-- defined by the keras.layers.MaxPooling2D class
-
-Let us create a new model that includes a pooling layer after each Conv2D layer.
-
-```
-# pooling layer
-#x_pool = keras.layers.MaxPooling2D((2, 2))(x_pool)
-```
-
-The instantiation here has a single parameter, pool_size.
-
-- The function downsamples the input along its spatial dimensions (height and width) by taking the maximum value over an input window (of size defined by pool_size) for each channel of the input.
-
-- The resulting output, when using the default "valid" padding option, has a spatial shape (number of rows or columns) of:
-![](fig/03_shape_equation.png){alt=''}
-
-- And again we store a reference so we can pass it to the next layer.
-
-Let us also add a second set of convolutional and pooling layers before flattening the result and passing it to an additional dense layer. 
-
-```
-# dense layer
-#x_pool = keras.layers.Dense(50, activation='relu')(x_pool)
-```
-
-Notice the instantiation of this Dense layer is slightly different from the one used as our output layer. This one has 2 parameters, the number of neurons and what is called the activation function. We will look at these activation functions in a later episode.
-
-We then add our final output layer and reassemble, compile, and train the deeper model with pooling.
-
-Putting it all together:
-
-```python
-# define the inputs, layers, and outputs of a cnn model with pooling
-
-# CNN Part 1
-# Input layer of 32x32 images with three channels (RGB)
-inputs_pool = keras.Input(shape=train_images.shape[1:])
-
-# CNN Part 2
-# Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-x_pool = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_pool)
-# Pooling layer with input window sized 2,2
-x_pool = keras.layers.MaxPooling2D((2, 2))(x_pool)
-# Second Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-x_pool = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_pool)
-# Second Pooling layer with input window sized 2,2
-x_pool = keras.layers.MaxPooling2D((2, 2))(x_pool)
-# Flatten layer to convert 2D feature maps into a 1D vector
-x_pool = keras.layers.Flatten()(x_pool)
-# Dense layer
-x_pool = keras.layers.Dense(50, activation='relu')(x_pool)
-
-# CNN Part 3
-# Output layer with 10 units (one for each class)
-outputs_pool = keras.layers.Dense(10)(x_pool)
-
-# create the pooling model
-model_pool = keras.Model(inputs=inputs_pool, outputs=outputs_pool, name="cifar_model_pool")
-
-model_pool.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), 
-    metrics = ['accuracy'])
-
-history_pool = model_pool.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
-
-model_pool.summary()
-
-# save pool model
-model_pool.save('fit_outputs/model_pool.h5')
-
-```
-```output
-Model: "cifar_model_pool"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
  input_1 (InputLayer)        [(None, 32, 32, 3)]       0         
                                                                  
- conv2d (Conv2D)             (None, 30, 30, 50)        1400      
+ conv2d (Conv2D)             (None, 30, 30, 32)        896       
                                                                  
- max_pooling2d (MaxPooling2D  (None, 15, 15, 50)       0         
- )                                                               
+ max_pooling2d (MaxPooling2  (None, 15, 15, 32)        0         
+ D)                                                              
                                                                  
- conv2d_1 (Conv2D)           (None, 13, 13, 50)        22550     
+ conv2d_1 (Conv2D)           (None, 13, 13, 64)        18496     
                                                                  
- max_pooling2d_1 (MaxPooling  (None, 6, 6, 50)         0         
- 2D)                                                             
+ max_pooling2d_1 (MaxPoolin  (None, 6, 6, 64)          0         
+ g2D)                                                            
                                                                  
- flatten (Flatten)           (None, 1800)              0         
+ flatten (Flatten)           (None, 2304)              0         
                                                                  
- dense (Dense)               (None, 50)                90050     
+ dense (Dense)               (None, 128)               295040    
                                                                  
- dense_1 (Dense)             (None, 10)                510       
+ dense_1 (Dense)             (None, 10)                1290      
                                                                  
 =================================================================
-Total params: 114,510
-Trainable params: 114,510
-Non-trainable params: 0
+Total params: 315722 (1.20 MB)
+Trainable params: 315722 (1.20 MB)
+Non-trainable params: 0 (0.00 Byte)
 _________________________________________________________________
 ```
 
 :::::::::::::::::::::::::::::::::::::: callout
 ## How to choose an architecture?
-Even for this neural network, we had to make a choice on the number of hidden neurons. Other choices to be made are the number of layers and type of layers (as we will see later). You might wonder how you should make these architectural choices. Unfortunately, there are no clear rules to follow here, and it often boils down to a lot of trial and error. However, it is recommended to look what others have done with similar datasets and problems. Another best practice is to start with a relatively simple architecture. Once running start to add layers and tweak the network to see if performance increases. 
+
+Even for this neural network, we had to make a choice on the number of hidden neurons. Other choices to be made are the number of layers and type of layers. You might wonder how you should make these architectural choices. Unfortunately, there are no clear rules to follow here, and it often boils down to a lot of trial and error. However, it is recommended to look what others have done with similar datasets and problems. Another best practice is to start with a relatively simple architecture. Once running start to add layers and tweak the network to see if performance increases. 
 ::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: challenge 
+## We have a model now what?
 
-Network depth
+This CNN should be able to run with the CIFAR-10 dataset and provide reasonable results for basic classification tasks. However, do keep in mind that this model is relatively simple, and its performance may not be as high as more complex architectures. The reason it's called deep learning is because in most cases, the more layers we have, ie, the deeper and more sophisticated CNN architecture we use, the better the performance.
 
-What, do you think, will be the effect of adding a convolutional layer to your model? Will this model have more or fewer parameters? Try it out. Create a model that has an additional Conv2d layer with 50 filters after the last MaxPooling2D layer. Train it for 20 epochs and plot the results.
-
-**HINT**: The model definition that we used previously needs to be adjusted as follows:
-
-```python
-inputs_cnd = keras.Input(shape=train_images.shape[1:])
-x_cnd = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_cnd)
-x_cnd = keras.layers.MaxPooling2D((2, 2))(x_cnd)
-x_cnd = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_cnd)
-x_cnd = keras.layers.MaxPooling2D((2, 2))(x_cnd)
-# Add your extra layer here
-x_cnd = keras.layers.Flatten()(x_cnd)
-x_cnd = keras.layers.Dense(50, activation='relu')(x_cnd)
-outputs_cnd = keras.layers.Dense(10)(x_cnd)
-```
-
-:::::::::::::::::::::::: solution 
-
-```output
-inputs_cnd = keras.Input(shape=train_images.shape[1:])
-x_cnd = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_cnd)
-x_cnd = keras.layers.MaxPooling2D((2, 2))(x_cnd)
-x_cnd = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_cnd)
-x_cnd = keras.layers.MaxPooling2D((2, 2))(x_cnd)
-x_cnd = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_cnd)
-x_cnd = keras.layers.Flatten()(x_cnd)
-x_cnd = keras.layers.Dense(50, activation='relu')(x_cnd)
-outputs_cnd = keras.layers.Dense(10)(x_cnd)
-
-model_cnd = keras.Model(inputs=inputs_cnd, outputs=outputs_cnd, name="cifar_model_Challenge_network_depth")
-```
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-With the model defined above, we can inspect the number of parameters:
-
-```python
-model_cnd.summary()
-```
-
-```output
-Model: "cifar_model_Challenge_network_depth"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #
-=================================================================
- input_7 (InputLayer)        [(None, 32, 32, 3)]       0
-
- conv2d_16 (Conv2D)          (None, 30, 30, 50)        1400
-
- max_pooling2d_10 (MaxPoolin  (None, 15, 15, 50)       0
- g2D)
-
- conv2d_17 (Conv2D)          (None, 13, 13, 50)        22550
-
- max_pooling2d_11 (MaxPoolin  (None, 6, 6, 50)         0
- g2D)
-
- conv2d_18 (Conv2D)          (None, 4, 4, 50)          22550
-
- flatten_6 (Flatten)         (None, 800)               0
-
- dense_11 (Dense)            (None, 50)                40050
-
- dense_12 (Dense)            (None, 10)                510
-
-=================================================================
-Total params: 87,060
-Trainable params: 87,060
-Non-trainable params: 0
-_________________________________________________________________
-```
-
-The number of parameters has decreased by adding this layer. We can see that the conv layer decreases the resolution from 6x6 to 4x4, as a result, the input of the Dense layer is smaller than in the previous network.
-
-:::::::::::::::::::::::::::::::::::::: callout
-## Other types of data
-
-Convolutional and Pooling layers are also applicable to different types of data than image data. Whenever the data is ordered in a (spatial) dimension, and translation invariant features are expected to be useful, convolutions can be used. Think for example of time series data from an accelerometer, audio data for speech recognition, or 3d structures of chemical compounds.
-::::::::::::::::::::::::::::::::::::::::::::::
-
-Adding more layers to our model should increase the accuracy of its predictions. But before we look at the training metrics for our pooling model, let's take a step back and discuss in more detail **Step 5. Choose a loss function and optimizer** and **Step 6. Train model**.
+How can we tell? We can look at a couple metrics during the training process to detect whether our model is underfitting or overfitting. To do that, we first need to continue with the next steps in our Deep Learning workflow, **Step 5. Choose a loss function and optimizer** and **Step 6. Train model**. 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 - Artificial neural networks (ANN) are a machine learning technique based on a model inspired by groups of neurons in the brain.
 - Convolution neural networks (CNN) are a type of ANN designed for image classification and object detection
 - The filter size determines the size of the receptive field where information is extracted and the kernel size changes the mathematical structure
-- A CNN can consist of many types of layers including dense (fully connected), convolutional, pooling, and flatten layers
-- Convolutional layers make efficient reuse of model parameters.
-- Pooling layers decrease the resolution of your input
+- A CNN can consist of many types of layers including convolutional, pooling, flatten, and dense (fully connected) layers
+- Convolutional layers are responsible for learning features from the input data
+- Pooling layers are often used to reduce the spatial dimensions of the data
+- The flatten layer is used to convert the multi-dimensional output of the convolutional and pooling layers into a flat vector
+- Dense layers are responsible for combining features learned by the previous layers to perform the final classification
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

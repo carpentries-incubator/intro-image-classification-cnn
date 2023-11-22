@@ -348,10 +348,16 @@ image classification and object detection</li>
 <li>The filter size determines the size of the receptive field where
 information is extracted and the kernel size changes the mathematical
 structure</li>
-<li>A CNN can consist of many types of layers including dense (fully
-connected), convolutional, pooling, and flatten layers</li>
-<li>Convolutional layers make efficient reuse of model parameters.</li>
-<li>Pooling layers decrease the resolution of your input</li>
+<li>A CNN can consist of many types of layers including convolutional,
+pooling, flatten, and dense (fully connected) layers</li>
+<li>Convolutional layers are responsible for learning features from the
+input data</li>
+<li>Pooling layers are often used to reduce the spatial dimensions of
+the data</li>
+<li>The flatten layer is used to convert the multi-dimensional output of
+the convolutional and pooling layers into a flat vector</li>
+<li>Dense layers are responsible for combining features learned by the
+previous layers to perform the final classification</li>
 </ul></section><section id="04-fit-cnn"><h2 class="section-heading"><a href="04-fit-cnn.html">Compile and Train a Convolutional Neural Network</a></h2>
 <hr class="half-width">
 <ul>
@@ -432,8 +438,8 @@ deep learning tasks</li>
   "url": "https://.github.io/github.com/instructor/key-points.html",
   "identifier": "https://.github.io/github.com/instructor/key-points.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-11-21",
-  "datePublished": "2023-11-21"
+  "dateModified": "2023-11-22",
+  "datePublished": "2023-11-22"
 }
 
   </script><script>

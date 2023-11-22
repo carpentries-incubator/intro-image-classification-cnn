@@ -177,21 +177,21 @@ Here we present an initial model that will be explained in detail later on:
 inputs_intro = keras.Input(shape=train_images.shape[1:])
 
 # CNN Part 2
-# Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)
+# Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
 # Pooling layer with input window sized 2,2
 x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
-# Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_intro)
+# Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
 # Second Pooling layer with input window sized 2,2
 x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
 # Flatten layer to convert 2D feature maps into a 1D vector
 x_intro = keras.layers.Flatten()(x_intro)
-# Dense layer with 128 neurons and ReLU activation
-x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
+# Dense layer with 64 neurons and ReLU activation
+x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
 
 # CNN Part 3
-# Output layer with 10 units (one for each class)
+# Output layer with 10 units (one for each class) and softmax activation
 outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 
 # create the model
@@ -275,7 +275,7 @@ If you are finding significant differences in the model predictions, this could 
 
 Congratulations, you just created your first image classification model and used it to classify an image! 
 
-Unfortunately the classification was incorrect. Why might that be?  and  What can we do about? 
+Unfortunately the classification was incorrect. Why might that be? and What can we do about? 
 
 There are many ways we can try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
 

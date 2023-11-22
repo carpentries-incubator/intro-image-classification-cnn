@@ -39,21 +39,21 @@ train_images, val_images, train_labels, val_labels = train_test_split(train_imag
 # inputs_intro = keras.Input(shape=train_images.shape[1:])
 
 # # CNN Part 2
-# # Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-# x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)
+# # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+# x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
 # # Pooling layer with input window sized 2,2
 # x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
-# # Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-# x_intro = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_intro)
+# # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+# x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
 # # Second Pooling layer with input window sized 2,2
 # x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
 # # Flatten layer to convert 2D feature maps into a 1D vector
 # x_intro = keras.layers.Flatten()(x_intro)
-# # Dense layer with 128 neurons and ReLU activation
-# x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
+# # Dense layer with 64 neurons and ReLU activation
+# x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
 
 # # CNN Part 3
-# # Output layer with 10 units (one for each class)
+# # Output layer with 10 units (one for each class) and softmax activation
 # outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 
 # recall the shape of the images in our dataset
@@ -73,21 +73,21 @@ print(dim)
 inputs_intro = keras.Input(shape=train_images.shape[1:])
 
 # CNN Part 2
-# Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)
+# Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
 # Pooling layer with input window sized 2,2
 x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
-# Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_intro)
+# Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
 # Second Pooling layer with input window sized 2,2
 x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
 # Flatten layer to convert 2D feature maps into a 1D vector
 x_intro = keras.layers.Flatten()(x_intro)
-# Dense layer with 128 neurons and ReLU activation
-x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
+# Dense layer with 64 neurons and ReLU activation
+x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
 
 # CNN Part 3
-# Output layer with 10 units (one for each class)
+# Output layer with 10 units (one for each class) and softmax activation
 outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 
 # create the model
@@ -112,7 +112,7 @@ model_intro.compile(optimizer = 'adam',
 history_intro = model_intro.fit(train_images, train_labels, 
                                 epochs = 10, 
                                 validation_data = (val_images, val_labels),
-                                batch_size=32)
+                                batch_size = 32)
 
 # save the model
 model_intro.save('fit_outputs/model_intro.keras')
@@ -123,17 +123,72 @@ history_intro_df = pd.DataFrame.from_dict(history_intro.history)
 
 # plot the loss and accuracy from the training process
 fig, axes = plt.subplots(1, 2)
-fig.suptitle('cifar_model_pool')
+fig.suptitle('cifar_model_intro')
 sns.lineplot(ax=axes[0], data=history_intro_df[['loss', 'val_loss']])
 sns.lineplot(ax=axes[1], data=history_intro_df[['accuracy', 'val_accuracy']])
 
-end = time.time()
+## Dropout
+
+# Input layer of 32x32 images with three channels (RGB)
+inputs_dropout = keras.Input(shape=train_images.shape[1:])
+
+# CNN Part 2
+# Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+x_dropout = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_dropout)
+# Pooling layer with input window sized 2,2
+x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
+# Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+x_dropout = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_dropout)
+# Second Pooling layer with input window sized 2,2
+x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
+# Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
+x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout)
+# Dropout layer andomly drops 60% of the input units
+x_dropout = keras.layers.Dropout(0.6)(x_dropout) # This is new!
+# Flatten layer to convert 2D feature maps into a 1D vector
+x_dropout = keras.layers.Flatten()(x_dropout)
+# Dense layer with 128 neurons and ReLU activation
+x_dropout = keras.layers.Dense(128, activation='relu')(x_dropout)
+
+# CNN Part 3
+# Output layer with 10 units (one for each class) and softmax activation
+outputs_dropout = keras.layers.Dense(10, activation='softmax')(x_dropout)
+
+# create the dropout model
+model_dropout = keras.Model(inputs=inputs_dropout, outputs=outputs_dropout, name="cifar_model_dropout")
+
+model_dropout.summary()
+
+########################################################
+# Challenge Compile, Fit, and Evaulate Dropout Model
+
+# compile the dropout model
+model_dropout.compile(optimizer = 'adam',
+              loss = keras.losses.CategoricalCrossentropy(),
+              metrics = ['accuracy'])
+
+# fit the dropout model
+history_dropout = model_dropout.fit(train_images, train_labels, 
+                                    epochs=10,
+                                    validation_data=(val_images, val_labels),
+                                    batch_size = 32)
+
+# save dropout model
+model_dropout.save('fit_outputs/model_dropout.h5')
+
+# inspect the training results
+
+# convert the history to a dataframe for plotting 
+history_dropout_df = pd.DataFrame.from_dict(history_dropout.history)
+
+# plot the loss and accuracy from the training process
+fig, axes = plt.subplots(1, 2)
+fig.suptitle('cifar_model_dropout')
+sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
+sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
+
+########################################################
 
 print()
 print()
 print("Time taken to run program was:", end - start, "seconds")
-
-
-# Evaluate the model
-test_loss, test_acc = model_intro.evaluate(val_images, val_labels)
-print(f"Test Accuracy: {test_acc * 100:.2f}%")

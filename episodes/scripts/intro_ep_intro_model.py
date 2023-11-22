@@ -38,7 +38,6 @@ print('Train: Images=%s, Labels=%s' % (train_images.shape, train_labels.shape))
 print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
 print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
 
-
 ########################################################
 
 #### Visualize a subset of the CIFAR-10 dataset
@@ -61,21 +60,21 @@ plt.show()
 inputs_intro = keras.Input(shape=train_images.shape[1:])
 
 # CNN Part 2
-# Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)
+# Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
 # Pooling layer with input window sized 2,2
 x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
-# Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_intro)
+# Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
 # Second Pooling layer with input window sized 2,2
 x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
 # Flatten layer to convert 2D feature maps into a 1D vector
 x_intro = keras.layers.Flatten()(x_intro)
-# Dense layer with 128 neurons and ReLU activation
-x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
+# Dense layer with 64 neurons and ReLU activation
+x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
 
 # CNN Part 3
-# Output layer with 10 units (one for each class)
+# Output layer with 10 units (one for each class) and softmax activation
 outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 
 # create the model
@@ -90,7 +89,7 @@ model_intro.compile(optimizer = 'adam',
 history_intro = model_intro.fit(train_images, train_labels, 
                                 epochs = 10, 
                                 validation_data = (val_images, val_labels),
-                                batch_size=32)
+                                batch_size = 32)
 
 
 #### Perform a Prediction/Classification

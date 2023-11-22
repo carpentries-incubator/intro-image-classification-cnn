@@ -52,7 +52,6 @@ Let us look at how to build a neural network from scratch. Although this sounds 
 Let's look at our network from the introduction:
 
 ```
-# CNN Part 1
 # # CNN Part 1
 # # Input layer of 32x32 images with three channels (RGB)
 # inputs_intro = keras.Input(shape=train_images.shape[1:])
@@ -155,7 +154,7 @@ The instantiation here has three parameters and a seemingly strange combination 
 
 - The first parameter is the number of filters we want in this layer and this is one of the hyperparameters of our system and needs to be chosen carefully. 
 
-The term *filter* in the context of CNN's is often used synonymously with kernel. However, a filter refers to the learned parameters (weights) that are applied during the convolution operation. For example, in a convolutional layer, you might have multiple filters (or kernels), each responsible for detecting different features in the input data. The parameter here specifies the number of output filters in the convolution.
+The term **filter** in the context of CNN's is often used synonymously with kernel. However, a filter refers to the learned parameters (weights) that are applied during the convolution operation. For example, in a convolutional layer, you might have multiple filters (or kernels), each responsible for detecting different features in the input data. The parameter here specifies the number of output filters in the convolution.
 
 It's good practice to start with a relatively small number of filters in the first layer to prevent overfitting and choosing a number of filters as a power of 2 (e.g., 32, 64, 128) is common.
 
@@ -296,6 +295,8 @@ The **Flatten** layer converts the output of the previous layer into a single on
 #### CNN Part 3. Output Layer
 
 Recall for the outputs we will need to look at what we want to identify from the data. If we are performing a classification problem then typically we will have one output for each potential class. We need to finish with a Dense layer to connect the output cells of the convolutional layer to the outputs for our 10 classes.
+
+Note the use of `softmax` activation for this Dense layer as opposed to the `ReLU` activation used above. We use softmax for multiclass data because it helps the computer give each option (class) a likelihood score, and the scores add up to 100%. This way, it's easier to pick the one the computer thinks is most probable.
 
 ```
 # # Output layer with 10 units (one for each class) and softmax activation

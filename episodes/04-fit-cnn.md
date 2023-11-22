@@ -34,10 +34,10 @@ We now need to select an appropriate optimizer and loss function that we will us
 
 Recall how we compiled our model in the introduction:
 ```
-# compile the pooling model
-#model_pool.compile(optimizer = 'adam', 
-#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               
-#              metrics = ['accuracy'])
+## compile the model
+#model_intro.compile(optimizer = 'adam', 
+#                    loss = keras.losses.CategoricalCrossentropy(), 
+#                    metrics = ['accuracy'])
 ```              
 
 #### Loss function
@@ -46,45 +46,15 @@ The **loss function** tells the training algorithm how wrong, or how 'far away' 
 
 **Loss for classification**
 
-For classification purposes, there are a number of probabilistic losses to choose from. We chose `SparseCategoricalCrossentropy` because we want to compute the crossentropy loss between our class labels represented by integers (i.e., not one-hot encoded) and the model predictions.
+For classification purposes, there are a number of probabilistic losses to choose from. We chose `CategoricalCrossentropy` because we want to compute the crossentropy loss between our one-hot encoded class labels and the model predictions. This loss function is appropriate to use when the data has two or more label classes.
 
-- This loss function is appropriate to use when the data has two or more label classes.
-- defined by the keras.losses.SparseCategoricalCrossentropy class
+The loss function is defined by the `tf.keras.losses.CategoricalCrossentropy` class.
 
-:::::::::::::::::::::::::::::::::::::: callout
-ChatGPT
+::::::::::::::::::::::::::::::::::::::::: spoiler 
 
-Logits
+### WANT TO KNOW MORE: What loss would I use for regression?
 
-**Logits** are the raw, unnormalized predictions that a model generates before they are transformed into probabilities. In many cases, the final layer of a neural network produces logits, and these logits are then passed through a function (usually the softmax function) to obtain probabilities for each class. The softmax function converts the logits into a probability distribution, where the values for each class range between 0 and 1 and sum up to 1.
-
-Here's an example to illustrate this:
-
-Suppose you have a neural network that performs image classification with three classes: "Cat," "Dog," and "Bird." After feeding an image through the model, it generates logits as follows:
-
-Logits: [2.5, 1.2, -0.8]
-
-Now, to turn these logits into probabilities, we apply the softmax function:
-
-Probabilities: [0.755, 0.223, 0.022]
-
-The highest probability (0.755) corresponds to the "Cat" class, suggesting that the model predicts the image contains a cat with a probability of approximately 75.5%.
-
-Now, let's bring in the 'from_logits' argument in the context of defining the loss function. When training a neural network for multi-class classification tasks, the most common loss function is the categorical cross-entropy. This loss function takes in probabilities and the true labels of the data to compute the difference between the predicted probabilities and the ground truth.
-
-However, sometimes, the model may not produce probabilities directly but instead produces logits. In such cases, you have two options:
-
-Option 1. Use the 'from_logits=False' (default): In this case, Keras will apply the softmax function to the logits internally before computing the loss function. It means that you provide the logits, but Keras handles the transformation to probabilities before calculating the loss.
-
-Option 2. Use 'from_logits=True': If you set this argument to True, you are telling Keras that the provided values are already logits and no further transformation is needed. The loss function will directly use the provided logits to compute the loss, avoiding the internal application of the softmax function.
-
-In summary, 'from_logits=True' is useful when your model outputs logits, and you want to manually handle the conversion to probabilities (e.g., when using the logits for other purposes), or if you want to avoid the additional computational overhead of applying the softmax function twice (once by you and once by the loss function). On the other hand, if you provide probabilities or set 'from_logits=False', Keras will handle the conversion to probabilities internally before computing the loss.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-**Loss for Regression**
-
-For regression tasks, we might want to stipulate that the predicted numerical values are as close as possible to the true values. This is commonly done by using the **mean squared error** (mse) or the **mean absolute error** (mae) loss funtions, both of which should work. Often, mse is preferred over mae because it “punishes” large prediction errors more severely.
+For regression tasks, we might want to stipulate that the predicted numerical values are as close as possible to the true values. This is commonly done by using the **mean squared error** (mse) or the **mean absolute error** (mae) loss functions, both of which should work. Often, mse is preferred over mae because it “punishes” large prediction errors more severely.
 
 - defined by the keras.losses.MeanSquaredError class
 
@@ -93,28 +63,29 @@ To compile a model with mse, change the loss argument of the `compile` method:
 ```
 #model_ex.compile(loss = 'mse')
 ```
- 
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
 For more information on these and other available loss functions in Keras you can check the [loss documentation].
+
 
 #### Optimizer
 
-Somewhat coupled to the loss function is the optimizer. The optimizer here refers to the algorithm with which the model learns to optimize on the provided loss function.
+Somewhat coupled to the loss function is the **optimizer**. The optimizer here refers to the algorithm with which the model learns to optimize on the provided loss function.
 
 We need to choose which optimizer to use and, if this optimizer has parameters, what values to use for those. Furthermore, we need to specify how many times to show the training samples to the optimizer. In other words, the optimizer is responsible for taking the output of the loss function and then applying some changes to the weights within the network. It is through this process that the “learning” (adjustment of the weights) is achieved.
 
 ```
-# compile the pooling model
-#model_pool.compile(optimizer = 'adam', 
-#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               
-#              metrics = ['accuracy'])
+## compile the model
+#model_intro.compile(optimizer = 'adam', 
+#                    loss = keras.losses.CategoricalCrossentropy(), 
+#                    metrics = ['accuracy'])  
 ``` 
 
 **Adam** 
 
 Here we picked one of the most common optimizers that works well for most tasks, the **Adam** optimizer. Similar to activation functions, the choice of optimizer depends on the problem you are trying to solve, your model architecture and your data. Adam is a good starting point though, which is why we chose it. Adam has a number of parameters, but the default values work well for most problems so we will use it with its default parameters.
 
-- defined by the keras.optimizers.Adam class
-- takes a single parameter `learning_rate=0.01`
+It is defined by the `keras.optimizers.Adam` class and takes a single parameter `learning_rate=0.01`
 
 There are many optimizers to choose from so check the [optimizer documentation]. A couple more popular or famous ones include:
 
@@ -124,12 +95,13 @@ There are many optimizers to choose from so check the [optimizer documentation].
 
   - For example, one of the main issues with the basic SGD is that it uses a fixed learning rate for all model parameters throughout the training process. This fixed learning rate can lead to slow convergence or divergence (over-shooting) in some cases. RMSprop introduces an adaptive learning rate mechanism to address this problem.
 
-:::::::::::::::::::::::::::::::::::::: callout
+::::::::::::::::::::::::::::::::::::::::: spoiler 
+
+### WANT TO KNOW MORE: Learning Rate
+
 ChatGPT
 
-**Learning Rate**
-
-Learning rate is a hyperparameter that determines the step size at which the model's parameters are updated during training. A higher learning rate allows for more substantial parameter updates, which can lead to faster convergence, but it may risk overshooting the optimal solution. On the other hand, a lower learning rate leads to smaller updates, providing more cautious convergence, but it may take longer to reach the optimal solution. Finding an appropriate learning rate is crucial for effectively training machine learning models.
+**Learning rate** is a hyperparameter that determines the step size at which the model's parameters are updated during training. A higher learning rate allows for more substantial parameter updates, which can lead to faster convergence, but it may risk overshooting the optimal solution. On the other hand, a lower learning rate leads to smaller updates, providing more cautious convergence, but it may take longer to reach the optimal solution. Finding an appropriate learning rate is crucial for effectively training machine learning models.
 
 In the figure below, we can see that a small learning rate will not traverse toward the minima of the gradient descent algorithm in a timely manner i.e. number of epochs.
 
@@ -157,10 +129,10 @@ Lastly, we can observe below that a modest learning rate will ensure that the pr
 After we select the desired optimizer and loss function we want to specify the metric(s) to be evaluated by the model during training and testing. A **metric** is a function that is used to judge the performance of your model.
 
 ```
-# compile the pooling model
-#model_pool.compile(optimizer = adam', 
-#              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),               
-#              metrics = ['accuracy'])
+## compile the model
+#model_intro.compile(optimizer = 'adam', 
+#                    loss = keras.losses.CategoricalCrossentropy(), 
+#                    metrics = ['accuracy']) 
 ```
 
 Metric functions are similar to loss functions, except that the results from evaluating a metric are not used when training the model. Note that you may use any loss function as a metric.
@@ -176,7 +148,7 @@ Now that we have decided on which loss function, optimizer, and metric to use we
 
 ### Step 6. Train model
 
-We are now ready to train the model.
+We are ready to train the model.
 
 Training the model is done using the `fit` method. It takes the image data and target (label) data as inputs and has several other parameters for certain options of the training. Here we only set a different number of epochs.
 
@@ -185,21 +157,27 @@ A training **epoch** means that every sample in the training data has been shown
 We want to train our model for 10 epochs:
 
 ```
-# fit the pooling model
-#history_pool = model_pool.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
+history_intro = model_intro.fit(train_images, train_labels, 
+                                epochs = 10, 
+                                validation_data = (val_images, val_labels),
+                                batch_size = 32)
 ```
 
-As we saw in the previous episode, the fit method returns a history object that has a history attribute with the training loss and potentially other metrics per training epoch.
+The `batch_size` parameter defaults to 32. The **batch size** is an important hyperparameter that determines the number of training samples processed together before updating the model's parameters during each iteration (or mini-batch) of training.
 
-Note there are other arguments we could use to fit our model, see the documentation for [fit method].
+Note we are also creating a new variable `history_intro` to capture the history of the training in order to extract metrics we will use for model evaluation.
+
+There are other arguments we could use to fit our model, see the documentation for [fit method].
  
 
-:::::::::::::::::::::::::::::::::::::: callout
+::::::::::::::::::::::::::::::::::::::::: spoiler 
+
+### WANT TO KNOW MORE: Batch size
+
 ChatGPT
 
-Batch size
 
-The batch size is an important hyperparameter that determines the number of training samples processed together before updating the model's parameters during each iteration (or mini-batch) of training. The choice of batch size can have various implications, and there are situations where using different batch sizes can be beneficial.
+The choice of batch size can have various implications, and there are situations where using different batch sizes can be beneficial.
 
 **Large Datasets and Memory Constraints**: If you have a large dataset and limited memory, using a smaller batch size can help fit the data into memory during training. This allows you to train larger models or use more complex architectures that might not fit with larger batch sizes.
 
@@ -213,49 +191,56 @@ However, it's essential to consider the trade-offs of using different batch size
 
 :::::::::::::::::::::::::::::::::::::::::::::::
 
-#### Monitor Training Progress (aka Model Evaluation during Training)
 
-Now that we know more about the compilation and fitting of CNN's let us take a look at the training metrics for our pooling model.
+### Monitor Training Progress (aka Model Evaluation during Training)
 
-Using seaborn again we can plot the training process using the history:
+Now that we know more about the compilation and fitting of CNN's let us take a look at the training metrics for our model.
+
+Using seaborn we can plot the training process using the history:
 
 ```python
+import seaborn as sns
+import pandas as pd
+
 # convert the history to a dataframe for plotting 
-history_pool_df = pd.DataFrame.from_dict(history_pool.history)
+history_intro_df = pd.DataFrame.from_dict(history_intro.history)
 
 # plot the loss and accuracy from the training process
 fig, axes = plt.subplots(1, 2)
 fig.suptitle('cifar_model_pool')
-sns.lineplot(ax=axes[0], data=history_pool_df[['loss', 'val_loss']])
-sns.lineplot(ax=axes[1], data=history_pool_df[['accuracy', 'val_accuracy']])
+sns.lineplot(ax=axes[0], data=history_intro_df[['loss', 'val_loss']])
+sns.lineplot(ax=axes[1], data=history_intro_df[['accuracy', 'val_accuracy']])
 ```
 
-![](fig/04_model_pool_accuracy_loss.png){alt=''}
+![](fig/03_model_intro_accuracy_loss.png){alt=''}
+
+This plot can be used to identify whether the training is well configured or whether there are problems that need to be addressed. The solid blue lines show the training loss and accuracy; the dashed orange lines show the validation loss and accuracy.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge The Training Curve
+## Inspect the Training Curve
 
-Looking at the training curve we have just made.
+Looking at the training curves we have just made and recall the difference between the training and the validation datasets.
 
 1. How does the training progress?
 
-- Does the training loss increase or decrease?
-- Does it change fast or slowly?
-- Is the graph look very jittery?
+- Does the loss increase or decrease?
+- What about the accuracy?
+- Do either change fast or slowly?
+- Do the graphs look very jittery?
 
 2. Do you think the resulting trained network will work well on the test set?
 
 :::::::::::::::::::::::: solution 
 
-1. The loss curve should drop quite quickly in a smooth line with little jitter.
+1. The loss curve should drop quite quickly in a smooth line with little jitter. The accuracy should increase quite quickly in a smooth line also wtih little jitter.
 
 2. The results of the training give very little information on its performance on a test set. You should be careful not to use it as an indication of a well trained network.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-If we look at these plots we can see signs of overfitting. If a model is overfitting, it means that the model performs exceptionally well on the training data but poorly on the validation or test data. Overfitting occurs when the model has learned to memorize the noise and specific patterns in the training data instead of generalizing the underlying relationships. As a result, the model fails to perform well on new, unseen data because it has become too specialized to the training set.
+If we look at these plots we can see signs of **overfitting**. If a model is overfitting, it means that the model performs exceptionally well on the training data but poorly on the validation or test data. Overfitting occurs when the model has learned to memorize the noise and specific patterns in the training data instead of generalizing the underlying relationships. As a result, the model fails to perform well on new, unseen data because it has become too specialized to the training set.
 
 Key characteristics of an overfit model include:
 
@@ -269,8 +254,29 @@ How to Address Overfitting:
 - Collect more training data if possible to provide the model with a diverse and representative dataset.
 - Perform data augmentation to artificially increase the size of the training data and introduce variability.
 
+::::::::::::::::::::::::::::::::::::::::: spoiler
 
-#### Improve Model Generalization (avoid Overfitting)
+### WANT TO KNOW MORE: What is underfitting?
+
+Underfitting occurs when the model is too simple or lacks the capacity to capture the underlying patterns and relationships present in the data. As a result, the model's predictions are not accurate, and it fails to generalize well to unseen data.
+
+Key characteristics of an underfit model include:
+
+- Low Validation Accuracy: This indicates that the model is not learning from the data effectively.
+
+- Large Training Loss: The training loss (error) is high, indicating that the model's predictions are far from the true labels in the training set.
+
+- Increasing validation loss
+
+How to Address underfitting:
+
+- Increase the model's complexity by adding more layers or units to the existing layers.
+- Train the model for more epochs to give it more time to learn from the data.
+- Perform data augmentation or feature engineering to provide the model with more informative input features.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Improve Model Generalization (avoid Overfitting)
 
 #### Dropout
 
@@ -282,9 +288,23 @@ Techniques to avoid overfitting, or to improve model generalization, are termed 
 
 The intuition behind dropout is that it enforces redundancies in the network by constantly removing different elements of a network. The model can no longer rely on individual nodes and instead must create multiple "paths". In addition, the model has to make predictions with much fewer nodes and weights (connections between the nodes). As a result, it becomes much harder for a network to memorize particular features. At first this might appear a quite drastic approach which affects the network architecture strongly. In practice, however, dropout is computationally a very elegant solution which does not affect training speed. And it frequently works very well.
 
-**Important to note**: Dropout layers will only randomly silence nodes during training! During a predictions step, all nodes remain active (dropout is off). During training, the sample of nodes that are silenced are different for each training instance, to give all nodes a chance to observe enough training data to learn its weights.
+:::::::::::::::::::::::::::::::::::::: callout
 
-Let us add one dropout layer towards the end of the network, that randomly drops 20% of the input units.
+Dropout layers will only randomly silence nodes during training! During a predictions step, all nodes remain active (dropout is off). During training, the sample of nodes that are silenced are different for each training instance, to give all nodes a chance to observe enough training data to learn its weights.
+
+::::::::::::::::::::::::::::::::::::::::::::::
+
+Dropout layers are defined by the `tf.keras.layers.Dropout class and have the following definition:
+
+```
+tf.keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)
+```
+
+The `rate` parameter is a float between 0 and 1 and represents the fraction of the input units to drop.
+
+We want to add one Dropout Layer to our network that randomly drops 80% of the input units but where should we put it?
+
+The placement of the dropout layer matters. Adding dropout before or after certain layers can have different effects. For example, it's common to place dropout after convolutional and dense layers but not typically after pooling layers. Let us add a third convolutional layer to our model and then the dropout layer.
 
 ```python
 # define the inputs, layers, and outputs of a CNN model with dropout
@@ -294,69 +314,77 @@ Let us add one dropout layer towards the end of the network, that randomly drops
 inputs_dropout = keras.Input(shape=train_images.shape[1:])
 
 # CNN Part 2
-# Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_dropout)
+# Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+x_dropout = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_dropout)
 # Pooling layer with input window sized 2,2
 x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
-# Second Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_dropout)
+# Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+x_dropout = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_dropout)
 # Second Pooling layer with input window sized 2,2
 x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
-# Third Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-x_dropout = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_dropout)
-# Dropout layer andomly drops 20% of the input units
-x_dropout = keras.layers.Dropout(0.8)(x_dropout) # This is new!
+# Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
+x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout) # This is new!
+# Dropout layer andomly drops 60% of the input units
+x_dropout = keras.layers.Dropout(0.6)(x_dropout) # This is new!
 # Flatten layer to convert 2D feature maps into a 1D vector
 x_dropout = keras.layers.Flatten()(x_dropout)
-# Dense layer with 50 neurons and ReLU activation
-x_dropout = keras.layers.Dense(50, activation='relu')(x_dropout)
+# Dense layer with 128 neurons and ReLU activation
+x_dropout = keras.layers.Dense(128, activation='relu')(x_dropout)
 
 # CNN Part 3
-# Output layer with 10 units (one for each class)
-outputs_dropout = keras.layers.Dense(10)(x_dropout)
+# Output layer with 10 units (one for each class) and softmax activation
+outputs_dropout = keras.layers.Dense(10, activation='softmax')(x_dropout)
 
 # create the dropout model
 model_dropout = keras.Model(inputs=inputs_dropout, outputs=outputs_dropout, name="cifar_model_dropout")
 
 model_dropout.summary()
 ```
+
 ```output
 Model: "cifar_model_dropout"
+Model: "cifar_model_dropout"
 _________________________________________________________________
- Layer (type)                Output Shape              Param #
+ Layer (type)                Output Shape              Param #   
 =================================================================
- input_8 (InputLayer)        [(None, 32, 32, 3)]       0
-
- conv2d_19 (Conv2D)          (None, 30, 30, 50)        1400
-
- max_pooling2d_12 (MaxPoolin  (None, 15, 15, 50)       0
- g2D)
-
- conv2d_20 (Conv2D)          (None, 13, 13, 50)        22550
-
- max_pooling2d_13 (MaxPoolin  (None, 6, 6, 50)         0
- g2D)
-
- conv2d_21 (Conv2D)          (None, 4, 4, 50)          22550
-
- dropout_2 (Dropout)         (None, 4, 4, 50)          0
-
- flatten_7 (Flatten)         (None, 800)               0
-
- dense_13 (Dense)            (None, 50)                40050
-
- dense_14 (Dense)            (None, 10)                510
-
+ input_2 (InputLayer)        [(None, 32, 32, 3)]       0         
+                                                                 
+ conv2d_2 (Conv2D)           (None, 30, 30, 16)        448       
+                                                                 
+ max_pooling2d_2 (MaxPoolin  (None, 15, 15, 16)        0         
+ g2D)                                                            
+                                                                 
+ conv2d_3 (Conv2D)           (None, 13, 13, 32)        4640      
+                                                                 
+ max_pooling2d_3 (MaxPoolin  (None, 6, 6, 32)          0         
+ g2D)                                                            
+                                                                 
+ conv2d_4 (Conv2D)           (None, 4, 4, 64)          18496     
+                                                                 
+ dropout (Dropout)           (None, 4, 4, 64)          0         
+                                                                 
+ flatten_1 (Flatten)         (None, 1024)              0         
+                                                                 
+ dense_2 (Dense)             (None, 128)               131200    
+                                                                 
+ dense_3 (Dense)             (None, 10)                1290      
+                                                                 
 =================================================================
-Total params: 87,060
-Trainable params: 87,060
-Non-trainable params: 0
+Total params: 156074 (609.66 KB)
+Trainable params: 156074 (609.66 KB)
+Non-trainable params: 0 (0.00 Byte)
 _________________________________________________________________
 ```
 
 We can see that the dropout does not alter the dimensions of the image, and has zero parameters.
 
-We again compile and train the model.
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Does adding a Dropout Layer improve our model?
+
+Write the code to compile and fit our new dropout model using the same arguments we used for our model in the introduction. Then inspect the training metrics to determine whether our model has improved or not by adding a dropout layer.
+
+:::::::::::::::::::::::: solution
 
 ```python
 # compile the dropout model
@@ -365,16 +393,16 @@ model_dropout.compile(optimizer = 'adam',
               metrics = ['accuracy'])
 
 # fit the dropout model
-history_dropout = model_dropout.fit(train_images, train_labels, epochs=20,
-                    validation_data=(val_images, val_labels))
+history_dropout = model_dropout.fit(train_images, train_labels, 
+                                    epochs=10,
+                                    validation_data=(val_images, val_labels),
+                                    batch_size = 32)
 
 # save dropout model
-model_dropout.save('fit_outputs/model_dropout.h5')
+model_dropout.save('fit_outputs/model_dropout.keras')
 
-```
-And inspect the training results:
+# inspect the training results
 
-```python
 # convert the history to a dataframe for plotting 
 history_dropout_df = pd.DataFrame.from_dict(history_dropout.history)
 
@@ -386,22 +414,27 @@ sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
 
 val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images,  val_labels, verbose=2)
 ```
-```output
-313/313 - 2s - loss: 1.4683 - accuracy: 0.5307
-```
 
 ![](fig/04_model_dropout_accuracy_loss.png){alt=''}
 
-TODO CHECK OH NO Dropout model is terrible now! This is a canned picture.
+Here we see the relatively uncommon situation where our training loss is higher than our validation loss while the validation accuracy is higher than the training accuracy. If you are using dropout or other regularization techniques during training, they might lead to a lower training accuracy. 
 
-Now we see that the gap between the training accuracy and validation accuracy is much smaller, and that the final accuracy on the validation set is higher than without dropout. Nevertheless, there is still some difference between the training loss and validation loss, so we could experiment with regularization even more.
+Dropout randomly "drops out" units during training, which can prevent the model from fitting the training data too closely. This regularization effect may lead to a situation where the model generalizes better on the validation set.
 
-:::::::::::::::::::::::::::::::::::::: callout
+The final accuracy on the validation set is higher than without dropout.
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### WANT TO KNOW MORE: Regularization methods for Convolutional Neural Networks (CNNs)
+
 ChatGPT
 
-Regularization methods for Convolutional Neural Networks (CNNs)
-
-Regularization methods introduce constraints or penalties to the training process, encouraging the model to be simpler and less prone to overfitting. Here are some common regularization methods for CNNs:
+**Regularization** methods introduce constraints or penalties to the training process, encouraging the model to be simpler and less prone to overfitting. Here are some common regularization methods for CNNs:
 
 **L1 and L2 Regularization**: L1 and L2 regularization are the two most common regularization techniques used in deep learning. They add a penalty term to the loss function during training to restrict the model's weights.
 
@@ -420,71 +453,13 @@ b. randomly "dropping out" a fraction of neurons during training. This means tha
 **Early Stopping**: Early stopping is a form of regularization that stops the training process when the model's performance on a validation set starts to degrade. This prevents the model from overfitting by avoiding further training after the point of best validation performance.
 
 By using regularization techniques, you can improve the generalization performance of CNNs and reduce the risk of overfitting. It's essential to experiment with different regularization methods and hyperparameters to find the optimal combination for your specific CNN architecture and dataset.
-::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: challenge 
-
-Vary dropout rate
-
-Q1. What do you think would happen if you lower the dropout rate? Try it out, and see how it affects the model training.
-
-Q2. You are varying the dropout rate and checking its effect on the model performance, what is the term associated to this procedure?
-
-:::::::::::::::::::::::: solution 
-
-Q1. Varying the dropout rate
-
-The code below instantiates and trains a model with varying dropout rates. You can see from the resulting plot that the ideal dropout rate in this case is around 0.45. This is where the validation loss is lowest.
-
-- NB1: It takes a while to train these 5 networks.
-- NB2: In the real world you should do this with a test set and not with the validation set!
-
-```python
-dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]
-val_losses_vary = []
-for dropout_rate in dropout_rates:
-    inputs_vary = keras.Input(shape=train_images.shape[1:])
-    x_vary = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs_vary)
-    x_vary = keras.layers.MaxPooling2D((2, 2))(x_vary)
-    x_vary = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_vary)
-    x_vary = keras.layers.MaxPooling2D((2, 2))(x_vary)
-    x_vary = keras.layers.Conv2D(50, (3, 3), activation='relu')(x_vary)
-    x_vary = keras.layers.Dropout(dropout_rate)(x_vary)
-    x_vary = keras.layers.Flatten()(x_vary)
-    x_vary = keras.layers.Dense(50, activation='relu')(x_vary)
-    outputs_vary = keras.layers.Dense(10)(x_vary)
-
-    model_vary = keras.Model(inputs=inputs_vary, outputs=outputs_vary, name="cifar_model_vary")
-
-    model_vary.compile(optimizer = 'adam',
-              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-              metrics = ['accuracy'])
-
-    model_vary.fit(train_images, train_labels, epochs=20,
-                    validation_data=(val_images, val_labels))
-
-    val_loss_vary, val_acc_vary = model_vary.evaluate(val_images,  val_labels)
-    val_losses_vary.append(val_loss_vary)
-
-loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss_vary': val_losses_vary})
-
-sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss_vary')
-
-model_vary.save('fit_outputs/model_vary.h5')
-
-```
-![](fig/04_vary_dropout_rate.png){alt=''}
-
-Q2. Term associated to this procedure
-This is called hyperparameter tuning.
-
-:::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ## Choose the best model and use it to predict
 
-Based on our evaluation of the loss and accuracy metrics, the `model_dropout` appears to have the best performance **of the models we have examined thus far**. The next step is to use these models to predict object classes on our test dataset.
+Based on our evaluation of the loss and accuracy metrics, the `model_dropout` appears to have the best performance **of the models we have examined thus far**. The next step is to use this model to predict the object classes on our test dataset.
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 

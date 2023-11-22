@@ -58,21 +58,21 @@ Let's look at our network from the introduction:
 # inputs_intro = keras.Input(shape=train_images.shape[1:])
 
 # # CNN Part 2
-# # Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-# x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)
+# # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+# x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
 # # Pooling layer with input window sized 2,2
 # x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
-# # Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-# x_intro = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_intro)
+# # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+# x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
 # # Second Pooling layer with input window sized 2,2
 # x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
 # # Flatten layer to convert 2D feature maps into a 1D vector
 # x_intro = keras.layers.Flatten()(x_intro)
-# # Dense layer with 128 neurons and ReLU activation
-# x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
+# # Dense layer with 64 neurons and ReLU activation
+# x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
 
 # # CNN Part 3
-# # Output layer with 10 units (one for each class)
+# # Output layer with 10 units (one for each class) and softmax activation
 # outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 ```
 
@@ -215,6 +215,7 @@ A 2x2 pooling size reduces the width and height of the input by a factor of 2. E
 Convolutional and Pooling layers are also applicable to different types of data than image data. Whenever the data is ordered in a (spatial) dimension, and translation invariant features are expected to be useful, convolutions can be used. Think for example of time series data from an accelerometer, audio data for speech recognition, or 3d structures of chemical compounds.
 ::::::::::::::::::::::::::::::::::::::::::::::
 
+
 ##### **Dense layers**
 
 A **dense** layer has a number of neurons, which is a parameter you can choose when you create the layer. When connecting the layer to its input and output layers every neuron in the dense layer gets an edge (i.e. connection) to **all** of the input neurons and **all** of the output neurons.
@@ -223,11 +224,11 @@ A **dense** layer has a number of neurons, which is a parameter you can choose w
 
 This layer is called fully connected, because all input neurons are taken into account by each output neuron. It aggregates global information about the features learned in previous layers to make a decision about the class of the input.
 
-In Keras, a regular densely-connected NN layer is defined by the `tf.keras.layers.Dense` class.
+In Keras, a densely-connected NN layer is defined by the `tf.keras.layers.Dense` class.
 
 ```
-# # Dense layer with 128 neurons and ReLU activation
-# x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
+# # Dense layer with 64 neurons and ReLU activation
+# x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
 ```
 
 This instantiation has two parameters: the number of neurons and the activation function as we saw in the convolutional layer.
@@ -297,7 +298,7 @@ The **Flatten** layer converts the output of the previous layer into a single on
 Recall for the outputs we will need to look at what we want to identify from the data. If we are performing a classification problem then typically we will have one output for each potential class. We need to finish with a Dense layer to connect the output cells of the convolutional layer to the outputs for our 10 classes.
 
 ```
-# # Output layer with 10 units (one for each class)
+# # Output layer with 10 units (one for each class) and softmax activation
 # outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro))
 ```
 
@@ -313,20 +314,20 @@ inputs_intro = keras.Input(shape=train_images.shape[1:])
 
 # CNN Part 2
 # Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)
+x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
 # Pooling layer with input window sized 2,2
 x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
-# Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_intro)
+# Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
 # Second Pooling layer with input window sized 2,2
 x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
 # Flatten layer to convert 2D feature maps into a 1D vector
 x_intro = keras.layers.Flatten()(x_intro)
-# Dense layer with 128 neurons and ReLU activation
-x_intro = keras.layers.Dense(128, activation='relu')(x_intro)
+# Dense layer with 64 neurons and ReLU activation
+x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
 
 # CNN Part 3
-# Output layer with 10 units (one for each class)
+# Output layer with 10 units (one for each class) and softmax activation
 outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 
 # create the model
@@ -343,33 +344,35 @@ _________________________________________________________________
 =================================================================
  input_1 (InputLayer)        [(None, 32, 32, 3)]       0         
                                                                  
- conv2d (Conv2D)             (None, 30, 30, 32)        896       
+ conv2d (Conv2D)             (None, 30, 30, 16)        448       
                                                                  
- max_pooling2d (MaxPooling2  (None, 15, 15, 32)        0         
+ max_pooling2d (MaxPooling2  (None, 15, 15, 16)        0         
  D)                                                              
                                                                  
- conv2d_1 (Conv2D)           (None, 13, 13, 64)        18496     
+ conv2d_1 (Conv2D)           (None, 13, 13, 32)        4640      
                                                                  
- max_pooling2d_1 (MaxPoolin  (None, 6, 6, 64)          0         
+ max_pooling2d_1 (MaxPoolin  (None, 6, 6, 32)          0         
  g2D)                                                            
                                                                  
- flatten (Flatten)           (None, 2304)              0         
+ flatten (Flatten)           (None, 1152)              0         
                                                                  
- dense (Dense)               (None, 128)               295040    
+ dense (Dense)               (None, 64)                73792     
                                                                  
- dense_1 (Dense)             (None, 10)                1290      
+ dense_1 (Dense)             (None, 10)                650       
                                                                  
 =================================================================
-Total params: 315722 (1.20 MB)
-Trainable params: 315722 (1.20 MB)
+Total params: 79530 (310.66 KB)
+Trainable params: 79530 (310.66 KB)
 Non-trainable params: 0 (0.00 Byte)
 _________________________________________________________________
 ```
 
 :::::::::::::::::::::::::::::::::::::: callout
+
 ## How to choose an architecture?
 
 Even for this neural network, we had to make a choice on the number of hidden neurons. Other choices to be made are the number of layers and type of layers. You might wonder how you should make these architectural choices. Unfortunately, there are no clear rules to follow here, and it often boils down to a lot of trial and error. However, it is recommended to look what others have done with similar datasets and problems. Another best practice is to start with a relatively simple architecture. Once running start to add layers and tweak the network to see if performance increases. 
+
 ::::::::::::::::::::::::::::::::::::::::::::::
 
 ## We have a model now what?

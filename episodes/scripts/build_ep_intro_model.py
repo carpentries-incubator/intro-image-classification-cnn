@@ -143,7 +143,7 @@ x_dropout = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_dropout)
 x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
 # Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
 x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout)
-# Dropout layer andomly drops 60% of the input units
+# Dropout layer randomly drops 60% of the input units
 x_dropout = keras.layers.Dropout(0.6)(x_dropout) # This is new!
 # Flatten layer to convert 2D feature maps into a 1D vector
 x_dropout = keras.layers.Flatten()(x_dropout)

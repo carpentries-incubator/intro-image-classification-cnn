@@ -343,7 +343,6 @@ model_dropout.summary()
 
 ```output
 Model: "cifar_model_dropout"
-Model: "cifar_model_dropout"
 _________________________________________________________________
  Layer (type)                Output Shape              Param #   
 =================================================================

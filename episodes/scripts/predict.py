@@ -37,9 +37,6 @@ print('The number of labels in our test dataset is:', len(test_labels))
 # use our current best model to predict probability of each class on new test set
 predictions = model_best.predict(test_images)
 
-# convert predictions to class labels
-predicted_labels = np.argmax(predictions, axis=1)
-
 # create a list of classnames 
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
@@ -49,6 +46,9 @@ prediction_df = pd.DataFrame(predictions, columns=class_names)
 # inspect 
 print(prediction_df.head())
 
+# convert predictions to class labels
+predicted_labels = np.argmax(predictions, axis=1)
+print(predicted_labels)
 
 # Step 8. Measuring Performance
 

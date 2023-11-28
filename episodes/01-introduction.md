@@ -91,8 +91,9 @@ It is the goal of this training workshop to produce a Deep Learning program, usi
 ```python
 # load the required packages
 from tensorflow import keras # library for neural networks 
+from sklearn.model_selection import train_test_split # library for splitting data into sets
 import matplotlib.pyplot as plt # library for plotting
-from icwithcnn_functions import prepare_image_icwithcnn # custom function
+import numpy as np # library for working with images as arrays
 
 # load the CIFAR-10 dataset included with the keras library
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()

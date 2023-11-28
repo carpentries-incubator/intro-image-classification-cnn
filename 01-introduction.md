@@ -91,8 +91,9 @@ It is the goal of this training workshop to produce a Deep Learning program, usi
 ```python
 # load the required packages
 from tensorflow import keras # library for neural networks 
+from sklearn.model_selection import train_test_split # library for splitting data into sets
 import matplotlib.pyplot as plt # library for plotting
-from icwithcnn_functions import prepare_image_icwithcnn # custom function
+import numpy as np # library for working with images as arrays
 
 # load the CIFAR-10 dataset included with the keras library
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
@@ -131,11 +132,11 @@ print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
 ## Output
  
 ```output
-Train: Images=(50000, 32, 32, 3), Labels=(50000, 10)
+Train: Images=(50000, 32, 32, 3), Labels=(40000, 10)
 Validate: Images=(10000, 32, 32, 3), Labels=(10000, 10)
 Test: Images=(10000, 32, 32, 3), Labels=(10000, 10)
 ```
-The training set consists of 50000 images of 32x32 pixels and 3 channels (RGB values) and labels.
+The training set consists of 40000 images of 32x32 pixels and 3 channels (RGB values) and labels.
 
 The validation and test datasets consist of 10000 images of 32x32 pixels and 3 channels (RGB values) and labels.
 
@@ -195,7 +196,9 @@ x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
 outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 
 # create the model
-model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
+model_intro = keras.Model(inputs = inputs_intro, 
+                          outputs = outputs_intro, 
+                          name = "cifar_model_intro")
 ```
 
 ### Step 5. Choose a loss function and optimizer
@@ -208,7 +211,7 @@ The optimizer is responsible for taking the output of the loss function and then
 # compile the model
 model_intro.compile(optimizer = 'adam',
                     loss = keras.losses.CategoricalCrossentropy(),
-                    metrics=['accuracy'])
+                    metrics = ['accuracy'])
 ```
 
 ### Step 6. Train the model
@@ -219,7 +222,7 @@ We can now go ahead and start training our neural network. We will probably keep
 # fit the model
 history_intro = model_intro.fit(train_images, train_labels, epochs = 10, 
                                 validation_data = (val_images, val_labels),
-                                batch_size=32)
+                                batch_size = 32)
 
 ```
 Your output will begin to print similar to the output below:
@@ -228,42 +231,40 @@ Epoch 1/10
 
 1250/1250 [==============================] - 15s 12ms/step - loss: 1.4651 - accuracy: 0.4738 - val_loss: 1.2736 - val_accuracy: 0.5507
 ```
-::::::::::::::::::::::::::::::::::::::::: spoiler 
 
-### What does this output mean?
+#### What does this output mean?
 
 This output printed during the fit phase, i.e. training the model against known image labels, can be broken down as follows:
 
-- `Epoch` describes the number of full passes over all *training data*. In the output above there are **1250 training observations**. This number is calculated as the total number of images used as input divided by the batch size (40000/32). An epoch will conclude and move to the next epoch after a training pass over all 1563 observations.
+- `Epoch` describes the number of full passes over all *training data*. In the output above there are **1250 training observations**. This number is calculated as the total number of images used as input divided by the batch size (40000/32). An epoch will conclude and move to the next epoch after a training pass over all observations.
 
 - `loss` and `val_loss` can be considered as related. Where `loss` is a value the model will attempt to minimise, and is the distance between the true label of an image and the models prediction. Minimising this distance is where *learning* occurs to adjust weights and bias which reduce `loss`. On the other hand `val_loss` is a value calculated against the validation data and is a measurement of the models performance against **unseen data**. Both values are a summation of errors made for each example when fitting to the training or validation sets.
 
 - `accuracy` and `val_accuracy` can also be considered as related. Unlike `loss` and `val_loss`, these values are a percentage and are only revelant to **classification problems**. The `val_accuracy` score can be used to communicate a percentage value of model effectiveness on unseen data.
 
-:::::::::::::::::::::::::::::::::::::::::
 
 ### Step 7. Perform a Prediction/Classification
 
 After training the network we can use it to perform predictions. This is the mode you would use the network in after you have fully trained it to a satisfactory performance. Doing predictions on a special hold-out set is used in the next step to measure the performance of the network.
 
 ```python
-# specify a new image and prepare it to match CIFAR-10 dataset
-from icwithcnn_functions import prepare_image_icwithcnn
+# predict the class name of the first test image
+result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))
 
-new_img_path = "../data/Jabiru_TGS.JPG" # path to image
-new_img_prepped = prepare_image_icwithcnn(new_img_path)
-
-# predict the class name
-result_intro = model_intro.predict(new_img_prepped) # make prediction
-
-print(' The predicted probability of each class is: \n', result_intro.round(4))
+print('The predicted probability of each class is: ', result_intro.round(4))
 print('The class with the highest predicted probability is: ', class_names[result_intro.argmax()])
+
+# plot the image with its true label
+plt.imshow(test_images[0], cmap=plt.cm.binary)
+plt.title('True class:' + class_names[test_labels[0,].argmax()])
+plt.show()
 ```
 
 ```output
-The predicted probability of each class is:  [[0.0058 0.714  0.     0.0024 0.     0.     0.2777 0.     0.     0.    ]]
-The class with the highest predicted probability is:  automobile
+The predicted probability of each class is:  [[0.0074 0.0006 0.0456 0.525  0.0036 0.1062 0.0162 0.0006 0.2908 0.004 ]]
+The class with the highest predicted probability is:  cat
 ```
+![](fig/01_test_image.png){alt='poor resolution image of a cat'}
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 My result is different!
@@ -275,9 +276,10 @@ If you are finding significant differences in the model predictions, this could 
 
 Congratulations, you just created your first image classification model and used it to classify an image! 
 
-Unfortunately the classification was incorrect. Why might that be? and What can we do about? 
+Was the classification correct? Why might it be incorrect and What can we do about? 
 
 There are many ways we can try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
+
 
 ### Step 8. Measure Performance
 
@@ -289,13 +291,7 @@ When building image recognition models in Python, especially using libraries lik
 
 #### What are hyperparameters? 
 
-Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimize the model's performance. One common method for hyperparameter tuning is **grid search**. 
-
-#### What is Grid Search?
-
-Grid Search or **GridSearch** (as per the library function call) is foundation method for hyperparameter tuning. The aim of hyperparameter tuning is to define a grid of possible values for each hyperparameter you want to tune. GridSearch will then evaluate the model performance for each combination of hyperparameters in a brute-force manner, iterating through every possible combination in the grid.
-
-These concepts will be continued, with practical examples, in Episode 05.
+Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimize the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](./05-evaluate-predict-cnn.md)
 
 ### Step 10. Share Model
 

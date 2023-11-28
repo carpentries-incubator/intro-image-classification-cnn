@@ -147,7 +147,7 @@ Two of the most commonly used libraries for image representation and manipulatio
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Let us start by looking at the image we used in the introduction.
+Let us start by taking a closer look at the Jabiru image.
 
 ```python
 # load the libraries required

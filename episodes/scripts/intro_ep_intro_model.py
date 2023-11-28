@@ -9,7 +9,7 @@ Created on Fri Jun 30 09:37:03 2023
 from tensorflow import keras
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-from icwithcnn_functions import prepare_image_icwithcnn # custom function
+import numpy as np
 import time
 
 start = time.time()
@@ -78,7 +78,9 @@ x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
 outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 
 # create the model
-model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifar_model_intro")
+model_intro = keras.Model(inputs = inputs_intro, 
+                          outputs = outputs_intro, 
+                          name="cifar_model_intro")
 
 # compile the model
 model_intro.compile(optimizer = 'adam', 
@@ -94,15 +96,21 @@ history_intro = model_intro.fit(train_images, train_labels,
 
 #### Perform a Prediction/Classification
 
-# specify a new image and prepare it to match cifar10 dataset
-new_img_path = "../data/Jabiru_TGS.JPG" # path to image
-new_img_prepped = prepare_image_icwithcnn(new_img_path) # custom function
+# predict the classname of the first test image
+result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))
 
-# predict the classname
-result_intro = model_intro.predict(new_img_prepped) # make prediction
-print(' The predicted probability of each class is: ', result_intro.round(4))
+print('The predicted probability of each class is: ', result_intro.round(4))
 print('The class with the highest predicted probability is: ', class_names[result_intro.argmax()])
+
+# plot the image with its true label
+plt.imshow(test_images[0], cmap=plt.cm.binary)
+plt.title(class_names[test_labels[0,].argmax()])
+plt.show()
+
+end = time.time()
 
 print()
 print()
 print("Time taken to run program was:", end - start, "seconds")
+
+

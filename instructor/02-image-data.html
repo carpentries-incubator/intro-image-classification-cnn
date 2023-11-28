@@ -276,7 +276,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p> Last updated on 2023-11-16 | 
+        <p> Last updated on 2023-11-28 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -371,11 +371,10 @@ already saw an example of this in the introduction:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the CIFAR-10 dataset included with the keras packages</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># commented out in case these are already be in memory</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load the cifar dataset included with the keras library</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
 </div>
 <p>In this instance the data is likely already prepared for use in a
 CNN. However, it is always a good idea to first read any associated
@@ -512,7 +511,7 @@ array can be used interchangeably.</p>
   WANT TO KNOW MORE: Python image libraries
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>Two of the most commonly used libraries for image representation and
 manipulation are NumPy and Pillow (PIL). Additionally, when working with
@@ -544,7 +543,7 @@ preprocessing</a> documentation</li>
 </div>
 </div>
 </div>
-<p>Let us start by looking at the image we used in the introduction.</p>
+<p>Let us start by taking a closer look at the Jabiru image.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -610,7 +609,7 @@ RGB values to be between 0 and 1 is called
   WANT TO KNOW MORE: Why Normalize?
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Normalizing the RGB values to be between 0 and 1 is a common
@@ -698,7 +697,7 @@ After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0
 </div>
 <p>Of course, if there are a large number of images to preprocess you do
 not want to copy and paste these steps for each image! Fortunately,
-keras has a solution for that: <a href="https://keras.io/api/data_loading/image/" class="external-link">tf.keras.utils.image_dataset_from_directory</a></p>
+Keras has a solution for that: <a href="https://keras.io/api/data_loading/image/" class="external-link">tf.keras.utils.image_dataset_from_directory</a></p>
 </div>
 <div class="section level3">
 <h3 id="one-hot-encoding">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a></h3>
@@ -744,6 +743,52 @@ categories: Red, Blue, Green.</p>
 <td align="right">0</td>
 </tr></tbody></table><p>Each category has its own binary column, and the value is set to 1 in
 the corresponding column for each row that matches that category.</p>
+<p>The Keras function for one_hot encoding is called <a href="https://keras.io/api/utils/python_utils/#to_categorical-function" class="external-link">to_categorical</a>:</p>
+<p><code>tf.keras.utils.to_categorical(y, num_classes=None, dtype="float32")</code></p>
+<ul><li>
+<code>y</code> is array-like with class values to be converted into
+a matrix (integers from 0 to num_classes - 1)</li>
+<li>
+<code>num_classes</code> is the total number of classes. If None,
+this would be inferred as max(y) + 1</li>
+<li>
+<code>dtype</code> is the data type expected by the input. Default:
+‘float32’</li>
+</ul><p>We performed this operation in <strong>Step 3. Prepare data</strong>
+of the Introduction but let us look at the labels before and after
+one-hot encoding.</p>
+<pre><code><span><span class="fu">print</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="st">'train_labels before one hot encoding'</span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">train_labels</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># one-hot encode labels</span></span>
+<span><span class="va">train_labels</span> <span class="op">=</span> <span class="fu">keras.utils.to_categorical</span><span class="op">(</span><span class="va">train_labels</span>, <span class="fu">len</span><span class="op">(</span><span class="va">class_names</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">val_labels</span> <span class="op">=</span> <span class="fu">keras.utils.to_categorical</span><span class="op">(</span><span class="va">val_labels</span>, <span class="fu">len</span><span class="op">(</span><span class="va">class_names</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="st">'train_labels after one hot encoding'</span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">train_labels</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>train_labels before one hot encoding
+[[6]
+ [9]
+ [9]
+ ...
+ [9]
+ [1]
+ [1]]
+
+train_labels after one hot encoding
+[[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ ...
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 1. 0. ... 0. 0. 0.]
+ [0. 1. 0. ... 0. 0. 0.]]</code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="image-augmentation">Image augmentation<a class="anchor" aria-label="anchor" href="#image-augmentation"></a></h3>
@@ -760,7 +805,12 @@ right and you want your model to recognize both</li>
 <ul><li>brightness, contrast, or hue</li>
 <li>these changes simulate variations in lighting conditions</li>
 </ul></li>
-</ul><p>We will look at image augmentation in a later episode.</p>
+</ul><p>We will not be looking at image augmentation in this lesson but it is
+important that you be aware of this type of data preparation because it
+can make a big difference in your model’s ability to predict outside of
+your training data.</p>
+<p>Have a look at <a href="https://keras.io/api/layers/preprocessing_layers/image_augmentation/" class="external-link">Image
+augmentation layers</a> for information about these operations.</p>
 </div>
 <div class="section level3">
 <h3 id="data-splitting">Data Splitting<a class="anchor" aria-label="anchor" href="#data-splitting"></a></h3>
@@ -800,11 +850,11 @@ the split is done. By setting it to <code>target</code> the train and
 test sets the function will return will have roughly the same
 proportions (with regards to the number of images of a certain class) as
 the dataset.</li>
-</ul><div class="codewrapper sourceCode" id="cb10">
+</ul><div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># split the training data into training and validation sets</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(train_images, train_labels, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># split the training data into training and validation sets</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(train_images, train_labels, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre>
 </div>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
@@ -830,17 +880,17 @@ out if the classes are well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A. Training Set</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set is of type'</span>, train_images.__class__)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set has'</span>, train_images.shape[<span class="dv">0</span>], <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of labels in our training set and the number images in each class are:</span><span class="ch">\n</span><span class="st">'</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.unique(train_labels, return_counts<span class="op">=</span><span class="va">True</span>))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set is of type'</span>, train_images.__class__)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set has'</span>, train_images.shape[<span class="dv">0</span>], <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of labels in our training set and the number images in each class are:</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.unique(train_labels, return_counts<span class="op">=</span><span class="va">True</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -854,14 +904,14 @@ The number of labels in our training set and the number images in each class are
       dtype=int64))</code></pre>
 </div>
 <p>B. Vaildation Set (we can use the same code as the training set)</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The validation set is of type'</span>, val_images.__class__)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The validation set has'</span>, val_images.shape[<span class="dv">0</span>] <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of labels in our validation set and the number images in each class are:</span><span class="ch">\n</span><span class="st">'</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.unique(val_labels, return_counts<span class="op">=</span><span class="va">True</span>))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The validation set is of type'</span>, val_images.__class__)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The validation set has'</span>, val_images.shape[<span class="dv">0</span>] <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of labels in our validation set and the number images in each class are:</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.unique(val_labels, return_counts<span class="op">=</span><span class="va">True</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -886,7 +936,7 @@ The number of labels in our validation set and the number images in each class a
   WANT TO KNOW MORE: Data Splitting Techniques
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Data is typically split into the training, validation, and test data
@@ -1023,7 +1073,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/02-image-data.html",
   "identifier": "https://.github.io/github.com/instructor/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-11-16",
+  "dateModified": "2023-11-28",
   "datePublished": "2023-11-28"
 }
 

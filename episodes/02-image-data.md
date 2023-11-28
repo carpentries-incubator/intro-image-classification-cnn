@@ -53,10 +53,9 @@ In some cases you will be able to download an image dataset that is already labe
 Where labelled data exists, in most cases the data provider or other users will have created functions that you can use to load the data. We already saw an example of this in the introduction:
 
 ```python
-# load the CIFAR-10 dataset included with the keras packages
 from tensorflow import keras
 
-# commented out in case these are already be in memory
+# load the cifar dataset included with the keras library
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 ```
 
@@ -249,7 +248,7 @@ The min, max, and mean pixel values are 0.0 , 255.0 , and 87.0 respectively.
 After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0 respectively.
 ```
 
-Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, keras has a solution for that: [tf.keras.utils.image_dataset_from_directory]
+Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, Keras has a solution for that: [tf.keras.utils.image_dataset_from_directory]
 
 
 ### One-hot encoding
@@ -280,6 +279,48 @@ Table 2. After One-Hot Encoding.
 
 Each category has its own binary column, and the value is set to 1 in the corresponding column for each row that matches that category.
 
+The Keras function for one_hot encoding is called [to_categorical]:
+
+`tf.keras.utils.to_categorical(y, num_classes=None, dtype="float32")`
+
+- `y` is array-like with class values to be converted into a matrix (integers from 0 to num_classes - 1)
+- `num_classes` is the total number of classes. If None, this would be inferred as max(y) + 1
+- `dtype` is the data type expected by the input. Default: 'float32'
+
+We performed this operation in **Step 3. Prepare data** of the Introduction but let us look at the labels before and after one-hot encoding.
+
+```
+print()
+print('train_labels before one hot encoding')
+print(train_labels)
+
+# one-hot encode labels
+train_labels = keras.utils.to_categorical(train_labels, len(class_names))
+val_labels = keras.utils.to_categorical(val_labels, len(class_names))
+
+print()
+print('train_labels after one hot encoding')
+print(train_labels)
+```
+```output
+train_labels before one hot encoding
+[[6]
+ [9]
+ [9]
+ ...
+ [9]
+ [1]
+ [1]]
+
+train_labels after one hot encoding
+[[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ ...
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 1. 0. ... 0. 0. 0.]
+ [0. 1. 0. ... 0. 0. 0.]]
+ ```
 
 ### Image augmentation
 
@@ -293,8 +334,9 @@ There are several ways to augment your data to increase the diversity of the tra
   - brightness, contrast, or hue
   - these changes simulate variations in lighting conditions
  
-We will look at image augmentation in a later episode.
+We will not be looking at image augmentation in this lesson but it is important that you be aware of this type of data preparation because it can make a big difference in your model's ability to predict outside of your training data.
 
+Have a look at [Image augmentation layers] for information about these operations. 
 
 ### Data Splitting
 
@@ -448,7 +490,8 @@ Our dataset is preprocessed and split into three sets which means we are ready t
 
 
 [tf.keras.utils.image_dataset_from_directory]:  https://keras.io/api/data_loading/image/
+[to_categorical]: https://keras.io/api/utils/python_utils/#to_categorical-function
 [train_test_split]: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
-[tf.data.Dataset]: https://www.tensorflow.org/api_docs/python/tf/data/Dataset
 
-[CINIC-10]: https://github.com/BayesWatch/cinic-10/
+[Image augmentation layers]: https://keras.io/api/layers/preprocessing_layers/image_augmentation/
+

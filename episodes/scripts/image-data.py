@@ -53,6 +53,21 @@ new_img_arr_norm = new_img_arr / 255.0
 # extract the min, max, and mean pixel values AFTER
 print('After normalization, the min, max, and mean pixel values are', new_img_arr_norm.min(), ',', new_img_arr_norm.max(), ', and', new_img_arr_norm.mean().round(), 'respectively.')
 
+### One-hot encoding
+
+print()
+print('train_labels before one hot encoding')
+print(train_labels)
+
+# one-hot encode labels
+train_labels = keras.utils.to_categorical(train_labels, len(class_names))
+val_labels = keras.utils.to_categorical(val_labels, len(class_names))
+
+print()
+print('train_labels after one hot encoding')
+print(train_labels)
+
+
 ### Data Splitting
 # split the training data into training and validation sets
 train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)

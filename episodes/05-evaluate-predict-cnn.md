@@ -344,7 +344,7 @@ For instance, suppose you're tuning two hyperparameters:
 
 ## Tune Optimizer using Grid Search
 
-In [Episode 04](./04-fit-cnn.md) we talked briefly about the `Adam` optimizer used in our `model.compile` discussion. Recall the optimizer refers to the algorithm with which the model learns to optimize on the provided loss function.
+In [Episode 04 Compile and Train a Convolutional Neural Network](episodes/04-fit-cnn.md) we talked briefly about the `Adam` optimizer used in our `model.compile` discussion. Recall the optimizer refers to the algorithm with which the model learns to optimize on the provided loss function.
 
 Here we will use our introductory model to demonstrate how GridSearch is expressed in code to search for an optimizer.
 

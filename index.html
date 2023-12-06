@@ -149,11 +149,11 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#software-setup">Software Setup</a></li>
-<li><a href="#installing-the-required-packages">Installing the required packages</a></li>
-<li><a href="#starting-spyder">Starting Spyder</a></li>
+<li><a href="#install-the-required-packages">Install the required packages</a></li>
+<li><a href="#start-spyder">Start Spyder</a></li>
 <li><a href="#check-your-setup">Check your setup</a></li>
-<li><a href="#downloading-the-exercise-python-template-file">Downloading the exercise python template file</a></li>
-<li><a href="#downloading-the-required-datasets">Downloading the required datasets</a></li>
+<li><a href="#download-the-exercise-python-template-file">Download the exercise python template file</a></li>
+<li><a href="#get-the-data">Get the data</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -282,29 +282,53 @@ any links that you are not going to use.
  -->
 
 
-      <section id="setup"><p>These instructions are for setting up tensorflow in a
+      <section id="setup"><p>This lesson is designed for Software Carpentry users who have
+completed <a href="https://swcarpentry.github.io/python-novice-gapminder/" class="external-link">Plotting
+and Programming in Python</a> and are looking to jump straight into
+image classification. We recognize that this jump is quite large and
+have done our best to provide the content and code to perform these
+types of analyses.</p>
+<p>It uses the Anaconda package manager to install the required python
+packages, including the Spyder IDE.</p>
+<p>These instructions are for setting up tensorflow in a
 <strong>CPU</strong> only environment.</p>
+<div id="callout1" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
+<p>Please note you might want to consider installing the GPU enabled
+version of TensorFlow. The GPU enabled version can run significantly
+quicker (especially when training models) than the CPU only version. If
+you have a decent dedicated GPU on your computer, it is suggested to
+follow the instructions located in the <a href="setup-gpu.html">Setup -
+GPU</a> section instead.</p>
+</div>
+</div>
+</div>
 <section id="software-setup"><h2 class="section-heading">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
 </h2>
-<hr class="half-width"><div id="installing-python-using-anaconda" class="callout challenge">
+<hr class="half-width"><div id="install-python-using-anaconda" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="installing-python-using-anaconda" class="callout-inner">
-<h3 class="callout-title">Installing Python Using Anaconda<a class="anchor" aria-label="anchor" href="#installing-python-using-anaconda"></a>
+<div id="install-python-using-anaconda" class="callout-inner">
+<h3 class="callout-title">Install Python Using Anaconda<a class="anchor" aria-label="anchor" href="#install-python-using-anaconda"></a>
 </h3>
 <div class="callout-content">
 <p><a href="https://python.org" class="external-link">Python</a> is a popular language for
 scientific computing, and a frequent choice for machine learning as
 well. Installing all of its scientific packages individually can be a
 bit difficult, however, so we recommend the installer <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> which
-includes most (but not all) of the software you will need.</p>
-<p>Regardless of how you choose to install it, please make sure you
-install Python version 3.x (e.g., 3.9 is fine).</p>
-<p>Also, please set up your python environment at least a day in advance
-of the workshop. If you encounter problems with the installation
-procedure, ask your workshop organizers via e-mail for assistance so you
-are ready to go as soon as the workshop begins.</p>
+includes most (but not all) of the software you will need. Make sure you
+install the latest Python version 3.xx.</p>
+<p>Also, please set up your python environment <strong>at least</strong>
+a day in advance of the workshop. If you encounter problems with the
+installation procedure, ask your workshop organizers via e-mail for
+assistance so you are ready to go as soon as the workshop begins.</p>
 </div>
 </div>
 </div>
@@ -321,7 +345,7 @@ are ready to go as soon as the workshop begins.</p>
 tutorial</a> or:</p>
 <ol style="list-style-type: decimal"><li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
 your web browser.</p></li>
-<li><p>Download the Python 3 installer for Windows.</p></li>
+<li><p>Download the latest Python 3.xx installer for Windows.</p></li>
 <li><p>Double-click the executable and install Python 3 using
 <em>MOST</em> of the default settings. The only exception is to check
 the <strong>Make Anaconda the default Python</strong> option.</p></li>
@@ -390,17 +414,9 @@ the default Python).</p></li>
 </div>
 </div>
 </div>
-</section><section id="installing-the-required-packages"><h2 class="section-heading">Installing the required packages<a class="anchor" aria-label="anchor" href="#installing-the-required-packages"></a>
+</section><section id="install-the-required-packages"><h2 class="section-heading">Install the required packages<a class="anchor" aria-label="anchor" href="#install-the-required-packages"></a>
 </h2>
-<hr class="half-width"><div id="callout1" class="callout callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
-</h3>
-<div class="callout-content">
-<p><a href="https://docs.conda.io/projects/conda/en/latest/" class="external-link">Conda</a>
+<hr class="half-width"><p><a href="https://docs.conda.io/projects/conda/en/latest/" class="external-link">Conda</a>
 is the package management system associated with <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> and
 runs on Windows, macOS and Linux.</p>
 <p>Conda should already be available in your system once you installed
@@ -408,52 +424,67 @@ Anaconda successfully. Conda thus works regardless of the operating
 system. Make sure you have an up-to-date version of Conda running. See
 <a href="https://docs.anaconda.com/anaconda/install/update-version/" class="external-link">these
 instructions</a> for updating Conda if required.</p>
-</div>
-</div>
-</div>
-<div id="callout2" class="callout callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
-</h3>
-<div class="callout-content">
-<p>Please note you might want to consider installing the GPU enabled
-version of TensorFlow. The GPU enabled version can run significantly
-quicker (especially when training models) than the CPU only version. If
-you have a decent dedicated GPU on your computer, it is suggested to
-follow the instructions located in the <a href="setup-gpu.html">Setup -
-GPU</a> section instead.</p>
-</div>
-</div>
-</div>
-<p>To create a conda environment called <code>cnn_workshop</code> with
-the required packages, open a terminal and type the command:</p>
-<figure><img src="fig/00_setup_anaconda_prompt.png" alt="Screenshot of the Anaconda prompt" class="figure mx-auto d-block"></figure><pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop python spyder seaborn scikit-learn pandas</code></pre>
-<p>Activate the newly created environment:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop</code></pre>
-<p>Install tensorflow and scikeras using <a href="" title="https://pip.pypa.io/en/stable/">pip</a> (python’s package
-manager):</p>
-<pre class="code"><code>(cnn_workshop) C:\Users\Lab&gt; pip install tensorflow
-(cnn_workshop) C:\Users\Lab&gt; pip install scikeras</code></pre>
-<p>Note that modern versions of Tensorflow make Keras available as a
-module: <code>from tensorflow import keras</code></p>
-<div class="section level3">
-<h3 id="troubleshooting-for-windows">Troubleshooting for Windows<a class="anchor" aria-label="anchor" href="#troubleshooting-for-windows"></a></h3>
+<p>The easiest way to create a conda environment for this lesson is to
+use the Anaconda Prompt. You can search for “anaconda prompt” using the
+Windows search function (Windows Logo Key) or Spotlight on macOS
+(Command + spacebar).</p>
+<figure><img src="fig/00_anaconda_prompt_search.png" alt="Screenshot of what the Anaconda Prompt application looks like" class="figure mx-auto d-block"></figure><p>A terminal window will open with the title ‘Anaconda Prompt’ that
+looks like this:</p>
+<figure><img src="fig/00_anaconda_prompt_window.png" alt="Screenshot of the terminal window that opens when you launch the Anaconda Prompt application" class="figure mx-auto d-block"></figure><p>Note the notation of the prompt inside the terminal window. The name
+inside the parentheses refers to which conda environment you are working
+inside of, and ‘base’ is the name given to the default environment that
+comes with every Anaconda distribution.</p>
+<p>To create a new environment for this lesson, the command starts with
+the conda keywords <code>conda create</code>, followed by a name for the
+new environment and the package(s) to install:</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop python spyder seaborn scikit-learn pandas</code></pre>
+<p>After the environment is created we tell Anaconda to use the new
+environment with the conda keywords <code>conda activate</code> followed
+by the environment name:</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop
+(cnn_workshop) C:\Users\Lab&gt;</code></pre>
+<p>You will know that you are in the right environment because the
+prompt changes from (base) to (cnn_workshop).</p>
+<p>There are two other packages we need to install that we could not
+install at the same time that we created the environment,
+<code>tensorflow</code> and <code>scikeras</code>.</p>
+<p>To install these two packages we have to use a different package
+manager called <code>pip</code>.</p>
+<p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
+package management system for Python software packages. It is integrated
+into your local Python installation and runs regardless of your
+operating system too.</p>
+<pre class="code"><code>(cnn_workshop) C:\Users\Lab&gt; pip install tensorflow scikeras</code></pre>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Troubleshooting for Windows
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
 <p>It is possible that Windows users will run into version conflicts. If
 you are on Windows and get errors running the command, you can try
 installing the packages using pip within a conda environment:</p>
 <pre class="code"><code>(base) C:\Users\Lab&gt; conda create -n cnn_workshop python spyder
 (base) C:\Users\Lab&gt; conda activate cnn_workshop
 (cnn_workshop) C:\Users\Lab&gt; pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
-<p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
-package management system for Python software packages. It is integrated
-into your local Python installation and runs regardless of your
-operating system too.</p>
 </div>
-<div class="section level3">
-<h3 id="troubleshooting-for-macs-with-apple-silicon-chip">Troubleshooting for Macs with Apple silicon chip<a class="anchor" aria-label="anchor" href="#troubleshooting-for-macs-with-apple-silicon-chip"></a></h3>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Troubleshooting for Macs with Apple silicon chip
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
 <p>Newer Macs (from 2020 onwards) often have a different kind of chip,
 manufactured by Apple instead of Intel. This can lead to problems
 installing Tensorflow. If you get errors running the installation
@@ -461,20 +492,19 @@ command or conda hangs endlessly, you can try installing Tensorflow for
 Mac with pip:</p>
 <pre class="conda"><code>(cnn_workshop) C:\Users\Lab&gt; pip install tensorflow-macos</code></pre>
 </div>
-</section><section id="starting-spyder"><h2 class="section-heading">Starting Spyder<a class="anchor" aria-label="anchor" href="#starting-spyder"></a>
+</div>
+</div>
+</div>
+</section><section id="start-spyder"><h2 class="section-heading">Start Spyder<a class="anchor" aria-label="anchor" href="#start-spyder"></a>
 </h2>
-<hr class="half-width"><p>We will teach using Python in <a href="https://www.spyder-ide.org/" class="external-link">Spyder</a> (Scientific Python
+<hr class="half-width"><p>We teach this lesson using Python in <a href="https://www.spyder-ide.org/" class="external-link">Spyder</a> (Scientific Python
 Development Environment), a free integrated development environment
-(IDE) written in Python that comes with Anaconda. Editing, interactive
-testing, debugging, and introspection tools are all included in Spyder.
-If you installed Python using Anaconda, Spyder should already be on your
-system. If you did not use Anaconda, use the Python package manager pip
-(see the <a href="https://docs.spyder-ide.org/current/installation.html" class="external-link">Spyder
-website</a> for details.)</p>
-<p>To start Spyder, open a terminal and type the command:</p>
-<pre class="conda"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop
-(cnn_workshop) C:\Users\Lab&gt; spyder</code></pre>
-</section><section id="check-your-setup"><h2 class="section-heading">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a>
+(IDE) that comes with Anaconda. Editing, interactive testing, debugging,
+and introspection tools are all included in Spyder.</p>
+<p>To start Spyder, type the command <code>spyder</code>, making sure
+you are still in the workshop environment:</p>
+<pre class="conda"><code>(cnn_workshop) C:\Users\Lab&gt; spyder</code></pre>
+<figure><img src="fig/00_spyder_ide_layout.png" alt="Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas" class="figure mx-auto d-block"></figure></section><section id="check-your-setup"><h2 class="section-heading">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a>
 </h2>
 <hr class="half-width"><p>To check whether all packages installed correctly, go to the
 interactive <code>IPython Console</code> in Spyder (lower right hand
@@ -499,7 +529,7 @@ giving errors.</p>
 <p>Most versions will work fine with this lesson, but:</p>
 <ul><li>For Keras and Tensorflow, the minimum version is 2.2.4</li>
 <li>For sklearn, the minimum version is 0.22.</li>
-</ul></section><section id="downloading-the-exercise-python-template-file"><h2 class="section-heading">Downloading the exercise python template file<a class="anchor" aria-label="anchor" href="#downloading-the-exercise-python-template-file"></a>
+</ul></section><section id="download-the-exercise-python-template-file"><h2 class="section-heading">Download the exercise python template file<a class="anchor" aria-label="anchor" href="#download-the-exercise-python-template-file"></a>
 </h2>
 <hr class="half-width"><p>The aim for this workshop is to create a python script that you can
 used as a “base python program” that can be used for future
@@ -509,12 +539,10 @@ with episode exercise/challenge code, this workshop will use an
 exercises python script for all of the exercises completed throughout
 the workshop.</p>
 <p>This file can be downloaded from <a href="scripts/exercises.py">exercises.py</a>.</p>
-</section><section id="downloading-the-required-datasets"><h2 class="section-heading">Downloading the required datasets<a class="anchor" aria-label="anchor" href="#downloading-the-required-datasets"></a>
+</section><section id="get-the-data"><h2 class="section-heading">Get the data<a class="anchor" aria-label="anchor" href="#get-the-data"></a>
 </h2>
-<hr class="half-width"><p>Download the <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link">The CIFAR-10
-dataset</a>.</p>
-<p>TODO cifar comes with keras; need to work out if we want to provide
-ahead of time - might need to be munged</p>
+<hr class="half-width"><p>This lesson uses the CIFAR-10 image data that comes prepackaged with
+Keras.</p>
 <!-- Collect your link references at the bottom of your document -->
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
@@ -570,8 +598,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/index.html",
   "identifier": "https://.github.io/github.com/index.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-12-05",
-  "datePublished": "2023-12-05"
+  "dateModified": "2023-12-06",
+  "datePublished": "2023-12-06"
 }
 
   </script><script>

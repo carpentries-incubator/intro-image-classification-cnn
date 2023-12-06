@@ -318,12 +318,20 @@
         
 <section id="aio-setup-gpu"><p>Content from <a href="setup-gpu.html">Setup - GPU</a></p>
 <hr>
-<p> Last updated on 2023-11-09 | 
+<p> Last updated on 2023-12-06 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
+<p>This lesson is designed for Software Carpentry users who have
+completed <a href="https://swcarpentry.github.io/python-novice-gapminder/" class="external-link">Plotting
+and Programming in Python</a> and are looking to jump straight into
+image classification. We recognize that this jump is quite large and
+have done our best to provide the content and code to perform these
+types of analyses.</p>
+<p>The default <a href="index.html#setup">Setup</a> is for CPU only
+environments.</p>
 <p>These instructions are for setting up tensorflow in a
 <strong>GPU</strong> capable environment. Because this is a more
 advanced topic and installation varies depending on your computer’s
@@ -333,25 +341,25 @@ class time assisting on GPU setups.</p>
 <section id="software-setup"><h2 class="section-heading">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
 </h2>
 <hr class="half-width">
-<div id="installing-python-using-anaconda" class="callout challenge">
+<div id="install-python-using-anaconda" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="installing-python-using-anaconda" class="callout-inner">
-<h3 class="callout-title">Installing Python using Anaconda<a class="anchor" aria-label="anchor" href="#installing-python-using-anaconda"></a>
+<div id="install-python-using-anaconda" class="callout-inner">
+<h3 class="callout-title">Install Python using Anaconda<a class="anchor" aria-label="anchor" href="#install-python-using-anaconda"></a>
 </h3>
 <div class="callout-content">
 <p><a href="https://python.org" class="external-link">Python</a> is a popular language for
 scientific computing, and a frequent choice for machine learning as
 well. Installing all of its scientific packages individually can be a
 bit difficult, however, so we recommend the installer <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> which
-includes most (but not all) of the software you will need.</p>
-<p>Regardless of how you choose to install it, please make sure you
-install Python version 3.x (e.g., 3.9 is fine).</p>
-<p>Also, please set up your python environment at least a day in advance
-of the workshop. If you encounter problems with the installation
-procedure, ask your workshop organizers via e-mail for assistance so you
-are ready to go as soon as the workshop begins.</p>
+includes most (but not all) of the software you will need. Make sure you
+install the latest Python version 3.xx.</p>
+<p>Also, please set up your python environment <strong>at least</strong>
+a day in advance of the workshop. If you encounter problems with the
+installation procedure <em>for Anaconda</em>, ask your workshop
+organizers via e-mail for assistance so you are ready to go as soon as
+the workshop begins.</p>
 </div>
 </div>
 </div>
@@ -448,17 +456,9 @@ the default Python).</p></li>
 </div>
 </div>
 </div>
-</section><section id="installing-the-required-packages"><h2 class="section-heading">Installing the required packages<a class="anchor" aria-label="anchor" href="#installing-the-required-packages"></a>
+</section><section id="install-the-required-packages"><h2 class="section-heading">Install the required packages<a class="anchor" aria-label="anchor" href="#install-the-required-packages"></a>
 </h2>
 <hr class="half-width">
-<div id="callout1" class="callout callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
-</h3>
-<div class="callout-content">
 <p><a href="https://docs.conda.io/projects/conda/en/latest/" class="external-link">Conda</a>
 is the package management system associated with <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> and
 runs on Windows, macOS and Linux.</p>
@@ -467,23 +467,33 @@ Anaconda successfully. Conda thus works regardless of the operating
 system. Make sure you have an up-to-date version of Conda running. See
 <a href="https://docs.anaconda.com/anaconda/install/update-version/" class="external-link">these
 instructions</a> for updating Conda if required.</p>
-</div>
-</div>
-</div>
-<p>To create a conda environment called <code>cnn_workshop_gpu</code>
-with the required packages, launch an Anaconda Prompt (terminal) and
-type the command:</p>
+<p>The easiest way to create a conda environment for this lesson is to
+use the Anaconda Prompt. You can search for “anaconda prompt” using the
+Windows search function (Windows Logo Key) or Spotlight on macOS
+(Command + spacebar).</p>
+<figure><img src="fig/00_anaconda_prompt_search.png" alt="Screenshot of what the Anaconda Prompt application looks like" class="figure mx-auto d-block"></figure><p>A terminal window will open with the title ‘Anaconda Prompt’ that
+looks like this:</p>
+<figure><img src="fig/00_anaconda_prompt_window.png" alt="Screenshot of the terminal window that opens when you launch the Anaconda Prompt application" class="figure mx-auto d-block"></figure><p>Note the notation of the prompt inside the terminal window. The name
+inside the parentheses refers to which conda environment you are working
+inside of, and ‘base’ is the name given to the default environment that
+comes with every Anaconda distribution.</p>
+<p>To create a new environment for this lesson, the command starts with
+the conda keywords <code>conda create</code>, followed by a name for the
+new environment and the package(s) to install:</p>
 <pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas</code></pre>
-<p>Activate the newly created environment:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu</code></pre>
-<p>NOTE the prompt should change to reflect you are in the
-(cnn_workshop_gpu) environment.</p>
-<div id="callout2" class="callout callout">
+<p>After the environment is created we tell Anaconda to use the new
+environment with the conda keywords <code>conda activate</code> followed
+by the environment name:</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu
+(cnn_workshop_gpu) C:\Users\Lab&gt;</code></pre>
+<p>You will know that you are in the right environment because the
+prompt changes from (base) to (cnn_workshop_gpu).</p>
+<div id="callout1" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
 </h3>
 <div class="callout-content">
 <p>To set up a GPU environment you need to make sure that you have the
@@ -496,104 +506,99 @@ environments.</p>
 </div>
 </div>
 </div>
-<div class="section level4">
-<h4 id="nvidia-gpu">NVIDIA GPU<a class="anchor" aria-label="anchor" href="#nvidia-gpu"></a>
-</h4>
+<div class="section level3">
+<h3 id="nvidia-gpu">NVIDIA GPU<a class="anchor" aria-label="anchor" href="#nvidia-gpu"></a>
+</h3>
 <p>First install NVIDIA GPU driver [<a href="https://www.nvidia.com/download/index.aspx" class="external-link uri">https://www.nvidia.com/download/index.aspx</a>] if you have
 not.</p>
 <p>Then install the CUDA, cuDNN with conda.</p>
 <pre class="code"><code>(cnn_workshop_gpu) C:\Users\Lab&gt; conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</code></pre>
-<p>Install tensorflow using <a href="" title="https://pip.pypa.io/en/stable/">pip</a> (python’s package
-manager), first making sure you have a recent version of pip:</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  AMD GPU
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div class="accordion-body">
+<p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
+<p>TODO Finish these instructions</p>
+</div>
+</div>
+</div>
+</div>
+<p>There are two other packages we need to install that we could not
+install at the same time that we created the environment,
+<code>tensorflow</code> and <code>scikeras</code>.</p>
+<p>To install these two packages we have to use a different package
+manager called <code>pip</code>.</p>
+<p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
+package management system for Python software packages. It is integrated
+into your local Python installation and runs regardless of your
+operating system too.</p>
 <pre class="code"><code>(cnn_workshop_gpu) C:\Users\Lab&gt;pip install --upgrade pip
 
 # Anything above 2.10 is not supported on the GPU on Windows Native
 (cnn_workshop_gpu) C:\Users\Lab&gt;pip install "tensorflow&lt;2.11"
 (cnn_workshop_gpu) C:\Users\Lab&gt;pip install scikeras</code></pre>
 </div>
-<div class="section level4">
-<h4 id="amd-gpu">AMD GPU<a class="anchor" aria-label="anchor" href="#amd-gpu"></a>
-</h4>
-<p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
-<p>Note that modern versions of Tensorflow make Keras available as a
-module: <code>from tensorflow import keras</code></p>
-</div>
-<div class="section level3">
-<h3 id="troubleshooting-for-windows">Troubleshooting for Windows<a class="anchor" aria-label="anchor" href="#troubleshooting-for-windows"></a>
-</h3>
-<p>It is possible that Windows users will run into version conflicts. If
-you are on Windows and get errors running the command, you can try
-installing the packages using pip within a conda environment:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda create -n cnn_workshop_gpu python spyder
-(cnn_workshop_gpu) C:\Users\Lab&gt; conda activate cnn_workshop
-(cnn_workshop_gpu) C:\Users\Lab&gt; pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
-<p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
-package management system for Python software packages. It is integrated
-into your local Python installation and runs regardless of your
-operating system too.</p>
-</div>
-<div class="section level3">
-<h3 id="troubleshooting-for-macs-with-apple-silicon-chip">Troubleshooting for Macs with Apple silicon chip<a class="anchor" aria-label="anchor" href="#troubleshooting-for-macs-with-apple-silicon-chip"></a>
-</h3>
-<p>Newer Macs (from 2020 onwards) often have a different kind of chip,
-manufactured by Apple instead of Intel. This can lead to problems
-installing Tensorflow . If you get errors running the installation
-command or conda hangs endlessly, you can try installing Tensorflow for
-Mac with pip:</p>
-<pre class="conda"><code>(cnn_workshop_gpu) C:\Users\Lab&gt; pip install tensorflow-macos # TODO check if diff GPU version</code></pre>
-</div>
-</section><section id="starting-spyder"><h2 class="section-heading">Starting Spyder<a class="anchor" aria-label="anchor" href="#starting-spyder"></a>
+</section><section id="start-spyder"><h2 class="section-heading">Start Spyder<a class="anchor" aria-label="anchor" href="#start-spyder"></a>
 </h2>
 <hr class="half-width">
-<p>We will teach using Python in <a href="https://www.spyder-ide.org/" class="external-link">Spyder</a> (Scientific Python
-Development Environment) , a free integrated development environment
-(IDE) written in Python that comes with Anaconda.Editing, interactive
-testing, debugging, and introspection tools are all included in Spyder.
-If you installed Python using Anaconda, Spyder should already be on your
-system. If you did not use Anaconda, use the Python package manager pip
-(see the <a href="https://docs.spyder-ide.org/current/installation.html" class="external-link">Spyder
-website</a> for details.)</p>
-<p>To start Spyder, open an Anaconda prompt (terminal), activate the
-tensorflow environment for this workshop if it is not already activated
-(check prompt to find out), and launch the app:</p>
-<pre class="conda"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu
-(cnn_workshop_gpu) C:\Users\Lab&gt; spyder</code></pre>
-</section><section id="check-your-setup"><h2 class="section-heading">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a>
+<p>We teach this lesson using Python in <a href="https://www.spyder-ide.org/" class="external-link">Spyder</a> (Scientific Python
+Development Environment), a free integrated development environment
+(IDE) that comes with Anaconda. Editing, interactive testing, debugging,
+and introspection tools are all included in Spyder.</p>
+<p>To start Spyder, type the command <code>spyder</code>, making sure
+you are still in the workshop environment:</p>
+<pre class="conda"><code>(cnn_workshop) C:\Users\Lab&gt; spyder</code></pre>
+<figure><img src="fig/00_spyder_ide_layout.png" alt="Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas" class="figure mx-auto d-block"></figure></section><section id="check-your-setup"><h2 class="section-heading">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a>
 </h2>
 <hr class="half-width">
 <p>To check whether all packages installed correctly, go to the
 interactive <code>IPython Console</code> in Spyder (lower right hand
 side panel) and type in the following commands:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Keras version: '</span>, keras.__version__)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Keras version: '</span>, keras.__version__)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
 <p>This should output the versions of all required packages without
 giving errors. Most versions will work fine with this lesson, but:</p>
 <ul>
-<li>For Keras and Tensorflow, the minimum version is 2.2.4</li>
+<li>For Keras and Tensorflow, the maximum version is 2.11.</li>
 <li>For sklearn, the minimum version is 0.22.</li>
-</ul></section><section id="downloading-the-required-datasets"><h2 class="section-heading">Downloading the required datasets<a class="anchor" aria-label="anchor" href="#downloading-the-required-datasets"></a>
+</ul></section><section id="download-the-exercise-python-template-file"><h2 class="section-heading">Download the exercise python template file<a class="anchor" aria-label="anchor" href="#download-the-exercise-python-template-file"></a>
 </h2>
 <hr class="half-width">
-<p>Download the <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link">The CIFAR-10
-dataset</a>.</p>
-<p>TODO cifar comes with keras; need to work out if we want to provide
-ahead of time - might need to be munged</p>
+<p>The aim for this workshop is to create a python script that you can
+used as a “base python program” that can be used for future
+projects.</p>
+<p>In an effort to not clutter the scripts developed in the workshop
+with episode exercise/challenge code, this workshop will use an
+exercises python script for all of the exercises completed throughout
+the workshop.</p>
+<p>This file can be downloaded from <a href="scripts/exercises.py">exercises.py</a>.</p>
+</section><section id="get-the-data"><h2 class="section-heading">Get the data<a class="anchor" aria-label="anchor" href="#get-the-data"></a>
+</h2>
+<hr class="half-width">
+<p>This lesson uses the CIFAR-10 image data that comes prepackaged with
+Keras.</p>
 <!-- Collect your link references at the bottom of your document -->
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
@@ -1393,7 +1398,7 @@ array can be used interchangeably.</p>
   WANT TO KNOW MORE: Python image libraries
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>Two of the most commonly used libraries for image representation and
 manipulation are NumPy and Pillow (PIL). Additionally, when working with
@@ -1501,7 +1506,7 @@ RGB values to be between 0 and 1 is called
   WANT TO KNOW MORE: Why Normalize?
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Normalizing the RGB values to be between 0 and 1 is a common
@@ -1817,7 +1822,7 @@ out if the classes are well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -1873,7 +1878,7 @@ The number of labels in our validation set and the number images in each class a
   WANT TO KNOW MORE: Data Splitting Techniques
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Data is typically split into the training, validation, and test data
@@ -2661,7 +2666,7 @@ appropriate to use when the data has two or more label classes.</p>
   WANT TO KNOW MORE: What loss would I use for regression?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>For regression tasks, we might want to stipulate that the predicted
 numerical values are as close as possible to the true values. This is
@@ -2743,7 +2748,7 @@ adaptive learning rate mechanism to address this problem.</li>
   WANT TO KNOW MORE: Learning Rate
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p><strong>Learning rate</strong> is a hyperparameter that determines
@@ -2848,7 +2853,7 @@ method</a>.</p>
   WANT TO KNOW MORE: Batch size
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>The choice of batch size can have various implications, and there are
@@ -2943,7 +2948,7 @@ test set?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li><p>The loss curve should drop quite quickly in a smooth line with
@@ -2993,7 +2998,7 @@ training data and introduce variability.</li>
   WANT TO KNOW MORE: What is underfitting?
   </h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
 <div class="accordion-body">
 <p>Underfitting occurs when the model is too simple or lacks the
 capacity to capture the underlying patterns and relationships present in
@@ -3174,7 +3179,7 @@ by adding a dropout layer.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3229,7 +3234,7 @@ dropout.</p>
   WANT TO KNOW MORE: Regularization methods for Convolutional Neural Networks (CNNs)
   </h3>
 </button>
-<div id="collapseSpoiler5" class="accordion-collapse collapse" aria-labelledby="headingSpoiler5" data-bs-parent="#accordionSpoiler5">
+<div id="collapseSpoiler5" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler5" aria-labelledby="headingSpoiler5">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p><strong>Regularization</strong> methods introduce constraints or
@@ -3442,7 +3447,7 @@ The number of labels in our test dataset is:  10000</code></pre>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>It depends! Recall in an <a href="02-image-data.html">Episode 02
 Introduction to Image Data</a> Callout we talked about the different
@@ -3613,7 +3618,7 @@ visualized as a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Q1. The confusion matrix shows that the predictions are not bad but
 can improved.</p>
@@ -3705,7 +3710,7 @@ model performance, what is the term associated to this procedure?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Q1. Varying the dropout rate</p>
 <p>The code below instantiates and trains a model with varying dropout
@@ -3828,7 +3833,7 @@ is expressed in code to search for an optimizer.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>First, we will define a <strong>build function</strong> to use during
 GridSearch. This function will compile the model for each combination of
@@ -3993,7 +3998,7 @@ well outside of deep architectures</td>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>The code below serves as a practical means for exploring activation
 performance on an image dataset.</p>
@@ -4094,7 +4099,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>This is an open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you

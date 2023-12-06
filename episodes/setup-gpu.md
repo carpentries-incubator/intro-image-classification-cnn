@@ -2,23 +2,21 @@
 title: "Setup - GPU"
 ---
 
+This lesson is designed for Software Carpentry users who have completed [Plotting and Programming in Python] and are looking to jump straight into image classification. We recognize that this jump is quite large and have done our best to provide the content and code to perform these types of analyses.
+
+The default [Setup](../learners/setup.md) is for CPU only environments.
+
 These instructions are for setting up tensorflow in a **GPU** capable environment. Because this is a more advanced topic and installation varies depending on your computer's architecture, please make sure you **set up and test** your installation before the workshop begins. We will not be able to spend class time assisting on GPU setups.
 
 ## Software Setup
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Installing Python using Anaconda
+## Install Python using Anaconda
 
 [Python] is a popular language for scientific computing, and a frequent choice for machine learning as well. Installing all of its scientific packages
-individually can be a bit difficult, however, so we recommend the installer [Anaconda] which includes most (but not all) of the software you will need.
+individually can be a bit difficult, however, so we recommend the installer [Anaconda] which includes most (but not all) of the software you will need. Make sure you install the latest Python version 3.xx.
 
-Regardless of how you choose to install it, please make sure you install Python
-version 3.x (e.g., 3.9 is fine). 
-
-Also, please set up your python environment at
-least a day in advance of the workshop. If you encounter problems with the
-installation procedure, ask your workshop organizers via e-mail for assistance so
-you are ready to go as soon as the workshop begins.
+Also, please set up your python environment **at least** a day in advance of the workshop. If you encounter problems with the installation procedure *for Anaconda*, ask your workshop organizers via e-mail for assistance so you are ready to go as soon as the workshop begins.
 
 :::::::::::::::::::::::: solution
 ### Windows
@@ -80,33 +78,42 @@ If you run into any difficulties, please request help before the workshop begins
 :::::::::::::::::::::::::::::::::: 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Installing the required packages
+## Install the required packages
 
-::::::::::::::::::::::::::::::::::::::::: callout
 [Conda] is the package management system associated with [Anaconda] and runs on Windows, macOS and Linux.
 
 Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
-:::::::::::::::::::::::::::::::::::::::::::::::::
 
-To create a conda environment called `cnn_workshop_gpu` with the required packages, launch an Anaconda Prompt (terminal) and type the command:
+The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key) or Spotlight on macOS (Command + spacebar).
+
+![](fig/00_anaconda_prompt_search.png){alt='Screenshot of what the Anaconda Prompt application looks like'}
+
+A terminal window will open with the title 'Anaconda Prompt' that looks like this:
+
+![](fig/00_anaconda_prompt_window.png){alt='Screenshot of the terminal window that opens when you launch the Anaconda Prompt application'}
+
+Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment that comes with every Anaconda distribution.
+
+To create a new environment for this lesson, the command starts with the conda keywords `conda create`, followed by a name for the new environment and the package(s) to install:
 
 ```code
 (base) C:\Users\Lab> conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas
 ```
 
-Activate the newly created environment:
+After the environment is created we tell Anaconda to use the new environment with the conda keywords `conda activate` followed by the environment name:
 
 ```code
 (base) C:\Users\Lab> conda activate cnn_workshop_gpu
+(cnn_workshop_gpu) C:\Users\Lab>
 ```
 
-NOTE the prompt should change to reflect you are in the (cnn_workshop_gpu) environment.
+You will know that you are in the right environment because the prompt changes from (base) to (cnn_workshop_gpu). 
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 To set up a GPU environment you need to make sure that you have the appropriate hardware, system, and software necessary for GPU support. Here we are following the [Windows TensorFlow installation instructions] starting at **Step 5. GPU setup** but using Anaconda instead of Miniconda. Specific instructions can also be found there for [MacOS] and [Linux] environments.
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-#### NVIDIA GPU
+### NVIDIA GPU
 
 First install NVIDIA GPU driver [https://www.nvidia.com/download/index.aspx] if you have not.
 
@@ -115,8 +122,20 @@ Then install the CUDA, cuDNN with conda.
 ```code
 (cnn_workshop_gpu) C:\Users\Lab> conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
 ```
+::::::::::::::::::::::::::::::::::::::::: spoiler
+### AMD GPU 
 
-Install tensorflow using [pip] (python's package manager), first making sure you have a recent version of pip:
+First install AMD GPU driver [https://www.amd.com/en/support] if you have not.
+
+TODO Finish these instructions
+
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
+There are two other packages we need to install that we could not install at the same time that we created the environment, `tensorflow` and `scikeras`.
+
+To install these two packages we have to use a different package manager called `pip`.
+
+[pip] is the package management system for Python software packages. It is integrated into your local Python installation and runs regardless of your operating system too.
 
 ```code
 (cnn_workshop_gpu) C:\Users\Lab>pip install --upgrade pip
@@ -126,46 +145,17 @@ Install tensorflow using [pip] (python's package manager), first making sure you
 (cnn_workshop_gpu) C:\Users\Lab>pip install scikeras
 ```
 
-#### AMD GPU 
+## Start Spyder
 
-First install AMD GPU driver [https://www.amd.com/en/support] if you have not.
+We teach this lesson using Python in [Spyder] (Scientific Python Development Environment), a free integrated development environment (IDE) that comes with Anaconda. Editing, interactive testing, debugging, and introspection tools are all included in Spyder.
 
-
-Note that modern versions of Tensorflow make Keras available as a module: `from tensorflow import keras`
-
-### Troubleshooting for Windows
-
-It is possible that Windows users will run into version conflicts. If you are on Windows and get errors running the command, you can try installing the packages using pip within a conda environment:
-
-```code
-(base) C:\Users\Lab> conda create -n cnn_workshop_gpu python spyder
-(cnn_workshop_gpu) C:\Users\Lab> conda activate cnn_workshop
-(cnn_workshop_gpu) C:\Users\Lab> pip install tensorflow>=2.5 seaborn scikit-learn pandas scikeras
-```
-
-[pip] is the package management system for Python software packages.
-It is integrated into your local Python installation and runs regardless of your operating system too.
-
-### Troubleshooting for Macs with Apple silicon chip
-
-Newer Macs (from 2020 onwards) often have a different kind of chip, manufactured by Apple instead of Intel. This can lead to problems installing Tensorflow .
-If you get errors running the installation command or conda hangs endlessly,
-you can try installing Tensorflow for Mac with pip:
+To start Spyder, type the command `spyder`, making sure you are still in the workshop environment:
 
 ```conda
-(cnn_workshop_gpu) C:\Users\Lab> pip install tensorflow-macos # TODO check if diff GPU version
+(cnn_workshop) C:\Users\Lab> spyder
 ```
 
-## Starting Spyder
-
-We will teach using Python in [Spyder] (Scientific Python Development Environment) , a free integrated development environment (IDE) written in Python that comes with Anaconda.Editing, interactive testing, debugging, and introspection tools are all included in Spyder. If you installed Python using Anaconda, Spyder should already be on your system. If you did not use Anaconda, use the Python package manager pip (see the [Spyder website] for details.)
-
-To start Spyder, open an Anaconda prompt (terminal), activate the tensorflow environment for this workshop if it is not already activated (check prompt to find out), and launch the app:
-
-```conda
-(base) C:\Users\Lab> conda activate cnn_workshop_gpu
-(cnn_workshop_gpu) C:\Users\Lab> spyder
-```
+![](fig/00_spyder_ide_layout.png){alt='Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas'}
 
 ## Check your setup
 
@@ -191,22 +181,30 @@ print('Tensorflow version: ', tensorflow.__version__)
 This should output the versions of all required packages without giving errors.
 Most versions will work fine with this lesson, but:
 
-- For Keras and Tensorflow, the minimum version is 2.2.4
+- For Keras and Tensorflow, the maximum version is 2.11.
 - For sklearn, the minimum version is 0.22.
 
-## Downloading the required datasets
+## Download the exercise python template file
 
-Download the [The CIFAR-10 dataset].
+The aim for this workshop is to create a python script that you can used as a "base python program" that can be used for future projects.
 
-TODO cifar comes with keras; need to work out if we want to provide ahead of time - might need to be munged
+In an effort to not clutter the scripts developed in the workshop with episode exercise/challenge code, this workshop will use an exercises python script for all of the exercises completed throughout the workshop.
+
+This file can be downloaded from [exercises.py](../episodes/scripts/exercises.py).
+
+
+## Get the data
+
+This lesson uses the CIFAR-10 image data that comes prepackaged with Keras.
+
 
 <!-- Collect your link references at the bottom of your document -->
 
+[Plotting and Programming in Python]: https://swcarpentry.github.io/python-novice-gapminder/
 [Conda]: https://docs.conda.io/projects/conda/en/latest/
 [Anaconda]: https://www.anaconda.com/products/individual
 [anaconda-distribution]: https://www.anaconda.com/products/distribution
 [Spyder]: https://www.spyder-ide.org/
-[Spyder website]: https://docs.spyder-ide.org/current/installation.html
 [python]: https://python.org
 [Mac OS X - Video tutorial]: https://www.youtube.com/watch?v=TcSAln46u9U
 [Windows - Video tutorial]: https://www.youtube.com/watch?v=xxQ0mzZ8UvA

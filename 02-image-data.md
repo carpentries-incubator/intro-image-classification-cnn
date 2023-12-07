@@ -16,9 +16,9 @@ exercises: 2
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Identify sources of image data
-- Write code to plot image data
 - Understand the properties of image data
-- Prepare an image data set to train a convolutional neural network (CNN)
+- Write code to plot image data
+- Prepare an image dataset to train a convolutional neural network (CNN)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -106,11 +106,11 @@ It is important to realise that images are stored as rectangular arrays of hundr
 
 For example, consider this image of a Jabiru, with a square area designated by a red box:
 
-![](fig/02_Jabiru_TGS_marked.jpg){alt='Original size image of a Jabiru with a red square surrounding an area to zoom in on'}
+![](fig/02_Jabiru_TGS_marked.jpg){alt='Jabiru image that is 552 pixels wide and 573 pixels high. A red square around the neck region indicates the area to zoom in on.'}
 
 Now, if we zoomed in close enough to see the pixels in the red box, we would see something like this:
 
-![](fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg){alt='Enlarged image area of Jabiru'}
+![](fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg){alt='zoomed in area of Jabiru where you can see individual pixels'}
 
 Note that each square in the enlarged image area - each pixel - is all one colour, but that each pixel can have a different colour from its neighbors. Viewed from a distance, these pixels seem to blend together to form the image we see.
 
@@ -491,7 +491,6 @@ Our dataset is preprocessed and split into three sets which means we are ready t
 
 [tf.keras.utils.image_dataset_from_directory]:  https://keras.io/api/data_loading/image/
 [to_categorical]: https://keras.io/api/utils/python_utils/#to_categorical-function
-[train_test_split]: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
 
 [Image augmentation layers]: https://keras.io/api/layers/preprocessing_layers/image_augmentation/
-
+[train_test_split]: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html

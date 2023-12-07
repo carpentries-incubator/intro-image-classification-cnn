@@ -146,13 +146,13 @@ However, there are many other tasks which CNNs are well suited for:
 [Model Zoo]: https://modelzoo.co/
 [pytorch hub]: https://pytorch.org/hub/
 [tensorflow hub]: https://pytorch.org/hub/
-[TensorFlow]: https://www.tensorflow.org/
 [Keras]: https://keras.io/
+[online documentation]: https://keras.io/guides/
+[TensorFlow]: https://www.tensorflow.org/
 [PyTorch]: https://pytorch.org/
 [PyTorch Lightning]: https://www.pytorchlightning.ai/
-[online documentation]: https://keras.io/guides/
 [Keras Core]: https://keras.io/keras_core/announcement/?utm_source=ADSA&utm_campaign=60c8d8b6cb-EMAIL_CAMPAIGN_2022_10_04_06_04_COPY_01&utm_medium=email&utm_term=0_5401c7226a-60c8d8b6cb-461545621
 [preprocessing layers]: https://keras.io/guides/preprocessing_layers/
-[arXiv]: https://arxiv.org/
 [r/MachineLearning]: https://www.reddit.com/r/MachineLearning/?rdt=58875
 [Data Science Stack Exchange]: https://datascience.stackexchange.com/
+[arXiv]: https://arxiv.org/

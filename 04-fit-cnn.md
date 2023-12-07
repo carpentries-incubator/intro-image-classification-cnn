@@ -1,5 +1,5 @@
 ---
-title: 'Compile and Train a Convolutional Neural Network'
+title: 'Compile and Train (Fit) a Convolutional Neural Network'
 teaching: 10
 exercises: 2
 ---
@@ -10,19 +10,19 @@ exercises: 2
 - What is a loss function?
 - What is an optimizer?
 - How do you train (fit) a CNN?
-- What are hyperparameters?
-- How do you detect overfitting?
-- How do you avoid overfitting?
+- How do you evaluate a model during training?
+- What is overfitting?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the difference between compiling and training a CNN
+- Explain the difference between compiling and training (fitting) a CNN
 - Know how to select a loss function for your model
 - Understand what an optimizer is
 - Define the terms: learning rate, batch size, epoch
-- Explain overfitting
+- Understand what loss and accuracy are and how to monitor them during training
+- Explain what overfitting is and what to do about it
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -30,7 +30,7 @@ exercises: 2
 
 We have designed a convolutional neural network (CNN) that in theory we should be able to train to classify images. 
 
-We now need to select an appropriate optimizer and loss function that we will use during training. 
+We now need to select an appropriate optimizer and loss function that we will use during training (fitting). 
 
 Recall how we compiled our model in the introduction:
 ```
@@ -50,22 +50,7 @@ For classification purposes, there are a number of probabilistic losses to choos
 
 The loss function is defined by the `tf.keras.losses.CategoricalCrossentropy` class.
 
-::::::::::::::::::::::::::::::::::::::::: spoiler 
-
-### WANT TO KNOW MORE: What loss would I use for regression?
-
-For regression tasks, we might want to stipulate that the predicted numerical values are as close as possible to the true values. This is commonly done by using the **mean squared error** (mse) or the **mean absolute error** (mae) loss functions, both of which should work. Often, mse is preferred over mae because it “punishes” large prediction errors more severely.
-
-- defined by the keras.losses.MeanSquaredError class
-
-To compile a model with mse, change the loss argument of the `compile` method:
-
-```
-#model_ex.compile(loss = 'mse')
-```
-:::::::::::::::::::::::::::::::::::::::::::::::::
-
-For more information on these and other available loss functions in Keras you can check the [loss documentation].
+For more information about loss functions in Keras look at the [loss documentation].
 
 
 #### Optimizer
@@ -105,21 +90,17 @@ ChatGPT
 
 In the figure below, we can see that a small learning rate will not traverse toward the minima of the gradient descent algorithm in a timely manner i.e. number of epochs.
 
-![Small learning rate leads to inefficient approach to loss minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg "Small learning rate leads to inefficient approach to loss minima")
-
-(This image was obtained from [Google Developers Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate) and is licenced under the [Creative Commons 4.0 Attribution Licence](https://creativecommons.org/licenses/by/4.0/).)
+![Small learning rate leads to inefficient approach to loss minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg "Small learning rate leads to inefficient approach to loss minima"){alt='plot of loss over value of weight shows how a small learning rate takes a long time to reach the optimal solution'}
 
 On the other hand, specifying a learning rate that is *too high* will result in a loss value that never approaches the minima. That is, 'bouncing between the sides', thus never reaching a minima to cease learning.
 
-![A large learning rate results in overshooting the gradient descent minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg)
-
-(This image was obtained from [Google Developers Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate) and is licenced under the [Creative Commons 4.0 Attribution Licence](https://creativecommons.org/licenses/by/4.0/).)
+![A large learning rate results in overshooting the gradient descent minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg){alt='plot of loss over value of weight shows how a large learning rate never approaches the optimal solution because it bounces between the sides'}
 
 Lastly, we can observe below that a modest learning rate will ensure that the product of multiplying the scalar gradient value, and the learning rate does not result in too small steps, nor a chaotic bounce between sides of the gradient where steepness is greatest.
 
-![An optimal learning rate supports a gradual approach to the minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg)
+![An optimal learning rate supports a gradual approach to the minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg){alt='plot of loss over value of weight shows how a a good learning rate gets to optimal solution gradually'}
 
-(This image was obtained from [Google Developers Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate) and is licenced under the [Creative Commons 4.0 Attribution Licence](https://creativecommons.org/licenses/by/4.0/).)
+(These images were obtained from [Google Developers Machine Learning Crash Course] and is licenced under the [Creative Commons 4.0 Attribution Licence].)
 
 ::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -146,7 +127,7 @@ For a list of metrics in Keras see [metrics].
 Now that we have decided on which loss function, optimizer, and metric to use we can compile the model using `model.compile`. Compiling the model prepares it for training.
 
 
-### Step 6. Train model
+### Step 6. Train (Fit) model
 
 We are ready to train the model.
 
@@ -212,7 +193,7 @@ sns.lineplot(ax=axes[0], data=history_intro_df[['loss', 'val_loss']])
 sns.lineplot(ax=axes[1], data=history_intro_df[['accuracy', 'val_accuracy']])
 ```
 
-![](fig/03_model_intro_accuracy_loss.png){alt=''}
+![](fig/04_model_intro_accuracy_loss.png){alt='two panel figure; the figure on the left shows the training loss starting at 1.5 and decreasing to 0.7 and the validation loss decreasing from 1.3 to 1.0 before leveling out; the figure on the right shows the training accuracy increasing from 0.45 to 0.75 and the validation accuracy increasing from 0.53 to 0.65 before leveling off'}
 
 This plot can be used to identify whether the training is well configured or whether there are problems that need to be addressed. The solid blue lines show the training loss and accuracy; the dashed orange lines show the validation loss and accuracy.
 
@@ -234,7 +215,6 @@ Looking at the training curves we have just made and recall the difference betwe
 :::::::::::::::::::::::: solution 
 
 1. The loss curve should drop quite quickly in a smooth line with little jitter. The accuracy should increase quite quickly in a smooth line also wtih little jitter.
-
 2. The results of the training give very little information on its performance on a test set. You should be careful not to use it as an indication of a well trained network.
 
 :::::::::::::::::::::::::::::::::
@@ -263,9 +243,7 @@ Underfitting occurs when the model is too simple or lacks the capacity to captur
 Key characteristics of an underfit model include:
 
 - Low Validation Accuracy: This indicates that the model is not learning from the data effectively.
-
 - Large Training Loss: The training loss (error) is high, indicating that the model's predictions are far from the true labels in the training set.
-
 - Increasing validation loss
 
 How to Address underfitting:
@@ -284,7 +262,7 @@ Note that the training loss continues to decrease, while the validation loss sta
 
 Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques**. One of the most versatile regularization technique is **dropout** (Srivastava et al., 2014). Dropout essentially means that during each training cycle a random fraction of the dense layer nodes are turned off. This is described with the dropout rate between 0 and 1 which determines the fraction of nodes to silence at a time. 
 
-![](fig/04-neural_network_sketch_dropout.png){alt=''}
+![](fig/04-neural_network_sketch_dropout.png){alt='diagram of two neural networks; the first network is densely connected without dropout and the second network has some of the neurons dropped out of of the network'}
 
 The intuition behind dropout is that it enforces redundancies in the network by constantly removing different elements of a network. The model can no longer rely on individual nodes and instead must create multiple "paths". In addition, the model has to make predictions with much fewer nodes and weights (connections between the nodes). As a result, it becomes much harder for a network to memorize particular features. At first this might appear a quite drastic approach which affects the network architecture strongly. In practice, however, dropout is computationally a very elegant solution which does not affect training speed. And it frequently works very well.
 
@@ -414,7 +392,7 @@ sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
 val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images,  val_labels, verbose=2)
 ```
 
-![](fig/04_model_dropout_accuracy_loss.png){alt=''}
+![](fig/04_model_dropout_accuracy_loss.png){alt='two panel figure; the figure on the left shows the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right shows the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67'}
 
 Here we see the relatively uncommon situation where our training loss is higher than our validation loss while the validation accuracy is higher than the training accuracy. If you are using dropout or other regularization techniques during training, they might lead to a lower training accuracy. 
 
@@ -463,10 +441,11 @@ Based on our evaluation of the loss and accuracy metrics, the `model_dropout` ap
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
+- Use model.compile to compile a CNN
 - The choice of loss function will depend on your dataset and aim
 - The choice of optimizer often depends on experimentation and empirical evaluation
-- Fitting separate models with different hyperparameters and comparing their performance is a common and good practice in deep learning
-- Dropout is one way to prevent overfitting
+- Use model.fit to make a train (fit) a CNN
+- Training/validation loss and accuracy can be used to evaluate a model during training - Dropout is one way to prevent overfitting
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -475,3 +454,6 @@ Based on our evaluation of the loss and accuracy metrics, the `model_dropout` ap
 [optimizer documentation]: https://keras.io/api/optimizers/
 [metrics]: https://keras.io/api/metrics/
 [fit method]: https://keras.io/api/models/model_training_apis/
+
+[Google Developers Machine Learning Crash Course]: https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate
+[Creative Commons 4.0 Attribution Licence]: https://creativecommons.org/licenses/by/4.0/

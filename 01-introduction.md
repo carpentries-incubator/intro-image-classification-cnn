@@ -15,8 +15,7 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Explain the difference between artificial intelligence, machine learning and deep learning
-- Explain how machine learning is used for regression and classification tasks
-- Understand what algorithms are used for image classification
+- Understand the different types of computer vision tasks
 - Know the difference between training, testing, and validation datasets
 - Perform an image classification using a convolutional neural network (CNN)
 
@@ -43,7 +42,7 @@ Typically we will need to train our models with hundreds, thousands or even mill
 
 Deep Learning (DL) is just one of many machine learning techniques, in which people often talk about machine learning being a form of artificial intelligence (AI). Definitions of artificial intelligence vary, but usually involve having computers mimic the behaviour of intelligent biological systems. Since the 1950s many works of science fiction have dealt with the idea of an artificial intelligence which matches (or exceeds) human intelligence in all areas. Although there have been great advances in AI and ML research recently, we can only come close to human like intelligence in a few specialist areas and are still a long way from a general purpose AI. The image below shows some differences between artificial intelligence, machine learning and deep learning.
 
-![The image above is by Tukijaaliwa, CC BY-SA 4.0, via Wikimedia Commons, [original source]](fig/01_AI_ML_DL_differences.png){alt='Three nested circles describing AI as the largest circle in dark blue; enclosing machine learning in medium blue; enclosing deep learning in even lighter blue'}
+![The image above is by Tukijaaliwa, CC BY-SA 4.0, via Wikimedia Commons, [original source]](fig/01_AI_ML_DL_differences.png){alt='Three nested circles defining deep learning as a subset of machine learning which is a subset of artifical intelligence'}
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 Concept: Differentiation between traditional Machine Learning models and Deep Learning models:
@@ -80,7 +79,7 @@ Firstly we must decide what it is we want our Deep Learning system to do. This l
 Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
 
 ### Step 3. Prepare data
-Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data. Information on how this is done and what the data looks like will be explored in the next episode [Introduction to Image Data](episodes/02-image-data).
+Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data. Information on how this is done and what the data looks like will be explored in [Episode 02 Introduction to Image Data](episodes/02-image-data).
 
 For this lesson, we will use an existing image dataset known as CIFAR-10. We will introduce this dataset and the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalize the image pixel values to be between 0 and 1; and one-hot encode our image labels.
 
@@ -160,7 +159,7 @@ for i in range(25):
 plt.show()
 ```
 
-![](fig/01_cifar10.png){alt='Subset of 25 CIFAR-10 images displayed in five rows and five columns '}
+![](fig/01_cifar10.png){alt='Subset of 25 CIFAR-10 images representing different object classes'}
 
 ### Step 4. Choose a pre-trained model or build a new architecture from scratch
 
@@ -291,7 +290,7 @@ When building image recognition models in Python, especially using libraries lik
 
 #### What are hyperparameters? 
 
-Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimize the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](./05-evaluate-predict-cnn.md)
+Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimize the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](episodes/05-evaluate-predict-cnn.md)
 
 ### Step 10. Share Model
 
@@ -309,7 +308,6 @@ associated with the lessons. They appear in the "Instructor View"
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Machine learning is the process where computers learn to recognise patterns of data
-- Machine learning is used for regression and classification tasks
 - Deep learning is a subset of machine learning, which is a subset of artificial intelligence
 - Convolutional neural networks are well suited for image classification
 - To use Deep Learning effectively we need to go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, training the model, tuning hyperparameters, measuring performance before we can classify data.

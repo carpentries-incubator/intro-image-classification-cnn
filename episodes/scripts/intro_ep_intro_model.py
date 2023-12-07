@@ -104,7 +104,7 @@ print('The class with the highest predicted probability is: ', class_names[resul
 
 # plot the image with its true label
 plt.imshow(test_images[0], cmap=plt.cm.binary)
-plt.title(class_names[test_labels[0,].argmax()])
+plt.title('True class:' + class_names[test_labels[0,].argmax()])
 plt.show()
 
 end = time.time()

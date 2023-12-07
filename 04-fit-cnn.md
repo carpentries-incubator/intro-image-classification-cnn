@@ -17,12 +17,12 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the difference between compiling and training (fitting) a CNN
-- Know how to select a loss function for your model
-- Understand what an optimizer is
-- Define the terms: learning rate, batch size, epoch
-- Understand what loss and accuracy are and how to monitor them during training
-- Explain what overfitting is and what to do about it
+- Explain the difference between compiling and training (fitting) a CNN.
+- Know how to select a loss function for your model.
+- Understand what an optimizer is.
+- Define the terms: learning rate, batch size, epoch.
+- Understand what loss and accuracy are and how to monitor them during training.
+- Explain what overfitting is and what to do about it.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -50,7 +50,7 @@ For classification purposes, there are a number of probabilistic losses to choos
 
 The loss function is defined by the `tf.keras.losses.CategoricalCrossentropy` class.
 
-For more information about loss functions in Keras look at the [loss documentation].
+More information about loss functions can be found in the Keras [loss documentation].
 
 
 #### Optimizer
@@ -63,7 +63,7 @@ We need to choose which optimizer to use and, if this optimizer has parameters, 
 ## compile the model
 #model_intro.compile(optimizer = 'adam', 
 #                    loss = keras.losses.CategoricalCrossentropy(), 
-#                    metrics = ['accuracy'])  
+#                    metrics = ['accuracy'])
 ``` 
 
 **Adam** 
@@ -88,7 +88,7 @@ ChatGPT
 
 **Learning rate** is a hyperparameter that determines the step size at which the model's parameters are updated during training. A higher learning rate allows for more substantial parameter updates, which can lead to faster convergence, but it may risk overshooting the optimal solution. On the other hand, a lower learning rate leads to smaller updates, providing more cautious convergence, but it may take longer to reach the optimal solution. Finding an appropriate learning rate is crucial for effectively training machine learning models.
 
-In the figure below, we can see that a small learning rate will not traverse toward the minima of the gradient descent algorithm in a timely manner i.e. number of epochs.
+The figure below illustrates a small learning rate that will not traverse toward the minima of the gradient descent algorithm in a timely manner, i.e. number of epochs.
 
 ![Small learning rate leads to inefficient approach to loss minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg "Small learning rate leads to inefficient approach to loss minima"){alt='plot of loss over value of weight shows how a small learning rate takes a long time to reach the optimal solution'}
 
@@ -120,9 +120,9 @@ Metric functions are similar to loss functions, except that the results from eva
 
 Typically you will use `accuracy` which calculates how often predictions matches labels.
 
-The accuracy function creates two local variables, total and count that are used to compute the frequency with which predictions matches labels. This frequency is ultimately returned as accuracy: an operation that simply divides total by count.
+The accuracy function creates two local variables, total and count that are used to compute the frequency with which predictions matches labels. This frequency is ultimately returned as accuracy: an operation that divides the  total by count.
 
-For a list of metrics in Keras see [metrics].
+A list of metrics can be found in the Keras [metrics] documentation.
 
 Now that we have decided on which loss function, optimizer, and metric to use we can compile the model using `model.compile`. Compiling the model prepares it for training.
 
@@ -148,7 +148,7 @@ The `batch_size` parameter defaults to 32. The **batch size** is an important hy
 
 Note we are also creating a new variable `history_intro` to capture the history of the training in order to extract metrics we will use for model evaluation.
 
-There are other arguments we could use to fit our model, see the documentation for [fit method].
+Other arguments used to fit our model can be found in the documentation for the [fit method].
  
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler 
@@ -175,7 +175,7 @@ However, it's essential to consider the trade-offs of using different batch size
 
 ### Monitor Training Progress (aka Model Evaluation during Training)
 
-Now that we know more about the compilation and fitting of CNN's let us take a look at the training metrics for our model.
+Now that we know more about the compilation and fitting of CNN's let us take a inspect the training metrics for our model.
 
 Using seaborn we can plot the training process using the history:
 
@@ -201,14 +201,14 @@ This plot can be used to identify whether the training is well configured or whe
 
 ## Inspect the Training Curve
 
-Looking at the training curves we have just made and recall the difference between the training and the validation datasets.
+Inspect the training curves we have just made and recall the difference between the training and the validation datasets.
 
 1. How does the training progress?
 
 - Does the loss increase or decrease?
 - What about the accuracy?
 - Do either change fast or slowly?
-- Do the graphs look very jittery?
+- Do the graphs lines go up and down frequently (i.e. jitter)?
 
 2. Do you think the resulting trained network will work well on the test set?
 
@@ -220,7 +220,7 @@ Looking at the training curves we have just made and recall the difference betwe
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-If we look at these plots we can see signs of **overfitting**. If a model is overfitting, it means that the model performs exceptionally well on the training data but poorly on the validation or test data. Overfitting occurs when the model has learned to memorize the noise and specific patterns in the training data instead of generalizing the underlying relationships. As a result, the model fails to perform well on new, unseen data because it has become too specialized to the training set.
+These is evidence of **overfitting** in these plots. If a model is overfitting, it means that the model performs exceptionally well on the training data but poorly on the validation or test data. Overfitting occurs when the model has learned to memorize the noise and specific patterns in the training data instead of generalizing the underlying relationships. As a result, the model fails to perform well on new, unseen data because it has become too specialized to the training set.
 
 Key characteristics of an overfit model include:
 
@@ -244,9 +244,9 @@ Key characteristics of an underfit model include:
 
 - Low Validation Accuracy: This indicates that the model is not learning from the data effectively.
 - Large Training Loss: The training loss (error) is high, indicating that the model's predictions are far from the true labels in the training set.
-- Increasing validation loss
+- Increasing validation loss.
 
-How to Address underfitting:
+How to address underfitting:
 
 - Increase the model's complexity by adding more layers or units to the existing layers.
 - Train the model for more epochs to give it more time to learn from the data.
@@ -280,7 +280,7 @@ tf.keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)
 
 The `rate` parameter is a float between 0 and 1 and represents the fraction of the input units to drop.
 
-We want to add one Dropout Layer to our network that randomly drops 80% of the input units but where should we put it?
+We want to add one Dropout Layer to our network that randomly drops 80 per cent of the input units but where should we put it?
 
 The placement of the dropout layer matters. Adding dropout before or after certain layers can have different effects. For example, it's common to place dropout after convolutional and dense layers but not typically after pooling layers. Let us add a third convolutional layer to our model and then the dropout layer.
 
@@ -302,7 +302,7 @@ x_dropout = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_dropout)
 x_dropout = keras.layers.MaxPooling2D((2, 2))(x_dropout)
 # Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
 x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout) # This is new!
-# Dropout layer andomly drops 60% of the input units
+# Dropout layer andomly drops 60 per cent of the input units
 x_dropout = keras.layers.Dropout(0.6)(x_dropout) # This is new!
 # Flatten layer to convert 2D feature maps into a 1D vector
 x_dropout = keras.layers.Flatten()(x_dropout)
@@ -353,7 +353,7 @@ Non-trainable params: 0 (0.00 Byte)
 _________________________________________________________________
 ```
 
-We can see that the dropout does not alter the dimensions of the image, and has zero parameters.
+Note the dropout does not alter the dimensions of the image and has zero parameters.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -389,12 +389,12 @@ fig.suptitle('cifar_model_dropout')
 sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
 sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
 
-val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images,  val_labels, verbose=2)
+val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images, val_labels, verbose=2)
 ```
 
 ![](fig/04_model_dropout_accuracy_loss.png){alt='two panel figure; the figure on the left shows the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right shows the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67'}
 
-Here we see the relatively uncommon situation where our training loss is higher than our validation loss while the validation accuracy is higher than the training accuracy. If you are using dropout or other regularization techniques during training, they might lead to a lower training accuracy. 
+In this relatively uncommon ,  the training loss is higher than our validation loss while the validation accuracy is higher than the training accuracy. Using dropout or other regularization techniques during training can lead to a lower training accuracy.
 
 Dropout randomly "drops out" units during training, which can prevent the model from fitting the training data too closely. This regularization effect may lead to a situation where the model generalizes better on the validation set.
 
@@ -441,15 +441,17 @@ Based on our evaluation of the loss and accuracy metrics, the `model_dropout` ap
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use model.compile to compile a CNN
-- The choice of loss function will depend on your dataset and aim
-- The choice of optimizer often depends on experimentation and empirical evaluation
-- Use model.fit to make a train (fit) a CNN
-- Training/validation loss and accuracy can be used to evaluate a model during training - Dropout is one way to prevent overfitting
+- Use model.compile to compile a CNN.
+- The choice of loss function will depend on your data and aim.
+- The choice of optimizer often depends on experimentation and empirical evaluation.
+- Use model.fit to make a train (fit) a CNN.
+- Training/validation loss and accuracy can be used to evaluate a model during training.
+- Dropout is one way to prevent overfitting.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
+
 [loss documentation]: https://keras.io/api/losses/
 [optimizer documentation]: https://keras.io/api/optimizers/
 [metrics]: https://keras.io/api/metrics/

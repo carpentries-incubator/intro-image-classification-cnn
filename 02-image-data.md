@@ -15,10 +15,10 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Identify sources of image data
-- Understand the properties of image data
-- Write code to plot image data
-- Prepare an image dataset to train a convolutional neural network (CNN)
+- Identify sources of image data.
+- Understand the properties of image data.
+- Write code to plot image data.
+- Prepare an image dataset to train a convolutional neural network (CNN).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -44,18 +44,18 @@ You can use pre-existing data or prepare your own.
 
 #### Pre-existing image data
 
-In some cases you will be able to download an image dataset that is already labelled and can be used to classify a number of different object like we see with the CIFAR-10 dataset. Other examples include:
+In some cases you will be able to download an image dataset that is already labelled and can be used to classify a number of different object like the CIFAR-10 dataset. Other examples include:
 
 - [MNIST database] - 60,000 training images of handwritten digits (0-9)
 - [ImageNet] - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an [annual software contest] where programs compete to achieve the highest accuracy. When choosing a pretrained network, the winners of these sorts of competitions are generally a good place to start.
 - [MS COCO] - >200,000 labelled images used for object detection, instance segmentation, keypoint analysis, and captioning
 
-Where labelled data exists, in most cases the data provider or other users will have created functions that you can use to load the data. We already saw an example of this in the introduction:
+Where labelled data exists, in most cases the data provider or other users will have created functions that you can use to load the data. We already did this in the introduction:
 
 ```python
 from tensorflow import keras
 
-# load the cifar dataset included with the keras library
+# load the CIFAR-10 dataset included with the keras library
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 ```
 
@@ -66,7 +66,7 @@ In this instance the data is likely already prepared for use in a CNN. However, 
 
 How much data do you need for Deep Learning?
 
-The rise of Deep Learning is partially due to the increased availability of very large datasets. But how much data do you actually need to train a Deep Learning model? Unfortunately, this question is not easy to answer. It depends, among other things, on the complexity of the task (which you often do not know beforehand), the quality of the available dataset and the complexity of the network. For complex tasks with large neural networks, we often see that adding more data continues to improve performance. However, this is also not a generic truth: if the data you add is too similar to the data you already have, it will not give much new information to the neural network.
+The rise of Deep Learning is partially due to the increased availability of very large datasets. But how much data do you actually need to train a Deep Learning model? Unfortunately, this question is not easy to answer. It depends, among other things, on the complexity of the task (which you often do not know beforehand), the quality of the available dataset and the complexity of the network. For complex tasks with large neural networks, we often find that adding more data continues to improve performance. However, this is also not a generic truth: if the data you add is too similar to the data you already have, it will not give much new information to the neural network.
 
 In case you have too little data available to train a complex network from scratch, it is sometimes possible to use a pretrained network that was trained on a similar problem. Another trick is data augmentation, where you expand the dataset with artificial data points that could be real. An example of this is mirroring images when trying to classify cats and dogs. An horizontally mirrored animal retains the label, but exposes a different view.
 
@@ -92,37 +92,37 @@ This step involves various tasks to enhance the quality and consistency of the d
 
 - **Resizing**: Resize images to a consistent resolution to ensure uniformity and reduce computational load.
 
-- **Normalization**: Scale pixel values to a common range, often between 0 and 1 or -1 and 1. Normalization helps the model converge faster during training.
+- **Normalisation**: Scale pixel values to a common range, often between 0 and 1 or -1 and 1. Normalisation helps the model converge faster during training.
 
 - **Label encoding** is a technique used to represent categorical data with numerical labels.
 
-- **Data Augmentation**: Apply random transformations (e.g., rotations, flips, shifts) to create new variations of the same image. This helps improve the model's robustness and generalization by exposing it to more diverse data.
+- **Data Augmentation**: Apply random transformations (e.g., rotations, flips, shifts) to create new variations of the same image. This helps improve the model's robustness and generalisation by exposing it to more diverse data.
 
-Before we look at some of these tasks in more detail we need to understand that the images we see on hard copy, view with our electronic devices, or process with our programs are represented and stored in the computer as numeric abstractions, or approximations of what we see with our eyes in the real world. And before we begin to learn how to process images with Python programs, we need to spend some time understanding how these abstractions work.
+Before we learn about some of these tasks in more detail, we need to understand that the images on hard copy or electronic devices, or processed with our programs, are represented and stored in the computer as numeric abstractions, or approximations of the real world. And before we begin to learn how to process images with Python programs, we need to spend some time understanding how these abstractions work.
 
 ### Pixels
 
-It is important to realise that images are stored as rectangular arrays of hundreds, thousands, or millions of discrete "picture elements," otherwise known as pixels. Each pixel can be thought of as a single square point of coloured light.
+It is important to realise that images are stored as rectangular arrays of hundreds, thousands, or millions of discrete "picture elements," otherwise known as pixels. Each pixel can be thought of as a single square point of colored light.
 
 For example, consider this image of a Jabiru, with a square area designated by a red box:
 
 ![](fig/02_Jabiru_TGS_marked.jpg){alt='Jabiru image that is 552 pixels wide and 573 pixels high. A red square around the neck region indicates the area to zoom in on.'}
 
-Now, if we zoomed in close enough to see the pixels in the red box, we would see something like this:
+Now, if we zoomed in close enough to the red box, inte individual pixels would stand out:
 
-![](fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg){alt='zoomed in area of Jabiru where you can see individual pixels'}
+![](fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg){alt='zoomed in area of Jabiru where you can the individual pixels stand out'}
 
-Note that each square in the enlarged image area - each pixel - is all one colour, but that each pixel can have a different colour from its neighbors. Viewed from a distance, these pixels seem to blend together to form the image we see.
+Note that each square in the enlarged image area (i.e. each pixel) is all one color, but that each pixel can have a different color from its neighbors. Viewed from a distance, these pixels seem to blend together to form the image.
 
 ### Working with Pixels
 
-As noted, in practice, real world images will typically be made up of a vast number of pixels, and each of these pixels will be one of potentially millions of colours. In python, an image can be represented as a multidimensional array, also known as a `tensor`, where each element in the array corresponds to a pixel value in the image. In the context of images, these arrays often have dimensions for height, width, and color channels (if applicable).
+As noted, in practice, real world images will typically be made up of a vast number of pixels, and each of these pixels will be one of potentially millions of colors. In python, an image can be represented as a multidimensional array, also known as a `tensor`, where each element in the array corresponds to a pixel value in the image. In the context of images, these arrays often have dimensions for height, width, and color channels (if applicable).
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 
 Matrices, arrays, images and pixels
 
-The matrix is mathematical concept - numbers evenly arranged in a rectangle. This can be a two dimensional rectangle, like the shape of the screen you're looking at now. Or it could be a three dimensional equivalent, a cuboid, or have even more dimensions, but always keeping the evenly spaced arrangement of numbers. In computing, array refers to a structure in the computer's memory where data is stored in evenly-spaced elements. This is strongly analogous to a matrix. A NumPy array is a type of variable (a simpler example of a type is an integer). For our purposes, the distinction between matrices and arrays is not important, we don't really care how the computer arranges our data in its memory. The important thing is that the computer stores values describing the pixels in images, as arrays. And the terms matrix and array can be used interchangeably.
+The matrix is mathematical concept where numbers are evenly arranged in a rectangle. This can be a two dimensional rectangle, like the shape of your computer screen. Or it could be a three dimensional equivalent, a cuboid, or have even more dimensions, but always keeping the evenly spaced arrangement of numbers. In computing, array refers to a structure in the computer's memory where data is stored in evenly-spaced elements. This is strongly analogous to a matrix. A NumPy array is a type of variable (a simpler example of a type is an integer). For our purposes, the distinction between matrices and arrays is not important, we don't really care how the computer arranges our data in its memory. The important thing is that the computer stores values describing the pixels in images, as arrays. And the terms matrix and array can be used interchangeably.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -137,16 +137,16 @@ Two of the most commonly used libraries for image representation and manipulatio
 
 - The Pillow library (PIL fork) provides functions to open, manipulate, and save various image file formats. It represents images using its own Image class. 
   - `from PIL import Image`
-  - see [PIL Image Module]
+  - [PIL Image Module] documentation
 
 - TensorFlow images are often represented as tensors that have dimensions for batch size, height, width, and color channels. This framework provide tools to load, preprocess, and work with image data seamlessly. 
   - `from tensorflow import keras`
-  - see [image preprocessing] documentation
+  - [image preprocessing] documentation
   - Note Keras image functions also use PIL 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Let us start by taking a closer look at the Jabiru image.
+Let us start with the Jabiru image.
 
 ```python
 # load the libraries required
@@ -168,9 +168,9 @@ The new image is of type : <class 'PIL.JpegImagePlugin.JpegImageFile'> and has t
 
 ### Image Dimensions - Resizing
 
-Here we see our new image has shape `(573, 552, 3)`, meaning it is much larger in size, 573x552 pixels; a rectangle instead of a square; and consists of 3 colour channels (RGB).
+The new image has shape `(573, 552, 3)`, meaning it is much larger in size, 573x552 pixels; a rectangle instead of a square; and consists of three color channels (RGB).
 
-Recall from the introduction that our training data set consists of 50000 images of 32x32 pixels and 3 channels. 
+Recall from the introduction that our training data set consists of 50000 images of 32x32 pixels and three channels. 
 
 To reduce the computational load and ensure all of our images have a uniform size, we need to choose an image resolution (or size in pixels) and ensure that all of the images we use are resized to that shape to be consistent.
 
@@ -187,7 +187,7 @@ print('The new image is still of type:', new_img_pil_small.__class__, 'but now h
 The new image is still of type: <class 'PIL.Image.Image'> but now has the same size (32, 32) as our training data.
 ```
 
-### Normalization
+### Normalisation
 
 Image RGB values are between 0 and 255. As input for neural networks, it is better to have small input values. The process of converting the RGB values to be between 0 and 1 is called **normalization**.
 
@@ -218,7 +218,7 @@ Remember that normalization is not always mandatory, and there could be cases wh
 
 Before we can normalize our image values we must convert the image to an numpy array.
 
-We saw how to do this in the introduction but what you may not have noticed is that the `keras.datasets.cifar10.load_data` function did the conversion for us whereas now we will do it ourselves.
+We introduced how to do this in [Episode 01 Introduction to Deep Learning](episodes/01-introduction.md) but what you may not have noticed is that the `keras.datasets.cifar10.load_data` function did the conversion for us whereas now we will do it ourselves.
 
 ```python
 # convert the Image into an array for normalization
@@ -283,11 +283,11 @@ The Keras function for one_hot encoding is called [to_categorical]:
 
 `tf.keras.utils.to_categorical(y, num_classes=None, dtype="float32")`
 
-- `y` is array-like with class values to be converted into a matrix (integers from 0 to num_classes - 1)
-- `num_classes` is the total number of classes. If None, this would be inferred as max(y) + 1
+- `y` is array-like with class values to be converted into a matrix (integers from 0 to num_classes - 1).
+- `num_classes` is the total number of classes. If None, this would be inferred as max(y) + 1.
 - `dtype` is the data type expected by the input. Default: 'float32'
 
-We performed this operation in **Step 3. Prepare data** of the Introduction but let us look at the labels before and after one-hot encoding.
+We performed this operation in **Step 3. Prepare data** of the Introduction but let us inspect the labels before and after one-hot encoding.
 
 ```
 print()
@@ -334,9 +334,9 @@ There are several ways to augment your data to increase the diversity of the tra
   - brightness, contrast, or hue
   - these changes simulate variations in lighting conditions
  
-We will not be looking at image augmentation in this lesson but it is important that you be aware of this type of data preparation because it can make a big difference in your model's ability to predict outside of your training data.
+We will discuss image augmentation in this lesson, but it is important that you be aware of this type of data preparation because it can make a big difference in your model's ability to predict outside of your training data.
 
-Have a look at [Image augmentation layers] for information about these operations. 
+Information about these operations are included in the Keras document for [Image augmentation layers]. 
 
 ### Data Splitting
 
@@ -344,14 +344,14 @@ The typical practice in machine learning is to split your data into two subsets:
 
 After this initial split, you can choose to further split the training set into a training set and a **validation set**. This is often done when you need to fine-tune hyperparameters, select the best model from a set of candidate models, or prevent overfitting.
 
-In the previous episode we saw that the keras installation includes the Cifar-10 dataset and that by using the 'cifar10.load_data()' method the returned data is split into two (train and test sets). Now we just need to split the training data into training and validation sets.
+In the previous episodes we used the 'cifar10.load_data()' that comes with the Keras installation to return data that is split into two (train and test sets). Now we want to split the training data into training and validation sets.
 
 To split a dataset into training and test sets there is a very convenient function from sklearn called [train_test_split]: 
 
 `sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)`
 
-- The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels)
-- Next is the named parameter `test_size` this is the fraction of the dataset that is used for testing, in this case `0.2` means 20% of the data will be used for testing.
+- The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels).
+- Next is the named parameter `test_size` this is the fraction of the dataset that is used for testing, in this case `0.2` means 20 per cent of the data will be used for testing.
 - `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
 - `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
 - `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
@@ -364,7 +364,7 @@ train_images, val_images, train_labels, val_labels = train_test_split(train_imag
 ::::::::::::::::::::::::::::::::::::: challenge
 Training and Validation
 
-Take a look at the training and validation sets we created. 
+Inspect the training and validation sets we created. 
 
 How many samples does each set have and are the classes well balanced?
 
@@ -463,34 +463,30 @@ It's important to note that the exact split ratios (e.g., 80-10-10 or 70-15-15) 
 
 ## Finally! 
 
-Our dataset is preprocessed and split into three sets which means we are ready to look at how we built our CNN in the introduction.
+Our dataset is preprocessed and split into three sets which means we are ready to learn how we built the CNN in the introduction.
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Image datasets can be found online or created uniquely for your research question
-- Images consist of pixels arranged in a particular order
-- Image data is usually preprocessed before use in a CNN for efficiency, consistency, and robustness
+- Image datasets can be found online or created uniquely for your research question.
+- Images consist of pixels arranged in a particular order.
+- Image data is usually preprocessed before use in a CNN for efficiency, consistency, and robustness.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
+
 [MNIST database]: https://en.wikipedia.org/wiki/MNIST_database
 [ImageNet]: https://www.image-net.org/
 [annual software contest]: https://www.image-net.org/challenges/LSVRC/#:~:text=The%20ImageNet%20Large%20Scale%20Visual,image%20classification%20at%20large%20scale.
 [MS COCO]: https://cocodataset.org/#home
-
 [VGG Image Annotator]: https://www.robots.ox.ac.uk/~vgg/software/via/
 [ImageJ]: https://imagej.net/
 [COCO Annotator]: https://github.com/jsbroks/coco-annotator
-
 [PIL Image Module]: https://pillow.readthedocs.io/en/latest/reference/Image.html
 [image preprocessing]: https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image
-
-
 [tf.keras.utils.image_dataset_from_directory]:  https://keras.io/api/data_loading/image/
 [to_categorical]: https://keras.io/api/utils/python_utils/#to_categorical-function
-
 [Image augmentation layers]: https://keras.io/api/layers/preprocessing_layers/image_augmentation/
 [train_test_split]: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html

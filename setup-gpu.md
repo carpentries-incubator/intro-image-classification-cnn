@@ -2,7 +2,7 @@
 title: "Setup - GPU"
 ---
 
-This lesson is designed for Software Carpentry users who have completed [Plotting and Programming in Python] and are looking to jump straight into image classification. We recognize that this jump is quite large and have done our best to provide the content and code to perform these types of analyses.
+This lesson is designed for Software Carpentry users who have completed [Plotting and Programming in Python] and want to jump straight into image classification. We recognize this jump is quite large and have done our best to provide the content and code to perform these types of analyses.
 
 The default [Setup](../learners/setup.md) is for CPU only environments.
 
@@ -86,9 +86,9 @@ Conda should already be available in your system once you installed Anaconda suc
 
 The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key) or Spotlight on macOS (Command + spacebar).
 
-![](fig/00_anaconda_prompt_search.png){alt='Screenshot of what the Anaconda Prompt application looks like'}
+![](fig/00_anaconda_prompt_search.png){alt='Screenshot of the Anaconda Prompt application'}
 
-A terminal window will open with the title 'Anaconda Prompt' that looks like this:
+A terminal window will open with the title 'Anaconda Prompt':
 
 ![](fig/00_anaconda_prompt_window.png){alt='Screenshot of the terminal window that opens when you launch the Anaconda Prompt application'}
 

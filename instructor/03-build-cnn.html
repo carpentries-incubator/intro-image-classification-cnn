@@ -312,10 +312,10 @@ ANN?</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul><li>Understand how a convolutional neural network (CNN) differs from an
-artificial neural network (ANN)</li>
-<li>Explain the terms: kernel, filter</li>
+artificial neural network (ANN).</li>
+<li>Explain the terms: kernel, filter.</li>
 <li>Know the different layers: convolutional, pooling, flatten,
-dense</li>
+dense.</li>
 </ul></div>
 </div>
 </div>
@@ -326,9 +326,9 @@ dense</li>
 <hr class="half-width"><p>A <strong>neural network</strong> is an artificial intelligence
 technique loosely based on the way neurons in the brain work. A neural
 network consists of connected computational units called neurons. Each
-neuron …</p>
-<ul><li>has one or more inputs, e.g. input data expressed as floating point
-numbers</li>
+neuron:</p>
+<ul><li>has one or more inputs, e.g., input data expressed as floating point
+numbers.</li>
 <li>conducts three main operations most of the time:
 <ul><li>take the weighted sum of the inputs</li>
 <li>add an extra constant weight (i.e. a bias term) to this weighted
@@ -336,7 +336,7 @@ sum</li>
 <li>apply a non-linear function to the output so far (using a predefined
 activation function)</li>
 </ul></li>
-<li>returns one output value, again a floating point number</li>
+<li>returns one output value, again a floating point number.</li>
 </ul><figure><img src="../fig/03_neuron.png" alt="diagram of a single neuron taking multiple inputs and their associated weights in and then applying an activation function to predict a single output" class="figure mx-auto d-block"></figure><p>Multiple neurons can be joined together by connecting the output of
 one to the input of another. These connections are associated with
 weights that determine the ‘strength’ of the connection, the weights are
@@ -366,11 +366,11 @@ extracting features.</p>
 <div class="section level3">
 <h3 id="step-4--build-an-architecture-from-scratch-or-choose-a-pretrained-model">Step 4. Build an architecture from scratch or choose a pretrained
 model<a class="anchor" aria-label="anchor" href="#step-4--build-an-architecture-from-scratch-or-choose-a-pretrained-model"></a></h3>
-<p>Let us look at how to build a neural network from scratch. Although
+<p>Let us explore how to build a neural network from scratch. Although
 this sounds like a daunting task, with Keras it is surprisingly
 straightforward. With Keras you compose a neural network by creating
 layers and linking them together.</p>
-<p>Let’s look at our network from the introduction:</p>
+<p>This is the same network from the introduction:</p>
 <pre><code><span><span class="co"># # CNN Part 1</span></span>
 <span><span class="co"># # Input layer of 32x32 images with three channels (RGB)</span></span>
 <span><span class="co"># inputs_intro = keras.Input(shape=train_images.shape[1:])</span></span>
@@ -395,8 +395,7 @@ layers and linking them together.</p>
 </div>
 <div class="section level3">
 <h3 id="parts-of-a-neural-network">Parts of a neural network<a class="anchor" aria-label="anchor" href="#parts-of-a-neural-network"></a></h3>
-<p>Here we can see there are three main components of a neural
-network:</p>
+<p>There are three main components of a neural network:</p>
 <ul><li>CNN Part 1. Input Layer</li>
 <li>CNN Part 2. Hidden Layers</li>
 <li>CNN Part 3. Output Layer</li>
@@ -462,10 +461,10 @@ example think of the 3x3 kernel:</p>
  [1,   1,  1]]</code></pre>
 <p>This kernel will give a high value to a pixel if it is on a
 horizontal border between dark and light areas. Note that for RGB
-images, the kernel should also have a depth of 3, one for each colour
+images, the kernel should also have a depth of 3, one for each color
 channel.</p>
-<p>In the following image, we see the effect of such a kernel on the
-values of a single-channel image. The red cell in the output matrix is
+<p>In the following image, the effect of such a kernel on the values of
+a single-channel image stands out. The red cell in the output matrix is
 the result of multiplying and summing the values of the red square in
 the input, and the kernel. Applying this kernel to a real image shows
 that it indeed detects horizontal edges.</p>
@@ -482,7 +481,7 @@ the activation function.</p>
 <pre><code><span><span class="co"># # Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
 <span><span class="co"># x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)</span></span></code></pre>
 <p>The instantiation here has three parameters and a seemingly strange
-combination of parentheses, so let us take a closer look.</p>
+combination of parentheses, so let us break it down.</p>
 <ul><li>The first parameter is the number of filters we want in this layer
 and this is one of the hyperparameters of our system and needs to be
 chosen carefully.</li>
@@ -495,7 +494,7 @@ input data. The parameter here specifies the number of output filters in
 the convolution.</p>
 <p>It’s good practice to start with a relatively small number of filters
 in the first layer to prevent overfitting and choosing a number of
-filters as a power of 2 (e.g., 32, 64, 128) is common.</p>
+filters as a power of two (e.g., 32, 64, 128) is common.</p>
 <ul><li><p>The second parameter is the kernel size which we already
 discussed. Smaller kernels are often used to capture fine-grained
 features and odd-sized filters are preferred because they have a centre
@@ -508,10 +507,10 @@ is proven to work well. We will discuss activation functions later in
 <strong>Step 9. Tune hyperparameters</strong> but to satisfy your
 curiosity, <code>ReLU</code> stands for Rectified Linear Unit
 (ReLU).</p></li>
-<li><p>Next we see an extra set of parenthenses with inputs in them,
-this means that after creating an instance of the Conv2D layer we call
-it as if it was a function. This tells the Conv2D layer to connect the
-layer passed as a parameter, in this case the inputs.</p></li>
+<li><p>Next is an extra set of parenthenses with inputs in them that
+means that after an instance of the Conv2D layer is created, it can be
+called as if it was a function. This tells the Conv2D layer to connect
+the layer passed as a parameter, in this case the inputs.</p></li>
 <li><p>Finally, we store a reference so we can pass it to the next
 layer.</p></li>
 </ul><div id="playing-with-convolutions" class="callout callout">
@@ -555,14 +554,14 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means that your output image is slightly smaller then
-your input. It is also possible to ‘pad’ the borders, e.g. with the same
-value or with zeros, so that the convolution can also be applied to the
-border pixels. In that case, the output image will have the same size as
-the input image.</p>
+your input. It is also possible to ‘pad’ the borders, e.g., with the
+same value or with zeros, so that the convolution can also be applied to
+the border pixels. In that case, the output image will have the same
+size as the input image.</p>
 </div>
 </div>
 </div>
@@ -579,8 +578,8 @@ the resolution of your picture. The rationale behind this is that higher
 layers of the network should focus on higher-level features of the
 image. By introducing a pooling layer, the subsequent convolutional
 layer has a broader ‘view’ on the original image.</p>
-<p>As we saw with convolutional layers, Keras offers several pooling
-layers and one used for images (2D spatial data) is the
+<p>Similar to convolutional layers, Keras offers several pooling layers
+and one used for images (2D spatial data) is the
 <code>tf.keras.layers.MaxPooling2D</code> class.</p>
 <pre><code><span><span class="co"># # Pooling layer with input window sized 2,2</span></span>
 <span><span class="co"># x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)</span></span></code></pre>
@@ -628,7 +627,8 @@ decision about the class of the input.</p>
 <pre><code><span><span class="co"># # Dense layer with 64 neurons and ReLU activation</span></span>
 <span><span class="co"># x_intro = keras.layers.Dense(64, activation='relu')(x_intro)</span></span></code></pre>
 <p>This instantiation has two parameters: the number of neurons and the
-activation function as we saw in the convolutional layer.</p>
+activation function, similar to the argument for the convolutional
+layer.</p>
 <p>The choice of how many neurons to specify is often determined through
 experimentation and can impact the performance of our CNN. Too few
 neurons may not capture complex patterns in the data but too many
@@ -655,7 +655,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -721,16 +721,16 @@ input for a dense layer.</p>
 </div>
 <div class="section level4">
 <h4 id="cnn-part-3--output-layer">CNN Part 3. Output Layer<a class="anchor" aria-label="anchor" href="#cnn-part-3--output-layer"></a></h4>
-<p>Recall for the outputs we will need to look at what we want to
-identify from the data. If we are performing a classification problem
-then typically we will have one output for each potential class. We need
-to finish with a Dense layer to connect the output cells of the
-convolutional layer to the outputs for our 10 classes.</p>
+<p>Recall for the outputs we need to ask what we want to identify from
+the data. If we are performing a classification problem then typically
+we will have one output for each potential class. We finish with a Dense
+layer to connect the output cells of the convolutional layer to the
+outputs for our 10 classes.</p>
 <p>Note the use of <code>softmax</code> activation for this Dense layer
 as opposed to the <code>ReLU</code> activation used above. We use
 softmax for multiclass data because it helps the computer give each
-option (class) a likelihood score, and the scores add up to 100%. This
-way, it’s easier to pick the one the computer thinks is most
+option (class) a likelihood score, and the scores add up to 100 per
+cent. This way, it’s easier to pick the one the computer thinks is most
 probable.</p>
 <pre><code><span><span class="co"># # Output layer with 10 units (one for each class) and softmax activation</span></span>
 <span><span class="co"># outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro))</span></span></code></pre>
@@ -769,7 +769,10 @@ probable.</p>
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>model_intro <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_intro, outputs<span class="op">=</span>outputs_intro, name<span class="op">=</span><span class="st">"cifar_model_intro"</span>)</span>
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co"># view the model summary</span></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>model_intro.summary()</span></code></pre>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>model_intro.summary()</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co"># save dropout model</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>model_intro.save(<span class="st">'fit_outputs/model_intro.keras'</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -815,9 +818,9 @@ of hidden neurons. Other choices to be made are the number of layers and
 type of layers. You might wonder how you should make these architectural
 choices. Unfortunately, there are no clear rules to follow here, and it
 often boils down to a lot of trial and error. However, it is recommended
-to look what others have done with similar datasets and problems.
+to explore what others have done with similar datasets and problems.
 Another best practice is to start with a relatively simple architecture.
-Once running start to add layers and tweak the network to see if
+Once running start to add layers and tweak the network to test if
 performance increases.</p>
 </div>
 </div>
@@ -828,14 +831,15 @@ performance increases.</p>
 reasonable results for basic classification tasks. However, do keep in
 mind that this model is relatively simple, and its performance may not
 be as high as more complex architectures. The reason it’s called deep
-learning is because in most cases, the more layers we have, ie, the
+learning is because in most cases, the more layers we have, i.e. the
 deeper and more sophisticated CNN architecture we use, the better the
 performance.</p>
-<p>How can we tell? We can look at a couple metrics during the training
-process to detect whether our model is underfitting or overfitting. To
-do that, we first need to continue with the next steps in our Deep
-Learning workflow, <strong>Step 5. Choose a loss function and
-optimizer</strong> and <strong>Step 6. Train model</strong>.</p>
+<p>How can we tell? We can inspect a couple metrics produced during the
+training process to detect whether our model is underfitting or
+overfitting. To do that, we first need to continue with the next steps
+in our Deep Learning workflow, <strong>Step 5. Choose a loss function
+and optimizer</strong> and <strong>Step 6. Train model</strong>.</p>
+<p>Make sure you saved your model before moving on.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -845,22 +849,22 @@ optimizer</strong> and <strong>Step 6. Train model</strong>.</p>
 </h3>
 <div class="callout-content">
 <ul><li>Artificial neural networks (ANN) are a machine learning technique
-based on a model inspired by groups of neurons in the brain</li>
+based on a model inspired by groups of neurons in the brain.</li>
 <li>Convolution neural networks (CNN) are a type of ANN designed for
-image classification and object detection</li>
+image classification and object detection.</li>
 <li>The filter size determines the size of the receptive field where
 information is extracted and the kernel size changes the mathematical
-structure</li>
+structure.</li>
 <li>A CNN can consist of many types of layers including convolutional,
 pooling, flatten, and dense (fully connected) layers</li>
 <li>Convolutional layers are responsible for learning features from the
-input data</li>
+input data.</li>
 <li>Pooling layers are often used to reduce the spatial dimensions of
-the data</li>
+the data.</li>
 <li>The flatten layer is used to convert the multi-dimensional output of
-the convolutional and pooling layers into a flat vector</li>
+the convolutional and pooling layers into a flat vector.</li>
 <li>Dense layers are responsible for combining features learned by the
-previous layers to perform the final classification</li>
+previous layers to perform the final classification.</li>
 </ul></div>
 </div>
 </div>

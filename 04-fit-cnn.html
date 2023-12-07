@@ -309,13 +309,13 @@
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul><li>Explain the difference between compiling and training (fitting) a
-CNN</li>
-<li>Know how to select a loss function for your model</li>
-<li>Understand what an optimizer is</li>
-<li>Define the terms: learning rate, batch size, epoch</li>
+CNN.</li>
+<li>Know how to select a loss function for your model.</li>
+<li>Understand what an optimizer is.</li>
+<li>Define the terms: learning rate, batch size, epoch.</li>
 <li>Understand what loss and accuracy are and how to monitor them during
-training</li>
-<li>Explain what overfitting is and what to do about it</li>
+training.</li>
+<li>Explain what overfitting is and what to do about it.</li>
 </ul></div>
 </div>
 </div>
@@ -347,7 +347,7 @@ encoded class labels and the model predictions. This loss function is
 appropriate to use when the data has two or more label classes.</p>
 <p>The loss function is defined by the
 <code>tf.keras.losses.CategoricalCrossentropy</code> class.</p>
-<p>For more information about loss functions in Keras look at the <a href="https://keras.io/api/losses/" class="external-link">loss documentation</a>.</p>
+<p>More information about loss functions can be found in the Keras <a href="https://keras.io/api/losses/" class="external-link">loss documentation</a>.</p>
 </div>
 <div class="section level4">
 <h4 id="optimizer">Optimizer<a class="anchor" aria-label="anchor" href="#optimizer"></a></h4>
@@ -365,7 +365,7 @@ the weights) is achieved.</p>
 <pre><code><span><span class="co">## compile the model</span></span>
 <span><span class="co">#model_intro.compile(optimizer = 'adam', </span></span>
 <span><span class="co">#                    loss = keras.losses.CategoricalCrossentropy(), </span></span>
-<span><span class="co">#                    metrics = ['accuracy'])  </span></span></code></pre>
+<span><span class="co">#                    metrics = ['accuracy'])</span></span></code></pre>
 <p><strong>Adam</strong></p>
 <p>Here we picked one of the most common optimizers that works well for
 most tasks, the <strong>Adam</strong> optimizer. Similar to activation
@@ -416,9 +416,9 @@ rate leads to smaller updates, providing more cautious convergence, but
 it may take longer to reach the optimal solution. Finding an appropriate
 learning rate is crucial for effectively training machine learning
 models.</p>
-<p>In the figure below, we can see that a small learning rate will not
+<p>The figure below illustrates a small learning rate that will not
 traverse toward the minima of the gradient descent algorithm in a timely
-manner i.e. number of epochs.</p>
+manner, i.e. number of epochs.</p>
 <figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg" title="Small learning rate leads to inefficient approach to loss minima" alt="plot of loss over value of weight shows how a small learning rate takes a long time to reach the optimal solution" class="figure mx-auto d-block"><figcaption>Small learning rate leads to inefficient approach to
 loss minima</figcaption></figure><p>On the other hand, specifying a learning rate that is <em>too
 high</em> will result in a loss value that never approaches the minima.
@@ -457,8 +457,8 @@ often predictions matches labels.</p>
 <p>The accuracy function creates two local variables, total and count
 that are used to compute the frequency with which predictions matches
 labels. This frequency is ultimately returned as accuracy: an operation
-that simply divides total by count.</p>
-<p>For a list of metrics in Keras see <a href="https://keras.io/api/metrics/" class="external-link">metrics</a>.</p>
+that divides the total by count.</p>
+<p>A list of metrics can be found in the Keras <a href="https://keras.io/api/metrics/" class="external-link">metrics</a> documentation.</p>
 <p>Now that we have decided on which loss function, optimizer, and
 metric to use we can compile the model using <code>model.compile</code>.
 Compiling the model prepares it for training.</p>
@@ -488,8 +488,8 @@ training.</p>
 <p>Note we are also creating a new variable <code>history_intro</code>
 to capture the history of the training in order to extract metrics we
 will use for model evaluation.</p>
-<p>There are other arguments we could use to fit our model, see the
-documentation for <a href="https://keras.io/api/models/model_training_apis/" class="external-link">fit
+<p>Other arguments used to fit our model can be found in the
+documentation for the <a href="https://keras.io/api/models/model_training_apis/" class="external-link">fit
 method</a>.</p>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
@@ -539,7 +539,7 @@ best for your specific model, architecture, and dataset.</p>
 <h3 id="monitor-training-progress-aka-model-evaluation-during-training">Monitor Training Progress (aka Model Evaluation during
 Training)<a class="anchor" aria-label="anchor" href="#monitor-training-progress-aka-model-evaluation-during-training"></a></h3>
 <p>Now that we know more about the compilation and fitting of CNN’s let
-us take a look at the training metrics for our model.</p>
+us take a inspect the training metrics for our model.</p>
 <p>Using seaborn we can plot the training process using the history:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -568,13 +568,13 @@ lines show the validation loss and accuracy.</p>
 <h3 class="callout-title">Inspect the Training Curve<a class="anchor" aria-label="anchor" href="#inspect-the-training-curve"></a>
 </h3>
 <div class="callout-content">
-<p>Looking at the training curves we have just made and recall the
+<p>Inspect the training curves we have just made and recall the
 difference between the training and the validation datasets.</p>
 <ol style="list-style-type: decimal"><li>How does the training progress?</li>
 </ol><ul><li>Does the loss increase or decrease?</li>
 <li>What about the accuracy?</li>
 <li>Do either change fast or slowly?</li>
-<li>Do the graphs look very jittery?</li>
+<li>Do the graphs lines go up and down frequently (i.e. jitter)?</li>
 </ul><ol start="2" style="list-style-type: decimal"><li>Do you think the resulting trained network will work well on the
 test set?</li>
 </ol></div>
@@ -599,14 +599,14 @@ indication of a well trained network.</li>
 </div>
 </div>
 </div>
-<p>If we look at these plots we can see signs of
-<strong>overfitting</strong>. If a model is overfitting, it means that
-the model performs exceptionally well on the training data but poorly on
-the validation or test data. Overfitting occurs when the model has
-learned to memorize the noise and specific patterns in the training data
-instead of generalizing the underlying relationships. As a result, the
-model fails to perform well on new, unseen data because it has become
-too specialized to the training set.</p>
+<p>These is evidence of <strong>overfitting</strong> in these plots. If
+a model is overfitting, it means that the model performs exceptionally
+well on the training data but poorly on the validation or test data.
+Overfitting occurs when the model has learned to memorize the noise and
+specific patterns in the training data instead of generalizing the
+underlying relationships. As a result, the model fails to perform well
+on new, unseen data because it has become too specialized to the
+training set.</p>
 <p>Key characteristics of an overfit model include:</p>
 <ul><li><p>High Training Accuracy, Low Validation Accuracy: The model
 achieves high accuracy on the training data but significantly lower
@@ -643,8 +643,8 @@ learning from the data effectively.</li>
 <li>Large Training Loss: The training loss (error) is high, indicating
 that the model’s predictions are far from the true labels in the
 training set.</li>
-<li>Increasing validation loss</li>
-</ul><p>How to Address underfitting:</p>
+<li>Increasing validation loss.</li>
+</ul><p>How to address underfitting:</p>
 <ul><li>Increase the model’s complexity by adding more layers or units to
 the existing layers.</li>
 <li>Train the model for more epochs to give it more time to learn from
@@ -704,7 +704,7 @@ have the following definition:</p>
 <p>The <code>rate</code> parameter is a float between 0 and 1 and
 represents the fraction of the input units to drop.</p>
 <p>We want to add one Dropout Layer to our network that randomly drops
-80% of the input units but where should we put it?</p>
+80 per cent of the input units but where should we put it?</p>
 <p>The placement of the dropout layer matters. Adding dropout before or
 after certain layers can have different effects. For example, it’s
 common to place dropout after convolutional and dense layers but not
@@ -730,7 +730,7 @@ to our model and then the dropout layer.</p>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">64</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout) <span class="co"># This is new!</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Dropout layer andomly drops 60% of the input units</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Dropout layer andomly drops 60 per cent of the input units</span></span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dropout(<span class="fl">0.6</span>)(x_dropout) <span class="co"># This is new!</span></span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Flatten()(x_dropout)</span>
@@ -781,8 +781,8 @@ Trainable params: 156074 (609.66 KB)
 Non-trainable params: 0 (0.00 Byte)
 _________________________________________________________________</code></pre>
 </div>
-<p>We can see that the dropout does not alter the dimensions of the
-image, and has zero parameters.</p>
+<p>Note the dropout does not alter the dimensions of the image and has
+zero parameters.</p>
 <div id="does-adding-a-dropout-layer-improve-our-model" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -836,13 +836,12 @@ by adding a dropout layer.</p>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>val_loss_dropout, val_acc_dropout <span class="op">=</span> model_dropout.evaluate(val_images,  val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>val_loss_dropout, val_acc_dropout <span class="op">=</span> model_dropout.evaluate(val_images, val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
-<figure><img src="fig/04_model_dropout_accuracy_loss.png" alt="two panel figure; the figure on the left shows the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right shows the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67" class="figure mx-auto d-block"></figure><p>Here we see the relatively uncommon situation where our training loss
-is higher than our validation loss while the validation accuracy is
-higher than the training accuracy. If you are using dropout or other
-regularization techniques during training, they might lead to a lower
-training accuracy.</p>
+<figure><img src="fig/04_model_dropout_accuracy_loss.png" alt="two panel figure; the figure on the left shows the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right shows the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67" class="figure mx-auto d-block"></figure><p>In this relatively uncommon , the training loss is higher than our
+validation loss while the validation accuracy is higher than the
+training accuracy. Using dropout or other regularization techniques
+during training can lead to a lower training accuracy.</p>
 <p>Dropout randomly “drops out” units during training, which can prevent
 the model from fitting the training data too closely. This
 regularization effect may lead to a situation where the model
@@ -930,13 +929,14 @@ dataset.</p>
 <h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
 </h3>
 <div class="callout-content">
-<ul><li>Use model.compile to compile a CNN</li>
-<li>The choice of loss function will depend on your dataset and aim</li>
+<ul><li>Use model.compile to compile a CNN.</li>
+<li>The choice of loss function will depend on your data and aim.</li>
 <li>The choice of optimizer often depends on experimentation and
-empirical evaluation</li>
-<li>Use model.fit to make a train (fit) a CNN</li>
+empirical evaluation.</li>
+<li>Use model.fit to make a train (fit) a CNN.</li>
 <li>Training/validation loss and accuracy can be used to evaluate a
-model during training - Dropout is one way to prevent overfitting</li>
+model during training.</li>
+<li>Dropout is one way to prevent overfitting.</li>
 </ul></div>
 </div>
 </div>

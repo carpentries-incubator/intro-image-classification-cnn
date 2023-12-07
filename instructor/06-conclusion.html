@@ -300,10 +300,10 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Learn how to save and load models</li>
-<li>Know where to look for pretrained models</li>
-<li>Understand what a GPU is and what it can do for you</li>
-<li>Explain when to use a CNN and when not to</li>
+<ul><li>Learn how to save and load models.</li>
+<li>Know where to search for pretrained models.</li>
+<li>Understand what a GPU is and what it can do for you.</li>
+<li>Explain when to use a CNN and when not to.</li>
 </ul></div>
 </div>
 </div>
@@ -318,53 +318,48 @@ of our network and the weights which it has learned (assuming we did not
 use a pre-trained network). This will allow others to use it as as
 pre-trained network for their own purposes and for them to (mostly)
 reproduce our result.</p>
-<p>We have already seen how to save a model with
-<code>model.save</code>:</p>
-<pre><code><span><span class="co">#model.save('model_final.h5')</span></span></code></pre>
+<p>Use <code>model.save</code> to save a model:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save best model</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">'model_best.keras'</span>)</span></code></pre>
+</div>
 <p>The <code>save</code> method is actually an alias for
 <code>tf.keras.saving.save_model()</code> where the default
-<code>save_format=NONE</code>. By adding the extension
-<strong>.h5</strong> to our filename, keras will save the model in the
-legacy HDF5 format.</p>
+<code>save_format=NONE</code>.</p>
 <p>This saved model can be loaded again by using the
-<code>load_model</code> method as follows:</p>
+<code>load_model</code> method:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load a saved model</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pretrained_model <span class="op">=</span> keras.models.load_model(<span class="st">'model_final.h5'</span>)</span></code></pre>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pretrained_model <span class="op">=</span> keras.models.load_model(<span class="st">'model_best.keras'</span>)</span></code></pre>
 </div>
 <p>This loaded model can be used as before to predict.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the pretrained model here</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> icwithcnn_functions <span class="im">import</span> prepare_image_icwithcnn</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the pretrained model to predict the class name of the first test image</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>result_pretrained <span class="op">=</span> model_intro.predict(test_images[<span class="dv">0</span>].reshape(<span class="dv">1</span>,<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>new_img_path <span class="op">=</span> <span class="st">"../data/Jabiru_TGS.JPG"</span> <span class="co"># path to image</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>new_img_prepped <span class="op">=</span> prepare_image_icwithcnn(new_img_path)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># predict the class name</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>y_pretrained_pred <span class="op">=</span> pretrained_model.predict(new_img_prepped)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>pretrained_predicted_class <span class="op">=</span> class_names[y_pretrained_pred.argmax()]</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pretrained_predicted_class)</span></code></pre>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The predicted probability of each class is: '</span>, result_pretrained.<span class="bu">round</span>(<span class="dv">4</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The class with the highest predicted probability is: '</span>, class_names[result_pretrained.argmax()])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span><span class="va">frog</span></span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="va">cat</span></span></code></pre>
 </div>
-<p>The HDF5 file format contains:</p>
-<ul><li>configuration (architecture)</li>
-<li>weights</li>
-<li>optimizer’s state (if any)
-<ul><li>allows you to continue training; useful for checkpointing</li>
-</ul></li>
-</ul><p>Note that saving the model does not save the training history (ie
-training and validation loss and accuracy). For that you will need to
-save the model history dataframe we created for plotting.</p>
-<p>To find out more about other file formats you can use to save your
-model see the Keras documentation for <a href="https://keras.io/api/saving/" class="external-link">Saving and Serialization</a>.</p>
+<p>The saved .keras file contains:</p>
+<ul><li>The model’s configuration (architecture).</li>
+<li>The model’s weights.</li>
+<li>The model’s optimizer’s state (if any).</li>
+</ul><p>Note that saving the model does not save the training history
+(i.e. training and validation loss and accuracy). For that you will need
+to save the model history dataframe we created for plotting.</p>
+<p>The Keras documentation for <a href="https://keras.io/api/saving/" class="external-link">Saving and Serialization</a>
+explains other ways to save your model.</p>
 <p>To share your model with a wider audience it is recommended you
 create git repository, such as <a href="https://github.com/" class="external-link">GitHub</a>,
 and upload your code, images, and model outputs to the cloud. In some
@@ -435,9 +430,9 @@ ability to perform parallel computations at a much faster rate compared
 to traditional central processing units (CPUs). This makes them
 well-suited for the intensive matrix and vector operations that are
 common in deep learning algorithms.</p>
-<p>As you have seen in this lesson, training CNN models can take a long
-time. If you follow the steps presented here you will find you are
-training multiple models to find the one best suited to your needs,
+<p>As you have experienced in this lesson, training CNN models can take
+a long time. If you follow the steps presented here you will find you
+are training multiple models to find the one best suited to your needs,
 particularly when fine tuning hyperparameters. However you have also
 seen that running on CPU only machines can be done! So while a GPU is
 not an absolute requirement for deep learning, it can significantly
@@ -452,9 +447,9 @@ cost-effective option for many users.</p>
 classification?<a class="anchor" aria-label="anchor" href="#it-this-the-bestonly-way-to-code-up-cnns-for-image-classification"></a></h4>
 <p>Absolutely not! The code we used in today’s workshop might today be
 considered old fashioned. A lot of the data preprocessing we did by hand
-can now be done by simply adding different layer types to your model.
-See, for example, the <a href="https://keras.io/guides/preprocessing_layers/" class="external-link">preprocessing
-layers</a> available with keras.</p>
+can now be done by adding different layer types to your model. The <a href="https://keras.io/guides/preprocessing_layers/" class="external-link">preprocessing
+layers</a> section fo the Keras documentation provides several
+examples.</p>
 <p>The point is that this technology, both hardware and software, is
 dynamic and changing at exponentially increasing rates. It is essential
 to stay curious and open to learning and follow up with continuous
@@ -477,11 +472,12 @@ traditional methods of publishing</li>
 </ul></div>
 <div class="section level4">
 <h4 id="what-other-uses-are-there-for-neural-networks">What other uses are there for neural networks?<a class="anchor" aria-label="anchor" href="#what-other-uses-are-there-for-neural-networks"></a></h4>
-<p>In addition to image classification, we saw in the introduction other
-computer vision tasks including object detection and instance and
-semantic segmentation. These can all be done with CNN’s and are readily
-transferable to videos. Also included in these tasks is medical imaging
-for diagnoses of disease and, of course, facial recognition.</p>
+<p>In addition to image classification, <a href="01-introduction.html">Episode 01 Introduction to Deep Learning</a>
+introduced other computer vision tasks, including object detection and
+instance and semantic segmentation. These can all be done with CNNs and
+are readily transferable to videos. Also included in these tasks is
+medical imaging for diagnoses of disease and, of course, facial
+recognition.</p>
 <p>However, there are many other tasks which CNNs are well suited
 for:</p>
 <ul><li>Language tasks
@@ -512,7 +508,7 @@ classify data.</li>
 <li>Keras is a Deep Learning library that is easier to use than many of
 the alternatives such as TensorFlow and PyTorch.</li>
 <li>Graphical Processing Units are useful, though not essential, for
-deep learning tasks</li>
+deep learning tasks.</li>
 </ul></div>
 </div>
 </div>

@@ -9,8 +9,6 @@ exercises: 2
 - What is a (artificial) neural network (ANN)?
 - How is a convolutional neural network (CNN) different from an ANN?
 - What are the types of layers used to build a CNN?
-- How do you monitor the training process?
-- What is underfitting?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -24,20 +22,20 @@ exercises: 2
 
 ## Neural Networks
 
-A neural network is an artificial intelligence technique loosely based on the way neurons in the brain work. A neural network consists of connected computational units called neurons. Each neuron ...
+A **neural network** is an artificial intelligence technique loosely based on the way neurons in the brain work. A neural network consists of connected computational units called neurons. Each neuron ...
 
 - has one or more inputs, e.g. input data expressed as floating point numbers
-- most of the time, each neuron conducts 3 main operations:
+- conducts three main operations most of the time:
     - take the weighted sum of the inputs
     - add an extra constant weight (i.e. a bias term) to this weighted sum
     - apply a non-linear function to the output so far (using a predefined activation function)
-- return one output value, again a floating point number
+- returns one output value, again a floating point number
 
-![](fig/03_neuron.png){alt=''}
+![](fig/03_neuron.png){alt='diagram of a single neuron taking multiple inputs and their associated weights in and then applying an activation function to predict a single output'}
 
 Multiple neurons can be joined together by connecting the output of one to the input of another. These connections are associated with weights that determine the 'strength' of the connection, the weights are adjusted during training. In this way, the combination of neurons and connections describe a computational graph, an example can be seen in the image below. In most neural networks neurons are aggregated into layers. Signals travel from the input layer to the output layer, possibly through one or more intermediate layers called hidden layers. The image below shows an example of a neural network with three layers, each circle is a neuron, each line is an edge and the arrows indicate the direction data moves in.
 
-![The image above is by Glosser.ca, [CC BY-SA 3.0], via Wikimedia Commons, [original source]](fig/03_neural_net.png){alt=''}
+![The image above is by Glosser.ca, [CC BY-SA 3.0], via Wikimedia Commons, [original source]](fig/03_neural_net.png){alt='diagram of a neural with four neurons taking multiple inputs and their weights and predicting multiple outputs'}
 
 Neural networks aren't a new technique, they have been around since the late 1940s. But until around 2010 neural networks tended to be quite small, consisting of only 10s or perhaps 100s of neurons. This limited them to only solving quite basic problems. Around 2010 improvements in computing power and the algorithms for training the networks made much larger and more powerful networks practical. These are known as deep neural networks or Deep Learning
 
@@ -135,9 +133,9 @@ This kernel will give a high value to a pixel if it is on a horizontal border be
 
 In the following image, we see the effect of such a kernel on the values of a single-channel image. The red cell in the output matrix is the result of multiplying and summing the values of the red square in the input, and the kernel. Applying this kernel to a real image shows that it indeed detects horizontal edges.
 
-![](fig/03_conv_matrix.png){alt=''}
+![](fig/03_conv_matrix.png){alt='6x5 input matrix representing a single color channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix that detects horizonal edges in an image '}
 
-![](fig/03_conv_image.png){alt=''}
+![](fig/03_conv_image.png){alt='single color channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges that stand out'}
 
 Within our convolutional layer, the hidden units comprise multiple convolutional matrices, also known as kernels. The matrix values, serving as weights, are learned during the training process. The convolutional layer produces an 'image' for each kernel, representing the output derived by applying the kernel to each pixel.
 
@@ -219,7 +217,7 @@ Convolutional and Pooling layers are also applicable to different types of data 
 
 A **dense** layer has a number of neurons, which is a parameter you can choose when you create the layer. When connecting the layer to its input and output layers every neuron in the dense layer gets an edge (i.e. connection) to **all** of the input neurons and **all** of the output neurons.
 
-![](fig/03-neural_network_sketch_dense.png){alt=''}
+![](fig/03-neural_network_sketch_dense.png){alt='diagram of a neural network with multiple inputs feeding into to two seperate dense layers with connections between all the inputs and outputs'}
 
 This layer is called fully connected, because all input neurons are taken into account by each output neuron. It aggregates global information about the features learned in previous layers to make a decision about the class of the input.
 
@@ -384,7 +382,7 @@ How can we tell? We can look at a couple metrics during the training process to 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Artificial neural networks (ANN) are a machine learning technique based on a model inspired by groups of neurons in the brain.
+- Artificial neural networks (ANN) are a machine learning technique based on a model inspired by groups of neurons in the brain
 - Convolution neural networks (CNN) are a type of ANN designed for image classification and object detection
 - The filter size determines the size of the receptive field where information is extracted and the kernel size changes the mathematical structure
 - A CNN can consist of many types of layers including convolutional, pooling, flatten, and dense (fully connected) layers
@@ -398,6 +396,7 @@ How can we tell? We can look at a couple metrics during the training process to 
 <!-- Collect your link references at the bottom of your document -->
 [CC BY-SA 3.0]: https://creativecommons.org/licenses/by-sa/3.0
 [original source]: https://commons.wikimedia.org/wiki/File:Colored_neural_network.svg
+[Layers API]: https://keras.io/api/layers/
 [Image kernels explained]: https://setosa.io/ev/image-kernels/
 [convolutional neural network cheat sheet]: https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-convolutional-neural-networks
-[Layers API]: https://keras.io/api/layers/
+

@@ -29,7 +29,7 @@ After you fully train the network to a satisfactory performance on the training 
 
 #### Prepare test dataset
 
-Recall in [Episode 2 Introduction to Image Data](./02-image-data.md) we discussed how to split your data into training and test datasets and why. In most cases, that means you already have a test set on hand. For example, we are using `keras.models.load_model` to create a training and test set.
+Recall in [Episode 02 Introduction to Image Data](episodes/02-image-data.md) we discussed how to split your data into training and test datasets and why. In most cases, that means you already have a test set on hand. For example, we are using `keras.models.load_model` to create a training and test set.
 
 When creating and using a test set there are a few things to check:
 
@@ -75,7 +75,7 @@ How big should our test data set be?
 
 :::::::::::::::::::::::: solution 
 
-It depends! Recall in an [Episode 02 Introduction to Image Data](../02-image-data.md) Callout we talked about the different ways to partition the data into training, validation and test data sets. For example, using the **Stratified Sampling** technique, we might split the data using these rations: 80-10-10 or 70-15-15.
+It depends! Recall in an [Episode 02 Introduction to Image Data](episodes/02-image-data.md) Callout we talked about the different ways to partition the data into training, validation and test data sets. For example, using the **Stratified Sampling** technique, we might split the data using these rations: 80-10-10 or 70-15-15.
 
 The test set should be sufficiently large to provide a meaningful evaluation of your model's performance. Smaller datasets might not provide a reliable estimate of how well your model generalizes.
 
@@ -145,7 +145,7 @@ To understand a bit more about how this accuracy is obtained, we create a confus
 
 In the case of multiclass classifications, each cell value (C~i,j~) is equal to the number of observations known to be in group _i_ and predicted to be in group _j_. The diagonal cells in the matrix are where the true class and predicted class match.
 
-![](fig/05_confusion_matrix_explained.png){alt=''}
+![](fig/05_confusion_matrix_explained.png){alt='for ten classes an example confusion matrix has 10 rows and 10 columns where the value in each cell is the number of observations predicted in that class and known to be that class. The diagonal cells are where the true and predicted classes match'}
 
 To create a confusion matrix we will use another convenient function from sklearn called `confusion_matrix`. This function takes as a first parameter the true labels of the test set. The second parameter is the predicted labels from our model.
 
@@ -186,9 +186,9 @@ sns.heatmap(confusion_df, annot=True)
 ```
 
 - the `annot=True` parameter here will put the numbers from the confusion matrix in the heatmap
- - the `fmt=3g` will display the values with 3 significant digits
+- the `fmt=3g` will display the values with 3 significant digits
 
-![](fig/05_pred_v_true_confusion_matrix.png){alt=''}
+![](fig/05_pred_v_true_confusion_matrix.png){alt='Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors indicating our model is predicting well but a few non-diagonal cells also have a ligher color to show where the model is making prediction errors.'}
 
 
 ::::::::::::::::::::::::::::::::::::: challenge 
@@ -217,7 +217,7 @@ Q3. We can try many things to improve the performance from here. One of the firs
 
 ### Step 9. Tune hyperparameters
 
-Recall the following from [Episode 1](./01-introduction.md):
+Recall the following from [Episode 01 Introduction to Deep Learning](episodes/01-introduction.md):
 
 #### What are hyperparameters? 
 
@@ -317,7 +317,7 @@ loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss_vary': val_loss
 
 sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss_vary')    
 ```
-![](fig/04_vary_dropout_rate.png){alt=''}
+![](fig/05_vary_dropout_rate.png){alt='test loss plotted against five dropout rates ranging from 0.15 to 0.75 where the minimum test loss appears to occur between 0.4 and 0.5'}
 
 Q2. Term associated to this procedure
 
@@ -417,7 +417,7 @@ A third way to tune hyperparaters is brute force.
 
 ## Tune Activation Function using Brute Foce
 
-In [Episode 03](./03-build-cnn.md) we talked briefly about the `relu` activation function passed as an argument to our `Conv2D` hidden layers.
+In [Episode 03 Build a Convolutional Neural Network](episodes/03-build-cnn.md) we talked briefly about the `relu` activation function passed as an argument to our `Conv2D` hidden layers.
 
 An activation function is like a switch or a filter that we use in artificial neural networks, inspired by how our brains work. These functions play a crucial role in determining whether a neuron (a small unit in the neural network) should "fire" or become active. 
 
@@ -479,7 +479,10 @@ history_data = {}
 # Train a model with each activation function and store the history
 for activation in activations:
     model = create_model(activation)
-    history = model.fit(train_images, train_labels, epochs=10, validation_data=(val_images, val_labels))
+    history = model.fit(train_images, train_labels, 
+                        epochs=10, 
+                        validation_data=(val_images, val_labels),
+                        batch_size = 32)
     history_data[str(activation)] = history
 
 # Plot the validation accuracy for each activation function
@@ -495,9 +498,9 @@ plt.legend()
 plt.show()
 ```
 
-![](fig/05_tune_activation_results.png){alt=''}
+![](fig/05_tune_activation_results.png){alt='Validation accuracy plotted against ten epochs for five different activations functions. relu and Leaky relu have the highest accuracy atound 0.60; sigmoid and selu are next with accuracy around 0.45 and tanh has the lowest accuracy of 0.35'}
 
-You can see in this figure that after 10 epochs the `relu` and `sigmoid` activation functions appear to converge around 0.60% validation accuracy. We recommend when tuning your model to ensure you use enough epochs to be confident in your results.
+You can see in this figure that after 10 epochs the `ReLU` and `Leaky ReLU` activation functions appear to converge around 0.60% validation accuracy. We recommend when tuning your model to ensure you use enough epochs to be confident in your results.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -537,9 +540,11 @@ By now you should have a well-trained, finely-tuned model that makes accurate pr
 - Use model.predict to make a prediction with your model
 - Model accuracy must be measured on a test dataset with images your model has not seen before
 - There are many hyperparameters to choose from to improve model performance
+- Fitting separate models with different hyperparameters and comparing their performance is a common and good practice in deep learning
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
 [RMSprop in Keras]: https://keras.io/api/optimizers/rmsprop/
 [RMSProp, Cornell University]: https://optimization.cbe.cornell.edu/index.php?title=RMSProp
+

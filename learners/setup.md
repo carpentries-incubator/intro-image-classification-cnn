@@ -194,21 +194,19 @@ This file can be downloaded from [exercises.py](../episodes/scripts/exercises.py
 
 ## Get the data
 
-This lesson uses the CIFAR-10 image data that comes prepackaged with Keras.
+This lesson uses the [CIFAR-10 image dataset] that comes prepackaged with Keras.
 
 
 <!-- Collect your link references at the bottom of your document -->
 
 [Plotting and Programming in Python]: https://swcarpentry.github.io/python-novice-gapminder/
 [Conda]: https://docs.conda.io/projects/conda/en/latest/
+[Python]: https://python.org
 [Anaconda]: https://www.anaconda.com/products/individual
-[anaconda-distribution]: https://www.anaconda.com/products/distribution
-[Spyder]: https://www.spyder-ide.org/
-[python]: https://python.org
-[Mac OS X - Video tutorial]: https://www.youtube.com/watch?v=TcSAln46u9U
 [Windows - Video tutorial]: https://www.youtube.com/watch?v=xxQ0mzZ8UvA
-[The CIFAR-10 dataset]: https://www.cs.toronto.edu/~kriz/cifar.html
-[pip]: (https://pip.pypa.io/en/stable/)
+[Mac OS X - Video tutorial]: https://www.youtube.com/watch?v=TcSAln46u9U
 [these instructions]: https://docs.anaconda.com/anaconda/install/update-version/
-[Google colab]: https://colab.research.google.com/
+[pip]: (https://pip.pypa.io/en/stable/)
+[Spyder]: https://www.spyder-ide.org/
+[CIFAR-10 image dataset]: https://www.cs.toronto.edu/~kriz/cifar.html
 

@@ -14,10 +14,10 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the difference between artificial intelligence, machine learning and deep learning
-- Understand the different types of computer vision tasks
-- Know the difference between training, testing, and validation datasets
-- Perform an image classification using a convolutional neural network (CNN)
+- Explain the difference between artificial intelligence, machine learning and deep learning.
+- Understand the different types of computer vision tasks.
+- Know the difference between training, testing, and validation datasets.
+- Perform an image classification using a convolutional neural network (CNN).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -33,7 +33,7 @@ Many (but not all) machine learning systems “learn” by taking a series of in
 - predicting a person’s weight based on their height
 - predicting house prices given stock market prices
 - classifying if an email is spam or not
-- classifying an image as eg, person, place, or particular object
+- classifying an image as, e.g., person, place, or particular object
 
 Typically we will need to train our models with hundreds, thousands or even millions of examples before they work well enough to do any useful predictions or classifications with them.
 
@@ -55,9 +55,9 @@ Concept: Differentiation between traditional Machine Learning models and Deep Le
 
 ## What is image classification?
 
-Image classification is a fundamental task in computer vision, which is a field of artificial intelligence focused on teaching computers to interpret and understand visual information from the world. Image classification specifically involves the process of assigning a label or category to an input image. The goal is to enable computers to recognize and categorize objects, scenes, or patterns within images, just as a human would. Image classification can refer to one of several tasks:
+Image classification is a fundamental task in computer vision, which is a field of artificial intelligence focused on teaching computers to interpret and understand visual information from the world. Image classification specifically involves the process of assigning a label or category to an input image. The goal is to enable computers to recognise and categorise objects, scenes, or patterns within images, just as a human would. Image classification can refer to one of several tasks:
 
-![](fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png){alt='Four types of image classification tasks include semantic segmentation where every pixel is labelled; classification and localization that detects a single object like a cat; object detection that detects multiple objects like cats and dogs; and instance segmentation that detects each pixel of multiple objects'}
+![](fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png){alt='Four types of image classification tasks include semantic segmentation where every pixel is labelled; classification and localisation that detects a single object like a cat; object detection that detects multiple objects like cats and dogs; and instance segmentation that detects each pixel of multiple objects'}
 
 Image classification has numerous practical applications, including:
 
@@ -65,7 +65,7 @@ Image classification has numerous practical applications, including:
 - **Medical Imaging**: Diagnosing diseases from medical images like X-rays or MRIs.
 - **Quality Control**: Inspecting products for defects on manufacturing lines.
 - **Autonomous Vehicles**: Identifying pedestrians, traffic signs, and other vehicles in self-driving cars.
-- **Security and Surveillance**: Detecting anomalies or unauthorized objects in security footage.
+- **Security and Surveillance**: Detecting anomalies or unauthorised objects in security footage.
 
 Convolutional Neural Networks (CNNs) have become a cornerstone in image classification due to their ability to automatically learn hierarchical features from images and achieve remarkable performance on a wide range of tasks.
 
@@ -73,15 +73,15 @@ Convolutional Neural Networks (CNNs) have become a cornerstone in image classifi
 To apply Deep Learning to a problem there are several steps we need to go through:
 
 ### Step 1. Formulate / Outline the problem
-Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories. Specifically in our case, we will be looking at 10 categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck
+Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories. Specifically in our case, we have 10 categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck
 
 ### Step 2. Identify inputs and outputs
 Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
 
 ### Step 3. Prepare data
-Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (eg images) will have to be somehow converted to numerical data. Information on how this is done and what the data looks like will be explored in [Episode 02 Introduction to Image Data](episodes/02-image-data).
+Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (e.g., images) will have to be somehow converted to numerical data. Information on how this is done and the data structure will be explored in [Episode 02 Introduction to Image Data](episodes/02-image-data).
 
-For this lesson, we will use an existing image dataset known as CIFAR-10. We will introduce this dataset and the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalize the image pixel values to be between 0 and 1; and one-hot encode our image labels.
+For this lesson, we will use an existing image dataset known as CIFAR-10. We will introduce this dataset and the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalise the image pixel values to be between 0 and 1; and one-hot encode our image labels.
 
 #### Preparing the code
 
@@ -97,7 +97,7 @@ import numpy as np # library for working with images as arrays
 # load the CIFAR-10 dataset included with the keras library
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
-# normalize the RGB values to be between 0 and 1
+# normalise the RGB values to be between 0 and 1
 train_images = train_images / 255.0
 val_images = val_images / 255.0
 
@@ -135,16 +135,16 @@ Train: Images=(50000, 32, 32, 3), Labels=(40000, 10)
 Validate: Images=(10000, 32, 32, 3), Labels=(10000, 10)
 Test: Images=(10000, 32, 32, 3), Labels=(10000, 10)
 ```
-The training set consists of 40000 images of 32x32 pixels and 3 channels (RGB values) and labels.
+The training set consists of 40000 images of 32x32 pixels and three channels (RGB values) and labels.
 
-The validation and test datasets consist of 10000 images of 32x32 pixels and 3 channels (RGB values) and labels.
+The validation and test datasets consist of 10000 images of 32x32 pixels and three channels (RGB values) and labels.
 
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-#### Visualize a subset of the CIFAR-10 dataset
+#### Visualise a subset of the CIFAR-10 dataset
 
 ```python
 # create a figure object and specify width, height in inches
@@ -202,7 +202,7 @@ model_intro = keras.Model(inputs = inputs_intro,
 
 ### Step 5. Choose a loss function and optimizer
 
-The loss function tells the training algorithm how far away the predicted value was from the true value. We will look at choosing a loss function in more detail later on.
+The loss function tells the training algorithm how far away the predicted value was from the true value. We will learn how to choose a loss function in more detail later on.
 
 The optimizer is responsible for taking the output of the loss function and then applying some changes to the weights within the network. It is through this process that the “learning” (adjustment of the weights) is achieved.
 
@@ -290,7 +290,7 @@ When building image recognition models in Python, especially using libraries lik
 
 #### What are hyperparameters? 
 
-Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimize the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](episodes/05-evaluate-predict-cnn.md)
+Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimise the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](episodes/05-evaluate-predict-cnn.md)
 
 ### Step 10. Share Model
 
@@ -307,11 +307,12 @@ associated with the lessons. They appear in the "Instructor View"
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- Machine learning is the process where computers learn to recognise patterns of data
-- Deep learning is a subset of machine learning, which is a subset of artificial intelligence
-- Convolutional neural networks are well suited for image classification
+- Machine learning is the process where computers learn to recognise patterns of data.
+- Deep learning is a subset of machine learning, which is a subset of artificial intelligence.
+- Convolutional neural networks are well suited for image classification.
 - To use Deep Learning effectively we need to go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, training the model, tuning hyperparameters, measuring performance before we can classify data.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
+
 [original source]: https://en.wikipedia.org/wiki/File:AI-ML-DL.svg

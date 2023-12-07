@@ -15,11 +15,11 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Use a convolutional neural network (CNN) to make a prediction (ie classify an image)
-- Explain how to measure the performance of a CNN
-- Explain hyperparameter tuning
-- Be familiar with advantages and disadvantages of different optimizers
-- Understand what steps to take to improve model accuracy
+- Use a convolutional neural network (CNN) to make a prediction (i.e. classify an image).
+- Explain how to measure the performance of a CNN.
+- Explain hyperparameter tuning.
+- Be familiar with advantages and disadvantages of different optimizers.
+- Understand what steps to take to improve model accuracy.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -33,11 +33,9 @@ Recall in [Episode 02 Introduction to Image Data](episodes/02-image-data.md) we 
 
 When creating and using a test set there are a few things to check:
 
-- it only contains images that the model has never seen before
-- it is sufficiently large to provide a meaningful evaluation of model performance
-  - images from every target label
-  - images of classes not in your target set
-- it is processed in the same way as your training set
+- It only contains images that the model has never seen before.
+- It is sufficiently large to provide a meaningful evaluation of model performance. It should include images from every target label and images of classes not in your target set.
+- It is processed in the same way as your training set.
 
 Check to make sure you have a model in memory and a test dataset:
 
@@ -46,7 +44,7 @@ Check to make sure you have a model in memory and a test dataset:
 model_best = keras.models.load_model('fit_outputs/model_dropout.h5') # pick your best model
 print('We are using', model_best.name)
 
-# load the cifar dataset included with the keras packages
+# load the CIFAR-10 dataset included with the keras packages
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
 # normalize the RGB values to be between 0 and 1
@@ -63,7 +61,7 @@ print('The number and shape of images in our test dataset is:', test_images.shap
 print('The number of labels in our test dataset is:', len(test_labels))
 ```
 ```output
-We are using  cifar_model_dropout
+We are using cifar_model_dropout
 The number and shape of images in our test dataset is:  (10000, 32, 32, 3)
 The number of labels in our test dataset is:  10000
 ```
@@ -185,8 +183,8 @@ We can then use the `heatmap` function from seaborn to create a nice visualizati
 sns.heatmap(confusion_df, annot=True)
 ```
 
-- the `annot=True` parameter here will put the numbers from the confusion matrix in the heatmap
-- the `fmt=3g` will display the values with 3 significant digits
+- The `annot=True` parameter here will put the numbers from the confusion matrix in the heatmap.
+- The `fmt=3g` will display the values with three significant digits.
 
 ![](fig/05_pred_v_true_confusion_matrix.png){alt='Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors indicating our model is predicting well but a few non-diagonal cells also have a ligher color to show where the model is making prediction errors.'}
 
@@ -199,7 +197,7 @@ Measure the performance of the neural network you trained and visualized as a co
 
 Q1. Did the neural network perform well on the test set?
 
-Q2. Did you expect this from the training loss you saw?
+Q2. Did you expect this from the training loss plot?
 
 Q3. What could we do to improve the performance?
 
@@ -207,9 +205,9 @@ Q3. What could we do to improve the performance?
 
 Q1. The confusion matrix shows that the predictions are not bad but can improved.
 
-Q2. I expected the performance to be better than average because the accuracy of the model I chose was 67% on the validation set.
+Q2. I expected the performance to be better than average because the accuracy of the model I chose was 67 per cent on the validation set.
 
-Q3. We can try many things to improve the performance from here. One of the first things we can try is to change the network architecture. However, in the interest of time and given we already saw how to build a CNN we will try to change the training parameters.
+Q3. We can try many things to improve the performance from here. One of the first things we can try is to change the network architecture. However, in the interest of time, and given we already learned how to build a CNN, we will now change the training parameters.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -245,7 +243,7 @@ One common method for hyperparameter tuning is by using a `for` loop to change a
 
 ## Tune Dropout Rate using a For Loop
 
-Q1. What do you think would happen if you lower the dropout rate? Write some code to vary the dropout rate and see how it affects the model training.
+Q1. What do you think would happen if you lower the dropout rate? Write some code to vary the dropout rate and investigate how it affects the model training.
 
 Q2. You are varying the dropout rate and checking its effect on the model performance, what is the term associated to this procedure?
 
@@ -253,9 +251,9 @@ Q2. You are varying the dropout rate and checking its effect on the model perfor
 
 Q1. Varying the dropout rate
 
-The code below instantiates and trains a model with varying dropout rates. You can see from the resulting plot that the ideal dropout rate in this case is around 0.45. This is where the validation loss is lowest.
+The code below instantiates and trains a model with varying dropout rates. The resulting plot indicates the ideal dropout rate in this case is around 0.45. This is where the validation loss is lowest.
 
-- NB1: It takes a while to train these 5 networks
+- NB1: It takes a while to train these five networks.
 - NB2: You should do this with a test set and not with the validation set!
 
 ```python
@@ -287,7 +285,7 @@ for dropout_rate in dropout_rates:
     x_vary = keras.layers.MaxPooling2D((2, 2))(x_vary)
     # Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
     x_vary = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_vary)
-    # Dropout layer randomly drops x% of the input units
+    # Dropout layer randomly drops x per cent of the input units
     x_vary = keras.layers.Dropout(dropout_rate)(x_vary) # This is new!
     # Flatten layer to convert 2D feature maps into a 1D vector
     x_vary = keras.layers.Flatten()(x_vary)
@@ -310,12 +308,12 @@ for dropout_rate in dropout_rates:
                    validation_data = (val_images, val_labels),
                    batch_size = 32)
 
-    val_loss_vary, val_acc_vary = model_vary.evaluate(val_images,  val_labels)
+    val_loss_vary, val_acc_vary = model_vary.evaluate(val_images, val_labels)
     val_losses_vary.append(val_loss_vary)
     
 loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss_vary': val_losses_vary})
 
-sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss_vary')    
+sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss_vary')
 ```
 ![](fig/05_vary_dropout_rate.png){alt='test loss plotted against five dropout rates ranging from 0.15 to 0.75 where the minimum test loss appears to occur between 0.4 and 0.5'}
 
@@ -338,7 +336,7 @@ For instance, suppose you're tuning two hyperparameters:
 
 - Batch size: with possible values [10, 50, 100]
 
-- GridSearch will evaluate the model for all 3x3 = 9 combinations (e.g., {0.01, 10}, {0.01, 50}, {0.1, 10}, and so on)
+- GridSearch will evaluate the model for all 3*3 = 9 combinations (e.g., {0.01, 10}, {0.01, 50}, {0.1, 10}, and so on).
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -398,15 +396,13 @@ grid_result = grid.fit(train_images, train_labels)
 # Summarize results
 print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
 ```
-Output from the GridSearch process should look similar to:
-
 ```output
 Best: 0.586660 using {'optimizer': 'RMSprop'}
 ```
 
 Thus, we can interpret from this output that our best tested optimiser is the **root mean square propagation** optimiser, or RMSprop.
 
-Curious about RMSprop? Read more here: [RMSprop in Keras] and [RMSProp, Cornell University].
+Curious about RMSprop? [RMSprop in Keras] and [RMSProp, Cornell University]
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -500,7 +496,7 @@ plt.show()
 
 ![](fig/05_tune_activation_results.png){alt='Validation accuracy plotted against ten epochs for five different activations functions. relu and Leaky relu have the highest accuracy atound 0.60; sigmoid and selu are next with accuracy around 0.45 and tanh has the lowest accuracy of 0.35'}
 
-You can see in this figure that after 10 epochs the `ReLU` and `Leaky ReLU` activation functions appear to converge around 0.60% validation accuracy. We recommend when tuning your model to ensure you use enough epochs to be confident in your results.
+In this figure, after 10 epochs, the `ReLU` and `Leaky ReLU` activation functions appear to converge around 0.60 per cent validation accuracy. We recommend when tuning your model to ensure you use enough epochs to be confident in your results.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -509,14 +505,14 @@ You can see in this figure that after 10 epochs the `ReLU` and `Leaky ReLU` acti
 
 ## Open question: What could be next steps to further improve the model?
 
-With unlimited options to modify the model architecture or to play with the training parameters, deep learning can trigger very extensive hunting for better and better results. Usually models are "well behaving" in the sense that small chances to the architectures also only result in small changes of the performance (if any). It is often tempting to hunt for some magical settings that will lead to much better results. But do those settings exist? Applying common sense is often a good first step to make a guess of how much better could results be. In the present case we might certainly not expect to be able to reliably predict sunshine hours for the next day with 5-10 minute precision. But how much better our model could be exactly, often remains difficult to answer.
+With unlimited options to modify the model architecture or to play with the training parameters, deep learning can trigger very extensive hunting for better and better results. Usually models are "well behaving" in the sense that small chances to the architectures also only result in small changes of the performance (if any). It is often tempting to hunt for some magical settings that will lead to much better results. But do those settings exist? Applying common sense is often a good first step to make a guess of how much better could results be.
 
 - What changes to the model architecture might make sense to explore?
 - Ignoring changes to the model architecture, what might notably improve the prediction quality?
 
 :::::::::::::::::::::::: solution 
 
-This is an open question. And we don't actually know how far one could push this sunshine hour prediction (try it out yourself if you like! We're curious!). But there is a few things that might be worth exploring.
+This is an open question.
 
 Regarding the model architecture:
 
@@ -524,11 +520,9 @@ Regarding the model architecture:
 
 Other changes that might impact the quality notably:
 
-- The most obvious answer here would be: more data! Even this will not always work (e.g. if data is very noisy and uncorrelated, more data might not add much).
+- The most obvious answer here would be: more data! Even this will not always work (e.g., if data is very noisy and uncorrelated, more data might not add much).
 - Related to more data: use data augmentation. By creating realistic variations of the available data, the model might improve as well.
-- More data can mean more data points (you can test it yourself by taking more than the 3 years we used here!)
-- More data can also mean more features! What about adding the month?
-- The labels we used here (sunshine hours) are highly biased, many days with no or nearly no sunshine but few with >10 hours. Techniques such as oversampling or undersampling might handle such biased labels better. Another alternative would be to not only look at data from one day, but use the data of a longer period such as a full week. This will turn the data into time series data which in turn might also make it worth to apply different model architectures....
+- More data can mean more data points and also more features!
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::
@@ -537,14 +531,15 @@ By now you should have a well-trained, finely-tuned model that makes accurate pr
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use model.predict to make a prediction with your model
-- Model accuracy must be measured on a test dataset with images your model has not seen before
-- There are many hyperparameters to choose from to improve model performance
-- Fitting separate models with different hyperparameters and comparing their performance is a common and good practice in deep learning
+- Use model.predict to make a prediction with your model.
+- Model accuracy must be measured on a test dataset with images your model has not seen before.
+- There are many hyperparameters to choose from to improve model performance.
+- Fitting separate models with different hyperparameters and comparing their performance is a common and good practice in deep learning.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
+
 [RMSprop in Keras]: https://keras.io/api/optimizers/rmsprop/
 [RMSProp, Cornell University]: https://optimization.cbe.cornell.edu/index.php?title=RMSProp
 

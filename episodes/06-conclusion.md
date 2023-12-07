@@ -14,10 +14,10 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Learn how to save and load models
-- Know where to look for pretrained models
-- Understand what a GPU is and what it can do for you
-- Explain when to use a CNN and when not to
+- Learn how to save and load models.
+- Know where to search for pretrained models.
+- Understand what a GPU is and what it can do for you.
+- Explain when to use a CNN and when not to.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -25,48 +25,44 @@ exercises: 2
 
 Now that we have a trained network that performs at a level we are happy with and can maintain high prediction accuracy on a test dataset we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
-We have already seen how to save a model with `model.save`:
-```
-#model.save('model_final.h5')
+Use `model.save` to save a model:
+
+```python
+# save best model
+model.save('model_best.keras')
 ```
 
-The `save` method is actually an alias for `tf.keras.saving.save_model()` where the default `save_format=NONE`. By adding the extension **.h5** to our filename, keras will save the model in the legacy HDF5 format.
+The `save` method is actually an alias for `tf.keras.saving.save_model()` where the default `save_format=NONE`.
 
-This saved model can be loaded again by using the `load_model` method as follows:
+This saved model can be loaded again by using the `load_model` method:
 
 ```python
 # load a saved model
-pretrained_model = keras.models.load_model('model_final.h5')
+pretrained_model = keras.models.load_model('model_best.keras')
 ```
 
 This loaded model can be used as before to predict.
 
 ```python
-# use the pretrained model here
-from icwithcnn_functions import prepare_image_icwithcnn
+# use the pretrained model to predict the class name of the first test image
+result_pretrained = model_intro.predict(test_images[0].reshape(1,32,32,3))
 
-new_img_path = "../data/Jabiru_TGS.JPG" # path to image
-new_img_prepped = prepare_image_icwithcnn(new_img_path)
-
-# predict the class name
-y_pretrained_pred = pretrained_model.predict(new_img_prepped)
-pretrained_predicted_class = class_names[y_pretrained_pred.argmax()]
-print(pretrained_predicted_class)
+print('The predicted probability of each class is: ', result_pretrained.round(4))
+print('The class with the highest predicted probability is: ', class_names[result_pretrained.argmax()])
 ```
 ```output
-frog
+cat
 ```
 
-The HDF5 file format contains:
+The saved .keras file contains:
 
-- configuration (architecture)
-- weights
-- optimizer's state (if any)
-  - allows you to continue training; useful for checkpointing
+- The model's configuration (architecture).
+- The model's weights.
+- The model's optimizer's state (if any).
 
-Note that saving the model does not save the training history (ie training and validation loss and accuracy). For that you will need to save the model history dataframe we created for plotting.
+Note that saving the model does not save the training history (i.e. training and validation loss and accuracy). For that you will need to save the model history dataframe we created for plotting.
 
-To find out more about other file formats you can use to save your model see the Keras documentation for [Saving and Serialization].
+The Keras documentation for [Saving and Serialization] explains other ways to save your model.
 
 To share your model with a wider audience it is recommended you create git repository, such as [GitHub], and upload your code, images, and model outputs to the cloud. In some cases, you may be able to offer up your model to an online repository of pretrained models.
 
@@ -98,13 +94,13 @@ A couple of those libraries include:
 
 A **GPU**, or **Graphics Processing Unit**, is a specialized electronic circuit designed to accelerate graphics rendering and image processing in a computer. In the context of deep learning and machine learning, GPUs have become essential due to their ability to perform parallel computations at a much faster rate compared to traditional central processing units (CPUs). This makes them well-suited for the intensive matrix and vector operations that are common in deep learning algorithms.
 
-As you have seen in this lesson, training CNN models can take a long time. If you follow the steps presented here you will find you are training multiple models to find the one best suited to your needs, particularly when fine tuning hyperparameters. However you have also seen that running on CPU only machines can be done! So while a GPU is not an absolute requirement for deep learning, it can significantly accelerate your deep learning work and make it more efficient, especially for larger and more complex tasks. 
+As you have experienced in this lesson, training CNN models can take a long time. If you follow the steps presented here you will find you are training multiple models to find the one best suited to your needs, particularly when fine tuning hyperparameters. However you have also seen that running on CPU only machines can be done! So while a GPU is not an absolute requirement for deep learning, it can significantly accelerate your deep learning work and make it more efficient, especially for larger and more complex tasks. 
 
 If you don't have access to a powerful GPU locally, you can use cloud services that provide GPU instances for deep learning. This can be a cost-effective option for many users.
 
 #### It this the best/only way to code up CNN's for image classification?
 
-Absolutely not! The code we used in today's workshop might today be considered old fashioned. A lot of the data preprocessing we did by hand can now be done by simply adding different layer types to your model. See, for example, the [preprocessing layers] available with keras.
+Absolutely not! The code we used in today's workshop might today be considered old fashioned. A lot of the data preprocessing we did by hand can now be done by adding different layer types to your model. The [preprocessing layers] section fo the Keras documentation provides several examples.
 
 The point is that this technology, both hardware and software, is dynamic and changing at exponentially increasing rates. It is essential to stay curious and open to learning and follow up with continuous education and practice. Other strategies to stay informed include:
 
@@ -118,7 +114,7 @@ The point is that this technology, both hardware and software, is dynamic and ch
 
 #### What other uses are there for neural networks?
 
-In addition to image classification, we saw in the introduction other computer vision tasks including object detection and instance and semantic segmentation. These can all be done with CNN's and are readily transferable to videos. Also included in these tasks is medical imaging for diagnoses of disease and, of course, facial recognition. 
+In addition to image classification, [Episode 01 Introduction to Deep Learning](episodes/01-introduction.md) introduced other computer vision tasks, including object detection and instance and semantic segmentation. These can all be done with CNNs and are readily transferable to videos. Also included in these tasks is medical imaging for diagnoses of disease and, of course, facial recognition. 
 
 However, there are many other tasks which CNNs are well suited for:
 
@@ -136,11 +132,12 @@ However, there are many other tasks which CNNs are well suited for:
 - Deep Learning is well suited to classification and prediction problems such as image recognition.
 - To use Deep Learning effectively we need to go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, choosing a loss function, training the model, tuning Hyperparameters, measuring performance before we can classify data.
 - Keras is a Deep Learning library that is easier to use than many of the alternatives such as TensorFlow and PyTorch.
-- Graphical Processing Units are useful, though not essential, for deep learning tasks
+- Graphical Processing Units are useful, though not essential, for deep learning tasks.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
+
 [Saving and Serialization]: https://keras.io/api/saving/
 [GitHub]: https://github.com/
 [Model Zoo]: https://modelzoo.co/

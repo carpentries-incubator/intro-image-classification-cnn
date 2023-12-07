@@ -230,7 +230,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="04-fit-cnn.html">5. Compile and Train a Convolutional Neural Network</a>
+        <a href="04-fit-cnn.html">5. Compile and Train (Fit) a Convolutional Neural Network</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -372,7 +372,7 @@ the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -396,7 +396,7 @@ may already be checked.)</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -418,7 +418,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Note that the following installation steps require you to work from
 the shell. If you run into any difficulties, please request help before
@@ -523,7 +523,7 @@ not.</p>
   AMD GPU
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
 <p>TODO Finish these instructions</p>
@@ -608,7 +608,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction to Deep Learning</a></p>
 <hr>
-<p> Last updated on 2023-11-28 | 
+<p> Last updated on 2023-12-07 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 10 minutes </p>
@@ -637,9 +637,7 @@ any links that you are not going to use.
 <ul>
 <li>Explain the difference between artificial intelligence, machine
 learning and deep learning</li>
-<li>Explain how machine learning is used for regression and
-classification tasks</li>
-<li>Understand what algorithms are used for image classification</li>
+<li>Understand the different types of computer vision tasks</li>
 <li>Know the difference between training, testing, and validation
 datasets</li>
 <li>Perform an image classification using a convolutional neural network
@@ -698,7 +696,7 @@ come close to human like intelligence in a few specialist areas and are
 still a long way from a general purpose AI. The image below shows some
 differences between artificial intelligence, machine learning and deep
 learning.</p>
-<figure><img src="../fig/01_AI_ML_DL_differences.png" alt="Three nested circles describing AI as the largest circle in dark blue; enclosing machine learning in medium blue; enclosing deep learning in even lighter blue" class="figure mx-auto d-block"><figcaption>The image above is by Tukijaaliwa, CC BY-SA 4.0, via
+<figure><img src="../fig/01_AI_ML_DL_differences.png" alt="Three nested circles defining deep learning as a subset of machine learning which is a subset of artifical intelligence" class="figure mx-auto d-block"><figcaption>The image above is by Tukijaaliwa, CC BY-SA 4.0, via
 Wikimedia Commons, <a href="https://en.wikipedia.org/wiki/File:AI-ML-DL.svg" class="external-link">original
 source</a></figcaption></figure><div id="callout1" class="callout callout">
 <div class="callout-square">
@@ -787,7 +785,7 @@ problem and we will have one output for each potential class.</p>
 will require some preparation. Neural networks can only really deal with
 numerical data, so any non-numerical data (eg images) will have to be
 somehow converted to numerical data. Information on how this is done and
-what the data looks like will be explored in the next episode <a href="02-image-data">Introduction to Image Data</a>.</p>
+what the data looks like will be explored in <a href="02-image-data">Episode 02 Introduction to Image Data</a>.</p>
 <p>For this lesson, we will use an existing image dataset known as
 CIFAR-10. We will introduce this dataset and the different data
 preparation tasks in more detail in the next episode but for this
@@ -891,7 +889,7 @@ pixels and 3 channels (RGB values) and labels.</p>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    plt.title(class_names[train_labels[i,].argmax()])</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/01_cifar10.png" alt="Subset of 25 CIFAR-10 images displayed in five rows and five columns " class="figure mx-auto d-block"></figure>
+<figure><img src="../fig/01_cifar10.png" alt="Subset of 25 CIFAR-10 images representing different object classes" class="figure mx-auto d-block"></figure>
 </div>
 </div>
 <div class="section level3">
@@ -1105,8 +1103,8 @@ layers in the network, the number of neurons per layer, and many more.
 Hyperparameter tuning refers to the process of systematically searching
 for the best combination of hyperparameters that will optimize the
 model’s performance. This concept will be continued, with practical
-examples, in <a href="./05-evaluate-predict-cnn.html">Episode 05
-Evaluate a Convolutional Neural Network and Make Predictions
+examples, in <a href="05-evaluate-predict-cnn.html">Episode 05 Evaluate
+a Convolutional Neural Network and Make Predictions
 (Classifications)</a></p>
 </div>
 </div>
@@ -1150,8 +1148,6 @@ View”</p>
 <ul>
 <li>Machine learning is the process where computers learn to recognise
 patterns of data</li>
-<li>Machine learning is used for regression and classification
-tasks</li>
 <li>Deep learning is a subset of machine learning, which is a subset of
 artificial intelligence</li>
 <li>Convolutional neural networks are well suited for image
@@ -1172,7 +1168,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-02-image-data"><p>Content from <a href="02-image-data.html">Introduction to Image Data</a></p>
 <hr>
-<p> Last updated on 2023-11-28 | 
+<p> Last updated on 2023-12-07 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -1202,9 +1198,9 @@ network (CNN)?</li>
 <h3 class="card-title">Objectives</h3>
 <ul>
 <li>Identify sources of image data</li>
-<li>Write code to plot image data</li>
 <li>Understand the properties of image data</li>
-<li>Prepare an image data set to train a convolutional neural network
+<li>Write code to plot image data</li>
+<li>Prepare an image dataset to train a convolutional neural network
 (CNN)</li>
 </ul>
 </div>
@@ -1368,9 +1364,9 @@ elements,” otherwise known as pixels. Each pixel can be thought of as a
 single square point of coloured light.</p>
 <p>For example, consider this image of a Jabiru, with a square area
 designated by a red box:</p>
-<figure><img src="../fig/02_Jabiru_TGS_marked.jpg" alt="Original size image of a Jabiru with a red square surrounding an area to zoom in on" class="figure mx-auto d-block"></figure><p>Now, if we zoomed in close enough to see the pixels in the red box,
+<figure><img src="../fig/02_Jabiru_TGS_marked.jpg" alt="Jabiru image that is 552 pixels wide and 573 pixels high. A red square around the neck region indicates the area to zoom in on." class="figure mx-auto d-block"></figure><p>Now, if we zoomed in close enough to see the pixels in the red box,
 we would see something like this:</p>
-<figure><img src="../fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg" alt="Enlarged image area of Jabiru" class="figure mx-auto d-block"></figure><p>Note that each square in the enlarged image area - each pixel - is
+<figure><img src="../fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg" alt="zoomed in area of Jabiru where you can see individual pixels" class="figure mx-auto d-block"></figure><p>Note that each square in the enlarged image area - each pixel - is
 all one colour, but that each pixel can have a different colour from its
 neighbors. Viewed from a distance, these pixels seem to blend together
 to form the image we see.</p>
@@ -1989,7 +1985,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Build a Convolutional Neural Network</a></p>
 <hr>
-<p> Last updated on 2023-11-22 | 
+<p> Last updated on 2023-12-07 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -2008,8 +2004,6 @@ any links that you are not going to use.
 <li>How is a convolutional neural network (CNN) different from an
 ANN?</li>
 <li>What are the types of layers used to build a CNN?</li>
-<li>How do you monitor the training process?</li>
-<li>What is underfitting?</li>
 </ul>
 </div>
 </div>
@@ -2033,13 +2027,14 @@ dense</li>
 <section id="neural-networks"><h2 class="section-heading">Neural Networks<a class="anchor" aria-label="anchor" href="#neural-networks"></a>
 </h2>
 <hr class="half-width">
-<p>A neural network is an artificial intelligence technique loosely
-based on the way neurons in the brain work. A neural network consists of
-connected computational units called neurons. Each neuron …</p>
+<p>A <strong>neural network</strong> is an artificial intelligence
+technique loosely based on the way neurons in the brain work. A neural
+network consists of connected computational units called neurons. Each
+neuron …</p>
 <ul>
 <li>has one or more inputs, e.g. input data expressed as floating point
 numbers</li>
-<li>most of the time, each neuron conducts 3 main operations:
+<li>conducts three main operations most of the time:
 <ul>
 <li>take the weighted sum of the inputs</li>
 <li>add an extra constant weight (i.e. a bias term) to this weighted
@@ -2048,9 +2043,9 @@ sum</li>
 activation function)</li>
 </ul>
 </li>
-<li>return one output value, again a floating point number</li>
+<li>returns one output value, again a floating point number</li>
 </ul>
-<figure><img src="../fig/03_neuron.png" alt="" class="figure mx-auto d-block"></figure><p>Multiple neurons can be joined together by connecting the output of
+<figure><img src="../fig/03_neuron.png" alt="diagram of a single neuron taking multiple inputs and their associated weights in and then applying an activation function to predict a single output" class="figure mx-auto d-block"></figure><p>Multiple neurons can be joined together by connecting the output of
 one to the input of another. These connections are associated with
 weights that determine the ‘strength’ of the connection, the weights are
 adjusted during training. In this way, the combination of neurons and
@@ -2061,7 +2056,7 @@ possibly through one or more intermediate layers called hidden layers.
 The image below shows an example of a neural network with three layers,
 each circle is a neuron, each line is an edge and the arrows indicate
 the direction data moves in.</p>
-<figure><img src="../fig/03_neural_net.png" alt="" class="figure mx-auto d-block"><figcaption>The image above is by Glosser.ca, <a href="https://creativecommons.org/licenses/by-sa/3.0" class="external-link">CC BY-SA 3.0</a>,
+<figure><img src="../fig/03_neural_net.png" alt="diagram of a neural with four neurons taking multiple inputs and their weights and predicting multiple outputs" class="figure mx-auto d-block"><figcaption>The image above is by Glosser.ca, <a href="https://creativecommons.org/licenses/by-sa/3.0" class="external-link">CC BY-SA 3.0</a>,
 via Wikimedia Commons, <a href="https://commons.wikimedia.org/wiki/File:Colored_neural_network.svg" class="external-link">original
 source</a></figcaption></figure><p>Neural networks aren’t a new technique, they have been around since
 the late 1940s. But until around 2010 neural networks tended to be quite
@@ -2191,7 +2186,7 @@ values of a single-channel image. The red cell in the output matrix is
 the result of multiplying and summing the values of the red square in
 the input, and the kernel. Applying this kernel to a real image shows
 that it indeed detects horizontal edges.</p>
-<figure><img src="../fig/03_conv_matrix.png" alt="" class="figure mx-auto d-block"></figure><figure><img src="../fig/03_conv_image.png" alt="" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
+<figure><img src="../fig/03_conv_matrix.png" alt="6x5 input matrix representing a single color channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix that detects horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="../fig/03_conv_image.png" alt="single color channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges that stand out" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
 convolutional matrices, also known as kernels. The matrix values,
 serving as weights, are learned during the training process. The
 convolutional layer produces an ‘image’ for each kernel, representing
@@ -2351,7 +2346,7 @@ parameter you can choose when you create the layer. When connecting the
 layer to its input and output layers every neuron in the dense layer
 gets an edge (i.e. connection) to <strong>all</strong> of the input
 neurons and <strong>all</strong> of the output neurons.</p>
-<figure><img src="../fig/03-neural_network_sketch_dense.png" alt="" class="figure mx-auto d-block"></figure><p>This layer is called fully connected, because all input neurons are
+<figure><img src="../fig/03-neural_network_sketch_dense.png" alt="diagram of a neural network with multiple inputs feeding into to two seperate dense layers with connections between all the inputs and outputs" class="figure mx-auto d-block"></figure><p>This layer is called fully connected, because all input neurons are
 taken into account by each output neuron. It aggregates global
 information about the features learned in previous layers to make a
 decision about the class of the input.</p>
@@ -2583,7 +2578,7 @@ optimizer</strong> and <strong>Step 6. Train model</strong>.</p>
 <div class="callout-content">
 <ul>
 <li>Artificial neural networks (ANN) are a machine learning technique
-based on a model inspired by groups of neurons in the brain.</li>
+based on a model inspired by groups of neurons in the brain</li>
 <li>Convolution neural networks (CNN) are a type of ANN designed for
 image classification and object detection</li>
 <li>The filter size determines the size of the receptive field where
@@ -2608,9 +2603,9 @@ previous layers to perform the final classification</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
-</section></section><section id="aio-04-fit-cnn"><p>Content from <a href="04-fit-cnn.html">Compile and Train a Convolutional Neural Network</a></p>
+</section></section><section id="aio-04-fit-cnn"><p>Content from <a href="04-fit-cnn.html">Compile and Train (Fit) a Convolutional Neural Network</a></p>
 <hr>
-<p> Last updated on 2023-11-23 | 
+<p> Last updated on 2023-12-07 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -2629,9 +2624,8 @@ any links that you are not going to use.
 <li>What is a loss function?</li>
 <li>What is an optimizer?</li>
 <li>How do you train (fit) a CNN?</li>
-<li>What are hyperparameters?</li>
-<li>How do you detect overfitting?</li>
-<li>How do you avoid overfitting?</li>
+<li>How do you evaluate a model during training?</li>
+<li>What is overfitting?</li>
 </ul>
 </div>
 </div>
@@ -2641,11 +2635,14 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Explain the difference between compiling and training a CNN</li>
+<li>Explain the difference between compiling and training (fitting) a
+CNN</li>
 <li>Know how to select a loss function for your model</li>
 <li>Understand what an optimizer is</li>
 <li>Define the terms: learning rate, batch size, epoch</li>
-<li>Explain overfitting</li>
+<li>Understand what loss and accuracy are and how to monitor them during
+training</li>
+<li>Explain what overfitting is and what to do about it</li>
 </ul>
 </div>
 </div>
@@ -2658,7 +2655,7 @@ any links that you are not going to use.
 <p>We have designed a convolutional neural network (CNN) that in theory
 we should be able to train to classify images.</p>
 <p>We now need to select an appropriate optimizer and loss function that
-we will use during training.</p>
+we will use during training (fitting).</p>
 <p>Recall how we compiled our model in the introduction:</p>
 <pre><code><span><span class="co">## compile the model</span></span>
 <span><span class="co">#model_intro.compile(optimizer = 'adam', </span></span>
@@ -2680,35 +2677,7 @@ encoded class labels and the model predictions. This loss function is
 appropriate to use when the data has two or more label classes.</p>
 <p>The loss function is defined by the
 <code>tf.keras.losses.CategoricalCrossentropy</code> class.</p>
-<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  WANT TO KNOW MORE: What loss would I use for regression?
-  </h3>
-</button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
-<div class="accordion-body">
-<p>For regression tasks, we might want to stipulate that the predicted
-numerical values are as close as possible to the true values. This is
-commonly done by using the <strong>mean squared error</strong> (mse) or
-the <strong>mean absolute error</strong> (mae) loss functions, both of
-which should work. Often, mse is preferred over mae because it
-“punishes” large prediction errors more severely.</p>
-<ul>
-<li>defined by the keras.losses.MeanSquaredError class</li>
-</ul>
-<p>To compile a model with mse, change the loss argument of the
-<code>compile</code> method:</p>
-<pre><code><span><span class="co">#model_ex.compile(loss = 'mse')</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<p>For more information on these and other available loss functions in
-Keras you can check the <a href="https://keras.io/api/losses/" class="external-link">loss
-documentation</a>.</p>
+<p>For more information about loss functions in Keras look at the <a href="https://keras.io/api/losses/" class="external-link">loss documentation</a>.</p>
 </div>
 <div class="section level4">
 <h4 id="optimizer">Optimizer<a class="anchor" aria-label="anchor" href="#optimizer"></a>
@@ -2762,15 +2731,15 @@ adaptive learning rate mechanism to address this problem.</li>
 </ul>
 </li>
 </ul>
-<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
   <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
   WANT TO KNOW MORE: Learning Rate
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p><strong>Learning rate</strong> is a hyperparameter that determines
@@ -2785,26 +2754,18 @@ models.</p>
 <p>In the figure below, we can see that a small learning rate will not
 traverse toward the minima of the gradient descent algorithm in a timely
 manner i.e. number of epochs.</p>
-<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg" title="Small learning rate leads to inefficient approach to loss minima" alt="" class="figure mx-auto d-block"><figcaption>Small learning rate leads to inefficient approach to
-loss minima</figcaption></figure><p>(This image was obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
-Developers Machine Learning Crash Course</a> and is licenced under the
-<a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons
-4.0 Attribution Licence</a>.)</p>
-<p>On the other hand, specifying a learning rate that is <em>too
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg" title="Small learning rate leads to inefficient approach to loss minima" alt="plot of loss over value of weight shows how a small learning rate takes a long time to reach the optimal solution" class="figure mx-auto d-block"><figcaption>Small learning rate leads to inefficient approach to
+loss minima</figcaption></figure><p>On the other hand, specifying a learning rate that is <em>too
 high</em> will result in a loss value that never approaches the minima.
 That is, ‘bouncing between the sides’, thus never reaching a minima to
 cease learning.</p>
-<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg" alt="" class="figure mx-auto d-block"><figcaption>A large learning rate results in overshooting the
-gradient descent minima</figcaption></figure><p>(This image was obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
-Developers Machine Learning Crash Course</a> and is licenced under the
-<a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons
-4.0 Attribution Licence</a>.)</p>
-<p>Lastly, we can observe below that a modest learning rate will ensure
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg" alt="plot of loss over value of weight shows how a large learning rate never approaches the optimal solution because it bounces between the sides" class="figure mx-auto d-block"><figcaption>A large learning rate results in overshooting the
+gradient descent minima</figcaption></figure><p>Lastly, we can observe below that a modest learning rate will ensure
 that the product of multiplying the scalar gradient value, and the
 learning rate does not result in too small steps, nor a chaotic bounce
 between sides of the gradient where steepness is greatest.</p>
-<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg" alt="" class="figure mx-auto d-block"><figcaption>An optimal learning rate supports a gradual approach
-to the minima</figcaption></figure><p>(This image was obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg" alt="plot of loss over value of weight shows how a a good learning rate gets to optimal solution gradually" class="figure mx-auto d-block"><figcaption>An optimal learning rate supports a gradual approach
+to the minima</figcaption></figure><p>(These images were obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
 Developers Machine Learning Crash Course</a> and is licenced under the
 <a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons
 4.0 Attribution Licence</a>.)</p>
@@ -2840,7 +2801,7 @@ Compiling the model prepares it for training.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="step-6--train-model">Step 6. Train model<a class="anchor" aria-label="anchor" href="#step-6--train-model"></a>
+<h3 id="step-6--train-fit-model">Step 6. Train (Fit) model<a class="anchor" aria-label="anchor" href="#step-6--train-fit-model"></a>
 </h3>
 <p>We are ready to train the model.</p>
 <p>Training the model is done using the <code>fit</code> method. It
@@ -2867,15 +2828,15 @@ will use for model evaluation.</p>
 <p>There are other arguments we could use to fit our model, see the
 documentation for <a href="https://keras.io/api/models/model_training_apis/" class="external-link">fit
 method</a>.</p>
-<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
-  <h3 class="accordion-header" id="headingSpoiler3">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
   <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
   WANT TO KNOW MORE: Batch size
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>The choice of batch size can have various implications, and there are
@@ -2918,22 +2879,22 @@ Training)<a class="anchor" aria-label="anchor" href="#monitor-training-progress-
 <p>Now that we know more about the compilation and fitting of CNN’s let
 us take a look at the training metrics for our model.</p>
 <p>Using seaborn we can plot the training process using the history:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the history to a dataframe for plotting </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>history_intro_df <span class="op">=</span> pd.DataFrame.from_dict(history_intro.history)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss and accuracy from the training process</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'cifar_model_pool'</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_intro_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_intro_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the history to a dataframe for plotting </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>history_intro_df <span class="op">=</span> pd.DataFrame.from_dict(history_intro.history)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss and accuracy from the training process</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'cifar_model_pool'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_intro_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_intro_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
 </div>
-<figure><img src="../fig/03_model_intro_accuracy_loss.png" alt="" class="figure mx-auto d-block"></figure><p>This plot can be used to identify whether the training is well
+<figure><img src="../fig/04_model_intro_accuracy_loss.png" alt="two panel figure; the figure on the left shows the training loss starting at 1.5 and decreasing to 0.7 and the validation loss decreasing from 1.3 to 1.0 before leveling out; the figure on the right shows the training accuracy increasing from 0.45 to 0.75 and the validation accuracy increasing from 0.53 to 0.65 before leveling off" class="figure mx-auto d-block"></figure><p>This plot can be used to identify whether the training is well
 configured or whether there are problems that need to be addressed. The
 solid blue lines show the training loss and accuracy; the dashed orange
 lines show the validation loss and accuracy.</p>
@@ -2973,12 +2934,12 @@ test set?</li>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
-<li><p>The loss curve should drop quite quickly in a smooth line with
+<li>The loss curve should drop quite quickly in a smooth line with
 little jitter. The accuracy should increase quite quickly in a smooth
-line also wtih little jitter.</p></li>
-<li><p>The results of the training give very little information on its
+line also wtih little jitter.</li>
+<li>The results of the training give very little information on its
 performance on a test set. You should be careful not to use it as an
-indication of a well trained network.</p></li>
+indication of a well trained network.</li>
 </ol>
 </div>
 </div>
@@ -3012,15 +2973,15 @@ diverse and representative dataset.</li>
 <li>Perform data augmentation to artificially increase the size of the
 training data and introduce variability.</li>
 </ul>
-<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
+<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
-  <h3 class="accordion-header" id="headingSpoiler4">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">
   <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
   WANT TO KNOW MORE: What is underfitting?
   </h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>Underfitting occurs when the model is too simple or lacks the
 capacity to capture the underlying patterns and relationships present in
@@ -3028,12 +2989,12 @@ the data. As a result, the model’s predictions are not accurate, and it
 fails to generalize well to unseen data.</p>
 <p>Key characteristics of an underfit model include:</p>
 <ul>
-<li><p>Low Validation Accuracy: This indicates that the model is not
-learning from the data effectively.</p></li>
-<li><p>Large Training Loss: The training loss (error) is high,
-indicating that the model’s predictions are far from the true labels in
-the training set.</p></li>
-<li><p>Increasing validation loss</p></li>
+<li>Low Validation Accuracy: This indicates that the model is not
+learning from the data effectively.</li>
+<li>Large Training Loss: The training loss (error) is high, indicating
+that the model’s predictions are far from the true labels in the
+training set.</li>
+<li>Increasing validation loss</li>
 </ul>
 <p>How to Address underfitting:</p>
 <ul>
@@ -3067,7 +3028,7 @@ versatile regularization technique is <strong>dropout</strong>
 training cycle a random fraction of the dense layer nodes are turned
 off. This is described with the dropout rate between 0 and 1 which
 determines the fraction of nodes to silence at a time.</p>
-<figure><img src="../fig/04-neural_network_sketch_dropout.png" alt="" class="figure mx-auto d-block"></figure><p>The intuition behind dropout is that it enforces redundancies in the
+<figure><img src="../fig/04-neural_network_sketch_dropout.png" alt="diagram of two neural networks; the first network is densely connected without dropout and the second network has some of the neurons dropped out of of the network" class="figure mx-auto d-block"></figure><p>The intuition behind dropout is that it enforces redundancies in the
 network by constantly removing different elements of a network. The
 model can no longer rely on individual nodes and instead must create
 multiple “paths”. In addition, the model has to make predictions with
@@ -3105,41 +3066,41 @@ after certain layers can have different effects. For example, it’s
 common to place dropout after convolutional and dense layers but not
 typically after pooling layers. Let us add a third convolutional layer
 to our model and then the dropout layer.</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs, layers, and outputs of a CNN model with dropout</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># CNN Part 1</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>inputs_dropout <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># CNN Part 2</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_dropout)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Pooling layer with input window sized 2,2</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Pooling layer with input window sized 2,2</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">64</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout) <span class="co"># This is new!</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Dropout layer andomly drops 60% of the input units</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dropout(<span class="fl">0.6</span>)(x_dropout) <span class="co"># This is new!</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Flatten()(x_dropout)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Dense layer with 128 neurons and ReLU activation</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># CNN Part 3</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>outputs_dropout <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_dropout)</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co"># create the dropout model</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>model_dropout <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_dropout, outputs<span class="op">=</span>outputs_dropout, name<span class="op">=</span><span class="st">"cifar_model_dropout"</span>)</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>model_dropout.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the inputs, layers, and outputs of a CNN model with dropout</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># CNN Part 1</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>inputs_dropout <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># CNN Part 2</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_dropout)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Pooling layer with input window sized 2,2</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Pooling layer with input window sized 2,2</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_dropout)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Conv2D(<span class="dv">64</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout) <span class="co"># This is new!</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Dropout layer andomly drops 60% of the input units</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dropout(<span class="fl">0.6</span>)(x_dropout) <span class="co"># This is new!</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Flatten()(x_dropout)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Dense layer with 128 neurons and ReLU activation</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>x_dropout <span class="op">=</span> keras.layers.Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_dropout)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># CNN Part 3</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>outputs_dropout <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_dropout)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co"># create the dropout model</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>model_dropout <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_dropout, outputs<span class="op">=</span>outputs_dropout, name<span class="op">=</span><span class="st">"cifar_model_dropout"</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>model_dropout.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3203,37 +3164,37 @@ by adding a dropout layer.</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the dropout model</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>model_dropout.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>              metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the dropout model</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>history_dropout <span class="op">=</span> model_dropout.fit(train_images, train_labels, </span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                                    epochs<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                                    validation_data<span class="op">=</span>(val_images, val_labels),</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                                    batch_size <span class="op">=</span> <span class="dv">32</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># save dropout model</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>model_dropout.save(<span class="st">'fit_outputs/model_dropout.keras'</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the training results</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the history to a dataframe for plotting </span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>history_dropout_df <span class="op">=</span> pd.DataFrame.from_dict(history_dropout.history)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss and accuracy from the training process</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'cifar_model_dropout'</span>)</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>val_loss_dropout, val_acc_dropout <span class="op">=</span> model_dropout.evaluate(val_images,  val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the dropout model</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model_dropout.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>              metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the dropout model</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>history_dropout <span class="op">=</span> model_dropout.fit(train_images, train_labels, </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                                    epochs<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                                    validation_data<span class="op">=</span>(val_images, val_labels),</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                                    batch_size <span class="op">=</span> <span class="dv">32</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># save dropout model</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>model_dropout.save(<span class="st">'fit_outputs/model_dropout.keras'</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the training results</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># convert the history to a dataframe for plotting </span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>history_dropout_df <span class="op">=</span> pd.DataFrame.from_dict(history_dropout.history)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the loss and accuracy from the training process</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'cifar_model_dropout'</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>val_loss_dropout, val_acc_dropout <span class="op">=</span> model_dropout.evaluate(val_images,  val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
-<figure><img src="../fig/04_model_dropout_accuracy_loss.png" alt="" class="figure mx-auto d-block"></figure><p>Here we see the relatively uncommon situation where our training loss
+<figure><img src="../fig/04_model_dropout_accuracy_loss.png" alt="two panel figure; the figure on the left shows the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right shows the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67" class="figure mx-auto d-block"></figure><p>Here we see the relatively uncommon situation where our training loss
 is higher than our validation loss while the validation accuracy is
 higher than the training accuracy. If you are using dropout or other
 regularization techniques during training, they might lead to a lower
@@ -3248,15 +3209,15 @@ dropout.</p>
 </div>
 </div>
 </div>
-<div id="accordionSpoiler5" class="accordion spoiler-accordion accordion-flush">
+<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler5" aria-expanded="false" aria-controls="collapseSpoiler5">
-  <h3 class="accordion-header" id="headingSpoiler5">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
+  <h3 class="accordion-header" id="headingSpoiler4">
   <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
   WANT TO KNOW MORE: Regularization methods for Convolutional Neural Networks (CNNs)
   </h3>
 </button>
-<div id="collapseSpoiler5" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler5" aria-labelledby="headingSpoiler5">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p><strong>Regularization</strong> methods introduce constraints or
@@ -3331,12 +3292,13 @@ dataset.</p>
 </h3>
 <div class="callout-content">
 <ul>
+<li>Use model.compile to compile a CNN</li>
 <li>The choice of loss function will depend on your dataset and aim</li>
 <li>The choice of optimizer often depends on experimentation and
 empirical evaluation</li>
-<li>Fitting separate models with different hyperparameters and comparing
-their performance is a common and good practice in deep learning</li>
-<li>Dropout is one way to prevent overfitting</li>
+<li>Use model.fit to make a train (fit) a CNN</li>
+<li>Training/validation loss and accuracy can be used to evaluate a
+model during training - Dropout is one way to prevent overfitting</li>
 </ul>
 </div>
 </div>
@@ -3348,7 +3310,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-05-evaluate-predict-cnn"><p>Content from <a href="05-evaluate-predict-cnn.html">Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a></p>
 <hr>
-<p> Last updated on 2023-11-28 | 
+<p> Last updated on 2023-12-07 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -3401,7 +3363,7 @@ network.</p>
 <div class="section level4">
 <h4 id="prepare-test-dataset">Prepare test dataset<a class="anchor" aria-label="anchor" href="#prepare-test-dataset"></a>
 </h4>
-<p>Recall in <a href="./02-image-data.html">Episode 2 Introduction to
+<p>Recall in <a href="02-image-data.html">Episode 02 Introduction to
 Image Data</a> we discussed how to split your data into training and
 test datasets and why. In most cases, that means you already have a test
 set on hand. For example, we are using
@@ -3470,7 +3432,7 @@ The number of labels in our test dataset is:  10000</code></pre>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>It depends! Recall in an <a href="02-image-data.html">Episode 02
 Introduction to Image Data</a> Callout we talked about the different
@@ -3564,7 +3526,7 @@ create a confusion matrix.</p>
 group <em>i</em> and predicted to be in group <em>j</em>. The diagonal
 cells in the matrix are where the true class and predicted class
 match.</p>
-<figure><img src="../fig/05_confusion_matrix_explained.png" alt="" class="figure mx-auto d-block"></figure><p>To create a confusion matrix we will use another convenient function
+<figure><img src="../fig/05_confusion_matrix_explained.png" alt="for ten classes an example confusion matrix has 10 rows and 10 columns where the value in each cell is the number of observations predicted in that class and known to be that class. The diagonal cells are where the true and predicted classes match" class="figure mx-auto d-block"></figure><p>To create a confusion matrix we will use another convenient function
 from sklearn called <code>confusion_matrix</code>. This function takes
 as a first parameter the true labels of the test set. The second
 parameter is the predicted labels from our model.</p>
@@ -3617,7 +3579,7 @@ the confusion matrix in the heatmap</li>
 <li>the <code>fmt=3g</code> will display the values with 3 significant
 digits</li>
 </ul>
-<figure><img src="../fig/05_pred_v_true_confusion_matrix.png" alt="" class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
+<figure><img src="../fig/05_pred_v_true_confusion_matrix.png" alt="Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors indicating our model is predicting well but a few non-diagonal cells also have a ligher color to show where the model is making prediction errors." class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -3641,7 +3603,7 @@ visualized as a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Q1. The confusion matrix shows that the predictions are not bad but
 can improved.</p>
@@ -3660,8 +3622,8 @@ CNN we will try to change the training parameters.</p>
 <div class="section level3">
 <h3 id="step-9--tune-hyperparameters">Step 9. Tune hyperparameters<a class="anchor" aria-label="anchor" href="#step-9--tune-hyperparameters"></a>
 </h3>
-<p>Recall the following from <a href="./01-introduction.html">Episode
-1</a>:</p>
+<p>Recall the following from <a href="01-introduction.html">Episode 01
+Introduction to Deep Learning</a>:</p>
 <div class="section level4">
 <h4 id="what-are-hyperparameters">What are hyperparameters?<a class="anchor" aria-label="anchor" href="#what-are-hyperparameters"></a>
 </h4>
@@ -3733,7 +3695,7 @@ model performance, what is the term associated to this procedure?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Q1. Varying the dropout rate</p>
 <p>The code below instantiates and trains a model with varying dropout
@@ -3806,7 +3768,7 @@ set!</li>
 <span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>loss_df, x<span class="op">=</span><span class="st">'dropout_rate'</span>, y<span class="op">=</span><span class="st">'val_loss_vary'</span>)    </span></code></pre>
 </div>
-<figure><img src="../fig/04_vary_dropout_rate.png" alt="" class="figure mx-auto d-block"></figure><p>Q2. Term associated to this procedure</p>
+<figure><img src="../fig/05_vary_dropout_rate.png" alt="test loss plotted against five dropout rates ranging from 0.15 to 0.75 where the minimum test loss appears to occur between 0.4 and 0.5" class="figure mx-auto d-block"></figure><p>Q2. Term associated to this procedure</p>
 <p>This is called hyperparameter tuning.</p>
 </div>
 </div>
@@ -3856,7 +3818,7 @@ is expressed in code to search for an optimizer.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>First, we will define a <strong>build function</strong> to use during
 GridSearch. This function will compile the model for each combination of
@@ -3935,9 +3897,10 @@ Cornell University</a>.</p>
 <h3 class="callout-title">Tune Activation Function using Brute Foce<a class="anchor" aria-label="anchor" href="#tune-activation-function-using-brute-foce"></a>
 </h3>
 <div class="callout-content">
-<p>In <a href="./03-build-cnn.html">Episode 03</a> we talked briefly
-about the <code>relu</code> activation function passed as an argument to
-our <code>Conv2D</code> hidden layers.</p>
+<p>In <a href="03-build-cnn.html">Episode 03 Build a Convolutional
+Neural Network</a> we talked briefly about the <code>relu</code>
+activation function passed as an argument to our <code>Conv2D</code>
+hidden layers.</p>
 <p>An activation function is like a switch or a filter that we use in
 artificial neural networks, inspired by how our brains work. These
 functions play a crucial role in determining whether a neuron (a small
@@ -4021,7 +3984,7 @@ well outside of deep architectures</td>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The code below serves as a practical means for exploring activation
 performance on an image dataset.</p>
@@ -4062,25 +4025,28 @@ performance on an image dataset.</p>
 <span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Train a model with each activation function and store the history</span></span>
 <span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> activation <span class="kw">in</span> activations:</span>
 <span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> create_model(activation)</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(val_images, val_labels))</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    history_data[<span class="bu">str</span>(activation)] <span class="op">=</span> history</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the validation accuracy for each activation function</span></span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    history <span class="op">=</span> model.fit(train_images, train_labels, </span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>                        epochs<span class="op">=</span><span class="dv">10</span>, </span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>                        validation_data<span class="op">=</span>(val_images, val_labels),</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>                        batch_size <span class="op">=</span> <span class="dv">32</span>)</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    history_data[<span class="bu">str</span>(activation)] <span class="op">=</span> history</span>
 <span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> activation, history <span class="kw">in</span> history_data.items():</span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>    plt.plot(history.history[<span class="st">'val_accuracy'</span>], label<span class="op">=</span>activation)</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the validation accuracy for each activation function</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
 <span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Validation accuracy for different activation functions'</span>)</span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Epochs'</span>)</span>
-<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Validation Accuracy'</span>)</span>
-<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> activation, history <span class="kw">in</span> history_data.items():</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>    plt.plot(history.history[<span class="st">'val_accuracy'</span>], label<span class="op">=</span>activation)</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Validation accuracy for different activation functions'</span>)</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Epochs'</span>)</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Validation Accuracy'</span>)</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/05_tune_activation_results.png" alt="" class="figure mx-auto d-block"></figure><p>You can see in this figure that after 10 epochs the <code>relu</code>
-and <code>sigmoid</code> activation functions appear to converge around
-0.60% validation accuracy. We recommend when tuning your model to ensure
-you use enough epochs to be confident in your results.</p>
+<figure><img src="../fig/05_tune_activation_results.png" alt="Validation accuracy plotted against ten epochs for five different activations functions. relu and Leaky relu have the highest accuracy atound 0.60; sigmoid and selu are next with accuracy around 0.45 and tanh has the lowest accuracy of 0.35" class="figure mx-auto d-block"></figure><p>You can see in this figure that after 10 epochs the <code>ReLU</code>
+and <code>Leaky ReLU</code> activation functions appear to converge
+around 0.60% validation accuracy. We recommend when tuning your model to
+ensure you use enough epochs to be confident in your results.</p>
 </div>
 </div>
 </div>
@@ -4122,7 +4088,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>This is an open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you
@@ -4173,6 +4139,8 @@ accurate predictions and are ready to share the model with others.</p>
 model has not seen before</li>
 <li>There are many hyperparameters to choose from to improve model
 performance</li>
+<li>Fitting separate models with different hyperparameters and comparing
+their performance is a common and good practice in deep learning</li>
 </ul>
 </div>
 </div>
@@ -4185,7 +4153,7 @@ any links that you are not going to use.
 </div>
 </div></section><section id="aio-06-conclusion"><p>Content from <a href="06-conclusion.html">Conclusion</a></p>
 <hr>
-<p> Last updated on 2023-10-11 | 
+<p> Last updated on 2023-12-07 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/06-conclusion.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
@@ -4511,8 +4479,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/aio.html",
   "identifier": "https://.github.io/github.com/instructor/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-12-06",
-  "datePublished": "2023-12-06"
+  "dateModified": "2023-12-07",
+  "datePublished": "2023-12-07"
 }
 
   </script><script>

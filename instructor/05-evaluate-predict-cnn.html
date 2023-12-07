@@ -183,7 +183,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="04-fit-cnn.html">5. Compile and Train a Convolutional Neural Network</a>
+        <a href="04-fit-cnn.html">5. Compile and Train (Fit) a Convolutional Neural Network</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -260,7 +260,7 @@
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="../instructor/04-fit-cnn.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
-          Previous: Compile and Train a
+          Previous: Compile and Train
         </a>
         <a class="chapter-link float-end" href="../instructor/06-conclusion.html" rel="next">
           Next: Conclusion... 
@@ -269,7 +269,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</h1>
-        <p> Last updated on 2023-11-28 | 
+        <p> Last updated on 2023-12-07 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -323,7 +323,7 @@ Measuring performance</strong> to measure the performance of the
 network.</p>
 <div class="section level4">
 <h4 id="prepare-test-dataset">Prepare test dataset<a class="anchor" aria-label="anchor" href="#prepare-test-dataset"></a></h4>
-<p>Recall in <a href="./02-image-data.html">Episode 2 Introduction to
+<p>Recall in <a href="02-image-data.html">Episode 02 Introduction to
 Image Data</a> we discussed how to split your data into training and
 test datasets and why. In most cases, that means you already have a test
 set on hand. For example, we are using
@@ -388,7 +388,7 @@ The number of labels in our test dataset is:  10000</code></pre>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>It depends! Recall in an <a href="02-image-data.html">Episode 02
 Introduction to Image Data</a> Callout we talked about the different
@@ -479,7 +479,7 @@ create a confusion matrix.</p>
 group <em>i</em> and predicted to be in group <em>j</em>. The diagonal
 cells in the matrix are where the true class and predicted class
 match.</p>
-<figure><img src="../fig/05_confusion_matrix_explained.png" alt="" class="figure mx-auto d-block"></figure><p>To create a confusion matrix we will use another convenient function
+<figure><img src="../fig/05_confusion_matrix_explained.png" alt="for ten classes an example confusion matrix has 10 rows and 10 columns where the value in each cell is the number of observations predicted in that class and known to be that class. The diagonal cells are where the true and predicted classes match" class="figure mx-auto d-block"></figure><p>To create a confusion matrix we will use another convenient function
 from sklearn called <code>confusion_matrix</code>. This function takes
 as a first parameter the true labels of the test set. The second
 parameter is the predicted labels from our model.</p>
@@ -530,7 +530,7 @@ create a nice visualization of the confusion matrix.</p>
 the confusion matrix in the heatmap</li>
 <li>the <code>fmt=3g</code> will display the values with 3 significant
 digits</li>
-</ul><figure><img src="../fig/05_pred_v_true_confusion_matrix.png" alt="" class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
+</ul><figure><img src="../fig/05_pred_v_true_confusion_matrix.png" alt="Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors indicating our model is predicting well but a few non-diagonal cells also have a ligher color to show where the model is making prediction errors." class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -554,7 +554,7 @@ visualized as a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Q1. The confusion matrix shows that the predictions are not bad but
 can improved.</p>
@@ -572,8 +572,8 @@ CNN we will try to change the training parameters.</p>
 </div>
 <div class="section level3">
 <h3 id="step-9--tune-hyperparameters">Step 9. Tune hyperparameters<a class="anchor" aria-label="anchor" href="#step-9--tune-hyperparameters"></a></h3>
-<p>Recall the following from <a href="./01-introduction.html">Episode
-1</a>:</p>
+<p>Recall the following from <a href="01-introduction.html">Episode 01
+Introduction to Deep Learning</a>:</p>
 <div class="section level4">
 <h4 id="what-are-hyperparameters">What are hyperparameters?<a class="anchor" aria-label="anchor" href="#what-are-hyperparameters"></a></h4>
 <p>Hyperparameters are the parameters set by the person configuring the
@@ -630,7 +630,7 @@ model performance, what is the term associated to this procedure?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Q1. Varying the dropout rate</p>
 <p>The code below instantiates and trains a model with varying dropout
@@ -701,7 +701,7 @@ set!</li>
 <span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>loss_df, x<span class="op">=</span><span class="st">'dropout_rate'</span>, y<span class="op">=</span><span class="st">'val_loss_vary'</span>)    </span></code></pre>
 </div>
-<figure><img src="../fig/04_vary_dropout_rate.png" alt="" class="figure mx-auto d-block"></figure><p>Q2. Term associated to this procedure</p>
+<figure><img src="../fig/05_vary_dropout_rate.png" alt="test loss plotted against five dropout rates ranging from 0.15 to 0.75 where the minimum test loss appears to occur between 0.4 and 0.5" class="figure mx-auto d-block"></figure><p>Q2. Term associated to this procedure</p>
 <p>This is called hyperparameter tuning.</p>
 </div>
 </div>
@@ -748,7 +748,7 @@ is expressed in code to search for an optimizer.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>First, we will define a <strong>build function</strong> to use during
 GridSearch. This function will compile the model for each combination of
@@ -827,9 +827,10 @@ Cornell University</a>.</p>
 <h3 class="callout-title">Tune Activation Function using Brute Foce<a class="anchor" aria-label="anchor" href="#tune-activation-function-using-brute-foce"></a>
 </h3>
 <div class="callout-content">
-<p>In <a href="./03-build-cnn.html">Episode 03</a> we talked briefly
-about the <code>relu</code> activation function passed as an argument to
-our <code>Conv2D</code> hidden layers.</p>
+<p>In <a href="03-build-cnn.html">Episode 03 Build a Convolutional
+Neural Network</a> we talked briefly about the <code>relu</code>
+activation function passed as an argument to our <code>Conv2D</code>
+hidden layers.</p>
 <p>An activation function is like a switch or a filter that we use in
 artificial neural networks, inspired by how our brains work. These
 functions play a crucial role in determining whether a neuron (a small
@@ -889,7 +890,7 @@ well outside of deep architectures</td>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The code below serves as a practical means for exploring activation
 performance on an image dataset.</p>
@@ -930,25 +931,28 @@ performance on an image dataset.</p>
 <span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Train a model with each activation function and store the history</span></span>
 <span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> activation <span class="kw">in</span> activations:</span>
 <span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> create_model(activation)</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    history <span class="op">=</span> model.fit(train_images, train_labels, epochs<span class="op">=</span><span class="dv">10</span>, validation_data<span class="op">=</span>(val_images, val_labels))</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    history_data[<span class="bu">str</span>(activation)] <span class="op">=</span> history</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the validation accuracy for each activation function</span></span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    history <span class="op">=</span> model.fit(train_images, train_labels, </span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>                        epochs<span class="op">=</span><span class="dv">10</span>, </span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>                        validation_data<span class="op">=</span>(val_images, val_labels),</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>                        batch_size <span class="op">=</span> <span class="dv">32</span>)</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    history_data[<span class="bu">str</span>(activation)] <span class="op">=</span> history</span>
 <span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> activation, history <span class="kw">in</span> history_data.items():</span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>    plt.plot(history.history[<span class="st">'val_accuracy'</span>], label<span class="op">=</span>activation)</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the validation accuracy for each activation function</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
 <span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Validation accuracy for different activation functions'</span>)</span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Epochs'</span>)</span>
-<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Validation Accuracy'</span>)</span>
-<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> activation, history <span class="kw">in</span> history_data.items():</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>    plt.plot(history.history[<span class="st">'val_accuracy'</span>], label<span class="op">=</span>activation)</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Validation accuracy for different activation functions'</span>)</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Epochs'</span>)</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Validation Accuracy'</span>)</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/05_tune_activation_results.png" alt="" class="figure mx-auto d-block"></figure><p>You can see in this figure that after 10 epochs the <code>relu</code>
-and <code>sigmoid</code> activation functions appear to converge around
-0.60% validation accuracy. We recommend when tuning your model to ensure
-you use enough epochs to be confident in your results.</p>
+<figure><img src="../fig/05_tune_activation_results.png" alt="Validation accuracy plotted against ten epochs for five different activations functions. relu and Leaky relu have the highest accuracy atound 0.60; sigmoid and selu are next with accuracy around 0.45 and tanh has the lowest accuracy of 0.35" class="figure mx-auto d-block"></figure><p>You can see in this figure that after 10 epochs the <code>ReLU</code>
+and <code>Leaky ReLU</code> activation functions appear to converge
+around 0.60% validation accuracy. We recommend when tuning your model to
+ensure you use enough epochs to be confident in your results.</p>
 </div>
 </div>
 </div>
@@ -988,7 +992,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>This is an open question. And we don’t actually know how far one
 could push this sunshine hour prediction (try it out yourself if you
@@ -1034,6 +1038,8 @@ accurate predictions and are ready to share the model with others.</p>
 model has not seen before</li>
 <li>There are many hyperparameters to choose from to improve model
 performance</li>
+<li>Fitting separate models with different hyperparameters and comparing
+their performance is a common and good practice in deep learning</li>
 </ul></div>
 </div>
 </div>
@@ -1056,7 +1062,7 @@ any links that you are not going to use.
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="../instructor/04-fit-cnn.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
-          Previous: Compile and Train a
+          Previous: Compile and Train
         </a>
         <a class="chapter-link float-end" href="../instructor/06-conclusion.html" rel="next">
           Next: Conclusion... 
@@ -1106,8 +1112,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/05-evaluate-predict-cnn.html",
   "identifier": "https://.github.io/github.com/instructor/05-evaluate-predict-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-11-28",
-  "datePublished": "2023-12-06"
+  "dateModified": "2023-12-07",
+  "datePublished": "2023-12-07"
 }
 
   </script><script>

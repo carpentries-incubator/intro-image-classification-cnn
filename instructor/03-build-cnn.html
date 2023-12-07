@@ -197,7 +197,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="04-fit-cnn.html">5. Compile and Train a Convolutional Neural Network</a>
+        <a href="04-fit-cnn.html">5. Compile and Train (Fit) a Convolutional Neural Network</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -273,13 +273,13 @@
           Previous: Introduction to
         </a>
         <a class="chapter-link float-end" href="../instructor/04-fit-cnn.html" rel="next">
-          Next: Compile and Train a... 
+          Next: Compile and Train... 
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Build a Convolutional Neural Network</h1>
-        <p> Last updated on 2023-11-22 | 
+        <p> Last updated on 2023-12-07 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -304,8 +304,6 @@
 <li>How is a convolutional neural network (CNN) different from an
 ANN?</li>
 <li>What are the types of layers used to build a CNN?</li>
-<li>How do you monitor the training process?</li>
-<li>What is underfitting?</li>
 </ul></div>
 </div>
 </div>
@@ -325,20 +323,21 @@ dense</li>
 </div>
 <section id="neural-networks"><h2 class="section-heading">Neural Networks<a class="anchor" aria-label="anchor" href="#neural-networks"></a>
 </h2>
-<hr class="half-width"><p>A neural network is an artificial intelligence technique loosely
-based on the way neurons in the brain work. A neural network consists of
-connected computational units called neurons. Each neuron …</p>
+<hr class="half-width"><p>A <strong>neural network</strong> is an artificial intelligence
+technique loosely based on the way neurons in the brain work. A neural
+network consists of connected computational units called neurons. Each
+neuron …</p>
 <ul><li>has one or more inputs, e.g. input data expressed as floating point
 numbers</li>
-<li>most of the time, each neuron conducts 3 main operations:
+<li>conducts three main operations most of the time:
 <ul><li>take the weighted sum of the inputs</li>
 <li>add an extra constant weight (i.e. a bias term) to this weighted
 sum</li>
 <li>apply a non-linear function to the output so far (using a predefined
 activation function)</li>
 </ul></li>
-<li>return one output value, again a floating point number</li>
-</ul><figure><img src="../fig/03_neuron.png" alt="" class="figure mx-auto d-block"></figure><p>Multiple neurons can be joined together by connecting the output of
+<li>returns one output value, again a floating point number</li>
+</ul><figure><img src="../fig/03_neuron.png" alt="diagram of a single neuron taking multiple inputs and their associated weights in and then applying an activation function to predict a single output" class="figure mx-auto d-block"></figure><p>Multiple neurons can be joined together by connecting the output of
 one to the input of another. These connections are associated with
 weights that determine the ‘strength’ of the connection, the weights are
 adjusted during training. In this way, the combination of neurons and
@@ -349,7 +348,7 @@ possibly through one or more intermediate layers called hidden layers.
 The image below shows an example of a neural network with three layers,
 each circle is a neuron, each line is an edge and the arrows indicate
 the direction data moves in.</p>
-<figure><img src="../fig/03_neural_net.png" alt="" class="figure mx-auto d-block"><figcaption>The image above is by Glosser.ca, <a href="https://creativecommons.org/licenses/by-sa/3.0" class="external-link">CC BY-SA 3.0</a>,
+<figure><img src="../fig/03_neural_net.png" alt="diagram of a neural with four neurons taking multiple inputs and their weights and predicting multiple outputs" class="figure mx-auto d-block"><figcaption>The image above is by Glosser.ca, <a href="https://creativecommons.org/licenses/by-sa/3.0" class="external-link">CC BY-SA 3.0</a>,
 via Wikimedia Commons, <a href="https://commons.wikimedia.org/wiki/File:Colored_neural_network.svg" class="external-link">original
 source</a></figcaption></figure><p>Neural networks aren’t a new technique, they have been around since
 the late 1940s. But until around 2010 neural networks tended to be quite
@@ -470,7 +469,7 @@ values of a single-channel image. The red cell in the output matrix is
 the result of multiplying and summing the values of the red square in
 the input, and the kernel. Applying this kernel to a real image shows
 that it indeed detects horizontal edges.</p>
-<figure><img src="../fig/03_conv_matrix.png" alt="" class="figure mx-auto d-block"></figure><figure><img src="../fig/03_conv_image.png" alt="" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
+<figure><img src="../fig/03_conv_matrix.png" alt="6x5 input matrix representing a single color channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix that detects horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="../fig/03_conv_image.png" alt="single color channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges that stand out" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
 convolutional matrices, also known as kernels. The matrix values,
 serving as weights, are learned during the training process. The
 convolutional layer produces an ‘image’ for each kernel, representing
@@ -620,7 +619,7 @@ parameter you can choose when you create the layer. When connecting the
 layer to its input and output layers every neuron in the dense layer
 gets an edge (i.e. connection) to <strong>all</strong> of the input
 neurons and <strong>all</strong> of the output neurons.</p>
-<figure><img src="../fig/03-neural_network_sketch_dense.png" alt="" class="figure mx-auto d-block"></figure><p>This layer is called fully connected, because all input neurons are
+<figure><img src="../fig/03-neural_network_sketch_dense.png" alt="diagram of a neural network with multiple inputs feeding into to two seperate dense layers with connections between all the inputs and outputs" class="figure mx-auto d-block"></figure><p>This layer is called fully connected, because all input neurons are
 taken into account by each output neuron. It aggregates global
 information about the features learned in previous layers to make a
 decision about the class of the input.</p>
@@ -846,7 +845,7 @@ optimizer</strong> and <strong>Step 6. Train model</strong>.</p>
 </h3>
 <div class="callout-content">
 <ul><li>Artificial neural networks (ANN) are a machine learning technique
-based on a model inspired by groups of neurons in the brain.</li>
+based on a model inspired by groups of neurons in the brain</li>
 <li>Convolution neural networks (CNN) are a type of ANN designed for
 image classification and object detection</li>
 <li>The filter size determines the size of the receptive field where
@@ -882,7 +881,7 @@ any links that you are not going to use.
           Previous: Introduction to
         </a>
         <a class="chapter-link float-end" href="../instructor/04-fit-cnn.html" rel="next">
-          Next: Compile and Train a... 
+          Next: Compile and Train... 
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -929,8 +928,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/03-build-cnn.html",
   "identifier": "https://.github.io/github.com/instructor/03-build-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-11-22",
-  "datePublished": "2023-12-06"
+  "dateModified": "2023-12-07",
+  "datePublished": "2023-12-07"
 }
 
   </script><script>

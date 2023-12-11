@@ -281,7 +281,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Setup - GPU</h1>
-        <p> Last updated on 2023-12-07 | 
+        <p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -323,7 +323,7 @@ class time assisting on GPU setups.</p>
 scientific computing, and a frequent choice for machine learning as
 well. Installing all of its scientific packages individually can be a
 bit difficult, however, so we recommend the installer <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> which
-includes most (but not all) of the software you will need. Make sure you
+includes most (but not all) of the software you need. Make sure you
 install the latest Python version 3.xx.</p>
 <p>Also, please set up your python environment <strong>at least</strong>
 a day in advance of the workshop. If you encounter problems with the
@@ -340,7 +340,7 @@ the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -362,7 +362,7 @@ may already be checked.)</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -382,11 +382,11 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<p>Note that the following installation steps require you to work from
-the shell. If you run into any difficulties, please request help before
-the workshop begins.</p>
+<p>Note the following installation steps require you to work from the
+shell. If you run into any difficulties, please request help before the
+workshop begins.</p>
 <ol style="list-style-type: decimal"><li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
 your web browser.</p></li>
 <li><p>Download the Python 3 installer for Linux.</p></li>
@@ -433,8 +433,8 @@ Windows search function (Windows Logo Key) or Spotlight on macOS
 <figure><img src="../fig/00_anaconda_prompt_search.png" alt="Screenshot of the Anaconda Prompt application" class="figure mx-auto d-block"></figure><p>A terminal window will open with the title ‘Anaconda Prompt’:</p>
 <figure><img src="../fig/00_anaconda_prompt_window.png" alt="Screenshot of the terminal window that opens when you launch the Anaconda Prompt application" class="figure mx-auto d-block"></figure><p>Note the notation of the prompt inside the terminal window. The name
 inside the parentheses refers to which conda environment you are working
-inside of, and ‘base’ is the name given to the default environment that
-comes with every Anaconda distribution.</p>
+inside of, and ‘base’ is the name given to the default environment
+included with every Anaconda distribution.</p>
 <p>To create a new environment for this lesson, the command starts with
 the conda keywords <code>conda create</code>, followed by a name for the
 new environment and the package(s) to install:</p>
@@ -444,8 +444,8 @@ environment with the conda keywords <code>conda activate</code> followed
 by the environment name:</p>
 <pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu
 (cnn_workshop_gpu) C:\Users\Lab&gt;</code></pre>
-<p>You will know that you are in the right environment because the
-prompt changes from (base) to (cnn_workshop_gpu).</p>
+<p>You will know you are in the right environment because the prompt
+changes from (base) to (cnn_workshop_gpu).</p>
 <div id="callout1" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -454,9 +454,9 @@ prompt changes from (base) to (cnn_workshop_gpu).</p>
 <h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
 </h3>
 <div class="callout-content">
-<p>To set up a GPU environment you need to make sure that you have the
-appropriate hardware, system, and software necessary for GPU support.
-Here we are following the <a href="https://www.tensorflow.org/install/pip#windows-native_1" class="external-link">Windows
+<p>To set up a GPU environment, make sure you have the appropriate
+hardware, system, and software necessary for GPU support. Here we are
+following the <a href="https://www.tensorflow.org/install/pip#windows-native_1" class="external-link">Windows
 TensorFlow installation instructions</a> starting at <strong>Step 5. GPU
 setup</strong> but using Anaconda instead of Miniconda. Specific
 instructions can also be found there for <a href="https://www.tensorflow.org/install/pip#macos_1" class="external-link">MacOS</a> and <a href="https://www.tensorflow.org/install/pip#linux_1" class="external-link">Linux</a>
@@ -478,7 +478,7 @@ not.</p>
   AMD GPU
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
 <p>TODO Finish these instructions</p>
@@ -486,11 +486,10 @@ not.</p>
 </div>
 </div>
 </div>
-<p>There are two other packages we need to install that we could not
-install at the same time that we created the environment,
-<code>tensorflow</code> and <code>scikeras</code>.</p>
-<p>To install these two packages we have to use a different package
-manager called <code>pip</code>.</p>
+<p>There are two other packages we could not install when we created the
+environment, <code>tensorflow</code> and <code>scikeras</code>.</p>
+<p>To install these two packages we use a different package manager
+called <code>pip</code>.</p>
 <p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
 package management system for Python software packages. It is integrated
 into your local Python installation and runs regardless of your
@@ -505,7 +504,7 @@ operating system too.</p>
 </h2>
 <hr class="half-width"><p>We teach this lesson using Python in <a href="https://www.spyder-ide.org/" class="external-link">Spyder</a> (Scientific Python
 Development Environment), a free integrated development environment
-(IDE) that comes with Anaconda. Editing, interactive testing, debugging,
+(IDE) included with Anaconda. Editing, interactive testing, debugging,
 and introspection tools are all included in Spyder.</p>
 <p>To start Spyder, type the command <code>spyder</code>, making sure
 you are still in the workshop environment:</p>
@@ -539,9 +538,8 @@ giving errors. Most versions will work fine with this lesson, but:</p>
 <li>For sklearn, the minimum version is 0.22.</li>
 </ul></section><section id="download-the-exercise-python-template-file"><h2 class="section-heading">Download the exercise python template file<a class="anchor" aria-label="anchor" href="#download-the-exercise-python-template-file"></a>
 </h2>
-<hr class="half-width"><p>The aim for this workshop is to create a python script that you can
-used as a “base python program” that can be used for future
-projects.</p>
+<hr class="half-width"><p>The aim for this workshop is to create a python script to use as a
+“base python program” for future projects.</p>
 <p>In an effort to not clutter the scripts developed in the workshop
 with episode exercise/challenge code, this workshop will use an
 exercises python script for all of the exercises completed throughout
@@ -615,8 +613,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/setup-gpu.html",
   "identifier": "https://.github.io/github.com/instructor/setup-gpu.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-12-07",
-  "datePublished": "2023-12-07"
+  "dateModified": "2023-12-11",
+  "datePublished": "2023-12-11"
 }
 
   </script><script>

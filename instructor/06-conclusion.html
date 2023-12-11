@@ -269,7 +269,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Conclusion</h1>
-        <p> Last updated on 2023-12-07 | 
+        <p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/06-conclusion.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -311,13 +311,12 @@
 </div>
 <div class="section level3">
 <h3 id="step-10--share-model">Step 10. Share model<a class="anchor" aria-label="anchor" href="#step-10--share-model"></a></h3>
-<p>Now that we have a trained network that performs at a level we are
-happy with and can maintain high prediction accuracy on a test dataset
-we might want to consider publishing a file with both the architecture
-of our network and the weights which it has learned (assuming we did not
-use a pre-trained network). This will allow others to use it as as
-pre-trained network for their own purposes and for them to (mostly)
-reproduce our result.</p>
+<p>We now have a trained network that performs at a level we are happy
+with and maintains high prediction accuracy on a test dataset. We should
+consider publishing a file with both the architecture of our network and
+the weights which it has learned (assuming we did not use a pre-trained
+network). This will allow others to use it as as pre-trained network for
+their own purposes and for them to (mostly) reproduce our result.</p>
 <p>Use <code>model.save</code> to save a model:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -356,8 +355,8 @@ reproduce our result.</p>
 <li>The model’s weights.</li>
 <li>The model’s optimizer’s state (if any).</li>
 </ul><p>Note that saving the model does not save the training history
-(i.e. training and validation loss and accuracy). For that you will need
-to save the model history dataframe we created for plotting.</p>
+(i.e. training and validation loss and accuracy). For that, you save the
+model history dataframe we used for plotting.</p>
 <p>The Keras documentation for <a href="https://keras.io/api/saving/" class="external-link">Saving and Serialization</a>
 explains other ways to save your model.</p>
 <p>To share your model with a wider audience it is recommended you
@@ -367,11 +366,11 @@ cases, you may be able to offer up your model to an online repository of
 pretrained models.</p>
 <div class="section level4">
 <h4 id="choosing-a-pretrained-model">Choosing a pretrained model<a class="anchor" aria-label="anchor" href="#choosing-a-pretrained-model"></a></h4>
-<p>If your data and problem is very similar to what others have done,
-you can often use a pretrained network. Even if your problem is
-different, but the data type is common (for example images), you can use
-a pretrained network and finetune it for your problem. A large number of
-openly available pretrained networks can be found in the <a href="https://modelzoo.co/" class="external-link">Model Zoo</a>, <a href="https://pytorch.org/hub/" class="external-link">pytorch hub</a> or <a href="https://pytorch.org/hub/" class="external-link">tensorflow hub</a>.</p>
+<p>If your data and problem is very similar to what others have done, a
+pre-trained network might be preferable. Even if your problem is
+different, if the data type is common (for example images), you can use
+a pre-trained network and fine-tune it for your problem. A large number
+of openly available pre-trained networks can be found in the <a href="https://modelzoo.co/" class="external-link">Model Zoo</a>, <a href="https://pytorch.org/hub/" class="external-link">pytorch hub</a> or <a href="https://pytorch.org/hub/" class="external-link">tensorflow hub</a>.</p>
 </div>
 </div>
 <div class="section level3">
@@ -392,9 +391,9 @@ be enough to worry about and the time you will save with simpler code
 will exceed what you will save by having the code run a little
 faster.</p>
 <p>Keras also benefits from a very good set of <a href="https://keras.io/guides/" class="external-link">online documentation</a> and a large
-user community. You will find that most of the concepts from Keras
-translate very well across to the other libraries if you wish to learn
-them at a later date.</p>
+user community. You will find most of the concepts from Keras translate
+very well across to the other libraries if you wish to learn them at a
+later date.</p>
 <p>A couple of those libraries include:</p>
 <ul><li><p><a href="https://www.tensorflow.org/" class="external-link">TensorFlow</a> was
 developed by Google and is one of the older Deep Learning libraries,
@@ -403,8 +402,8 @@ in 2015. It is very versatile and capable of much more than Deep
 Learning but as a result it often takes a lot more lines of code to
 write Deep Learning operations in TensorFlow than in other libraries. It
 offers (almost) seamless integration with GPU accelerators and Google’s
-own TPU (Tensor Processing Unit) chips that are built specially for
-machine learning.</p></li>
+own TPU (Tensor Processing Unit) chips specially built for machine
+learning.</p></li>
 <li><p><a href="https://pytorch.org/" class="external-link">PyTorch</a> was developed by
 Facebook in 2016 and is a popular choice for Deep Learning applications.
 It was developed for Python from the start and feels a lot more
@@ -438,12 +437,12 @@ seen that running on CPU only machines can be done! So while a GPU is
 not an absolute requirement for deep learning, it can significantly
 accelerate your deep learning work and make it more efficient,
 especially for larger and more complex tasks.</p>
-<p>If you don’t have access to a powerful GPU locally, you can use cloud
-services that provide GPU instances for deep learning. This can be a
-cost-effective option for many users.</p>
+<p>If you don’t have access to a powerful GPU locally, there are cloud
+services that provide GPU instances for deep learning. This may be the
+most cost-effective option for many users.</p>
 </div>
 <div class="section level4">
-<h4 id="it-this-the-bestonly-way-to-code-up-cnns-for-image-classification">It this the best/only way to code up CNN’s for image
+<h4 id="it-this-the-bestonly-way-to-code-up-cnns-for-image-classification">It this the best/only way to code up CNNs for image
 classification?<a class="anchor" aria-label="anchor" href="#it-this-the-bestonly-way-to-code-up-cnns-for-image-classification"></a></h4>
 <p>Absolutely not! The code we used in today’s workshop might today be
 considered old fashioned. A lot of the data preprocessing we did by hand
@@ -500,11 +499,11 @@ monitoring)</li>
 <div class="callout-content">
 <ul><li>Deep Learning is well suited to classification and prediction
 problems such as image recognition.</li>
-<li>To use Deep Learning effectively we need to go through a workflow
-of: defining the problem, identifying inputs and outputs, preparing
-data, choosing the type of network, choosing a loss function, training
-the model, tuning Hyperparameters, measuring performance before we can
-classify data.</li>
+<li>To use Deep Learning effectively, go through a workflow of: defining
+the problem, identifying inputs and outputs, preparing data, choosing
+the type of network, choosing a loss function, training the model,
+tuning Hyperparameters, measuring performance before we can classify
+data.</li>
 <li>Keras is a Deep Learning library that is easier to use than many of
 the alternatives such as TensorFlow and PyTorch.</li>
 <li>Graphical Processing Units are useful, though not essential, for
@@ -581,8 +580,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/06-conclusion.html",
   "identifier": "https://.github.io/github.com/instructor/06-conclusion.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-12-07",
-  "datePublished": "2023-12-07"
+  "dateModified": "2023-12-11",
+  "datePublished": "2023-12-11"
 }
 
   </script><script>

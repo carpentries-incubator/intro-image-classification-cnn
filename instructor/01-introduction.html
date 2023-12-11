@@ -280,7 +280,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p> Last updated on 2023-12-07 | 
+        <p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -337,22 +337,22 @@ something given the economic conditions and the cost of raw materials or
 predicting a country’s GDP given its life expectancy. Classifiers try to
 classify data into different categories, or assign a label; for example,
 deciding what characters are visible in a picture of some writing or if
-a message is spam or not.</p>
+an email or text message is spam or not.</p>
 </section><section id="training-data"><h2 class="section-heading">Training Data<a class="anchor" aria-label="anchor" href="#training-data"></a>
 </h2>
-<hr class="half-width"><p>Many (but not all) machine learning systems “learn” by taking a
+<hr class="half-width"><p>Many, but not all, machine learning systems “learn” by taking a
 series of input data and output data and using it to form a model. The
 maths behind the machine learning doesn’t care what the data is as long
 as it can represented numerically or categorised. Some examples might
 include:</p>
-<ul><li>predicting a person’s weight based on their height</li>
-<li>predicting house prices given stock market prices</li>
-<li>classifying if an email is spam or not</li>
-<li>classifying an image as, e.g., person, place, or particular
-object</li>
-</ul><p>Typically we will need to train our models with hundreds, thousands
-or even millions of examples before they work well enough to do any
-useful predictions or classifications with them.</p>
+<ul><li>Predicting a person’s weight based on their height.</li>
+<li>Predicting house prices given stock market prices.</li>
+<li>Classifying an email as spam or not.</li>
+<li>Classifying an image as, e.g., a person, place, or particular
+object.</li>
+</ul><p>Typically we train our models with hundreds, thousands or even
+millions of examples before they work well enough to do any useful
+predictions or classifications with them.</p>
 </section><section id="deep-learning-machine-learning-and-artificial-intelligence"><h2 class="section-heading">Deep Learning, Machine Learning and Artificial Intelligence<a class="anchor" aria-label="anchor" href="#deep-learning-machine-learning-and-artificial-intelligence"></a>
 </h2>
 <hr class="half-width"><p>Deep Learning (DL) is just one of many machine learning techniques,
@@ -361,12 +361,12 @@ artificial intelligence (AI). Definitions of artificial intelligence
 vary, but usually involve having computers mimic the behaviour of
 intelligent biological systems. Since the 1950s many works of science
 fiction have dealt with the idea of an artificial intelligence which
-matches (or exceeds) human intelligence in all areas. Although there
+matches, or exceeds, human intelligence in all areas. Although there
 have been great advances in AI and ML research recently, we can only
 come close to human like intelligence in a few specialist areas and are
-still a long way from a general purpose AI. The image below shows some
-differences between artificial intelligence, machine learning and deep
-learning.</p>
+still a long way from a general purpose AI. The image below illustrates
+some differences between artificial intelligence, machine learning and
+deep learning.</p>
 <figure><img src="../fig/01_AI_ML_DL_differences.png" alt="Three nested circles defining deep learning as a subset of machine learning which is a subset of artifical intelligence" class="figure mx-auto d-block"><figcaption>The image above is by Tukijaaliwa, CC BY-SA 4.0, via
 Wikimedia Commons, <a href="https://en.wikipedia.org/wiki/File:AI-ML-DL.svg" class="external-link">original
 source</a></figcaption></figure><div id="callout1" class="callout callout">
@@ -403,7 +403,7 @@ classification specifically involves the process of assigning a label or
 category to an input image. The goal is to enable computers to recognise
 and categorise objects, scenes, or patterns within images, just as a
 human would. Image classification can refer to one of several tasks:</p>
-<figure><img src="../fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png" alt="Four types of image classification tasks include semantic segmentation where every pixel is labelled; classification and localisation that detects a single object like a cat; object detection that detects multiple objects like cats and dogs; and instance segmentation that detects each pixel of multiple objects" class="figure mx-auto d-block"></figure><p>Image classification has numerous practical applications,
+<figure><img src="../fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png" alt="Four types of image classification tasks include semantic segmentation to label every pixel; classification and localisation to detect a single object like a cat; object detection to detect multiple objects like cats and dogs; and instance segmentation to detect each pixel of multiple objects" class="figure mx-auto d-block"></figure><p>Image classification has numerous practical applications,
 including:</p>
 <ul><li>
 <strong>Object Recognition</strong>: Identifying objects within
@@ -426,8 +426,8 @@ hierarchical features from images and achieve remarkable performance on
 a wide range of tasks.</p>
 </section><section id="deep-learning-workflow"><h2 class="section-heading">Deep Learning Workflow<a class="anchor" aria-label="anchor" href="#deep-learning-workflow"></a>
 </h2>
-<hr class="half-width"><p>To apply Deep Learning to a problem there are several steps we need
-to go through:</p>
+<hr class="half-width"><p>To apply Deep Learning to a problem there are several steps to go
+through:</p>
 <div class="section level3">
 <h3 id="step-1--formulate-outline-the-problem">Step 1. Formulate / Outline the problem<a class="anchor" aria-label="anchor" href="#step-1--formulate-outline-the-problem"></a></h3>
 <p>Firstly we must decide what it is we want our Deep Learning system to
@@ -438,9 +438,9 @@ ship, truck</p>
 </div>
 <div class="section level3">
 <h3 id="step-2--identify-inputs-and-outputs">Step 2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#step-2--identify-inputs-and-outputs"></a></h3>
-<p>Next we need to identify what the inputs and outputs of the neural
-network will be. In our case, the data is images and the inputs could be
-the individual pixels of the images. We are performing a classification
+<p>Next identify what the inputs and outputs of the neural network will
+be. In our case, the data is images and the inputs could be the
+individual pixels of the images. We are performing a classification
 problem and we will have one output for each potential class.</p>
 </div>
 <div class="section level3">
@@ -462,10 +462,9 @@ encode our image labels.</p>
 <h4 id="preparing-the-code">Preparing the code<a class="anchor" aria-label="anchor" href="#preparing-the-code"></a></h4>
 <p>It is the goal of this training workshop to produce a Deep Learning
 program, using a Convolutional Neural Network. At the end of this
-workshop, we hope that this code can be used as a “starting point”. We
-will be creating an “initial program” for this introduction chapter,
-that will be copied and used as a foundation for the rest of the
-episodes.</p>
+workshop, we hope this code can be used as a “starting point”. We will
+create an “initial program” for this introduction chapter that will be
+copied and used as a foundation for the rest of the episodes.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -560,17 +559,16 @@ scratch<a class="anchor" aria-label="anchor" href="#step-4--choose-a-pre-trained
 <p>Often we can use an existing neural network instead of designing one
 from scratch. Training a network can take a lot of time and
 computational resources. There are a number of well publicised networks
-which have been shown to perform well at certain tasks. If you know of
-one which already does a similar task well, then it makes sense to use
-one of these.</p>
-<p>If instead we decide we do want to design our own network then we
-need to think about how many input neurons it will have, how many hidden
-layers and how many outputs, what types of layers we use (we will
-explore the different types later on). This will probably need some
-experimentation and we might have to try tweaking the network design a
-few times before we see acceptable results.</p>
-<p>Here we present an initial model that will be explained in detail
-later on:</p>
+which have been demonstrated to perform well at certain tasks. If you
+know of one which already does a similar task well, then it makes sense
+to use one of these.</p>
+<p>If instead we decide to design our own network, then we need to think
+about how many input neurons it will have, how many hidden layers and
+how many outputs, and what types of layers to use. This will require
+some experimentation and tweaking of the network design a few times
+before achieving acceptable results.</p>
+<p>Here we present an initial model to be explained in detail later
+on:</p>
 <div class="section level4">
 <h4 id="define-the-model">Define the Model<a class="anchor" aria-label="anchor" href="#define-the-model"></a></h4>
 <div class="codewrapper sourceCode" id="cb5">
@@ -609,11 +607,12 @@ later on:</p>
 <h3 id="step-5--choose-a-loss-function-and-optimizer">Step 5. Choose a loss function and optimizer<a class="anchor" aria-label="anchor" href="#step-5--choose-a-loss-function-and-optimizer"></a></h3>
 <p>The loss function tells the training algorithm how far away the
 predicted value was from the true value. We will learn how to choose a
-loss function in more detail later on.</p>
+loss function in more detail in <a href="04-fit-cnn.html">Episode 4
+Compile and Train (Fit) a Convolutional Neural Network</a>.</p>
 <p>The optimizer is responsible for taking the output of the loss
 function and then applying some changes to the weights within the
-network. It is through this process that the “learning” (adjustment of
-the weights) is achieved.</p>
+network. It is through this process that “learning” (adjustment of the
+weights) is achieved.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -715,29 +714,28 @@ small variations in the output. These variations are usually minor and
 should not significantly impact the overall performance or behavior of
 the model.</p>
 <p>If you are finding significant differences in the model predictions,
-this could be a sign that the model is not fully converged, where
-“convergence” refers to the point where the model has reached an optimal
-or near-optimal state in terms of learning from the training data.</p>
+this could be a sign the model is not fully converged. “Convergence”
+refers to the point where the model has reached an optimal or
+near-optimal state in terms of learning from the training data.</p>
 </div>
 </div>
 </div>
 <p>Congratulations, you just created your first image classification
 model and used it to classify an image!</p>
-<p>Was the classification correct? Why might it be incorrect and What
+<p>Was the classification correct? Why might it be incorrect and what
 can we do about?</p>
-<p>There are many ways we can try to improve the accuracy of our model,
-such as adding or removing layers to the model definition and
-fine-tuning the hyperparameters, which takes us to the next steps in our
-workflow.</p>
+<p>There are many ways to try to improve the accuracy of our model, such
+as adding or removing layers to the model definition and fine-tuning the
+hyperparameters, which takes us to the next steps in our workflow.</p>
 </div>
 <div class="section level3">
 <h3 id="step-8--measure-performance">Step 8. Measure Performance<a class="anchor" aria-label="anchor" href="#step-8--measure-performance"></a></h3>
 <p>Once we trained the network we want to measure its performance. To do
-this we use some additional data that was <strong>not</strong> part of
-the training; this is known as a test set. There are many different
-methods available for measuring performance and which one is best
-depends on the type of task we are attempting. These metrics are often
-published as an indication of how well our network performs.</p>
+this, we use additional data that was <strong>not</strong> part of the
+training, called a test dataset. There are many different methods
+available for measuring performance and which one is best depends on the
+type of task we are attempting. These metrics are often published as an
+indication of how well our network performs.</p>
 </div>
 <div class="section level3">
 <h3 id="step-9--tune-hyperparameters">Step 9. Tune Hyperparameters<a class="anchor" aria-label="anchor" href="#step-9--tune-hyperparameters"></a></h3>
@@ -801,10 +799,10 @@ patterns of data.</li>
 artificial intelligence.</li>
 <li>Convolutional neural networks are well suited for image
 classification.</li>
-<li>To use Deep Learning effectively we need to go through a workflow
-of: defining the problem, identifying inputs and outputs, preparing
-data, choosing the type of network, training the model, tuning
-hyperparameters, measuring performance before we can classify data.</li>
+<li>To use Deep Learning effectively we follow a workflow of: defining
+the problem, identifying inputs and outputs, preparing data, choosing
+the type of network, training the model, tuning hyperparameters,
+measuring performance before we can classify data.</li>
 </ul></div>
 </div>
 </div>
@@ -873,8 +871,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/01-introduction.html",
   "identifier": "https://.github.io/github.com/instructor/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-12-07",
-  "datePublished": "2023-12-07"
+  "dateModified": "2023-12-11",
+  "datePublished": "2023-12-11"
 }
 
   </script><script>

@@ -269,7 +269,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</h1>
-        <p> Last updated on 2023-12-07 | 
+        <p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -331,7 +331,7 @@ set on hand. For example, we are using
 set.</p>
 <p>When creating and using a test set there are a few things to
 check:</p>
-<ul><li>It only contains images that the model has never seen before.</li>
+<ul><li>It only contains images the model has never seen before.</li>
 <li>It is sufficiently large to provide a meaningful evaluation of model
 performance. It should include images from every target label and images
 of classes not in your target set.</li>
@@ -477,10 +477,10 @@ create a confusion matrix.</p>
 group <em>i</em> and predicted to be in group <em>j</em>. The diagonal
 cells in the matrix are where the true class and predicted class
 match.</p>
-<figure><img src="../fig/05_confusion_matrix_explained.png" alt="for ten classes an example confusion matrix has 10 rows and 10 columns where the value in each cell is the number of observations predicted in that class and known to be that class. The diagonal cells are where the true and predicted classes match" class="figure mx-auto d-block"></figure><p>To create a confusion matrix we will use another convenient function
-from sklearn called <code>confusion_matrix</code>. This function takes
-as a first parameter the true labels of the test set. The second
-parameter is the predicted labels from our model.</p>
+<figure><img src="../fig/05_confusion_matrix_explained.png" alt="for ten classes an example confusion matrix has 10 rows and 10 columns where the value in each cell is the number of observations predicted in that class and known to be in that class. The diagonal cells are where the true and predicted classes match." class="figure mx-auto d-block"></figure><p>To create a confusion matrix, we use another convenient function from
+sklearn called <code>confusion_matrix</code>. This function takes as a
+first parameter the true labels of the test set. The second parameter is
+the predicted labels from our model.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -528,7 +528,7 @@ create a nice visualization of the confusion matrix.</p>
 the confusion matrix in the heatmap.</li>
 <li>The <code>fmt=3g</code> will display the values with three
 significant digits.</li>
-</ul><figure><img src="../fig/05_pred_v_true_confusion_matrix.png" alt="Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors indicating our model is predicting well but a few non-diagonal cells also have a ligher color to show where the model is making prediction errors." class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
+</ul><figure><img src="../fig/05_pred_v_true_confusion_matrix.png" alt="Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors, indicating our model is predicting well, but a few non-diagonal cells also have a lighter color to indicate where the model is making a large number of prediction errors." class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -554,8 +554,8 @@ visualized as a confusion matrix.</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>Q1. The confusion matrix shows that the predictions are not bad but
-can improved.</p>
+<p>Q1. The confusion matrix illustrates that the predictions are not bad
+but can improved.</p>
 <p>Q2. I expected the performance to be better than average because the
 accuracy of the model I chose was 67 per cent on the validation set.</p>
 <p>Q3. We can try many things to improve the performance from here. One
@@ -582,7 +582,7 @@ given model and context.</p>
 <p>These hyperparameters can include the learning rate, the number of
 layers in the network, the number of neurons per layer, and many more.
 The tuning process is systematic searching for the best combination of
-hyperparameters that will optimize the model’s performance.</p>
+hyperparameters to optimize the model’s performance.</p>
 <p>In some cases, it might be necessary to adjust these and re-run the
 training many times before we are happy with the result.</p>
 <p>Table 1. List of some of the hyperparameters to tune and when.</p>
@@ -827,14 +827,14 @@ Cornell University</a></p>
 Neural Network</a> we talked briefly about the <code>relu</code>
 activation function passed as an argument to our <code>Conv2D</code>
 hidden layers.</p>
-<p>An activation function is like a switch or a filter that we use in
+<p>An activation function is like a switch, or a filter, that we use in
 artificial neural networks, inspired by how our brains work. These
 functions play a crucial role in determining whether a neuron (a small
 unit in the neural network) should “fire” or become active.</p>
 <p>Think of an activation function as a tiny decision-maker for each
 neuron in a neural network. It helps determine whether the neuron should
 ‘fire’, or pass on information, or stay ‘off’ and remain silent, much
-like a light switch that decides whether the light should be ON or OFF.
+like a light switch controls whether the light should be ON or OFF.
 Activation functions are crucial because they add non-linearity to the
 neural network. Without them, the network would be like a simple linear
 model, unable to learn complex patterns in data.</p>
@@ -1091,8 +1091,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/05-evaluate-predict-cnn.html",
   "identifier": "https://.github.io/github.com/instructor/05-evaluate-predict-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-12-07",
-  "datePublished": "2023-12-07"
+  "dateModified": "2023-12-11",
+  "datePublished": "2023-12-11"
 }
 
   </script><script>

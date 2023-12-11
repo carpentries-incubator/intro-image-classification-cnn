@@ -277,7 +277,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p> Last updated on 2023-12-07 | 
+        <p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -332,19 +332,19 @@ deer, dog, frog, horse, ship, or truck</p>
 </div>
 <div class="section level3">
 <h3 id="step-2--identify-inputs-and-outputs">Step 2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#step-2--identify-inputs-and-outputs"></a></h3>
-<p>Next we need to identify what the inputs and outputs of the neural
-network will be. In our case, the data is images and the inputs could be
-the individual pixels of the images.</p>
+<p>Next we identify the inputs and outputs of the neural network. In our
+case, the data is images and the inputs could be the individual pixels
+of the images.</p>
 <p>We are performing a classification problem and we want to output one
 category for each image.</p>
 </div>
 <div class="section level3">
 <h3 id="step-3--prepare-data">Step 3. Prepare data<a class="anchor" aria-label="anchor" href="#step-3--prepare-data"></a></h3>
 <p>Deep Learning requires extensive training using example data which
-shows the network what output it should produce for a given input. In
-this workshop our network will be trained by being “shown” a series of
-images and told what they contain. Once the network is trained it should
-be able to take another image and correctly classify its contents.</p>
+tells the network what output it should produce for a given input. In
+this workshop, our network will be trained on a series of images and
+told what they contain. Once the network is trained, it should be able
+to take another image and correctly classify its contents.</p>
 <p>You can use pre-existing data or prepare your own.</p>
 <div class="section level4">
 <h4 id="pre-existing-image-data">Pre-existing image data<a class="anchor" aria-label="anchor" href="#pre-existing-image-data"></a></h4>
@@ -366,8 +366,8 @@ of competitions are generally a good place to start.</li>
 labelled images used for object detection, instance segmentation,
 keypoint analysis, and captioning</li>
 </ul><p>Where labelled data exists, in most cases the data provider or other
-users will have created functions that you can use to load the data. We
-already did this in the introduction:</p>
+users will have created data-specific functions you can use to load the
+data. We already did this in the introduction:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -396,10 +396,10 @@ need to train a Deep Learning model? Unfortunately, this question is not
 easy to answer. It depends, among other things, on the complexity of the
 task (which you often do not know beforehand), the quality of the
 available dataset and the complexity of the network. For complex tasks
-with large neural networks, we often find that adding more data
-continues to improve performance. However, this is also not a generic
-truth: if the data you add is too similar to the data you already have,
-it will not give much new information to the neural network.</p>
+with large neural networks, adding more data often improves performance.
+However, this is also not a generic truth: if the data you add is too
+similar to the data you already have, it will not give much new
+information to the neural network.</p>
 <p>In case you have too little data available to train a complex network
 from scratch, it is sometimes possible to use a pretrained network that
 was trained on a similar problem. Another trick is data augmentation,
@@ -413,15 +413,14 @@ exposes a different view.</p>
 </div>
 <div class="section level4">
 <h4 id="custom-image-data">Custom image data<a class="anchor" aria-label="anchor" href="#custom-image-data"></a></h4>
-<p>In other cases, you will need to create your own set of labelled
-images.</p>
+<p>In other cases, you will create your own set of labelled images.</p>
 <p><strong>Custom data i. Data collection and Labeling:</strong></p>
 <p>For image classification the label applies to the entire image;
 object detection requires bounding boxes around objects of interest, and
 instance or semantic segmentation requires each pixel to be
 labelled.</p>
-<p>There are a number of open source software that can be used to label
-your dataset, including:</p>
+<p>There are a number of open source software used to label your
+dataset, including:</p>
 <ul><li>(Visual Geometry Group) <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" class="external-link">VGG Image
 Annotator</a> (VIA)</li>
 <li>
@@ -463,10 +462,10 @@ single square point of colored light.</p>
 designated by a red box:</p>
 <figure><img src="../fig/02_Jabiru_TGS_marked.jpg" alt="Jabiru image that is 552 pixels wide and 573 pixels high. A red square around the neck region indicates the area to zoom in on." class="figure mx-auto d-block"></figure><p>Now, if we zoomed in close enough to the red box, inte individual
 pixels would stand out:</p>
-<figure><img src="../fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg" alt="zoomed in area of Jabiru where you can the individual pixels stand out" class="figure mx-auto d-block"></figure><p>Note that each square in the enlarged image area (i.e. each pixel) is
-all one color, but that each pixel can have a different color from its
-neighbors. Viewed from a distance, these pixels seem to blend together
-to form the image.</p>
+<figure><img src="../fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg" alt="zoomed in area of Jabiru where the individual pixels stand out" class="figure mx-auto d-block"></figure><p>Note each square in the enlarged image area (i.e. each pixel) is all
+one color, but each pixel can be a different color from its neighbors.
+Viewed from a distance, these pixels seem to blend together to form the
+image.</p>
 </div>
 <div class="section level3">
 <h3 id="working-with-pixels">Working with Pixels<a class="anchor" aria-label="anchor" href="#working-with-pixels"></a></h3>
@@ -510,7 +509,7 @@ interchangeably.</p>
   WANT TO KNOW MORE: Python image libraries
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>Two of the most commonly used libraries for image representation and
 manipulation are NumPy and Pillow (PIL). Additionally, when working with
@@ -575,7 +574,7 @@ and consists of three color channels (RGB).</p>
 50000 images of 32x32 pixels and three channels.</p>
 <p>To reduce the computational load and ensure all of our images have a
 uniform size, we need to choose an image resolution (or size in pixels)
-and ensure that all of the images we use are resized to that shape to be
+and ensure all of the images we use are resized to that shape to be
 consistent.</p>
 <p>There are a couple of ways to do this in python but one way is to
 specify the size you want using an argument to the
@@ -609,7 +608,7 @@ RGB values to be between 0 and 1 is called
   WANT TO KNOW MORE: Why Normalize?
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Normalizing the RGB values to be between 0 and 1 is a common
@@ -697,7 +696,7 @@ After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0
 </div>
 <p>Of course, if there are a large number of images to preprocess you do
 not want to copy and paste these steps for each image! Fortunately,
-Keras has a solution for that: <a href="https://keras.io/api/data_loading/image/" class="external-link">tf.keras.utils.image_dataset_from_directory</a></p>
+Keras has a solution: <a href="https://keras.io/api/data_loading/image/" class="external-link">tf.keras.utils.image_dataset_from_directory</a></p>
 </div>
 <div class="section level3">
 <h3 id="one-hot-encoding">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a></h3>
@@ -742,7 +741,7 @@ categories: Red, Blue, Green.</p>
 <td align="center">0</td>
 <td align="right">0</td>
 </tr></tbody></table><p>Each category has its own binary column, and the value is set to 1 in
-the corresponding column for each row that matches that category.</p>
+the corresponding column for each row matches that category.</p>
 <p>The Keras function for one_hot encoding is called <a href="https://keras.io/api/utils/python_utils/#to_categorical-function" class="external-link">to_categorical</a>:</p>
 <p><code>tf.keras.utils.to_categorical(y, num_classes=None, dtype="float32")</code></p>
 <ul><li>
@@ -805,8 +804,8 @@ right and you want your model to recognize both</li>
 <ul><li>brightness, contrast, or hue</li>
 <li>these changes simulate variations in lighting conditions</li>
 </ul></li>
-</ul><p>We will discuss image augmentation in this lesson, but it is
-important that you be aware of this type of data preparation because it
+</ul><p>We will not discuss image augmentation in this lesson, but it is
+important that you are aware of this type of data preparation because it
 can make a big difference in your model’s ability to predict outside of
 your training data.</p>
 <p>Information about these operations are included in the Keras document
@@ -821,20 +820,20 @@ set. This initial split separates the data you will use to train your
 model from the data you will use to evaluate its performance.</p>
 <p>After this initial split, you can choose to further split the
 training set into a training set and a <strong>validation set</strong>.
-This is often done when you need to fine-tune hyperparameters, select
-the best model from a set of candidate models, or prevent
+This is often done when you are fine-tuning hyperparameters, selecting
+the best model from a set of candidate models, or preventing
 overfitting.</p>
-<p>In the previous episodes we used the ‘cifar10.load_data()’ that comes
-with the Keras installation to return data that is split into two (train
-and test sets). Now we want to split the training data into training and
-validation sets.</p>
+<p>In the previous episode, we used the ‘cifar10.load_data()’ method
+included with the Keras installation to return a dataset split into
+train and test sets. Now we want to split the training data into
+training and validation sets.</p>
 <p>To split a dataset into training and test sets there is a very
 convenient function from sklearn called <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html" class="external-link">train_test_split</a>:</p>
 <p><code>sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)</code></p>
 <ul><li>The first two parameters are the dataset (X) and the corresponding
 targets (y) (i.e. class labels).</li>
-<li>Next is the named parameter <code>test_size</code> this is the
-fraction of the dataset that is used for testing, in this case
+<li>Next is the named parameter <code>test_size</code>. This is the
+fraction of the dataset used for testing and in this case
 <code>0.2</code> means 20 per cent of the data will be used for
 testing.</li>
 <li>
@@ -882,7 +881,7 @@ out if the classes are well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -938,7 +937,7 @@ The number of labels in our validation set and the number images in each class a
   WANT TO KNOW MORE: Data Splitting Techniques
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Data is typically split into the training, validation, and test data
@@ -979,8 +978,8 @@ meaning some classes or categories are underrepresented.</p></li>
 <li><p>The data is split in such a way that each subset (training,
 validation, or test) maintains the same class distribution as the
 original dataset.</p></li>
-<li><p>This ensures that all classes are well-represented in each
-subset, which is important to avoid biased model evaluation.</p></li>
+<li><p>This ensures all classes are well-represented in each subset,
+which is important to avoid biased model evaluation.</p></li>
 </ul><p>It’s important to note that the exact split ratios (e.g., 80-10-10 or
 70-15-15) may vary depending on the problem, dataset size, and specific
 requirements. Additionally, data splitting should be performed randomly
@@ -1075,8 +1074,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/02-image-data.html",
   "identifier": "https://.github.io/github.com/instructor/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-12-07",
-  "datePublished": "2023-12-07"
+  "dateModified": "2023-12-11",
+  "datePublished": "2023-12-11"
 }
 
   </script><script>

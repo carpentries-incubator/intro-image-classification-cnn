@@ -318,7 +318,7 @@
         
 <section id="aio-setup-gpu"><p>Content from <a href="setup-gpu.html">Setup - GPU</a></p>
 <hr>
-<p> Last updated on 2023-12-07 | 
+<p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -353,7 +353,7 @@ class time assisting on GPU setups.</p>
 scientific computing, and a frequent choice for machine learning as
 well. Installing all of its scientific packages individually can be a
 bit difficult, however, so we recommend the installer <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> which
-includes most (but not all) of the software you will need. Make sure you
+includes most (but not all) of the software you need. Make sure you
 install the latest Python version 3.xx.</p>
 <p>Also, please set up your python environment <strong>at least</strong>
 a day in advance of the workshop. If you encounter problems with the
@@ -370,7 +370,7 @@ the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -394,7 +394,7 @@ may already be checked.)</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -416,11 +416,11 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<p>Note that the following installation steps require you to work from
-the shell. If you run into any difficulties, please request help before
-the workshop begins.</p>
+<p>Note the following installation steps require you to work from the
+shell. If you run into any difficulties, please request help before the
+workshop begins.</p>
 <ol style="list-style-type: decimal">
 <li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
 your web browser.</p></li>
@@ -474,8 +474,8 @@ Windows search function (Windows Logo Key) or Spotlight on macOS
 <figure><img src="fig/00_anaconda_prompt_search.png" alt="Screenshot of the Anaconda Prompt application" class="figure mx-auto d-block"></figure><p>A terminal window will open with the title ‘Anaconda Prompt’:</p>
 <figure><img src="fig/00_anaconda_prompt_window.png" alt="Screenshot of the terminal window that opens when you launch the Anaconda Prompt application" class="figure mx-auto d-block"></figure><p>Note the notation of the prompt inside the terminal window. The name
 inside the parentheses refers to which conda environment you are working
-inside of, and ‘base’ is the name given to the default environment that
-comes with every Anaconda distribution.</p>
+inside of, and ‘base’ is the name given to the default environment
+included with every Anaconda distribution.</p>
 <p>To create a new environment for this lesson, the command starts with
 the conda keywords <code>conda create</code>, followed by a name for the
 new environment and the package(s) to install:</p>
@@ -485,8 +485,8 @@ environment with the conda keywords <code>conda activate</code> followed
 by the environment name:</p>
 <pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu
 (cnn_workshop_gpu) C:\Users\Lab&gt;</code></pre>
-<p>You will know that you are in the right environment because the
-prompt changes from (base) to (cnn_workshop_gpu).</p>
+<p>You will know you are in the right environment because the prompt
+changes from (base) to (cnn_workshop_gpu).</p>
 <div id="callout1" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -495,9 +495,9 @@ prompt changes from (base) to (cnn_workshop_gpu).</p>
 <h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
 </h3>
 <div class="callout-content">
-<p>To set up a GPU environment you need to make sure that you have the
-appropriate hardware, system, and software necessary for GPU support.
-Here we are following the <a href="https://www.tensorflow.org/install/pip#windows-native_1" class="external-link">Windows
+<p>To set up a GPU environment, make sure you have the appropriate
+hardware, system, and software necessary for GPU support. Here we are
+following the <a href="https://www.tensorflow.org/install/pip#windows-native_1" class="external-link">Windows
 TensorFlow installation instructions</a> starting at <strong>Step 5. GPU
 setup</strong> but using Anaconda instead of Miniconda. Specific
 instructions can also be found there for <a href="https://www.tensorflow.org/install/pip#macos_1" class="external-link">MacOS</a> and <a href="https://www.tensorflow.org/install/pip#linux_1" class="external-link">Linux</a>
@@ -520,7 +520,7 @@ not.</p>
   AMD GPU
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
 <p>TODO Finish these instructions</p>
@@ -528,11 +528,10 @@ not.</p>
 </div>
 </div>
 </div>
-<p>There are two other packages we need to install that we could not
-install at the same time that we created the environment,
-<code>tensorflow</code> and <code>scikeras</code>.</p>
-<p>To install these two packages we have to use a different package
-manager called <code>pip</code>.</p>
+<p>There are two other packages we could not install when we created the
+environment, <code>tensorflow</code> and <code>scikeras</code>.</p>
+<p>To install these two packages we use a different package manager
+called <code>pip</code>.</p>
 <p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
 package management system for Python software packages. It is integrated
 into your local Python installation and runs regardless of your
@@ -548,7 +547,7 @@ operating system too.</p>
 <hr class="half-width">
 <p>We teach this lesson using Python in <a href="https://www.spyder-ide.org/" class="external-link">Spyder</a> (Scientific Python
 Development Environment), a free integrated development environment
-(IDE) that comes with Anaconda. Editing, interactive testing, debugging,
+(IDE) included with Anaconda. Editing, interactive testing, debugging,
 and introspection tools are all included in Spyder.</p>
 <p>To start Spyder, type the command <code>spyder</code>, making sure
 you are still in the workshop environment:</p>
@@ -585,9 +584,8 @@ giving errors. Most versions will work fine with this lesson, but:</p>
 </ul></section><section id="download-the-exercise-python-template-file"><h2 class="section-heading">Download the exercise python template file<a class="anchor" aria-label="anchor" href="#download-the-exercise-python-template-file"></a>
 </h2>
 <hr class="half-width">
-<p>The aim for this workshop is to create a python script that you can
-used as a “base python program” that can be used for future
-projects.</p>
+<p>The aim for this workshop is to create a python script to use as a
+“base python program” for future projects.</p>
 <p>In an effort to not clutter the scripts developed in the workshop
 with episode exercise/challenge code, this workshop will use an
 exercises python script for all of the exercises completed throughout
@@ -605,7 +603,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction to Deep Learning</a></p>
 <hr>
-<p> Last updated on 2023-12-07 | 
+<p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -659,25 +657,25 @@ something given the economic conditions and the cost of raw materials or
 predicting a country’s GDP given its life expectancy. Classifiers try to
 classify data into different categories, or assign a label; for example,
 deciding what characters are visible in a picture of some writing or if
-a message is spam or not.</p>
+an email or text message is spam or not.</p>
 </section><section id="training-data"><h2 class="section-heading">Training Data<a class="anchor" aria-label="anchor" href="#training-data"></a>
 </h2>
 <hr class="half-width">
-<p>Many (but not all) machine learning systems “learn” by taking a
+<p>Many, but not all, machine learning systems “learn” by taking a
 series of input data and output data and using it to form a model. The
 maths behind the machine learning doesn’t care what the data is as long
 as it can represented numerically or categorised. Some examples might
 include:</p>
 <ul>
-<li>predicting a person’s weight based on their height</li>
-<li>predicting house prices given stock market prices</li>
-<li>classifying if an email is spam or not</li>
-<li>classifying an image as, e.g., person, place, or particular
-object</li>
+<li>Predicting a person’s weight based on their height.</li>
+<li>Predicting house prices given stock market prices.</li>
+<li>Classifying an email as spam or not.</li>
+<li>Classifying an image as, e.g., a person, place, or particular
+object.</li>
 </ul>
-<p>Typically we will need to train our models with hundreds, thousands
-or even millions of examples before they work well enough to do any
-useful predictions or classifications with them.</p>
+<p>Typically we train our models with hundreds, thousands or even
+millions of examples before they work well enough to do any useful
+predictions or classifications with them.</p>
 </section><section id="deep-learning-machine-learning-and-artificial-intelligence"><h2 class="section-heading">Deep Learning, Machine Learning and Artificial Intelligence<a class="anchor" aria-label="anchor" href="#deep-learning-machine-learning-and-artificial-intelligence"></a>
 </h2>
 <hr class="half-width">
@@ -687,12 +685,12 @@ artificial intelligence (AI). Definitions of artificial intelligence
 vary, but usually involve having computers mimic the behaviour of
 intelligent biological systems. Since the 1950s many works of science
 fiction have dealt with the idea of an artificial intelligence which
-matches (or exceeds) human intelligence in all areas. Although there
+matches, or exceeds, human intelligence in all areas. Although there
 have been great advances in AI and ML research recently, we can only
 come close to human like intelligence in a few specialist areas and are
-still a long way from a general purpose AI. The image below shows some
-differences between artificial intelligence, machine learning and deep
-learning.</p>
+still a long way from a general purpose AI. The image below illustrates
+some differences between artificial intelligence, machine learning and
+deep learning.</p>
 <figure><img src="fig/01_AI_ML_DL_differences.png" alt="Three nested circles defining deep learning as a subset of machine learning which is a subset of artifical intelligence" class="figure mx-auto d-block"><figcaption>The image above is by Tukijaaliwa, CC BY-SA 4.0, via
 Wikimedia Commons, <a href="https://en.wikipedia.org/wiki/File:AI-ML-DL.svg" class="external-link">original
 source</a></figcaption></figure><div id="callout1" class="callout callout">
@@ -730,7 +728,7 @@ classification specifically involves the process of assigning a label or
 category to an input image. The goal is to enable computers to recognise
 and categorise objects, scenes, or patterns within images, just as a
 human would. Image classification can refer to one of several tasks:</p>
-<figure><img src="fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png" alt="Four types of image classification tasks include semantic segmentation where every pixel is labelled; classification and localisation that detects a single object like a cat; object detection that detects multiple objects like cats and dogs; and instance segmentation that detects each pixel of multiple objects" class="figure mx-auto d-block"></figure><p>Image classification has numerous practical applications,
+<figure><img src="fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png" alt="Four types of image classification tasks include semantic segmentation to label every pixel; classification and localisation to detect a single object like a cat; object detection to detect multiple objects like cats and dogs; and instance segmentation to detect each pixel of multiple objects" class="figure mx-auto d-block"></figure><p>Image classification has numerous practical applications,
 including:</p>
 <ul>
 <li>
@@ -756,8 +754,8 @@ a wide range of tasks.</p>
 </section><section id="deep-learning-workflow"><h2 class="section-heading">Deep Learning Workflow<a class="anchor" aria-label="anchor" href="#deep-learning-workflow"></a>
 </h2>
 <hr class="half-width">
-<p>To apply Deep Learning to a problem there are several steps we need
-to go through:</p>
+<p>To apply Deep Learning to a problem there are several steps to go
+through:</p>
 <div class="section level3">
 <h3 id="step-1--formulate-outline-the-problem">Step 1. Formulate / Outline the problem<a class="anchor" aria-label="anchor" href="#step-1--formulate-outline-the-problem"></a>
 </h3>
@@ -770,9 +768,9 @@ ship, truck</p>
 <div class="section level3">
 <h3 id="step-2--identify-inputs-and-outputs">Step 2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#step-2--identify-inputs-and-outputs"></a>
 </h3>
-<p>Next we need to identify what the inputs and outputs of the neural
-network will be. In our case, the data is images and the inputs could be
-the individual pixels of the images. We are performing a classification
+<p>Next identify what the inputs and outputs of the neural network will
+be. In our case, the data is images and the inputs could be the
+individual pixels of the images. We are performing a classification
 problem and we will have one output for each potential class.</p>
 </div>
 <div class="section level3">
@@ -796,10 +794,9 @@ encode our image labels.</p>
 </h4>
 <p>It is the goal of this training workshop to produce a Deep Learning
 program, using a Convolutional Neural Network. At the end of this
-workshop, we hope that this code can be used as a “starting point”. We
-will be creating an “initial program” for this introduction chapter,
-that will be copied and used as a foundation for the rest of the
-episodes.</p>
+workshop, we hope this code can be used as a “starting point”. We will
+create an “initial program” for this introduction chapter that will be
+copied and used as a foundation for the rest of the episodes.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -897,17 +894,16 @@ scratch<a class="anchor" aria-label="anchor" href="#step-4--choose-a-pre-trained
 <p>Often we can use an existing neural network instead of designing one
 from scratch. Training a network can take a lot of time and
 computational resources. There are a number of well publicised networks
-which have been shown to perform well at certain tasks. If you know of
-one which already does a similar task well, then it makes sense to use
-one of these.</p>
-<p>If instead we decide we do want to design our own network then we
-need to think about how many input neurons it will have, how many hidden
-layers and how many outputs, what types of layers we use (we will
-explore the different types later on). This will probably need some
-experimentation and we might have to try tweaking the network design a
-few times before we see acceptable results.</p>
-<p>Here we present an initial model that will be explained in detail
-later on:</p>
+which have been demonstrated to perform well at certain tasks. If you
+know of one which already does a similar task well, then it makes sense
+to use one of these.</p>
+<p>If instead we decide to design our own network, then we need to think
+about how many input neurons it will have, how many hidden layers and
+how many outputs, and what types of layers to use. This will require
+some experimentation and tweaking of the network design a few times
+before achieving acceptable results.</p>
+<p>Here we present an initial model to be explained in detail later
+on:</p>
 <div class="section level4">
 <h4 id="define-the-model">Define the Model<a class="anchor" aria-label="anchor" href="#define-the-model"></a>
 </h4>
@@ -948,11 +944,12 @@ later on:</p>
 </h3>
 <p>The loss function tells the training algorithm how far away the
 predicted value was from the true value. We will learn how to choose a
-loss function in more detail later on.</p>
+loss function in more detail in <a href="04-fit-cnn.html">Episode 4
+Compile and Train (Fit) a Convolutional Neural Network</a>.</p>
 <p>The optimizer is responsible for taking the output of the loss
 function and then applying some changes to the weights within the
-network. It is through this process that the “learning” (adjustment of
-the weights) is achieved.</p>
+network. It is through this process that “learning” (adjustment of the
+weights) is achieved.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1059,30 +1056,29 @@ small variations in the output. These variations are usually minor and
 should not significantly impact the overall performance or behavior of
 the model.</p>
 <p>If you are finding significant differences in the model predictions,
-this could be a sign that the model is not fully converged, where
-“convergence” refers to the point where the model has reached an optimal
-or near-optimal state in terms of learning from the training data.</p>
+this could be a sign the model is not fully converged. “Convergence”
+refers to the point where the model has reached an optimal or
+near-optimal state in terms of learning from the training data.</p>
 </div>
 </div>
 </div>
 <p>Congratulations, you just created your first image classification
 model and used it to classify an image!</p>
-<p>Was the classification correct? Why might it be incorrect and What
+<p>Was the classification correct? Why might it be incorrect and what
 can we do about?</p>
-<p>There are many ways we can try to improve the accuracy of our model,
-such as adding or removing layers to the model definition and
-fine-tuning the hyperparameters, which takes us to the next steps in our
-workflow.</p>
+<p>There are many ways to try to improve the accuracy of our model, such
+as adding or removing layers to the model definition and fine-tuning the
+hyperparameters, which takes us to the next steps in our workflow.</p>
 </div>
 <div class="section level3">
 <h3 id="step-8--measure-performance">Step 8. Measure Performance<a class="anchor" aria-label="anchor" href="#step-8--measure-performance"></a>
 </h3>
 <p>Once we trained the network we want to measure its performance. To do
-this we use some additional data that was <strong>not</strong> part of
-the training; this is known as a test set. There are many different
-methods available for measuring performance and which one is best
-depends on the type of task we are attempting. These metrics are often
-published as an indication of how well our network performs.</p>
+this, we use additional data that was <strong>not</strong> part of the
+training, called a test dataset. There are many different methods
+available for measuring performance and which one is best depends on the
+type of task we are attempting. These metrics are often published as an
+indication of how well our network performs.</p>
 </div>
 <div class="section level3">
 <h3 id="step-9--tune-hyperparameters">Step 9. Tune Hyperparameters<a class="anchor" aria-label="anchor" href="#step-9--tune-hyperparameters"></a>
@@ -1134,10 +1130,10 @@ patterns of data.</li>
 artificial intelligence.</li>
 <li>Convolutional neural networks are well suited for image
 classification.</li>
-<li>To use Deep Learning effectively we need to go through a workflow
-of: defining the problem, identifying inputs and outputs, preparing
-data, choosing the type of network, training the model, tuning
-hyperparameters, measuring performance before we can classify data.</li>
+<li>To use Deep Learning effectively we follow a workflow of: defining
+the problem, identifying inputs and outputs, preparing data, choosing
+the type of network, training the model, tuning hyperparameters,
+measuring performance before we can classify data.</li>
 </ul>
 </div>
 </div>
@@ -1150,7 +1146,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-02-image-data"><p>Content from <a href="02-image-data.html">Introduction to Image Data</a></p>
 <hr>
-<p> Last updated on 2023-12-07 | 
+<p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1204,9 +1200,9 @@ deer, dog, frog, horse, ship, or truck</p>
 <div class="section level3">
 <h3 id="step-2--identify-inputs-and-outputs">Step 2. Identify inputs and outputs<a class="anchor" aria-label="anchor" href="#step-2--identify-inputs-and-outputs"></a>
 </h3>
-<p>Next we need to identify what the inputs and outputs of the neural
-network will be. In our case, the data is images and the inputs could be
-the individual pixels of the images.</p>
+<p>Next we identify the inputs and outputs of the neural network. In our
+case, the data is images and the inputs could be the individual pixels
+of the images.</p>
 <p>We are performing a classification problem and we want to output one
 category for each image.</p>
 </div>
@@ -1214,10 +1210,10 @@ category for each image.</p>
 <h3 id="step-3--prepare-data">Step 3. Prepare data<a class="anchor" aria-label="anchor" href="#step-3--prepare-data"></a>
 </h3>
 <p>Deep Learning requires extensive training using example data which
-shows the network what output it should produce for a given input. In
-this workshop our network will be trained by being “shown” a series of
-images and told what they contain. Once the network is trained it should
-be able to take another image and correctly classify its contents.</p>
+tells the network what output it should produce for a given input. In
+this workshop, our network will be trained on a series of images and
+told what they contain. Once the network is trained, it should be able
+to take another image and correctly classify its contents.</p>
 <p>You can use pre-existing data or prepare your own.</p>
 <div class="section level4">
 <h4 id="pre-existing-image-data">Pre-existing image data<a class="anchor" aria-label="anchor" href="#pre-existing-image-data"></a>
@@ -1242,8 +1238,8 @@ labelled images used for object detection, instance segmentation,
 keypoint analysis, and captioning</li>
 </ul>
 <p>Where labelled data exists, in most cases the data provider or other
-users will have created functions that you can use to load the data. We
-already did this in the introduction:</p>
+users will have created data-specific functions you can use to load the
+data. We already did this in the introduction:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1272,10 +1268,10 @@ need to train a Deep Learning model? Unfortunately, this question is not
 easy to answer. It depends, among other things, on the complexity of the
 task (which you often do not know beforehand), the quality of the
 available dataset and the complexity of the network. For complex tasks
-with large neural networks, we often find that adding more data
-continues to improve performance. However, this is also not a generic
-truth: if the data you add is too similar to the data you already have,
-it will not give much new information to the neural network.</p>
+with large neural networks, adding more data often improves performance.
+However, this is also not a generic truth: if the data you add is too
+similar to the data you already have, it will not give much new
+information to the neural network.</p>
 <p>In case you have too little data available to train a complex network
 from scratch, it is sometimes possible to use a pretrained network that
 was trained on a similar problem. Another trick is data augmentation,
@@ -1290,15 +1286,14 @@ exposes a different view.</p>
 <div class="section level4">
 <h4 id="custom-image-data">Custom image data<a class="anchor" aria-label="anchor" href="#custom-image-data"></a>
 </h4>
-<p>In other cases, you will need to create your own set of labelled
-images.</p>
+<p>In other cases, you will create your own set of labelled images.</p>
 <p><strong>Custom data i. Data collection and Labeling:</strong></p>
 <p>For image classification the label applies to the entire image;
 object detection requires bounding boxes around objects of interest, and
 instance or semantic segmentation requires each pixel to be
 labelled.</p>
-<p>There are a number of open source software that can be used to label
-your dataset, including:</p>
+<p>There are a number of open source software used to label your
+dataset, including:</p>
 <ul>
 <li>(Visual Geometry Group) <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" class="external-link">VGG Image
 Annotator</a> (VIA)</li>
@@ -1345,10 +1340,10 @@ single square point of colored light.</p>
 designated by a red box:</p>
 <figure><img src="fig/02_Jabiru_TGS_marked.jpg" alt="Jabiru image that is 552 pixels wide and 573 pixels high. A red square around the neck region indicates the area to zoom in on." class="figure mx-auto d-block"></figure><p>Now, if we zoomed in close enough to the red box, inte individual
 pixels would stand out:</p>
-<figure><img src="fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg" alt="zoomed in area of Jabiru where you can the individual pixels stand out" class="figure mx-auto d-block"></figure><p>Note that each square in the enlarged image area (i.e. each pixel) is
-all one color, but that each pixel can have a different color from its
-neighbors. Viewed from a distance, these pixels seem to blend together
-to form the image.</p>
+<figure><img src="fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg" alt="zoomed in area of Jabiru where the individual pixels stand out" class="figure mx-auto d-block"></figure><p>Note each square in the enlarged image area (i.e. each pixel) is all
+one color, but each pixel can be a different color from its neighbors.
+Viewed from a distance, these pixels seem to blend together to form the
+image.</p>
 </div>
 <div class="section level3">
 <h3 id="working-with-pixels">Working with Pixels<a class="anchor" aria-label="anchor" href="#working-with-pixels"></a>
@@ -1393,7 +1388,7 @@ interchangeably.</p>
   WANT TO KNOW MORE: Python image libraries
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>Two of the most commonly used libraries for image representation and
 manipulation are NumPy and Pillow (PIL). Additionally, when working with
@@ -1467,7 +1462,7 @@ and consists of three color channels (RGB).</p>
 50000 images of 32x32 pixels and three channels.</p>
 <p>To reduce the computational load and ensure all of our images have a
 uniform size, we need to choose an image resolution (or size in pixels)
-and ensure that all of the images we use are resized to that shape to be
+and ensure all of the images we use are resized to that shape to be
 consistent.</p>
 <p>There are a couple of ways to do this in python but one way is to
 specify the size you want using an argument to the
@@ -1502,7 +1497,7 @@ RGB values to be between 0 and 1 is called
   WANT TO KNOW MORE: Why Normalize?
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Normalizing the RGB values to be between 0 and 1 is a common
@@ -1592,7 +1587,7 @@ After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0
 </div>
 <p>Of course, if there are a large number of images to preprocess you do
 not want to copy and paste these steps for each image! Fortunately,
-Keras has a solution for that: <a href="https://keras.io/api/data_loading/image/" class="external-link">tf.keras.utils.image_dataset_from_directory</a></p>
+Keras has a solution: <a href="https://keras.io/api/data_loading/image/" class="external-link">tf.keras.utils.image_dataset_from_directory</a></p>
 </div>
 <div class="section level3">
 <h3 id="one-hot-encoding">One-hot encoding<a class="anchor" aria-label="anchor" href="#one-hot-encoding"></a>
@@ -1666,7 +1661,7 @@ categories: Red, Blue, Green.</p>
 </tbody>
 </table>
 <p>Each category has its own binary column, and the value is set to 1 in
-the corresponding column for each row that matches that category.</p>
+the corresponding column for each row matches that category.</p>
 <p>The Keras function for one_hot encoding is called <a href="https://keras.io/api/utils/python_utils/#to_categorical-function" class="external-link">to_categorical</a>:</p>
 <p><code>tf.keras.utils.to_categorical(y, num_classes=None, dtype="float32")</code></p>
 <ul>
@@ -1740,8 +1735,8 @@ right and you want your model to recognize both</li>
 </ul>
 </li>
 </ul>
-<p>We will discuss image augmentation in this lesson, but it is
-important that you be aware of this type of data preparation because it
+<p>We will not discuss image augmentation in this lesson, but it is
+important that you are aware of this type of data preparation because it
 can make a big difference in your model’s ability to predict outside of
 your training data.</p>
 <p>Information about these operations are included in the Keras document
@@ -1757,21 +1752,21 @@ set. This initial split separates the data you will use to train your
 model from the data you will use to evaluate its performance.</p>
 <p>After this initial split, you can choose to further split the
 training set into a training set and a <strong>validation set</strong>.
-This is often done when you need to fine-tune hyperparameters, select
-the best model from a set of candidate models, or prevent
+This is often done when you are fine-tuning hyperparameters, selecting
+the best model from a set of candidate models, or preventing
 overfitting.</p>
-<p>In the previous episodes we used the ‘cifar10.load_data()’ that comes
-with the Keras installation to return data that is split into two (train
-and test sets). Now we want to split the training data into training and
-validation sets.</p>
+<p>In the previous episode, we used the ‘cifar10.load_data()’ method
+included with the Keras installation to return a dataset split into
+train and test sets. Now we want to split the training data into
+training and validation sets.</p>
 <p>To split a dataset into training and test sets there is a very
 convenient function from sklearn called <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html" class="external-link">train_test_split</a>:</p>
 <p><code>sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)</code></p>
 <ul>
 <li>The first two parameters are the dataset (X) and the corresponding
 targets (y) (i.e. class labels).</li>
-<li>Next is the named parameter <code>test_size</code> this is the
-fraction of the dataset that is used for testing, in this case
+<li>Next is the named parameter <code>test_size</code>. This is the
+fraction of the dataset used for testing and in this case
 <code>0.2</code> means 20 per cent of the data will be used for
 testing.</li>
 <li>
@@ -1820,7 +1815,7 @@ out if the classes are well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -1876,7 +1871,7 @@ The number of labels in our validation set and the number images in each class a
   WANT TO KNOW MORE: Data Splitting Techniques
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Data is typically split into the training, validation, and test data
@@ -1924,8 +1919,8 @@ meaning some classes or categories are underrepresented.</p></li>
 <li><p>The data is split in such a way that each subset (training,
 validation, or test) maintains the same class distribution as the
 original dataset.</p></li>
-<li><p>This ensures that all classes are well-represented in each
-subset, which is important to avoid biased model evaluation.</p></li>
+<li><p>This ensures all classes are well-represented in each subset,
+which is important to avoid biased model evaluation.</p></li>
 </ul>
 <p>It’s important to note that the exact split ratios (e.g., 80-10-10 or
 70-15-15) may vary depending on the problem, dataset size, and specific
@@ -1967,7 +1962,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Build a Convolutional Neural Network</a></p>
 <hr>
-<p> Last updated on 2023-12-07 | 
+<p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2034,9 +2029,9 @@ connections describe a computational graph, an example can be seen in
 the image below. In most neural networks neurons are aggregated into
 layers. Signals travel from the input layer to the output layer,
 possibly through one or more intermediate layers called hidden layers.
-The image below shows an example of a neural network with three layers,
-each circle is a neuron, each line is an edge and the arrows indicate
-the direction data moves in.</p>
+The image below illustrates an example of a neural network with three
+layers, each circle is a neuron, each line is an edge and the arrows
+indicate the direction data moves in.</p>
 <figure><img src="fig/03_neural_net.png" alt="diagram of a neural with four neurons taking multiple inputs and their weights and predicting multiple outputs" class="figure mx-auto d-block"><figcaption>The image above is by Glosser.ca, <a href="https://creativecommons.org/licenses/by-sa/3.0" class="external-link">CC BY-SA 3.0</a>,
 via Wikimedia Commons, <a href="https://commons.wikimedia.org/wiki/File:Colored_neural_network.svg" class="external-link">original
 source</a></figcaption></figure><p>Neural networks aren’t a new technique, they have been around since
@@ -2050,9 +2045,9 @@ neural networks or Deep Learning</p>
 </h2>
 <hr class="half-width">
 <p>A convolutional neural network (CNN) is a type of artificial neural
-network (ANN) that is most commonly applied to analyze visual imagery.
-They are designed to recognize the spatial structure of images when
-extracting features.</p>
+network (ANN) most commonly applied to analyze visual imagery. They are
+designed to recognize the spatial structure of images when extracting
+features.</p>
 <div class="section level3">
 <h3 id="step-4--build-an-architecture-from-scratch-or-choose-a-pretrained-model">Step 4. Build an architecture from scratch or choose a pretrained
 model<a class="anchor" aria-label="anchor" href="#step-4--build-an-architecture-from-scratch-or-choose-a-pretrained-model"></a>
@@ -2100,9 +2095,9 @@ layers and linking them together.</p>
 <p>The Input in Keras gets special treatment when images are used. Keras
 automatically calculates the number of inputs and outputs a specific
 layer needs and therefore how many edges need to be created. This means
-we need to let Keras know how big our input is going to be. We do this
-by instantiating a <code>keras.Input</code> class and pass it a tuple
-that indicates the dimensionality of the input data.</p>
+we must let Keras know how big our input is going to be. We do this by
+instantiating a <code>keras.Input</code> class and pass it a tuple to
+indicate the dimensionality of the input data.</p>
 <p>In our case, the shape of an image is defined by its pixel dimensions
 and number of channels:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -2146,7 +2141,7 @@ filters or kernels, extracting local patterns and features (e.g. edges,
 corners). These filters enable the network to capture hierarchical
 representations of visual information, allowing for effective feature
 learning.</p>
-<p>To find the particular features of an image, CNN’s make use of a
+<p>To find the particular features of an image, CNNs make use of a
 concept from image processing that precedes Deep Learning.</p>
 <p>A <strong>convolution matrix</strong>, or <strong>kernel</strong>, is
 a matrix transformation that we ‘slide’ over the image to calculate
@@ -2158,15 +2153,14 @@ example think of the 3x3 kernel:</p>
  [0,   0,  0]
  [1,   1,  1]]</code></pre>
 <p>This kernel will give a high value to a pixel if it is on a
-horizontal border between dark and light areas. Note that for RGB
-images, the kernel should also have a depth of 3, one for each color
-channel.</p>
+horizontal border between dark and light areas. Note for RGB images, the
+kernel should also have a depth of 3, one for each color channel.</p>
 <p>In the following image, the effect of such a kernel on the values of
 a single-channel image stands out. The red cell in the output matrix is
 the result of multiplying and summing the values of the red square in
-the input, and the kernel. Applying this kernel to a real image shows
-that it indeed detects horizontal edges.</p>
-<figure><img src="fig/03_conv_matrix.png" alt="6x5 input matrix representing a single color channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix that detects horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="fig/03_conv_image.png" alt="single color channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges that stand out" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
+the input, and the kernel. Applying this kernel to a real image
+demonstrates it does indeed detect horizontal edges.</p>
+<figure><img src="fig/03_conv_matrix.png" alt="6x5 input matrix representing a single color channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="fig/03_conv_image.png" alt="single color channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
 convolutional matrices, also known as kernels. The matrix values,
 serving as weights, are learned during the training process. The
 convolutional layer produces an ‘image’ for each kernel, representing
@@ -2181,12 +2175,12 @@ the activation function.</p>
 <p>The instantiation here has three parameters and a seemingly strange
 combination of parentheses, so let us break it down.</p>
 <ul>
-<li>The first parameter is the number of filters we want in this layer
-and this is one of the hyperparameters of our system and needs to be
-chosen carefully.</li>
+<li>The first parameter is the number of filters in this layer. This is
+one of the hyperparameters of our system and should be chosen
+carefully.</li>
 </ul>
-<p>The term <strong>filter</strong> in the context of CNN’s is often
-used synonymously with kernel. However, a filter refers to the learned
+<p>The term <strong>filter</strong> in the context of CNNs is often used
+synonymously with kernel. However, a filter refers to the learned
 parameters (weights) that are applied during the convolution operation.
 For example, in a convolutional layer, you might have multiple filters
 (or kernels), each responsible for detecting different features in the
@@ -2201,17 +2195,17 @@ discussed. Smaller kernels are often used to capture fine-grained
 features and odd-sized filters are preferred because they have a centre
 pixel which helps maintain spatial symmetry during covolutions.</p></li>
 <li><p>The third parameter is the activation function to use; here we
-choose <strong>relu</strong> which is 0 for inputs that are 0 and below
-and the identity function (returning the same value) for inputs above 0.
-This is a commonly used activation function in deep neural networks that
-is proven to work well. We will discuss activation functions later in
-<strong>Step 9. Tune hyperparameters</strong> but to satisfy your
-curiosity, <code>ReLU</code> stands for Rectified Linear Unit
-(ReLU).</p></li>
+choose <strong>relu</strong> which is zero for inputs that are zero and
+below and the identity function (returning the same value) for inputs
+above zero. This is a commonly used activation function in deep neural
+networks that is proven to work well. We will discuss activation
+functions later in <strong>Step 9. Tune hyperparameters</strong> but to
+satisfy your curiosity, <code>ReLU</code> stands for Rectified Linear
+Unit (ReLU).</p></li>
 <li><p>Next is an extra set of parenthenses with inputs in them that
-means that after an instance of the Conv2D layer is created, it can be
-called as if it was a function. This tells the Conv2D layer to connect
-the layer passed as a parameter, in this case the inputs.</p></li>
+means after an instance of the Conv2D layer is created, it can be called
+as if it was a function. This tells the Conv2D layer to connect the
+layer passed as a parameter, in this case the inputs.</p></li>
 <li><p>Finally, we store a reference so we can pass it to the next
 layer.</p></li>
 </ul>
@@ -2228,11 +2222,11 @@ Fortunately, there are resources out there that enable users to
 interactively play around with images and convolutions:</p>
 <ul>
 <li><p><a href="https://setosa.io/ev/image-kernels/" class="external-link">Image kernels
-explained</a> shows how different convolutions can achieve certain
+explained</a> illustrates how different convolutions can achieve certain
 effects on an image, like sharpening and blurring.</p></li>
 <li><p>The <a href="https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-convolutional-neural-networks" class="external-link">convolutional
-neural network cheat sheet</a> shows animated examples of the different
-components of convolutional neural nets.</p></li>
+neural network cheat sheet</a> provides animated examples of the
+different components of convolutional neural nets.</p></li>
 </ul>
 </div>
 </div>
@@ -2258,14 +2252,14 @@ convolution?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
-ignore them, which means that your output image is slightly smaller then
-your input. It is also possible to ‘pad’ the borders, e.g., with the
-same value or with zeros, so that the convolution can also be applied to
-the border pixels. In that case, the output image will have the same
-size as the input image.</p>
+ignore them, which means your output image is slightly smaller then your
+input. It is also possible to ‘pad’ the borders, e.g., with the same
+value or with zeros, so that the convolution can also be applied to the
+border pixels. In that case, the output image will have the same size as
+the input image.</p>
 </div>
 </div>
 </div>
@@ -2322,7 +2316,7 @@ structures of chemical compounds.</p>
 <strong>Dense layers</strong><a class="anchor" aria-label="anchor" href="#dense-layers"></a>
 </h5>
 <p>A <strong>dense</strong> layer has a number of neurons, which is a
-parameter you can choose when you create the layer. When connecting the
+parameter you choose when you create the layer. When connecting the
 layer to its input and output layers every neuron in the dense layer
 gets an edge (i.e. connection) to <strong>all</strong> of the input
 neurons and <strong>all</strong> of the output neurons.</p>
@@ -2351,7 +2345,7 @@ neurons may lead to overfitting.</p>
 <div class="callout-content">
 <p>Number of parameters</p>
 <p>Suppose we create a single Dense (fully connected) layer with 100
-hidden units that connect to the input pixels, how many parameters does
+hidden units that connects to the input pixels. How many parameters does
 this layer have?</p>
 </div>
 </div>
@@ -2363,7 +2357,7 @@ this layer have?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -2432,11 +2426,11 @@ input for a dense layer.</p>
 <div class="section level4">
 <h4 id="cnn-part-3--output-layer">CNN Part 3. Output Layer<a class="anchor" aria-label="anchor" href="#cnn-part-3--output-layer"></a>
 </h4>
-<p>Recall for the outputs we need to ask what we want to identify from
-the data. If we are performing a classification problem then typically
-we will have one output for each potential class. We finish with a Dense
-layer to connect the output cells of the convolutional layer to the
-outputs for our 10 classes.</p>
+<p>Recall for the outputs we asked ourselves what we want to identify
+from the data. If we are performing a classification problem, then
+typically we have one output for each potential class. We finish with a
+Dense layer to connect the output cells of the convolutional layer to
+the outputs for our 10 classes.</p>
 <p>Note the use of <code>softmax</code> activation for this Dense layer
 as opposed to the <code>ReLU</code> activation used above. We use
 softmax for multiclass data because it helps the computer give each
@@ -2542,16 +2536,16 @@ performance increases.</p>
 <hr class="half-width">
 <p>This CNN should be able to run with the CIFAR-10 dataset and provide
 reasonable results for basic classification tasks. However, do keep in
-mind that this model is relatively simple, and its performance may not
-be as high as more complex architectures. The reason it’s called deep
-learning is because in most cases, the more layers we have, i.e. the
-deeper and more sophisticated CNN architecture we use, the better the
+mind this model is relatively simple, and its performance may not be as
+high as more complex architectures. The reason it’s called deep learning
+is because in most cases, the more layers we have, i.e. the deeper and
+more sophisticated CNN architecture we use, the better the
 performance.</p>
 <p>How can we tell? We can inspect a couple metrics produced during the
 training process to detect whether our model is underfitting or
-overfitting. To do that, we first need to continue with the next steps
-in our Deep Learning workflow, <strong>Step 5. Choose a loss function
-and optimizer</strong> and <strong>Step 6. Train model</strong>.</p>
+overfitting. To do that, we continue with the next steps in our Deep
+Learning workflow, <strong>Step 5. Choose a loss function and
+optimizer</strong> and <strong>Step 6. Train model</strong>.</p>
 <p>Make sure you saved your model before moving on.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
@@ -2590,7 +2584,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-04-fit-cnn"><p>Content from <a href="04-fit-cnn.html">Compile and Train (Fit) a Convolutional Neural Network</a></p>
 <hr>
-<p> Last updated on 2023-12-07 | 
+<p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2638,8 +2632,8 @@ training.</li>
 </h3>
 <p>We have designed a convolutional neural network (CNN) that in theory
 we should be able to train to classify images.</p>
-<p>We now need to select an appropriate optimizer and loss function that
-we will use during training (fitting).</p>
+<p>We now select an appropriate optimizer and loss function to use
+during training (fitting).</p>
 <p>Recall how we compiled our model in the introduction:</p>
 <pre><code><span><span class="co">## compile the model</span></span>
 <span><span class="co">#model_intro.compile(optimizer = 'adam', </span></span>
@@ -2671,10 +2665,10 @@ appropriate to use when the data has two or more label classes.</p>
 with which the model learns to optimize on the provided loss
 function.</p>
 <p>We need to choose which optimizer to use and, if this optimizer has
-parameters, what values to use for those. Furthermore, we need to
-specify how many times to show the training samples to the optimizer. In
-other words, the optimizer is responsible for taking the output of the
-loss function and then applying some changes to the weights within the
+parameters, what values to use for those. Furthermore, we specify how
+many times to present the training samples to the optimizer. In other
+words, the optimizer is responsible for taking the output of the loss
+function and then applying some changes to the weights within the
 network. It is through this process that the “learning” (adjustment of
 the weights) is achieved.</p>
 <pre><code><span><span class="co">## compile the model</span></span>
@@ -2682,17 +2676,18 @@ the weights) is achieved.</p>
 <span><span class="co">#                    loss = keras.losses.CategoricalCrossentropy(), </span></span>
 <span><span class="co">#                    metrics = ['accuracy'])</span></span></code></pre>
 <p><strong>Adam</strong></p>
-<p>Here we picked one of the most common optimizers that works well for
-most tasks, the <strong>Adam</strong> optimizer. Similar to activation
-functions, the choice of optimizer depends on the problem you are trying
-to solve, your model architecture and your data. Adam is a good starting
-point though, which is why we chose it. Adam has a number of parameters,
-but the default values work well for most problems so we will use it
-with its default parameters.</p>
+<p>Here we picked one of the most common optimizers demonstrated to work
+well for most tasks, the <strong>Adam</strong> optimizer. Similar to
+activation functions, the choice of optimizer depends on the problem you
+are trying to solve, your model architecture, and your data. Adam is a
+good starting point though, which is why we chose it. Adam has a number
+of parameters, but the default values work well for most problems so we
+will use it with its default parameters.</p>
 <p>It is defined by the <code>keras.optimizers.Adam</code> class and
 takes a single parameter <code>learning_rate=0.01</code></p>
-<p>There are many optimizers to choose from so check the <a href="https://keras.io/api/optimizers/" class="external-link">optimizer documentation</a>. A
-couple more popular or famous ones include:</p>
+<p>The <a href="https://keras.io/api/optimizers/" class="external-link">optimizer
+documentation</a> describes the optimizers to choose. A couple more
+popular or famous ones include:</p>
 <ul>
 <li><p><strong>Stochastic Gradient Descent (sgd)</strong>: Stochastic
 Gradient Descent (SGD) is one of the fundamental optimization algorithms
@@ -2735,24 +2730,24 @@ rate leads to smaller updates, providing more cautious convergence, but
 it may take longer to reach the optimal solution. Finding an appropriate
 learning rate is crucial for effectively training machine learning
 models.</p>
-<p>The figure below illustrates a small learning rate that will not
-traverse toward the minima of the gradient descent algorithm in a timely
-manner, i.e. number of epochs.</p>
-<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg" title="Small learning rate leads to inefficient approach to loss minima" alt="plot of loss over value of weight shows how a small learning rate takes a long time to reach the optimal solution" class="figure mx-auto d-block"><figcaption>Small learning rate leads to inefficient approach to
+<p>The figure below illustrates a small learning rate will not traverse
+toward the minima of the gradient descent algorithm in a timely manner,
+i.e. number of epochs.</p>
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg" title="Small learning rate leads to inefficient approach to loss minima" alt="Plot of loss over weight value illustrating how a small learning rate takes a long time to reach the optimal solution." class="figure mx-auto d-block"><figcaption>Small learning rate leads to inefficient approach to
 loss minima</figcaption></figure><p>On the other hand, specifying a learning rate that is <em>too
 high</em> will result in a loss value that never approaches the minima.
 That is, ‘bouncing between the sides’, thus never reaching a minima to
 cease learning.</p>
-<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg" alt="plot of loss over value of weight shows how a large learning rate never approaches the optimal solution because it bounces between the sides" class="figure mx-auto d-block"><figcaption>A large learning rate results in overshooting the
-gradient descent minima</figcaption></figure><p>Lastly, we can observe below that a modest learning rate will ensure
-that the product of multiplying the scalar gradient value, and the
-learning rate does not result in too small steps, nor a chaotic bounce
-between sides of the gradient where steepness is greatest.</p>
-<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg" alt="plot of loss over value of weight shows how a a good learning rate gets to optimal solution gradually" class="figure mx-auto d-block"><figcaption>An optimal learning rate supports a gradual approach
-to the minima</figcaption></figure><p>(These images were obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg" alt="Plot of loss over weight value illustrating how a large learning rate never approaches the optimal solution because it bounces between the sides." class="figure mx-auto d-block"><figcaption>A large learning rate results in overshooting the
+gradient descent minima</figcaption></figure><p>Finally, a modest learning rate will ensure that the product of
+multiplying the scalar gradient value and the learning rate does not
+result in too small steps, nor a chaotic bounce between sides of the
+gradient where steepness is greatest.</p>
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg" alt="Plot of loss over weight value illustrating how a good learning rate gets to optimal solution gradually." class="figure mx-auto d-block"><figcaption>An optimal learning rate supports a gradual approach
+to the minima</figcaption></figure><p>These images were obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
 Developers Machine Learning Crash Course</a> and is licenced under the
 <a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons
-4.0 Attribution Licence</a>.)</p>
+4.0 Attribution Licence</a>.</p>
 </div>
 </div>
 </div>
@@ -2761,27 +2756,28 @@ Developers Machine Learning Crash Course</a> and is licenced under the
 <div class="section level4">
 <h4 id="metrics">Metrics<a class="anchor" aria-label="anchor" href="#metrics"></a>
 </h4>
-<p>After we select the desired optimizer and loss function we want to
-specify the metric(s) to be evaluated by the model during training and
-testing. A <strong>metric</strong> is a function that is used to judge
-the performance of your model.</p>
+<p>After we select the desired optimizer and loss function we specify
+the metric(s) to be evaluated by the model during training and testing.
+A <strong>metric</strong> is a function used to judge the performance of
+your model.</p>
 <pre><code><span><span class="co">## compile the model</span></span>
 <span><span class="co">#model_intro.compile(optimizer = 'adam', </span></span>
 <span><span class="co">#                    loss = keras.losses.CategoricalCrossentropy(), </span></span>
 <span><span class="co">#                    metrics = ['accuracy']) </span></span></code></pre>
-<p>Metric functions are similar to loss functions, except that the
-results from evaluating a metric are not used when training the model.
-Note that you may use any loss function as a metric.</p>
-<p>Typically you will use <code>accuracy</code> which calculates how
-often predictions matches labels.</p>
-<p>The accuracy function creates two local variables, total and count
-that are used to compute the frequency with which predictions matches
+<p>Metric functions are similar to loss functions, except the results
+from evaluating a metric are not used when training the model. Note you
+are able to use any loss function as a metric.</p>
+<p>Typically you will use <code>accuracy</code>, which calculates how
+often the model predictions match the true labels.</p>
+<p>The accuracy function creates two local variables, total and count,
+that it uses to compute the frequency with which predictions matches
 labels. This frequency is ultimately returned as accuracy: an operation
 that divides the total by count.</p>
-<p>A list of metrics can be found in the Keras <a href="https://keras.io/api/metrics/" class="external-link">metrics</a> documentation.</p>
-<p>Now that we have decided on which loss function, optimizer, and
-metric to use we can compile the model using <code>model.compile</code>.
-Compiling the model prepares it for training.</p>
+<p>The Keras <a href="https://keras.io/api/metrics/" class="external-link">metrics</a>
+documentation provides a list of potential metrics.</p>
+<p>Now that we selected which loss function, optimizer, and metric to
+use, we compile the model using <code>model.compile</code>. Compiling
+the model prepares it for training.</p>
 </div>
 </div>
 <div class="section level3">
@@ -2793,7 +2789,7 @@ takes the image data and target (label) data as inputs and has several
 other parameters for certain options of the training. Here we only set a
 different number of epochs.</p>
 <p>A training <strong>epoch</strong> means that every sample in the
-training data has been shown to the neural network and used to update
+training data has been given to the neural network and used to update
 its parameters. In general, CNN models improve with more epochs of
 training, but only to a point.</p>
 <p>We want to train our model for 10 epochs:</p>
@@ -2847,10 +2843,10 @@ experiences more diverse samples during training.</p>
 <p>However, it’s essential to consider the trade-offs of using different
 batch sizes. Smaller batch sizes may require more iterations to cover
 the entire dataset, which can lead to longer training times. Larger
-batch sizes can provide more stable gradients but might suffer from
-generalization issues. There is no one-size-fits-all answer, and you may
-need to experiment with different batch sizes to find the one that works
-best for your specific model, architecture, and dataset.</p>
+batch sizes can provide more stable gradients, but might suffer from
+generalization issues. There is no one-size-fits-all answer. You should
+experiment with different batch sizes to find the best-performing one
+for your specific model, architecture, and dataset.</p>
 </div>
 </div>
 </div>
@@ -2860,9 +2856,10 @@ best for your specific model, architecture, and dataset.</p>
 <h3 id="monitor-training-progress-aka-model-evaluation-during-training">Monitor Training Progress (aka Model Evaluation during
 Training)<a class="anchor" aria-label="anchor" href="#monitor-training-progress-aka-model-evaluation-during-training"></a>
 </h3>
-<p>Now that we know more about the compilation and fitting of CNN’s let
-us take a inspect the training metrics for our model.</p>
-<p>Using seaborn we can plot the training process using the history:</p>
+<p>We now know more about the compilation and fitting of CNNs. Let us
+inspect the training metrics for our model.</p>
+<p>Using seaborn, we can plot the training process using the
+history:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2878,10 +2875,10 @@ us take a inspect the training metrics for our model.</p>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_intro_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_intro_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
 </div>
-<figure><img src="fig/04_model_intro_accuracy_loss.png" alt="two panel figure; the figure on the left shows the training loss starting at 1.5 and decreasing to 0.7 and the validation loss decreasing from 1.3 to 1.0 before leveling out; the figure on the right shows the training accuracy increasing from 0.45 to 0.75 and the validation accuracy increasing from 0.53 to 0.65 before leveling off" class="figure mx-auto d-block"></figure><p>This plot can be used to identify whether the training is well
-configured or whether there are problems that need to be addressed. The
-solid blue lines show the training loss and accuracy; the dashed orange
-lines show the validation loss and accuracy.</p>
+<figure><img src="fig/04_model_intro_accuracy_loss.png" alt="two panel figure; the figure on the left illustrates the training loss starting at 1.5 and decreasing to 0.7 and the validation loss decreasing from 1.3 to 1.0 before leveling out; the figure on the right illustrates the training accuracy increasing from 0.45 to 0.75 and the validation accuracy increasing from 0.53 to 0.65 before leveling off" class="figure mx-auto d-block"></figure><p>This plot is used to identify whether the training is well configured
+or whether there are problems to address. The solid blue lines represent
+the training loss and accuracy; the dashed orange lines represent the
+validation loss and accuracy.</p>
 <div id="inspect-the-training-curve" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -2930,23 +2927,23 @@ indication of a well trained network.</li>
 </div>
 </div>
 <p>These is evidence of <strong>overfitting</strong> in these plots. If
-a model is overfitting, it means that the model performs exceptionally
-well on the training data but poorly on the validation or test data.
-Overfitting occurs when the model has learned to memorize the noise and
-specific patterns in the training data instead of generalizing the
-underlying relationships. As a result, the model fails to perform well
-on new, unseen data because it has become too specialized to the
-training set.</p>
+a model is overfitting, it means the model performs exceptionally well
+on the training data, but poorly on the validation data. Overfitting
+occurs when the model has learned to memorize the noise and specific
+patterns in the training data instead of generalizing the underlying
+relationships. As a result, the model fails to perform well on new,
+unseen, data because it has become too specialized to the training
+set.</p>
 <p>Key characteristics of an overfit model include:</p>
 <ul>
 <li><p>High Training Accuracy, Low Validation Accuracy: The model
 achieves high accuracy on the training data but significantly lower
 accuracy on the validation (or test) data.</p></li>
 <li><p>Small Training Loss, Large Validation Loss: The training loss is
-low, indicating that the model’s predictions closely match the true
-labels in the training set. However, the validation loss is high,
-indicating that the model’s predictions are far from the true labels in
-the validation set.</p></li>
+low, indicating the model’s predictions closely match the true labels in
+the training set. However, the validation loss is high, indicating the
+model’s predictions are far from the true labels in the validation
+set.</p></li>
 </ul>
 <p>How to Address Overfitting:</p>
 <ul>
@@ -2973,11 +2970,11 @@ the data. As a result, the model’s predictions are not accurate, and it
 fails to generalize well to unseen data.</p>
 <p>Key characteristics of an underfit model include:</p>
 <ul>
-<li>Low Validation Accuracy: This indicates that the model is not
-learning from the data effectively.</li>
+<li>Low Validation Accuracy: This indicates the model is not learning
+from the data effectively.</li>
 <li>Large Training Loss: The training loss (error) is high, indicating
-that the model’s predictions are far from the true labels in the
-training set.</li>
+the model’s predictions are far from the true labels in the training
+set.</li>
 <li>Increasing validation loss.</li>
 </ul>
 <p>How to address underfitting:</p>
@@ -3000,17 +2997,17 @@ model with more informative input features.</li>
 <div class="section level4">
 <h4 id="dropout">Dropout<a class="anchor" aria-label="anchor" href="#dropout"></a>
 </h4>
-<p>Note that the training loss continues to decrease, while the
-validation loss stagnates, and even starts to increase over the course
-of the epochs. Similarly, the accuracy for the validation set does not
-improve anymore after some epochs. This means we are overfitting on our
-training data set.</p>
+<p>Note the training loss continues to decrease, while the validation
+loss stagnates, and even starts to increase over the course of the
+epochs. Similarly, the accuracy for the validation set does not improve
+anymore after some epochs. This means we are overfitting on our training
+data set.</p>
 <p>Techniques to avoid overfitting, or to improve model generalization,
 are termed <strong>regularization techniques</strong>. One of the most
 versatile regularization technique is <strong>dropout</strong>
 (Srivastava et al., 2014). Dropout essentially means that during each
 training cycle a random fraction of the dense layer nodes are turned
-off. This is described with the dropout rate between 0 and 1 which
+off. This is described with the dropout rate between zero and one, which
 determines the fraction of nodes to silence at a time.</p>
 <figure><img src="fig/04-neural_network_sketch_dropout.png" alt="diagram of two neural networks; the first network is densely connected without dropout and the second network has some of the neurons dropped out of of the network" class="figure mx-auto d-block"></figure><p>The intuition behind dropout is that it enforces redundancies in the
 network by constantly removing different elements of a network. The
@@ -3178,10 +3175,10 @@ by adding a dropout layer.</p>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>val_loss_dropout, val_acc_dropout <span class="op">=</span> model_dropout.evaluate(val_images, val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
-<figure><img src="fig/04_model_dropout_accuracy_loss.png" alt="two panel figure; the figure on the left shows the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right shows the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67" class="figure mx-auto d-block"></figure><p>In this relatively uncommon , the training loss is higher than our
-validation loss while the validation accuracy is higher than the
-training accuracy. Using dropout or other regularization techniques
-during training can lead to a lower training accuracy.</p>
+<figure><img src="fig/04_model_dropout_accuracy_loss.png" alt="two panel figure; the figure on the left illustrates the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right illustrates the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67" class="figure mx-auto d-block"></figure><p>In this relatively uncommon situation, the training loss is higher
+than our validation loss while the validation accuracy is higher than
+the training accuracy. Using dropout, or other regularization techniques
+during training, can lead to a lower training accuracy.</p>
 <p>Dropout randomly “drops out” units during training, which can prevent
 the model from fitting the training data too closely. This
 regularization effect may lead to a situation where the model
@@ -3226,10 +3223,10 @@ to the regularization term. A larger λ value increases the impact of
 regularization, making the model simpler and more regularized.</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>randomly “dropping out” a fraction of neurons during training. This
-means that during each training iteration, some neurons are temporarily
+means during each training iteration, some neurons are temporarily
 removed from the network. Dropout effectively reduces the
 interdependence between neurons, preventing the network from relying too
-heavily on specific neurons and making it more robust.</li>
+heavily on specific neurons, and making it more robust.</li>
 </ol>
 <p><strong>Batch Normalization</strong>: While not explicitly a
 regularization technique, Batch Normalization has a regularizing effect
@@ -3244,14 +3241,14 @@ new examples. This increases the diversity of the training data and
 helps the model generalize better to unseen data.</p>
 <p><strong>Early Stopping</strong>: Early stopping is a form of
 regularization that stops the training process when the model’s
-performance on a validation set starts to degrade. This prevents the
-model from overfitting by avoiding further training after the point of
-best validation performance.</p>
-<p>By using regularization techniques, you can improve the
-generalization performance of CNNs and reduce the risk of overfitting.
-It’s essential to experiment with different regularization methods and
-hyperparameters to find the optimal combination for your specific CNN
-architecture and dataset.</p>
+performance on a validation set starts to degrade. It prevents the model
+from overfitting by avoiding further training after the point of best
+validation performance.</p>
+<p>Using regularization techniques improves the generalization
+performance of CNNs and reduces the risk of overfitting. It’s essential
+to experiment with different regularization methods and hyperparameters
+to find the optimal combination for your specific CNN architecture and
+dataset.</p>
 </div>
 </div>
 </div>
@@ -3294,7 +3291,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-05-evaluate-predict-cnn"><p>Content from <a href="05-evaluate-predict-cnn.html">Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a></p>
 <hr>
-<p> Last updated on 2023-12-07 | 
+<p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3355,7 +3352,7 @@ set.</p>
 <p>When creating and using a test set there are a few things to
 check:</p>
 <ul>
-<li>It only contains images that the model has never seen before.</li>
+<li>It only contains images the model has never seen before.</li>
 <li>It is sufficiently large to provide a meaningful evaluation of model
 performance. It should include images from every target label and images
 of classes not in your target set.</li>
@@ -3505,10 +3502,10 @@ create a confusion matrix.</p>
 group <em>i</em> and predicted to be in group <em>j</em>. The diagonal
 cells in the matrix are where the true class and predicted class
 match.</p>
-<figure><img src="fig/05_confusion_matrix_explained.png" alt="for ten classes an example confusion matrix has 10 rows and 10 columns where the value in each cell is the number of observations predicted in that class and known to be that class. The diagonal cells are where the true and predicted classes match" class="figure mx-auto d-block"></figure><p>To create a confusion matrix we will use another convenient function
-from sklearn called <code>confusion_matrix</code>. This function takes
-as a first parameter the true labels of the test set. The second
-parameter is the predicted labels from our model.</p>
+<figure><img src="fig/05_confusion_matrix_explained.png" alt="for ten classes an example confusion matrix has 10 rows and 10 columns where the value in each cell is the number of observations predicted in that class and known to be in that class. The diagonal cells are where the true and predicted classes match." class="figure mx-auto d-block"></figure><p>To create a confusion matrix, we use another convenient function from
+sklearn called <code>confusion_matrix</code>. This function takes as a
+first parameter the true labels of the test set. The second parameter is
+the predicted labels from our model.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3558,7 +3555,7 @@ the confusion matrix in the heatmap.</li>
 <li>The <code>fmt=3g</code> will display the values with three
 significant digits.</li>
 </ul>
-<figure><img src="fig/05_pred_v_true_confusion_matrix.png" alt="Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors indicating our model is predicting well but a few non-diagonal cells also have a ligher color to show where the model is making prediction errors." class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
+<figure><img src="fig/05_pred_v_true_confusion_matrix.png" alt="Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors, indicating our model is predicting well, but a few non-diagonal cells also have a lighter color to indicate where the model is making a large number of prediction errors." class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -3584,8 +3581,8 @@ visualized as a confusion matrix.</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>Q1. The confusion matrix shows that the predictions are not bad but
-can improved.</p>
+<p>Q1. The confusion matrix illustrates that the predictions are not bad
+but can improved.</p>
 <p>Q2. I expected the performance to be better than average because the
 accuracy of the model I chose was 67 per cent on the validation set.</p>
 <p>Q3. We can try many things to improve the performance from here. One
@@ -3614,7 +3611,7 @@ given model and context.</p>
 <p>These hyperparameters can include the learning rate, the number of
 layers in the network, the number of neurons per layer, and many more.
 The tuning process is systematic searching for the best combination of
-hyperparameters that will optimize the model’s performance.</p>
+hyperparameters to optimize the model’s performance.</p>
 <p>In some cases, it might be necessary to adjust these and re-run the
 training many times before we are happy with the result.</p>
 <p>Table 1. List of some of the hyperparameters to tune and when.</p>
@@ -3878,14 +3875,14 @@ Cornell University</a></p>
 Neural Network</a> we talked briefly about the <code>relu</code>
 activation function passed as an argument to our <code>Conv2D</code>
 hidden layers.</p>
-<p>An activation function is like a switch or a filter that we use in
+<p>An activation function is like a switch, or a filter, that we use in
 artificial neural networks, inspired by how our brains work. These
 functions play a crucial role in determining whether a neuron (a small
 unit in the neural network) should “fire” or become active.</p>
 <p>Think of an activation function as a tiny decision-maker for each
 neuron in a neural network. It helps determine whether the neuron should
 ‘fire’, or pass on information, or stay ‘off’ and remain silent, much
-like a light switch that decides whether the light should be ON or OFF.
+like a light switch controls whether the light should be ON or OFF.
 Activation functions are crucial because they add non-linearity to the
 neural network. Without them, the network would be like a simple linear
 model, unable to learn complex patterns in data.</p>
@@ -4113,7 +4110,7 @@ any links that you are not going to use.
 </div>
 </div></section><section id="aio-06-conclusion"><p>Content from <a href="06-conclusion.html">Conclusion</a></p>
 <hr>
-<p> Last updated on 2023-12-07 | 
+<p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/06-conclusion.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -4152,13 +4149,12 @@ any links that you are not going to use.
 <div class="section level3">
 <h3 id="step-10--share-model">Step 10. Share model<a class="anchor" aria-label="anchor" href="#step-10--share-model"></a>
 </h3>
-<p>Now that we have a trained network that performs at a level we are
-happy with and can maintain high prediction accuracy on a test dataset
-we might want to consider publishing a file with both the architecture
-of our network and the weights which it has learned (assuming we did not
-use a pre-trained network). This will allow others to use it as as
-pre-trained network for their own purposes and for them to (mostly)
-reproduce our result.</p>
+<p>We now have a trained network that performs at a level we are happy
+with and maintains high prediction accuracy on a test dataset. We should
+consider publishing a file with both the architecture of our network and
+the weights which it has learned (assuming we did not use a pre-trained
+network). This will allow others to use it as as pre-trained network for
+their own purposes and for them to (mostly) reproduce our result.</p>
 <p>Use <code>model.save</code> to save a model:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4199,8 +4195,8 @@ reproduce our result.</p>
 <li>The model’s optimizer’s state (if any).</li>
 </ul>
 <p>Note that saving the model does not save the training history
-(i.e. training and validation loss and accuracy). For that you will need
-to save the model history dataframe we created for plotting.</p>
+(i.e. training and validation loss and accuracy). For that, you save the
+model history dataframe we used for plotting.</p>
 <p>The Keras documentation for <a href="https://keras.io/api/saving/" class="external-link">Saving and Serialization</a>
 explains other ways to save your model.</p>
 <p>To share your model with a wider audience it is recommended you
@@ -4211,11 +4207,11 @@ pretrained models.</p>
 <div class="section level4">
 <h4 id="choosing-a-pretrained-model">Choosing a pretrained model<a class="anchor" aria-label="anchor" href="#choosing-a-pretrained-model"></a>
 </h4>
-<p>If your data and problem is very similar to what others have done,
-you can often use a pretrained network. Even if your problem is
-different, but the data type is common (for example images), you can use
-a pretrained network and finetune it for your problem. A large number of
-openly available pretrained networks can be found in the <a href="https://modelzoo.co/" class="external-link">Model Zoo</a>, <a href="https://pytorch.org/hub/" class="external-link">pytorch hub</a> or <a href="https://pytorch.org/hub/" class="external-link">tensorflow hub</a>.</p>
+<p>If your data and problem is very similar to what others have done, a
+pre-trained network might be preferable. Even if your problem is
+different, if the data type is common (for example images), you can use
+a pre-trained network and fine-tune it for your problem. A large number
+of openly available pre-trained networks can be found in the <a href="https://modelzoo.co/" class="external-link">Model Zoo</a>, <a href="https://pytorch.org/hub/" class="external-link">pytorch hub</a> or <a href="https://pytorch.org/hub/" class="external-link">tensorflow hub</a>.</p>
 </div>
 </div>
 <div class="section level3">
@@ -4238,9 +4234,9 @@ be enough to worry about and the time you will save with simpler code
 will exceed what you will save by having the code run a little
 faster.</p>
 <p>Keras also benefits from a very good set of <a href="https://keras.io/guides/" class="external-link">online documentation</a> and a large
-user community. You will find that most of the concepts from Keras
-translate very well across to the other libraries if you wish to learn
-them at a later date.</p>
+user community. You will find most of the concepts from Keras translate
+very well across to the other libraries if you wish to learn them at a
+later date.</p>
 <p>A couple of those libraries include:</p>
 <ul>
 <li><p><a href="https://www.tensorflow.org/" class="external-link">TensorFlow</a> was
@@ -4250,8 +4246,8 @@ in 2015. It is very versatile and capable of much more than Deep
 Learning but as a result it often takes a lot more lines of code to
 write Deep Learning operations in TensorFlow than in other libraries. It
 offers (almost) seamless integration with GPU accelerators and Google’s
-own TPU (Tensor Processing Unit) chips that are built specially for
-machine learning.</p></li>
+own TPU (Tensor Processing Unit) chips specially built for machine
+learning.</p></li>
 <li><p><a href="https://pytorch.org/" class="external-link">PyTorch</a> was developed by
 Facebook in 2016 and is a popular choice for Deep Learning applications.
 It was developed for Python from the start and feels a lot more
@@ -4287,12 +4283,12 @@ seen that running on CPU only machines can be done! So while a GPU is
 not an absolute requirement for deep learning, it can significantly
 accelerate your deep learning work and make it more efficient,
 especially for larger and more complex tasks.</p>
-<p>If you don’t have access to a powerful GPU locally, you can use cloud
-services that provide GPU instances for deep learning. This can be a
-cost-effective option for many users.</p>
+<p>If you don’t have access to a powerful GPU locally, there are cloud
+services that provide GPU instances for deep learning. This may be the
+most cost-effective option for many users.</p>
 </div>
 <div class="section level4">
-<h4 id="it-this-the-bestonly-way-to-code-up-cnns-for-image-classification">It this the best/only way to code up CNN’s for image
+<h4 id="it-this-the-bestonly-way-to-code-up-cnns-for-image-classification">It this the best/only way to code up CNNs for image
 classification?<a class="anchor" aria-label="anchor" href="#it-this-the-bestonly-way-to-code-up-cnns-for-image-classification"></a>
 </h4>
 <p>Absolutely not! The code we used in today’s workshop might today be
@@ -4364,11 +4360,11 @@ monitoring)</li>
 <ul>
 <li>Deep Learning is well suited to classification and prediction
 problems such as image recognition.</li>
-<li>To use Deep Learning effectively we need to go through a workflow
-of: defining the problem, identifying inputs and outputs, preparing
-data, choosing the type of network, choosing a loss function, training
-the model, tuning Hyperparameters, measuring performance before we can
-classify data.</li>
+<li>To use Deep Learning effectively, go through a workflow of: defining
+the problem, identifying inputs and outputs, preparing data, choosing
+the type of network, choosing a loss function, training the model,
+tuning Hyperparameters, measuring performance before we can classify
+data.</li>
 <li>Keras is a Deep Learning library that is easier to use than many of
 the alternatives such as TensorFlow and PyTorch.</li>
 <li>Graphical Processing Units are useful, though not essential, for
@@ -4432,8 +4428,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/aio.html",
   "identifier": "https://.github.io/github.com/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-12-07",
-  "datePublished": "2023-12-07"
+  "dateModified": "2023-12-11",
+  "datePublished": "2023-12-11"
 }
 
   </script><script>

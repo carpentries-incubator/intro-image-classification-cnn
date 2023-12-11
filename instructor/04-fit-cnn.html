@@ -276,7 +276,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Compile and Train (Fit) a Convolutional Neural Network</h1>
-        <p> Last updated on 2023-12-07 | 
+        <p> Last updated on 2023-12-11 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -327,8 +327,8 @@ training.</li>
 <h3 id="step-5--choose-a-loss-function-and-optimizer">Step 5. Choose a loss function and optimizer<a class="anchor" aria-label="anchor" href="#step-5--choose-a-loss-function-and-optimizer"></a></h3>
 <p>We have designed a convolutional neural network (CNN) that in theory
 we should be able to train to classify images.</p>
-<p>We now need to select an appropriate optimizer and loss function that
-we will use during training (fitting).</p>
+<p>We now select an appropriate optimizer and loss function to use
+during training (fitting).</p>
 <p>Recall how we compiled our model in the introduction:</p>
 <pre><code><span><span class="co">## compile the model</span></span>
 <span><span class="co">#model_intro.compile(optimizer = 'adam', </span></span>
@@ -358,10 +358,10 @@ appropriate to use when the data has two or more label classes.</p>
 with which the model learns to optimize on the provided loss
 function.</p>
 <p>We need to choose which optimizer to use and, if this optimizer has
-parameters, what values to use for those. Furthermore, we need to
-specify how many times to show the training samples to the optimizer. In
-other words, the optimizer is responsible for taking the output of the
-loss function and then applying some changes to the weights within the
+parameters, what values to use for those. Furthermore, we specify how
+many times to present the training samples to the optimizer. In other
+words, the optimizer is responsible for taking the output of the loss
+function and then applying some changes to the weights within the
 network. It is through this process that the “learning” (adjustment of
 the weights) is achieved.</p>
 <pre><code><span><span class="co">## compile the model</span></span>
@@ -369,17 +369,18 @@ the weights) is achieved.</p>
 <span><span class="co">#                    loss = keras.losses.CategoricalCrossentropy(), </span></span>
 <span><span class="co">#                    metrics = ['accuracy'])</span></span></code></pre>
 <p><strong>Adam</strong></p>
-<p>Here we picked one of the most common optimizers that works well for
-most tasks, the <strong>Adam</strong> optimizer. Similar to activation
-functions, the choice of optimizer depends on the problem you are trying
-to solve, your model architecture and your data. Adam is a good starting
-point though, which is why we chose it. Adam has a number of parameters,
-but the default values work well for most problems so we will use it
-with its default parameters.</p>
+<p>Here we picked one of the most common optimizers demonstrated to work
+well for most tasks, the <strong>Adam</strong> optimizer. Similar to
+activation functions, the choice of optimizer depends on the problem you
+are trying to solve, your model architecture, and your data. Adam is a
+good starting point though, which is why we chose it. Adam has a number
+of parameters, but the default values work well for most problems so we
+will use it with its default parameters.</p>
 <p>It is defined by the <code>keras.optimizers.Adam</code> class and
 takes a single parameter <code>learning_rate=0.01</code></p>
-<p>There are many optimizers to choose from so check the <a href="https://keras.io/api/optimizers/" class="external-link">optimizer documentation</a>. A
-couple more popular or famous ones include:</p>
+<p>The <a href="https://keras.io/api/optimizers/" class="external-link">optimizer
+documentation</a> describes the optimizers to choose. A couple more
+popular or famous ones include:</p>
 <ul><li><p><strong>Stochastic Gradient Descent (sgd)</strong>: Stochastic
 Gradient Descent (SGD) is one of the fundamental optimization algorithms
 used to train machine learning models, especially neural networks. It is
@@ -418,24 +419,24 @@ rate leads to smaller updates, providing more cautious convergence, but
 it may take longer to reach the optimal solution. Finding an appropriate
 learning rate is crucial for effectively training machine learning
 models.</p>
-<p>The figure below illustrates a small learning rate that will not
-traverse toward the minima of the gradient descent algorithm in a timely
-manner, i.e. number of epochs.</p>
-<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg" title="Small learning rate leads to inefficient approach to loss minima" alt="plot of loss over value of weight shows how a small learning rate takes a long time to reach the optimal solution" class="figure mx-auto d-block"><figcaption>Small learning rate leads to inefficient approach to
+<p>The figure below illustrates a small learning rate will not traverse
+toward the minima of the gradient descent algorithm in a timely manner,
+i.e. number of epochs.</p>
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg" title="Small learning rate leads to inefficient approach to loss minima" alt="Plot of loss over weight value illustrating how a small learning rate takes a long time to reach the optimal solution." class="figure mx-auto d-block"><figcaption>Small learning rate leads to inefficient approach to
 loss minima</figcaption></figure><p>On the other hand, specifying a learning rate that is <em>too
 high</em> will result in a loss value that never approaches the minima.
 That is, ‘bouncing between the sides’, thus never reaching a minima to
 cease learning.</p>
-<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg" alt="plot of loss over value of weight shows how a large learning rate never approaches the optimal solution because it bounces between the sides" class="figure mx-auto d-block"><figcaption>A large learning rate results in overshooting the
-gradient descent minima</figcaption></figure><p>Lastly, we can observe below that a modest learning rate will ensure
-that the product of multiplying the scalar gradient value, and the
-learning rate does not result in too small steps, nor a chaotic bounce
-between sides of the gradient where steepness is greatest.</p>
-<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg" alt="plot of loss over value of weight shows how a a good learning rate gets to optimal solution gradually" class="figure mx-auto d-block"><figcaption>An optimal learning rate supports a gradual approach
-to the minima</figcaption></figure><p>(These images were obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg" alt="Plot of loss over weight value illustrating how a large learning rate never approaches the optimal solution because it bounces between the sides." class="figure mx-auto d-block"><figcaption>A large learning rate results in overshooting the
+gradient descent minima</figcaption></figure><p>Finally, a modest learning rate will ensure that the product of
+multiplying the scalar gradient value and the learning rate does not
+result in too small steps, nor a chaotic bounce between sides of the
+gradient where steepness is greatest.</p>
+<figure><img src="https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg" alt="Plot of loss over weight value illustrating how a good learning rate gets to optimal solution gradually." class="figure mx-auto d-block"><figcaption>An optimal learning rate supports a gradual approach
+to the minima</figcaption></figure><p>These images were obtained from <a href="https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate" class="external-link">Google
 Developers Machine Learning Crash Course</a> and is licenced under the
 <a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons
-4.0 Attribution Licence</a>.)</p>
+4.0 Attribution Licence</a>.</p>
 </div>
 </div>
 </div>
@@ -443,27 +444,28 @@ Developers Machine Learning Crash Course</a> and is licenced under the
 </div>
 <div class="section level4">
 <h4 id="metrics">Metrics<a class="anchor" aria-label="anchor" href="#metrics"></a></h4>
-<p>After we select the desired optimizer and loss function we want to
-specify the metric(s) to be evaluated by the model during training and
-testing. A <strong>metric</strong> is a function that is used to judge
-the performance of your model.</p>
+<p>After we select the desired optimizer and loss function we specify
+the metric(s) to be evaluated by the model during training and testing.
+A <strong>metric</strong> is a function used to judge the performance of
+your model.</p>
 <pre><code><span><span class="co">## compile the model</span></span>
 <span><span class="co">#model_intro.compile(optimizer = 'adam', </span></span>
 <span><span class="co">#                    loss = keras.losses.CategoricalCrossentropy(), </span></span>
 <span><span class="co">#                    metrics = ['accuracy']) </span></span></code></pre>
-<p>Metric functions are similar to loss functions, except that the
-results from evaluating a metric are not used when training the model.
-Note that you may use any loss function as a metric.</p>
-<p>Typically you will use <code>accuracy</code> which calculates how
-often predictions matches labels.</p>
-<p>The accuracy function creates two local variables, total and count
-that are used to compute the frequency with which predictions matches
+<p>Metric functions are similar to loss functions, except the results
+from evaluating a metric are not used when training the model. Note you
+are able to use any loss function as a metric.</p>
+<p>Typically you will use <code>accuracy</code>, which calculates how
+often the model predictions match the true labels.</p>
+<p>The accuracy function creates two local variables, total and count,
+that it uses to compute the frequency with which predictions matches
 labels. This frequency is ultimately returned as accuracy: an operation
 that divides the total by count.</p>
-<p>A list of metrics can be found in the Keras <a href="https://keras.io/api/metrics/" class="external-link">metrics</a> documentation.</p>
-<p>Now that we have decided on which loss function, optimizer, and
-metric to use we can compile the model using <code>model.compile</code>.
-Compiling the model prepares it for training.</p>
+<p>The Keras <a href="https://keras.io/api/metrics/" class="external-link">metrics</a>
+documentation provides a list of potential metrics.</p>
+<p>Now that we selected which loss function, optimizer, and metric to
+use, we compile the model using <code>model.compile</code>. Compiling
+the model prepares it for training.</p>
 </div>
 </div>
 <div class="section level3">
@@ -474,7 +476,7 @@ takes the image data and target (label) data as inputs and has several
 other parameters for certain options of the training. Here we only set a
 different number of epochs.</p>
 <p>A training <strong>epoch</strong> means that every sample in the
-training data has been shown to the neural network and used to update
+training data has been given to the neural network and used to update
 its parameters. In general, CNN models improve with more epochs of
 training, but only to a point.</p>
 <p>We want to train our model for 10 epochs:</p>
@@ -528,10 +530,10 @@ experiences more diverse samples during training.</p>
 <p>However, it’s essential to consider the trade-offs of using different
 batch sizes. Smaller batch sizes may require more iterations to cover
 the entire dataset, which can lead to longer training times. Larger
-batch sizes can provide more stable gradients but might suffer from
-generalization issues. There is no one-size-fits-all answer, and you may
-need to experiment with different batch sizes to find the one that works
-best for your specific model, architecture, and dataset.</p>
+batch sizes can provide more stable gradients, but might suffer from
+generalization issues. There is no one-size-fits-all answer. You should
+experiment with different batch sizes to find the best-performing one
+for your specific model, architecture, and dataset.</p>
 </div>
 </div>
 </div>
@@ -540,9 +542,10 @@ best for your specific model, architecture, and dataset.</p>
 <div class="section level3">
 <h3 id="monitor-training-progress-aka-model-evaluation-during-training">Monitor Training Progress (aka Model Evaluation during
 Training)<a class="anchor" aria-label="anchor" href="#monitor-training-progress-aka-model-evaluation-during-training"></a></h3>
-<p>Now that we know more about the compilation and fitting of CNN’s let
-us take a inspect the training metrics for our model.</p>
-<p>Using seaborn we can plot the training process using the history:</p>
+<p>We now know more about the compilation and fitting of CNNs. Let us
+inspect the training metrics for our model.</p>
+<p>Using seaborn, we can plot the training process using the
+history:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -558,10 +561,10 @@ us take a inspect the training metrics for our model.</p>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_intro_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_intro_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span></code></pre>
 </div>
-<figure><img src="../fig/04_model_intro_accuracy_loss.png" alt="two panel figure; the figure on the left shows the training loss starting at 1.5 and decreasing to 0.7 and the validation loss decreasing from 1.3 to 1.0 before leveling out; the figure on the right shows the training accuracy increasing from 0.45 to 0.75 and the validation accuracy increasing from 0.53 to 0.65 before leveling off" class="figure mx-auto d-block"></figure><p>This plot can be used to identify whether the training is well
-configured or whether there are problems that need to be addressed. The
-solid blue lines show the training loss and accuracy; the dashed orange
-lines show the validation loss and accuracy.</p>
+<figure><img src="../fig/04_model_intro_accuracy_loss.png" alt="two panel figure; the figure on the left illustrates the training loss starting at 1.5 and decreasing to 0.7 and the validation loss decreasing from 1.3 to 1.0 before leveling out; the figure on the right illustrates the training accuracy increasing from 0.45 to 0.75 and the validation accuracy increasing from 0.53 to 0.65 before leveling off" class="figure mx-auto d-block"></figure><p>This plot is used to identify whether the training is well configured
+or whether there are problems to address. The solid blue lines represent
+the training loss and accuracy; the dashed orange lines represent the
+validation loss and accuracy.</p>
 <div id="inspect-the-training-curve" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -602,22 +605,22 @@ indication of a well trained network.</li>
 </div>
 </div>
 <p>These is evidence of <strong>overfitting</strong> in these plots. If
-a model is overfitting, it means that the model performs exceptionally
-well on the training data but poorly on the validation or test data.
-Overfitting occurs when the model has learned to memorize the noise and
-specific patterns in the training data instead of generalizing the
-underlying relationships. As a result, the model fails to perform well
-on new, unseen data because it has become too specialized to the
-training set.</p>
+a model is overfitting, it means the model performs exceptionally well
+on the training data, but poorly on the validation data. Overfitting
+occurs when the model has learned to memorize the noise and specific
+patterns in the training data instead of generalizing the underlying
+relationships. As a result, the model fails to perform well on new,
+unseen, data because it has become too specialized to the training
+set.</p>
 <p>Key characteristics of an overfit model include:</p>
 <ul><li><p>High Training Accuracy, Low Validation Accuracy: The model
 achieves high accuracy on the training data but significantly lower
 accuracy on the validation (or test) data.</p></li>
 <li><p>Small Training Loss, Large Validation Loss: The training loss is
-low, indicating that the model’s predictions closely match the true
-labels in the training set. However, the validation loss is high,
-indicating that the model’s predictions are far from the true labels in
-the validation set.</p></li>
+low, indicating the model’s predictions closely match the true labels in
+the training set. However, the validation loss is high, indicating the
+model’s predictions are far from the true labels in the validation
+set.</p></li>
 </ul><p>How to Address Overfitting:</p>
 <ul><li>Reduce the model’s complexity by using fewer layers or units to make
 it less prone to overfitting.</li>
@@ -640,11 +643,11 @@ capacity to capture the underlying patterns and relationships present in
 the data. As a result, the model’s predictions are not accurate, and it
 fails to generalize well to unseen data.</p>
 <p>Key characteristics of an underfit model include:</p>
-<ul><li>Low Validation Accuracy: This indicates that the model is not
-learning from the data effectively.</li>
+<ul><li>Low Validation Accuracy: This indicates the model is not learning
+from the data effectively.</li>
 <li>Large Training Loss: The training loss (error) is high, indicating
-that the model’s predictions are far from the true labels in the
-training set.</li>
+the model’s predictions are far from the true labels in the training
+set.</li>
 <li>Increasing validation loss.</li>
 </ul><p>How to address underfitting:</p>
 <ul><li>Increase the model’s complexity by adding more layers or units to
@@ -662,17 +665,17 @@ model with more informative input features.</li>
 <h3 id="improve-model-generalization-avoid-overfitting">Improve Model Generalization (avoid Overfitting)<a class="anchor" aria-label="anchor" href="#improve-model-generalization-avoid-overfitting"></a></h3>
 <div class="section level4">
 <h4 id="dropout">Dropout<a class="anchor" aria-label="anchor" href="#dropout"></a></h4>
-<p>Note that the training loss continues to decrease, while the
-validation loss stagnates, and even starts to increase over the course
-of the epochs. Similarly, the accuracy for the validation set does not
-improve anymore after some epochs. This means we are overfitting on our
-training data set.</p>
+<p>Note the training loss continues to decrease, while the validation
+loss stagnates, and even starts to increase over the course of the
+epochs. Similarly, the accuracy for the validation set does not improve
+anymore after some epochs. This means we are overfitting on our training
+data set.</p>
 <p>Techniques to avoid overfitting, or to improve model generalization,
 are termed <strong>regularization techniques</strong>. One of the most
 versatile regularization technique is <strong>dropout</strong>
 (Srivastava et al., 2014). Dropout essentially means that during each
 training cycle a random fraction of the dense layer nodes are turned
-off. This is described with the dropout rate between 0 and 1 which
+off. This is described with the dropout rate between zero and one, which
 determines the fraction of nodes to silence at a time.</p>
 <figure><img src="../fig/04-neural_network_sketch_dropout.png" alt="diagram of two neural networks; the first network is densely connected without dropout and the second network has some of the neurons dropped out of of the network" class="figure mx-auto d-block"></figure><p>The intuition behind dropout is that it enforces redundancies in the
 network by constantly removing different elements of a network. The
@@ -840,10 +843,10 @@ by adding a dropout layer.</p>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>val_loss_dropout, val_acc_dropout <span class="op">=</span> model_dropout.evaluate(val_images, val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
-<figure><img src="../fig/04_model_dropout_accuracy_loss.png" alt="two panel figure; the figure on the left shows the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right shows the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67" class="figure mx-auto d-block"></figure><p>In this relatively uncommon , the training loss is higher than our
-validation loss while the validation accuracy is higher than the
-training accuracy. Using dropout or other regularization techniques
-during training can lead to a lower training accuracy.</p>
+<figure><img src="../fig/04_model_dropout_accuracy_loss.png" alt="two panel figure; the figure on the left illustrates the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right illustrates the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67" class="figure mx-auto d-block"></figure><p>In this relatively uncommon situation, the training loss is higher
+than our validation loss while the validation accuracy is higher than
+the training accuracy. Using dropout, or other regularization techniques
+during training, can lead to a lower training accuracy.</p>
 <p>Dropout randomly “drops out” units during training, which can prevent
 the model from fitting the training data too closely. This
 regularization effect may lead to a situation where the model
@@ -885,10 +888,10 @@ denoted as lambda (λ), that determines how much weight should be given
 to the regularization term. A larger λ value increases the impact of
 regularization, making the model simpler and more regularized.</p>
 <ol start="2" style="list-style-type: lower-alpha"><li>randomly “dropping out” a fraction of neurons during training. This
-means that during each training iteration, some neurons are temporarily
+means during each training iteration, some neurons are temporarily
 removed from the network. Dropout effectively reduces the
 interdependence between neurons, preventing the network from relying too
-heavily on specific neurons and making it more robust.</li>
+heavily on specific neurons, and making it more robust.</li>
 </ol><p><strong>Batch Normalization</strong>: While not explicitly a
 regularization technique, Batch Normalization has a regularizing effect
 on the model. It normalizes the activations of each layer in the
@@ -902,14 +905,14 @@ new examples. This increases the diversity of the training data and
 helps the model generalize better to unseen data.</p>
 <p><strong>Early Stopping</strong>: Early stopping is a form of
 regularization that stops the training process when the model’s
-performance on a validation set starts to degrade. This prevents the
-model from overfitting by avoiding further training after the point of
-best validation performance.</p>
-<p>By using regularization techniques, you can improve the
-generalization performance of CNNs and reduce the risk of overfitting.
-It’s essential to experiment with different regularization methods and
-hyperparameters to find the optimal combination for your specific CNN
-architecture and dataset.</p>
+performance on a validation set starts to degrade. It prevents the model
+from overfitting by avoiding further training after the point of best
+validation performance.</p>
+<p>Using regularization techniques improves the generalization
+performance of CNNs and reduces the risk of overfitting. It’s essential
+to experiment with different regularization methods and hyperparameters
+to find the optimal combination for your specific CNN architecture and
+dataset.</p>
 </div>
 </div>
 </div>
@@ -1006,8 +1009,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/04-fit-cnn.html",
   "identifier": "https://.github.io/github.com/instructor/04-fit-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-12-07",
-  "datePublished": "2023-12-07"
+  "dateModified": "2023-12-11",
+  "datePublished": "2023-12-11"
 }
 
   </script><script>

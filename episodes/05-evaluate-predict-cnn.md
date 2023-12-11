@@ -33,7 +33,7 @@ Recall in [Episode 02 Introduction to Image Data](episodes/02-image-data.md) we 
 
 When creating and using a test set there are a few things to check:
 
-- It only contains images that the model has never seen before.
+- It only contains images the model has never seen before.
 - It is sufficiently large to provide a meaningful evaluation of model performance. It should include images from every target label and images of classes not in your target set.
 - It is processed in the same way as your training set.
 
@@ -143,9 +143,9 @@ To understand a bit more about how this accuracy is obtained, we create a confus
 
 In the case of multiclass classifications, each cell value (C~i,j~) is equal to the number of observations known to be in group _i_ and predicted to be in group _j_. The diagonal cells in the matrix are where the true class and predicted class match.
 
-![](fig/05_confusion_matrix_explained.png){alt='for ten classes an example confusion matrix has 10 rows and 10 columns where the value in each cell is the number of observations predicted in that class and known to be that class. The diagonal cells are where the true and predicted classes match'}
+![](fig/05_confusion_matrix_explained.png){alt='for ten classes an example confusion matrix has 10 rows and 10 columns where the value in each cell is the number of observations predicted in that class and known to be in that class. The diagonal cells are where the true and predicted classes match.'}
 
-To create a confusion matrix we will use another convenient function from sklearn called `confusion_matrix`. This function takes as a first parameter the true labels of the test set. The second parameter is the predicted labels from our model.
+To create a confusion matrix, we use another convenient function from sklearn called `confusion_matrix`. This function takes as a first parameter the true labels of the test set. The second parameter is the predicted labels from our model.
 
 ```python
 from sklearn.metrics import confusion_matrix
@@ -186,7 +186,7 @@ sns.heatmap(confusion_df, annot=True)
 - The `annot=True` parameter here will put the numbers from the confusion matrix in the heatmap.
 - The `fmt=3g` will display the values with three significant digits.
 
-![](fig/05_pred_v_true_confusion_matrix.png){alt='Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors indicating our model is predicting well but a few non-diagonal cells also have a ligher color to show where the model is making prediction errors.'}
+![](fig/05_pred_v_true_confusion_matrix.png){alt='Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors, indicating our model is predicting well, but a few non-diagonal cells also have a lighter color to indicate where the model is making a large number of prediction errors.'}
 
 
 ::::::::::::::::::::::::::::::::::::: challenge 
@@ -203,7 +203,7 @@ Q3. What could we do to improve the performance?
 
 :::::::::::::::::::::::: solution 
 
-Q1. The confusion matrix shows that the predictions are not bad but can improved.
+Q1. The confusion matrix illustrates that the predictions are not bad but can improved.
 
 Q2. I expected the performance to be better than average because the accuracy of the model I chose was 67 per cent on the validation set.
 
@@ -221,7 +221,7 @@ Recall the following from [Episode 01 Introduction to Deep Learning](episodes/01
 
 Hyperparameters are the parameters set by the person configuring the model instead of those learned by the algorithm itself. Like the dials on a radio which are *tuned* to the best frequency, hyperparameters can be *tuned* to the best combination for a given model and context.
 
-These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. The tuning process is systematic searching for the best combination of hyperparameters that will optimize the model's performance.
+These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. The tuning process is systematic searching for the best combination of hyperparameters to  optimize the model's performance.
 
 In some cases, it might be necessary to adjust these and re-run the training many times before we are happy with the result.
 
@@ -415,9 +415,9 @@ A third way to tune hyperparaters is brute force.
 
 In [Episode 03 Build a Convolutional Neural Network](episodes/03-build-cnn.md) we talked briefly about the `relu` activation function passed as an argument to our `Conv2D` hidden layers.
 
-An activation function is like a switch or a filter that we use in artificial neural networks, inspired by how our brains work. These functions play a crucial role in determining whether a neuron (a small unit in the neural network) should "fire" or become active. 
+An activation function is like a switch, or a filter, that we use in artificial neural networks, inspired by how our brains work. These functions play a crucial role in determining whether a neuron (a small unit in the neural network) should "fire" or become active. 
 
-Think of an activation function as a tiny decision-maker for each neuron in a neural network. It helps determine whether the neuron should 'fire', or pass on information, or stay 'off' and remain silent, much like a light switch that decides whether the light should be ON or OFF. Activation functions are crucial because they add non-linearity to the neural network. Without them, the network would be like a simple linear model, unable to learn complex patterns in data. 
+Think of an activation function as a tiny decision-maker for each neuron in a neural network. It helps determine whether the neuron should 'fire', or pass on information, or stay 'off' and remain silent, much like a light switch controls whether the light should be ON or OFF. Activation functions are crucial because they add non-linearity to the neural network. Without them, the network would be like a simple linear model, unable to learn complex patterns in data. 
 
 #### How do you know what activation function to choose?
 

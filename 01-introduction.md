@@ -24,23 +24,23 @@ exercises: 0
 ## What is machine learning?
 Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural Network**, abbreviated as **CNN**, but there are many more.
 
-The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs, for example trying to predict the cost of something given the economic conditions and the cost of raw materials or predicting a country’s GDP given its life expectancy. Classifiers try to classify data into different categories, or assign a label; for example, deciding what characters are visible in a picture of some writing or if a message is spam or not.
+The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs, for example trying to predict the cost of something given the economic conditions and the cost of raw materials or predicting a country’s GDP given its life expectancy. Classifiers try to classify data into different categories, or assign a label; for example, deciding what characters are visible in a picture of some writing or if an email or text message is spam or not.
 
 ## Training Data
 
-Many (but not all) machine learning systems “learn” by taking a series of input data and output data and using it to form a model. The maths behind the machine learning doesn’t care what the data is as long as it can represented numerically or categorised. Some examples might include:
+Many, but not all, machine learning systems “learn” by taking a series of input data and output data and using it to form a model. The maths behind the machine learning doesn’t care what the data is as long as it can represented numerically or categorised. Some examples might include:
 
-- predicting a person’s weight based on their height
-- predicting house prices given stock market prices
-- classifying if an email is spam or not
-- classifying an image as, e.g., person, place, or particular object
+- Predicting a person’s weight based on their height.
+- Predicting house prices given stock market prices.
+- Classifying an email as spam or not.
+- Classifying an image as, e.g., a person, place, or particular object.
 
-Typically we will need to train our models with hundreds, thousands or even millions of examples before they work well enough to do any useful predictions or classifications with them.
+Typically we train our models with hundreds, thousands or even millions of examples before they work well enough to do any useful predictions or classifications with them.
 
 
 ## Deep Learning, Machine Learning and Artificial Intelligence
 
-Deep Learning (DL) is just one of many machine learning techniques, in which people often talk about machine learning being a form of artificial intelligence (AI). Definitions of artificial intelligence vary, but usually involve having computers mimic the behaviour of intelligent biological systems. Since the 1950s many works of science fiction have dealt with the idea of an artificial intelligence which matches (or exceeds) human intelligence in all areas. Although there have been great advances in AI and ML research recently, we can only come close to human like intelligence in a few specialist areas and are still a long way from a general purpose AI. The image below shows some differences between artificial intelligence, machine learning and deep learning.
+Deep Learning (DL) is just one of many machine learning techniques, in which people often talk about machine learning being a form of artificial intelligence (AI). Definitions of artificial intelligence vary, but usually involve having computers mimic the behaviour of intelligent biological systems. Since the 1950s many works of science fiction have dealt with the idea of an artificial intelligence which matches, or exceeds, human intelligence in all areas. Although there have been great advances in AI and ML research recently, we can only come close to human like intelligence in a few specialist areas and are still a long way from a general purpose AI. The image below illustrates some differences between artificial intelligence, machine learning and deep learning.
 
 ![The image above is by Tukijaaliwa, CC BY-SA 4.0, via Wikimedia Commons, [original source]](fig/01_AI_ML_DL_differences.png){alt='Three nested circles defining deep learning as a subset of machine learning which is a subset of artifical intelligence'}
 
@@ -57,7 +57,7 @@ Concept: Differentiation between traditional Machine Learning models and Deep Le
 
 Image classification is a fundamental task in computer vision, which is a field of artificial intelligence focused on teaching computers to interpret and understand visual information from the world. Image classification specifically involves the process of assigning a label or category to an input image. The goal is to enable computers to recognise and categorise objects, scenes, or patterns within images, just as a human would. Image classification can refer to one of several tasks:
 
-![](fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png){alt='Four types of image classification tasks include semantic segmentation where every pixel is labelled; classification and localisation that detects a single object like a cat; object detection that detects multiple objects like cats and dogs; and instance segmentation that detects each pixel of multiple objects'}
+![](fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png){alt='Four types of image classification tasks include semantic segmentation to label every pixel; classification and localisation to detect a single object like a cat; object detection to detect multiple objects like cats and dogs; and instance segmentation to detect each pixel of multiple objects'}
 
 Image classification has numerous practical applications, including:
 
@@ -70,13 +70,13 @@ Image classification has numerous practical applications, including:
 Convolutional Neural Networks (CNNs) have become a cornerstone in image classification due to their ability to automatically learn hierarchical features from images and achieve remarkable performance on a wide range of tasks.
 
 ## Deep Learning Workflow
-To apply Deep Learning to a problem there are several steps we need to go through:
+To apply Deep Learning to a problem there are several steps to go through:
 
 ### Step 1. Formulate / Outline the problem
 Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories. Specifically in our case, we have 10 categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck
 
 ### Step 2. Identify inputs and outputs
-Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
+Next identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
 
 ### Step 3. Prepare data
 Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (e.g., images) will have to be somehow converted to numerical data. Information on how this is done and the data structure will be explored in [Episode 02 Introduction to Image Data](episodes/02-image-data).
@@ -85,7 +85,7 @@ For this lesson, we will use an existing image dataset known as CIFAR-10. We wil
 
 #### Preparing the code
 
-It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope that this code can be used as a "starting point".  We will be creating an "initial program" for this introduction chapter, that will be copied and used as a foundation for the rest of the episodes.
+It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope this code can be used as a "starting point".  We will create an "initial program" for this introduction chapter that will be copied and used as a foundation for the rest of the episodes.
 
 ```python
 # load the required packages
@@ -163,11 +163,11 @@ plt.show()
 
 ### Step 4. Choose a pre-trained model or build a new architecture from scratch
 
-Often we can use an existing neural network instead of designing one from scratch. Training a network can take a lot of time and computational resources. There are a number of well publicised networks which have been shown to perform well at certain tasks. If you know of one which already does a similar task well, then it makes sense to use one of these.
+Often we can use an existing neural network instead of designing one from scratch. Training a network can take a lot of time and computational resources. There are a number of well publicised networks which have been demonstrated to perform well at certain tasks. If you know of one which already does a similar task well, then it makes sense to use one of these.
 
-If instead we decide we do want to design our own network then we need to think about how many input neurons it will have, how many hidden layers and how many outputs, what types of layers we use (we will explore the different types later on). This will probably need some experimentation and we might have to try tweaking the network design a few times before we see acceptable results.
+If instead we decide to design our own network, then we need to think about how many input neurons it will have, how many hidden layers and how many outputs, and what types of layers to use. This will require some experimentation and tweaking of the network design a few times before achieving acceptable results.
 
-Here we present an initial model that will be explained in detail later on:
+Here we present an initial model to be explained in detail later on:
 
 #### Define the Model
 
@@ -202,9 +202,9 @@ model_intro = keras.Model(inputs = inputs_intro,
 
 ### Step 5. Choose a loss function and optimizer
 
-The loss function tells the training algorithm how far away the predicted value was from the true value. We will learn how to choose a loss function in more detail later on.
+The loss function tells the training algorithm how far away the predicted value was from the true value. We will learn how to choose a loss function in more detail in [Episode 4 Compile and Train (Fit) a Convolutional Neural Network](episodes/04-fit-cnn.md).
 
-The optimizer is responsible for taking the output of the loss function and then applying some changes to the weights within the network. It is through this process that the “learning” (adjustment of the weights) is achieved.
+The optimizer is responsible for taking the output of the loss function and then applying some changes to the weights within the network. It is through this process that “learning” (adjustment of the weights) is achieved.
 
 ```python
 # compile the model
@@ -270,19 +270,19 @@ My result is different!
 
 While the neural network itself is deterministic, various factors in the training process, system setup, and data variability can lead to small variations in the output. These variations are usually minor and should not significantly impact the overall performance or behavior of the model.
 
-If you are finding significant differences in the model predictions, this could be a sign that the model is not fully converged, where "convergence" refers to the point where the model has reached an optimal or near-optimal state in terms of learning from the training data.
+If you are finding significant differences in the model predictions, this could be a sign the model is not fully converged. "Convergence" refers to the point where the model has reached an optimal or near-optimal state in terms of learning from the training data.
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 Congratulations, you just created your first image classification model and used it to classify an image! 
 
-Was the classification correct? Why might it be incorrect and What can we do about? 
+Was the classification correct? Why might it be incorrect and what can we do about? 
 
-There are many ways we can try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
+There are many ways to try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
 
 
 ### Step 8. Measure Performance
 
-Once we trained the network we want to measure its performance. To do this we use some additional data that was **not** part of the training; this is known as a test set. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
+Once we trained the network we want to measure its performance. To do this, we use additional data that was **not** part of the training, called a test dataset. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
 
 ### Step 9. Tune Hyperparameters
 
@@ -310,7 +310,7 @@ associated with the lessons. They appear in the "Instructor View"
 - Machine learning is the process where computers learn to recognise patterns of data.
 - Deep learning is a subset of machine learning, which is a subset of artificial intelligence.
 - Convolutional neural networks are well suited for image classification.
-- To use Deep Learning effectively we need to go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, training the model, tuning hyperparameters, measuring performance before we can classify data.
+- To use Deep Learning effectively we follow a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, training the model, tuning hyperparameters, measuring performance before we can classify data.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->

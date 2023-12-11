@@ -32,13 +32,13 @@ Firstly we must decide what it is we want our Deep Learning system to do. This l
 
 ### Step 2. Identify inputs and outputs
 
-Next we need to identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. 
+Next we identify the inputs and outputs of the neural network. In our case, the data is images and the inputs could be the individual pixels of the images. 
 
 We are performing a classification problem and we want to output one category for each image.
 
 ### Step 3. Prepare data
 
-Deep Learning requires extensive training using example data which shows the network what output it should produce for a given input. In this workshop our network will be trained by being “shown” a series of images and told what they contain. Once the network is trained it should be able to take another image and correctly classify its contents.
+Deep Learning requires extensive training using example data which tells the network what output it should produce for a given input. In this workshop, our network will be trained on a series of images and told what they contain. Once the network is trained, it should be able to take another image and correctly classify its contents.
 
 You can use pre-existing data or prepare your own.
 
@@ -50,7 +50,7 @@ In some cases you will be able to download an image dataset that is already labe
 - [ImageNet] - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an [annual software contest] where programs compete to achieve the highest accuracy. When choosing a pretrained network, the winners of these sorts of competitions are generally a good place to start.
 - [MS COCO] - >200,000 labelled images used for object detection, instance segmentation, keypoint analysis, and captioning
 
-Where labelled data exists, in most cases the data provider or other users will have created functions that you can use to load the data. We already did this in the introduction:
+Where labelled data exists, in most cases the data provider or other users will have created data-specific functions you can use to load the data. We already did this in the introduction:
 
 ```python
 from tensorflow import keras
@@ -66,7 +66,7 @@ In this instance the data is likely already prepared for use in a CNN. However, 
 
 How much data do you need for Deep Learning?
 
-The rise of Deep Learning is partially due to the increased availability of very large datasets. But how much data do you actually need to train a Deep Learning model? Unfortunately, this question is not easy to answer. It depends, among other things, on the complexity of the task (which you often do not know beforehand), the quality of the available dataset and the complexity of the network. For complex tasks with large neural networks, we often find that adding more data continues to improve performance. However, this is also not a generic truth: if the data you add is too similar to the data you already have, it will not give much new information to the neural network.
+The rise of Deep Learning is partially due to the increased availability of very large datasets. But how much data do you actually need to train a Deep Learning model? Unfortunately, this question is not easy to answer. It depends, among other things, on the complexity of the task (which you often do not know beforehand), the quality of the available dataset and the complexity of the network. For complex tasks with large neural networks, adding more data often improves performance. However, this is also not a generic truth: if the data you add is too similar to the data you already have, it will not give much new information to the neural network.
 
 In case you have too little data available to train a complex network from scratch, it is sometimes possible to use a pretrained network that was trained on a similar problem. Another trick is data augmentation, where you expand the dataset with artificial data points that could be real. An example of this is mirroring images when trying to classify cats and dogs. An horizontally mirrored animal retains the label, but exposes a different view.
 
@@ -74,13 +74,13 @@ In case you have too little data available to train a complex network from scrat
 
 #### Custom image data
 
-In other cases, you will need to create your own set of labelled images. 
+In other cases, you will create your own set of labelled images. 
 
 **Custom data i. Data collection and Labeling:**
 
 For image classification the label applies to the entire image; object detection requires bounding boxes around objects of interest, and instance or semantic segmentation requires each pixel to be labelled.
 
-There are a number of open source software that can be used to label your dataset, including:
+There are a number of open source software used to label your dataset, including:
 
 - (Visual Geometry Group) [VGG Image Annotator] (VIA)
 - [ImageJ] can be extended with plugins for annotation
@@ -110,9 +110,9 @@ For example, consider this image of a Jabiru, with a square area designated by a
 
 Now, if we zoomed in close enough to the red box, inte individual pixels would stand out:
 
-![](fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg){alt='zoomed in area of Jabiru where you can the individual pixels stand out'}
+![](fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg){alt='zoomed in area of Jabiru where the individual pixels stand out'}
 
-Note that each square in the enlarged image area (i.e. each pixel) is all one color, but that each pixel can have a different color from its neighbors. Viewed from a distance, these pixels seem to blend together to form the image.
+Note each square in the enlarged image area (i.e. each pixel) is all one color, but each pixel can be a different color from its neighbors. Viewed from a distance, these pixels seem to blend together to form the image.
 
 ### Working with Pixels
 
@@ -172,7 +172,7 @@ The new image has shape `(573, 552, 3)`, meaning it is much larger in size, 573x
 
 Recall from the introduction that our training data set consists of 50000 images of 32x32 pixels and three channels. 
 
-To reduce the computational load and ensure all of our images have a uniform size, we need to choose an image resolution (or size in pixels) and ensure that all of the images we use are resized to that shape to be consistent.
+To reduce the computational load and ensure all of our images have a uniform size, we need to choose an image resolution (or size in pixels) and ensure all of the images we use are resized to that shape to be consistent.
 
 There are a couple of ways to do this in python but one way is to specify the size you want using an argument to the `load_img()` function from `keras.utils`.
 
@@ -248,7 +248,7 @@ The min, max, and mean pixel values are 0.0 , 255.0 , and 87.0 respectively.
 After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0 respectively.
 ```
 
-Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, Keras has a solution for that: [tf.keras.utils.image_dataset_from_directory]
+Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, Keras has a solution: [tf.keras.utils.image_dataset_from_directory]
 
 
 ### One-hot encoding
@@ -277,7 +277,7 @@ Table 2. After One-Hot Encoding.
 | 0         | 0             | 1             |
 | 1         | 0             | 0             |
 
-Each category has its own binary column, and the value is set to 1 in the corresponding column for each row that matches that category.
+Each category has its own binary column, and the value is set to 1 in the corresponding column for each row matches that category.
 
 The Keras function for one_hot encoding is called [to_categorical]:
 
@@ -334,7 +334,7 @@ There are several ways to augment your data to increase the diversity of the tra
   - brightness, contrast, or hue
   - these changes simulate variations in lighting conditions
  
-We will discuss image augmentation in this lesson, but it is important that you be aware of this type of data preparation because it can make a big difference in your model's ability to predict outside of your training data.
+We will not discuss image augmentation in this lesson, but it is important that you are aware of this type of data preparation because it can make a big difference in your model's ability to predict outside of your training data.
 
 Information about these operations are included in the Keras document for [Image augmentation layers]. 
 
@@ -342,16 +342,16 @@ Information about these operations are included in the Keras document for [Image
 
 The typical practice in machine learning is to split your data into two subsets: a **training** set and a **test** set. This initial split separates the data you will use to train your model from the data you will use to evaluate its performance.
 
-After this initial split, you can choose to further split the training set into a training set and a **validation set**. This is often done when you need to fine-tune hyperparameters, select the best model from a set of candidate models, or prevent overfitting.
+After this initial split, you can choose to further split the training set into a training set and a **validation set**. This is often done when you are fine-tuning hyperparameters, selecting the best model from a set of candidate models, or preventing overfitting.
 
-In the previous episodes we used the 'cifar10.load_data()' that comes with the Keras installation to return data that is split into two (train and test sets). Now we want to split the training data into training and validation sets.
+In the previous episode, we used the 'cifar10.load_data()' method included with the Keras installation to return a dataset split into train and test sets. Now we want to split the training data into training and validation sets.
 
 To split a dataset into training and test sets there is a very convenient function from sklearn called [train_test_split]: 
 
 `sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)`
 
 - The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels).
-- Next is the named parameter `test_size` this is the fraction of the dataset that is used for testing, in this case `0.2` means 20 per cent of the data will be used for testing.
+- Next is the named parameter `test_size`. This is the fraction of the dataset used for testing and in this case `0.2` means 20 per cent of the data will be used for testing.
 - `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
 - `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
 - `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
@@ -455,7 +455,7 @@ Data is typically split into the training, validation, and test data sets using 
 
   - The data is split in such a way that each subset (training, validation, or test) maintains the same class distribution as the original dataset.
 
-  - This ensures that all classes are well-represented in each subset, which is important to avoid biased model evaluation.
+  - This ensures all classes are well-represented in each subset, which is important to avoid biased model evaluation.
 
 It's important to note that the exact split ratios (e.g., 80-10-10 or 70-15-15) may vary depending on the problem, dataset size, and specific requirements. Additionally, data splitting should be performed randomly to avoid introducing any biases into the model training and evaluation process.
 

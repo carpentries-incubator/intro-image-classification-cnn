@@ -23,7 +23,7 @@ exercises: 2
 
 ### Step 10. Share model
 
-Now that we have a trained network that performs at a level we are happy with and can maintain high prediction accuracy on a test dataset we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
+We now have a trained network that performs at a level we are happy with and maintains high prediction accuracy on a test dataset. We should consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
 Use `model.save` to save a model:
 
@@ -60,7 +60,7 @@ The saved .keras file contains:
 - The model's weights.
 - The model's optimizer's state (if any).
 
-Note that saving the model does not save the training history (i.e. training and validation loss and accuracy). For that you will need to save the model history dataframe we created for plotting.
+Note that saving the model does not save the training history (i.e. training and validation loss and accuracy). For that, you save the model history dataframe we used for plotting.
 
 The Keras documentation for [Saving and Serialization] explains other ways to save your model.
 
@@ -68,7 +68,7 @@ To share your model with a wider audience it is recommended you create git repos
 
 #### Choosing a pretrained model
 
-If your data and problem is very similar to what others have done, you can often use a pretrained network. Even if your problem is different, but the data type is common (for example images), you can use a pretrained network and finetune it for your problem. A large number of openly available pretrained networks can be found in the [Model Zoo], [pytorch hub] or [tensorflow hub].
+If your data and problem is very similar to what others have done, a pre-trained network might be preferable. Even if your problem is different, if the data type is common (for example images), you can use a pre-trained network and fine-tune it for your problem. A large number of openly available pre-trained networks can be found in the [Model Zoo], [pytorch hub] or [tensorflow hub].
 
 ### What else do I need to know?
 
@@ -78,12 +78,11 @@ In this lesson we chose to use [Keras] because it was designed to be easy to use
 
 The performance of Keras is sometimes not as good as other libraries and if you are going to move on to create very large networks using very large datasets then you might want to consider one of the other libraries. But for many applications the performance difference will not be enough to worry about and the time you will save with simpler code will exceed what you will save by having the code run a little faster.
 
-Keras also benefits from a very good set of [online documentation] and a large user community. You will find that most of the concepts from Keras translate very well across to the other libraries if you wish to learn them at a later date.
-
+Keras also benefits from a very good set of [online documentation] and a large user community. You will find most of the concepts from Keras translate very well across to the other libraries if you wish to learn them at a later date.
 
 A couple of those libraries include:
 
-- [TensorFlow] was developed by Google and is one of the older Deep Learning libraries, ported across many languages since it was first released to the public in 2015. It is very versatile and capable of much more than Deep Learning but as a result it often takes a lot more lines of code to write Deep Learning operations in TensorFlow than in other libraries. It offers (almost) seamless integration with GPU accelerators and Google's own TPU (Tensor Processing Unit) chips that are built specially for machine learning.
+- [TensorFlow] was developed by Google and is one of the older Deep Learning libraries, ported across many languages since it was first released to the public in 2015. It is very versatile and capable of much more than Deep Learning but as a result it often takes a lot more lines of code to write Deep Learning operations in TensorFlow than in other libraries. It offers (almost) seamless integration with GPU accelerators and Google's own TPU (Tensor Processing Unit) chips specially built for machine learning.
 
 - [PyTorch] was developed by Facebook in 2016 and is a popular choice for Deep Learning applications. It was developed for Python from the start and feels a lot more "pythonic" than TensorFlow. Like TensorFlow it was designed to do more than just Deep Learning and offers some very low level interfaces. [PyTorch Lightning] offers a higher level interface to PyTorch to set up experiments. Like TensorFlow it is also very easy to integrate PyTorch with a GPU. In many benchmarks it outperforms the other libraries.
 
@@ -96,9 +95,9 @@ A **GPU**, or **Graphics Processing Unit**, is a specialized electronic circuit 
 
 As you have experienced in this lesson, training CNN models can take a long time. If you follow the steps presented here you will find you are training multiple models to find the one best suited to your needs, particularly when fine tuning hyperparameters. However you have also seen that running on CPU only machines can be done! So while a GPU is not an absolute requirement for deep learning, it can significantly accelerate your deep learning work and make it more efficient, especially for larger and more complex tasks. 
 
-If you don't have access to a powerful GPU locally, you can use cloud services that provide GPU instances for deep learning. This can be a cost-effective option for many users.
+If you don't have access to a powerful GPU locally, there are cloud services that provide GPU instances for deep learning. This may be the most cost-effective option for many users.
 
-#### It this the best/only way to code up CNN's for image classification?
+#### It this the best/only way to code up CNNs for image classification?
 
 Absolutely not! The code we used in today's workshop might today be considered old fashioned. A lot of the data preprocessing we did by hand can now be done by adding different layer types to your model. The [preprocessing layers] section fo the Keras documentation provides several examples.
 
@@ -130,7 +129,7 @@ However, there are many other tasks which CNNs are well suited for:
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 - Deep Learning is well suited to classification and prediction problems such as image recognition.
-- To use Deep Learning effectively we need to go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, choosing a loss function, training the model, tuning Hyperparameters, measuring performance before we can classify data.
+- To use Deep Learning effectively, go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, choosing a loss function, training the model, tuning Hyperparameters, measuring performance before we can classify data.
 - Keras is a Deep Learning library that is easier to use than many of the alternatives such as TensorFlow and PyTorch.
 - Graphical Processing Units are useful, though not essential, for deep learning tasks.
 

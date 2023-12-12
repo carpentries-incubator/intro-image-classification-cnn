@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jun 30 11:41:57 2023
+Episode 03 Build a Convolutional Neural Network
 
-@author: bellf
 """
 
 # load the required packages
@@ -97,11 +96,10 @@ model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifa
 model_intro.summary()
 
 
-####
-####
-#### continues in fit episode 04
-####
-####
+"""
+Episode 04 Compile and Train (Fit) a Convolutional Neural Network
+
+"""
 
 # compile the model
 model_intro.compile(optimizer = 'adam', 
@@ -126,6 +124,8 @@ fig, axes = plt.subplots(1, 2)
 fig.suptitle('cifar_model_intro')
 sns.lineplot(ax=axes[0], data=history_intro_df[['loss', 'val_loss']])
 sns.lineplot(ax=axes[1], data=history_intro_df[['accuracy', 'val_accuracy']])
+
+### Improve Model Generalization (avoid Overfitting)
 
 ## Dropout
 
@@ -174,7 +174,7 @@ history_dropout = model_dropout.fit(train_images, train_labels,
                                     batch_size = 32)
 
 # save dropout model
-model_dropout.save('fit_outputs/model_dropout.h5')
+model_dropout.save('fit_outputs/model_dropout.keras')
 
 # inspect the training results
 

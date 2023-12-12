@@ -358,7 +358,9 @@ To split a dataset into training and test sets there is a very convenient functi
 
 ```python
 # split the training data into training and validation sets
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, 
+																	  test_size = 0.2, 
+																	  random_state = 42)
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge

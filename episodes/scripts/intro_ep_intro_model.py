@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jun 30 09:37:03 2023
+Episode 01 Introduction to Deep Learning
 
-@author: Jason Bell
 """
 
 # load the required packages
@@ -88,8 +87,7 @@ model_intro.compile(optimizer = 'adam',
                     metrics = ['accuracy'])
 
 # fit the model
-history_intro = model_intro.fit(train_images, train_labels, 
-                                epochs = 10, 
+history_intro = model_intro.fit(train_images, train_labels, epochs = 10, 
                                 validation_data = (val_images, val_labels),
                                 batch_size = 32)
 
@@ -106,6 +104,9 @@ print('The class with the highest predicted probability is: ', class_names[resul
 plt.imshow(test_images[0], cmap=plt.cm.binary)
 plt.title('True class:' + class_names[test_labels[0,].argmax()])
 plt.show()
+
+# save the model
+model_intro.save('fit_outputs/model_intro.keras')
 
 end = time.time()
 

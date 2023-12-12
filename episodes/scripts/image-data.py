@@ -4,6 +4,7 @@ Episode 02 Introduction to Image Data
 
 """
 
+# load the required packages
 from tensorflow import keras
 from keras.utils import img_to_array
 from keras.utils import load_img
@@ -12,7 +13,7 @@ from sklearn.model_selection import train_test_split
 
 #### Pre-existing image data
 
-# load the CIFAR-10 dataset included with the keras packages
+# load the CIFAR-10 dataset included with the keras library
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
 
@@ -69,8 +70,11 @@ print(train_labels)
 
 
 ### Data Splitting
+
 # split the training data into training and validation sets
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, 
+                                                                      test_size = 0.2, 
+                                                                      random_state = 42)
 
 ########################################################
 # Challenge Training and Validation Sets

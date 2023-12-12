@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-
-Evaluate a Convolutional Neural Network and Make Predictions (Classifications)
+Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)
 
 """
 from tensorflow import keras
@@ -15,10 +14,11 @@ from scikeras.wrappers import KerasClassifier
 from sklearn.model_selection import GridSearchCV
 import matplotlib.pyplot as plt
 
-# load weights for your best model
-model_best = keras.models.load_model('fit_outputs/model_dropout.h5')
+# load your best model
+model_best = keras.models.load_model('fit_outputs/model_dropout.keras')
+print('We are using', model_best.name)
 
-# load the cifar dataset included with the keras packages
+# load the CIFAR-10 dataset included with the keras library
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
 # normalize the RGB values to be between 0 and 1
@@ -27,10 +27,7 @@ test_images = test_images / 255.0
 
 # we do not one hot encode here because our model predicts a class label 
 
-# check correct model is loaded
-print('We are using', model_best.name)
-
-# check test dataset is loaded - images and labels
+# check test image dataset is loaded - images and labels
 print('The number and shape of images in our test dataset is:', test_images.shape)
 print('The number of labels in our test dataset is:', len(test_labels))
 
@@ -56,7 +53,7 @@ print(predicted_labels)
 test_acc = accuracy_score(test_labels, predicted_labels)
 print('Accuracy:', round(test_acc,2))
 
-# confusion matrix
+# create a confusion matrix
 conf_matrix = confusion_matrix(test_labels, predicted_labels)
 print(conf_matrix)
 
@@ -79,7 +76,9 @@ sns.heatmap(confusion_df, annot=True, fmt='3g')
 train_labels = keras.utils.to_categorical(train_labels, len(class_names))
 
 # split the training data into training and validation sets
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels,
+                                                                      test_size = 0.2, 
+                                                                      random_state = 42)
 
 # specify range of dropout rates
 dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]

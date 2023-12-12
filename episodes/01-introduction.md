@@ -294,6 +294,13 @@ When building image recognition models in Python, especially using libraries lik
 
 Now that we have a trained network that performs at a level we are happy with we can go and use it on real data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
+To share the model we must save it first.
+
+```python
+# save the model
+model_dropout.save('fit_outputs/model_intro.keras')
+```
+
 We will return to each of these workflow steps throughout this lesson and discuss each component in more detail.
 
 ::::::::::::::::::::::::::::::::::::: keypoints

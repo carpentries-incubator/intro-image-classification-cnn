@@ -288,22 +288,13 @@ Once we trained the network we want to measure its performance. To do this, we u
 
 When building image recognition models in Python, especially using libraries like TensorFlow or Keras, the process involves not only designing a neural network but also choosing the best values for various hyperparameters that govern the training process.
 
-#### What are hyperparameters? 
-
-Hyperparameters are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimise the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](episodes/05-evaluate-predict-cnn.md)
+**Hyperparameters** are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimise the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](episodes/05-evaluate-predict-cnn.md)
 
 ### Step 10. Share Model
 
 Now that we have a trained network that performs at a level we are happy with we can go and use it on real data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
 We will return to each of these workflow steps throughout this lesson and discuss each component in more detail.
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 

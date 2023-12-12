@@ -419,7 +419,7 @@ An activation function is like a switch, or a filter, that we use in artificial 
 
 Think of an activation function as a tiny decision-maker for each neuron in a neural network. It helps determine whether the neuron should 'fire', or pass on information, or stay 'off' and remain silent, much like a light switch controls whether the light should be ON or OFF. Activation functions are crucial because they add non-linearity to the neural network. Without them, the network would be like a simple linear model, unable to learn complex patterns in data. 
 
-#### How do you know what activation function to choose?
+### How do you know what activation function to choose?
 
 Neural networks can be tuned to leverage many different types of activation functions. In fact, it is a crucial decision as the choice of activation function will have a direct impact on the performance of the model.
 

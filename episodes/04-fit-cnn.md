@@ -82,7 +82,7 @@ The [optimizer documentation] describes the optimizers to choose. A couple more 
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler 
 
-### WANT TO KNOW MORE: Learning Rate
+## WANT TO KNOW MORE: Learning Rate
 
 ChatGPT
 
@@ -153,7 +153,7 @@ Other arguments used to fit our model can be found in the documentation for the 
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler 
 
-### WANT TO KNOW MORE: Batch size
+## WANT TO KNOW MORE: Batch size
 
 ChatGPT
 
@@ -173,7 +173,7 @@ However, it's essential to consider the trade-offs of using different batch size
 :::::::::::::::::::::::::::::::::::::::::::::::
 
 
-### Monitor Training Progress (aka Model Evaluation during Training)
+#### Monitor Training Progress (aka Model Evaluation during Training)
 
 We now know more about the compilation and fitting of CNNs. Let us inspect the training metrics for our model.
 
@@ -236,7 +236,7 @@ How to Address Overfitting:
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
-### WANT TO KNOW MORE: What is underfitting?
+## WANT TO KNOW MORE: What is underfitting?
 
 Underfitting occurs when the model is too simple or lacks the capacity to capture the underlying patterns and relationships present in the data. As a result, the model's predictions are not accurate, and it fails to generalize well to unseen data.
 
@@ -407,7 +407,7 @@ The final accuracy on the validation set is higher than without dropout.
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
-### WANT TO KNOW MORE: Regularization methods for Convolutional Neural Networks (CNNs)
+## WANT TO KNOW MORE: Regularization methods for Convolutional Neural Networks (CNNs)
 
 ChatGPT
 
@@ -456,6 +456,5 @@ Based on our evaluation of the loss and accuracy metrics, the `model_dropout` ap
 [optimizer documentation]: https://keras.io/api/optimizers/
 [metrics]: https://keras.io/api/metrics/
 [fit method]: https://keras.io/api/models/model_training_apis/
-
 [Google Developers Machine Learning Crash Course]: https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate
 [Creative Commons 4.0 Attribution Licence]: https://creativecommons.org/licenses/by/4.0/

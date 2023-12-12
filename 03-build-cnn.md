@@ -189,7 +189,7 @@ There are different ways of dealing with border pixels. You can ignore them, whi
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-#### **Pooling Layers**
+##### **Pooling Layers**
 
 The convolutional layers are often intertwined with **Pooling** layers. As opposed to the convolutional layer used in feature extraction, the pooling layer alters the dimensions of the image and reduces it by a scaling factor. It is basically decreasing the resolution of your picture. The rationale behind this is that higher layers of the network should focus on higher-level features of the image. By introducing a pooling layer, the subsequent convolutional layer has a broader 'view' on the original image.
 

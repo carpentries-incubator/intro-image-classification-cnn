@@ -128,7 +128,7 @@ The matrix is mathematical concept where numbers are evenly arranged in a rectan
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
-### WANT TO KNOW MORE: Python image libraries
+## WANT TO KNOW MORE: Python image libraries
 
 Two of the most commonly used libraries for image representation and manipulation are NumPy and Pillow (PIL). Additionally, when working with deep learning frameworks like TensorFlow and PyTorch, images are often represented as tensors within these frameworks.
 
@@ -193,7 +193,7 @@ Image RGB values are between 0 and 255. As input for neural networks, it is bett
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
-### WANT TO KNOW MORE: Why Normalize?
+## WANT TO KNOW MORE: Why Normalize?
 
 ChatGPT
 
@@ -358,7 +358,9 @@ To split a dataset into training and test sets there is a very convenient functi
 
 ```python
 # split the training data into training and validation sets
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, 
+																	  test_size = 0.2, 
+																	  random_state = 42)
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -417,7 +419,7 @@ The number of labels in our validation set and the number images in each class a
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
-### WANT TO KNOW MORE: Data Splitting Techniques
+## WANT TO KNOW MORE: Data Splitting Techniques
 
 ChatGPT
 

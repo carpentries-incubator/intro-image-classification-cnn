@@ -603,7 +603,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction to Deep Learning</a></p>
 <hr>
-<p> Last updated on 2023-12-11 | 
+<p> Last updated on 2023-12-12 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -849,7 +849,7 @@ copied and used as a foundation for the rest of the episodes.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1087,20 +1087,15 @@ indication of how well our network performs.</p>
 libraries like TensorFlow or Keras, the process involves not only
 designing a neural network but also choosing the best values for various
 hyperparameters that govern the training process.</p>
-<div class="section level4">
-<h4 id="what-are-hyperparameters">What are hyperparameters?<a class="anchor" aria-label="anchor" href="#what-are-hyperparameters"></a>
-</h4>
-<p>Hyperparameters are all the parameters set by the person configuring
-the machine learning instead of those learned by the algorithm itself.
-These hyperparameters can include the learning rate, the number of
-layers in the network, the number of neurons per layer, and many more.
-Hyperparameter tuning refers to the process of systematically searching
-for the best combination of hyperparameters that will optimise the
-model’s performance. This concept will be continued, with practical
-examples, in <a href="05-evaluate-predict-cnn.html">Episode 05 Evaluate
-a Convolutional Neural Network and Make Predictions
-(Classifications)</a></p>
-</div>
+<p><strong>Hyperparameters</strong> are all the parameters set by the
+person configuring the machine learning instead of those learned by the
+algorithm itself. These hyperparameters can include the learning rate,
+the number of layers in the network, the number of neurons per layer,
+and many more. Hyperparameter tuning refers to the process of
+systematically searching for the best combination of hyperparameters
+that will optimise the model’s performance. This concept will be
+continued, with practical examples, in <a href="05-evaluate-predict-cnn.html">Episode 05 Evaluate a Convolutional
+Neural Network and Make Predictions (Classifications)</a></p>
 </div>
 <div class="section level3">
 <h3 id="step-10--share-model">Step 10. Share Model<a class="anchor" aria-label="anchor" href="#step-10--share-model"></a>
@@ -1112,9 +1107,15 @@ architecture of our network and the weights which it has learned
 (assuming we did not use a pre-trained network). This will allow others
 to use it as as pre-trained network for their own purposes and for them
 to (mostly) reproduce our result.</p>
+<p>To share the model we must save it first.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model_dropout.save(<span class="st">'fit_outputs/model_intro.keras'</span>)</span></code></pre>
+</div>
 <p>We will return to each of these workflow steps throughout this lesson
 and discuss each component in more detail.</p>
-
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1146,7 +1147,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-02-image-data"><p>Content from <a href="02-image-data.html">Introduction to Image Data</a></p>
 <hr>
-<p> Last updated on 2023-12-11 | 
+<p> Last updated on 2023-12-12 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1388,7 +1389,7 @@ interchangeably.</p>
   WANT TO KNOW MORE: Python image libraries
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>Two of the most commonly used libraries for image representation and
 manipulation are NumPy and Pillow (PIL). Additionally, when working with
@@ -1497,7 +1498,7 @@ RGB values to be between 0 and 1 is called
   WANT TO KNOW MORE: Why Normalize?
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Normalizing the RGB values to be between 0 and 1 is a common
@@ -1789,7 +1790,9 @@ the dataset.</li>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># split the training data into training and validation sets</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(train_images, train_labels, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(train_images, train_labels, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>																	  test_size <span class="op">=</span> <span class="fl">0.2</span>, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>																	  random_state <span class="op">=</span> <span class="dv">42</span>)</span></code></pre>
 </div>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
@@ -1815,7 +1818,7 @@ out if the classes are well balanced.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -1871,7 +1874,7 @@ The number of labels in our validation set and the number images in each class a
   WANT TO KNOW MORE: Data Splitting Techniques
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Data is typically split into the training, validation, and test data
@@ -1962,7 +1965,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Build a Convolutional Neural Network</a></p>
 <hr>
-<p> Last updated on 2023-12-11 | 
+<p> Last updated on 2023-12-12 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2265,11 +2268,10 @@ the input image.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level4">
-<h4 id="pooling-layers">
+<div class="section level5">
+<h5 id="pooling-layers">
 <strong>Pooling Layers</strong><a class="anchor" aria-label="anchor" href="#pooling-layers"></a>
-</h4>
+</h5>
 <p>The convolutional layers are often intertwined with
 <strong>Pooling</strong> layers. As opposed to the convolutional layer
 used in feature extraction, the pooling layer alters the dimensions of
@@ -2308,6 +2310,7 @@ types of data than image data. Whenever the data is ordered in a
 be useful, convolutions can be used. Think for example of time series
 data from an accelerometer, audio data for speech recognition, or 3d
 structures of chemical compounds.</p>
+</div>
 </div>
 </div>
 </div>
@@ -2584,7 +2587,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-04-fit-cnn"><p>Content from <a href="04-fit-cnn.html">Compile and Train (Fit) a Convolutional Neural Network</a></p>
 <hr>
-<p> Last updated on 2023-12-11 | 
+<p> Last updated on 2023-12-12 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2851,11 +2854,10 @@ for your specific model, architecture, and dataset.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="monitor-training-progress-aka-model-evaluation-during-training">Monitor Training Progress (aka Model Evaluation during
+<div class="section level4">
+<h4 id="monitor-training-progress-aka-model-evaluation-during-training">Monitor Training Progress (aka Model Evaluation during
 Training)<a class="anchor" aria-label="anchor" href="#monitor-training-progress-aka-model-evaluation-during-training"></a>
-</h3>
+</h4>
 <p>We now know more about the compilation and fitting of CNNs. Let us
 inspect the training metrics for our model.</p>
 <p>Using seaborn, we can plot the training process using the
@@ -2986,6 +2988,7 @@ the data.</li>
 <li>Perform data augmentation or feature engineering to provide the
 model with more informative input features.</li>
 </ul>
+</div>
 </div>
 </div>
 </div>
@@ -3291,7 +3294,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-05-evaluate-predict-cnn"><p>Content from <a href="05-evaluate-predict-cnn.html">Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a></p>
 <hr>
-<p> Last updated on 2023-12-11 | 
+<p> Last updated on 2023-12-12 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3408,7 +3411,7 @@ The number of labels in our test dataset is:  10000</code></pre>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>It depends! Recall in an <a href="02-image-data.html">Episode 02
 Introduction to Image Data</a> Callout we talked about the different
@@ -3579,7 +3582,7 @@ visualized as a confusion matrix.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Q1. The confusion matrix illustrates that the predictions are not bad
 but can improved.</p>
@@ -3671,7 +3674,7 @@ model performance, what is the term associated to this procedure?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Q1. Varying the dropout rate</p>
 <p>The code below instantiates and trains a model with varying dropout
@@ -3793,7 +3796,7 @@ is expressed in code to search for an optimizer.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>First, we will define a <strong>build function</strong> to use during
 GridSearch. This function will compile the model for each combination of
@@ -3886,9 +3889,9 @@ like a light switch controls whether the light should be ON or OFF.
 Activation functions are crucial because they add non-linearity to the
 neural network. Without them, the network would be like a simple linear
 model, unable to learn complex patterns in data.</p>
-<div class="section level4">
-<h4 id="how-do-you-know-what-activation-function-to-choose">How do you know what activation function to choose?<a class="anchor" aria-label="anchor" href="#how-do-you-know-what-activation-function-to-choose"></a>
-</h4>
+<div class="section level3">
+<h3 id="how-do-you-know-what-activation-function-to-choose">How do you know what activation function to choose?<a class="anchor" aria-label="anchor" href="#how-do-you-know-what-activation-function-to-choose"></a>
+</h3>
 <p>Neural networks can be tuned to leverage many different types of
 activation functions. In fact, it is a crucial decision as the choice of
 activation function will have a direct impact on the performance of the
@@ -3958,7 +3961,7 @@ well outside of deep architectures</td>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>The code below serves as a practical means for exploring activation
 performance on an image dataset.</p>
@@ -4058,7 +4061,7 @@ improve the prediction quality?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>This is an open question.</p>
 <p>Regarding the model architecture:</p>

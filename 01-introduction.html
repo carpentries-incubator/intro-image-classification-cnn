@@ -280,7 +280,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p> Last updated on 2023-12-11 | 
+        <p> Last updated on 2023-12-12 | 
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -515,7 +515,7 @@ copied and used as a foundation for the rest of the episodes.</p>
   Output
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -741,19 +741,15 @@ indication of how well our network performs.</p>
 libraries like TensorFlow or Keras, the process involves not only
 designing a neural network but also choosing the best values for various
 hyperparameters that govern the training process.</p>
-<div class="section level4">
-<h4 id="what-are-hyperparameters">What are hyperparameters?<a class="anchor" aria-label="anchor" href="#what-are-hyperparameters"></a></h4>
-<p>Hyperparameters are all the parameters set by the person configuring
-the machine learning instead of those learned by the algorithm itself.
-These hyperparameters can include the learning rate, the number of
-layers in the network, the number of neurons per layer, and many more.
-Hyperparameter tuning refers to the process of systematically searching
-for the best combination of hyperparameters that will optimise the
-model’s performance. This concept will be continued, with practical
-examples, in <a href="05-evaluate-predict-cnn.html">Episode 05 Evaluate
-a Convolutional Neural Network and Make Predictions
-(Classifications)</a></p>
-</div>
+<p><strong>Hyperparameters</strong> are all the parameters set by the
+person configuring the machine learning instead of those learned by the
+algorithm itself. These hyperparameters can include the learning rate,
+the number of layers in the network, the number of neurons per layer,
+and many more. Hyperparameter tuning refers to the process of
+systematically searching for the best combination of hyperparameters
+that will optimise the model’s performance. This concept will be
+continued, with practical examples, in <a href="05-evaluate-predict-cnn.html">Episode 05 Evaluate a Convolutional
+Neural Network and Make Predictions (Classifications)</a></p>
 </div>
 <div class="section level3">
 <h3 id="step-10--share-model">Step 10. Share Model<a class="anchor" aria-label="anchor" href="#step-10--share-model"></a></h3>
@@ -764,9 +760,15 @@ architecture of our network and the weights which it has learned
 (assuming we did not use a pre-trained network). This will allow others
 to use it as as pre-trained network for their own purposes and for them
 to (mostly) reproduce our result.</p>
+<p>To share the model we must save it first.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model_dropout.save(<span class="st">'fit_outputs/model_intro.keras'</span>)</span></code></pre>
+</div>
 <p>We will return to each of these workflow steps throughout this lesson
 and discuss each component in more detail.</p>
-
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -853,7 +855,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/01-introduction.html",
   "identifier": "https://.github.io/github.com/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2023-12-11",
+  "dateModified": "2023-12-12",
   "datePublished": "2023-12-12"
 }
 

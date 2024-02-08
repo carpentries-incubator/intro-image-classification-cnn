@@ -169,8 +169,8 @@ model_dropout.compile(optimizer = 'adam',
 
 # fit the dropout model
 history_dropout = model_dropout.fit(train_images, train_labels, 
-                                    epochs=10,
-                                    validation_data=(val_images, val_labels),
+                                    epochs = 10,
+                                    validation_data = (val_images, val_labels),
                                     batch_size = 32)
 
 # save dropout model
@@ -188,6 +188,8 @@ sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
 sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
 
 ########################################################
+
+end = time.time()
 
 print()
 print()

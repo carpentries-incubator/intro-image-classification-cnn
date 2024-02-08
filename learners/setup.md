@@ -6,7 +6,7 @@ This lesson is designed for Software Carpentry users who have completed [Plottin
 
 It uses the Anaconda package manager to install the required python packages, including the Spyder IDE. 
 
-These instructions are for setting up tensorflow in a **CPU** only environment. 
+These instructions are for setting up tensorflow in a **CPU** only environment.
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 Please note you might want to consider installing the GPU enabled version of TensorFlow. The GPU enabled version can run significantly quicker (especially when training models) than the CPU only version.  If you have a decent dedicated GPU on your computer, it is suggested to follow the instructions located in the [Setup - GPU](episodes/setup-gpu.md) section instead.
@@ -179,17 +179,21 @@ This should output the versions of all required packages without giving errors.
 
 Most versions will work fine with this lesson, but:
 
-- For Keras and Tensorflow, the minimum version is 2.2.4
+- For Tensorflow, the minimum version is 2.2.4
 - For sklearn, the minimum version is 0.22.
 
 
-## Download the exercise python template file
+## Download the scripts and model outputs
 
 The aim for this workshop is to create a python script to use as a "base python program" for future projects.
 
-In an effort to not clutter the scripts developed in the workshop with episode exercise/challenge code, this workshop will use an exercises python script for all of the exercises completed throughout the workshop.
+In an effort to not clutter the scripts developed in the workshop with code from the Episode Challenges, this workshop will use a separate python script for all of the Challenges introduced throughout the workshop.
 
-This file can be downloaded from [exercises.py](../episodes/scripts/exercises.py).
+The script files and model outputs can be downloaded from <insert link here>
+TODO create zip folder containing everything and put up on QCIF google docs
+EG if this is not done before the trial workshop, the scripts are here:
+https://github.com/carpentries-incubator/intro-image-classification-cnn/tree/main/episodes/scripts
+...and the outputs will be created as we go!
 
 
 ## Get the data

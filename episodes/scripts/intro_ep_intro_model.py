@@ -8,7 +8,6 @@ Episode 01 Introduction to Deep Learning
 from tensorflow import keras
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-import numpy as np
 import time
 
 start = time.time()
@@ -28,6 +27,7 @@ train_labels = keras.utils.to_categorical(train_labels, len(class_names))
 test_labels = keras.utils.to_categorical(test_labels, len(class_names))
 
 # split the training data into training and validation sets
+# NOTE the function is train_test split but we're using it to split train into train and validation
 train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
 
 ########################################################

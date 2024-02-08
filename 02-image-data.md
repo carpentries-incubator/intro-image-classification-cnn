@@ -296,7 +296,6 @@ print(train_labels)
 
 # one-hot encode labels
 train_labels = keras.utils.to_categorical(train_labels, len(class_names))
-val_labels = keras.utils.to_categorical(val_labels, len(class_names))
 
 print()
 print('train_labels after one hot encoding')

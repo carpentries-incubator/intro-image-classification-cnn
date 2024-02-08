@@ -44,7 +44,7 @@ Check to make sure you have a model in memory and a test dataset:
 model_best = keras.models.load_model('fit_outputs/model_dropout.h5') # pick your best model
 print('We are using', model_best.name)
 
-# load the CIFAR-10 dataset included with the keras packages
+# load the CIFAR-10 dataset included with the keras library
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
 # normalize the RGB values to be between 0 and 1
@@ -56,7 +56,7 @@ test_images = test_images / 255.0
 # check correct model is loaded
 print('We are using', model_best.name)
 
-# check test image dataset is loaded
+# check test image dataset is loaded - images and labels
 print('The number and shape of images in our test dataset is:', test_images.shape)
 print('The number of labels in our test dataset is:', len(test_labels))
 ```
@@ -129,6 +129,7 @@ An easy way to check the accuracy of our model on the test set is to use the `ac
 ```python
 from sklearn.metrics import accuracy_score
 
+# evaluate the model on the test data set
 test_acc = accuracy_score(test_labels, predicted_labels)
 print('Accuracy:', round(test_acc,2))
 ```
@@ -150,6 +151,7 @@ To create a confusion matrix, we use another convenient function from sklearn ca
 ```python
 from sklearn.metrics import confusion_matrix
 
+# create a confusion matrix
 conf_matrix = confusion_matrix(test_labels_values, predicted_labels)
 print(conf_matrix)
 ```
@@ -180,7 +182,7 @@ confusion_df.columns.name = 'Predicted Label'
 We can then use the `heatmap` function from seaborn to create a nice visualization of the confusion matrix.
 
 ```python
-sns.heatmap(confusion_df, annot=True)
+sns.heatmap(confusion_df, annot=True, fmt='3g')
 ```
 
 - The `annot=True` parameter here will put the numbers from the confusion matrix in the heatmap.
@@ -261,7 +263,9 @@ The code below instantiates and trains a model with varying dropout rates. The r
 train_labels = keras.utils.to_categorical(train_labels, len(class_names))
 
 # split the training data into training and validation sets
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, 
+																	  test_size = 0.2, 
+																	  random_state = 42)
 
 # specify range of dropout rates
 dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]
@@ -407,7 +411,7 @@ Curious about RMSprop? [RMSprop in Keras] and [RMSProp, Cornell University]
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-A third way to tune hyperparaters is brute force.
+A third way to tune hyperparameters is brute force.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 

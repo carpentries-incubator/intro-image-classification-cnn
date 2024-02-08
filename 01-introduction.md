@@ -99,7 +99,7 @@ import numpy as np # library for working with images as arrays
 
 # normalise the RGB values to be between 0 and 1
 train_images = train_images / 255.0
-val_images = val_images / 255.0
+test_images = test_images / 255.0
 
 # create a list of class names
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
@@ -110,6 +110,11 @@ val_labels = keras.utils.to_categorical(val_labels, len(class_names))
 
 # split the training data into training and validation sets
 train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+
+# split the training data into training and validation sets
+# NOTE the function is train_test_split() but we are using it to split train into train and validation
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+
 
 ```
 
@@ -294,7 +299,7 @@ When building image recognition models in Python, especially using libraries lik
 
 Now that we have a trained network that performs at a level we are happy with we can go and use it on real data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
-To share the model we must save it first.
+To share the model we must save it first:
 
 ```python
 # save the model

@@ -16,6 +16,8 @@ from sklearn.model_selection import train_test_split
 # load the CIFAR-10 dataset included with the keras library
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
+# create a list of classnames
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
 #### Custom image data
 
@@ -62,7 +64,6 @@ print(train_labels)
 
 # one-hot encode labels
 train_labels = keras.utils.to_categorical(train_labels, len(class_names))
-val_labels = keras.utils.to_categorical(val_labels, len(class_names))
 
 print()
 print('train_labels after one hot encoding')

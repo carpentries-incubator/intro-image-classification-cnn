@@ -335,9 +335,6 @@ model_intro = keras.Model(inputs=inputs_intro, outputs=outputs_intro, name="cifa
 # view the model summary
 model_intro.summary()
 
-# save dropout model
-model_intro.save('fit_outputs/model_intro.keras')
-
 ```
 ```output
 Model: "cifar_model_intro"

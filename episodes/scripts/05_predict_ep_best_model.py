@@ -14,6 +14,8 @@ from scikeras.wrappers import KerasClassifier
 from sklearn.model_selection import GridSearchCV
 import matplotlib.pyplot as plt
 
+# Step 7. Perform a Prediction/Classification
+
 # load your best model
 model_best = keras.models.load_model('fit_outputs/model_dropout.keras')
 print('We are using', model_best.name)
@@ -70,7 +72,7 @@ sns.heatmap(confusion_df, annot=True, fmt='3g')
 # Step 9. Tune hyperparameters
 
 ########################################################
-# Challenge Vary Dropout Rate
+# Challenge Tune Dropout Rate using a For Loop
 
 # one-hot encode labels
 train_labels = keras.utils.to_categorical(train_labels, len(class_names))
@@ -128,14 +130,14 @@ for dropout_rate in dropout_rates:
     val_loss_vary, val_acc_vary = model_vary.evaluate(val_images,  val_labels)
     val_losses_vary.append(val_loss_vary)
 
-loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss_vary': val_losses_vary[5:]})
+loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss_vary': val_losses_vary})
 
 sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss_vary')
 
 ########################################################
 
 ########################################################
-# Challenge Gridsearch
+# Challenge Tune Optimizer using Grid Search
 
 # use the intro model for gridsearch
 def create_model():
@@ -156,7 +158,9 @@ def create_model():
     model = keras.Model(inputs=inputs, outputs=outputs)
     
     # compile the pooling model
-    model.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+    model.compile(optimizer = 'adam', 
+                  loss = keras.losses.CategoricalCrossentropy(), 
+                  metrics=['accuracy'])
     
     return model
 
@@ -173,7 +177,10 @@ grid_result = grid.fit(train_images, train_labels)
 # Summarize results
 print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
 
-#### Assessing activiation function performance
+########################################################
+
+########################################################
+# Challenge Tune Activation Function using Brute Foce
 
 # use the intro model for activation function
 def create_model(activation_function):
@@ -195,14 +202,11 @@ def create_model(activation_function):
     model = keras.Model(inputs=inputs, outputs=outputs)
     
     # create the model
-    model.compile(optimizer = 'adam', loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+    model.compile(optimizer = 'adam', 
+                  loss = keras.losses.CategoricalCrossentropy(), 
+                  metrics=['accuracy'])
     
     return model
-
-########################################################
-
-########################################################
-# Challenge Activation Functions
 
 # List of activation functions to try
 activations = ['relu', 'sigmoid', 'tanh', 'selu', keras.layers.LeakyReLU()]

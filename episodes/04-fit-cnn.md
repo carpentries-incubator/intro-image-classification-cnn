@@ -137,7 +137,8 @@ A training **epoch** means that every sample in the training data has been given
 
 We want to train our model for 10 epochs:
 
-```
+```python
+# fit the model
 history_intro = model_intro.fit(train_images, train_labels, 
                                 epochs = 10, 
                                 validation_data = (val_images, val_labels),
@@ -188,7 +189,7 @@ history_intro_df = pd.DataFrame.from_dict(history_intro.history)
 
 # plot the loss and accuracy from the training process
 fig, axes = plt.subplots(1, 2)
-fig.suptitle('cifar_model_pool')
+fig.suptitle('cifar_model_intro')
 sns.lineplot(ax=axes[0], data=history_intro_df[['loss', 'val_loss']])
 sns.lineplot(ax=axes[1], data=history_intro_df[['accuracy', 'val_accuracy']])
 ```

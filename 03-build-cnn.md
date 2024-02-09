@@ -129,13 +129,13 @@ A **convolution matrix**, or **kernel**, is a matrix transformation that we 'sli
  [0,   0,  0]
  [1,   1,  1]]
 ```
-This kernel will give a high value to a pixel if it is on a horizontal border between dark and light areas. Note for RGB images, the kernel should also have a depth of 3, one for each color channel.
+This kernel will give a high value to a pixel if it is on a horizontal border between dark and light areas. Note for RGB images, the kernel should also have a depth of 3, one for each colour channel.
 
 In the following image, the effect of such a kernel on the values of a single-channel image stands out. The red cell in the output matrix is the result of multiplying and summing the values of the red square in the input, and the kernel. Applying this kernel to a real image demonstrates it does indeed detect horizontal edges.
 
-![](fig/03_conv_matrix.png){alt='6x5 input matrix representing a single color channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image '}
+![](fig/03_conv_matrix.png){alt='6x5 input matrix representing a single colour channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image '}
 
-![](fig/03_conv_image.png){alt='single color channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out'}
+![](fig/03_conv_image.png){alt='single colour channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out'}
 
 Within our convolutional layer, the hidden units comprise multiple convolutional matrices, also known as kernels. The matrix values, serving as weights, are learned during the training process. The convolutional layer produces an 'image' for each kernel, representing the output derived by applying the kernel to each pixel.
 

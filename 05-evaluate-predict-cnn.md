@@ -188,7 +188,7 @@ sns.heatmap(confusion_df, annot=True, fmt='3g')
 - The `annot=True` parameter here will put the numbers from the confusion matrix in the heatmap.
 - The `fmt=3g` will display the values with three significant digits.
 
-![](fig/05_pred_v_true_confusion_matrix.png){alt='Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors, indicating our model is predicting well, but a few non-diagonal cells also have a lighter color to indicate where the model is making a large number of prediction errors.'}
+![](fig/05_pred_v_true_confusion_matrix.png){alt='Confusion matrix of model predictions where the colour scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colours, indicating our model is predicting well, but a few non-diagonal cells also have a lighter colour to indicate where the model is making a large number of prediction errors.'}
 
 
 ::::::::::::::::::::::::::::::::::::: challenge 

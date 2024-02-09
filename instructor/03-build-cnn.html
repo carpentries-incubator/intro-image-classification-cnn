@@ -279,7 +279,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Build a Convolutional Neural Network</h1>
-        <p>Last updated on 2024-02-08 |
+        <p>Last updated on 2024-02-09 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -461,13 +461,13 @@ example think of the 3x3 kernel:</p>
  [1,   1,  1]]</code></pre>
 <p>This kernel will give a high value to a pixel if it is on a
 horizontal border between dark and light areas. Note for RGB images, the
-kernel should also have a depth of 3, one for each color channel.</p>
+kernel should also have a depth of 3, one for each colour channel.</p>
 <p>In the following image, the effect of such a kernel on the values of
 a single-channel image stands out. The red cell in the output matrix is
 the result of multiplying and summing the values of the red square in
 the input, and the kernel. Applying this kernel to a real image
 demonstrates it does indeed detect horizontal edges.</p>
-<figure><img src="../fig/03_conv_matrix.png" alt="6x5 input matrix representing a single color channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="../fig/03_conv_image.png" alt="single color channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
+<figure><img src="../fig/03_conv_matrix.png" alt="6x5 input matrix representing a single colour channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="../fig/03_conv_image.png" alt="single colour channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
 convolutional matrices, also known as kernels. The matrix values,
 serving as weights, are learned during the training process. The
 convolutional layer produces an ‘image’ for each kernel, representing
@@ -551,7 +551,7 @@ convolution?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means your output image is slightly smaller then your
@@ -650,7 +650,7 @@ this layer have?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -923,7 +923,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/03-build-cnn.html",
   "identifier": "https://.github.io/github.com/instructor/03-build-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-02-08",
+  "dateModified": "2024-02-09",
   "datePublished": "2024-02-09"
 }
 

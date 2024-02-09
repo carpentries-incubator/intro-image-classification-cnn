@@ -371,7 +371,7 @@ the workshop begins.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Windows</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -393,7 +393,7 @@ may already be checked.)</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">MacOS</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -413,7 +413,7 @@ installation.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Linux</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Note the following installation steps require you to work from the
 shell. If you run into any difficulties, please request help before the
@@ -515,7 +515,7 @@ not.</p>
   <h3 class="accordion-header" id="headingSpoiler1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>AMD GPU</h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
 <p>TODO Finish these instructions</p>
@@ -1338,26 +1338,26 @@ spend some time understanding how these abstractions work.</p>
 <p>It is important to realise that images are stored as rectangular
 arrays of hundreds, thousands, or millions of discrete “picture
 elements,” otherwise known as pixels. Each pixel can be thought of as a
-single square point of colored light.</p>
+single square point of coloured light.</p>
 <p>For example, consider this image of a Jabiru, with a square area
 designated by a red box:</p>
 <figure><img src="fig/02_Jabiru_TGS_marked.jpg" alt="Jabiru image that is 552 pixels wide and 573 pixels high. A red square around the neck region indicates the area to zoom in on." class="figure mx-auto d-block"></figure><p>Now, if we zoomed in close enough to the red box, the individual
 pixels would stand out:</p>
 <figure><img src="fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg" alt="zoomed in area of Jabiru where the individual pixels stand out" class="figure mx-auto d-block"></figure><p>Note each square in the enlarged image area (i.e. each pixel) is all
-one color, but each pixel can be a different color from its neighbors.
-Viewed from a distance, these pixels seem to blend together to form the
-image.</p>
+one colour, but each pixel can be a different colour from its
+neighbours. Viewed from a distance, these pixels seem to blend together
+to form the image.</p>
 </div>
 <div class="section level3">
 <h3 id="working-with-pixels">Working with Pixels<a class="anchor" aria-label="anchor" href="#working-with-pixels"></a>
 </h3>
 <p>As noted, in practice, real world images will typically be made up of
 a vast number of pixels, and each of these pixels will be one of
-potentially millions of colors. In python, an image can be represented
+potentially millions of colours. In python, an image can be represented
 as a multidimensional array, also known as a <code>tensor</code>, where
 each element in the array corresponds to a pixel value in the image. In
 the context of images, these arrays often have dimensions for height,
-width, and color channels (if applicable).</p>
+width, and colour channels (if applicable).</p>
 <div id="callout2" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1414,7 +1414,7 @@ Image Module</a> documentation</li>
 </ul>
 </li>
 <li>TensorFlow images are often represented as tensors that have
-dimensions for batch size, height, width, and color channels. This
+dimensions for batch size, height, width, and colour channels. This
 framework provide tools to load, preprocess, and work with image data
 seamlessly.
 <ul>
@@ -1458,7 +1458,7 @@ preprocessing</a> documentation</li>
 </h3>
 <p>The new image has shape <code>(573, 552, 3)</code>, meaning it is
 much larger in size, 573x552 pixels; a rectangle instead of a square;
-and consists of three color channels (RGB).</p>
+and consists of three colour channels (RGB).</p>
 <p>Recall from the introduction that our training data set consists of
 50000 images of 32x32 pixels and three channels.</p>
 <p>To reduce the computational load and ensure all of our images have a
@@ -1515,7 +1515,7 @@ networks and other optimization algorithms rely on gradient descent
 techniques, and having inputs in a consistent range aids in smoother and
 faster convergence.</p></li>
 <li><p><strong>Equal Weightage for All Channels</strong>: In RGB images,
-each channel (Red, Green, Blue) represents different color intensities.
+each channel (Red, Green, Blue) represents different colour intensities.
 By normalizing to the range [0, 1], you ensure that each channel is
 treated with equal weightage during training. This is important because
 some machine learning algorithms could assign more importance to larger
@@ -1602,12 +1602,12 @@ format. There are many ways to do this, however we will be using
 binary vectors, making it compatible with machine learning algorithms.
 Each category becomes a separate feature, and the presence or absence of
 a category is indicated by 1s and 0s in the respective columns.</p>
-<p>Let’s say you have a dataset with a “Color” column containing three
+<p>Let’s say you have a dataset with a “colour” column containing three
 categories: Red, Blue, Green.</p>
 <p>Table 1. Original Data.</p>
 <table class="table">
 <thead><tr class="header">
-<th>color</th>
+<th>colour</th>
 <th align="right"></th>
 </tr></thead>
 <tbody>
@@ -1632,9 +1632,9 @@ categories: Red, Blue, Green.</p>
 <p>Table 2. After One-Hot Encoding.</p>
 <table class="table">
 <thead><tr class="header">
-<th>Color_red</th>
-<th align="center">Color_blue</th>
-<th align="right">Color_green</th>
+<th>colour_red</th>
+<th align="center">colour_blue</th>
+<th align="right">colour_green</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -1726,7 +1726,7 @@ of the training data and improve model robustness.</p>
 right and you want your model to recognize both</li>
 </ul>
 </li>
-<li>Color properties
+<li>colour properties
 <ul>
 <li>brightness, contrast, or hue</li>
 <li>these changes simulate variations in lighting conditions</li>
@@ -1958,7 +1958,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Build a Convolutional Neural Network</a></p>
 <hr>
-<p>Last updated on 2024-02-08 |
+<p>Last updated on 2024-02-09 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2150,13 +2150,13 @@ example think of the 3x3 kernel:</p>
  [1,   1,  1]]</code></pre>
 <p>This kernel will give a high value to a pixel if it is on a
 horizontal border between dark and light areas. Note for RGB images, the
-kernel should also have a depth of 3, one for each color channel.</p>
+kernel should also have a depth of 3, one for each colour channel.</p>
 <p>In the following image, the effect of such a kernel on the values of
 a single-channel image stands out. The red cell in the output matrix is
 the result of multiplying and summing the values of the red square in
 the input, and the kernel. Applying this kernel to a real image
 demonstrates it does indeed detect horizontal edges.</p>
-<figure><img src="fig/03_conv_matrix.png" alt="6x5 input matrix representing a single color channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="fig/03_conv_image.png" alt="single color channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
+<figure><img src="fig/03_conv_matrix.png" alt="6x5 input matrix representing a single colour channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="fig/03_conv_image.png" alt="single colour channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
 convolutional matrices, also known as kernels. The matrix values,
 serving as weights, are learned during the training process. The
 convolutional layer produces an ‘image’ for each kernel, representing
@@ -2246,7 +2246,7 @@ convolution?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels. You can
 ignore them, which means your output image is slightly smaller then your
@@ -2349,7 +2349,7 @@ this layer have?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Each entry of the input dimensions, i.e. the shape of one single data
 point, is connected with 100 neurons of our hidden layer, and each of
@@ -3273,7 +3273,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-05-evaluate-predict-cnn"><p>Content from <a href="05-evaluate-predict-cnn.html">Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a></p>
 <hr>
-<p>Last updated on 2024-02-08 |
+<p>Last updated on 2024-02-09 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3388,7 +3388,7 @@ The number of labels in our test dataset is:  10000</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>It depends! Recall in an <a href="02-image-data.html">Episode 02
 Introduction to Image Data</a> Callout we talked about the different
@@ -3537,7 +3537,7 @@ the confusion matrix in the heatmap.</li>
 <li>The <code>fmt=3g</code> will display the values with three
 significant digits.</li>
 </ul>
-<figure><img src="fig/05_pred_v_true_confusion_matrix.png" alt="Confusion matrix of model predictions where the color scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colors, indicating our model is predicting well, but a few non-diagonal cells also have a lighter color to indicate where the model is making a large number of prediction errors." class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
+<figure><img src="fig/05_pred_v_true_confusion_matrix.png" alt="Confusion matrix of model predictions where the colour scale goes from black to light to represent values from 0 to the total number of test observations in our test set of 1000. The diagonal has much lighter colours, indicating our model is predicting well, but a few non-diagonal cells also have a lighter colour to indicate where the model is making a large number of prediction errors." class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -3559,7 +3559,7 @@ visualized as a confusion matrix.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Q1. The confusion matrix illustrates that the predictions are not bad
 but can improved.</p>
@@ -3649,7 +3649,7 @@ model performance, what is the term associated to this procedure?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Q1. Varying the dropout rate</p>
 <p>The code below instantiates and trains a model with varying dropout
@@ -3771,7 +3771,7 @@ is expressed in code to search for an optimizer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>First, we will define a <strong>build function</strong> to use during
 GridSearch. This function will compile the model for each combination of
@@ -3934,7 +3934,7 @@ well outside of deep architectures</td>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>The code below serves as a practical means for exploring activation
 performance on an image dataset.</p>
@@ -4032,7 +4032,7 @@ improve the prediction quality?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6">Show me the solution</h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>This is an open question.</p>
 <p>Regarding the model architecture:</p>

@@ -108,7 +108,7 @@ For example, consider this image of a Jabiru, with a square area designated by a
 
 ![](fig/02_Jabiru_TGS_marked.jpg){alt='Jabiru image that is 552 pixels wide and 573 pixels high. A red square around the neck region indicates the area to zoom in on.'}
 
-Now, if we zoomed in close enough to the red box, inte individual pixels would stand out:
+Now, if we zoomed in close enough to the red box, the individual pixels would stand out:
 
 ![](fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg){alt='zoomed in area of Jabiru where the individual pixels stand out'}
 

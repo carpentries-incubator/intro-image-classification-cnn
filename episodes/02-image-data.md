@@ -102,7 +102,7 @@ Before we learn about some of these tasks in more detail, we need to understand 
 
 ### Pixels
 
-It is important to realise that images are stored as rectangular arrays of hundreds, thousands, or millions of discrete "picture elements," otherwise known as pixels. Each pixel can be thought of as a single square point of colored light.
+It is important to realise that images are stored as rectangular arrays of hundreds, thousands, or millions of discrete "picture elements," otherwise known as pixels. Each pixel can be thought of as a single square point of coloured light.
 
 For example, consider this image of a Jabiru, with a square area designated by a red box:
 
@@ -112,11 +112,11 @@ Now, if we zoomed in close enough to the red box, the individual pixels would st
 
 ![](fig/02_Jabiru_TGS_marked_zoom_enlarged.jpg){alt='zoomed in area of Jabiru where the individual pixels stand out'}
 
-Note each square in the enlarged image area (i.e. each pixel) is all one color, but each pixel can be a different color from its neighbors. Viewed from a distance, these pixels seem to blend together to form the image.
+Note each square in the enlarged image area (i.e. each pixel) is all one colour, but each pixel can be a different colour from its neighbours. Viewed from a distance, these pixels seem to blend together to form the image.
 
 ### Working with Pixels
 
-As noted, in practice, real world images will typically be made up of a vast number of pixels, and each of these pixels will be one of potentially millions of colors. In python, an image can be represented as a multidimensional array, also known as a `tensor`, where each element in the array corresponds to a pixel value in the image. In the context of images, these arrays often have dimensions for height, width, and color channels (if applicable).
+As noted, in practice, real world images will typically be made up of a vast number of pixels, and each of these pixels will be one of potentially millions of colours. In python, an image can be represented as a multidimensional array, also known as a `tensor`, where each element in the array corresponds to a pixel value in the image. In the context of images, these arrays often have dimensions for height, width, and colour channels (if applicable).
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 
@@ -139,7 +139,7 @@ Two of the most commonly used libraries for image representation and manipulatio
   - `from PIL import Image`
   - [PIL Image Module] documentation
 
-- TensorFlow images are often represented as tensors that have dimensions for batch size, height, width, and color channels. This framework provide tools to load, preprocess, and work with image data seamlessly. 
+- TensorFlow images are often represented as tensors that have dimensions for batch size, height, width, and colour channels. This framework provide tools to load, preprocess, and work with image data seamlessly. 
   - `from tensorflow import keras`
   - [image preprocessing] documentation
   - Note Keras image functions also use PIL 
@@ -168,7 +168,7 @@ The new image is of type : <class 'PIL.JpegImagePlugin.JpegImageFile'> and has t
 
 ### Image Dimensions - Resizing
 
-The new image has shape `(573, 552, 3)`, meaning it is much larger in size, 573x552 pixels; a rectangle instead of a square; and consists of three color channels (RGB).
+The new image has shape `(573, 552, 3)`, meaning it is much larger in size, 573x552 pixels; a rectangle instead of a square; and consists of three colour channels (RGB).
 
 Recall from the introduction that our training data set consists of 50000 images of 32x32 pixels and three channels. 
 
@@ -203,7 +203,7 @@ Normalizing the RGB values to be between 0 and 1 is a common pre-processing step
 
 2. **Faster Convergence**: Normalizing the RGB values often helps in faster convergence during the training process. Neural networks and other optimization algorithms rely on gradient descent techniques, and having inputs in a consistent range aids in smoother and faster convergence.
 
-3. **Equal Weightage for All Channels**: In RGB images, each channel (Red, Green, Blue) represents different color intensities. By normalizing to the range [0, 1], you ensure that each channel is treated with equal weightage during training. This is important because some machine learning algorithms could assign more importance to larger values.
+3. **Equal Weightage for All Channels**: In RGB images, each channel (Red, Green, Blue) represents different colour intensities. By normalizing to the range [0, 1], you ensure that each channel is treated with equal weightage during training. This is important because some machine learning algorithms could assign more importance to larger values.
 
 4. **Generalization**: Normalization helps the model to generalize better to unseen data. When the input features are in the same range, the learned weights and biases can be more effectively applied to new examples, making the model more robust.
 
@@ -257,11 +257,11 @@ A neural network can only take numerical inputs and outputs, and learns by calcu
 
 One-hot encoding is a technique to represent categorical data as binary vectors, making it compatible with machine learning algorithms. Each category becomes a separate feature, and the presence or absence of a category is indicated by 1s and 0s in the respective columns.
 
-Let's say you have a dataset with a "Color" column containing three categories: Red, Blue, Green. 
+Let's say you have a dataset with a "colour" column containing three categories: Red, Blue, Green. 
 
 Table 1. Original Data.
 
-| color     |              |
+| colour     |              |
 | ------    | --------------:   |
 | red       | :red_square:      |
 | green     | :green_square:    |
@@ -270,7 +270,7 @@ Table 1. Original Data.
 
 Table 2. After One-Hot Encoding.
 
-| Color_red | Color_blue    | Color_green   |
+| colour_red | colour_blue    | colour_green   |
 | ------    | :------:      | ------:       |
 | 1         | 0             | 0             |
 | 0         | 1             | 0             |
@@ -329,7 +329,7 @@ There are several ways to augment your data to increase the diversity of the tra
   - rotation, translation, scaling, zooming, cropping
 - Flipping or Mirroring
   - some classes, like horse, have a different shape when facing left or right and you want your model to recognize both 
-- Color properties
+- colour properties
   - brightness, contrast, or hue
   - these changes simulate variations in lighting conditions
  

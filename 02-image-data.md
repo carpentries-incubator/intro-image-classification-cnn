@@ -257,27 +257,27 @@ A neural network can only take numerical inputs and outputs, and learns by calcu
 
 One-hot encoding is a technique to represent categorical data as binary vectors, making it compatible with machine learning algorithms. Each category becomes a separate feature, and the presence or absence of a category is indicated by 1s and 0s in the respective columns.
 
-Let's say you have a dataset with a "colour" column containing three categories: Red, Blue, Green. 
+Let's say you have a dataset with a "colour" column containing three categories: yellow, orange, purple. 
 
 Table 1. Original Data.
 
 | colour     |              |
 | ------    | --------------:   |
-| red       | :red_square:      |
-| green     | :green_square:    |
-| blue      | :blue_square:   |
-| red       | :red_square:      |
+| yellow       | :yellow_square:      |
+| orange     | :orange_square:    |
+| purple      | :purple_square:   |
+| yellow       | :yellow_square:      |
 
 Table 2. After One-Hot Encoding.
 
-| colour_red | colour_blue    | colour_green   |
+| colour_yellow | colour_orange    | colour_purple   |
 | ------    | :------:      | ------:       |
 | 1         | 0             | 0             |
 | 0         | 1             | 0             |
 | 0         | 0             | 1             |
 | 1         | 0             | 0             |
 
-Each category has its own binary column, and the value is set to 1 in the corresponding column for each row matches that category.
+Each category has its own column, and the value is set to 1 (true) or 0 (false) in the corresponding column for each row matches that category.
 
 The Keras function for one_hot encoding is called [to_categorical]:
 
@@ -320,6 +320,15 @@ train_labels after one hot encoding
  [0. 1. 0. ... 0. 0. 0.]
  [0. 1. 0. ... 0. 0. 0.]]
  ```
+:::::::::::::::::::::::::::::::::::::: callout
+WAIT I thought there were TEN classes!? Where is the rest of the data?
+
+The Spyder IDE uses the '...' notation when it "hides" some of the data for display purposes.
+
+To view the entire array, go the Variable Explorer in the upper right hand corner of your Spyder IDE and double click on the 'train_labels' object. This will open a new window that shows all of the columns.
+
+![](fig/02_spyder_onehot_train_labels_inFULL.png){alt='Screenshot of Spyder window displaying the entire train_labels array.'}
+::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Image augmentation
 

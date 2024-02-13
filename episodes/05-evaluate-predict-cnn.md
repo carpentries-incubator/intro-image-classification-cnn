@@ -361,7 +361,7 @@ def create_model():
     inputs = keras.Input(shape=train_images.shape[1:])
 
     # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-     = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
+    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
     # Second Convolutional layer
     x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
     # Flatten layer to convert 2D feature maps into a 1D vector
@@ -373,7 +373,7 @@ def create_model():
     # create the model
     mode = keras.Model(inputs=inputs, outputs=outputs)
     
-    # compile the pooling model
+    # compile the model
     model.compile(optimizer = 'adam', 
                   loss = keras.losses.CategoricalCrossentropy(), 
                   metrics=['accuracy'])
@@ -415,7 +415,7 @@ A third way to tune hyperparameters is brute force.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Tune Activation Function using Brute Foce
+## Tune Activation Function using Brute Force
 
 In [Episode 03 Build a Convolutional Neural Network](episodes/03-build-cnn.md) we talked briefly about the `relu` activation function passed as an argument to our `Conv2D` hidden layers.
 

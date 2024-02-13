@@ -205,7 +205,7 @@ Q3. What could we do to improve the performance?
 
 :::::::::::::::::::::::: solution 
 
-Q1. The confusion matrix illustrates that the predictions are not bad but can improved.
+Q1. The confusion matrix illustrates that the predictions are not bad but can be improved.
 
 Q2. I expected the performance to be better than average because the accuracy of the model I chose was 67 per cent on the validation set.
 
@@ -427,7 +427,7 @@ Think of an activation function as a tiny decision-maker for each neuron in a ne
 
 Neural networks can be tuned to leverage many different types of activation functions. In fact, it is a crucial decision as the choice of activation function will have a direct impact on the performance of the model.
 
-Table 2. Descrition of each activation function, its benefits, and drawbacks.
+Table 2. Description of each activation function, its benefits, and drawbacks.
 
 | Activation Function | Positives                                                        | Negatives                                  |
 |---------------------|------------------------------------------------------------------|--------------------------------------------|

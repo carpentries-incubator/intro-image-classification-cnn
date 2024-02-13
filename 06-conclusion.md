@@ -99,7 +99,7 @@ If you don't have access to a powerful GPU locally, there are cloud services tha
 
 #### It this the best/only way to code up CNNs for image classification?
 
-Absolutely not! The code we used in today's workshop might today be considered old fashioned. A lot of the data preprocessing we did by hand can now be done by adding different layer types to your model. The [preprocessing layers] section fo the Keras documentation provides several examples.
+Absolutely not! The code we used in today's workshop might be considered old fashioned. A lot of the data preprocessing we did by hand can now be done by adding different layer types to your model. The [preprocessing layers] section fo the Keras documentation provides several examples.
 
 The point is that this technology, both hardware and software, is dynamic and changing at exponentially increasing rates. It is essential to stay curious and open to learning and follow up with continuous education and practice. Other strategies to stay informed include:
 

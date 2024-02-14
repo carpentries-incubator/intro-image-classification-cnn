@@ -109,12 +109,8 @@ train_labels = keras.utils.to_categorical(train_labels, len(class_names))
 val_labels = keras.utils.to_categorical(val_labels, len(class_names))
 
 # split the training data into training and validation sets
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
-
-# split the training data into training and validation sets
 # NOTE the function is train_test_split() but we are using it to split train into train and validation
 train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
-
 
 ```
 
@@ -136,7 +132,7 @@ print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
 ## Output
  
 ```output
-Train: Images=(50000, 32, 32, 3), Labels=(40000, 10)
+Train: Images=(40000, 32, 32, 3), Labels=(40000, 10)
 Validate: Images=(10000, 32, 32, 3), Labels=(10000, 10)
 Test: Images=(10000, 32, 32, 3), Labels=(10000, 10)
 ```
@@ -303,7 +299,7 @@ To share the model we must save it first:
 
 ```python
 # save the model
-model_dropout.save('fit_outputs/model_intro.keras')
+model_intro.save('fit_outputs/model_intro.keras')
 ```
 
 We will return to each of these workflow steps throughout this lesson and discuss each component in more detail.

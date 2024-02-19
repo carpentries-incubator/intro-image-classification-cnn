@@ -281,7 +281,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Setup - GPU</h1>
-        <p>Last updated on 2024-02-08 |
+        <p>Last updated on 2024-02-19 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -341,7 +341,7 @@ the workshop begins.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Windows</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -361,7 +361,7 @@ may already be checked.)</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">MacOS</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -379,7 +379,7 @@ installation.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Linux</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Note the following installation steps require you to work from the
 shell. If you run into any difficulties, please request help before the
@@ -473,7 +473,7 @@ not.</p>
   <h3 class="accordion-header" id="headingSpoiler1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>AMD GPU</h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
 <p>TODO Finish these instructions</p>
@@ -527,23 +527,10 @@ side panel) and type in the following commands:</p>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
-<p>This should output the versions of all required packages without
-giving errors. Most versions will work fine with this lesson, but:</p>
-<ul><li>For Tensorflow, the maximum version is 2.11.</li>
-<li>For sklearn, the minimum version is 0.22.</li>
-</ul></section><section id="download-the-scripts-and-model-outputs"><h2 class="section-heading">Download the scripts and model outputs<a class="anchor" aria-label="anchor" href="#download-the-scripts-and-model-outputs"></a>
+</section><section id="download-the-scripts-and-model-outputs"><h2 class="section-heading">Download the scripts and model outputs<a class="anchor" aria-label="anchor" href="#download-the-scripts-and-model-outputs"></a>
 </h2>
-<hr class="half-width"><p>The aim for this workshop is to create a python script to use as a
-“base python program” for future projects.</p>
-<p>In an effort to not clutter the scripts developed in the workshop
-with code from the Episode Challenges, this workshop will use a separate
-python script for all of the Challenges introduced throughout the
-workshop.</p>
-<p>The script files and model outputs can be downloaded from
-<insert link here> TODO create zip folder containing everything and put
-up on QCIF google docs EG if this is not done before the trial workshop,
-the scripts are here: <a href="https://github.com/carpentries-incubator/intro-image-classification-cnn/tree/main/episodes/scripts" class="external-link uri">https://github.com/carpentries-incubator/intro-image-classification-cnn/tree/main/episodes/scripts</a>
-…and the outputs will be created as we go!</insert></p>
+<hr class="half-width"><p>Download the <a href="https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link" class="external-link">script
+files and model outputs</a>.</p>
 </section><section id="get-the-data"><h2 class="section-heading">Get the data<a class="anchor" aria-label="anchor" href="#get-the-data"></a>
 </h2>
 <hr class="half-width"><p>This lesson uses the CIFAR-10 image data that comes prepackaged with
@@ -611,7 +598,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/setup-gpu.html",
   "identifier": "https://.github.io/github.com/instructor/setup-gpu.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-02-08",
+  "dateModified": "2024-02-19",
   "datePublished": "2024-02-19"
 }
 

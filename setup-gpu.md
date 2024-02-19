@@ -178,23 +178,9 @@ import tensorflow
 print('Tensorflow version: ', tensorflow.__version__)
 ```
 
-This should output the versions of all required packages without giving errors.
-Most versions will work fine with this lesson, but:
-
-- For Tensorflow, the maximum version is 2.11.
-- For sklearn, the minimum version is 0.22.
-
 ## Download the scripts and model outputs
 
-The aim for this workshop is to create a python script to use as a "base python program" for future projects.
-
-In an effort to not clutter the scripts developed in the workshop with code from the Episode Challenges, this workshop will use a separate python script for all of the Challenges introduced throughout the workshop.
-
-The script files and model outputs can be downloaded from <insert link here>
-TODO create zip folder containing everything and put up on QCIF google docs
-EG if this is not done before the trial workshop, the scripts are here:
-https://github.com/carpentries-incubator/intro-image-classification-cnn/tree/main/episodes/scripts
-...and the outputs will be created as we go!
+Download the [script files and model outputs].
 
 
 ## Get the data
@@ -212,10 +198,10 @@ This lesson uses the CIFAR-10 image data that comes prepackaged with Keras.
 [python]: https://python.org
 [Mac OS X - Video tutorial]: https://www.youtube.com/watch?v=TcSAln46u9U
 [Windows - Video tutorial]: https://www.youtube.com/watch?v=xxQ0mzZ8UvA
-[The CIFAR-10 dataset]: https://www.cs.toronto.edu/~kriz/cifar.html
 [pip]: (https://pip.pypa.io/en/stable/)
 [these instructions]: https://docs.anaconda.com/anaconda/install/update-version/
 [Windows TensorFlow installation instructions]: https://www.tensorflow.org/install/pip#windows-native_1
 [MacOS]: https://www.tensorflow.org/install/pip#macos_1
 [Linux]: https://www.tensorflow.org/install/pip#linux_1
 [NVIDIA GPU driver]: https://www.nvidia.com/Download/index.aspx
+[script files and model outputs]: https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link

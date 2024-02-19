@@ -177,28 +177,15 @@ print('Tensorflow version: ', tensorflow.__version__)
 
 This should output the versions of all required packages without giving errors. 
 
-Most versions will work fine with this lesson, but:
-
-- For Tensorflow, the minimum version is 2.2.4
-- For sklearn, the minimum version is 0.22.
-
 
 ## Download the scripts and model outputs
 
-The aim for this workshop is to create a python script to use as a "base python program" for future projects.
-
-In an effort to not clutter the scripts developed in the workshop with code from the Episode Challenges, this workshop will use a separate python script for all of the Challenges introduced throughout the workshop.
-
-The script files and model outputs can be downloaded from <insert link here>
-TODO create zip folder containing everything and put up on QCIF google docs
-EG if this is not done before the trial workshop, the scripts are here:
-https://github.com/carpentries-incubator/intro-image-classification-cnn/tree/main/episodes/scripts
-...and the outputs will be created as we go!
+Download the [script files and model outputs].
 
 
 ## Get the data
 
-This lesson uses the [CIFAR-10 image dataset] that comes prepackaged with Keras.
+This lesson uses the CIFAR-10 image dataset that comes prepackaged with Keras.
 
 
 <!-- Collect your link references at the bottom of your document -->
@@ -212,5 +199,4 @@ This lesson uses the [CIFAR-10 image dataset] that comes prepackaged with Keras.
 [these instructions]: https://docs.anaconda.com/anaconda/install/update-version/
 [pip]: (https://pip.pypa.io/en/stable/)
 [Spyder]: https://www.spyder-ide.org/
-[CIFAR-10 image dataset]: https://www.cs.toronto.edu/~kriz/cifar.html
-
+[script files and model outputs]: https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link

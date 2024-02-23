@@ -1,0 +1,16 @@
+name: cnn_workshop
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - matplotlib
+  - numpy
+  - pandas
+  - pip
+  - scikit-learn
+  - seaborn
+  - spyder
+  - pip:
+      - scikeras
+      - tensorflow==2.14.0

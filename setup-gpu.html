@@ -161,7 +161,7 @@
 <li><a href="#install-the-required-packages">Install the required packages</a></li>
 <li><a href="#start-spyder">Start Spyder</a></li>
 <li><a href="#check-your-setup">Check your setup</a></li>
-<li><a href="#download-the-scripts-and-model-outputs">Download the scripts and model outputs</a></li>
+<li><a href="#download-the-scripts-files-and-model-outputs">Download the scripts, files and model outputs</a></li>
 <li><a href="#get-the-data">Get the data</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -281,7 +281,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Setup - GPU</h1>
-        <p>Last updated on 2024-02-19 |
+        <p>Last updated on 2024-02-23 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -339,7 +339,7 @@ the workshop begins.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Windows</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -359,7 +359,7 @@ may already be checked.)</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">MacOS</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -377,7 +377,7 @@ installation.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Linux</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Note the following installation steps require you to work from the
 shell. If you run into any difficulties, please request help before the
@@ -431,9 +431,17 @@ inside the parentheses refers to which conda environment you are working
 inside of, and ‘base’ is the name given to the default environment
 included with every Anaconda distribution.</p>
 <p>To create a new environment for this lesson, the command starts with
-the conda keywords <code>conda create</code>, followed by a name for the
-new environment and the package(s) to install:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas</code></pre>
+the conda keywords <code>conda create</code>. This command can be
+followed by a name for the new environment and the package(s) to install
+but to make things easier, inside the script download folder, we have
+given you an environment.yml file to use instead. (See download link
+below if you haven’t already.)</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file cnn_workshop_gpu_environment.yml</code></pre>
+<p>If the yml is not in your current directory, you can specify the full
+path to the file, eg:</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_gpu_environment.yml</code></pre>
+<p>Be patient because it might take a while (15-20 min) for conda to
+work out all of the dependencies.</p>
 <p>After the environment is created we tell Anaconda to use the new
 environment with the conda keywords <code>conda activate</code> followed
 by the environment name:</p>
@@ -453,8 +461,7 @@ changes from (base) to (cnn_workshop_gpu).</p>
 hardware, system, and software necessary for GPU support. Here we are
 following the <a href="https://www.tensorflow.org/install/pip#windows-native_1" class="external-link">Windows
 TensorFlow installation instructions</a> starting at <strong>Step 5. GPU
-setup</strong> but using Anaconda instead of Miniconda. Specific
-instructions can also be found there for <a href="https://www.tensorflow.org/install/pip#macos_1" class="external-link">MacOS</a> and <a href="https://www.tensorflow.org/install/pip#linux_1" class="external-link">Linux</a>
+setup</strong>. Specific instructions can also be found there for <a href="https://www.tensorflow.org/install/pip#macos_1" class="external-link">MacOS</a> and <a href="https://www.tensorflow.org/install/pip#linux_1" class="external-link">Linux</a>
 environments.</p>
 </div>
 </div>
@@ -471,7 +478,7 @@ not.</p>
   <h3 class="accordion-header" id="headingSpoiler1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>AMD GPU</h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
 <p>TODO Finish these instructions</p>
@@ -479,19 +486,6 @@ not.</p>
 </div>
 </div>
 </div>
-<p>There are two other packages we could not install when we created the
-environment, <code>tensorflow</code> and <code>scikeras</code>.</p>
-<p>To install these two packages we use a different package manager
-called <code>pip</code>.</p>
-<p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
-package management system for Python software packages. It is integrated
-into your local Python installation and runs regardless of your
-operating system too.</p>
-<pre class="code"><code>(cnn_workshop_gpu) C:\Users\Lab&gt;pip install --upgrade pip
-
-# Anything above 2.10 is not supported on the GPU on Windows Native
-(cnn_workshop_gpu) C:\Users\Lab&gt;pip install "tensorflow&lt;2.11"
-(cnn_workshop_gpu) C:\Users\Lab&gt;pip install scikeras</code></pre>
 </div>
 </section><section id="start-spyder"><h2 class="section-heading">Start Spyder<a class="anchor" aria-label="anchor" href="#start-spyder"></a>
 </h2>
@@ -510,25 +504,36 @@ side panel) and type in the following commands:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Keras version: '</span>, keras.__version__)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scikeras</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Num GPUs Available: "</span>, <span class="bu">len</span>(tensorflow.config.experimental.list_physical_devices(<span class="st">'GPU'</span>)))</span></code></pre>
 </div>
-</section><section id="download-the-scripts-and-model-outputs"><h2 class="section-heading">Download the scripts and model outputs<a class="anchor" aria-label="anchor" href="#download-the-scripts-and-model-outputs"></a>
+<p>This should output the versions of all required packages without
+giving errors and well as the number of GPU’s tensorflow has
+detected.</p>
+</section><section id="download-the-scripts-files-and-model-outputs"><h2 class="section-heading">Download the scripts, files and model outputs<a class="anchor" aria-label="anchor" href="#download-the-scripts-files-and-model-outputs"></a>
 </h2>
-<hr class="half-width"><p>Download the <a href="https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link" class="external-link">script
-files and model outputs</a>.</p>
+<hr class="half-width"><p>Download the <a href="https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link" class="external-link">scripts,
+files, and model outputs</a>.</p>
 </section><section id="get-the-data"><h2 class="section-heading">Get the data<a class="anchor" aria-label="anchor" href="#get-the-data"></a>
 </h2>
 <hr class="half-width"><p>This lesson uses the CIFAR-10 image data that comes prepackaged with
@@ -596,8 +601,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/setup-gpu.html",
   "identifier": "https://.github.io/github.com/setup-gpu.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-02-19",
-  "datePublished": "2024-02-20"
+  "dateModified": "2024-02-23",
+  "datePublished": "2024-02-23"
 }
 
   </script><script>

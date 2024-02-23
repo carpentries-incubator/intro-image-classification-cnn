@@ -415,7 +415,7 @@ assistance so you are ready to go as soon as the workshop begins.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Windows</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -434,7 +434,7 @@ the <strong>Make Anaconda the default Python</strong> option.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">MacOS</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -452,7 +452,7 @@ installation.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Linux</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Note the following installation steps require you to work from the
 shell. If you run into any difficulties, please request help before the
@@ -506,9 +506,17 @@ inside the parentheses refers to which conda environment you are working
 inside of, and ‘base’ is the name given to the default environment
 included with every Anaconda distribution.</p>
 <p>To create a new environment for this lesson, the command starts with
-the conda keywords <code>conda create</code>, followed by a name for the
-new environment and the package(s) to install:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda create --name cnn_workshop python spyder seaborn scikit-learn pandas</code></pre>
+the conda keywords <code>conda create</code>. This command can be
+followed by a name for the new environment and the package(s) to install
+but to make things easier, inside the script download folder, we have
+given you an environment.yml file to use instead. (See download link
+below if you haven’t already.)</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file cnn_workshop_environment.yml</code></pre>
+<p>If the yml is not in your current directory, you can specify the full
+path to the file, eg:</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_environment.yml</code></pre>
+<p>Be patient because it might take a while (15-20 min) for conda to
+work out all of the dependencies.</p>
 <p>After the environment is created we tell Anaconda to use the new
 environment with the conda keywords <code>conda activate</code> followed
 by the environment name:</p>
@@ -516,51 +524,6 @@ by the environment name:</p>
 (cnn_workshop) C:\Users\Lab&gt;</code></pre>
 <p>You will know you are in the right environment because the prompt
 changes from (base) to (cnn_workshop).</p>
-<p>There are two other packages we could not install when we created the
-environment, <code>tensorflow</code> and <code>scikeras</code>.</p>
-<p>To install these two packages we use a different package manager
-called <code>pip</code>.</p>
-<p><a href="" title="https://pip.pypa.io/en/stable/">pip</a> is the
-package management system for Python software packages. It is integrated
-into your local Python installation and runs regardless of your
-operating system too.</p>
-<pre class="code"><code>(cnn_workshop) C:\Users\Lab&gt; pip install tensorflow scikeras</code></pre>
-<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-<div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>Troubleshooting for Windows</h3>
-</button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
-<div class="accordion-body">
-<p>Windows users may run into version conflicts. If you are on Windows
-and get errors running the command, try installing the packages using
-pip within a conda environment:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda create -n cnn_workshop python spyder
-(base) C:\Users\Lab&gt; conda activate cnn_workshop
-(cnn_workshop) C:\Users\Lab&gt; pip install tensorflow&gt;=2.5 seaborn scikit-learn pandas scikeras</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">
-<div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>Troubleshooting for Macs with Apple silicon chip</h3>
-</button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
-<div class="accordion-body">
-<p>Newer Macs (from 2020 onwards) often have a different kind of chip,
-manufactured by Apple instead of Intel. This can lead to problems
-installing Tensorflow. If you get errors running the installation
-command or conda hangs endlessly, you can try installing Tensorflow for
-Mac with pip:</p>
-<pre class="conda"><code>(cnn_workshop) C:\Users\Lab&gt; pip install tensorflow-macos</code></pre>
-</div>
-</div>
-</div>
-</div>
 </section><section id="start-spyder"><h2 class="section-heading">Start Spyder<a class="anchor" aria-label="anchor" href="#start-spyder"></a>
 </h2>
 <hr class="half-width"><p>We teach this lesson using Python in <a href="https://www.spyder-ide.org/" class="external-link">Spyder</a> (Scientific Python
@@ -575,27 +538,35 @@ you are still in the workshop environment:</p>
 <hr class="half-width"><p>To check whether all packages installed correctly, go to the
 interactive <code>IPython Console</code> in Spyder (lower right hand
 side panel) and type in the following commands:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scikeras</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
 <p>This should output the versions of all required packages without
 giving errors.</p>
-</section><section id="download-the-scripts-and-model-outputs"><h2 class="section-heading">Download the scripts and model outputs<a class="anchor" aria-label="anchor" href="#download-the-scripts-and-model-outputs"></a>
+</section><section id="download-the-scripts-files-and-model-outputs"><h2 class="section-heading">Download the scripts, files, and model outputs<a class="anchor" aria-label="anchor" href="#download-the-scripts-files-and-model-outputs"></a>
 </h2>
-<hr class="half-width"><p>Download the <a href="https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link" class="external-link">script
-files and model outputs</a>.</p>
+<hr class="half-width"><p>Download the [scripts, files, and model outputs].</p>
 </section><section id="get-the-data"><h2 class="section-heading">Get the data<a class="anchor" aria-label="anchor" href="#get-the-data"></a>
 </h2>
 <hr class="half-width"><p>This lesson uses the CIFAR-10 image dataset that comes prepackaged
@@ -654,8 +625,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/index.html",
   "identifier": "https://.github.io/github.com/instructor/index.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-02-20",
-  "datePublished": "2024-02-20"
+  "dateModified": "2024-02-23",
+  "datePublished": "2024-02-23"
 }
 
   </script><script>

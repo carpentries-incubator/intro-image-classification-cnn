@@ -24,9 +24,7 @@ exercises: 0
 ## What is machine learning?
 Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural Network**, abbreviated as **CNN**, but there are many more.
 
-The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs, for example trying to predict the cost of something given the economic conditions and the cost of raw materials or predicting a country’s GDP given its life expectancy. Classifiers try to classify data into different categories, or assign a label; for example, deciding what characters are visible in a picture of some writing or if an email or text message is spam or not.
-
-## Training Data
+The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs whereas classifiers try to classify data into different categories, or assign a labelcond env.
 
 Many, but not all, machine learning systems “learn” by taking a series of input data and output data and using it to form a model. The maths behind the machine learning doesn’t care what the data is as long as it can represented numerically or categorised. Some examples might include:
 
@@ -47,9 +45,9 @@ Deep Learning (DL) is just one of many machine learning techniques, in which peo
 ::::::::::::::::::::::::::::::::::::::::: callout
 Concept: Differentiation between traditional Machine Learning models and Deep Learning models:
 
-**Traditional ML algorithms** can only use one (possibly two layers) of data transformation to calculate an output (shallow models). With high dimensional data and growing feature space (possible set of values for any given feature), shallow models quickly run out of layers to calculate outputs. 
+**Traditional ML algorithms**, known as shallow models, are limited to just one or maybe two layers of data transformation to generate an output. When dealing with complex data featuring high dimensions and growing feature space (i.e. many attributes and an expanding set of potential values for each feature), these shallow models become limited in their ability to compute accurate outputs.
 
-**Deep neural networks** (constructed with multiple layers of neurons) are the extension of shallow models with three layers: input, hidden, and outputs layers. The hidden layer is where learning takes place. As a result, deep learning is best applied to large datasets for training and prediction. As observations and feature inputs decrease, shallow ML approaches begin to perform noticeably better. 
+**Deep neural networks** are the extension of shallow models with three layers: input, hidden, and outputs layers. The hidden layer(s) is where learning takes place. As a result, deep learning is best applied to large datasets for training and prediction. As observations and feature inputs decrease, shallow ML approaches begin to perform noticeably better. 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -67,7 +65,7 @@ Image classification has numerous practical applications, including:
 - **Autonomous Vehicles**: Identifying pedestrians, traffic signs, and other vehicles in self-driving cars.
 - **Security and Surveillance**: Detecting anomalies or unauthorised objects in security footage.
 
-Convolutional Neural Networks (CNNs) have become a cornerstone in image classification due to their ability to automatically learn hierarchical features from images and achieve remarkable performance on a wide range of tasks.
+A Convolutional Neural Networks (CNN) is a Deep Learning algorithm that has become a cornerstone in image classification due to its ability to automatically learn features from images in a hierarchical fashion (i.e. each layer builds upon what was learned by the previous layer). It can achieve remarkable performance on a wide range of tasks.
 
 ## Deep Learning Workflow
 To apply Deep Learning to a problem there are several steps to go through:
@@ -81,7 +79,7 @@ Next identify what the inputs and outputs of the neural network will be. In our 
 ### Step 3. Prepare data
 Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (e.g., images) will have to be somehow converted to numerical data. Information on how this is done and the data structure will be explored in [Episode 02 Introduction to Image Data](episodes/02-image-data).
 
-For this lesson, we will use an existing image dataset known as CIFAR-10. We will introduce this dataset and the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalise the image pixel values to be between 0 and 1; and one-hot encode our image labels.
+For this lesson, we will use an existing image dataset known as CIFAR-10 (Canadian Institute for Advanced Research). We will introduce this dataset and the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalise the image pixel values to be between 0 and 1; and one-hot encode our image labels.
 
 #### Preparing the code
 
@@ -89,12 +87,11 @@ It is the goal of this training workshop to produce a Deep Learning program, usi
 
 ```python
 # load the required packages
-from tensorflow import keras # library for neural networks 
-from sklearn.model_selection import train_test_split # library for splitting data into sets
-import matplotlib.pyplot as plt # library for plotting
-import numpy as np # library for working with images as arrays
+from tensorflow import keras # for neural networks 
+from sklearn.model_selection import train_test_split # for splitting data into sets
+import matplotlib.pyplot as plt # for plotting
 
-# load the CIFAR-10 dataset included with the keras library
+# load the CIFAR-10 dataset included with keras
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
 # normalise the RGB values to be between 0 and 1
@@ -154,7 +151,7 @@ plt.figure(figsize=(10,10))
 # plot a subset of the images 
 for i in range(25):
     plt.subplot(5,5,i+1)
-    plt.imshow(train_images[i], cmap=plt.cm.binary)
+    plt.imshow(train_images[i])
     plt.axis('off')
     plt.title(class_names[train_labels[i,].argmax()])
 plt.show()
@@ -236,16 +233,20 @@ Epoch 1/10
 
 This output printed during the fit phase, i.e. training the model against known image labels, can be broken down as follows:
 
-- `Epoch` describes the number of full passes over all *training data*. In the output above there are **1250 training observations**. This number is calculated as the total number of images used as input divided by the batch size (40000/32). An epoch will conclude and move to the next epoch after a training pass over all observations.
+- `Epoch` describes the number of full passes over all *training data*. 
+- In the output above, there are **1250** batches (steps) to complete each epoch. This number is calculated as the total number of images used as input divided by the batch size (40000/32). After 1250 batches, all training images will have been seen once and the model moves on to the next epoch.
 
-- `loss` and `val_loss` can be considered as related. Where `loss` is a value the model will attempt to minimise, and is the distance between the true label of an image and the models prediction. Minimising this distance is where *learning* occurs to adjust weights and bias which reduce `loss`. On the other hand `val_loss` is a value calculated against the validation data and is a measurement of the models performance against **unseen data**. Both values are a summation of errors made for each example when fitting to the training or validation sets.
+- `loss` is a value the model will attempt to minimise and is a measure of the dissimilarity or error between the true label of an image and the model prediction. Minimising this distance is where *learning* occurs to adjust weights and bias which reduce `loss`. 
+- `val_loss` is a value calculated against the validation data and is a measure of the model's performance against unseen data. 
+- Both values are a summation of errors made during each epoch.
 
-- `accuracy` and `val_accuracy` can also be considered as related. Unlike `loss` and `val_loss`, these values are a percentage and are only revelant to **classification problems**. The `val_accuracy` score can be used to communicate a percentage value of model effectiveness on unseen data.
+- `accuracy` and `val_accuracy` values are a percentage and are only revelant to **classification problems**. 
+- The `val_accuracy` score can be used to communicate a model's effectiveness on unseen data.
 
 
 ### Step 7. Perform a Prediction/Classification
 
-After training the network we can use it to perform predictions. This is the mode you would use the network in after you have fully trained it to a satisfactory performance. Doing predictions on a special hold-out set is used in the next step to measure the performance of the network.
+After training the network we can use it to perform predictions. This is how  you would use the network after you have fully trained it to a satisfactory performance. The predictions performed here on a special hold-out set is used in the next step to measure the performance of the network.
 
 ```python
 # predict the class name of the first test image
@@ -255,7 +256,7 @@ print('The predicted probability of each class is: ', result_intro.round(4))
 print('The class with the highest predicted probability is: ', class_names[result_intro.argmax()])
 
 # plot the image with its true label
-plt.imshow(test_images[0], cmap=plt.cm.binary)
+plt.imshow(test_images[0])
 plt.title('True class:' + class_names[test_labels[0,].argmax()])
 plt.show()
 ```
@@ -266,20 +267,19 @@ The class with the highest predicted probability is:  cat
 ```
 ![](fig/01_test_image.png){alt='poor resolution image of a cat'}
 
-::::::::::::::::::::::::::::::::::::::::: callout
-My result is different!
-
-While the neural network itself is deterministic, various factors in the training process, system setup, and data variability can lead to small variations in the output. These variations are usually minor and should not significantly impact the overall performance or behavior of the model.
-
-If you are finding significant differences in the model predictions, this could be a sign the model is not fully converged. "Convergence" refers to the point where the model has reached an optimal or near-optimal state in terms of learning from the training data.
-:::::::::::::::::::::::::::::::::::::::::::::::::
-
 Congratulations, you just created your first image classification model and used it to classify an image! 
 
 Was the classification correct? Why might it be incorrect and what can we do about? 
 
 There are many ways to try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
 
+::::::::::::::::::::::::::::::::::::::::: callout
+My result is different!
+
+While the neural network itself is deterministic (ie without randomness), various factors in the training process, system setup, and data variability can lead to small variations in the output. These variations are usually minor and should not significantly impact the overall performance or behavior of the model.
+
+If you are finding significant differences in the model predictions, this could be a sign the model is not fully converged. "Convergence" refers to the point where the model has reached an optimal or near-optimal state in terms of learning from the training data.
+:::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Step 8. Measure Performance
 
@@ -289,11 +289,11 @@ Once we trained the network we want to measure its performance. To do this, we u
 
 When building image recognition models in Python, especially using libraries like TensorFlow or Keras, the process involves not only designing a neural network but also choosing the best values for various hyperparameters that govern the training process.
 
-**Hyperparameters** are all the parameters set by the person configuring the machine learning instead of those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimise the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](episodes/05-evaluate-predict-cnn.md)
+**Hyperparameters** are all the parameters set by the person configuring the model as opposed to those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimise the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](episodes/05-evaluate-predict-cnn.md)
 
 ### Step 10. Share Model
 
-Now that we have a trained network that performs at a level we are happy with we can go and use it on real data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
+Now that we have a trained network that performs at a level we are happy with we can go and use it on real live data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
 To share the model we must save it first:
 

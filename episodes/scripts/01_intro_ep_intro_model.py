@@ -5,14 +5,14 @@ Episode 01 Introduction to Deep Learning
 """
 
 # load the required packages
-from tensorflow import keras
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
+from tensorflow import keras # for neural networks
+from sklearn.model_selection import train_test_split # for splitting data into sets
+import matplotlib.pyplot as plt # for plotting
 import time
 
 start = time.time()
 
-# load the cifar dataset included with the keras library
+# load the CIFAR-10 dataset included with keras
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
 # normalize the RGB values to be between 0 and 1
@@ -46,7 +46,7 @@ plt.figure(figsize=(10,10))
 
 for i in range(25):
     plt.subplot(5,5,i+1)
-    plt.imshow(train_images[i], cmap=plt.cm.binary)
+    plt.imshow(train_images[i])
     plt.axis('off')
     plt.title(class_names[train_labels[i,].argmax()])
 plt.show()
@@ -101,7 +101,7 @@ print('The predicted probability of each class is: ', result_intro.round(4))
 print('The class with the highest predicted probability is: ', class_names[result_intro.argmax()])
 
 # plot the image with its true label
-plt.imshow(test_images[0], cmap=plt.cm.binary)
+plt.imshow(test_images[0])
 plt.title('True class:' + class_names[test_labels[0,].argmax()])
 plt.show()
 

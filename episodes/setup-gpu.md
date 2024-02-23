@@ -94,11 +94,19 @@ A terminal window will open with the title 'Anaconda Prompt':
 
 Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment included with every Anaconda distribution.
 
-To create a new environment for this lesson, the command starts with the conda keywords `conda create`, followed by a name for the new environment and the package(s) to install:
+To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
 
 ```code
-(base) C:\Users\Lab> conda create --name cnn_workshop_gpu python=3.9 spyder seaborn  scikit-learn pandas
+(base) C:\Users\Lab> conda env create --file cnn_workshop_gpu_environment.yml
 ```
+
+If the yml is not in your current directory, you can specify the full path to the file, eg:
+
+```code
+(base) C:\Users\Lab> conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_gpu_environment.yml
+```
+
+Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.
 
 After the environment is created we tell Anaconda to use the new environment with the conda keywords `conda activate` followed by the environment name:
 
@@ -110,7 +118,7 @@ After the environment is created we tell Anaconda to use the new environment wit
 You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop_gpu). 
 
 ::::::::::::::::::::::::::::::::::::::::: callout
-To set up a GPU environment, make sure you have the appropriate hardware, system, and software necessary for GPU support. Here we are following the [Windows TensorFlow installation instructions] starting at **Step 5. GPU setup** but using Anaconda instead of Miniconda. Specific instructions can also be found there for [MacOS] and [Linux] environments.
+To set up a GPU environment, make sure you have the appropriate hardware, system, and software necessary for GPU support. Here we are following the [Windows TensorFlow installation instructions] starting at **Step 5. GPU setup**. Specific instructions can also be found there for [MacOS] and [Linux] environments.
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### NVIDIA GPU
@@ -122,6 +130,7 @@ Then install the CUDA, cuDNN with conda.
 ```code
 (cnn_workshop_gpu) C:\Users\Lab> conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
 ```
+
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 ### AMD GPU 
 
@@ -130,20 +139,6 @@ First install AMD GPU driver [https://www.amd.com/en/support] if you have not.
 TODO Finish these instructions
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
-
-There are two other packages we could not install when we created the environment, `tensorflow` and `scikeras`.
-
-To install these two packages we use a different package manager called `pip`.
-
-[pip] is the package management system for Python software packages. It is integrated into your local Python installation and runs regardless of your operating system too.
-
-```code
-(cnn_workshop_gpu) C:\Users\Lab>pip install --upgrade pip
-
-# Anything above 2.10 is not supported on the GPU on Windows Native
-(cnn_workshop_gpu) C:\Users\Lab>pip install "tensorflow<2.11"
-(cnn_workshop_gpu) C:\Users\Lab>pip install scikeras
-```
 
 ## Start Spyder
 
@@ -162,25 +157,35 @@ To start Spyder, type the command `spyder`, making sure you are still in the wor
 To check whether all packages installed correctly, go to the interactive `IPython Console` in Spyder (lower right hand side panel) and type in the following commands:
 
 ```python
-import sklearn
-print('sklearn version: ', sklearn.__version__)
+import matplotlib
+print('matplotlib version: ', matplotlib.__version__)
 
-import seaborn
-print('seaborn version: ', seaborn.__version__)
+import numpy
+print('numpy version: ', numpy.__version__)
 
 import pandas
 print('pandas version: ', pandas.__version__)
 
-from tensorflow import keras
-print('Keras version: ', keras.__version__)
+import seaborn
+print('seaborn version: ', seaborn.__version__)
+
+import sklearn
+print('sklearn version: ', sklearn.__version__)
+
+import scikeras
+print('scikeras version: ', scikeras.__version__)
 
 import tensorflow
 print('Tensorflow version: ', tensorflow.__version__)
+
+print("Num GPUs Available: ", len(tensorflow.config.experimental.list_physical_devices('GPU')))
 ```
 
-## Download the scripts and model outputs
+This should output the versions of all required packages without giving errors and well as the number of GPU's tensorflow has detected.
 
-Download the [script files and model outputs].
+## Download the scripts, files and model outputs
+
+Download the [scripts, files, and model outputs].
 
 
 ## Get the data
@@ -204,4 +209,4 @@ This lesson uses the CIFAR-10 image data that comes prepackaged with Keras.
 [MacOS]: https://www.tensorflow.org/install/pip#macos_1
 [Linux]: https://www.tensorflow.org/install/pip#linux_1
 [NVIDIA GPU driver]: https://www.nvidia.com/Download/index.aspx
-[script files and model outputs]: https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link
+[scripts, files, and model outputs]: https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link

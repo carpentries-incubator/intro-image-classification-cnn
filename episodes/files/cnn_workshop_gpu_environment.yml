@@ -1,0 +1,16 @@
+name: cnn_workshop_gpu
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - matplotlib
+  - numpy
+  - pandas
+  - pip
+  - scikit-learn
+  - seaborn
+  - spyder
+  - pip:
+      - scikeras
+      - tensorflow<2.11

@@ -58,10 +58,22 @@ train_images, val_images, train_labels, val_labels = train_test_split(train_imag
 # recall the shape of the images in our dataset
 print(train_images.shape)
 
-# calculate our input dimension
-dim = train_images.shape[1] * train_images.shape[2] * train_images.shape[3]
-print(dim)
+########################################################
+# Challenge Number of parameters
 
+width, height = (32, 32)
+n_hidden_neurons = 100
+n_bias = 100
+n_input_items = width * height * 3
+n_parameters = (n_input_items * n_hidden_neurons) + n_bias
+print(n_parameters)
+
+inputs = keras.Input(shape=n_input_items)
+outputs = keras.layers.Dense(100)(inputs)
+model = keras.models.Model(inputs=inputs, outputs=outputs)
+model.summary()
+
+########################################################
 
 ## Putting it all together
 

@@ -68,9 +68,13 @@ We need to choose which optimizer to use and, if this optimizer has parameters, 
 
 **Adam** 
 
-Here we picked one of the most common optimizers demonstrated to work well for most tasks, the **Adam** optimizer. Similar to activation functions, the choice of optimizer depends on the problem you are trying to solve, your model architecture, and your data. Adam is a good starting point though, which is why we chose it. Adam has a number of parameters, but the default values work well for most problems so we will use it with its default parameters.
+Here we picked one of the most common optimizers demonstrated to work well for most tasks, the **Adam** optimizer. Similar to other hyperparameters, the choice of optimizer depends on the problem you are trying to solve, your model architecture, and your data. Adam is a good starting point though, which is why we chose it. Adam has a number of parameters, but the default values work well for most problems so we will use it with its default parameters.
 
 It is defined by the `keras.optimizers.Adam` class and takes a single parameter `learning_rate=0.01`
+
+**Learning rate** is a hyperparameter that determines the step size at which the model's weights are updated during training. You can think of like the pace of learning for your model because it's basically how big (or small) a step your model takes to learn from its mistakes. Too high, and it might overshoot the optimal values; too low, and it might take forever to learn.
+
+The learning rate may be fixed and remain constant throughout the entire training process or it may be adaptive and dynamically change during training.
 
 The [optimizer documentation] describes the optimizers to choose. A couple more popular or famous ones include:
 
@@ -118,7 +122,7 @@ After we select the desired optimizer and loss function we specify the metric(s)
 
 Metric functions are similar to loss functions, except the results from evaluating a metric are not used when training the model. Note you are able to use any loss function as a metric.
 
-Typically you will use `accuracy`, which calculates how often the model predictions match the true labels.
+Typically, for classification problems, you will use `accuracy`, which calculates how often the model predictions match the true labels.
 
 The accuracy function creates two local variables, total and count, that it uses to compute the frequency with which predictions matches labels. This frequency is ultimately returned as accuracy: an operation that divides the  total by count.
 
@@ -147,6 +151,8 @@ history_intro = model_intro.fit(train_images, train_labels,
 
 The `batch_size` parameter defaults to 32. The **batch size** is an important hyperparameter that determines the number of training samples processed together before updating the model's parameters during each iteration (or mini-batch) of training.
 
+In general, smaller batch sizes may require more iterations to cover the entire dataset, which can lead to longer training times. Larger batch sizes contribute to a smoother learning process, i.e. more consistent updates to the model's parameters, but might not generalise well to new, unseen data.
+
 Note we are also creating a new variable `history_intro` to capture the history of the training in order to extract metrics we will use for model evaluation.
 
 Other arguments used to fit our model can be found in the documentation for the [fit method].
@@ -159,7 +165,7 @@ Other arguments used to fit our model can be found in the documentation for the 
 ChatGPT
 
 
-The choice of batch size can have various implications, and there are situations where using different batch sizes can be beneficial.
+The choice of batch size can have various implications, and there are situations where using different batch sizes can be beneficial. There is no one-size-fits-all answer.
 
 **Large Datasets and Memory Constraints**: If you have a large dataset and limited memory, using a smaller batch size can help fit the data into memory during training. This allows you to train larger models or use more complex architectures that might not fit with larger batch sizes.
 
@@ -169,7 +175,7 @@ The choice of batch size can have various implications, and there are situations
 
 **Generalization**: Using smaller batch sizes may improve the generalization of the model. It prevents the model from overfitting to the training data, as it gets updated more frequently and experiences more diverse samples during training.
 
-However, it's essential to consider the trade-offs of using different batch sizes. Smaller batch sizes may require more iterations to cover the entire dataset, which can lead to longer training times. Larger batch sizes can provide more stable gradients, but might suffer from generalization issues. There is no one-size-fits-all answer. You should experiment with different batch sizes to find the best-performing one for your specific model, architecture, and dataset.
+It's essential to consider the trade-offs of using different batch sizes. While larger batch sizes may provide more stable gradients during training, there could be a trade-off where the model might not generalise as effectively to new, unseen data. It's a common consideration in machine learning to find a balance between stable training and the ability to generalize well to diverse examples. You should experiment with different batch sizes to find the best-performing one for your specific model, architecture, and dataset.
 
 :::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -204,24 +210,33 @@ This plot is used to identify whether the training is well configured or whether
 
 Inspect the training curves we have just made and recall the difference between the training and the validation datasets.
 
-1. How does the training progress?
+1. How does the training progress look?
 
 - Does the loss increase or decrease?
 - What about the accuracy?
 - Do either change fast or slowly?
-- Do the graphs lines go up and down frequently (i.e. jitter)?
+- Do the graphs lines fluctuate or go up and down frequently?
 
 2. Do you think the resulting trained network will work well on the test set?
 
 :::::::::::::::::::::::: solution 
 
-1. The loss curve should drop quite quickly in a smooth line with little jitter. The accuracy should increase quite quickly in a smooth line also wtih little jitter.
+1. Key things to look for for:
+- Loss
+    - The loss curve should drop quickly in a relatively smooth line with little to no fluctuations. 
+    - The val_loss curve should decrease along with the loss.
+- Accuracy
+    - The accuracy should increase quickly in a relatively smooth line with little to no fluctuations.
+    - The val_accuracy should behave similarly
+    
 2. The results of the training give very little information on its performance on a test set. You should be careful not to use it as an indication of a well trained network.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-These is evidence of **overfitting** in these plots. If a model is overfitting, it means the model performs exceptionally well on the training data, but poorly on the validation data. Overfitting occurs when the model has learned to memorize the noise and specific patterns in the training data instead of generalizing the underlying relationships. As a result, the model fails to perform well on new, unseen, data because it has become too specialized to the training set.
+Note the training loss continues to decrease, while the validation loss stagnates, and even starts to increase over the course of the epochs. Similarly, the accuracy for the validation set does not improve anymore after some epochs.
+
+This is evidence of **overfitting** in these plots. If a model is overfitting, it means the model performs exceptionally well on the training data, but poorly on the validation data. Overfitting occurs when the model has learned to memorize the noise and specific patterns in the training data instead of generalizing the underlying relationships. As a result, the model fails to perform well on new, unseen, data because it has become too specialized to the training set.
 
 Key characteristics of an overfit model include:
 
@@ -243,29 +258,59 @@ Underfitting occurs when the model is too simple or lacks the capacity to captur
 
 Key characteristics of an underfit model include:
 
-- Low Validation Accuracy: This indicates the model is not learning from the data effectively.
 - Large Training Loss: The training loss (error) is high, indicating the model's predictions are far from the true labels in the training set.
 - Increasing validation loss.
+- Low Validation Accuracy: This indicates the model is not learning from the data effectively.
 
 How to address underfitting:
 
-- Increase the model's complexity by adding more layers or units to the existing layers.
-- Train the model for more epochs to give it more time to learn from the data.
 - Perform data augmentation or feature engineering to provide the model with more informative input features.
+- Train the model for more epochs to give it more time to learn from the data.
+- Increase the model's complexity by adding more layers or units to the existing layers.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Improve Model Generalization (avoid Overfitting)
 
+Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques**. 
+
+::::::::::::::::::::::::::::::::::::::::: spoiler
+
+## WANT TO KNOW MORE: Regularization techniques for CNNs
+
+ChatGPT
+
+**Regularization** methods introduce constraints or penalties to the training process, encouraging the model to be simpler and less prone to overfitting. Here are some common regularization methods for CNNs:
+
+**L1 and L2 Regularization**: L1 and L2 regularization are the two most common regularization techniques used in deep learning. They add a penalty term to the loss function during training to restrict the model's weights.
+
+- L1 regularization adds the absolute value of the weights to the loss function. It tends to produce sparse weight vectors, forcing some of the less important features to have exactly zero weights.
+
+- L2 regularization adds the square of the weights to the loss function. It encourages the model to have smaller weights overall, preventing extreme values and reducing the impact of individual features.
+
+The regularization strength is controlled by a hyperparameter, often denoted as lambda (λ), that determines how much weight should be given to the regularization term. A larger λ value increases the impact of regularization, making the model simpler and more regularized.
+
+**Dropout**: Involves randomly "dropping out" a fraction of neurons during training. This means during each training iteration, some neurons are temporarily removed from the network. Dropout effectively reduces the interdependence between neurons, preventing the network from relying too heavily on specific neurons, and making it more robust.
+
+**Batch Normalization**: While not explicitly a regularization technique, Batch Normalization has a regularizing effect on the model. It normalizes the activations of each layer in the network, reducing internal covariate shift. This can improve training stability and reduce the need for aggressive dropout or weight decay.
+
+**Data Augmentation**: Data augmentation is a technique where the training data is artificially augmented by applying various transformations like rotation, scaling, flipping, and cropping to create new examples. This increases the diversity of the training data and helps the model generalize better to unseen data.
+
+**Early Stopping**: Early stopping is a form of regularization that stops the training process when the model's performance on a validation set starts to degrade. It prevents the model from overfitting by avoiding further training after the point of best validation performance.
+
+Using regularization techniques improves the generalization performance of CNNs and reduces the risk of overfitting. It's essential to experiment with different regularization methods and hyperparameters to find the optimal combination for your specific CNN architecture and dataset.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 #### Dropout
 
-Note the training loss continues to decrease, while the validation loss stagnates, and even starts to increase over the course of the epochs. Similarly, the accuracy for the validation set does not improve anymore after some epochs. This means we are overfitting on our training data set.
-
-Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques**. One of the most versatile regularization technique is **dropout** (Srivastava et al., 2014). Dropout essentially means that during each training cycle a random fraction of the dense layer nodes are turned off. This is described with the dropout rate between zero and one, which determines the fraction of nodes to silence at a time. 
+One of the most versatile regularization technique is **dropout** (Srivastava et al., 2014). Dropout essentially means that during each training cycle a random fraction of the dense layer nodes are turned off. This is described with the dropout rate between zero and one, which determines the fraction of nodes to silence at a time. 
 
 ![](fig/04-neural_network_sketch_dropout.png){alt='diagram of two neural networks; the first network is densely connected without dropout and the second network has some of the neurons dropped out of of the network'}
 
-The intuition behind dropout is that it enforces redundancies in the network by constantly removing different elements of a network. The model can no longer rely on individual nodes and instead must create multiple "paths". In addition, the model has to make predictions with much fewer nodes and weights (connections between the nodes). As a result, it becomes much harder for a network to memorize particular features. At first this might appear a quite drastic approach which affects the network architecture strongly. In practice, however, dropout is computationally a very elegant solution which does not affect training speed. And it frequently works very well.
+The intuition behind dropout is that it enforces redundancies in the network by constantly removing different elements of a network. The model can no longer rely on individual nodes and instead must create multiple "paths". 
+
+In addition, the model has to make predictions with much fewer nodes and weights (connections between the nodes). As a result, it becomes much harder for a network to memorize particular features. At first this might appear a quite drastic approach which affects the network architecture strongly. In practice, however, dropout is computationally a very elegant solution which does not affect training speed. And it frequently works very well.
 
 :::::::::::::::::::::::::::::::::::::: callout
 
@@ -273,7 +318,7 @@ Dropout layers will only randomly silence nodes during training! During a predic
 
 ::::::::::::::::::::::::::::::::::::::::::::::
 
-Dropout layers are defined by the `tf.keras.layers.Dropout class and have the following definition:
+Dropout layers are defined by the `tf.keras.layers.Dropout` class and have the following definition:
 
 ```
 tf.keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)
@@ -367,12 +412,12 @@ Write the code to compile and fit our new dropout model using the same arguments
 ```python
 # compile the dropout model
 model_dropout.compile(optimizer = 'adam',
-              loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              loss = keras.losses.CategoricalCrossentropy(),
               metrics = ['accuracy'])
 
 # fit the dropout model
 history_dropout = model_dropout.fit(train_images, train_labels, 
-                                    epochs=10,
+                                    epochs = 10,
                                     validation_data=(val_images, val_labels),
                                     batch_size = 32)
 
@@ -406,33 +451,7 @@ The final accuracy on the validation set is higher than without dropout.
 
 
 
-::::::::::::::::::::::::::::::::::::::::: spoiler
 
-## WANT TO KNOW MORE: Regularization methods for Convolutional Neural Networks (CNNs)
-
-ChatGPT
-
-**Regularization** methods introduce constraints or penalties to the training process, encouraging the model to be simpler and less prone to overfitting. Here are some common regularization methods for CNNs:
-
-**L1 and L2 Regularization**: L1 and L2 regularization are the two most common regularization techniques used in deep learning. They add a penalty term to the loss function during training to restrict the model's weights.
-
-- L1 regularization adds the absolute value of the weights to the loss function. It tends to produce sparse weight vectors, forcing some of the less important features to have exactly zero weights.
-
-- L2 regularization adds the square of the weights to the loss function. It encourages the model to have smaller weights overall, preventing extreme values and reducing the impact of individual features.
-
-The regularization strength is controlled by a hyperparameter, often denoted as lambda (λ), that determines how much weight should be given to the regularization term. A larger λ value increases the impact of regularization, making the model simpler and more regularized.
-
-b. randomly "dropping out" a fraction of neurons during training. This means during each training iteration, some neurons are temporarily removed from the network. Dropout effectively reduces the interdependence between neurons, preventing the network from relying too heavily on specific neurons, and making it more robust.
-
-**Batch Normalization**: While not explicitly a regularization technique, Batch Normalization has a regularizing effect on the model. It normalizes the activations of each layer in the network, reducing internal covariate shift. This can improve training stability and reduce the need for aggressive dropout or weight decay.
-
-**Data Augmentation**: Data augmentation is a technique where the training data is artificially augmented by applying various transformations like rotation, scaling, flipping, and cropping to create new examples. This increases the diversity of the training data and helps the model generalize better to unseen data.
-
-**Early Stopping**: Early stopping is a form of regularization that stops the training process when the model's performance on a validation set starts to degrade. It prevents the model from overfitting by avoiding further training after the point of best validation performance.
-
-Using regularization techniques improves the generalization performance of CNNs and reduces the risk of overfitting. It's essential to experiment with different regularization methods and hyperparameters to find the optimal combination for your specific CNN architecture and dataset.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ## Choose the best model and use it to predict

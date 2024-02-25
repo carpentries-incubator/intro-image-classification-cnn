@@ -156,7 +156,7 @@ for i in range(25):
 plt.show()
 ```
 
-![](fig/01_cifar10.png){alt='Subset of 25 CIFAR-10 images representing different object classes'}
+![](fig/01_cifar10_plot_subset.png){alt='Subset of 25 CIFAR-10 images representing different object classes'}
 
 ### Step 4. Choose a pre-trained model or build a new architecture from scratch
 

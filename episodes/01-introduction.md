@@ -16,7 +16,6 @@ exercises: 0
 
 - Explain the difference between artificial intelligence, machine learning and deep learning.
 - Understand the different types of computer vision tasks.
-- Know the difference between training, testing, and validation datasets.
 - Perform an image classification using a convolutional neural network (CNN).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -309,7 +308,7 @@ We will return to each of these workflow steps throughout this lesson and discus
 - Machine learning is the process where computers learn to recognise patterns of data.
 - Deep learning is a subset of machine learning, which is a subset of artificial intelligence.
 - Convolutional neural networks are well suited for image classification.
-- To use Deep Learning effectively we follow a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, training the model, tuning hyperparameters, measuring performance before we can classify data.
+- To use Deep Learning effectively we follow a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, training the model, tuning hyperparameters, and measuring performance before we can classify data.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->

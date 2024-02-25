@@ -10,6 +10,7 @@ exercises: 2
 - Where can I find image data to train my model?
 - How do I plot image data in python?
 - How do I prepare image data for use in a convolutional neural network (CNN)?
+- Know the difference between training, testing, and validation datasets.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -481,6 +482,7 @@ Our dataset is preprocessed and split into three sets which means we are ready t
 - Image datasets can be found online or created uniquely for your research question.
 - Images consist of pixels arranged in a particular order.
 - Image data is usually preprocessed before use in a CNN for efficiency, consistency, and robustness.
+- Input data generally consists of three sets: a training set used to fit model parameters; a validation set used to evaluate the model fit on training data; a test set used to evaluate the final model performance.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

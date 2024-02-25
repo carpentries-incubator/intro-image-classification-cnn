@@ -16,7 +16,6 @@ exercises: 0
 
 - Explain the difference between artificial intelligence, machine learning and deep learning.
 - Understand the different types of computer vision tasks.
-- Know the difference between training, testing, and validation datasets.
 - Perform an image classification using a convolutional neural network (CNN).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -113,7 +112,7 @@ train_images, val_images, train_labels, val_labels = train_test_split(train_imag
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge Examine the CIFAR-10 dataset
+## CHALLENGE Examine the CIFAR-10 dataset
 
 Explain the output of these commands?
 
@@ -157,7 +156,7 @@ for i in range(25):
 plt.show()
 ```
 
-![](fig/01_cifar10.png){alt='Subset of 25 CIFAR-10 images representing different object classes'}
+![](fig/01_cifar10_plot_subset.png){alt='Subset of 25 CIFAR-10 images representing different object classes'}
 
 ### Step 4. Choose a pre-trained model or build a new architecture from scratch
 
@@ -198,7 +197,9 @@ model_intro = keras.Model(inputs = inputs_intro,
                           name = "cifar_model_intro")
 ```
 
-### Step 5. Choose a loss function and optimizer
+### Step 5. Choose a loss function and optimizer and compile model
+
+To set up a model for training we need to compile it. This is when you set up the rules and strategies for how your network is going to learn.
 
 The loss function tells the training algorithm how far away the predicted value was from the true value. We will learn how to choose a loss function in more detail in [Episode 4 Compile and Train (Fit) a Convolutional Neural Network](episodes/04-fit-cnn.md).
 
@@ -309,7 +310,7 @@ We will return to each of these workflow steps throughout this lesson and discus
 - Machine learning is the process where computers learn to recognise patterns of data.
 - Deep learning is a subset of machine learning, which is a subset of artificial intelligence.
 - Convolutional neural networks are well suited for image classification.
-- To use Deep Learning effectively we follow a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, training the model, tuning hyperparameters, measuring performance before we can classify data.
+- To use Deep Learning effectively we follow a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, training the model, tuning hyperparameters, and measuring performance before we can classify data.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->

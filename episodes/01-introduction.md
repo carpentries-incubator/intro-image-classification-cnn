@@ -112,7 +112,7 @@ train_images, val_images, train_labels, val_labels = train_test_split(train_imag
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge Examine the CIFAR-10 dataset
+## CHALLENGE Examine the CIFAR-10 dataset
 
 Explain the output of these commands?
 

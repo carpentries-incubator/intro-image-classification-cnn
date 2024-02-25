@@ -200,7 +200,7 @@ This plot is used to identify whether the training is well configured or whether
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Inspect the Training Curve
+## CHALLENGE Inspect the Training Curve
 
 Inspect the training curves we have just made and recall the difference between the training and the validation datasets.
 
@@ -358,7 +358,7 @@ Note the dropout does not alter the dimensions of the image and has zero paramet
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Does adding a Dropout Layer improve our model?
+## CHALLENGE Does adding a Dropout Layer improve our model?
 
 Write the code to compile and fit our new dropout model using the same arguments we used for our model in the introduction. Then inspect the training metrics to determine whether our model has improved or not by adding a dropout layer.
 

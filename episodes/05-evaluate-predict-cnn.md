@@ -69,7 +69,7 @@ The number of labels in our test dataset is:  10000
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-How big should our test data set be?
+## CHALLENGE How big should our test data set be?
 
 :::::::::::::::::::::::: solution 
 
@@ -193,7 +193,7 @@ sns.heatmap(confusion_df, annot=True, fmt='3g')
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-Confusion Matrix
+## CHALLENGE Confusion Matrix
 
 Measure the performance of the neural network you trained and visualized as a confusion matrix.
 
@@ -243,7 +243,7 @@ One common method for hyperparameter tuning is by using a `for` loop to change a
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Tune Dropout Rate using a For Loop
+## CHALLENGE Tune Dropout Rate using a For Loop
 
 Q1. What do you think would happen if you lower the dropout rate? Write some code to vary the dropout rate and investigate how it affects the model training.
 
@@ -344,7 +344,7 @@ For instance, suppose you're tuning two hyperparameters:
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Tune Optimizer using Grid Search
+## CHALLENGE Tune Optimizer using Grid Search
 
 In [Episode 04 Compile and Train a Convolutional Neural Network](episodes/04-fit-cnn.md) we talked briefly about the `Adam` optimizer used in our `model.compile` discussion. Recall the optimizer refers to the algorithm with which the model learns to optimize on the provided loss function.
 
@@ -415,7 +415,7 @@ A third way to tune hyperparameters is brute force.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Tune Activation Function using Brute Force
+## CHALLENGE Tune Activation Function using Brute Force
 
 In [Episode 03 Build a Convolutional Neural Network](episodes/03-build-cnn.md) we talked briefly about the `relu` activation function passed as an argument to our `Conv2D` hidden layers.
 
@@ -507,7 +507,7 @@ In this figure, after 10 epochs, the `ReLU` and `Leaky ReLU` activation function
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Open question: What could be next steps to further improve the model?
+## CHALLENGE What could be next steps to further improve the model?
 
 With unlimited options to modify the model architecture or to play with the training parameters, deep learning can trigger very extensive hunting for better and better results. Usually models are "well behaving" in the sense that small chances to the architectures also only result in small changes of the performance (if any). It is often tempting to hunt for some magical settings that will lead to much better results. But do those settings exist? Applying common sense is often a good first step to make a guess of how much better could results be.
 

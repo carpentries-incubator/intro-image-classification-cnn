@@ -45,7 +45,7 @@ You can use pre-existing data or prepare your own.
 
 :::::::::::::::::::::::::::::::::::::: challenge
 
-How much data do you need for Deep Learning?
+## CHALLENGE How much data do you need for Deep Learning?
 
 The rise of Deep Learning is partially due to the increased availability of very large datasets. But how much data do you actually need to train a Deep Learning model?
 
@@ -369,7 +369,8 @@ train_images, val_images, train_labels, val_labels = train_test_split(train_imag
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
-Training and Validation
+
+## CHALLENGE Training and Validation
 
 Inspect the training and validation sets we created. 
 

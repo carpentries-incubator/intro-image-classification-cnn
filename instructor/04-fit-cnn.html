@@ -276,7 +276,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Compile and Train (Fit) a Convolutional Neural Network</h1>
-        <p>Last updated on 2024-02-08 |
+        <p>Last updated on 2024-02-25 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -324,11 +324,13 @@ training.</li>
 </div>
 </div>
 <div class="section level3">
-<h3 id="step-5--choose-a-loss-function-and-optimizer">Step 5. Choose a loss function and optimizer<a class="anchor" aria-label="anchor" href="#step-5--choose-a-loss-function-and-optimizer"></a></h3>
+<h3 id="step-5--choose-a-loss-function-and-optimizer-and-compile-model">Step 5. Choose a loss function and optimizer and compile model<a class="anchor" aria-label="anchor" href="#step-5--choose-a-loss-function-and-optimizer-and-compile-model"></a></h3>
 <p>We have designed a convolutional neural network (CNN) that in theory
 we should be able to train to classify images.</p>
-<p>We now select an appropriate optimizer and loss function to use
-during training (fitting).</p>
+<p>We now need to <strong>compile</strong> the model, or set up the
+rules and strategies for how the network will learn. To do this, we
+select an appropriate loss function and optimizer to use during training
+(fitting).</p>
 <p>Recall how we compiled our model in the introduction:</p>
 <pre><code><span><span class="co">## compile the model</span></span>
 <span><span class="co">#model_intro.compile(optimizer = 'adam', </span></span>
@@ -371,13 +373,22 @@ the weights) is achieved.</p>
 <p><strong>Adam</strong></p>
 <p>Here we picked one of the most common optimizers demonstrated to work
 well for most tasks, the <strong>Adam</strong> optimizer. Similar to
-activation functions, the choice of optimizer depends on the problem you
-are trying to solve, your model architecture, and your data. Adam is a
-good starting point though, which is why we chose it. Adam has a number
-of parameters, but the default values work well for most problems so we
-will use it with its default parameters.</p>
+other hyperparameters, the choice of optimizer depends on the problem
+you are trying to solve, your model architecture, and your data. Adam is
+a good starting point though, which is why we chose it. Adam has a
+number of parameters, but the default values work well for most problems
+so we will use it with its default parameters.</p>
 <p>It is defined by the <code>keras.optimizers.Adam</code> class and
 takes a single parameter <code>learning_rate=0.01</code></p>
+<p><strong>Learning rate</strong> is a hyperparameter that determines
+the step size at which the model’s weights are updated during training.
+You can think of like the pace of learning for your model because it’s
+basically how big (or small) a step your model takes to learn from its
+mistakes. Too high, and it might overshoot the optimal values; too low,
+and it might take forever to learn.</p>
+<p>The learning rate may be fixed and remain constant throughout the
+entire training process or it may be adaptive and dynamically change
+during training.</p>
 <p>The <a href="https://keras.io/api/optimizers/" class="external-link">optimizer
 documentation</a> describes the optimizers to choose. A couple more
 popular or famous ones include:</p>
@@ -453,8 +464,9 @@ your model.</p>
 <p>Metric functions are similar to loss functions, except the results
 from evaluating a metric are not used when training the model. Note you
 are able to use any loss function as a metric.</p>
-<p>Typically you will use <code>accuracy</code>, which calculates how
-often the model predictions match the true labels.</p>
+<p>Typically, for classification problems, you will use
+<code>accuracy</code>, which calculates how often the model predictions
+match the true labels.</p>
 <p>The accuracy function creates two local variables, total and count,
 that it uses to compute the frequency with which predictions matches
 labels. This frequency is ultimately returned as accuracy: an operation
@@ -492,6 +504,11 @@ training, but only to a point.</p>
 determines the number of training samples processed together before
 updating the model’s parameters during each iteration (or mini-batch) of
 training.</p>
+<p>In general, smaller batch sizes may require more iterations to cover
+the entire dataset, which can lead to longer training times. Larger
+batch sizes contribute to a smoother learning process, i.e. more
+consistent updates to the model’s parameters, but might not generalise
+well to new, unseen data.</p>
 <p>Note we are also creating a new variable <code>history_intro</code>
 to capture the history of the training in order to extract metrics we
 will use for model evaluation.</p>
@@ -508,7 +525,8 @@ method</a>.</p>
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>The choice of batch size can have various implications, and there are
-situations where using different batch sizes can be beneficial.</p>
+situations where using different batch sizes can be beneficial. There is
+no one-size-fits-all answer.</p>
 <p><strong>Large Datasets and Memory Constraints</strong>: If you have a
 large dataset and limited memory, using a smaller batch size can help
 fit the data into memory during training. This allows you to train
@@ -528,13 +546,14 @@ Descent (SGD).</p>
 improve the generalization of the model. It prevents the model from
 overfitting to the training data, as it gets updated more frequently and
 experiences more diverse samples during training.</p>
-<p>However, it’s essential to consider the trade-offs of using different
-batch sizes. Smaller batch sizes may require more iterations to cover
-the entire dataset, which can lead to longer training times. Larger
-batch sizes can provide more stable gradients, but might suffer from
-generalization issues. There is no one-size-fits-all answer. You should
-experiment with different batch sizes to find the best-performing one
-for your specific model, architecture, and dataset.</p>
+<p>It’s essential to consider the trade-offs of using different batch
+sizes. While larger batch sizes may provide more stable gradients during
+training, there could be a trade-off where the model might not
+generalise as effectively to new, unseen data. It’s a common
+consideration in machine learning to find a balance between stable
+training and the ability to generalize well to diverse examples. You
+should experiment with different batch sizes to find the best-performing
+one for your specific model, architecture, and dataset.</p>
 </div>
 </div>
 </div>
@@ -565,21 +584,21 @@ history:</p>
 or whether there are problems to address. The solid blue lines represent
 the training loss and accuracy; the dashed orange lines represent the
 validation loss and accuracy.</p>
-<div id="inspect-the-training-curve" class="callout challenge">
+<div id="challenge-inspect-the-training-curve" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="inspect-the-training-curve" class="callout-inner">
-<h3 class="callout-title">Inspect the Training Curve<a class="anchor" aria-label="anchor" href="#inspect-the-training-curve"></a>
+<div id="challenge-inspect-the-training-curve" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Inspect the Training Curve<a class="anchor" aria-label="anchor" href="#challenge-inspect-the-training-curve"></a>
 </h3>
 <div class="callout-content">
 <p>Inspect the training curves we have just made and recall the
 difference between the training and the validation datasets.</p>
-<ol style="list-style-type: decimal"><li>How does the training progress?</li>
+<ol style="list-style-type: decimal"><li>How does the training progress look?</li>
 </ol><ul><li>Does the loss increase or decrease?</li>
 <li>What about the accuracy?</li>
 <li>Do either change fast or slowly?</li>
-<li>Do the graphs lines go up and down frequently (i.e. jitter)?</li>
+<li>Do the graphs lines fluctuate or go up and down frequently?</li>
 </ul><ol start="2" style="list-style-type: decimal"><li>Do you think the resulting trained network will work well on the
 test set?</li>
 </ol></div>
@@ -592,21 +611,33 @@ test set?</li>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<ol style="list-style-type: decimal"><li>The loss curve should drop quite quickly in a smooth line with
-little jitter. The accuracy should increase quite quickly in a smooth
-line also wtih little jitter.</li>
-<li>The results of the training give very little information on its
+<ol style="list-style-type: decimal"><li>Key things to look for for:</li>
+</ol><ul><li>Loss
+<ul><li>The loss curve should drop quickly in a relatively smooth line with
+little to no fluctuations.</li>
+<li>The val_loss curve should decrease along with the loss.</li>
+</ul></li>
+<li>Accuracy
+<ul><li>The accuracy should increase quickly in a relatively smooth line
+with little to no fluctuations.</li>
+<li>The val_accuracy should behave similarly</li>
+</ul></li>
+</ul><ol start="2" style="list-style-type: decimal"><li>The results of the training give very little information on its
 performance on a test set. You should be careful not to use it as an
 indication of a well trained network.</li>
 </ol></div>
 </div>
 </div>
 </div>
-<p>These is evidence of <strong>overfitting</strong> in these plots. If
-a model is overfitting, it means the model performs exceptionally well
-on the training data, but poorly on the validation data. Overfitting
-occurs when the model has learned to memorize the noise and specific
-patterns in the training data instead of generalizing the underlying
+<p>Note the training loss continues to decrease, while the validation
+loss stagnates, and even starts to increase over the course of the
+epochs. Similarly, the accuracy for the validation set does not improve
+anymore after some epochs.</p>
+<p>This is evidence of <strong>overfitting</strong> in these plots. If a
+model is overfitting, it means the model performs exceptionally well on
+the training data, but poorly on the validation data. Overfitting occurs
+when the model has learned to memorize the noise and specific patterns
+in the training data instead of generalizing the underlying
 relationships. As a result, the model fails to perform well on new,
 unseen, data because it has become too specialized to the training
 set.</p>
@@ -639,19 +670,19 @@ capacity to capture the underlying patterns and relationships present in
 the data. As a result, the model’s predictions are not accurate, and it
 fails to generalize well to unseen data.</p>
 <p>Key characteristics of an underfit model include:</p>
-<ul><li>Low Validation Accuracy: This indicates the model is not learning
-from the data effectively.</li>
-<li>Large Training Loss: The training loss (error) is high, indicating
+<ul><li>Large Training Loss: The training loss (error) is high, indicating
 the model’s predictions are far from the true labels in the training
 set.</li>
 <li>Increasing validation loss.</li>
+<li>Low Validation Accuracy: This indicates the model is not learning
+from the data effectively.</li>
 </ul><p>How to address underfitting:</p>
-<ul><li>Increase the model’s complexity by adding more layers or units to
-the existing layers.</li>
+<ul><li>Perform data augmentation or feature engineering to provide the
+model with more informative input features.</li>
 <li>Train the model for more epochs to give it more time to learn from
 the data.</li>
-<li>Perform data augmentation or feature engineering to provide the
-model with more informative input features.</li>
+<li>Increase the model’s complexity by adding more layers or units to
+the existing layers.</li>
 </ul></div>
 </div>
 </div>
@@ -660,30 +691,86 @@ model with more informative input features.</li>
 </div>
 <div class="section level3">
 <h3 id="improve-model-generalization-avoid-overfitting">Improve Model Generalization (avoid Overfitting)<a class="anchor" aria-label="anchor" href="#improve-model-generalization-avoid-overfitting"></a></h3>
+<p>Techniques to avoid overfitting, or to improve model generalization,
+are termed <strong>regularization techniques</strong>.</p>
+<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
+  <h3 class="accordion-header" id="headingSpoiler4">
+<div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Regularization techniques for CNNs</h3>
+</button>
+<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
+<div class="accordion-body">
+<p>ChatGPT</p>
+<p><strong>Regularization</strong> methods introduce constraints or
+penalties to the training process, encouraging the model to be simpler
+and less prone to overfitting. Here are some common regularization
+methods for CNNs:</p>
+<p><strong>L1 and L2 Regularization</strong>: L1 and L2 regularization
+are the two most common regularization techniques used in deep learning.
+They add a penalty term to the loss function during training to restrict
+the model’s weights.</p>
+<ul><li><p>L1 regularization adds the absolute value of the weights to the
+loss function. It tends to produce sparse weight vectors, forcing some
+of the less important features to have exactly zero weights.</p></li>
+<li><p>L2 regularization adds the square of the weights to the loss
+function. It encourages the model to have smaller weights overall,
+preventing extreme values and reducing the impact of individual
+features.</p></li>
+</ul><p>The regularization strength is controlled by a hyperparameter, often
+denoted as lambda (λ), that determines how much weight should be given
+to the regularization term. A larger λ value increases the impact of
+regularization, making the model simpler and more regularized.</p>
+<p><strong>Dropout</strong>: Involves randomly “dropping out” a fraction
+of neurons during training. This means during each training iteration,
+some neurons are temporarily removed from the network. Dropout
+effectively reduces the interdependence between neurons, preventing the
+network from relying too heavily on specific neurons, and making it more
+robust.</p>
+<p><strong>Batch Normalization</strong>: While not explicitly a
+regularization technique, Batch Normalization has a regularizing effect
+on the model. It normalizes the activations of each layer in the
+network, reducing internal covariate shift. This can improve training
+stability and reduce the need for aggressive dropout or weight
+decay.</p>
+<p><strong>Data Augmentation</strong>: Data augmentation is a technique
+where the training data is artificially augmented by applying various
+transformations like rotation, scaling, flipping, and cropping to create
+new examples. This increases the diversity of the training data and
+helps the model generalize better to unseen data.</p>
+<p><strong>Early Stopping</strong>: Early stopping is a form of
+regularization that stops the training process when the model’s
+performance on a validation set starts to degrade. It prevents the model
+from overfitting by avoiding further training after the point of best
+validation performance.</p>
+<p>Using regularization techniques improves the generalization
+performance of CNNs and reduces the risk of overfitting. It’s essential
+to experiment with different regularization methods and hyperparameters
+to find the optimal combination for your specific CNN architecture and
+dataset.</p>
+</div>
+</div>
+</div>
+</div>
 <div class="section level4">
 <h4 id="dropout">Dropout<a class="anchor" aria-label="anchor" href="#dropout"></a></h4>
-<p>Note the training loss continues to decrease, while the validation
-loss stagnates, and even starts to increase over the course of the
-epochs. Similarly, the accuracy for the validation set does not improve
-anymore after some epochs. This means we are overfitting on our training
-data set.</p>
-<p>Techniques to avoid overfitting, or to improve model generalization,
-are termed <strong>regularization techniques</strong>. One of the most
-versatile regularization technique is <strong>dropout</strong>
-(Srivastava et al., 2014). Dropout essentially means that during each
-training cycle a random fraction of the dense layer nodes are turned
-off. This is described with the dropout rate between zero and one, which
-determines the fraction of nodes to silence at a time.</p>
+<p>One of the most versatile regularization technique is
+<strong>dropout</strong> (Srivastava et al., 2014). Dropout essentially
+means that during each training cycle a random fraction of the dense
+layer nodes are turned off. This is described with the dropout rate
+between zero and one, which determines the fraction of nodes to silence
+at a time.</p>
 <figure><img src="../fig/04-neural_network_sketch_dropout.png" alt="diagram of two neural networks; the first network is densely connected without dropout and the second network has some of the neurons dropped out of of the network" class="figure mx-auto d-block"></figure><p>The intuition behind dropout is that it enforces redundancies in the
 network by constantly removing different elements of a network. The
 model can no longer rely on individual nodes and instead must create
-multiple “paths”. In addition, the model has to make predictions with
-much fewer nodes and weights (connections between the nodes). As a
-result, it becomes much harder for a network to memorize particular
-features. At first this might appear a quite drastic approach which
-affects the network architecture strongly. In practice, however, dropout
-is computationally a very elegant solution which does not affect
-training speed. And it frequently works very well.</p>
+multiple “paths”.</p>
+<p>In addition, the model has to make predictions with much fewer nodes
+and weights (connections between the nodes). As a result, it becomes
+much harder for a network to memorize particular features. At first this
+might appear a quite drastic approach which affects the network
+architecture strongly. In practice, however, dropout is computationally
+a very elegant solution which does not affect training speed. And it
+frequently works very well.</p>
 <div id="callout1" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -700,8 +787,9 @@ training data to learn its weights.</p>
 </div>
 </div>
 </div>
-<p>Dropout layers are defined by the `tf.keras.layers.Dropout class and
-have the following definition:</p>
+<p>Dropout layers are defined by the
+<code>tf.keras.layers.Dropout</code> class and have the following
+definition:</p>
 <pre><code>tf.keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)</code></pre>
 <p>The <code>rate</code> parameter is a float between 0 and 1 and
 represents the fraction of the input units to drop.</p>
@@ -785,13 +873,13 @@ _________________________________________________________________</code></pre>
 </div>
 <p>Note the dropout does not alter the dimensions of the image and has
 zero parameters.</p>
-<div id="does-adding-a-dropout-layer-improve-our-model" class="callout challenge">
+<div id="challenge-does-adding-a-dropout-layer-improve-our-model" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="does-adding-a-dropout-layer-improve-our-model" class="callout-inner">
-<h3 class="callout-title">Does adding a Dropout Layer improve our
-model?<a class="anchor" aria-label="anchor" href="#does-adding-a-dropout-layer-improve-our-model"></a>
+<div id="challenge-does-adding-a-dropout-layer-improve-our-model" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Does adding a Dropout Layer improve
+our model?<a class="anchor" aria-label="anchor" href="#challenge-does-adding-a-dropout-layer-improve-our-model"></a>
 </h3>
 <div class="callout-content">
 <p>Write the code to compile and fit our new dropout model using the
@@ -813,12 +901,12 @@ by adding a dropout layer.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the dropout model</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model_dropout.<span class="bu">compile</span>(optimizer <span class="op">=</span> <span class="st">'adam'</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> keras.losses.CategoricalCrossentropy(),</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>              metrics <span class="op">=</span> [<span class="st">'accuracy'</span>])</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the dropout model</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>history_dropout <span class="op">=</span> model_dropout.fit(train_images, train_labels, </span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                                    epochs<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                                    epochs <span class="op">=</span> <span class="dv">10</span>,</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                                    validation_data<span class="op">=</span>(val_images, val_labels),</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                                    batch_size <span class="op">=</span> <span class="dv">32</span>)</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
@@ -852,64 +940,6 @@ dropout.</p>
 </div>
 </div>
 </div>
-<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
-  <h3 class="accordion-header" id="headingSpoiler4">
-<div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Regularization methods for Convolutional Neural Networks (CNNs)</h3>
-</button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
-<div class="accordion-body">
-<p>ChatGPT</p>
-<p><strong>Regularization</strong> methods introduce constraints or
-penalties to the training process, encouraging the model to be simpler
-and less prone to overfitting. Here are some common regularization
-methods for CNNs:</p>
-<p><strong>L1 and L2 Regularization</strong>: L1 and L2 regularization
-are the two most common regularization techniques used in deep learning.
-They add a penalty term to the loss function during training to restrict
-the model’s weights.</p>
-<ul><li><p>L1 regularization adds the absolute value of the weights to the
-loss function. It tends to produce sparse weight vectors, forcing some
-of the less important features to have exactly zero weights.</p></li>
-<li><p>L2 regularization adds the square of the weights to the loss
-function. It encourages the model to have smaller weights overall,
-preventing extreme values and reducing the impact of individual
-features.</p></li>
-</ul><p>The regularization strength is controlled by a hyperparameter, often
-denoted as lambda (λ), that determines how much weight should be given
-to the regularization term. A larger λ value increases the impact of
-regularization, making the model simpler and more regularized.</p>
-<ol start="2" style="list-style-type: lower-alpha"><li>randomly “dropping out” a fraction of neurons during training. This
-means during each training iteration, some neurons are temporarily
-removed from the network. Dropout effectively reduces the
-interdependence between neurons, preventing the network from relying too
-heavily on specific neurons, and making it more robust.</li>
-</ol><p><strong>Batch Normalization</strong>: While not explicitly a
-regularization technique, Batch Normalization has a regularizing effect
-on the model. It normalizes the activations of each layer in the
-network, reducing internal covariate shift. This can improve training
-stability and reduce the need for aggressive dropout or weight
-decay.</p>
-<p><strong>Data Augmentation</strong>: Data augmentation is a technique
-where the training data is artificially augmented by applying various
-transformations like rotation, scaling, flipping, and cropping to create
-new examples. This increases the diversity of the training data and
-helps the model generalize better to unseen data.</p>
-<p><strong>Early Stopping</strong>: Early stopping is a form of
-regularization that stops the training process when the model’s
-performance on a validation set starts to degrade. It prevents the model
-from overfitting by avoiding further training after the point of best
-validation performance.</p>
-<p>Using regularization techniques improves the generalization
-performance of CNNs and reduces the risk of overfitting. It’s essential
-to experiment with different regularization methods and hyperparameters
-to find the optimal combination for your specific CNN architecture and
-dataset.</p>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <section id="choose-the-best-model-and-use-it-to-predict"><h2 class="section-heading">Choose the best model and use it to predict<a class="anchor" aria-label="anchor" href="#choose-the-best-model-and-use-it-to-predict"></a>
@@ -927,11 +957,11 @@ dataset.</p>
 <h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
 </h3>
 <div class="callout-content">
-<ul><li>Use model.compile to compile a CNN.</li>
+<ul><li>Use Model.compile() to compile a CNN.</li>
 <li>The choice of loss function will depend on your data and aim.</li>
 <li>The choice of optimizer often depends on experimentation and
 empirical evaluation.</li>
-<li>Use model.fit to make a train (fit) a CNN.</li>
+<li>Use Model.fit() to make a train (fit) a CNN.</li>
 <li>Training/validation loss and accuracy can be used to evaluate a
 model during training.</li>
 <li>Dropout is one way to prevent overfitting.</li>
@@ -1001,7 +1031,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/04-fit-cnn.html",
   "identifier": "https://.github.io/github.com/instructor/04-fit-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-02-08",
+  "dateModified": "2024-02-25",
   "datePublished": "2024-02-25"
 }
 

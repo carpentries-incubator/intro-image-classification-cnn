@@ -330,7 +330,7 @@ artificial intelligence.</li>
 classification.</li>
 <li>To use Deep Learning effectively we follow a workflow of: defining
 the problem, identifying inputs and outputs, preparing data, choosing
-the type of network, training the model, tuning hyperparameters,
+the type of network, training the model, tuning hyperparameters, and
 measuring performance before we can classify data.</li>
 </ul></section><section id="02-image-data"><h2 class="section-heading"><a href="02-image-data.html">Introduction to Image Data</a></h2>
 <hr class="half-width">
@@ -340,6 +340,10 @@ research question.</li>
 <li>Images consist of pixels arranged in a particular order.</li>
 <li>Image data is usually preprocessed before use in a CNN for
 efficiency, consistency, and robustness.</li>
+<li>Input data generally consists of three sets: a training set used to
+fit model parameters; a validation set used to evaluate the model fit on
+training data; a test set used to evaluate the final model
+performance.</li>
 </ul></section><section id="03-build-cnn"><h2 class="section-heading"><a href="03-build-cnn.html">Build a Convolutional Neural Network</a></h2>
 <hr class="half-width">
 <ul>
@@ -347,9 +351,9 @@ efficiency, consistency, and robustness.</li>
 based on a model inspired by groups of neurons in the brain.</li>
 <li>Convolution neural networks (CNN) are a type of ANN designed for
 image classification and object detection.</li>
-<li>The filter size determines the size of the receptive field where
-information is extracted and the kernel size changes the mathematical
-structure.</li>
+<li>The number of filters corresponds to the number of distinct features
+the layer is learning to recognise whereas the kernel size determines
+the level of features being captured.</li>
 <li>A CNN can consist of many types of layers including convolutional,
 pooling, flatten, and dense (fully connected) layers</li>
 <li>Convolutional layers are responsible for learning features from the
@@ -363,11 +367,11 @@ previous layers to perform the final classification.</li>
 </ul></section><section id="04-fit-cnn"><h2 class="section-heading"><a href="04-fit-cnn.html">Compile and Train (Fit) a Convolutional Neural Network</a></h2>
 <hr class="half-width">
 <ul>
-<li>Use model.compile to compile a CNN.</li>
+<li>Use Model.compile() to compile a CNN.</li>
 <li>The choice of loss function will depend on your data and aim.</li>
 <li>The choice of optimizer often depends on experimentation and
 empirical evaluation.</li>
-<li>Use model.fit to make a train (fit) a CNN.</li>
+<li>Use Model.fit() to make a train (fit) a CNN.</li>
 <li>Training/validation loss and accuracy can be used to evaluate a
 model during training.</li>
 <li>Dropout is one way to prevent overfitting.</li>

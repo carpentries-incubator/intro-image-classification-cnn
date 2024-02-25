@@ -279,7 +279,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Build a Convolutional Neural Network</h1>
-        <p>Last updated on 2024-02-09 |
+        <p>Last updated on 2024-02-25 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -324,30 +324,39 @@ dense.</li>
 <section id="neural-networks"><h2 class="section-heading">Neural Networks<a class="anchor" aria-label="anchor" href="#neural-networks"></a>
 </h2>
 <hr class="half-width"><p>A <strong>neural network</strong> is an artificial intelligence
-technique loosely based on the way neurons in the brain work. A neural
-network consists of connected computational units called neurons. Each
-neuron:</p>
-<ul><li>has one or more inputs, e.g., input data expressed as floating point
+technique loosely based on the way neurons in the brain work.</p>
+<div class="section level3">
+<h3 id="a-single-nueron">A single nueron<a class="anchor" aria-label="anchor" href="#a-single-nueron"></a></h3>
+<p>A neural network consists of connected computational units called
+<strong>neurons</strong>. Each neuron will:</p>
+<ul><li>Take one or more inputs (<span class="math inline">\(x_1, x_2,
+...\)</span>), e.g., input data expressed as floating point
 numbers.</li>
-<li>conducts three main operations most of the time:
-<ul><li>take the weighted sum of the inputs</li>
-<li>add an extra constant weight (i.e. a bias term) to this weighted
+<li>Conduct three main operations most of the time:
+<ul><li>Calculate the weighted sum of the inputs where ($w_1, w_2, … $)
+indicate weights</li>
+<li>Add an extra constant weight (i.e. a bias term) to this weighted
 sum</li>
-<li>apply a non-linear function to the output so far (using a predefined
-activation function)</li>
+<li>Apply a non-linear function to the output so far (using a predefined
+activation function such as the ReLU function)</li>
 </ul></li>
-<li>returns one output value, again a floating point number.</li>
-</ul><figure><img src="../fig/03_neuron.png" alt="diagram of a single neuron taking multiple inputs and their associated weights in and then applying an activation function to predict a single output" class="figure mx-auto d-block"></figure><p>Multiple neurons can be joined together by connecting the output of
+<li>Return one output value, again a floating point number.</li>
+</ul><p>One example equation to calculate the output for a neuron is: <span class="math inline">\(output=ReLU(∑i(xi∗wi)+bias)\)</span></p>
+<figure><img src="../fig/03_neuron.png" alt="diagram of a single neuron taking multiple inputs and their associated weights in and then applying an activation function to predict a single output" class="figure mx-auto d-block"></figure></div>
+<div class="section level3">
+<h3 id="combining-multiple-neurons-into-a-network">Combining multiple neurons into a network<a class="anchor" aria-label="anchor" href="#combining-multiple-neurons-into-a-network"></a></h3>
+<p>Multiple neurons can be joined together by connecting the output of
 one to the input of another. These connections are associated with
-weights that determine the ‘strength’ of the connection, the weights are
-adjusted during training. In this way, the combination of neurons and
-connections describe a computational graph, an example can be seen in
-the image below. In most neural networks neurons are aggregated into
-layers. Signals travel from the input layer to the output layer,
-possibly through one or more intermediate layers called hidden layers.
-The image below illustrates an example of a neural network with three
-layers, each circle is a neuron, each line is an edge and the arrows
-indicate the direction data moves in.</p>
+weights that determine the ‘strength’ of the connection, and the weights
+are adjusted during training. In this way, the combination of neurons
+and connections describe a computational graph, an example can be seen
+in the image below.</p>
+<p>In most neural networks neurons are aggregated into layers. Signals
+travel from the input layer to the output layer, possibly through one or
+more intermediate layers called hidden layers. The image below
+illustrates an example of a neural network with three layers, each
+circle is a neuron, each line is an edge and the arrows indicate the
+direction data moves in.</p>
 <figure><img src="../fig/03_neural_net.png" alt="diagram of a neural with four neurons taking multiple inputs and their weights and predicting multiple outputs" class="figure mx-auto d-block"><figcaption>The image above is by Glosser.ca, <a href="https://creativecommons.org/licenses/by-sa/3.0" class="external-link">CC BY-SA 3.0</a>,
 via Wikimedia Commons, <a href="https://commons.wikimedia.org/wiki/File:Colored_neural_network.svg" class="external-link">original
 source</a></figcaption></figure><p>Neural networks aren’t a new technique, they have been around since
@@ -356,7 +365,8 @@ small, consisting of only 10s or perhaps 100s of neurons. This limited
 them to only solving quite basic problems. Around 2010 improvements in
 computing power and the algorithms for training the networks made much
 larger and more powerful networks practical. These are known as deep
-neural networks or Deep Learning</p>
+neural networks or Deep Learning.</p>
+</div>
 </section><section id="convolutional-neural-networks"><h2 class="section-heading">Convolutional Neural Networks<a class="anchor" aria-label="anchor" href="#convolutional-neural-networks"></a>
 </h2>
 <hr class="half-width"><p>A convolutional neural network (CNN) is a type of artificial neural
@@ -453,26 +463,19 @@ concept from image processing that precedes Deep Learning.</p>
 <p>A <strong>convolution matrix</strong>, or <strong>kernel</strong>, is
 a matrix transformation that we ‘slide’ over the image to calculate
 features at each position of the image. For each pixel, we calculate the
-matrix product between the kernel and the pixel with its surroundings. A
-kernel is typically small, between 3x3 and 7x7 pixels. We can for
-example think of the 3x3 kernel:</p>
+matrix product between the kernel and the pixel with its surroundings.
+Here is one example of a 3x3 kernel used to detect edges:</p>
 <pre><code>[[-1, -1, -1],
  [0,   0,  0]
  [1,   1,  1]]</code></pre>
 <p>This kernel will give a high value to a pixel if it is on a
-horizontal border between dark and light areas. Note for RGB images, the
-kernel should also have a depth of 3, one for each colour channel.</p>
+horizontal border between dark and light areas.</p>
 <p>In the following image, the effect of such a kernel on the values of
 a single-channel image stands out. The red cell in the output matrix is
 the result of multiplying and summing the values of the red square in
 the input, and the kernel. Applying this kernel to a real image
 demonstrates it does indeed detect horizontal edges.</p>
-<figure><img src="../fig/03_conv_matrix.png" alt="6x5 input matrix representing a single colour channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="../fig/03_conv_image.png" alt="single colour channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out" class="figure mx-auto d-block"></figure><p>Within our convolutional layer, the hidden units comprise multiple
-convolutional matrices, also known as kernels. The matrix values,
-serving as weights, are learned during the training process. The
-convolutional layer produces an ‘image’ for each kernel, representing
-the output derived by applying the kernel to each pixel.</p>
-<p>There are several types of convolutional layers available in Keras
+<figure><img src="../fig/03_conv_matrix.png" alt="6x5 input matrix representing a single colour channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="../fig/03_conv_image.png" alt="single colour channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out" class="figure mx-auto d-block"></figure><p>There are several types of convolutional layers available in Keras
 depending on your application. We use the two-dimensional layer
 typically used for images, <code>tf.keras.layers.Conv2D</code>.</p>
 <p>We define arguments for the number of filters, the kernel size, and
@@ -482,36 +485,29 @@ the activation function.</p>
 <p>The instantiation here has three parameters and a seemingly strange
 combination of parentheses, so let us break it down.</p>
 <ul><li>The first parameter is the number of filters in this layer. This is
-one of the hyperparameters of our system and should be chosen
-carefully.</li>
-</ul><p>The term <strong>filter</strong> in the context of CNNs is often used
-synonymously with kernel. However, a filter refers to the learned
-parameters (weights) that are applied during the convolution operation.
-For example, in a convolutional layer, you might have multiple filters
-(or kernels), each responsible for detecting different features in the
-input data. The parameter here specifies the number of output filters in
-the convolution.</p>
-<p>It’s good practice to start with a relatively small number of filters
-in the first layer to prevent overfitting and choosing a number of
-filters as a power of two (e.g., 32, 64, 128) is common.</p>
-<ul><li><p>The second parameter is the kernel size which we already
-discussed. Smaller kernels are often used to capture fine-grained
-features and odd-sized filters are preferred because they have a centre
-pixel which helps maintain spatial symmetry during covolutions.</p></li>
-<li><p>The third parameter is the activation function to use; here we
-choose <strong>relu</strong> which is zero for inputs that are zero and
-below and the identity function (returning the same value) for inputs
-above zero. This is a commonly used activation function in deep neural
-networks that is proven to work well. We will discuss activation
-functions later in <strong>Step 9. Tune hyperparameters</strong> but to
-satisfy your curiosity, <code>ReLU</code> stands for Rectified Linear
-Unit (ReLU).</p></li>
-<li><p>Next is an extra set of parenthenses with inputs in them that
-means after an instance of the Conv2D layer is created, it can be called
-as if it was a function. This tells the Conv2D layer to connect the
-layer passed as a parameter, in this case the inputs.</p></li>
-<li><p>Finally, we store a reference so we can pass it to the next
-layer.</p></li>
+one of the hyperparameters of our system and should be chosen carefully.
+<ul><li>Good practice is to start with a relatively small number of filters
+in the first layer to prevent overfitting.</li>
+<li>Choosing a number of filters as a power of two (e.g., 32, 64, 128)
+is common.</li>
+</ul></li>
+<li>The second parameter is the kernel size which we already discussed.
+Smaller kernels are often used to capture fine-grained features and
+odd-sized filters are preferred because they have a centre pixel which
+helps maintain spatial symmetry during convolutions.</li>
+<li>The third parameter is the activation function to use.
+<ul><li>Here we choose <strong>relu</strong> which is one of the most
+commonly used in deep neural networks that is proven to work well.</li>
+<li>We will discuss activation functions later in <strong>Step 9. Tune
+hyperparameters</strong> but to satisfy your curiosity,
+<code>ReLU</code> stands for Rectified Linear Unit (ReLU).</li>
+</ul></li>
+<li>Next is an extra set of parenthenses with inputs in them that means
+after an instance of the Conv2D layer is created, it can be called as if
+it was a function. This tells the Conv2D layer to connect the layer
+passed as a parameter, in this case the inputs.</li>
+<li>Finally, we store a reference so we can pass it to the next
+layer.</li>
 </ul><div id="playing-with-convolutions" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -532,15 +528,14 @@ different components of convolutional neural nets.</p></li>
 </ul></div>
 </div>
 </div>
-<div id="challenge1" class="callout challenge">
+<div id="challenge-border-pixels" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+<div id="challenge-border-pixels" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Border pixels<a class="anchor" aria-label="anchor" href="#challenge-border-pixels"></a>
 </h3>
 <div class="callout-content">
-<p>Border pixels</p>
 <p>What do you think happens to the border pixels when applying a
 convolution?</p>
 </div>
@@ -551,15 +546,16 @@ convolution?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>There are different ways of dealing with border pixels. You can
-ignore them, which means your output image is slightly smaller then your
-input. It is also possible to ‘pad’ the borders, e.g., with the same
-value or with zeros, so that the convolution can also be applied to the
-border pixels. In that case, the output image will have the same size as
-the input image.</p>
-</div>
+<p>There are different ways of dealing with border pixels.</p>
+<ul><li>You can ignore them, which means your output image is slightly
+smaller then your input.</li>
+<li>It is also possible to ‘pad’ the borders, e.g., with the same value
+or with zeros, so that the convolution can also be applied to the border
+pixels. In that case, the output image will have the same size as the
+input image.</li>
+</ul></div>
 </div>
 </div>
 </div>
@@ -569,11 +565,12 @@ the input image.</p>
 <p>The convolutional layers are often intertwined with
 <strong>Pooling</strong> layers. As opposed to the convolutional layer
 used in feature extraction, the pooling layer alters the dimensions of
-the image and reduces it by a scaling factor. It is basically decreasing
-the resolution of your picture. The rationale behind this is that higher
-layers of the network should focus on higher-level features of the
-image. By introducing a pooling layer, the subsequent convolutional
-layer has a broader ‘view’ on the original image.</p>
+the image and reduces it by a scaling factor effectively decreasing the
+resolution of your picture.</p>
+<p>The rationale behind this is that higher layers of the network should
+focus on higher-level features of the image. By introducing a pooling
+layer, the subsequent convolutional layer has a broader ‘view’ on the
+original image.</p>
 <p>Similar to convolutional layers, Keras offers several pooling layers
 and one used for images (2D spatial data) is the
 <code>tf.keras.layers.MaxPooling2D</code> class.</p>
@@ -590,23 +587,6 @@ factor of 2. Empirically, a 2x2 pooling size has been found to work well
 in various for image classification tasks and also strikes a balance
 between down-sampling for computational efficiency and retaining
 important spatial information.</p>
-<div id="other-types-of-data" class="callout callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="other-types-of-data" class="callout-inner">
-<h3 class="callout-title">Other types of data<a class="anchor" aria-label="anchor" href="#other-types-of-data"></a>
-</h3>
-<div class="callout-content">
-<p>Convolutional and Pooling layers are also applicable to different
-types of data than image data. Whenever the data is ordered in a
-(spatial) dimension, and translation invariant features are expected to
-be useful, convolutions can be used. Think for example of time series
-data from an accelerometer, audio data for speech recognition, or 3d
-structures of chemical compounds.</p>
-</div>
-</div>
-</div>
 </div>
 <div class="section level5">
 <h5 id="dense-layers"><strong>Dense layers</strong><a class="anchor" aria-label="anchor" href="#dense-layers"></a></h5>
@@ -619,30 +599,32 @@ neurons and <strong>all</strong> of the output neurons.</p>
 taken into account by each output neuron. It aggregates global
 information about the features learned in previous layers to make a
 decision about the class of the input.</p>
-<p>In Keras, a densely-connected NN layer is defined by the
+<p>In Keras, a densely-connected layer is defined by the
 <code>tf.keras.layers.Dense</code> class.</p>
 <pre><code><span><span class="co"># # Dense layer with 64 neurons and ReLU activation</span></span>
 <span><span class="co"># x_intro = keras.layers.Dense(64, activation='relu')(x_intro)</span></span></code></pre>
 <p>This instantiation has two parameters: the number of neurons and the
-activation function, similar to the argument for the convolutional
-layer.</p>
+activation function.</p>
 <p>The choice of how many neurons to specify is often determined through
 experimentation and can impact the performance of our CNN. Too few
 neurons may not capture complex patterns in the data but too many
 neurons may lead to overfitting.</p>
-<div id="challenge2" class="callout challenge">
+<div id="challenge-number-of-parameters" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+<div id="challenge-number-of-parameters" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Number of parameters<a class="anchor" aria-label="anchor" href="#challenge-number-of-parameters"></a>
 </h3>
 <div class="callout-content">
-<p>Number of parameters</p>
 <p>Suppose we create a single Dense (fully connected) layer with 100
 hidden units that connects to the input pixels. How many parameters does
 this layer have?</p>
-</div>
+<ul><li>A. 307200</li>
+<li>B. 307300</li>
+<li>C. 100</li>
+<li>D. 3072</li>
+</ul></div>
 </div>
 </div>
 <div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
@@ -650,12 +632,12 @@ this layer have?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>Each entry of the input dimensions, i.e. the shape of one single data
-point, is connected with 100 neurons of our hidden layer, and each of
-these neurons has a bias term associated to it. So we have 307300
-parameters to learn.</p>
+<p>The correct answer is B.</p>
+<p>Each entry of the input dimensions is connected with 100 neurons of
+our hidden layer, and each of these neurons has a bias term associated
+to it. So we have 307300 parameters to learn.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -675,7 +657,7 @@ parameters to learn.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>inputs_ex <span class="op">=</span> keras.Input(shape<span class="op">=</span>dim)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>inputs_ex <span class="op">=</span> keras.Input(shape<span class="op">=</span>n_input_items)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>outputs_ex <span class="op">=</span> keras.layers.Dense(<span class="dv">100</span>)(inputs_ex)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>model_ex <span class="op">=</span> keras.models.Model(inputs<span class="op">=</span>inputs_ex, outputs<span class="op">=</span>outputs_ex)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>model_ex.summary()</span></code></pre>
@@ -831,7 +813,6 @@ training process to detect whether our model is underfitting or
 overfitting. To do that, we continue with the next steps in our Deep
 Learning workflow, <strong>Step 5. Choose a loss function and
 optimizer</strong> and <strong>Step 6. Train model</strong>.</p>
-<p>Make sure you saved your model before moving on.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -844,9 +825,9 @@ optimizer</strong> and <strong>Step 6. Train model</strong>.</p>
 based on a model inspired by groups of neurons in the brain.</li>
 <li>Convolution neural networks (CNN) are a type of ANN designed for
 image classification and object detection.</li>
-<li>The filter size determines the size of the receptive field where
-information is extracted and the kernel size changes the mathematical
-structure.</li>
+<li>The number of filters corresponds to the number of distinct features
+the layer is learning to recognise whereas the kernel size determines
+the level of features being captured.</li>
 <li>A CNN can consist of many types of layers including convolutional,
 pooling, flatten, and dense (fully connected) layers</li>
 <li>Convolutional layers are responsible for learning features from the
@@ -923,7 +904,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/03-build-cnn.html",
   "identifier": "https://.github.io/github.com/instructor/03-build-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-02-09",
+  "dateModified": "2024-02-25",
   "datePublished": "2024-02-25"
 }
 

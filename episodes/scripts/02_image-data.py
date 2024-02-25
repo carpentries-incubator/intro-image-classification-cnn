@@ -22,13 +22,13 @@ class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', '
 #### Custom image data
 
 # specify the image path
-new_img_path = "../data/Jabiru_TGS.JPG" # path to image
+new_img_path = "../data/Jabiru_TGS.JPG"
 
 # read in the image with default arguments
 new_img_pil = load_img(new_img_path)
 
 # confirm the data class and size
-print('The new image is of type :', new_img_pil.__class__, 'and has the size', new_img_pil.size)
+print('The new image is of class :', new_img_pil.__class__, 'and has the size', new_img_pil.size)
 
 ### Image Dimensions - Resizing
 
@@ -36,8 +36,8 @@ print('The new image is of type :', new_img_pil.__class__, 'and has the size', n
 new_img_pil_small = load_img(new_img_path, target_size=(32,32))
 
 # confirm the data class and shape
-print('The new image is still of type:', new_img_pil_small.__class__, 'but now has the same size', new_img_pil_small.size, 'as our training data.')# convert the Image into an array for processing
-new_img_arr = img_to_array(new_img_pil)
+print('The new image is still of class:', new_img_pil_small.__class__, 'but now has the same size', new_img_pil_small.size, 'as our training data.')# convert the Image into an array for processing
+
 
 ### Normalization
 
@@ -45,7 +45,7 @@ new_img_arr = img_to_array(new_img_pil)
 new_img_arr = img_to_array(new_img_pil_small)
 
 # confirm the data class and shape
-print('The new image is now of type :', new_img_arr.__class__, 'and has the shape', new_img_arr.shape)
+print('The new image is now of class :', new_img_arr.__class__, 'and has the shape', new_img_arr.shape)
 
 # extract the min, max, and mean pixel values BEFORE
 print('The min, max, and mean pixel values are', new_img_arr.min(), ',', new_img_arr.max(), ', and', new_img_arr.mean().round(), 'respectively.')
@@ -81,18 +81,14 @@ train_images, val_images, train_labels, val_labels = train_test_split(train_imag
 # Challenge Training and Validation Sets
 
 #A. Training Set
-print('The training set is of type', train_images.__class__)
 print('The training set has', train_images.shape[0], 'samples.\n')
-
-print('The number of labels in our training set and the number images in each class are:\n')
-print(np.unique(train_labels, return_counts=True))
+print('The number of images in each class:\n', train_labels.sum(axis=0))
+print()
 
 #B. Validation Set
-print('The validation set is of type', val_images.__class__)
 print('The validation set has', val_images.shape[0], 'samples.\n')
-
-print('The number of labels in our validation set and the number images in each class are:\n')
-print(np.unique(val_labels, return_counts=True))
+print('The number of images in each class:\n', val_labels.sum(axis=0))
+print()
 ########################################################
 
 

@@ -26,11 +26,11 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Step 5. Choose a loss function and optimizer
+### Step 5. Choose a loss function and optimizer and compile model
 
 We have designed a convolutional neural network (CNN) that in theory we should be able to train to classify images. 
 
-We now select an appropriate optimizer and loss function to use during training (fitting). 
+We now need to **compile** the model, or set up the rules and strategies for how the network will learn. To do this, we select an appropriate loss function and optimizer to use during training (fitting). 
 
 Recall how we compiled our model in the introduction:
 ```
@@ -449,11 +449,6 @@ The final accuracy on the validation set is higher than without dropout.
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-
-
-
-
 ## Choose the best model and use it to predict
 
 Based on our evaluation of the loss and accuracy metrics, the `model_dropout` appears to have the best performance **of the models we have examined thus far**. The next step is to use this model to predict the object classes on our test dataset.
@@ -461,10 +456,10 @@ Based on our evaluation of the loss and accuracy metrics, the `model_dropout` ap
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use model.compile to compile a CNN.
+- Use Model.compile() to compile a CNN.
 - The choice of loss function will depend on your data and aim.
 - The choice of optimizer often depends on experimentation and empirical evaluation.
-- Use model.fit to make a train (fit) a CNN.
+- Use Model.fit() to make a train (fit) a CNN.
 - Training/validation loss and accuracy can be used to evaluate a model during training.
 - Dropout is one way to prevent overfitting.
 

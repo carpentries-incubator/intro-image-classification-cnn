@@ -197,7 +197,9 @@ model_intro = keras.Model(inputs = inputs_intro,
                           name = "cifar_model_intro")
 ```
 
-### Step 5. Choose a loss function and optimizer
+### Step 5. Choose a loss function and optimizer and compile model
+
+To set up a model for training we need to compile it. This is when you set up the rules and strategies for how your network is going to learn.
 
 The loss function tells the training algorithm how far away the predicted value was from the true value. We will learn how to choose a loss function in more detail in [Episode 4 Compile and Train (Fit) a Convolutional Neural Network](episodes/04-fit-cnn.md).
 

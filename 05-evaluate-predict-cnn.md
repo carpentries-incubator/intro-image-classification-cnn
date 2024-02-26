@@ -8,8 +8,8 @@ exercises: 2
 
 - How do you use a model to make a prediction?
 - How do you measure model prediction accuracy?
-- What is a hyperparameter?
 - What can you do to improve model performance?
+- What is a hyperparameter?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -17,9 +17,9 @@ exercises: 2
 
 - Use a convolutional neural network (CNN) to make a prediction (i.e. classify an image).
 - Explain how to measure the performance of a CNN.
+- Know what steps to take to improve model accuracy.
 - Explain hyperparameter tuning.
 - Be familiar with advantages and disadvantages of different optimizers.
-- Understand what steps to take to improve model accuracy.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -34,7 +34,8 @@ Recall in [Episode 02 Introduction to Image Data](episodes/02-image-data.md) we 
 When creating and using a test set there are a few things to check:
 
 - It only contains images the model has never seen before.
-- It is sufficiently large to provide a meaningful evaluation of model performance. It should include images from every target label and images of classes not in your target set.
+- It is sufficiently large to provide a meaningful evaluation of model performance. 
+- It should include images from every target label plus images of classes not in your target set.
 - It is processed in the same way as your training set.
 
 Check to make sure you have a model in memory and a test dataset:
@@ -82,7 +83,7 @@ The test set should be sufficiently large to provide a meaningful evaluation of 
 
 #### Predict
 
-Armed with a test dataset, we will use our CNN to predict their class labels using the `predict` function and then use these predictions in Step 8 to measure the performance of our trained network.
+Armed with a test dataset, we will use our CNN to predict their class labels using the `predict` function.
 
 Recall our model will return a vector of probabilities, one for each class. By finding the class with the highest probability, we can select the most likely class name of the object.
 
@@ -234,7 +235,6 @@ Table 1. List of some of the hyperparameters to tune and when.
 | number of neurons     | loss function     | epoch             |
 | activation function   | optimizer         | batch size        |
 | dropout rate          | learning rate     |                   |
-|                       | batch size        |                   |
 
 
 There are a number of techniques used to tune hyperparameters. Let us explore a few of them.

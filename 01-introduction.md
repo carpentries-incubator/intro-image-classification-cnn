@@ -130,12 +130,13 @@ print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
 ```output
 Train: Images=(40000, 32, 32, 3), Labels=(40000, 10)
 Validate: Images=(10000, 32, 32, 3), Labels=(10000, 10)
-Test: Images=(10000, 32, 32, 3), Labels=(10000, 10)
+Test: Images=(10000, 32, 32, 3), Labels=(10000, 1)
 ```
-The training set consists of 40000 images of 32x32 pixels and three channels (RGB values) and labels.
+The training set consists of 40000 images of 32x32 pixels and three channels (RGB values) and one-hot encoded labels.
 
-The validation and test datasets consist of 10000 images of 32x32 pixels and three channels (RGB values) and labels.
+The validation set consist of 10000 images of 32x32 pixels and three channels (RGB values) and one-hot encoded labels.
 
+The test set consists of 10000 images of 32x32 pixels and three channels (RGB values) and labels.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -258,7 +259,7 @@ print('The class with the highest predicted probability is: ', class_names[resul
 
 # plot the image with its true label
 plt.imshow(test_images[0])
-plt.title('True class:' + class_names[test_labels[0,].argmax()])
+plt.title('True class:' + class_names[test_labels[0])
 plt.show()
 ```
 

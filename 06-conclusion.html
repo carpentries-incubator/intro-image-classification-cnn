@@ -269,7 +269,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Conclusion</h1>
-        <p>Last updated on 2024-02-13 |
+        <p>Last updated on 2024-02-26 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/06-conclusion.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -290,7 +290,9 @@
 <h3 class="card-title">Questions</h3>
 <ul><li>How do I share my convolutional neural network (CNN)?</li>
 <li>Where can I find pre-trained models?</li>
+<li>Is Keras the best library to use?</li>
 <li>What is a GPU?</li>
+<li>What else can I do with a CNN?</li>
 </ul></div>
 </div>
 </div>
@@ -300,6 +302,7 @@
 <h3 class="card-title">Objectives</h3>
 <ul><li>Learn how to save and load models.</li>
 <li>Know where to search for pretrained models.</li>
+<li>know about other Deep Learning Libraries.</li>
 <li>Understand what a GPU is and what it can do for you.</li>
 <li>Explain when to use a CNN and when not to.</li>
 </ul></div>
@@ -320,7 +323,7 @@ their own purposes and for them to (mostly) reproduce our result.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save best model</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">'model_best.keras'</span>)</span></code></pre>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model_best.save(<span class="st">'fit_outputs/model_best.keras'</span>)</span></code></pre>
 </div>
 <p>The <code>save</code> method is actually an alias for
 <code>tf.keras.saving.save_model()</code> where the default
@@ -331,14 +334,14 @@ their own purposes and for them to (mostly) reproduce our result.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load a saved model</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pretrained_model <span class="op">=</span> keras.models.load_model(<span class="st">'model_best.keras'</span>)</span></code></pre>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pretrained_model <span class="op">=</span> keras.models.load_model(<span class="st">'fit_outputs/model_best.keras'</span>)</span></code></pre>
 </div>
 <p>This loaded model can be used as before to predict.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the pretrained model to predict the class name of the first test image</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>result_pretrained <span class="op">=</span> model_intro.predict(test_images[<span class="dv">0</span>].reshape(<span class="dv">1</span>,<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>result_pretrained <span class="op">=</span> pretrained_model.predict(test_images[<span class="dv">0</span>].reshape(<span class="dv">1</span>,<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The predicted probability of each class is: '</span>, result_pretrained.<span class="bu">round</span>(<span class="dv">4</span>))</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The class with the highest predicted probability is: '</span>, class_names[result_pretrained.argmax()])</span></code></pre>
@@ -368,7 +371,8 @@ pretrained models.</p>
 pre-trained network might be preferable. Even if your problem is
 different, if the data type is common (for example images), you can use
 a pre-trained network and fine-tune it for your problem. A large number
-of openly available pre-trained networks can be found in the <a href="https://modelzoo.co/" class="external-link">Model Zoo</a>, <a href="https://pytorch.org/hub/" class="external-link">pytorch hub</a> or <a href="https://pytorch.org/hub/" class="external-link">tensorflow hub</a>.</p>
+of openly available pre-trained networks can be found online, including:
+- <a href="https://modelzoo.co/" class="external-link">Model Zoo</a> - <a href="https://pytorch.org/hub/" class="external-link">pytorch hub</a> - <a href="https://pytorch.org/hub/" class="external-link">tensorflow hub</a> - <a href="https://github.com/" class="external-link">GitHub</a></p>
 </div>
 </div>
 <div class="section level3">
@@ -475,18 +479,22 @@ instance and semantic segmentation. These can all be done with CNNs and
 are readily transferable to videos. Also included in these tasks is
 medical imaging for diagnoses of disease and, of course, facial
 recognition.</p>
-<p>However, there are many other tasks which CNNs are well suited
+<p>However, there are many other tasks which CNNs are not well suited
 for:</p>
-<ul><li>Language tasks
+<ul><li>Data where input size varies
 <ul><li>Natural Language Processing (NLP) for text classification (sentiment
 analysis, spam detection, topic classification)</li>
 <li>Speech Recognition for speech to text conversion</li>
 </ul></li>
-<li>Drug Discovery</li>
-<li>Time-series analysis (sensor readings, financial data, health
-monitoring)</li>
-<li>Robotics</li>
-<li>Self-driving cars</li>
+<li>Sequential data and Time-series analysis
+<ul><li>sensor readings, financial data, health monitoring</li>
+<li>Use Recurrent Nueral Networks (RNNs) or Long Short-Term Memory
+networks (LTSMs)</li>
+</ul></li>
+<li>Applications where interpretability and explainability is crucial
+<ul><li>Use simpler models, e.g., decision trees</li>
+</ul></li>
+<li>Situations where you lack sufficient training data</li>
 </ul><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -495,17 +503,18 @@ monitoring)</li>
 <h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
 </h3>
 <div class="callout-content">
-<ul><li>Deep Learning is well suited to classification and prediction
-problems such as image recognition.</li>
-<li>To use Deep Learning effectively, go through a workflow of: defining
+<ul><li>To use Deep Learning effectively, go through a workflow of: defining
 the problem, identifying inputs and outputs, preparing data, choosing
 the type of network, choosing a loss function, training the model,
-tuning Hyperparameters, measuring performance before we can classify
-data.</li>
+tuning hyperparameters, and measuring performance.</li>
+<li>Use Model.save() and share your model with others.</li>
 <li>Keras is a Deep Learning library that is easier to use than many of
 the alternatives such as TensorFlow and PyTorch.</li>
 <li>Graphical Processing Units are useful, though not essential, for
 deep learning tasks.</li>
+<li>CNNs work well for a variety of tasks, especially those involving
+grid-like data with spatial relationships, but not for time series or
+variable sized input data.</li>
 </ul></div>
 </div>
 </div>
@@ -577,7 +586,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/06-conclusion.html",
   "identifier": "https://.github.io/github.com/06-conclusion.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-02-13",
+  "dateModified": "2024-02-26",
   "datePublished": "2024-02-26"
 }
 

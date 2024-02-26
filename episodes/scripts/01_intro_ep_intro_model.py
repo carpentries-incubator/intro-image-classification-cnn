@@ -22,9 +22,8 @@ test_images = test_images / 255.0
 # create a list of classnames
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-# one-hot encode labels
+# one-hot encode training labels
 train_labels = keras.utils.to_categorical(train_labels, len(class_names))
-test_labels = keras.utils.to_categorical(test_labels, len(class_names))
 
 # split the training data into training and validation sets
 # NOTE the function is train_test split but we're using it to split train into train and validation
@@ -102,7 +101,7 @@ print('The class with the highest predicted probability is: ', class_names[resul
 
 # plot the image with its true label
 plt.imshow(test_images[0])
-plt.title('True class:' + class_names[test_labels[0,].argmax()])
+plt.title('True class:' + class_names[test_labels.item(0)])
 plt.show()
 
 # save the model

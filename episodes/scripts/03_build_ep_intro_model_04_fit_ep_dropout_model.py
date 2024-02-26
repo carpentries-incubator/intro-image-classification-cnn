@@ -24,9 +24,8 @@ test_images = test_images / 255.0
 # create a list of classnames
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-# one-hot encode labels
+# one-hot encode training labels
 train_labels = keras.utils.to_categorical(train_labels, len(class_names))
-test_labels = keras.utils.to_categorical(test_labels, len(class_names))
 
 # split the training data into training and validation sets
 train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)

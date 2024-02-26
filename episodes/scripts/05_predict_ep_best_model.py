@@ -27,7 +27,17 @@ print('We are using', model_best.name)
 train_images = train_images / 255.0
 test_images = test_images / 255.0
 
-# we do not one hot encode here because our model predicts a class label 
+# create a list of classnames 
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+
+# one-hot encode training labels
+train_labels = keras.utils.to_categorical(train_labels, len(class_names))
+
+# split the training data into training and validation sets
+# NOTE the function is train_test split but we're using it to split train into train and validation
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels,
+                                                                      test_size = 0.2, 
+                                                                      random_state = 42)
 
 # check test image dataset is loaded - images and labels
 print('The number and shape of images in our test dataset is:', test_images.shape)
@@ -35,9 +45,6 @@ print('The number of labels in our test dataset is:', len(test_labels))
 
 # use our current best model to predict probability of each class on new test set
 predictions = model_best.predict(test_images)
-
-# create a list of classnames 
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
 # convert probability predictions to table using class names for column names
 prediction_df = pd.DataFrame(predictions, columns=class_names)
@@ -73,14 +80,6 @@ sns.heatmap(confusion_df, annot=True, fmt='3g')
 
 ########################################################
 # Challenge Tune Dropout Rate using a For Loop
-
-# one-hot encode labels
-train_labels = keras.utils.to_categorical(train_labels, len(class_names))
-
-# split the training data into training and validation sets
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels,
-                                                                      test_size = 0.2, 
-                                                                      random_state = 42)
 
 # specify range of dropout rates
 dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]

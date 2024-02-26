@@ -42,7 +42,7 @@ Check to make sure you have a model in memory and a test dataset:
 
 ```python
 # check correct model is loaded
-model_best = keras.models.load_model('fit_outputs/model_dropout.h5') # pick your best model
+model_best = keras.models.load_model('fit_outputs/model_dropout.keras') # pick your best model
 print('We are using', model_best.name)
 
 # load the CIFAR-10 dataset included with the keras library

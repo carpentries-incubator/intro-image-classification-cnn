@@ -279,7 +279,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p>Last updated on 2024-02-25 |
+        <p>Last updated on 2024-02-26 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -505,19 +505,21 @@ copied and used as a foundation for the rest of the episodes.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Output</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>Train: Images=(40000, 32, 32, 3), Labels=(40000, 10)
 Validate: Images=(10000, 32, 32, 3), Labels=(10000, 10)
-Test: Images=(10000, 32, 32, 3), Labels=(10000, 10)</code></pre>
+Test: Images=(10000, 32, 32, 3), Labels=(10000, 1)</code></pre>
 </div>
 <p>The training set consists of 40000 images of 32x32 pixels and three
+channels (RGB values) and one-hot encoded labels.</p>
+<p>The validation set consist of 10000 images of 32x32 pixels and three
+channels (RGB values) and one-hot encoded labels.</p>
+<p>The test set consists of 10000 images of 32x32 pixels and three
 channels (RGB values) and labels.</p>
-<p>The validation and test datasets consist of 10000 images of 32x32
-pixels and three channels (RGB values) and labels.</p>
 </div>
 </div>
 </div>
@@ -681,7 +683,7 @@ network.</p>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the image with its true label</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.imshow(test_images[<span class="dv">0</span>])</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'True class:'</span> <span class="op">+</span> class_names[test_labels[<span class="dv">0</span>,].argmax()])</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'True class:'</span> <span class="op">+</span> class_names[test_labels[<span class="dv">0</span>])</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <div class="codewrapper">
@@ -847,7 +849,7 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/01-introduction.html",
   "identifier": "https://.github.io/github.com/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-02-25",
+  "dateModified": "2024-02-26",
   "datePublished": "2024-02-26"
 }
 

@@ -8,7 +8,9 @@ exercises: 2
 
 - How do I share my convolutional neural network (CNN)?
 - Where can I find pre-trained models?
+- Is Keras the best library to use?
 - What is a GPU?
+- What else can I do with a CNN?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -16,6 +18,7 @@ exercises: 2
 
 - Learn how to save and load models.
 - Know where to search for pretrained models.
+- know about other Deep Learning Libraries.
 - Understand what a GPU is and what it can do for you.
 - Explain when to use a CNN and when not to.
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -29,7 +32,7 @@ Use `model.save` to save a model:
 
 ```python
 # save best model
-model.save('model_best.keras')
+model_best.save('fit_outputs/model_best.keras')
 ```
 
 The `save` method is actually an alias for `tf.keras.saving.save_model()` where the default `save_format=NONE`.
@@ -38,14 +41,14 @@ This saved model can be loaded again by using the `load_model` method:
 
 ```python
 # load a saved model
-pretrained_model = keras.models.load_model('model_best.keras')
+pretrained_model = keras.models.load_model('fit_outputs/model_best.keras')
 ```
 
 This loaded model can be used as before to predict.
 
 ```python
 # use the pretrained model to predict the class name of the first test image
-result_pretrained = model_intro.predict(test_images[0].reshape(1,32,32,3))
+result_pretrained = pretrained_model.predict(test_images[0].reshape(1,32,32,3))
 
 print('The predicted probability of each class is: ', result_pretrained.round(4))
 print('The class with the highest predicted probability is: ', class_names[result_pretrained.argmax()])
@@ -68,7 +71,11 @@ To share your model with a wider audience it is recommended you create git repos
 
 #### Choosing a pretrained model
 
-If your data and problem is very similar to what others have done, a pre-trained network might be preferable. Even if your problem is different, if the data type is common (for example images), you can use a pre-trained network and fine-tune it for your problem. A large number of openly available pre-trained networks can be found in the [Model Zoo], [pytorch hub] or [tensorflow hub].
+If your data and problem is very similar to what others have done, a pre-trained network might be preferable. Even if your problem is different, if the data type is common (for example images), you can use a pre-trained network and fine-tune it for your problem. A large number of openly available pre-trained networks can be found online, including:
+- [Model Zoo]
+- [pytorch hub] 
+- [tensorflow hub]
+- [GitHub]
 
 ### What else do I need to know?
 
@@ -115,23 +122,25 @@ The point is that this technology, both hardware and software, is dynamic and ch
 
 In addition to image classification, [Episode 01 Introduction to Deep Learning](episodes/01-introduction.md) introduced other computer vision tasks, including object detection and instance and semantic segmentation. These can all be done with CNNs and are readily transferable to videos. Also included in these tasks is medical imaging for diagnoses of disease and, of course, facial recognition. 
 
-However, there are many other tasks which CNNs are well suited for:
+However, there are many other tasks which CNNs are not well suited for:
 
-- Language tasks
-  - Natural Language Processing (NLP) for text classification (sentiment analysis, spam detection, topic classification)
+- Data where input size varies
+    - Natural Language Processing (NLP) for text classification (sentiment analysis, spam detection, topic classification)
   - Speech Recognition for speech to text conversion
-- Drug Discovery
-- Time-series analysis (sensor readings, financial data, health monitoring)
-- Robotics
-- Self-driving cars
-
+- Sequential data and Time-series analysis
+    - sensor readings, financial data, health monitoring
+    - Use Recurrent Nueral Networks (RNNs) or Long Short-Term Memory networks (LTSMs)
+- Applications where interpretability and explainability is crucial
+    - Use simpler models, e.g., decision trees
+- Situations where you lack sufficient training data
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Deep Learning is well suited to classification and prediction problems such as image recognition.
-- To use Deep Learning effectively, go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, choosing a loss function, training the model, tuning Hyperparameters, measuring performance before we can classify data.
+- To use Deep Learning effectively, go through a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, choosing a loss function, training the model, tuning hyperparameters, and measuring performance.
+- Use Model.save() and share your model with others.
 - Keras is a Deep Learning library that is easier to use than many of the alternatives such as TensorFlow and PyTorch.
 - Graphical Processing Units are useful, though not essential, for deep learning tasks.
+- CNNs work well for a variety of tasks, especially those involving grid-like data with spatial relationships, but not for time series or variable sized input data.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

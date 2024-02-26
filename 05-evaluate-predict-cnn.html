@@ -269,7 +269,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</h1>
-        <p>Last updated on 2024-02-25 |
+        <p>Last updated on 2024-02-26 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/05-evaluate-predict-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -290,8 +290,8 @@
 <h3 class="card-title">Questions</h3>
 <ul><li>How do you use a model to make a prediction?</li>
 <li>How do you measure model prediction accuracy?</li>
-<li>What is a hyperparameter?</li>
 <li>What can you do to improve model performance?</li>
+<li>What is a hyperparameter?</li>
 </ul></div>
 </div>
 </div>
@@ -302,10 +302,10 @@
 <ul><li>Use a convolutional neural network (CNN) to make a prediction
 (i.e. classify an image).</li>
 <li>Explain how to measure the performance of a CNN.</li>
+<li>Know what steps to take to improve model accuracy.</li>
 <li>Explain hyperparameter tuning.</li>
 <li>Be familiar with advantages and disadvantages of different
 optimizers.</li>
-<li>Understand what steps to take to improve model accuracy.</li>
 </ul></div>
 </div>
 </div>
@@ -331,8 +331,9 @@ set.</p>
 check:</p>
 <ul><li>It only contains images the model has never seen before.</li>
 <li>It is sufficiently large to provide a meaningful evaluation of model
-performance. It should include images from every target label and images
-of classes not in your target set.</li>
+performance.</li>
+<li>It should include images from every target label plus images of
+classes not in your target set.</li>
 <li>It is processed in the same way as your training set.</li>
 </ul><p>Check to make sure you have a model in memory and a test dataset:</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -383,7 +384,7 @@ be?<a class="anchor" aria-label="anchor" href="#challenge-how-big-should-our-tes
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>It depends! Recall in an <a href="02-image-data.html">Episode 02
 Introduction to Image Data</a> Callout we talked about the different
@@ -401,9 +402,7 @@ provide a reliable estimate of how well your model generalizes.</p>
 <div class="section level4">
 <h4 id="predict">Predict<a class="anchor" aria-label="anchor" href="#predict"></a></h4>
 <p>Armed with a test dataset, we will use our CNN to predict their class
-labels using the <code>predict</code> function and then use these
-predictions in Step 8 to measure the performance of our trained
-network.</p>
+labels using the <code>predict</code> function.</p>
 <p>Recall our model will return a vector of probabilities, one for each
 class. By finding the class with the highest probability, we can select
 the most likely class name of the object.</p>
@@ -548,7 +547,7 @@ visualized as a confusion matrix.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Q1. The confusion matrix illustrates that the predictions are not bad
 but can be improved.</p>
@@ -594,9 +593,6 @@ training many times before we are happy with the result.</p>
 </tr><tr class="odd"><td>dropout rate</td>
 <td>learning rate</td>
 <td></td>
-</tr><tr class="even"><td></td>
-<td>batch size</td>
-<td></td>
 </tr></tbody></table><p>There are a number of techniques used to tune hyperparameters. Let us
 explore a few of them.</p>
 <p>One common method for hyperparameter tuning is by using a
@@ -623,7 +619,7 @@ model performance, what is the term associated to this procedure?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Q1. Varying the dropout rate</p>
 <p>The code below instantiates and trains a model with varying dropout
@@ -741,7 +737,7 @@ is expressed in code to search for an optimizer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>First, we will define a <strong>build function</strong> to use during
 GridSearch. This function will compile the model for each combination of
@@ -881,7 +877,7 @@ well outside of deep architectures</td>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>The code below serves as a practical means for exploring activation
 performance on an image dataset.</p>
@@ -977,7 +973,7 @@ improve the prediction quality?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6">Show me the solution</h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>This is an open question.</p>
 <p>Regarding the model architecture:</p>
@@ -1083,8 +1079,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/05-evaluate-predict-cnn.html",
   "identifier": "https://.github.io/github.com/05-evaluate-predict-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-02-25",
-  "datePublished": "2024-02-25"
+  "dateModified": "2024-02-26",
+  "datePublished": "2024-02-26"
 }
 
   </script><script>

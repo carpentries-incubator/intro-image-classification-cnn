@@ -78,7 +78,7 @@ Next identify what the inputs and outputs of the neural network will be. In our 
 ### Step 3. Prepare data
 Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (e.g., images) will have to be somehow converted to numerical data. Information on how this is done and the data structure will be explored in [Episode 02 Introduction to Image Data](episodes/02-image-data).
 
-For this lesson, we will use an existing image dataset known as CIFAR-10 (Canadian Institute for Advanced Research). We will introduce this dataset and the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalise the image pixel values to be between 0 and 1; and one-hot encode our image labels.
+For this lesson, we will use an existing image dataset known as [CIFAR-10] (Canadian Institute for Advanced Research). We will introduce the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalise the image pixel values to be between 0 and 1; and one-hot encode our image labels.
 
 #### Preparing the code
 
@@ -317,3 +317,4 @@ We will return to each of these workflow steps throughout this lesson and discus
 <!-- Collect your link references at the bottom of your document -->
 
 [original source]: https://en.wikipedia.org/wiki/File:AI-ML-DL.svg
+[CIFAR-10]: https://www.cs.toronto.edu/~kriz/cifar.html

@@ -52,10 +52,15 @@ print('We are using', model_best.name)
 train_images = train_images / 255.0
 test_images = test_images / 255.0
 
-# we do not one hot encode here because our model predicts a class label
+# create a list of classnames 
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-# check correct model is loaded
-print('We are using', model_best.name)
+# one-hot encode training labels
+train_labels = keras.utils.to_categorical(train_labels, len(class_names))
+
+# split the training data into training and validation sets
+# NOTE the function is train_test split but we're using it to split train into train and validation
+train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
 
 # check test image dataset is loaded - images and labels
 print('The number and shape of images in our test dataset is:', test_images.shape)
@@ -243,7 +248,7 @@ One common method for hyperparameter tuning is by using a `for` loop to change a
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## CHALLENGE Tune Dropout Rate using a For Loop
+## CHALLENGE Tune Dropout Rate (Model Build) using a For Loop
 
 Q1. What do you think would happen if you lower the dropout rate? Write some code to vary the dropout rate and investigate how it affects the model training.
 
@@ -259,14 +264,6 @@ The code below instantiates and trains a model with varying dropout rates. The r
 - NB2: You should do this with a test set and not with the validation set!
 
 ```python
-# one-hot encode labels
-train_labels = keras.utils.to_categorical(train_labels, len(class_names))
-
-# split the training data into training and validation sets
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, 
-																	  test_size = 0.2, 
-																	  random_state = 42)
-
 # specify range of dropout rates
 dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]
 
@@ -355,30 +352,42 @@ Here we will use our introductory model to demonstrate how GridSearch is express
 First, we will define a **build function** to use during GridSearch. This function will compile the model for each combination of parameters prior to evaluation.
 
 ```python
+# use the intro model for gridsearch
 def create_model():
 
+    # CNN Part 1
     # Input layer of 32x32 images with three channels (RGB)
-    inputs = keras.Input(shape=train_images.shape[1:])
-
-    # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
-    # Second Convolutional layer
-    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
+    inputs_intro = keras.Input(shape=train_images.shape[1:])
+    
+    # CNN Part 2
+    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
+    # Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
+    # Second Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
     # Flatten layer to convert 2D feature maps into a 1D vector
-    x = keras.layers.Flatten()(x)
-
-    # Output layer with 10 units (one for each class)
-    outputs = keras.layers.Dense(10)(x)
-
+    x_intro = keras.layers.Flatten()(x_intro)
+    # Dense layer with 64 neurons and ReLU activation
+    x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
+    
+    # CNN Part 3
+    # Output layer with 10 units (one for each class) and softmax activation
+    outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
+    
     # create the model
-    mode = keras.Model(inputs=inputs, outputs=outputs)
+    model_intro = keras.Model(inputs = inputs_intro, 
+                              outputs = outputs_intro, 
+                              name="cifar_model_intro")
     
     # compile the model
-    model.compile(optimizer = 'adam', 
-                  loss = keras.losses.CategoricalCrossentropy(), 
-                  metrics=['accuracy'])
-    
-    return model
+    model_intro.compile(optimizer = 'adam', 
+                        loss = keras.losses.CategoricalCrossentropy(), 
+                        metrics = ['accuracy'])
+
+    return model_intro
 ```
 
 Secondly, we can define our GridSearch parameters and assign fit results to a variable for output.
@@ -411,11 +420,9 @@ Curious about RMSprop? [RMSprop in Keras] and [RMSProp, Cornell University]
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-A third way to tune hyperparameters is brute force.
+Here is a third example of tuning hyperparameters, this time using a for loop to tune the activation function.
 
-::::::::::::::::::::::::::::::::::::: challenge 
-
-## CHALLENGE Tune Activation Function using Brute Force
+#### Activation Functions
 
 In [Episode 03 Build a Convolutional Neural Network](episodes/03-build-cnn.md) we talked briefly about the `relu` activation function passed as an argument to our `Conv2D` hidden layers.
 
@@ -423,7 +430,7 @@ An activation function is like a switch, or a filter, that we use in artificial 
 
 Think of an activation function as a tiny decision-maker for each neuron in a neural network. It helps determine whether the neuron should 'fire', or pass on information, or stay 'off' and remain silent, much like a light switch controls whether the light should be ON or OFF. Activation functions are crucial because they add non-linearity to the neural network. Without them, the network would be like a simple linear model, unable to learn complex patterns in data. 
 
-### How do you know what activation function to choose?
+#### How do you know what activation function to choose?
 
 Neural networks can be tuned to leverage many different types of activation functions. In fact, it is a crucial decision as the choice of activation function will have a direct impact on the performance of the model.
 
@@ -438,6 +445,11 @@ Table 2. Description of each activation function, its benefits, and drawbacks.
 | Softmax             | - Used for multi-class classification <br/> - Outputs a probability distribution | - Used only in the output layer for classification tasks |
 | SELU                | - Self-normalizing properties <br/> - Can outperform ReLU in deeper networks | - Requires specific weight initialization <br/> - May not perform well outside of deep architectures |
 
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## CHALLENGE Tune Activation Function using For Loop
+
 Write some code to assessing activation function performance.
 
 :::::::::::::::::::::::: solution 
@@ -447,29 +459,39 @@ The code below serves as a practical means for exploring activation performance 
 ```python
 # Define a function to create a model with a given activation function
 def create_model(activation_function):
-
+    # CNN Part 1
     # Input layer of 32x32 images with three channels (RGB)
-    inputs = keras.Input(shape=train_images.shape[1:])
-
-    # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-    x = keras.layers.Conv2D(50, (3, 3), activation=activation_function)(inputs)
-    # Second Convolutional layer
-    x = keras.layers.Conv2D(50, (3, 3), activation=activation_function)(x)
+    inputs_intro = keras.Input(shape=train_images.shape[1:])
+    
+    # CNN Part 2
+    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(16, (3, 3), activation=activation_function)(inputs_intro)
+    # Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(32, (3, 3), activation=activation_function)(x_intro)
+    # Second Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
     # Flatten layer to convert 2D feature maps into a 1D vector
-    x = keras.layers.Flatten()(x)
-
-    # Output layer with 10 units (one for each class)
-    outputs = keras.layers.Dense(10)(x)
-
-    # create the model
-    model = keras.Model(inputs=inputs, outputs=outputs)
+    x_intro = keras.layers.Flatten()(x_intro)
+    # Dense layer with 64 neurons and ReLU activation
+    x_intro = keras.layers.Dense(64, activation=activation_function)(x_intro)
+    
+    # CNN Part 3
+    # Output layer with 10 units (one for each class) and softmax activation
+    outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
     
     # create the model
-    model.compile(optimizer = 'adam', 
-                  loss = keras.losses.CategoricalCrossentropy(),
-                  metrics=['accuracy'])
+    model_intro = keras.Model(inputs = inputs_intro, 
+                              outputs = outputs_intro, 
+                              name="cifar_model_intro")
     
-    return model
+    # compile the model
+    model_intro.compile(optimizer = 'adam', 
+                        loss = keras.losses.CategoricalCrossentropy(), 
+                        metrics = ['accuracy'])
+
+    return model_intro
 
 # List of activation functions to try
 activations = ['relu', 'sigmoid', 'tanh', 'selu', keras.layers.LeakyReLU()]
@@ -535,8 +557,8 @@ By now you should have a well-trained, finely-tuned model that makes accurate pr
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use model.predict to make a prediction with your model.
 - Model accuracy must be measured on a test dataset with images your model has not seen before.
+- Use Model.predict() to make a prediction with your model.
 - There are many hyperparameters to choose from to improve model performance.
 - Fitting separate models with different hyperparameters and comparing their performance is a common and good practice in deep learning.
 

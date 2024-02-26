@@ -79,7 +79,7 @@ sns.heatmap(confusion_df, annot=True, fmt='3g')
 # Step 9. Tune hyperparameters
 
 ########################################################
-# Challenge Tune Dropout Rate using a For Loop
+## CHALLENGE Tune Dropout Rate (Model Build) using a For Loop
 
 # specify range of dropout rates
 dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]
@@ -126,7 +126,7 @@ for dropout_rate in dropout_rates:
                    validation_data = (val_images, val_labels),
                    batch_size = 32)
 
-    val_loss_vary, val_acc_vary = model_vary.evaluate(val_images,  val_labels)
+    val_loss_vary, val_acc_vary = model_vary.evaluate(val_images, val_labels)
     val_losses_vary.append(val_loss_vary)
 
 loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss_vary': val_losses_vary})
@@ -140,28 +140,40 @@ sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss_vary')
 
 # use the intro model for gridsearch
 def create_model():
+
+    # CNN Part 1
     # Input layer of 32x32 images with three channels (RGB)
-    inputs = keras.Input(shape=train_images.shape[1:])
-
-    # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(inputs)
-    # Second Convolutional layer
-    x = keras.layers.Conv2D(50, (3, 3), activation='relu')(x)
+    inputs_intro = keras.Input(shape=train_images.shape[1:])
+    
+    # CNN Part 2
+    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
+    # Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
+    # Second Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
     # Flatten layer to convert 2D feature maps into a 1D vector
-    x = keras.layers.Flatten()(x)
-
-    # Output layer with 10 units (one for each class)
-    outputs = keras.layers.Dense(10)(x)
-
+    x_intro = keras.layers.Flatten()(x_intro)
+    # Dense layer with 64 neurons and ReLU activation
+    x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
+    
+    # CNN Part 3
+    # Output layer with 10 units (one for each class) and softmax activation
+    outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
+    
     # create the model
-    model = keras.Model(inputs=inputs, outputs=outputs)
+    model_intro = keras.Model(inputs = inputs_intro, 
+                              outputs = outputs_intro, 
+                              name="cifar_model_intro")
     
-    # compile the pooling model
-    model.compile(optimizer = 'adam', 
-                  loss = keras.losses.CategoricalCrossentropy(), 
-                  metrics=['accuracy'])
-    
-    return model
+    # compile the model
+    model_intro.compile(optimizer = 'adam', 
+                        loss = keras.losses.CategoricalCrossentropy(), 
+                        metrics = ['accuracy'])
+
+    return model_intro
 
 # Wrap the model
 model = KerasClassifier(model=create_model, epochs=2, batch_size=32, verbose=0)  # epochs, batch_size, verbose can be adjusted as required. Using low epochs to save computation time and demonstration purposes only
@@ -179,33 +191,44 @@ print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
 ########################################################
 
 ########################################################
-# Challenge Tune Activation Function using Brute Foce
+## CHALLENGE Tune Activation Function using For Loop
 
 # use the intro model for activation function
 def create_model(activation_function):
 
+    # CNN Part 1
     # Input layer of 32x32 images with three channels (RGB)
-    inputs = keras.Input(shape=train_images.shape[1:])
-
-    # Convolutional layer with 50 filters, 3x3 kernel size, and ReLU activation
-    x = keras.layers.Conv2D(50, (3, 3), activation=activation_function)(inputs)
-    # Second Convolutional layer
-    x = keras.layers.Conv2D(50, (3, 3), activation=activation_function)(x)
+    inputs_intro = keras.Input(shape=train_images.shape[1:])
+    
+    # CNN Part 2
+    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(16, (3, 3), activation=activation_function)(inputs_intro)
+    # Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(32, (3, 3), activation=activation_function)(x_intro)
+    # Second Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
     # Flatten layer to convert 2D feature maps into a 1D vector
-    x = keras.layers.Flatten()(x)
-
-    # Output layer with 10 units (one for each class)
-    outputs = keras.layers.Dense(10)(x)
-
-    # create the model
-    model = keras.Model(inputs=inputs, outputs=outputs)
+    x_intro = keras.layers.Flatten()(x_intro)
+    # Dense layer with 64 neurons and ReLU activation
+    x_intro = keras.layers.Dense(64, activation=activation_function)(x_intro)
+    
+    # CNN Part 3
+    # Output layer with 10 units (one for each class) and softmax activation
+    outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
     
     # create the model
-    model.compile(optimizer = 'adam', 
-                  loss = keras.losses.CategoricalCrossentropy(), 
-                  metrics=['accuracy'])
+    model_intro = keras.Model(inputs = inputs_intro, 
+                              outputs = outputs_intro, 
+                              name="cifar_model_intro")
     
-    return model
+    # compile the model
+    model_intro.compile(optimizer = 'adam', 
+                        loss = keras.losses.CategoricalCrossentropy(), 
+                        metrics = ['accuracy'])
+
+    return model_intro
 
 # List of activation functions to try
 activations = ['relu', 'sigmoid', 'tanh', 'selu', keras.layers.LeakyReLU()]

@@ -183,6 +183,8 @@ print("Num GPUs Available: ", len(tensorflow.config.experimental.list_physical_d
 
 This should output the versions of all required packages without giving errors and well as the number of GPU's tensorflow has detected.
 
+![](fig/00_package_check_output_gpu.png){alt='Screenshot of the IPython Console in Spyder wtih list of package versions, number of GPUs available and no error messages.'}
+
 ## Download the scripts, files and model outputs
 
 Download the [scripts, files, and model outputs].

@@ -134,7 +134,7 @@ To start Spyder, type the command `spyder`, making sure you are still in the wor
 
 ## Check your setup
 
-To check whether all packages installed correctly, go to the interactive `IPython Console` in Spyder (lower right hand side panel) and type in the following commands:
+To check that all packages installed correctly, go to the interactive `IPython Console` in Spyder (lower right hand side panel) and type in the following commands:
 
 ```python
 import matplotlib
@@ -159,8 +159,9 @@ import tensorflow
 print('Tensorflow version: ', tensorflow.__version__)
 ```
 
-This should output the versions of all required packages without giving errors. 
+Your package versions may vary from the screenshot below but this is similar to what your output will look like. The important thing is that there are no errors.
 
+![](fig/00_package_check_output.png){alt='Screenshot of the IPython Console in Spyder wtih list of package versions and no error messages.'}
 
 ## Download the scripts, files, and model outputs
 

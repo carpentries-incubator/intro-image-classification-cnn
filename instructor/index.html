@@ -418,7 +418,7 @@ assistance so you are ready to go as soon as the workshop begins.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Windows</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -437,7 +437,7 @@ the <strong>Make Anaconda the default Python</strong> option.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">MacOS</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -455,7 +455,7 @@ installation.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Linux</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Note the following installation steps require you to work from the
 shell. If you run into any difficulties, please request help before the
@@ -514,6 +514,8 @@ followed by a name for the new environment and the package(s) to install
 but to make things easier, inside the script download folder, we have
 given you an environment.yml file to use instead. (See download link
 below if you haven’t already.)</p>
+<div class="section level3">
+<h3 id="windows-1">Windows<a class="anchor" aria-label="anchor" href="#windows-1"></a></h3>
 <pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file cnn_workshop_environment.yml</code></pre>
 <p>If the yml is not in your current directory, you can specify the full
 path to the file, eg:</p>
@@ -527,6 +529,61 @@ by the environment name:</p>
 (cnn_workshop) C:\Users\Lab&gt;</code></pre>
 <p>You will know you are in the right environment because the prompt
 changes from (base) to (cnn_workshop).</p>
+<div id="macos-1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="macos-1" class="callout-inner">
+<h3 class="callout-title">MacOS<a class="anchor" aria-label="anchor" href="#macos-1"></a>
+</h3>
+<div class="callout-content">
+<p>Creating a MACOS environment requires a different tensorflow
+package.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">Macos - Intel</h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div class="accordion-body">
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file MACOS_cnn_workshop_environment.yml</code></pre>
+<p>If the yml is not in your current directory, you can specify the full
+path to the file, eg:</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\MACOS_cnn_workshop_environment.yml</code></pre>
+<p>Be patient because it might take a while (15-20 min) for conda to
+work out all of the dependencies.</p>
+<p>After the environment is created we tell Anaconda to use the new
+environment with the conda keywords <code>conda activate</code> followed
+by the environment name:</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_macos
+(cnn_workshop_macos) C:\Users\Lab&gt;</code></pre>
+<p>You will know you are in the right environment because the prompt
+changes from (base) to (cnn_workshop_macos).</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5">Macos - Silicon (M1)</h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div class="accordion-body">
+<p>After creating the MACOS environment with the yml, M1 and M2
+computers (Apple Silicon) require an additional package to be
+installed.</p>
+<p>TODO check if this is because of the integrated GPU and if so, can
+Intel version also use the graphics card and how?</p>
+<pre class="code"><code>(cnn_workshop_macos) C:\Users\Lab&gt; pip install tensorflow-metal</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section><section id="start-spyder"><h2 class="section-heading">Start Spyder<a class="anchor" aria-label="anchor" href="#start-spyder"></a>
 </h2>
 <hr class="half-width"><p>We teach this lesson using Python in <a href="https://www.spyder-ide.org/" class="external-link">Spyder</a> (Scientific Python
@@ -541,29 +598,29 @@ you are still in the workshop environment:</p>
 <hr class="half-width"><p>To check that all packages installed correctly, go to the interactive
 <code>IPython Console</code> in Spyder (lower right hand side panel) and
 type in the following commands:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scikeras</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scikeras</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
 <p>Your package versions may vary from the screenshot below but this is
 similar to what your output will look like. The important thing is that

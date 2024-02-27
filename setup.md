@@ -99,6 +99,8 @@ Note the notation of the prompt inside the terminal window. The name inside the 
 
 To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
 
+### Windows
+
 ```code
 (base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml
 ```
@@ -119,6 +121,48 @@ After the environment is created we tell Anaconda to use the new environment wit
 ```
 
 You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop).
+
+::::::::::::::::::::::::::::::::::::::::: challenge
+## MacOS
+
+Creating a MACOS environment requires a different tensorflow package.
+
+:::::::::::::::::::::::: solution
+## Macos - Intel
+
+```code
+(base) C:\Users\Lab> conda env create --file MACOS_cnn_workshop_environment.yml
+```
+
+If the yml is not in your current directory, you can specify the full path to the file, eg:
+
+```code
+(base) C:\Users\Lab> conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\MACOS_cnn_workshop_environment.yml
+```
+
+Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.
+
+After the environment is created we tell Anaconda to use the new environment with the conda keywords `conda activate` followed by the environment name:
+
+```code
+(base) C:\Users\Lab> conda activate cnn_workshop_macos
+(cnn_workshop_macos) C:\Users\Lab>
+```
+
+You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop_macos).
+:::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::: solution
+## Macos - Silicon (M1)
+
+After creating the MACOS environment with the yml, M1 and M2 computers (Apple Silicon) require an additional package to be installed.
+
+TODO check if this is because of the integrated GPU and if so, can Intel version also use the graphics card and how?
+
+```code
+(cnn_workshop_macos) C:\Users\Lab> pip install tensorflow-metal
+```
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Start Spyder
 

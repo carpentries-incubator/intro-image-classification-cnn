@@ -228,4 +228,6 @@ This lesson uses the CIFAR-10 image dataset that comes prepackaged with Keras.
 [these instructions]: https://docs.anaconda.com/anaconda/install/update-version/
 [pip]: (https://pip.pypa.io/en/stable/)
 [Spyder]: https://www.spyder-ide.org/
-[script, files, and model outputs]: https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link
+[scripts, files, and model outputs]: https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link
+
+

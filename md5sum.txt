@@ -13,5 +13,5 @@
 "episodes/06-conclusion.md" "ee2205cabaaa8856dbf25613f315c625" "site/built/06-conclusion.md" "2024-02-26"
 "instructors/instructor-notes.md" "cae72b6712578d74a49fea7513099f8c" "site/built/instructor-notes.md" "2023-08-22"
 "learners/reference.md" "1c7cc4e229304d9806a13f69ca1b8ba4" "site/built/reference.md" "2023-09-25"
-"learners/setup.md" "2a7725c7fad90cfe9cf3e62e2384a3b7" "site/built/setup.md" "2024-02-27"
+"learners/setup.md" "ddbe34c2d49d376814ee79b1d074ba3f" "site/built/setup.md" "2024-02-27"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2023-08-22"

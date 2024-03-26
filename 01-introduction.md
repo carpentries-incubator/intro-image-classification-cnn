@@ -195,6 +195,9 @@ outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
 model_intro = keras.Model(inputs = inputs_intro, 
                           outputs = outputs_intro, 
                           name = "cifar_model_intro")
+
+# view the model summary
+model_intro.summary()
 ```
 
 ### Step 5. Choose a loss function and optimizer and compile model

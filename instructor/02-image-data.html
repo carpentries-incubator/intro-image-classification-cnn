@@ -368,7 +368,7 @@ need to train a Deep Learning model?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Unfortunately, this question is not easy to answer. It depends, among
 other things, on the complexity of the task (which you often do not know
@@ -546,7 +546,7 @@ specify the size you want using an argument to the
   <h3 class="accordion-header" id="headingSpoiler1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Python image libraries</h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>Two of the most commonly used libraries for image representation and
 manipulation are NumPy and Pillow (PIL). Additionally, when working with
@@ -635,7 +635,7 @@ Keras has a solution: <a href="https://keras.io/api/data_loading/image/" class="
   <h3 class="accordion-header" id="headingSpoiler2">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Why Normalize?</h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Normalizing the RGB values to be between 0 and 1 is a common
@@ -861,9 +861,9 @@ the dataset.</li>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(train_images, train_labels, test_size <span class="op">=</span> <span class="fl">0.2</span>, </span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>                random_state <span class="op">=</span> <span class="dv">42</span>)</span></code></pre>
 </div>
-<div id="challenge-training-and-validation" class="callout discussion">
+<div id="challenge-training-and-validation" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-training-and-validation" class="callout-inner">
 <h3 class="callout-title">CHALLENGE Training and Validation<a class="anchor" aria-label="anchor" href="#challenge-training-and-validation"></a>
@@ -873,7 +873,17 @@ the dataset.</li>
 <p>How many samples does each set have and are the classes well
 balanced?</p>
 <p>Hint: Use <code>np.sum()</code> on the ’*_labels’ to find out if the
-classes are well balanced. :::::::::::::::::::::::: solution</p>
+classes are well balanced.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
 <p>A. Training Set</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -907,14 +917,14 @@ The number of images in each class:
 </div>
 </div>
 </div>
-<p>::::::::::::::::::::::::::::::::::::::::::::::::</p>
+</div>
 <div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
   <h3 class="accordion-header" id="headingSpoiler3">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Data Splitting Techniques</h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Data is typically split into the training, validation, and test data

@@ -158,7 +158,7 @@ To create a confusion matrix, we use another convenient function from sklearn ca
 from sklearn.metrics import confusion_matrix
 
 # create a confusion matrix
-conf_matrix = confusion_matrix(test_labels_values, predicted_labels)
+conf_matrix = confusion_matrix(test_labels, predicted_labels)
 print(conf_matrix)
 ```
 ```output

@@ -59,7 +59,7 @@ In case you have too little data available to train a complex network from scrat
 
 #### Pre-existing image data
 
-In some cases you will be able to download an image dataset that is already labelled and can be used to classify a number of different object like the ]CIFAR-10] dataset. Other examples include:
+In some cases you will be able to download an image dataset that is already labelled and can be used to classify a number of different object like the [CIFAR-10] dataset. Other examples include:
 
 - [MNIST database] - 60,000 training images of handwritten digits (0-9)
 - [ImageNet] - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an [annual software contest] where programs compete to achieve the highest accuracy. When choosing a pretrained network, the winners of these sorts of competitions are generally a good place to start.

@@ -377,6 +377,7 @@ Inspect the training and validation sets we created.
 How many samples does each set have and are the classes well balanced?
 
 Hint: Use `np.sum()` on the '*_labels' to find out if the classes are well balanced.
+
 :::::::::::::::::::::::: solution
 
 A. Training Set

@@ -102,7 +102,6 @@ class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', '
 
 # one-hot encode labels
 train_labels = keras.utils.to_categorical(train_labels, len(class_names))
-val_labels = keras.utils.to_categorical(val_labels, len(class_names))
 
 # split the training data into training and validation sets
 # NOTE the function is train_test_split() but we are using it to split train into train and validation

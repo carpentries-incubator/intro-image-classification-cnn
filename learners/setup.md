@@ -214,7 +214,7 @@ Download the [scripts, files, and model outputs].
 
 ## Get the data
 
-This lesson uses the CIFAR-10 image dataset that comes prepackaged with Keras.
+This lesson uses the CIFAR-10 image dataset that comes prepackaged with Keras. There are no additional steps needed to access the data.
 
 
 <!-- Collect your link references at the bottom of your document -->

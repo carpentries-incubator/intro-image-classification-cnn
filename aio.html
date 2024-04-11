@@ -181,7 +181,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="setup-gpu.html">1. Setup - GPU</a>
+        <a href="01-introduction.html">1. Introduction to Deep Learning</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -193,7 +193,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="01-introduction.html">2. Introduction to Deep Learning</a>
+        <a href="02-image-data.html">2. Introduction to Image Data</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -205,7 +205,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="02-image-data.html">3. Introduction to Image Data</a>
+        <a href="03-build-cnn.html">3. Build a Convolutional Neural Network</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -217,7 +217,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="03-build-cnn.html">4. Build a Convolutional Neural Network</a>
+        <a href="04-fit-cnn.html">4. Compile and Train (Fit) a Convolutional Neural Network</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -229,7 +229,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="04-fit-cnn.html">5. Compile and Train (Fit) a Convolutional Neural Network</a>
+        <a href="05-evaluate-predict-cnn.html">5. Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -241,19 +241,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="05-evaluate-predict-cnn.html">6. Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a>
-    </div>
-<!--/div.accordion-header-->
-        
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush8">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading8">
-        <a href="06-conclusion.html">7. Conclusion</a>
+        <a href="06-conclusion.html">6. Conclusion</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -316,284 +304,9 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-setup-gpu"><p>Content from <a href="setup-gpu.html">Setup - GPU</a></p>
+<section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction to Deep Learning</a></p>
 <hr>
-<p>Last updated on 2024-02-27 |
-        
-        <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/setup-gpu.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<p>IMPORTANT NOTICE: IF YOU HAVE ALREADY CREATED A CPU ENVIRONMENT YOU
-DO NOT NEED TO DO ANYTHING ON THIS PAGE. CONTINUE TO THE INTRODUCTION
-EPISODE.</p>
-<p>This lesson is designed for Software Carpentry users who have
-completed <a href="https://swcarpentry.github.io/python-novice-gapminder/" class="external-link">Plotting
-and Programming in Python</a> and want to jump straight into image
-classification. We recognize this jump is quite large and have done our
-best to provide the content and code to perform these types of
-analyses.</p>
-<p>The default <a href="index.html#setup">Setup</a> is for CPU only
-environments.</p>
-<p>These instructions are for setting up tensorflow in a
-<strong>GPU</strong> capable environment. Because this is a more
-advanced topic and installation varies depending on your computer’s
-architecture, please make sure you <strong>set up and test</strong> your
-installation before the workshop begins. We will not be able to spend
-class time assisting on GPU setups.</p>
-<section id="software-setup"><h2 class="section-heading">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
-</h2>
-<hr class="half-width">
-<div id="install-python-using-anaconda" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="install-python-using-anaconda" class="callout-inner">
-<h3 class="callout-title">Install Python using Anaconda<a class="anchor" aria-label="anchor" href="#install-python-using-anaconda"></a>
-</h3>
-<div class="callout-content">
-<p><a href="https://python.org" class="external-link">Python</a> is a popular language for
-scientific computing, and a frequent choice for machine learning as
-well. Installing all of its scientific packages individually can be a
-bit difficult, however, so we recommend the installer <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> which
-includes most (but not all) of the software you need. Make sure you
-install the latest Python version 3.xx.</p>
-<p>Also, please set up your python environment <strong>at least</strong>
-a day in advance of the workshop. If you encounter problems with the
-installation procedure <em>for Anaconda</em>, ask your workshop
-organizers via e-mail for assistance so you are ready to go as soon as
-the workshop begins.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">Windows</h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
-tutorial</a> or:</p>
-<ol style="list-style-type: decimal">
-<li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
-your web browser.</p></li>
-<li><p>Download the Python 3 installer for Windows.</p></li>
-<li><p>Double-click the executable and install Python 3 using
-<em>MOST</em> of the default settings. The only exception is to check
-the <strong>Make Anaconda the default Python</strong> option. (Note this
-may already be checked.)</p></li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">MacOS</h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
-<div class="accordion-body">
-<p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
-tutorial</a> or:</p>
-<ol style="list-style-type: decimal">
-<li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
-your web browser.</p></li>
-<li><p>Download the Python 3 installer for Mac.</p></li>
-<li><p>Install Python 3 using all of the defaults for
-installation.</p></li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3">Linux</h4>
-</button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
-<div class="accordion-body">
-<p>Note the following installation steps require you to work from the
-shell. If you run into any difficulties, please request help before the
-workshop begins.</p>
-<ol style="list-style-type: decimal">
-<li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
-your web browser.</p></li>
-<li><p>Download the Python 3 installer for Linux.</p></li>
-<li>
-<p>Install Python 3 using all of the defaults for installation.</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Open a terminal window.</p></li>
-<li><p>Navigate to the folder where you downloaded the
-installer</p></li>
-<li><p>Type</p></li>
-</ol>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">bash</span> Anaconda3-</span></code></pre>
-</div>
-<p>and press tab. The name of the file you just downloaded should
-appear.</p>
-<ol start="4" style="list-style-type: lower-alpha">
-<li><p>Press enter.</p></li>
-<li><p>Follow the text-only prompts. When the license agreement appears
-(a colon will be present at the bottom of the screen) hold the down
-arrow until the bottom of the text. Type <code>yes</code> and press
-enter to approve the license. Press enter again to approve the default
-location for the files. Type <code>yes</code> and press enter to prepend
-Anaconda to your <code>PATH</code> (this makes the Anaconda distribution
-the default Python).</p></li>
-</ol>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-</section><section id="install-the-required-packages"><h2 class="section-heading">Install the required packages<a class="anchor" aria-label="anchor" href="#install-the-required-packages"></a>
-</h2>
-<hr class="half-width">
-<p><a href="https://docs.conda.io/projects/conda/en/latest/" class="external-link">Conda</a>
-is the package management system associated with <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> and
-runs on Windows, macOS and Linux.</p>
-<p>Conda should already be available in your system once you installed
-Anaconda successfully. Conda thus works regardless of the operating
-system. Make sure you have an up-to-date version of Conda running. See
-<a href="https://docs.anaconda.com/anaconda/install/update-version/" class="external-link">these
-instructions</a> for updating Conda if required.</p>
-<p>The easiest way to create a conda environment for this lesson is to
-use the Anaconda Prompt. You can search for “anaconda prompt” using the
-Windows search function (Windows Logo Key) or Spotlight on macOS
-(Command + spacebar).</p>
-<figure><img src="fig/00_anaconda_prompt_search.png" alt="Screenshot of the Anaconda Prompt application" class="figure mx-auto d-block"></figure><p>A terminal window will open with the title ‘Anaconda Prompt’:</p>
-<figure><img src="fig/00_anaconda_prompt_window.png" alt="Screenshot of the terminal window that opens when you launch the Anaconda Prompt application" class="figure mx-auto d-block"></figure><p>Note the notation of the prompt inside the terminal window. The name
-inside the parentheses refers to which conda environment you are working
-inside of, and ‘base’ is the name given to the default environment
-included with every Anaconda distribution.</p>
-<p>To create a new environment for this lesson, the command starts with
-the conda keywords <code>conda create</code>. This command can be
-followed by a name for the new environment and the package(s) to install
-but to make things easier, inside the script download folder, we have
-given you an environment.yml file to use instead. (See download link
-below if you haven’t already.)</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file cnn_workshop_gpu_environment.yml</code></pre>
-<p>If the yml is not in your current directory, you can specify the full
-path to the file, eg:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_gpu_environment.yml</code></pre>
-<p>Be patient because it might take a while (15-20 min) for conda to
-work out all of the dependencies.</p>
-<p>After the environment is created we tell Anaconda to use the new
-environment with the conda keywords <code>conda activate</code> followed
-by the environment name:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop_gpu
-(cnn_workshop_gpu) C:\Users\Lab&gt;</code></pre>
-<p>You will know you are in the right environment because the prompt
-changes from (base) to (cnn_workshop_gpu).</p>
-<div id="callout1" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
-</h3>
-<div class="callout-content">
-<p>To set up a GPU environment, make sure you have the appropriate
-hardware, system, and software necessary for GPU support. Here we are
-following the <a href="https://www.tensorflow.org/install/pip#windows-native_1" class="external-link">Windows
-TensorFlow installation instructions</a> starting at <strong>Step 5. GPU
-setup</strong>. Specific instructions can also be found there for <a href="https://www.tensorflow.org/install/pip#macos_1" class="external-link">MacOS</a> and <a href="https://www.tensorflow.org/install/pip#linux_1" class="external-link">Linux</a>
-environments.</p>
-</div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="nvidia-gpu">NVIDIA GPU<a class="anchor" aria-label="anchor" href="#nvidia-gpu"></a>
-</h3>
-<p>First install NVIDIA GPU driver [<a href="https://www.nvidia.com/download/index.aspx" class="external-link uri">https://www.nvidia.com/download/index.aspx</a>] if you have
-not.</p>
-<p>Then install the CUDA, cuDNN with conda.</p>
-<pre class="code"><code>(cnn_workshop_gpu) C:\Users\Lab&gt; conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</code></pre>
-<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-<div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>AMD GPU</h3>
-</button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
-<div class="accordion-body">
-<p>First install AMD GPU driver [<a href="https://www.amd.com/en/support" class="external-link uri">https://www.amd.com/en/support</a>] if you have not.</p>
-<p>TODO Finish these instructions</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section><section id="start-spyder"><h2 class="section-heading">Start Spyder<a class="anchor" aria-label="anchor" href="#start-spyder"></a>
-</h2>
-<hr class="half-width">
-<p>We teach this lesson using Python in <a href="https://www.spyder-ide.org/" class="external-link">Spyder</a> (Scientific Python
-Development Environment), a free integrated development environment
-(IDE) included with Anaconda. Editing, interactive testing, debugging,
-and introspection tools are all included in Spyder.</p>
-<p>To start Spyder, type the command <code>spyder</code>, making sure
-you are still in the workshop environment:</p>
-<pre class="conda"><code>(cnn_workshop) C:\Users\Lab&gt; spyder</code></pre>
-<figure><img src="fig/00_spyder_ide_layout.png" alt="Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas" class="figure mx-auto d-block"></figure></section><section id="check-your-setup"><h2 class="section-heading">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a>
-</h2>
-<hr class="half-width">
-<p>To check whether all packages installed correctly, go to the
-interactive <code>IPython Console</code> in Spyder (lower right hand
-side panel) and type in the following commands:</p>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="im">import</span> scikeras</span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Num GPUs Available: "</span>, <span class="bu">len</span>(tensorflow.config.experimental.list_physical_devices(<span class="st">'GPU'</span>)))</span></code></pre>
-</div>
-<p>This should output the versions of all required packages without
-giving errors and well as the number of GPU’s tensorflow has
-detected.</p>
-<figure><img src="fig/00_package_check_output_gpu.png" alt="Screenshot of the IPython Console in Spyder wtih list of package versions, number of GPUs available and no error messages." class="figure mx-auto d-block"></figure></section><section id="download-the-scripts-files-and-model-outputs"><h2 class="section-heading">Download the scripts, files and model outputs<a class="anchor" aria-label="anchor" href="#download-the-scripts-files-and-model-outputs"></a>
-</h2>
-<hr class="half-width">
-<p>Download the <a href="https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link" class="external-link">scripts,
-files, and model outputs</a>.</p>
-</section><section id="get-the-data"><h2 class="section-heading">Get the data<a class="anchor" aria-label="anchor" href="#get-the-data"></a>
-</h2>
-<hr class="half-width">
-<p>This lesson uses the CIFAR-10 image data that comes prepackaged with
-Keras.</p>
-<!-- Collect your link references at the bottom of your document -->
-<!-- 
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use. 
- -->
-</section></section><section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction to Deep Learning</a></p>
-<hr>
-<p>Last updated on 2024-03-26 |
+<p>Last updated on 2024-04-11 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -641,7 +354,7 @@ are many more.</p>
 <p>The techniques break down into two broad categories, predictors and
 classifiers. Predictors are used to predict a value (or set of values)
 given a set of inputs whereas classifiers try to classify data into
-different categories, or assign a labelcond env.</p>
+different categories, or assign a label.</p>
 <p>Many, but not all, machine learning systems “learn” by taking a
 series of input data and output data and using it to form a model. The
 maths behind the machine learning doesn’t care what the data is as long
@@ -769,10 +482,13 @@ the data structure will be explored in <a href="02-image-data">Episode
 <p>For this lesson, we will use an existing image dataset known as <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link">CIFAR-10</a>
 (Canadian Institute for Advanced Research). We will introduce the
 different data preparation tasks in more detail in the next episode but
-for this introduction, we want to divide the data into
-<strong>training</strong>, <strong>validation</strong>, and
-<strong>test</strong> subsets; normalise the image pixel values to be
-between 0 and 1; and one-hot encode our image labels.</p>
+for this introduction, we will prepare the datset with these steps:</p>
+<ul>
+<li>normalise the image pixel values to be between 0 and 1</li>
+<li>one-hot encode the training image labels</li>
+<li>divide the data into <strong>training</strong>,
+<strong>validation</strong>, and <strong>test</strong> subsets</li>
+</ul>
 <div class="section level4">
 <h4 id="preparing-the-code">Preparing the code<a class="anchor" aria-label="anchor" href="#preparing-the-code"></a>
 </h4>
@@ -780,7 +496,7 @@ between 0 and 1; and one-hot encode our image labels.</p>
 program, using a Convolutional Neural Network. At the end of this
 workshop, we hope this code can be used as a “starting point”. We will
 create an “initial program” for this introduction chapter that will be
-copied and used as a foundation for the rest of the episodes.</p>
+used as a foundation for the rest of the episodes.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -789,22 +505,32 @@ copied and used as a foundation for the rest of the episodes.</p>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split <span class="co"># for splitting data into sets</span></span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># for plotting</span></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># load the CIFAR-10 dataset included with keras</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># normalise the RGB values to be between 0 and 1</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="fl">255.0</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>test_images <span class="op">=</span> test_images <span class="op">/</span> <span class="fl">255.0</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co"># create a list of class names</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'airplane'</span>, <span class="st">'automobile'</span>, <span class="st">'bird'</span>, <span class="st">'cat'</span>, <span class="st">'deer'</span>, <span class="st">'dog'</span>, <span class="st">'frog'</span>, <span class="st">'horse'</span>, <span class="st">'ship'</span>, <span class="st">'truck'</span>]</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co"># one-hot encode labels</span></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>train_labels <span class="op">=</span> keras.utils.to_categorical(train_labels, <span class="bu">len</span>(class_names))</span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co"># split the training data into training and validation sets</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co"> the function is train_test_split() but we are using it to split train into train and validation</span></span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(train_images, train_labels, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># create a function to prepare the dataset</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="kw">def</span> prepare_dataset(train_images, train_labels):</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    </span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="co"># normalize the RGB values to be between 0 and 1</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="dv">255</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    test_images <span class="op">=</span> train_labels <span class="op">/</span> <span class="dv">255</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    </span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    <span class="co"># one hot encode the training labels</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    train_labels <span class="op">=</span> keras.utils.to_categorical(train_labels, <span class="bu">len</span>(class_names))</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    </span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>    <span class="co"># split the training data into training and validation set</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>    train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>    train_images, train_labels, test_size <span class="op">=</span> <span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>    <span class="cf">return</span> train_images, val_images, train_labels, val_labels</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="co"># load the data</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="co"># create a list of class names associated with each CIFAR-10 label</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'airplane'</span>, <span class="st">'automobile'</span>, <span class="st">'bird'</span>, <span class="st">'cat'</span>, <span class="st">'deer'</span>, <span class="st">'dog'</span>, <span class="st">'frog'</span>, <span class="st">'horse'</span>, <span class="st">'ship'</span>, <span class="st">'truck'</span>]</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="co">### Step 3. Prepare data</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="co"># prepare the dataset for training</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>train_images, val_images, train_labels, val_labels <span class="op">=</span> prepare_dataset(train_images, train_labels)</span></code></pre>
 </div>
 <div id="challenge-examine-the-cifar-10-dataset" class="callout challenge">
 <div class="callout-square">
@@ -830,7 +556,7 @@ copied and used as a foundation for the rest of the episodes.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Output</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -893,35 +619,42 @@ on:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># CNN Part 1</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>inputs_intro <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># CNN Part 2</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co"># Pooling layer with input window sized 2,2</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co"># Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co"># Second Pooling layer with input window sized 2,2</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co"># CNN Part 3</span></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co"># create the model</span></span>
-<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>model_intro <span class="op">=</span> keras.Model(inputs <span class="op">=</span> inputs_intro, </span>
-<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>                          outputs <span class="op">=</span> outputs_intro, </span>
-<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a>                          name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span>
-<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="co"># view the model summary</span></span>
-<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a>model_intro.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">def</span> create_model_intro():</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    </span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="co"># CNN Part 1</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    inputs_intro <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    </span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>    <span class="co"># CNN Part 2</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    <span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>    <span class="co"># Pooling layer with input window sized 2,2</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>    <span class="co"># Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>    <span class="co"># Second Pooling layer with input window sized 2,2</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>    <span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>    <span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>    </span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>    <span class="co"># CNN Part 3</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>    <span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>    outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>    </span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>    <span class="co"># create the model</span></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a>    model_intro <span class="op">=</span> keras.Model(inputs <span class="op">=</span> inputs_intro, </span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a>                              outputs <span class="op">=</span> outputs_intro, </span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a>                              name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a>    </span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a>    <span class="cf">return</span> model_intro</span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="co"># create the introduction model</span></span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a>model_intro <span class="op">=</span> create_model_intro()</span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="co"># view model summary</span></span>
+<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a>model_intro.summary()</span></code></pre>
 </div>
 </div>
 </div>
@@ -1013,16 +746,21 @@ network.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># predict the class name of the first test image</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># make prediction for the first test image</span></span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>result_intro <span class="op">=</span> model_intro.predict(test_images[<span class="dv">0</span>].reshape(<span class="dv">1</span>,<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>))</span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The predicted probability of each class is: '</span>, result_intro.<span class="bu">round</span>(<span class="dv">4</span>))</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The class with the highest predicted probability is: '</span>, class_names[result_intro.argmax()])</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># extract class for prediction with highest probability</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>class_names[result_intro.argmax()]</span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co"># plot the image with its true label</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>plt.imshow(test_images[<span class="dv">0</span>])</span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>plt.title(<span class="st">'True class:'</span> <span class="op">+</span> class_names[test_labels[<span class="dv">0</span>])</span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>plt.show()</span></code></pre>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co"># plot the first test image with its true label</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>plt.figure() <span class="co"># create a plot</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co"># display image</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>plt.imshow(test_images[<span class="dv">0</span>])</span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>plt.title(<span class="st">'True class:'</span> <span class="op">+</span> class_names[result_intro.argmax()])</span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>plt.show() <span class="co"># view plot</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1100,7 +838,7 @@ for them to (mostly) reproduce our result.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># save the model</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># save  model</span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>model_intro.save(<span class="st">'fit_outputs/model_intro.keras'</span>)</span></code></pre>
 </div>
 <p>We will return to each of these workflow steps throughout this lesson
@@ -1136,7 +874,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-02-image-data"><p>Content from <a href="02-image-data.html">Introduction to Image Data</a></p>
 <hr>
-<p>Last updated on 2024-03-26 |
+<p>Last updated on 2024-04-11 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1180,7 +918,7 @@ datasets.</li>
 <section id="deep-learning-workflow"><h2 class="section-heading">Deep Learning Workflow<a class="anchor" aria-label="anchor" href="#deep-learning-workflow"></a>
 </h2>
 <hr class="half-width">
-<p>Let’s start over with the first steps in our workflow.</p>
+<p>Let’s start over from the beginning of our workflow.</p>
 <div class="section level3">
 <h3 id="step-1--formulate-outline-the-problem">Step 1. Formulate/ Outline the problem<a class="anchor" aria-label="anchor" href="#step-1--formulate-outline-the-problem"></a>
 </h3>
@@ -1206,7 +944,8 @@ tells the network what output it should produce for a given input. In
 this workshop, our network will be trained on a series of images and
 told what they contain. Once the network is trained, it should be able
 to take another image and correctly classify its contents.</p>
-<p>You can use pre-existing data or prepare your own.</p>
+<p>Depending on your situation, you will prepare your own custom data
+for training or use pre-existing data.</p>
 <div id="challenge-how-much-data-do-you-need-for-deep-learning" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1227,7 +966,7 @@ need to train a Deep Learning model?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Unfortunately, this question is not easy to answer. It depends, among
 other things, on the complexity of the task (which you often do not know
@@ -1247,50 +986,12 @@ exposes a different view.</p>
 </div>
 </div>
 </div>
-<div class="section level4">
-<h4 id="pre-existing-image-data">Pre-existing image data<a class="anchor" aria-label="anchor" href="#pre-existing-image-data"></a>
-</h4>
-<p>In some cases you will be able to download an image dataset that is
-already labelled and can be used to classify a number of different
-object like the <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link">CIFAR-10</a> dataset.
-Other examples include:</p>
-<ul>
-<li>
-<a href="https://en.wikipedia.org/wiki/MNIST_database" class="external-link">MNIST
-database</a> - 60,000 training images of handwritten digits (0-9)</li>
-<li>
-<a href="https://www.image-net.org/" class="external-link">ImageNet</a> - 14 million
-hand-annotated images indicating objects from more than 20,000
-categories. ImageNet sponsors an <a href="https://www.image-net.org/challenges/LSVRC/#:~:text=The%20ImageNet%20Large%20Scale%20Visual,image%20classification%20at%20large%20scale." class="external-link">annual
-software contest</a> where programs compete to achieve the highest
-accuracy. When choosing a pretrained network, the winners of these sorts
-of competitions are generally a good place to start.</li>
-<li>
-<a href="https://cocodataset.org/#home" class="external-link">MS COCO</a> - &gt;200,000
-labelled images used for object detection, instance segmentation,
-keypoint analysis, and captioning</li>
-</ul>
-<p>Where labelled data exists, in most cases the data provider or other
-users will have created data-specific functions you can use to load the
-data. We already did this in the introduction:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># load the CIFAR-10 dataset included with the keras library</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span></code></pre>
 </div>
-<p>In this instance the data is likely already prepared for use in a
-CNN. However, it is always a good idea to first read any associated
-documentation to find out what steps the data providers took to prepare
-the images and second to take a closer at the images once loaded and
-query their attributes.</p>
-</div>
-<div class="section level4">
-<h4 id="custom-image-data">Custom image data<a class="anchor" aria-label="anchor" href="#custom-image-data"></a>
-</h4>
-<p>In other cases, you will create your own set of labelled images.</p>
+</section><section id="custom-image-data"><h2 class="section-heading">Custom image data<a class="anchor" aria-label="anchor" href="#custom-image-data"></a>
+</h2>
+<hr class="half-width">
+<p>In some cases, you will create your own set of labelled images.</p>
+<p>The steps to prepare your own custom image data include:</p>
 <p><strong>Custom data i. Data collection and Labeling:</strong></p>
 <p>For image classification the label applies to the entire image;
 object detection requires bounding boxes around objects of interest, and
@@ -1315,30 +1016,32 @@ consistency of the data:</p>
 <ul>
 <li><p><strong>Resizing</strong>: Resize images to a consistent
 resolution to ensure uniformity and reduce computational load.</p></li>
+<li><p><strong>Augmentation</strong>: Apply random transformations
+(e.g., rotations, flips, shifts) to create new variations of the same
+image. This helps improve the model’s robustness and generalisation by
+exposing it to more diverse data.</p></li>
 <li><p><strong>Normalisation</strong>: Scale pixel values to a common
 range, often between 0 and 1 or -1 and 1. Normalisation helps the model
 converge faster during training.</p></li>
 <li><p><strong>Label encoding</strong> is a technique used to represent
 categorical data with numerical labels.</p></li>
-<li><p><strong>Data Augmentation</strong>: Apply random transformations
-(e.g., rotations, flips, shifts) to create new variations of the same
-image. This helps improve the model’s robustness and generalisation by
-exposing it to more diverse data.</p></li>
+<li><p><strong>Data Splitting</strong>: Split the data set into separate
+parts to have one for training, one for evaluating the model’s
+performance during training, and one reserved for the final evaluation
+of the model’s performance.</p></li>
 </ul>
-<p>Before jumping into these specific preprocessing tasks related to
-images, it’s important to understand that images on a computer are
-stored as numerical representations or simplified versions of the real
-world. Therefore it’s essential to take some time to understand these
-numerical abstractions.</p>
-</div>
-</div>
+<p>Before jumping into these specific preprocessing tasks, it’s
+important to understand that images on a computer are stored as
+numerical representations or simplified versions of the real world.
+Therefore it’s essential to take some time to understand these numerical
+abstractions.</p>
 <div class="section level3">
 <h3 id="pixels">Pixels<a class="anchor" aria-label="anchor" href="#pixels"></a>
 </h3>
-<p>It is important to realise that images are stored as rectangular
-arrays of hundreds, thousands, or millions of discrete “picture
-elements,” otherwise known as pixels. Each pixel can be thought of as a
-single square point of coloured light.</p>
+<p>Images on a computer are stored as rectangular arrays of hundreds,
+thousands, or millions of discrete “picture elements,” otherwise known
+as pixels. Each pixel can be thought of as a single square point of
+coloured light.</p>
 <p>For example, consider this image of a Jabiru, with a square area
 designated by a red box:</p>
 <figure><img src="fig/02_Jabiru_TGS_marked.jpg" alt="Jabiru image that is 552 pixels wide and 573 pixels high. A red square around the neck region indicates the area to zoom in on." class="figure mx-auto d-block"></figure><p>Now, if we zoomed in close enough to the red box, the individual
@@ -1359,26 +1062,28 @@ where each element corresponds to a pixel value in the image. In the
 context of images, these arrays often have dimensions for height, width,
 and colour channels (if applicable).</p>
 <p>Let us start with the Jabiru image.</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># load the required packages</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="im">from</span> keras.utils <span class="im">import</span> img_to_array</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="im">from</span> keras.utils <span class="im">import</span> load_img</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># specify the image path</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>new_img_path <span class="op">=</span> <span class="st">"../data/Jabiru_TGS.JPG"</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># read in the image with default arguments</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>new_img_pil <span class="op">=</span> load_img(new_img_path)</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co"># confirm the data class and size</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The new image is of class :'</span>, new_img_pil.__class__, <span class="st">'and has the size'</span>, new_img_pil.size)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># load the required packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">from</span> keras.utils <span class="im">import</span> img_to_array</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">from</span> keras.utils <span class="im">import</span> load_img</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># specify the image path</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>new_img_path <span class="op">=</span> <span class="st">"../data/Jabiru_TGS.JPG"</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># read in the image with default arguments</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>new_img_pil <span class="op">=</span> load_img(new_img_path)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># check the image class and size</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Image class :'</span>, new_img_pil.__class__)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Image size'</span>, new_img_pil.size)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>The new image is of class : &lt;class 'PIL.JpegImagePlugin.JpegImageFile'&gt; and has the size (552, 573)</code></pre>
+<pre class="output" tabindex="0"><code>Image class : &lt;class 'PIL.JpegImagePlugin.JpegImageFile'&gt;
+Image size (552, 573)</code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -1396,27 +1101,32 @@ consistent.</p>
 <p>There are a couple of ways to do this in python but one way is to
 specify the size you want using an argument to the
 <code>load_img()</code> function from <code>keras.utils</code>.</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># read in the new image and specify the target size to be the same as our training images</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>new_img_pil_small <span class="op">=</span> load_img(new_img_path, target_size<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># confirm the data class and shape</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The new image is still of class:'</span>, new_img_pil_small.__class__, <span class="st">'but now has the same size'</span>, new_img_pil_small.size, <span class="st">'as our training data'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># read in the image and specify the target size</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>new_img_pil_small <span class="op">=</span> load_img(new_img_path, target_size<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># confirm the image class and size</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Resized image class :'</span>, new_img_pil_small.__class__)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Resized image size'</span>, new_img_pil_small.size) </span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>The new image is still of class: &lt;class 'PIL.Image.Image'&gt; but now has the same size (32, 32) as our training data.</code></pre>
+<pre class="output" tabindex="0"><code>Resized image class : &lt;class 'PIL.Image.Image'&gt;
+Resized image size (32, 32)</code></pre>
 </div>
+<p>Of course, if there are a large number of images to preprocess you do
+not want to copy and paste these steps for each image! Fortunately,
+Keras has a solution: <a href="https://keras.io/api/data_loading/image/" class="external-link">tf.keras.utils.image_dataset_from_directory</a></p>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Python image libraries</h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>Two of the most commonly used libraries for image representation and
 manipulation are NumPy and Pillow (PIL). Additionally, when working with
@@ -1459,6 +1169,38 @@ preprocessing</a> documentation</li>
 </div>
 </div>
 <div class="section level3">
+<h3 id="image-augmentation">Image augmentation<a class="anchor" aria-label="anchor" href="#image-augmentation"></a>
+</h3>
+<p>There are several ways to augment your data to increase the diversity
+of the training data and improve model robustness.</p>
+<ul>
+<li>Geometric Transformations
+<ul>
+<li>rotation, scaling, zooming, cropping</li>
+</ul>
+</li>
+<li>Flipping or Mirroring
+<ul>
+<li>some classes, like horse, have a different shape when facing left or
+right and you want your model to recognize both</li>
+</ul>
+</li>
+<li>Colour properties
+<ul>
+<li>brightness, contrast, or hue</li>
+<li>these changes simulate variations in lighting conditions</li>
+</ul>
+</li>
+</ul>
+<p>We will not perform image augmentation in this lesson, but it is
+important that you are aware of this type of data preparation because it
+can make a big difference in your model’s ability to predict outside of
+your training data.</p>
+<p>Information about these operations are included in the Keras document
+for <a href="https://keras.io/api/layers/preprocessing_layers/image_augmentation/" class="external-link">Image
+augmentation layers</a>.</p>
+</div>
+<div class="section level3">
 <h3 id="normalisation">Normalisation<a class="anchor" aria-label="anchor" href="#normalisation"></a>
 </h3>
 <p>Image RGB values are between 0 and 255. As input for neural networks,
@@ -1471,50 +1213,64 @@ an numpy array.</p>
 but what you may not have noticed is that the
 <code>keras.datasets.cifar10.load_data</code> function did the
 conversion for us whereas now we will do it ourselves.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># convert the Image into an array for normalization</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>new_img_arr <span class="op">=</span> img_to_array(new_img_pil_small)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># confirm the data class and shape</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The new image is now of class :'</span>, new_img_arr.__class__, <span class="st">'and has the shape'</span>, new_img_arr.shape)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># first convert the image into an array for normalization</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>new_img_arr <span class="op">=</span> img_to_array(new_img_pil_small)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># confirm the image class and shape</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Converted image class  :'</span>, new_img_arr.__class__)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Converted image shape'</span>, new_img_arr.shape)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>The new image is now of class : &lt;class 'numpy.ndarray'&gt; and has the shape (32, 32, 3)</code></pre>
+<pre class="output" tabindex="0"><code>Converted image class  : &lt;class 'numpy.ndarray'&gt;
+Converted image shape (32, 32, 3)</code></pre>
 </div>
-<p>Now we can normalize the values. Let us also investigate the image
-values before and after we normalize them.</p>
-<div class="codewrapper sourceCode" id="cb8">
+<p>Now that the image is an array, we can normalize the values. Let us
+also investigate the image values before and after we normalize
+them.</p>
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># extract the min, max, and mean pixel values</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The min, max, and mean pixel values are'</span>, new_img_arr.<span class="bu">min</span>(), <span class="st">','</span>, new_img_arr.<span class="bu">max</span>(), <span class="st">', and'</span>, new_img_arr.mean().<span class="bu">round</span>(), <span class="st">'respectively.'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># normalize the RGB values to be between 0 and 1</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>new_img_arr_norm <span class="op">=</span> new_img_arr <span class="op">/</span> <span class="fl">255.0</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># extract the min, max, and mean pixel values AFTER</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'After normalization, the min, max, and mean pixel values are'</span>, new_img_arr_norm.<span class="bu">min</span>(), <span class="st">','</span>, new_img_arr_norm.<span class="bu">max</span>(), <span class="st">', and'</span>, new_img_arr_norm.mean().<span class="bu">round</span>(), <span class="st">'respectively.'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># inspect pixel values before and after normalisation</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co"># extract the min, max, and mean pixel values BEFORE</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'BEFORE normalization'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Min pixel value '</span>, new_img_arr.<span class="bu">min</span>()) </span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Max pixel value '</span>, new_img_arr.<span class="bu">max</span>())</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Mean pixel value '</span>, new_img_arr.mean().<span class="bu">round</span>())</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co"># normalize the RGB values to be between 0 and 1</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>new_img_arr_norm <span class="op">=</span> new_img_arr <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co"># extract the min, max, and mean pixel values AFTER</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'AFTER normalization'</span>) </span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Min pixel value '</span>, new_img_arr_norm.<span class="bu">min</span>()) </span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Max pixel value '</span>, new_img_arr_norm.<span class="bu">max</span>())</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Mean pixel value '</span>, new_img_arr_norm.mean().<span class="bu">round</span>())</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>The min, max, and mean pixel values are 0.0 , 255.0 , and 87.0 respectively.
-After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0 respectively.</code></pre>
+<pre class="output" tabindex="0"><code>BEFORE normalization
+Min pixel value  0.0
+Max pixel value  255.0
+Mean pixel value  87.0
+AFTER normalization
+Min pixel value  0.0
+Max pixel value  1.0
+Mean pixel value  0.0</code></pre>
 </div>
-<p>Of course, if there are a large number of images to preprocess you do
-not want to copy and paste these steps for each image! Fortunately,
-Keras has a solution: <a href="https://keras.io/api/data_loading/image/" class="external-link">tf.keras.utils.image_dataset_from_directory</a></p>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Why Normalize?</h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Normalizing the RGB values to be between 0 and 1 is a common
@@ -1647,22 +1403,175 @@ this would be inferred as max(y) + 1.</li>
 <code>dtype</code> is the data type expected by the input. Default:
 ‘float32’</li>
 </ul>
-<p>We performed this operation in <strong>Step 3. Prepare data</strong>
-of the Introduction but let us inspect the labels before and after
-one-hot encoding.</p>
+</div>
+<div class="section level3">
+<h3 id="data-splitting">Data Splitting<a class="anchor" aria-label="anchor" href="#data-splitting"></a>
+</h3>
+<p>The typical practice in machine learning is to split your data into
+two subsets: a <strong>training</strong> set and a <strong>test</strong>
+set. This initial split separates the data you will use to train your
+model from the data you will use to evaluate its performance.</p>
+<p>After this initial split, you can choose to further split the
+training set into a training set and a <strong>validation set</strong>.
+This is often done when you are fine-tuning hyperparameters, selecting
+the best model from a set of candidate models, or preventing
+overfitting.</p>
+<p>To split a dataset into training and test sets there is a very
+convenient function from sklearn called <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html" class="external-link">train_test_split</a>:</p>
+<p><code>sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)</code></p>
+<ul>
+<li>The first two parameters are the dataset (X) and the corresponding
+targets (y) (i.e. class labels).</li>
+<li>Next is the named parameter <code>test_size</code>. This is the
+fraction of the dataset used for testing and in this case
+<code>0.2</code> means 20 per cent of the data will be used for
+testing.</li>
+<li>
+<code>random_state</code> controls the shuffling of the dataset,
+setting this value will reproduce the same results (assuming you give
+the same integer) every time it is called.</li>
+<li>
+<code>shuffle</code> which can be either <code>True</code> or
+<code>False</code>, it controls whether the order of the rows of the
+dataset is shuffled before splitting. It defaults to
+<code>True</code>.</li>
+<li>
+<code>stratify</code> is a more advanced parameter that controls how
+the split is done. By setting it to <code>target</code> the train and
+test sets the function will return will have roughly the same
+proportions (with regards to the number of images of a certain class) as
+the dataset.</li>
+</ul>
+</div>
+</section><section id="pre-existing-image-data"><h2 class="section-heading">Pre-existing image data<a class="anchor" aria-label="anchor" href="#pre-existing-image-data"></a>
+</h2>
+<hr class="half-width">
+<p>In other cases you will be able to download an image dataset that is
+already labelled and can be used to classify a number of different
+object like the <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link">CIFAR-10</a> dataset.
+Other examples include:</p>
+<ul>
+<li>
+<a href="https://en.wikipedia.org/wiki/MNIST_database" class="external-link">MNIST
+database</a> - 60,000 training images of handwritten digits (0-9)</li>
+<li>
+<a href="https://www.image-net.org/" class="external-link">ImageNet</a> - 14 million
+hand-annotated images indicating objects from more than 20,000
+categories. ImageNet sponsors an <a href="https://www.image-net.org/challenges/LSVRC/#:~:text=The%20ImageNet%20Large%20Scale%20Visual,image%20classification%20at%20large%20scale." class="external-link">annual
+software contest</a> where programs compete to achieve the highest
+accuracy. When choosing a pretrained network, the winners of these sorts
+of competitions are generally a good place to start.</li>
+<li>
+<a href="https://cocodataset.org/#home" class="external-link">MS COCO</a> - &gt;200,000
+labelled images used for object detection, instance segmentation,
+keypoint analysis, and captioning</li>
+</ul>
+<p>Where labelled data exists, in most cases the data provider or other
+users will have created data-specific functions you can use to load the
+data. We already did this in the introduction:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co"># load the CIFAR-10 dataset included with the keras library</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co"># create a list of classnames associated with each CIFAR-10 label</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'airplane'</span>, <span class="st">'automobile'</span>, <span class="st">'bird'</span>, <span class="st">'cat'</span>, <span class="st">'deer'</span>, <span class="st">'dog'</span>, <span class="st">'frog'</span>, <span class="st">'horse'</span>, <span class="st">'ship'</span>, <span class="st">'truck'</span>]</span></code></pre>
+</div>
+<p>In this instance the data is likely already prepared for use in a
+CNN. However, it is always a good idea to first read any associated
+documentation to find out what steps the data providers took to prepare
+the images and second to take a closer at the images once loaded and
+query their attributes.</p>
+<p>In our case, we still want prepare the datset with these steps:</p>
+<ul>
+<li>normalise the image pixel values to be between 0 and 1</li>
+<li>one-hot encode the training image labels</li>
+<li>divide the data into <strong>training</strong>,
+<strong>validation</strong>, and <strong>test</strong> subsets</li>
+</ul>
+<p>We performed these operations in <strong>Step 3. Prepare
+data</strong> of the Introduction but let us create the function to
+prepare the dataset again knowing what we know now.</p>
+<div id="challenge-create-a-function-to-prepare-the-dataset" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-a-function-to-prepare-the-dataset" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a function to prepare the
+dataset<a class="anchor" aria-label="anchor" href="#challenge-create-a-function-to-prepare-the-dataset"></a>
+</h3>
+<div class="callout-content">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'train_labels before one hot encoding'</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="bu">print</span>(train_labels)</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co"># one-hot encode labels</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>train_labels <span class="op">=</span> keras.utils.to_categorical(train_labels, <span class="bu">len</span>(class_names))</span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'train_labels after one hot encoding'</span>)</span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="bu">print</span>(train_labels)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># create a function to prepare the dataset</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="kw">def</span> prepare_dataset(<span class="co">#blank#, #blank#):</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    </span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    <span class="co"># normalize the RGB values to be between 0 and 1</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    <span class="co">#blank#</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>    <span class="co">#blank#</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>    </span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>    <span class="co"># one hot encode the training labels</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>    <span class="co">#blank#</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>    </span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>    <span class="co"># split the training data into training and validation set</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>    <span class="co">#blank#</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>    <span class="co">#blank#</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>    <span class="cf">return</span> <span class="co">#blank#</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="kw">def</span> prepare_dataset(train_images, train_labels):</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>    </span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>    <span class="co"># normalize the RGB values to be between 0 and 1</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>    train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="dv">255</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>    test_images <span class="op">=</span> train_labels <span class="op">/</span> <span class="dv">255</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    </span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>    <span class="co"># one hot encode the training labels</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    train_labels <span class="op">=</span> keras.utils.to_categorical(train_labels, <span class="bu">len</span>(class_names))</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>    </span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>    <span class="co"># split the training data into training and validation set</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>    train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(</span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>    train_images, train_labels, test_size <span class="op">=</span> <span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>    <span class="cf">return</span> train_images, val_images, train_labels, val_labels</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Inspect the labels before and after one-hot encoding.</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'train_labels before one hot encoding'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="bu">print</span>(train_labels)</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co"># one-hot encode labels</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>train_labels <span class="op">=</span> keras.utils.to_categorical(train_labels, <span class="bu">len</span>(class_names))</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'train_labels after one hot encoding'</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="bu">print</span>(train_labels)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1704,88 +1613,6 @@ object. This will open a new window that shows all of the columns.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="image-augmentation">Image augmentation<a class="anchor" aria-label="anchor" href="#image-augmentation"></a>
-</h3>
-<p>There are several ways to augment your data to increase the diversity
-of the training data and improve model robustness.</p>
-<ul>
-<li>Geometric Transformations
-<ul>
-<li>rotation, scaling, zooming, cropping</li>
-</ul>
-</li>
-<li>Flipping or Mirroring
-<ul>
-<li>some classes, like horse, have a different shape when facing left or
-right and you want your model to recognize both</li>
-</ul>
-</li>
-<li>Colour properties
-<ul>
-<li>brightness, contrast, or hue</li>
-<li>these changes simulate variations in lighting conditions</li>
-</ul>
-</li>
-</ul>
-<p>We will not discuss image augmentation in this lesson, but it is
-important that you are aware of this type of data preparation because it
-can make a big difference in your model’s ability to predict outside of
-your training data.</p>
-<p>Information about these operations are included in the Keras document
-for <a href="https://keras.io/api/layers/preprocessing_layers/image_augmentation/" class="external-link">Image
-augmentation layers</a>.</p>
-</div>
-<div class="section level3">
-<h3 id="data-splitting">Data Splitting<a class="anchor" aria-label="anchor" href="#data-splitting"></a>
-</h3>
-<p>The typical practice in machine learning is to split your data into
-two subsets: a <strong>training</strong> set and a <strong>test</strong>
-set. This initial split separates the data you will use to train your
-model from the data you will use to evaluate its performance.</p>
-<p>After this initial split, you can choose to further split the
-training set into a training set and a <strong>validation set</strong>.
-This is often done when you are fine-tuning hyperparameters, selecting
-the best model from a set of candidate models, or preventing
-overfitting.</p>
-<p>In the previous episode, we used the ‘cifar10.load_data()’ method
-included with the Keras installation to return a dataset split into
-train and test sets. Now we want to split the training data into
-training and validation sets.</p>
-<p>To split a dataset into training and test sets there is a very
-convenient function from sklearn called <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html" class="external-link">train_test_split</a>:</p>
-<p><code>sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)</code></p>
-<ul>
-<li>The first two parameters are the dataset (X) and the corresponding
-targets (y) (i.e. class labels).</li>
-<li>Next is the named parameter <code>test_size</code>. This is the
-fraction of the dataset used for testing and in this case
-<code>0.2</code> means 20 per cent of the data will be used for
-testing.</li>
-<li>
-<code>random_state</code> controls the shuffling of the dataset,
-setting this value will reproduce the same results (assuming you give
-the same integer) every time it is called.</li>
-<li>
-<code>shuffle</code> which can be either <code>True</code> or
-<code>False</code>, it controls whether the order of the rows of the
-dataset is shuffled before splitting. It defaults to
-<code>True</code>.</li>
-<li>
-<code>stratify</code> is a more advanced parameter that controls how
-the split is done. By setting it to <code>target</code> the train and
-test sets the function will return will have roughly the same
-proportions (with regards to the number of images of a certain class) as
-the dataset.</li>
-</ul>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># split the training data into training and validation sets</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(train_images, train_labels, test_size <span class="op">=</span> <span class="fl">0.2</span>, </span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>                random_state <span class="op">=</span> <span class="dv">42</span>)</span></code></pre>
-</div>
 <div id="challenge-training-and-validation" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1802,41 +1629,39 @@ classes are well balanced.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>A. Training Set</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The training set has'</span>, train_images.shape[<span class="dv">0</span>], <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of images in each class:</span><span class="ch">\n</span><span class="st">'</span>, train_labels.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of training set images'</span>, train_images.shape[<span class="dv">0</span>])</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of images in each class:</span><span class="ch">\n</span><span class="st">'</span>, train_labels.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>The training set has 40000 samples.
-
-The number of images in each class:
+<pre class="output" tabindex="0"><code>Number of training set images: 40000
+Number of images in each class:
  [4027. 4021. 3970. 3977. 4067. 3985. 4004. 4006. 3983. 3960.]</code></pre>
 </div>
 <p>B. Validation Set (we can use the same code as the training set)</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The validation set has'</span>, val_images.shape[<span class="dv">0</span>], <span class="st">'samples.</span><span class="ch">\n</span><span class="st">'</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The number of images in each class:</span><span class="ch">\n</span><span class="st">'</span>, val_labels.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of validation set images'</span>, val_images.shape[<span class="dv">0</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Nmber of images in each class:</span><span class="ch">\n</span><span class="st">'</span>, val_labels.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>The validation set has 10000 samples.
-
-The number of images in each class:
+<pre class="output" tabindex="0"><code>Number of validation set images: 10000
+Nmber of images in each class:
  [ 973.  979. 1030. 1023.  933. 1015.  996.  994. 1017. 1040.]</code></pre>
 </div>
 </div>
@@ -1849,7 +1674,7 @@ The number of images in each class:
   <h3 class="accordion-header" id="headingSpoiler3">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Data Splitting Techniques</h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Data is typically split into the training, validation, and test data
@@ -1909,13 +1734,12 @@ process.</p>
 </div>
 </div>
 </div>
-</div>
 </section><section id="data-preprocessing-completed"><h2 class="section-heading">Data preprocessing completed!<a class="anchor" aria-label="anchor" href="#data-preprocessing-completed"></a>
 </h2>
 <hr class="half-width">
-<p>Our dataset is preprocessed and split into three sets which means we
-are ready to learn how to build a CNN like we used in the
-introduction.</p>
+<p>We now have a function we can use throughout the lesson to preprocess
+our data which means we are ready to learn how to build a CNN like we
+used in the introduction.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1945,7 +1769,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Build a Convolutional Neural Network</a></p>
 <hr>
-<p>Last updated on 2024-03-26 |
+<p>Last updated on 2024-04-11 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2054,28 +1878,6 @@ model<a class="anchor" aria-label="anchor" href="#step-4--build-an-architecture-
 this sounds like a daunting task, with Keras it is surprisingly
 straightforward. With Keras you compose a neural network by creating
 layers and linking them together.</p>
-<p>This is the same network from the introduction:</p>
-<pre><code><span><span class="co"># # CNN Part 1</span></span>
-<span><span class="co"># # Input layer of 32x32 images with three channels (RGB)</span></span>
-<span><span class="co"># inputs_intro = keras.Input(shape=train_images.shape[1:])</span></span>
-<span></span>
-<span><span class="co"># # CNN Part 2</span></span>
-<span><span class="co"># # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span><span class="co"># x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)</span></span>
-<span><span class="co"># # Pooling layer with input window sized 2,2</span></span>
-<span><span class="co"># x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)</span></span>
-<span><span class="co"># # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span><span class="co"># x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)</span></span>
-<span><span class="co"># # Second Pooling layer with input window sized 2,2</span></span>
-<span><span class="co"># x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)</span></span>
-<span><span class="co"># # Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span><span class="co"># x_intro = keras.layers.Flatten()(x_intro)</span></span>
-<span><span class="co"># # Dense layer with 64 neurons and ReLU activation</span></span>
-<span><span class="co"># x_intro = keras.layers.Dense(64, activation='relu')(x_intro)</span></span>
-<span></span>
-<span><span class="co"># # CNN Part 3</span></span>
-<span><span class="co"># # Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span><span class="co"># outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="parts-of-a-neural-network">Parts of a neural network<a class="anchor" aria-label="anchor" href="#parts-of-a-neural-network"></a>
@@ -2096,6 +1898,9 @@ layer needs and therefore how many edges need to be created. This means
 we must let Keras know how big our input is going to be. We do this by
 instantiating a <code>keras.Input</code> class and pass it a tuple to
 indicate the dimensionality of the input data.</p>
+<p>The input layer is created with the <code>tf.keras.Input</code>
+function and its first parameter is the expected shape of the input:</p>
+<pre><code><span><span class="fu">keras.Input</span><span class="op">(</span>shape<span class="op">=</span><span class="va">None</span>, batch_size<span class="op">=</span><span class="va">None</span>, dtype<span class="op">=</span><span class="va">None</span>, sparse<span class="op">=</span><span class="va">None</span>, batch_shape<span class="op">=</span><span class="va">None</span>, name<span class="op">=</span><span class="va">None</span>, tensor<span class="op">=</span><span class="va">None</span><span class="op">)</span></span></code></pre>
 <p>In our case, the shape of an image is defined by its pixel dimensions
 and number of channels:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -2109,13 +1914,47 @@ and number of channels:</p>
 </h3>
 <pre class="output" tabindex="0"><code>(40000, 32, 32, 3) # number of images, image width in pixels, image height in pixels, number of channels (RGB)</code></pre>
 </div>
-<p>The input layer is created with the <code>tf.keras.Input</code>
-function and its first parameter is the expected shape of the input.</p>
-<p>Because the shape of our input dataset includes the total number of
-images, we want to take a slice of the shape related to an individual
-image, hence:</p>
-<pre><code><span><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span><span class="co">#inputs_intro = keras.Input(shape=train_images.shape[1:])</span></span></code></pre>
+<div id="challenge-create-the-input-layer-for-our-network" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-the-input-layer-for-our-network" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create the input layer for our
+network<a class="anchor" aria-label="anchor" href="#challenge-create-the-input-layer-for-our-network"></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: Specify shape argument only and use defaults for the rest.
+Hint 2: The shape of our input dataset includes the total number of
+images. We want to take a slice of the shape for a single individual
+image to use an input.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>    <span class="co"># CNN Part 1</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   inputs_intro <span class="op">=</span> keras.Input(<span class="co">#blank#)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>    # CNN Part 1
+    # Input layer of 32x32 images with three channels (RGB)
+   inputs_intro = keras.Input(shape=train_images.shape[1:])</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section level4">
 <h4 id="cnn-part-2--hidden-layers">CNN Part 2. Hidden Layers<a class="anchor" aria-label="anchor" href="#cnn-part-2--hidden-layers"></a>
@@ -2158,11 +1997,49 @@ the input, and the kernel. Applying this kernel to a real image
 demonstrates it does indeed detect horizontal edges.</p>
 <figure><img src="fig/03_conv_matrix.png" alt="6x5 input matrix representing a single colour channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="fig/03_conv_image.png" alt="single colour channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out" class="figure mx-auto d-block"></figure><p>There are several types of convolutional layers available in Keras
 depending on your application. We use the two-dimensional layer
-typically used for images, <code>tf.keras.layers.Conv2D</code>.</p>
-<p>We define arguments for the number of filters, the kernel size, and
-the activation function.</p>
-<pre><code><span><span class="co"># # Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span><span class="co"># x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)</span></span></code></pre>
+typically used for images:</p>
+<pre><code>keras.layers.Conv2D(filters, kernel_size, strides=(1, 1), padding="valid", activation=None, **kwargs)</code></pre>
+<p>We want to create a Conv2D layer with 16 filters, a 3x3 kernel size,
+and the ‘relu’ activation function.</p>
+<div id="challenge-create-a-2d-convolutional-layer-for-our-network" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-a-2d-convolutional-layer-for-our-network" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a 2D convolutional layer for
+our network<a class="anchor" aria-label="anchor" href="#challenge-create-a-2d-convolutional-layer-for-our-network"></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: The input to each layer is the output of the previous
+layer.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>    <span class="co"># CNN Part 2</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    <span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Conv2D(filters<span class="op">=</span><span class="co">#blank#, kernel_size=#blank#, activation=#blank#)(#blank#)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>    # CNN Part 2
+    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(filters=16, kernel_size=(3, 3), activation='relu')(inputs_intro)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <p>The instantiation here has three parameters and a seemingly strange
 combination of parentheses, so let us break it down.</p>
 <ul>
@@ -2230,12 +2107,12 @@ convolution?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels.</p>
 <ul>
@@ -2265,10 +2142,46 @@ focus on higher-level features of the image. By introducing a pooling
 layer, the subsequent convolutional layer has a broader ‘view’ on the
 original image.</p>
 <p>Similar to convolutional layers, Keras offers several pooling layers
-and one used for images (2D spatial data) is the
-<code>tf.keras.layers.MaxPooling2D</code> class.</p>
-<pre><code><span><span class="co"># # Pooling layer with input window sized 2,2</span></span>
-<span><span class="co"># x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)</span></span></code></pre>
+and one used for images (2D spatial data):</p>
+<pre><code>keras.layers.MaxPooling2D(pool_size=(2, 2), strides=None, padding="valid", data_format=None, name=None, **kwargs)</code></pre>
+<p>We want to create a pooling layer with input window sized 2,2.</p>
+<div id="challenge-create-a-pooling-layer-for-our-network" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-a-pooling-layer-for-our-network" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a Pooling layer for our
+network<a class="anchor" aria-label="anchor" href="#challenge-create-a-pooling-layer-for-our-network"></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: The input to each layer is the output of the previous
+layer.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>    <span class="co"># Pooling layer with input window sized 2,2</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.MaxPooling2D(<span class="co">#blank#)(#blank#)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>    # Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D(pool_size=(2, 2))(x_intro)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <p>The instantiation here has a single parameter, pool_size.</p>
 <p>The function downsamples the input along its spatial dimensions
 (height and width) by taking the <strong>maximum</strong> value over an
@@ -2294,85 +2207,46 @@ neurons and <strong>all</strong> of the output neurons.</p>
 taken into account by each output neuron. It aggregates global
 information about the features learned in previous layers to make a
 decision about the class of the input.</p>
-<p>In Keras, a densely-connected layer is defined by the
-<code>tf.keras.layers.Dense</code> class.</p>
-<pre><code><span><span class="co"># # Dense layer with 64 neurons and ReLU activation</span></span>
-<span><span class="co"># x_intro = keras.layers.Dense(64, activation='relu')(x_intro)</span></span></code></pre>
-<p>This instantiation has two parameters: the number of neurons and the
-activation function.</p>
+<p>In Keras, a densely-connected layer is defined:</p>
+<pre><code>keras.layers.Dense(units, activation=None, **kwargs)</code></pre>
+<p>Units in this case refer to the number of neurons.</p>
 <p>The choice of how many neurons to specify is often determined through
 experimentation and can impact the performance of our CNN. Too few
 neurons may not capture complex patterns in the data but too many
 neurons may lead to overfitting.</p>
-<div id="challenge-number-of-parameters" class="callout challenge">
+<p>We will choose 64 for our dense layer and ‘relu’ activation.</p>
+<div id="challenge-create-a-dense-layer-for-our-network" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-number-of-parameters" class="callout-inner">
-<h3 class="callout-title">CHALLENGE Number of parameters<a class="anchor" aria-label="anchor" href="#challenge-number-of-parameters"></a>
+<div id="challenge-create-a-dense-layer-for-our-network" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a Dense layer for our
+network<a class="anchor" aria-label="anchor" href="#challenge-create-a-dense-layer-for-our-network"></a>
 </h3>
 <div class="callout-content">
-<p>Suppose we create a single Dense (fully connected) layer with 100
-hidden units that connects to the input pixels. How many parameters does
-this layer have?</p>
-<ul>
-<li>A. 307200</li>
-<li>B. 307300</li>
-<li>C. 100</li>
-<li>D. 3072</li>
-</ul>
+<p>Hint 1: The input to each layer is the output of the previous
+layer.</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>    <span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span><span class="co">#hidden#, activation=#hidden#)(#hidden#)</span></span></code></pre>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
-<p>The correct answer is B.</p>
-<p>Each entry of the input dimensions is connected with 100 neurons of
-our hidden layer, and each of these neurons has a bias term associated
-to it. So we have 307300 parameters to learn.</p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>width, height <span class="op">=</span> (<span class="dv">32</span>, <span class="dv">32</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>n_hidden_neurons <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>n_bias <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>n_input_items <span class="op">=</span> width <span class="op">*</span> height <span class="op">*</span> <span class="dv">3</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>n_parameters <span class="op">=</span> (n_input_items <span class="op">*</span> n_hidden_neurons) <span class="op">+</span> n_bias</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="bu">print</span>(n_parameters)</span></code></pre>
-</div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span><span class="fl">307300</span></span></code></pre>
-</div>
-<p>We can also check this by building the layer in Keras:</p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>inputs_ex <span class="op">=</span> keras.Input(shape<span class="op">=</span>n_input_items)</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>outputs_ex <span class="op">=</span> keras.layers.Dense(<span class="dv">100</span>)(inputs_ex)</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>model_ex <span class="op">=</span> keras.models.Model(inputs<span class="op">=</span>inputs_ex, outputs<span class="op">=</span>outputs_ex)</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>model_ex.summary()</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Model: "model"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #
-=================================================================
-input_1 (InputLayer)         [(None, 3072)]            0
-_________________________________________________________________
-dense (Dense)                (None, 100)               307300
-=================================================================
-Total params: 307,300
-Trainable params: 307,300
-Non-trainable params: 0</code></pre>
+<pre class="output" tabindex="0"><code><span>    <span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
+<span>    <span class="va">x_intro</span> <span class="op">=</span> <span class="fu">keras.layers.Dense</span><span class="op">(</span><span class="fl">64</span>, activation<span class="op">=</span><span class="st">'relu'</span><span class="op">)</span><span class="op">(</span><span class="va">x_intro</span><span class="op">)</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -2388,11 +2262,47 @@ type of reshaping layer defined in Keras by the
 <code>tf.keras.layers.Flatten</code> class. It is necessary when
 transitioning from convolutional and pooling layers to fully connected
 layers.</p>
-<pre><code><span><span class="co"># # Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span><span class="co"># x_intro = keras.layers.Flatten()(x_intro)</span></span></code></pre>
+<pre><code>keras.layers.Flatten(data_format=None, **kwargs)</code></pre>
 <p>The <strong>Flatten</strong> layer converts the output of the
 previous layer into a single one-dimensional vector that can be used as
 input for a dense layer.</p>
+<div id="challenge-create-a-flatten-layer-for-our-network" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-a-flatten-layer-for-our-network" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a Flatten layer for our
+network<a class="anchor" aria-label="anchor" href="#challenge-create-a-flatten-layer-for-our-network"></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: The input to each layer is the output of the previous
+layer.</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>    <span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Flatten()(<span class="op">=</span><span class="co">#hidden#)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6">Show me the solution</h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span>    <span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span>    <span class="va">x_intro</span> <span class="op">=</span> <span class="fu">keras.layers.Flatten</span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="va">x_intro</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
@@ -2421,6 +2331,83 @@ a suitable format for the fully connected layers to process.</p>
 </div>
 </div>
 </div>
+<div id="is-one-layer-of-each-type-enough" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="is-one-layer-of-each-type-enough" class="callout-inner">
+<h3 class="callout-title">Is one layer of each type enough?<a class="anchor" aria-label="anchor" href="#is-one-layer-of-each-type-enough"></a>
+</h3>
+<div class="callout-content">
+<p>Not for complex data!</p>
+<p>A typical architecture for image classification is likely to include
+at least one convolutional layer, one pooling layer, one or more dense
+layers, and possibly a flatten layer.</p>
+<p>Convolutional and Pooling layers are often used together in multipe
+sets to capture a wider range of features and learn more complex
+representations of the input data. Using this technique, the network can
+learn a hierarchical representation of features, where simple features
+detected in early layers are combined to form more complex features in
+deeper layers.</p>
+<p>There isn’t a strict rule of thumb for the number of sets of
+convolutional and pooling layers to start with, however, there are some
+guidelines.</p>
+<p>We are starting with a relatively small and simple architecture
+because we are limited in time and computational resources. A simple CNN
+with one or two sets of convolutional and pooling layers can still
+achieve decent results for many tasks but for your network you will
+experiment with different architectures.</p>
+</div>
+</div>
+</div>
+<div id="challenge-using-the-four-layers-above-create-a-hidden-layer-architecture-that-contains" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-using-the-four-layers-above-create-a-hidden-layer-architecture-that-contains" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Using the four layers above, create
+a hidden layer architecture that contains:<a class="anchor" aria-label="anchor" href="#challenge-using-the-four-layers-above-create-a-hidden-layer-architecture-that-contains"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>2 sets of Conv2D and Pooling layers, with 16 and 32 filters
+respectively</li>
+<li>1 Flatten layer</li>
+<li>1 Dense layer with</li>
+</ul>
+<p>Hint 1: The input to each layer is the output of the previous
+layer.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7">Show me the solution</h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>    # CNN Part 2
+    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
+    # Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
+    # Second Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    # Flatten layer to convert 2D feature maps into a 1D vector
+    x_intro = keras.layers.Flatten()(x_intro)
+    # Dense layer with 64 neurons and ReLU activation
+    x_intro = keras.layers.Dense(64, activation='relu')(x_intro)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section level4">
@@ -2428,54 +2415,139 @@ a suitable format for the fully connected layers to process.</p>
 </h4>
 <p>Recall for the outputs we asked ourselves what we want to identify
 from the data. If we are performing a classification problem, then
-typically we have one output for each potential class. We finish with a
-Dense layer to connect the output cells of the convolutional layer to
-the outputs for our 10 classes.</p>
-<p>Note the use of <code>softmax</code> activation for this Dense layer
-as opposed to the <code>ReLU</code> activation used above. We use
-softmax for multiclass data because it helps the computer give each
+typically we have one output for each potential class.</p>
+<p>In traditional CNN architectures, a dense layer is typically used as
+the final layer for classification. This dense layer receives the
+flattened feature maps from the preceding convolutional and pooling
+layers and outputs the final class probabilities or regression
+values.</p>
+<p>For multiclass data, the <code>softmax</code> activation is used
+instead of <code>relu</code> because it helps the computer give each
 option (class) a likelihood score, and the scores add up to 100 per
 cent. This way, it’s easier to pick the one the computer thinks is most
 probable.</p>
-<pre><code><span><span class="co"># # Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span><span class="co"># outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro))</span></span></code></pre>
+<div id="challenge-create-an-output-layer-for-our-network-using-a-dense-layer" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-an-output-layer-for-our-network-using-a-dense-layer" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create an Output layer for our
+network using a Dense layer<a class="anchor" aria-label="anchor" href="#challenge-create-an-output-layer-for-our-network-using-a-dense-layer"></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: The input to each layer is the output of the previous layer.
+Hint 2: The units (neurons) should be the same as number of classes as
+our dataset. Hint 3: Use softmax activation.</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>    <span class="co"># CNN Part 3</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    <span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>    outputs_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span><span class="co">#hidden#, activation=#hidden#)(#hidden#)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
+  <h4 class="accordion-header" id="headingSolution8">Show me the solution</h4>
+</button>
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span>    <span class="co"># CNN Part 3</span></span>
+<span>    <span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span>    <span class="va">outputs_intro</span> <span class="op">=</span> <span class="fu">keras.layers.Dense</span><span class="op">(</span><span class="fl">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span><span class="op">)</span><span class="op">(</span><span class="va">x_intro</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section><section id="putting-it-all-together"><h2 class="section-heading">Putting it all together<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a>
 </h2>
 <hr class="half-width">
-<div class="codewrapper sourceCode" id="cb15">
+<div id="challenge-create-a-function-that-defines-a-cnn-using-the-input-hidden-and-output-layers-in-previous-challenges." class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-a-function-that-defines-a-cnn-using-the-input-hidden-and-output-layers-in-previous-challenges." class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a function that defines a CNN
+using the input, hidden, and output layers in previous challenges.<a class="anchor" aria-label="anchor" href="#challenge-create-a-function-that-defines-a-cnn-using-the-input-hidden-and-output-layers-in-previous-challenges."></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: The input to each layer is the output of the previous layer.
+Hint 2: The units (neurons) should be the same as number of classes as
+our dataset. Hint 3: Use softmax activation.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution9" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
+  <h4 class="accordion-header" id="headingSolution9">Show me the solution</h4>
+</button>
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span>    <span class="co"># CNN Part 3</span></span>
+<span>    <span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span>    <span class="va">outputs_intro</span> <span class="op">=</span> <span class="fu">keras.layers.Dense</span><span class="op">(</span><span class="fl">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span><span class="op">)</span><span class="op">(</span><span class="va">x_intro</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co">#### Define the Model</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co"># CNN Part 1</span></span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>inputs_intro <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co"># CNN Part 2</span></span>
-<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="co"># Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
-<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co"># Pooling layer with input window sized 2,2</span></span>
-<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="co"># Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="co"># Second Pooling layer with input window sized 2,2</span></span>
-<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
-<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
-<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a><span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
-<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a><span class="co"># CNN Part 3</span></span>
-<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a><span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
-<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a></span>
-<span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a><span class="co"># create the model</span></span>
-<span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a>model_intro <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_intro, outputs<span class="op">=</span>outputs_intro, name<span class="op">=</span><span class="st">"cifar_model_intro"</span>)</span>
-<span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a></span>
-<span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a><span class="co"># view the model summary</span></span>
-<span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a>model_intro.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="kw">def</span> create_model_intro():</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>    </span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>    <span class="co"># CNN Part 1</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>    inputs_intro <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>    </span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>    <span class="co"># CNN Part 2</span></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>    <span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>    <span class="co"># Pooling layer with input window sized 2,2</span></span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a>    <span class="co"># Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a>    <span class="co"># Second Pooling layer with input window sized 2,2</span></span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
+<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a>    <span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
+<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a>    <span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
+<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a>    </span>
+<span id="cb23-21"><a href="#cb23-21" tabindex="-1"></a>    <span class="co"># CNN Part 3</span></span>
+<span id="cb23-22"><a href="#cb23-22" tabindex="-1"></a>    <span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span id="cb23-23"><a href="#cb23-23" tabindex="-1"></a>    outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
+<span id="cb23-24"><a href="#cb23-24" tabindex="-1"></a>    </span>
+<span id="cb23-25"><a href="#cb23-25" tabindex="-1"></a>    <span class="co"># create the model</span></span>
+<span id="cb23-26"><a href="#cb23-26" tabindex="-1"></a>    model_intro <span class="op">=</span> keras.Model(inputs <span class="op">=</span> inputs_intro, </span>
+<span id="cb23-27"><a href="#cb23-27" tabindex="-1"></a>                              outputs <span class="op">=</span> outputs_intro, </span>
+<span id="cb23-28"><a href="#cb23-28" tabindex="-1"></a>                              name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span>
+<span id="cb23-29"><a href="#cb23-29" tabindex="-1"></a>    </span>
+<span id="cb23-30"><a href="#cb23-30" tabindex="-1"></a>    <span class="cf">return</span> model_intro</span></code></pre>
+</div>
+<p>Use the function you created to create the introduction model and
+view a summary of it’s structure.</p>
+<div class="codewrapper sourceCode" id="cb24">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># create the introduction model</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>model_intro <span class="op">=</span> create_model_intro()</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="co"># view model summary</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>model_intro.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3441,7 +3513,7 @@ be?<a class="anchor" aria-label="anchor" href="#challenge-how-big-should-our-tes
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>It depends! Recall in an <a href="02-image-data.html">Episode 02
 Introduction to Image Data</a> Callout we talked about the different
@@ -3609,7 +3681,7 @@ visualized as a confusion matrix.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Q1. The confusion matrix illustrates that the predictions are not bad
 but can be improved.</p>
@@ -3695,7 +3767,7 @@ model performance, what is the term associated to this procedure?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Q1. Varying the dropout rate</p>
 <p>The code below instantiates and trains a model with varying dropout
@@ -3810,7 +3882,7 @@ is expressed in code to search for an optimizer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>First, we will define a <strong>build function</strong> to use during
 GridSearch. This function will compile the model for each combination of
@@ -3991,7 +4063,7 @@ Loop<a class="anchor" aria-label="anchor" href="#challenge-tune-activation-funct
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>The code below serves as a practical means for exploring activation
 performance on an image dataset.</p>
@@ -4099,7 +4171,7 @@ improve the prediction quality?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6">Show me the solution</h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>This is an open question.</p>
 <p>Regarding the model architecture:</p>
@@ -4481,8 +4553,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/aio.html",
   "identifier": "https://.github.io/github.com/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-04-09",
-  "datePublished": "2024-04-09"
+  "dateModified": "2024-04-11",
+  "datePublished": "2024-04-11"
 }
 
   </script><script>

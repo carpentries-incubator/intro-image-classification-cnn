@@ -86,11 +86,11 @@
   Image Classification with Convolutional Neural Networks
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 12%" class="percentage">
-    12%
+<aside class="col-md-12 lesson-progress"><div style="width: 0%" class="percentage">
+    0%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 12%" aria-valuenow="12" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 0%" aria-valuenow="0" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -144,22 +144,13 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
-<div class="accordion accordion-flush" id="accordionFlush2">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading2">
-        <a href="setup-gpu.html">1. Setup - GPU</a>
-    </div><!--/div.accordion-header-->
-        
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        2. Introduction to Deep Learning
+        1. Introduction to Deep Learning
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -176,10 +167,19 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="02-image-data.html">2. Introduction to Image Data</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="02-image-data.html">3. Introduction to Image Data</a>
+        <a href="03-build-cnn.html">3. Build a Convolutional Neural Network</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -188,7 +188,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="03-build-cnn.html">4. Build a Convolutional Neural Network</a>
+        <a href="04-fit-cnn.html">4. Compile and Train (Fit) a Convolutional Neural Network</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -197,7 +197,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="04-fit-cnn.html">5. Compile and Train (Fit) a Convolutional Neural Network</a>
+        <a href="05-evaluate-predict-cnn.html">5. Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -206,16 +206,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="05-evaluate-predict-cnn.html">6. Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a>
-    </div><!--/div.accordion-header-->
-        
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush8">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading8">
-        <a href="06-conclusion.html">7. Conclusion</a>
+        <a href="06-conclusion.html">6. Conclusion</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -263,14 +254,14 @@
         <!-- START: inst/pkgdown/templates/content-instructor.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link" href="setup-gpu.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
+        <a class="chapter-link" href="index.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="02-image-data.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link" href="setup-gpu.html" rel="prev">
+        <a class="chapter-link" href="index.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
-          Previous: Setup - GPU
+          Home
         </a>
         <a class="chapter-link float-end" href="02-image-data.html" rel="next">
           Next: Introduction to... 
@@ -279,7 +270,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p>Last updated on 2024-03-26 |
+        <p>Last updated on 2024-04-11 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -328,7 +319,7 @@ are many more.</p>
 <p>The techniques break down into two broad categories, predictors and
 classifiers. Predictors are used to predict a value (or set of values)
 given a set of inputs whereas classifiers try to classify data into
-different categories, or assign a labelcond env.</p>
+different categories, or assign a label.</p>
 <p>Many, but not all, machine learning systems “learn” by taking a
 series of input data and output data and using it to form a model. The
 maths behind the machine learning doesn’t care what the data is as long
@@ -446,17 +437,18 @@ the data structure will be explored in <a href="02-image-data">Episode
 <p>For this lesson, we will use an existing image dataset known as <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link">CIFAR-10</a>
 (Canadian Institute for Advanced Research). We will introduce the
 different data preparation tasks in more detail in the next episode but
-for this introduction, we want to divide the data into
-<strong>training</strong>, <strong>validation</strong>, and
-<strong>test</strong> subsets; normalise the image pixel values to be
-between 0 and 1; and one-hot encode our image labels.</p>
-<div class="section level4">
+for this introduction, we will prepare the datset with these steps:</p>
+<ul><li>normalise the image pixel values to be between 0 and 1</li>
+<li>one-hot encode the training image labels</li>
+<li>divide the data into <strong>training</strong>,
+<strong>validation</strong>, and <strong>test</strong> subsets</li>
+</ul><div class="section level4">
 <h4 id="preparing-the-code">Preparing the code<a class="anchor" aria-label="anchor" href="#preparing-the-code"></a></h4>
 <p>It is the goal of this training workshop to produce a Deep Learning
 program, using a Convolutional Neural Network. At the end of this
 workshop, we hope this code can be used as a “starting point”. We will
 create an “initial program” for this introduction chapter that will be
-copied and used as a foundation for the rest of the episodes.</p>
+used as a foundation for the rest of the episodes.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -465,22 +457,32 @@ copied and used as a foundation for the rest of the episodes.</p>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split <span class="co"># for splitting data into sets</span></span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># for plotting</span></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># load the CIFAR-10 dataset included with keras</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># normalise the RGB values to be between 0 and 1</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="fl">255.0</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>test_images <span class="op">=</span> test_images <span class="op">/</span> <span class="fl">255.0</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co"># create a list of class names</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'airplane'</span>, <span class="st">'automobile'</span>, <span class="st">'bird'</span>, <span class="st">'cat'</span>, <span class="st">'deer'</span>, <span class="st">'dog'</span>, <span class="st">'frog'</span>, <span class="st">'horse'</span>, <span class="st">'ship'</span>, <span class="st">'truck'</span>]</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co"># one-hot encode labels</span></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>train_labels <span class="op">=</span> keras.utils.to_categorical(train_labels, <span class="bu">len</span>(class_names))</span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co"># split the training data into training and validation sets</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co"> the function is train_test_split() but we are using it to split train into train and validation</span></span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(train_images, train_labels, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># create a function to prepare the dataset</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="kw">def</span> prepare_dataset(train_images, train_labels):</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    </span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="co"># normalize the RGB values to be between 0 and 1</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    train_images <span class="op">=</span> train_images <span class="op">/</span> <span class="dv">255</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    test_images <span class="op">=</span> train_labels <span class="op">/</span> <span class="dv">255</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    </span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    <span class="co"># one hot encode the training labels</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    train_labels <span class="op">=</span> keras.utils.to_categorical(train_labels, <span class="bu">len</span>(class_names))</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    </span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>    <span class="co"># split the training data into training and validation set</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>    train_images, val_images, train_labels, val_labels <span class="op">=</span> train_test_split(</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>    train_images, train_labels, test_size <span class="op">=</span> <span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>    <span class="cf">return</span> train_images, val_images, train_labels, val_labels</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="co"># load the data</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> keras.datasets.cifar10.load_data()</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="co"># create a list of class names associated with each CIFAR-10 label</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'airplane'</span>, <span class="st">'automobile'</span>, <span class="st">'bird'</span>, <span class="st">'cat'</span>, <span class="st">'deer'</span>, <span class="st">'dog'</span>, <span class="st">'frog'</span>, <span class="st">'horse'</span>, <span class="st">'ship'</span>, <span class="st">'truck'</span>]</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="co">### Step 3. Prepare data</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="co"># prepare the dataset for training</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>train_images, val_images, train_labels, val_labels <span class="op">=</span> prepare_dataset(train_images, train_labels)</span></code></pre>
 </div>
 <div id="challenge-examine-the-cifar-10-dataset" class="callout challenge">
 <div class="callout-square">
@@ -506,7 +508,7 @@ copied and used as a foundation for the rest of the episodes.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Output</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -565,35 +567,42 @@ on:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># CNN Part 1</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>inputs_intro <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># CNN Part 2</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co"># Pooling layer with input window sized 2,2</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co"># Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co"># Second Pooling layer with input window sized 2,2</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co"># CNN Part 3</span></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co"># create the model</span></span>
-<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>model_intro <span class="op">=</span> keras.Model(inputs <span class="op">=</span> inputs_intro, </span>
-<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>                          outputs <span class="op">=</span> outputs_intro, </span>
-<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a>                          name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span>
-<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="co"># view the model summary</span></span>
-<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a>model_intro.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">def</span> create_model_intro():</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    </span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="co"># CNN Part 1</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    inputs_intro <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    </span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>    <span class="co"># CNN Part 2</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    <span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>    <span class="co"># Pooling layer with input window sized 2,2</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>    <span class="co"># Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>    <span class="co"># Second Pooling layer with input window sized 2,2</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>    <span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>    <span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>    </span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>    <span class="co"># CNN Part 3</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>    <span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>    outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>    </span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a>    <span class="co"># create the model</span></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a>    model_intro <span class="op">=</span> keras.Model(inputs <span class="op">=</span> inputs_intro, </span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a>                              outputs <span class="op">=</span> outputs_intro, </span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a>                              name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a>    </span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a>    <span class="cf">return</span> model_intro</span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="co"># create the introduction model</span></span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a>model_intro <span class="op">=</span> create_model_intro()</span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="co"># view model summary</span></span>
+<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a>model_intro.summary()</span></code></pre>
 </div>
 </div>
 </div>
@@ -679,16 +688,21 @@ network.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># predict the class name of the first test image</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># make prediction for the first test image</span></span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>result_intro <span class="op">=</span> model_intro.predict(test_images[<span class="dv">0</span>].reshape(<span class="dv">1</span>,<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>))</span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The predicted probability of each class is: '</span>, result_intro.<span class="bu">round</span>(<span class="dv">4</span>))</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The class with the highest predicted probability is: '</span>, class_names[result_intro.argmax()])</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># extract class for prediction with highest probability</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>class_names[result_intro.argmax()]</span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co"># plot the image with its true label</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>plt.imshow(test_images[<span class="dv">0</span>])</span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>plt.title(<span class="st">'True class:'</span> <span class="op">+</span> class_names[test_labels[<span class="dv">0</span>])</span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>plt.show()</span></code></pre>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co"># plot the first test image with its true label</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>plt.figure() <span class="co"># create a plot</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co"># display image</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>plt.imshow(test_images[<span class="dv">0</span>])</span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>plt.title(<span class="st">'True class:'</span> <span class="op">+</span> class_names[result_intro.argmax()])</span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>plt.show() <span class="co"># view plot</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -763,7 +777,7 @@ for them to (mostly) reproduce our result.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># save the model</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># save  model</span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>model_intro.save(<span class="st">'fit_outputs/model_intro.keras'</span>)</span></code></pre>
 </div>
 <p>We will return to each of these workflow steps throughout this lesson
@@ -797,14 +811,14 @@ any links that you are not going to use.
 </div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link" href="setup-gpu.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
+        <a class="chapter-link" href="index.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="02-image-data.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link" href="setup-gpu.html" rel="prev">
+        <a class="chapter-link" href="index.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
-          Previous: Setup - GPU
+          Home
         </a>
         <a class="chapter-link float-end" href="02-image-data.html" rel="next">
           Next: Introduction to... 
@@ -853,8 +867,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/01-introduction.html",
   "identifier": "https://.github.io/github.com/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-03-26",
-  "datePublished": "2024-04-09"
+  "dateModified": "2024-04-11",
+  "datePublished": "2024-04-11"
 }
 
   </script><script>

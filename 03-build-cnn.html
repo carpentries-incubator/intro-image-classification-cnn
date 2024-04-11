@@ -86,11 +86,11 @@
   Image Classification with Convolutional Neural Networks
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 40%" class="percentage">
-    40%
+<aside class="col-md-12 lesson-progress"><div style="width: 31%" class="percentage">
+    31%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 40%" aria-valuenow="40" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 31%" aria-valuenow="31" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -147,7 +147,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="setup-gpu.html">1. Setup - GPU</a>
+        <a href="01-introduction.html">1. Introduction to Deep Learning</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -156,16 +156,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="01-introduction.html">2. Introduction to Deep Learning</a>
-    </div><!--/div.accordion-header-->
-        
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush4">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading4">
-        <a href="02-image-data.html">3. Introduction to Image Data</a>
+        <a href="02-image-data.html">2. Introduction to Image Data</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -177,7 +168,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        4. Build a Convolutional Neural Network
+        3. Build a Convolutional Neural Network
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -194,10 +185,19 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="04-fit-cnn.html">4. Compile and Train (Fit) a Convolutional Neural Network</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="04-fit-cnn.html">5. Compile and Train (Fit) a Convolutional Neural Network</a>
+        <a href="05-evaluate-predict-cnn.html">5. Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -206,16 +206,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="05-evaluate-predict-cnn.html">6. Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a>
-    </div><!--/div.accordion-header-->
-        
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush8">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading8">
-        <a href="06-conclusion.html">7. Conclusion</a>
+        <a href="06-conclusion.html">6. Conclusion</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -279,7 +270,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Build a Convolutional Neural Network</h1>
-        <p>Last updated on 2024-03-26 |
+        <p>Last updated on 2024-04-11 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.html" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -380,28 +371,6 @@ model<a class="anchor" aria-label="anchor" href="#step-4--build-an-architecture-
 this sounds like a daunting task, with Keras it is surprisingly
 straightforward. With Keras you compose a neural network by creating
 layers and linking them together.</p>
-<p>This is the same network from the introduction:</p>
-<pre><code><span><span class="co"># # CNN Part 1</span></span>
-<span><span class="co"># # Input layer of 32x32 images with three channels (RGB)</span></span>
-<span><span class="co"># inputs_intro = keras.Input(shape=train_images.shape[1:])</span></span>
-<span></span>
-<span><span class="co"># # CNN Part 2</span></span>
-<span><span class="co"># # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span><span class="co"># x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)</span></span>
-<span><span class="co"># # Pooling layer with input window sized 2,2</span></span>
-<span><span class="co"># x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)</span></span>
-<span><span class="co"># # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span><span class="co"># x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)</span></span>
-<span><span class="co"># # Second Pooling layer with input window sized 2,2</span></span>
-<span><span class="co"># x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)</span></span>
-<span><span class="co"># # Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span><span class="co"># x_intro = keras.layers.Flatten()(x_intro)</span></span>
-<span><span class="co"># # Dense layer with 64 neurons and ReLU activation</span></span>
-<span><span class="co"># x_intro = keras.layers.Dense(64, activation='relu')(x_intro)</span></span>
-<span></span>
-<span><span class="co"># # CNN Part 3</span></span>
-<span><span class="co"># # Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span><span class="co"># outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="parts-of-a-neural-network">Parts of a neural network<a class="anchor" aria-label="anchor" href="#parts-of-a-neural-network"></a></h3>
@@ -418,6 +387,9 @@ layer needs and therefore how many edges need to be created. This means
 we must let Keras know how big our input is going to be. We do this by
 instantiating a <code>keras.Input</code> class and pass it a tuple to
 indicate the dimensionality of the input data.</p>
+<p>The input layer is created with the <code>tf.keras.Input</code>
+function and its first parameter is the expected shape of the input:</p>
+<pre><code><span><span class="fu">keras.Input</span><span class="op">(</span>shape<span class="op">=</span><span class="va">None</span>, batch_size<span class="op">=</span><span class="va">None</span>, dtype<span class="op">=</span><span class="va">None</span>, sparse<span class="op">=</span><span class="va">None</span>, batch_shape<span class="op">=</span><span class="va">None</span>, name<span class="op">=</span><span class="va">None</span>, tensor<span class="op">=</span><span class="va">None</span><span class="op">)</span></span></code></pre>
 <p>In our case, the shape of an image is defined by its pixel dimensions
 and number of channels:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -431,13 +403,47 @@ and number of channels:</p>
 </h3>
 <pre class="output" tabindex="0"><code>(40000, 32, 32, 3) # number of images, image width in pixels, image height in pixels, number of channels (RGB)</code></pre>
 </div>
-<p>The input layer is created with the <code>tf.keras.Input</code>
-function and its first parameter is the expected shape of the input.</p>
-<p>Because the shape of our input dataset includes the total number of
-images, we want to take a slice of the shape related to an individual
-image, hence:</p>
-<pre><code><span><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span><span class="co">#inputs_intro = keras.Input(shape=train_images.shape[1:])</span></span></code></pre>
+<div id="challenge-create-the-input-layer-for-our-network" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-the-input-layer-for-our-network" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create the input layer for our
+network<a class="anchor" aria-label="anchor" href="#challenge-create-the-input-layer-for-our-network"></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: Specify shape argument only and use defaults for the rest.
+Hint 2: The shape of our input dataset includes the total number of
+images. We want to take a slice of the shape for a single individual
+image to use an input.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>    <span class="co"># CNN Part 1</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   inputs_intro <span class="op">=</span> keras.Input(<span class="co">#blank#)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>    # CNN Part 1
+    # Input layer of 32x32 images with three channels (RGB)
+   inputs_intro = keras.Input(shape=train_images.shape[1:])</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section level4">
 <h4 id="cnn-part-2--hidden-layers">CNN Part 2. Hidden Layers<a class="anchor" aria-label="anchor" href="#cnn-part-2--hidden-layers"></a></h4>
@@ -477,11 +483,49 @@ the input, and the kernel. Applying this kernel to a real image
 demonstrates it does indeed detect horizontal edges.</p>
 <figure><img src="fig/03_conv_matrix.png" alt="6x5 input matrix representing a single colour channel image being multipled by a 3x3 kernel to produce a 4x4 output matrix to detect horizonal edges in an image " class="figure mx-auto d-block"></figure><figure><img src="fig/03_conv_image.png" alt="single colour channel image of a cat multiplied by a 3x3 kernel to produce an image of a cat where the edges  stand out" class="figure mx-auto d-block"></figure><p>There are several types of convolutional layers available in Keras
 depending on your application. We use the two-dimensional layer
-typically used for images, <code>tf.keras.layers.Conv2D</code>.</p>
-<p>We define arguments for the number of filters, the kernel size, and
-the activation function.</p>
-<pre><code><span><span class="co"># # Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span><span class="co"># x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(inputs_intro)</span></span></code></pre>
+typically used for images:</p>
+<pre><code>keras.layers.Conv2D(filters, kernel_size, strides=(1, 1), padding="valid", activation=None, **kwargs)</code></pre>
+<p>We want to create a Conv2D layer with 16 filters, a 3x3 kernel size,
+and the ‘relu’ activation function.</p>
+<div id="challenge-create-a-2d-convolutional-layer-for-our-network" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-a-2d-convolutional-layer-for-our-network" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a 2D convolutional layer for
+our network<a class="anchor" aria-label="anchor" href="#challenge-create-a-2d-convolutional-layer-for-our-network"></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: The input to each layer is the output of the previous
+layer.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>    <span class="co"># CNN Part 2</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    <span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Conv2D(filters<span class="op">=</span><span class="co">#blank#, kernel_size=#blank#, activation=#blank#)(#blank#)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>    # CNN Part 2
+    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(filters=16, kernel_size=(3, 3), activation='relu')(inputs_intro)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <p>The instantiation here has three parameters and a seemingly strange
 combination of parentheses, so let us break it down.</p>
 <ul><li>The first parameter is the number of filters in this layer. This is
@@ -541,12 +585,12 @@ convolution?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>There are different ways of dealing with border pixels.</p>
 <ul><li>You can ignore them, which means your output image is slightly
@@ -572,10 +616,46 @@ focus on higher-level features of the image. By introducing a pooling
 layer, the subsequent convolutional layer has a broader ‘view’ on the
 original image.</p>
 <p>Similar to convolutional layers, Keras offers several pooling layers
-and one used for images (2D spatial data) is the
-<code>tf.keras.layers.MaxPooling2D</code> class.</p>
-<pre><code><span><span class="co"># # Pooling layer with input window sized 2,2</span></span>
-<span><span class="co"># x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)</span></span></code></pre>
+and one used for images (2D spatial data):</p>
+<pre><code>keras.layers.MaxPooling2D(pool_size=(2, 2), strides=None, padding="valid", data_format=None, name=None, **kwargs)</code></pre>
+<p>We want to create a pooling layer with input window sized 2,2.</p>
+<div id="challenge-create-a-pooling-layer-for-our-network" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-a-pooling-layer-for-our-network" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a Pooling layer for our
+network<a class="anchor" aria-label="anchor" href="#challenge-create-a-pooling-layer-for-our-network"></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: The input to each layer is the output of the previous
+layer.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>    <span class="co"># Pooling layer with input window sized 2,2</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.MaxPooling2D(<span class="co">#blank#)(#blank#)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>    # Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D(pool_size=(2, 2))(x_intro)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <p>The instantiation here has a single parameter, pool_size.</p>
 <p>The function downsamples the input along its spatial dimensions
 (height and width) by taking the <strong>maximum</strong> value over an
@@ -599,83 +679,46 @@ neurons and <strong>all</strong> of the output neurons.</p>
 taken into account by each output neuron. It aggregates global
 information about the features learned in previous layers to make a
 decision about the class of the input.</p>
-<p>In Keras, a densely-connected layer is defined by the
-<code>tf.keras.layers.Dense</code> class.</p>
-<pre><code><span><span class="co"># # Dense layer with 64 neurons and ReLU activation</span></span>
-<span><span class="co"># x_intro = keras.layers.Dense(64, activation='relu')(x_intro)</span></span></code></pre>
-<p>This instantiation has two parameters: the number of neurons and the
-activation function.</p>
+<p>In Keras, a densely-connected layer is defined:</p>
+<pre><code>keras.layers.Dense(units, activation=None, **kwargs)</code></pre>
+<p>Units in this case refer to the number of neurons.</p>
 <p>The choice of how many neurons to specify is often determined through
 experimentation and can impact the performance of our CNN. Too few
 neurons may not capture complex patterns in the data but too many
 neurons may lead to overfitting.</p>
-<div id="challenge-number-of-parameters" class="callout challenge">
+<p>We will choose 64 for our dense layer and ‘relu’ activation.</p>
+<div id="challenge-create-a-dense-layer-for-our-network" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-number-of-parameters" class="callout-inner">
-<h3 class="callout-title">CHALLENGE Number of parameters<a class="anchor" aria-label="anchor" href="#challenge-number-of-parameters"></a>
+<div id="challenge-create-a-dense-layer-for-our-network" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a Dense layer for our
+network<a class="anchor" aria-label="anchor" href="#challenge-create-a-dense-layer-for-our-network"></a>
 </h3>
 <div class="callout-content">
-<p>Suppose we create a single Dense (fully connected) layer with 100
-hidden units that connects to the input pixels. How many parameters does
-this layer have?</p>
-<ul><li>A. 307200</li>
-<li>B. 307300</li>
-<li>C. 100</li>
-<li>D. 3072</li>
-</ul></div>
+<p>Hint 1: The input to each layer is the output of the previous
+layer.</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>    <span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span><span class="co">#hidden#, activation=#hidden#)(#hidden#)</span></span></code></pre>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
-<p>The correct answer is B.</p>
-<p>Each entry of the input dimensions is connected with 100 neurons of
-our hidden layer, and each of these neurons has a bias term associated
-to it. So we have 307300 parameters to learn.</p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>width, height <span class="op">=</span> (<span class="dv">32</span>, <span class="dv">32</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>n_hidden_neurons <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>n_bias <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>n_input_items <span class="op">=</span> width <span class="op">*</span> height <span class="op">*</span> <span class="dv">3</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>n_parameters <span class="op">=</span> (n_input_items <span class="op">*</span> n_hidden_neurons) <span class="op">+</span> n_bias</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="bu">print</span>(n_parameters)</span></code></pre>
-</div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span><span class="fl">307300</span></span></code></pre>
-</div>
-<p>We can also check this by building the layer in Keras:</p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>inputs_ex <span class="op">=</span> keras.Input(shape<span class="op">=</span>n_input_items)</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>outputs_ex <span class="op">=</span> keras.layers.Dense(<span class="dv">100</span>)(inputs_ex)</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>model_ex <span class="op">=</span> keras.models.Model(inputs<span class="op">=</span>inputs_ex, outputs<span class="op">=</span>outputs_ex)</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>model_ex.summary()</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Model: "model"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #
-=================================================================
-input_1 (InputLayer)         [(None, 3072)]            0
-_________________________________________________________________
-dense (Dense)                (None, 100)               307300
-=================================================================
-Total params: 307,300
-Trainable params: 307,300
-Non-trainable params: 0</code></pre>
+<pre class="output" tabindex="0"><code><span>    <span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
+<span>    <span class="va">x_intro</span> <span class="op">=</span> <span class="fu">keras.layers.Dense</span><span class="op">(</span><span class="fl">64</span>, activation<span class="op">=</span><span class="st">'relu'</span><span class="op">)</span><span class="op">(</span><span class="va">x_intro</span><span class="op">)</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -689,11 +732,47 @@ type of reshaping layer defined in Keras by the
 <code>tf.keras.layers.Flatten</code> class. It is necessary when
 transitioning from convolutional and pooling layers to fully connected
 layers.</p>
-<pre><code><span><span class="co"># # Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span><span class="co"># x_intro = keras.layers.Flatten()(x_intro)</span></span></code></pre>
+<pre><code>keras.layers.Flatten(data_format=None, **kwargs)</code></pre>
 <p>The <strong>Flatten</strong> layer converts the output of the
 previous layer into a single one-dimensional vector that can be used as
 input for a dense layer.</p>
+<div id="challenge-create-a-flatten-layer-for-our-network" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-a-flatten-layer-for-our-network" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a Flatten layer for our
+network<a class="anchor" aria-label="anchor" href="#challenge-create-a-flatten-layer-for-our-network"></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: The input to each layer is the output of the previous
+layer.</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>    <span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Flatten()(<span class="op">=</span><span class="co">#hidden#)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6">Show me the solution</h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span>    <span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span>    <span class="va">x_intro</span> <span class="op">=</span> <span class="fu">keras.layers.Flatten</span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="va">x_intro</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
@@ -722,59 +801,219 @@ a suitable format for the fully connected layers to process.</p>
 </div>
 </div>
 </div>
+<div id="is-one-layer-of-each-type-enough" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="is-one-layer-of-each-type-enough" class="callout-inner">
+<h3 class="callout-title">Is one layer of each type enough?<a class="anchor" aria-label="anchor" href="#is-one-layer-of-each-type-enough"></a>
+</h3>
+<div class="callout-content">
+<p>Not for complex data!</p>
+<p>A typical architecture for image classification is likely to include
+at least one convolutional layer, one pooling layer, one or more dense
+layers, and possibly a flatten layer.</p>
+<p>Convolutional and Pooling layers are often used together in multipe
+sets to capture a wider range of features and learn more complex
+representations of the input data. Using this technique, the network can
+learn a hierarchical representation of features, where simple features
+detected in early layers are combined to form more complex features in
+deeper layers.</p>
+<p>There isn’t a strict rule of thumb for the number of sets of
+convolutional and pooling layers to start with, however, there are some
+guidelines.</p>
+<p>We are starting with a relatively small and simple architecture
+because we are limited in time and computational resources. A simple CNN
+with one or two sets of convolutional and pooling layers can still
+achieve decent results for many tasks but for your network you will
+experiment with different architectures.</p>
+</div>
+</div>
+</div>
+<div id="challenge-using-the-four-layers-above-create-a-hidden-layer-architecture-that-contains" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-using-the-four-layers-above-create-a-hidden-layer-architecture-that-contains" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Using the four layers above, create
+a hidden layer architecture that contains:<a class="anchor" aria-label="anchor" href="#challenge-using-the-four-layers-above-create-a-hidden-layer-architecture-that-contains"></a>
+</h3>
+<div class="callout-content">
+<ul><li>2 sets of Conv2D and Pooling layers, with 16 and 32 filters
+respectively</li>
+<li>1 Flatten layer</li>
+<li>1 Dense layer with</li>
+</ul><p>Hint 1: The input to each layer is the output of the previous
+layer.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7">Show me the solution</h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>    # CNN Part 2
+    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
+    # Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
+    # Second Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    # Flatten layer to convert 2D feature maps into a 1D vector
+    x_intro = keras.layers.Flatten()(x_intro)
+    # Dense layer with 64 neurons and ReLU activation
+    x_intro = keras.layers.Dense(64, activation='relu')(x_intro)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section level4">
 <h4 id="cnn-part-3--output-layer">CNN Part 3. Output Layer<a class="anchor" aria-label="anchor" href="#cnn-part-3--output-layer"></a></h4>
 <p>Recall for the outputs we asked ourselves what we want to identify
 from the data. If we are performing a classification problem, then
-typically we have one output for each potential class. We finish with a
-Dense layer to connect the output cells of the convolutional layer to
-the outputs for our 10 classes.</p>
-<p>Note the use of <code>softmax</code> activation for this Dense layer
-as opposed to the <code>ReLU</code> activation used above. We use
-softmax for multiclass data because it helps the computer give each
+typically we have one output for each potential class.</p>
+<p>In traditional CNN architectures, a dense layer is typically used as
+the final layer for classification. This dense layer receives the
+flattened feature maps from the preceding convolutional and pooling
+layers and outputs the final class probabilities or regression
+values.</p>
+<p>For multiclass data, the <code>softmax</code> activation is used
+instead of <code>relu</code> because it helps the computer give each
 option (class) a likelihood score, and the scores add up to 100 per
 cent. This way, it’s easier to pick the one the computer thinks is most
 probable.</p>
-<pre><code><span><span class="co"># # Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span><span class="co"># outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro))</span></span></code></pre>
+<div id="challenge-create-an-output-layer-for-our-network-using-a-dense-layer" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-an-output-layer-for-our-network-using-a-dense-layer" class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create an Output layer for our
+network using a Dense layer<a class="anchor" aria-label="anchor" href="#challenge-create-an-output-layer-for-our-network-using-a-dense-layer"></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: The input to each layer is the output of the previous layer.
+Hint 2: The units (neurons) should be the same as number of classes as
+our dataset. Hint 3: Use softmax activation.</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>    <span class="co"># CNN Part 3</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    <span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>    outputs_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span><span class="co">#hidden#, activation=#hidden#)(#hidden#)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
+  <h4 class="accordion-header" id="headingSolution8">Show me the solution</h4>
+</button>
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span>    <span class="co"># CNN Part 3</span></span>
+<span>    <span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span>    <span class="va">outputs_intro</span> <span class="op">=</span> <span class="fu">keras.layers.Dense</span><span class="op">(</span><span class="fl">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span><span class="op">)</span><span class="op">(</span><span class="va">x_intro</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section><section id="putting-it-all-together"><h2 class="section-heading">Putting it all together<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a>
 </h2>
-<hr class="half-width"><div class="codewrapper sourceCode" id="cb15">
+<hr class="half-width"><div id="challenge-create-a-function-that-defines-a-cnn-using-the-input-hidden-and-output-layers-in-previous-challenges." class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-create-a-function-that-defines-a-cnn-using-the-input-hidden-and-output-layers-in-previous-challenges." class="callout-inner">
+<h3 class="callout-title">CHALLENGE Create a function that defines a CNN
+using the input, hidden, and output layers in previous challenges.<a class="anchor" aria-label="anchor" href="#challenge-create-a-function-that-defines-a-cnn-using-the-input-hidden-and-output-layers-in-previous-challenges."></a>
+</h3>
+<div class="callout-content">
+<p>Hint 1: The input to each layer is the output of the previous layer.
+Hint 2: The units (neurons) should be the same as number of classes as
+our dataset. Hint 3: Use softmax activation.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution9" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
+  <h4 class="accordion-header" id="headingSolution9">Show me the solution</h4>
+</button>
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span>    <span class="co"># CNN Part 3</span></span>
+<span>    <span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span>    <span class="va">outputs_intro</span> <span class="op">=</span> <span class="fu">keras.layers.Dense</span><span class="op">(</span><span class="fl">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span><span class="op">)</span><span class="op">(</span><span class="va">x_intro</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co">#### Define the Model</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co"># CNN Part 1</span></span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>inputs_intro <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co"># CNN Part 2</span></span>
-<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="co"># Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
-<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co"># Pooling layer with input window sized 2,2</span></span>
-<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="co"># Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="co"># Second Pooling layer with input window sized 2,2</span></span>
-<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
-<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
-<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a><span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
-<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a><span class="co"># CNN Part 3</span></span>
-<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a><span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
-<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a></span>
-<span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a><span class="co"># create the model</span></span>
-<span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a>model_intro <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs_intro, outputs<span class="op">=</span>outputs_intro, name<span class="op">=</span><span class="st">"cifar_model_intro"</span>)</span>
-<span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a></span>
-<span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a><span class="co"># view the model summary</span></span>
-<span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a>model_intro.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="kw">def</span> create_model_intro():</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>    </span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>    <span class="co"># CNN Part 1</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>    inputs_intro <span class="op">=</span> keras.Input(shape<span class="op">=</span>train_images.shape[<span class="dv">1</span>:])</span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>    </span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>    <span class="co"># CNN Part 2</span></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>    <span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>    <span class="co"># Pooling layer with input window sized 2,2</span></span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a>    <span class="co"># Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a>    <span class="co"># Second Pooling layer with input window sized 2,2</span></span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span>
+<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a>    <span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Flatten()(x_intro)</span>
+<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a>    <span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
+<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a>    x_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a>    </span>
+<span id="cb23-21"><a href="#cb23-21" tabindex="-1"></a>    <span class="co"># CNN Part 3</span></span>
+<span id="cb23-22"><a href="#cb23-22" tabindex="-1"></a>    <span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span id="cb23-23"><a href="#cb23-23" tabindex="-1"></a>    outputs_intro <span class="op">=</span> keras.layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
+<span id="cb23-24"><a href="#cb23-24" tabindex="-1"></a>    </span>
+<span id="cb23-25"><a href="#cb23-25" tabindex="-1"></a>    <span class="co"># create the model</span></span>
+<span id="cb23-26"><a href="#cb23-26" tabindex="-1"></a>    model_intro <span class="op">=</span> keras.Model(inputs <span class="op">=</span> inputs_intro, </span>
+<span id="cb23-27"><a href="#cb23-27" tabindex="-1"></a>                              outputs <span class="op">=</span> outputs_intro, </span>
+<span id="cb23-28"><a href="#cb23-28" tabindex="-1"></a>                              name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span>
+<span id="cb23-29"><a href="#cb23-29" tabindex="-1"></a>    </span>
+<span id="cb23-30"><a href="#cb23-30" tabindex="-1"></a>    <span class="cf">return</span> model_intro</span></code></pre>
+</div>
+<p>Use the function you created to create the introduction model and
+view a summary of it’s structure.</p>
+<div class="codewrapper sourceCode" id="cb24">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># create the introduction model</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>model_intro <span class="op">=</span> create_model_intro()</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="co"># view model summary</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>model_intro.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -932,8 +1171,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/03-build-cnn.html",
   "identifier": "https://.github.io/github.com/03-build-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-03-26",
-  "datePublished": "2024-04-09"
+  "dateModified": "2024-04-11",
+  "datePublished": "2024-04-11"
 }
 
   </script><script>

@@ -23,7 +23,7 @@ exercises: 0
 ## What is machine learning?
 Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural Network**, abbreviated as **CNN**, but there are many more.
 
-The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs whereas classifiers try to classify data into different categories, or assign a labelcond env.
+The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs whereas classifiers try to classify data into different categories, or assign a label.
 
 Many, but not all, machine learning systems “learn” by taking a series of input data and output data and using it to form a model. The maths behind the machine learning doesn’t care what the data is as long as it can represented numerically or categorised. Some examples might include:
 
@@ -78,11 +78,15 @@ Next identify what the inputs and outputs of the neural network will be. In our 
 ### Step 3. Prepare data
 Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (e.g., images) will have to be somehow converted to numerical data. Information on how this is done and the data structure will be explored in [Episode 02 Introduction to Image Data](episodes/02-image-data).
 
-For this lesson, we will use an existing image dataset known as [CIFAR-10] (Canadian Institute for Advanced Research). We will introduce the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalise the image pixel values to be between 0 and 1; and one-hot encode our image labels.
+For this lesson, we will use an existing image dataset known as [CIFAR-10] (Canadian Institute for Advanced Research). We will introduce the different data preparation tasks in more detail in the next episode but for this introduction, we will prepare the datset with these steps:
+
+- normalise the image pixel values to be between 0 and 1
+- one-hot encode the training image labels
+- divide the data into **training**, **validation**, and **test** subsets
 
 #### Preparing the code
 
-It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope this code can be used as a "starting point".  We will create an "initial program" for this introduction chapter that will be copied and used as a foundation for the rest of the episodes.
+It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope this code can be used as a "starting point".  We will create an "initial program" for this introduction chapter that will be used as a foundation for the rest of the episodes.
 
 ```python
 # load the required packages

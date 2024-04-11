@@ -25,7 +25,7 @@ exercises: 2
 
 ## Deep Learning Workflow
 
-Let's start over with the first steps in our workflow.
+Let's start over from the beginning of our workflow.
 
 ### Step 1. Formulate/ Outline the problem
 
@@ -41,7 +41,7 @@ We are performing a classification problem and we want to output one category fo
 
 Deep Learning requires extensive training using example data which tells the network what output it should produce for a given input. In this workshop, our network will be trained on a series of images and told what they contain. Once the network is trained, it should be able to take another image and correctly classify its contents.
 
-You can use pre-existing data or prepare your own.
+Depending on your situation, you will prepare your own custom data for training or use pre-existing data.
 
 :::::::::::::::::::::::::::::::::::::: challenge
 
@@ -57,30 +57,12 @@ In case you have too little data available to train a complex network from scrat
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
-#### Pre-existing image data
 
-In some cases you will be able to download an image dataset that is already labelled and can be used to classify a number of different object like the [CIFAR-10] dataset. Other examples include:
+## Custom image data
 
-- [MNIST database] - 60,000 training images of handwritten digits (0-9)
-- [ImageNet] - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an [annual software contest] where programs compete to achieve the highest accuracy. When choosing a pretrained network, the winners of these sorts of competitions are generally a good place to start.
-- [MS COCO] - >200,000 labelled images used for object detection, instance segmentation, keypoint analysis, and captioning
+In some cases, you will create your own set of labelled images. 
 
-Where labelled data exists, in most cases the data provider or other users will have created data-specific functions you can use to load the data. We already did this in the introduction:
-
-```python
-from tensorflow import keras
-
-# load the CIFAR-10 dataset included with the keras library
-(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
-```
-
-In this instance the data is likely already prepared for use in a CNN. However, it is always a good idea to first read any associated documentation to find out what steps the data providers took to prepare the images and second to take a closer at the images once loaded and query their attributes.
-
-
-
-#### Custom image data
-
-In other cases, you will create your own set of labelled images. 
+The steps to prepare your own custom image data include:
 
 **Custom data i. Data collection and Labeling:**
 
@@ -98,17 +80,19 @@ This step involves various tasks to enhance the quality and consistency of the d
 
 - **Resizing**: Resize images to a consistent resolution to ensure uniformity and reduce computational load.
 
+- **Augmentation**: Apply random transformations (e.g., rotations, flips, shifts) to create new variations of the same image. This helps improve the model's robustness and generalisation by exposing it to more diverse data.
+
 - **Normalisation**: Scale pixel values to a common range, often between 0 and 1 or -1 and 1. Normalisation helps the model converge faster during training.
 
 - **Label encoding** is a technique used to represent categorical data with numerical labels.
 
-- **Data Augmentation**: Apply random transformations (e.g., rotations, flips, shifts) to create new variations of the same image. This helps improve the model's robustness and generalisation by exposing it to more diverse data.
+- **Data Splitting**: Split the data set into separate parts to have one for training, one for evaluating the model's performance during training, and one reserved for the final evaluation of the model's performance.
 
-Before jumping into these specific preprocessing tasks related to images, it's important to understand that images on a computer are stored as numerical representations or simplified versions of the real world. Therefore it's essential to take some time to understand these numerical abstractions.
+Before jumping into these specific preprocessing tasks, it's important to understand that images on a computer are stored as numerical representations or simplified versions of the real world. Therefore it's essential to take some time to understand these numerical abstractions.
 
 ### Pixels
 
-It is important to realise that images are stored as rectangular arrays of hundreds, thousands, or millions of discrete "picture elements," otherwise known as pixels. Each pixel can be thought of as a single square point of coloured light.
+Images on a computer are stored as rectangular arrays of hundreds, thousands, or millions of discrete "picture elements," otherwise known as pixels. Each pixel can be thought of as a single square point of coloured light.
 
 For example, consider this image of a Jabiru, with a square area designated by a red box:
 
@@ -139,11 +123,13 @@ new_img_path = "../data/Jabiru_TGS.JPG"
 # read in the image with default arguments
 new_img_pil = load_img(new_img_path)
 
-# confirm the data class and size
-print('The new image is of class :', new_img_pil.__class__, 'and has the size', new_img_pil.size)
+# check the image class and size
+print('Image class :', new_img_pil.__class__)
+print('Image size', new_img_pil.size)
 ```
 ```output
-The new image is of class : <class 'PIL.JpegImagePlugin.JpegImageFile'> and has the size (552, 573)
+Image class : <class 'PIL.JpegImagePlugin.JpegImageFile'>
+Image size (552, 573)
 ```
 
 ### Image Dimensions - Resizing
@@ -157,15 +143,19 @@ To reduce the computational load and ensure all of our images have a uniform siz
 There are a couple of ways to do this in python but one way is to specify the size you want using an argument to the `load_img()` function from `keras.utils`.
 
 ```python
-# read in the new image and specify the target size to be the same as our training images
+# read in the image and specify the target size
 new_img_pil_small = load_img(new_img_path, target_size=(32,32))
 
-# confirm the data class and shape
-print('The new image is still of class:', new_img_pil_small.__class__, 'but now has the same size', new_img_pil_small.size, 'as our training data')
+# confirm the image class and size
+print('Resized image class :', new_img_pil_small.__class__)
+print('Resized image size', new_img_pil_small.size) 
 ```
 ```output
-The new image is still of class: <class 'PIL.Image.Image'> but now has the same size (32, 32) as our training data.
+Resized image class : <class 'PIL.Image.Image'>
+Resized image size (32, 32)
 ```
+
+Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, Keras has a solution: [tf.keras.utils.image_dataset_from_directory]
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
@@ -187,6 +177,23 @@ Two of the most commonly used libraries for image representation and manipulatio
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+### Image augmentation
+
+There are several ways to augment your data to increase the diversity of the training data and improve model robustness.
+
+- Geometric Transformations
+  - rotation, scaling, zooming, cropping
+- Flipping or Mirroring
+  - some classes, like horse, have a different shape when facing left or right and you want your model to recognize both 
+- Colour properties
+  - brightness, contrast, or hue
+  - these changes simulate variations in lighting conditions
+ 
+We will not perform image augmentation in this lesson, but it is important that you are aware of this type of data preparation because it can make a big difference in your model's ability to predict outside of your training data.
+
+Information about these operations are included in the Keras document for [Image augmentation layers].
+
+
 ### Normalisation
 
 Image RGB values are between 0 and 255. As input for neural networks, it is better to have small input values. The process of converting the RGB values to be between 0 and 1 is called **normalization**.
@@ -196,34 +203,48 @@ Before we can normalize our image values we must convert the image to an numpy a
 We introduced how to do this in [Episode 01 Introduction to Deep Learning](episodes/01-introduction.md) but what you may not have noticed is that the `keras.datasets.cifar10.load_data` function did the conversion for us whereas now we will do it ourselves.
 
 ```python
-# convert the Image into an array for normalization
+# first convert the image into an array for normalization
 new_img_arr = img_to_array(new_img_pil_small)
 
-# confirm the data class and shape
-print('The new image is now of class :', new_img_arr.__class__, 'and has the shape', new_img_arr.shape)
+# confirm the image class and shape
+print('Converted image class  :', new_img_arr.__class__)
+print('Converted image shape', new_img_arr.shape)
 ```
 ```output
-The new image is now of class : <class 'numpy.ndarray'> and has the shape (32, 32, 3)
+Converted image class  : <class 'numpy.ndarray'>
+Converted image shape (32, 32, 3)
 ```
 
-Now we can normalize the values. Let us also investigate the image values before and after we normalize them.
+Now that the image is an array, we can normalize the values. Let us also investigate the image values before and after we normalize them.
 
 ```python
-# extract the min, max, and mean pixel values
-print('The min, max, and mean pixel values are', new_img_arr.min(), ',', new_img_arr.max(), ', and', new_img_arr.mean().round(), 'respectively.')
+# inspect pixel values before and after normalisation
+
+# extract the min, max, and mean pixel values BEFORE
+print('BEFORE normalization')
+print('Min pixel value ', new_img_arr.min()) 
+print('Max pixel value ', new_img_arr.max())
+print('Mean pixel value ', new_img_arr.mean().round())
 
 # normalize the RGB values to be between 0 and 1
 new_img_arr_norm = new_img_arr / 255.0
 
 # extract the min, max, and mean pixel values AFTER
-print('After normalization, the min, max, and mean pixel values are', new_img_arr_norm.min(), ',', new_img_arr_norm.max(), ', and', new_img_arr_norm.mean().round(), 'respectively.')
+print('AFTER normalization') 
+print('Min pixel value ', new_img_arr_norm.min()) 
+print('Max pixel value ', new_img_arr_norm.max())
+print('Mean pixel value ', new_img_arr_norm.mean().round())
 ```
 ```output
-The min, max, and mean pixel values are 0.0 , 255.0 , and 87.0 respectively.
-After normalization, the min, max, and mean pixel values are 0.0 , 1.0 , and 0.0 respectively.
+BEFORE normalization
+Min pixel value  0.0
+Max pixel value  255.0
+Mean pixel value  87.0
+AFTER normalization
+Min pixel value  0.0
+Max pixel value  1.0
+Mean pixel value  0.0
 ```
-
-Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, Keras has a solution: [tf.keras.utils.image_dataset_from_directory]
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
@@ -249,6 +270,7 @@ For example, if you have an RGB image with pixel values (100, 150, 200), after n
 
 Remember that normalization is not always mandatory, and there could be cases where other scaling techniques might be more suitable based on the specific problem and data distribution. However, for most image-related tasks in machine learning, normalizing RGB values to [0, 1] is a good starting point.
 :::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ### One-hot encoding
 
@@ -285,7 +307,103 @@ The Keras function for one_hot encoding is called [to_categorical]:
 - `num_classes` is the total number of classes. If None, this would be inferred as max(y) + 1.
 - `dtype` is the data type expected by the input. Default: 'float32'
 
-We performed this operation in **Step 3. Prepare data** of the Introduction but let us inspect the labels before and after one-hot encoding.
+
+### Data Splitting
+
+The typical practice in machine learning is to split your data into two subsets: a **training** set and a **test** set. This initial split separates the data you will use to train your model from the data you will use to evaluate its performance.
+
+After this initial split, you can choose to further split the training set into a training set and a **validation set**. This is often done when you are fine-tuning hyperparameters, selecting the best model from a set of candidate models, or preventing overfitting.
+
+To split a dataset into training and test sets there is a very convenient function from sklearn called [train_test_split]: 
+
+`sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)`
+
+- The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels).
+- Next is the named parameter `test_size`. This is the fraction of the dataset used for testing and in this case `0.2` means 20 per cent of the data will be used for testing.
+- `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
+- `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
+- `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
+
+
+## Pre-existing image data
+
+In other cases you will be able to download an image dataset that is already labelled and can be used to classify a number of different object like the [CIFAR-10] dataset. Other examples include:
+
+- [MNIST database] - 60,000 training images of handwritten digits (0-9)
+- [ImageNet] - 14 million hand-annotated images indicating objects from more than 20,000 categories. ImageNet sponsors an [annual software contest] where programs compete to achieve the highest accuracy. When choosing a pretrained network, the winners of these sorts of competitions are generally a good place to start.
+- [MS COCO] - >200,000 labelled images used for object detection, instance segmentation, keypoint analysis, and captioning
+
+Where labelled data exists, in most cases the data provider or other users will have created data-specific functions you can use to load the data. We already did this in the introduction:
+
+```python
+from tensorflow import keras
+
+# load the CIFAR-10 dataset included with the keras library
+(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+
+
+# create a list of classnames associated with each CIFAR-10 label
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+```
+
+In this instance the data is likely already prepared for use in a CNN. However, it is always a good idea to first read any associated documentation to find out what steps the data providers took to prepare the images and second to take a closer at the images once loaded and query their attributes.
+
+In our case, we still want prepare the datset with these steps:
+
+- normalise the image pixel values to be between 0 and 1
+- one-hot encode the training image labels
+- divide the data into **training**, **validation**, and **test** subsets 
+
+We performed these operations in **Step 3. Prepare data** of the Introduction but let us create the function to prepare the dataset again knowing what we know now.
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## CHALLENGE Create a function to prepare the dataset
+
+```python
+# create a function to prepare the dataset
+
+def prepare_dataset(#blank#, #blank#):
+    
+    # normalize the RGB values to be between 0 and 1
+    #blank#
+    #blank#
+    
+    # one hot encode the training labels
+    #blank#
+    
+    # split the training data into training and validation set
+    #blank#
+    #blank#
+
+    return #blank#
+```
+
+:::::::::::::::::::::::: solution 
+
+```python
+
+def prepare_dataset(train_images, train_labels):
+    
+    # normalize the RGB values to be between 0 and 1
+    train_images = train_images / 255
+    test_images = train_labels / 255
+    
+    # one hot encode the training labels
+    train_labels = keras.utils.to_categorical(train_labels, len(class_names))
+    
+    # split the training data into training and validation set
+    train_images, val_images, train_labels, val_labels = train_test_split(
+    train_images, train_labels, test_size = 0.2, random_state=42)
+
+    return train_images, val_images, train_labels, val_labels
+```
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+Inspect the labels before and after one-hot encoding.
 
 ```python
 print()
@@ -328,45 +446,6 @@ To view the entire array, go the Variable Explorer in the upper right hand corne
 ![](fig/02_spyder_onehot_train_labels_inFULL.png){alt='Screenshot of Spyder window displaying the entire train_labels array.'}
 ::::::::::::::::::::::::::::::::::::::::::::::
 
-### Image augmentation
-
-There are several ways to augment your data to increase the diversity of the training data and improve model robustness.
-
-- Geometric Transformations
-  - rotation, scaling, zooming, cropping
-- Flipping or Mirroring
-  - some classes, like horse, have a different shape when facing left or right and you want your model to recognize both 
-- Colour properties
-  - brightness, contrast, or hue
-  - these changes simulate variations in lighting conditions
- 
-We will not discuss image augmentation in this lesson, but it is important that you are aware of this type of data preparation because it can make a big difference in your model's ability to predict outside of your training data.
-
-Information about these operations are included in the Keras document for [Image augmentation layers]. 
-
-### Data Splitting
-
-The typical practice in machine learning is to split your data into two subsets: a **training** set and a **test** set. This initial split separates the data you will use to train your model from the data you will use to evaluate its performance.
-
-After this initial split, you can choose to further split the training set into a training set and a **validation set**. This is often done when you are fine-tuning hyperparameters, selecting the best model from a set of candidate models, or preventing overfitting.
-
-In the previous episode, we used the 'cifar10.load_data()' method included with the Keras installation to return a dataset split into train and test sets. Now we want to split the training data into training and validation sets.
-
-To split a dataset into training and test sets there is a very convenient function from sklearn called [train_test_split]: 
-
-`sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)`
-
-- The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels).
-- Next is the named parameter `test_size`. This is the fraction of the dataset used for testing and in this case `0.2` means 20 per cent of the data will be used for testing.
-- `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
-- `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
-- `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
-
-```python
-# split the training data into training and validation sets
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size = 0.2, 
-                random_state = 42)
-```
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -383,27 +462,25 @@ Hint: Use `np.sum()` on the '*_labels' to find out if the classes are well balan
 A. Training Set
 
 ```python
-print('The training set has', train_images.shape[0], 'samples.\n')
-print('The number of images in each class:\n', train_labels.sum(axis=0))
+print('Number of training set images', train_images.shape[0])
+print('Number of images in each class:\n', train_labels.sum(axis=0))
 ```
 
 ```output
-The training set has 40000 samples.
-
-The number of images in each class:
+Number of training set images: 40000
+Number of images in each class:
  [4027. 4021. 3970. 3977. 4067. 3985. 4004. 4006. 3983. 3960.]
 ```
 B. Validation Set (we can use the same code as the training set)
 
 ```python
-print('The validation set has', val_images.shape[0], 'samples.\n')
-print('The number of images in each class:\n', val_labels.sum(axis=0))
+print('Number of validation set images', val_images.shape[0])
+print('Nmber of images in each class:\n', val_labels.sum(axis=0))
 ```
 
 ```output
-The validation set has 10000 samples.
-
-The number of images in each class:
+Number of validation set images: 10000
+Nmber of images in each class:
  [ 973.  979. 1030. 1023.  933. 1015.  996.  994. 1017. 1040.]
 ```
 :::::::::::::::::::::::::::::::::
@@ -458,7 +535,7 @@ It's important to note that the exact split ratios (e.g., 80-10-10 or 70-15-15) 
 
 ## Data preprocessing completed! 
 
-Our dataset is preprocessed and split into three sets which means we are ready to learn how to build a CNN like we used in the introduction.
+We now have a function we can use throughout the lesson to preprocess our data which means we are ready to learn how to build a CNN like we used in the introduction.
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 

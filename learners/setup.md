@@ -9,7 +9,7 @@ It uses the Anaconda package manager to install the required python packages, in
 These instructions are for setting up tensorflow in a **CPU** only environment.
 
 ::::::::::::::::::::::::::::::::::::::::: callout
-Please note you might want to consider installing the GPU enabled version of TensorFlow. The GPU enabled version can run significantly quicker (especially when training models) than the CPU only version.  If you have a decent dedicated GPU on your computer, it is suggested to follow the instructions located in the [Setup - GPU](episodes/setup-gpu.md) section instead.
+Please note this lesson is designed to work with CPU only environments. This was an intentional decision to avoid the difficulties in setting up GPU environments. If you are an advanced user and choose to set up a GPU environment, you are on your own. We will not be able to troubleshoot any issues with GPU set up on the day of the workshop.
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Software Setup

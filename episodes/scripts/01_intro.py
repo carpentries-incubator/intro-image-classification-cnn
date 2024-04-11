@@ -10,9 +10,9 @@ Episode 01 Introduction to Deep Learning
 
 # load the required packages
 
-from tensorflow import keras # for nueral network
+from tensorflow import keras # data and neural network
 from sklearn.model_selection import train_test_split # data splitting
-import matplotlib.pyplot as plt # for plotting
+import matplotlib.pyplot as plt # plotting
 
 #%%
 
@@ -35,11 +35,11 @@ def prepare_dataset(train_images, train_labels):
 
 #%%
 
-# create a list of class names associated with each CIFAR-10 label
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
-
 # load the data
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+
+# create a list of class names associated with each CIFAR-10 label
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
 ### Step 3. Prepare data
 

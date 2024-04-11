@@ -23,7 +23,7 @@ exercises: 0
 ## What is machine learning?
 Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural Network**, abbreviated as **CNN**, but there are many more.
 
-The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs whereas classifiers try to classify data into different categories, or assign a labelcond env.
+The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs whereas classifiers try to classify data into different categories, or assign a label.
 
 Many, but not all, machine learning systems “learn” by taking a series of input data and output data and using it to form a model. The maths behind the machine learning doesn’t care what the data is as long as it can represented numerically or categorised. Some examples might include:
 
@@ -78,11 +78,15 @@ Next identify what the inputs and outputs of the neural network will be. In our 
 ### Step 3. Prepare data
 Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (e.g., images) will have to be somehow converted to numerical data. Information on how this is done and the data structure will be explored in [Episode 02 Introduction to Image Data](episodes/02-image-data).
 
-For this lesson, we will use an existing image dataset known as [CIFAR-10] (Canadian Institute for Advanced Research). We will introduce the different data preparation tasks in more detail in the next episode but for this introduction, we want to divide the data into **training**, **validation**, and **test** subsets; normalise the image pixel values to be between 0 and 1; and one-hot encode our image labels.
+For this lesson, we will use an existing image dataset known as [CIFAR-10] (Canadian Institute for Advanced Research). We will introduce the different data preparation tasks in more detail in the next episode but for this introduction, we will prepare the datset with these steps:
+
+- normalise the image pixel values to be between 0 and 1
+- one-hot encode the training image labels
+- divide the data into **training**, **validation**, and **test** subsets
 
 #### Preparing the code
 
-It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope this code can be used as a "starting point".  We will create an "initial program" for this introduction chapter that will be copied and used as a foundation for the rest of the episodes.
+It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope this code can be used as a "starting point".  We will create an "initial program" for this introduction chapter that will be used as a foundation for the rest of the episodes.
 
 ```python
 # load the required packages
@@ -90,22 +94,32 @@ from tensorflow import keras # for neural networks
 from sklearn.model_selection import train_test_split # for splitting data into sets
 import matplotlib.pyplot as plt # for plotting
 
-# load the CIFAR-10 dataset included with keras
+# create a function to prepare the dataset
+def prepare_dataset(train_images, train_labels):
+    
+    # normalize the RGB values to be between 0 and 1
+    train_images = train_images / 255
+    test_images = train_labels / 255
+    
+    # one hot encode the training labels
+    train_labels = keras.utils.to_categorical(train_labels, len(class_names))
+    
+    # split the training data into training and validation set
+    train_images, val_images, train_labels, val_labels = train_test_split(
+    train_images, train_labels, test_size = 0.2, random_state=42)
+
+    return train_images, val_images, train_labels, val_labels
+
+# load the data
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
 
-# normalise the RGB values to be between 0 and 1
-train_images = train_images / 255.0
-test_images = test_images / 255.0
-
-# create a list of class names
+# create a list of class names associated with each CIFAR-10 label
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-# one-hot encode labels
-train_labels = keras.utils.to_categorical(train_labels, len(class_names))
+### Step 3. Prepare data
 
-# split the training data into training and validation sets
-# NOTE the function is train_test_split() but we are using it to split train into train and validation
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+# prepare the dataset for training
+train_images, val_images, train_labels, val_labels = prepare_dataset(train_images, train_labels)
 
 ```
 
@@ -169,34 +183,41 @@ Here we present an initial model to be explained in detail later on:
 #### Define the Model
 
 ```python
-# CNN Part 1
-# Input layer of 32x32 images with three channels (RGB)
-inputs_intro = keras.Input(shape=train_images.shape[1:])
+def create_model_intro():
+    
+    # CNN Part 1
+    # Input layer of 32x32 images with three channels (RGB)
+    inputs_intro = keras.Input(shape=train_images.shape[1:])
+    
+    # CNN Part 2
+    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
+    # Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
+    x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
+    # Second Pooling layer with input window sized 2,2
+    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    # Flatten layer to convert 2D feature maps into a 1D vector
+    x_intro = keras.layers.Flatten()(x_intro)
+    # Dense layer with 64 neurons and ReLU activation
+    x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
+    
+    # CNN Part 3
+    # Output layer with 10 units (one for each class) and softmax activation
+    outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
+    
+    # create the model
+    model_intro = keras.Model(inputs = inputs_intro, 
+                              outputs = outputs_intro, 
+                              name = "cifar_model_intro")
+    
+    return model_intro
 
-# CNN Part 2
-# Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
-# Pooling layer with input window sized 2,2
-x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
-# Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
-# Second Pooling layer with input window sized 2,2
-x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
-# Flatten layer to convert 2D feature maps into a 1D vector
-x_intro = keras.layers.Flatten()(x_intro)
-# Dense layer with 64 neurons and ReLU activation
-x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
+# create the introduction model
+model_intro = create_model_intro()
 
-# CNN Part 3
-# Output layer with 10 units (one for each class) and softmax activation
-outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
-
-# create the model
-model_intro = keras.Model(inputs = inputs_intro, 
-                          outputs = outputs_intro, 
-                          name = "cifar_model_intro")
-
-# view the model summary
+# view model summary
 model_intro.summary()
 ```
 
@@ -253,16 +274,21 @@ This output printed during the fit phase, i.e. training the model against known 
 After training the network we can use it to perform predictions. This is how  you would use the network after you have fully trained it to a satisfactory performance. The predictions performed here on a special hold-out set is used in the next step to measure the performance of the network.
 
 ```python
-# predict the class name of the first test image
+# make prediction for the first test image
 result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))
 
-print('The predicted probability of each class is: ', result_intro.round(4))
-print('The class with the highest predicted probability is: ', class_names[result_intro.argmax()])
+# extract class for prediction with highest probability
+class_names[result_intro.argmax()]
 
-# plot the image with its true label
+# plot the first test image with its true label
+
+plt.figure() # create a plot
+
+# display image
 plt.imshow(test_images[0])
-plt.title('True class:' + class_names[test_labels[0])
-plt.show()
+plt.title('True class:' + class_names[result_intro.argmax()])
+
+plt.show() # view plot
 ```
 
 ```output
@@ -302,7 +328,7 @@ Now that we have a trained network that performs at a level we are happy with we
 To share the model we must save it first:
 
 ```python
-# save the model
+# save  model
 model_intro.save('fit_outputs/model_intro.keras')
 ```
 

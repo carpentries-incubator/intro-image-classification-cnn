@@ -70,7 +70,7 @@ The output from each layer becomes the input to the next layer.
 
 The Input in Keras gets special treatment when images are used. Keras automatically calculates the number of inputs and outputs a specific layer needs and therefore how many edges need to be created. This means we must let Keras know how big our input is going to be. We do this by instantiating a `keras.Input` class and pass it a tuple to indicate the dimensionality of the input data.
 
-The input layer is created with the `tf.keras.Input` function and its first parameter is the expected shape of the input:
+The input layer is created with the `keras.Input` function and its first parameter is the expected shape of the input:
 
 ```
 keras.Input(shape=None, batch_size=None, dtype=None, sparse=None, batch_shape=None, name=None, tensor=None)
@@ -300,7 +300,7 @@ Hint 1: The input to each layer is the output of the previous layer.
 
 ##### **Reshaping Layers: Flatten**
 
-The next type of hidden layer used in our introductory model is a type of reshaping layer defined in Keras by the `tf.keras.layers.Flatten` class. It is necessary when transitioning from convolutional and pooling layers to fully connected layers.
+The next type of hidden layer used in our introductory model is a type of reshaping layer defined in Keras by the `keras.layers.Flatten` class. It is necessary when transitioning from convolutional and pooling layers to fully connected layers.
 
 ```
 keras.layers.Flatten(data_format=None, **kwargs)

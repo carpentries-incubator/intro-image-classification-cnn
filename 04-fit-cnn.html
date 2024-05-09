@@ -273,7 +273,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Compile and Train (Fit) a Convolutional Neural Network</h1>
-        <p>Last updated on 2024-02-25 |
+        <p>Last updated on 2024-05-09 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -345,7 +345,7 @@ because we want to compute the crossentropy loss between our one-hot
 encoded class labels and the model predictions. This loss function is
 appropriate to use when the data has two or more label classes.</p>
 <p>The loss function is defined by the
-<code>tf.keras.losses.CategoricalCrossentropy</code> class.</p>
+<code>keras.losses.CategoricalCrossentropy</code> class.</p>
 <p>More information about loss functions can be found in the Keras <a href="https://keras.io/api/losses/" class="external-link">loss documentation</a>.</p>
 </div>
 <div class="section level4">
@@ -411,7 +411,7 @@ adaptive learning rate mechanism to address this problem.</li>
   <h3 class="accordion-header" id="headingSpoiler1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Learning Rate</h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p><strong>Learning rate</strong> is a hyperparameter that determines
@@ -519,7 +519,7 @@ method</a>.</p>
   <h3 class="accordion-header" id="headingSpoiler2">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Batch size</h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>The choice of batch size can have various implications, and there are
@@ -607,7 +607,7 @@ test set?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>Key things to look for for:</li>
 </ol><ul><li>Loss
@@ -661,7 +661,7 @@ training data and introduce variability.</li>
   <h3 class="accordion-header" id="headingSpoiler3">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: What is underfitting?</h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>Underfitting occurs when the model is too simple or lacks the
 capacity to capture the underlying patterns and relationships present in
@@ -697,7 +697,7 @@ are termed <strong>regularization techniques</strong>.</p>
   <h3 class="accordion-header" id="headingSpoiler4">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Regularization techniques for CNNs</h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p><strong>Regularization</strong> methods introduce constraints or
@@ -785,10 +785,9 @@ training data to learn its weights.</p>
 </div>
 </div>
 </div>
-<p>Dropout layers are defined by the
-<code>tf.keras.layers.Dropout</code> class and have the following
-definition:</p>
-<pre><code>tf.keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)</code></pre>
+<p>Dropout layers are defined by the <code>keras.layers.Dropout</code>
+class and have the following definition:</p>
+<pre><code>keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)</code></pre>
 <p>The <code>rate</code> parameter is a float between 0 and 1 and
 represents the fraction of the input units to drop.</p>
 <p>We want to add one Dropout Layer to our network that randomly drops
@@ -892,7 +891,7 @@ by adding a dropout layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1029,8 +1028,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/04-fit-cnn.html",
   "identifier": "https://.github.io/github.com/04-fit-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-02-25",
-  "datePublished": "2024-05-07"
+  "dateModified": "2024-05-09",
+  "datePublished": "2024-05-09"
 }
 
   </script><script>

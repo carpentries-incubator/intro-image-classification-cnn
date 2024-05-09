@@ -91,7 +91,9 @@ print(train_images.shape)
 ## CHALLENGE Create the input layer for our network
 
 Hint 1: Specify shape argument only and use defaults for the rest.
+
 Hint 2: The shape of our input dataset includes the total number of images. We want to take a slice of the shape for a single individual image to use an input.
+
 
 ```python
     # CNN Part 1
@@ -154,6 +156,7 @@ We want to create a Conv2D layer with 16 filters, a 3x3 kernel size, and the 're
 ## CHALLENGE Create a 2D convolutional layer for our network
 
 Hint 1: The input to each layer is the output of the previous layer.
+
 
 ```python
     # CNN Part 2
@@ -403,8 +406,11 @@ For multiclass data, the `softmax` activation is used instead of `relu` because 
 ## CHALLENGE Create an Output layer for our network using a Dense layer
 
 Hint 1: The input to each layer is the output of the previous layer.
+
 Hint 2: The units (neurons) should be the same as number of classes as our dataset.
+
 Hint 3: Use softmax activation.
+
 
 ```python
     # CNN Part 3
@@ -431,8 +437,11 @@ Hint 3: Use softmax activation.
 ## CHALLENGE Create a function that defines a CNN using the input, hidden, and output layers in previous challenges.
 
 Hint 1: The input to each layer is the output of the previous layer.
+
 Hint 2: The units (neurons) should be the same as number of classes as our dataset.
+
 Hint 3: Use softmax activation.
+
 
 :::::::::::::::::::::::: solution 
 

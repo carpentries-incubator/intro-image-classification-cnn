@@ -48,7 +48,7 @@ The **loss function** tells the training algorithm how wrong, or how 'far away' 
 
 For classification purposes, there are a number of probabilistic losses to choose from. We chose `CategoricalCrossentropy` because we want to compute the crossentropy loss between our one-hot encoded class labels and the model predictions. This loss function is appropriate to use when the data has two or more label classes.
 
-The loss function is defined by the `tf.keras.losses.CategoricalCrossentropy` class.
+The loss function is defined by the `keras.losses.CategoricalCrossentropy` class.
 
 More information about loss functions can be found in the Keras [loss documentation].
 
@@ -318,10 +318,10 @@ Dropout layers will only randomly silence nodes during training! During a predic
 
 ::::::::::::::::::::::::::::::::::::::::::::::
 
-Dropout layers are defined by the `tf.keras.layers.Dropout` class and have the following definition:
+Dropout layers are defined by the `keras.layers.Dropout` class and have the following definition:
 
 ```
-tf.keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)
+keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)
 ```
 
 The `rate` parameter is a float between 0 and 1 and represents the fraction of the input units to drop.

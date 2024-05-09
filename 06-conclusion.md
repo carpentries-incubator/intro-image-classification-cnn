@@ -35,7 +35,7 @@ Use `model.save` to save a model:
 model_best.save('fit_outputs/model_best.keras')
 ```
 
-The `save` method is actually an alias for `tf.keras.saving.save_model()` where the default `save_format=NONE`.
+The `save` method is actually an alias for `keras.saving.save_model()` where the default `save_format=NONE`.
 
 This saved model can be loaded again by using the `load_model` method:
 

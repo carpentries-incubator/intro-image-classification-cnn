@@ -191,21 +191,21 @@ def create_model_intro():
     
     # CNN Part 2
     # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
-    # Pooling layer with input window sized 2,2
-    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    x_intro = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_intro)
+    # Pooling layer with input window sized 2x2
+    x_intro = keras.layers.MaxPooling2D(pool_size=(2,2))(x_intro)
     # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
-    # Second Pooling layer with input window sized 2,2
-    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    x_intro = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu')(x_intro)
+    # Second Pooling layer with input window sized 2x2
+    x_intro = keras.layers.MaxPooling2D(pool_size=(2,2))(x_intro)
     # Flatten layer to convert 2D feature maps into a 1D vector
     x_intro = keras.layers.Flatten()(x_intro)
     # Dense layer with 64 neurons and ReLU activation
-    x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
+    x_intro = keras.layers.Dense(units=64, activation='relu')(x_intro)
     
     # CNN Part 3
     # Output layer with 10 units (one for each class) and softmax activation
-    outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
+    outputs_intro = keras.layers.Dense(units=10, activation='softmax')(x_intro)
     
     # create the model
     model_intro = keras.Model(inputs = inputs_intro, 

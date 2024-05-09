@@ -155,7 +155,7 @@ Resized image class : <class 'PIL.Image.Image'>
 Resized image size (32, 32)
 ```
 
-Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, Keras has a solution: [tf.keras.utils.image_dataset_from_directory]
+Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, Keras has a solution: [keras.utils.image_dataset_from_directory]
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
@@ -301,7 +301,7 @@ Table 2. After One-Hot Encoding.
 
 The Keras function for one_hot encoding is called [to_categorical]:
 
-`tf.keras.utils.to_categorical(y, num_classes=None, dtype="float32")`
+`keras.utils.to_categorical(y, num_classes=None, dtype="float32")`
 
 - `y` is an array of class values to be converted into a matrix (integers from 0 to num_classes - 1).
 - `num_classes` is the total number of classes. If None, this would be inferred as max(y) + 1.
@@ -560,7 +560,7 @@ We now have a function we can use throughout the lesson to preprocess our data w
 [COCO Annotator]: https://github.com/jsbroks/coco-annotator
 [PIL Image Module]: https://pillow.readthedocs.io/en/latest/reference/Image.html
 [image preprocessing]: https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image
-[tf.keras.utils.image_dataset_from_directory]:  https://keras.io/api/data_loading/image/
+[keras.utils.image_dataset_from_directory]:  https://keras.io/api/data_loading/image/
 [to_categorical]: https://keras.io/api/utils/python_utils/#to_categorical-function
 [Image augmentation layers]: https://keras.io/api/layers/preprocessing_layers/image_augmentation/
 [train_test_split]: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html

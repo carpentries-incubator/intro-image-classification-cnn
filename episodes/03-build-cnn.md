@@ -466,7 +466,7 @@ def create_model_intro():
                               name = #hidden#)
     
     return model_intro
-``
+```
 
 :::::::::::::::::::::::: solution 
 
@@ -506,11 +506,10 @@ def create_model_intro():
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-```python
+We now have a function that defines the introduction model. 
 
-```
+We can use this function to create the introduction model and and view a summary of its structure using the `Model.summary` method.
 
-Use the function you created to create the introduction model and view a summary of it's structure.
 
 ```python
 # create the introduction model
@@ -549,19 +548,53 @@ Non-trainable params: 0 (0.00 Byte)
 _________________________________________________________________
 ```
 
+::::::::::::::::::::::::::::::::::::::::: spoiler
+
+#### Explain the summary output
+
+The Model.summary() output has three columns:
+
+1. Layer (type) lists the name and type of each layer. 
+
+- Remember the 'name' argument we used to name our model? This argument can also be supplied to each layer. If a name is not provided, Keras will assign a unique identifier starting from 1 and incrementing for each new layer of the same type within the model.
+
+2. Output Shape describes the shape of the output produced by each layer. The shape is represented as (batch_size, height, width, channels).
+
+- Batch size is the number of samples processed in each batch during training or inference. This dimension is often denoted as None in the summary because the batch size can vary and is typically specified during model training or inference
+
+- Height, Width, Channels: The remaining dimensions represent the spatial dimensions and the number of channels in the output tensor. For convolutional layers and pooling layers, the height and width dimensions typically decrease as the network progresses through the layers due to the spatial reduction caused by convolution and pooling operations. The number of channels may change depending on the number of filters in the convolutional layer or the design of the network architecture.
+
+- For example, in a convolutional layer, the output shape (None, 30, 30, 16) means:
+
+    - None: The batch size can vary.
+    - 30: The height and width of the output feature maps are both 30 pixels.
+    - 16: There are 16 channels in the output feature maps, indicating that the layer has 16 filters.
+
+3. Param # displays the number of parameters (weights and biases) associated with each layer.
+
+- The total number of parameters in a layer is calculated as follows: 
+    - Total parameters = (number of input units) × (number of output units) + (number of output units)
+
+- Disclaimer: We explicitly decided to focus on building a foundational understanding of convolutional neural networks for this course without delving into the detailed calculation of parameters. However, as your progress on your deep learning journey it will become increasingly important for you to understand parameter calculation in order to optimize model performance, troubleshoot issues, and design efficient CNN architectures.
+
+At the bottom of the Model.summary() you will find the number of Total parameters and their size; the number of Trainable parameters and their size; and the number of Non-trainable parameters and their size. In most cases, the total number of parameters will match the number of trainable parameters. In other cases, such as models using normalization layers, there will be some parameters that are fixed during training and not trainable.
+
+:::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::: callout
 
 ## How to choose an architecture?
 
-Even for this neural network, we had to make a choice on the number of hidden neurons. Other choices to be made are the number of layers and type of layers. You might wonder how you should make these architectural choices. Unfortunately, there are no clear rules to follow here, and it often boils down to a lot of trial and error. However, it is recommended to explore what others have done with similar datasets and problems. Another best practice is to start with a relatively simple architecture. Once running start to add layers and tweak the network to test if performance increases. 
+For this neural network, we had to make many choices, including the number of hidden neurons. Other choices to be made are the number of layers and type of layers. You might wonder how you should make these architectural choices. Unfortunately, there are no clear rules to follow here, and it often boils down to a lot of trial and error. It is recommended to explore what others have done with similar datasets and problems. Another best practice is to start with a relatively simple architecture and then add layers and tweak the network to test if performance increases. 
 
 ::::::::::::::::::::::::::::::::::::::::::::::
 
 ## We have a model now what?
 
-This CNN should be able to run with the CIFAR-10 dataset and provide reasonable results for basic classification tasks. However, do keep in mind this model is relatively simple, and its performance may not be as high as more complex architectures. The reason it's called deep learning is because in most cases, the more layers we have, i.e. the deeper and more sophisticated CNN architecture we use, the better the performance.
+This CNN should be able to run with the CIFAR-10 dataset and provide reasonable results for basic classification tasks. However, do keep in mind this model is relatively simple, and its performance may not be as high as more complex architectures. The reason it's called deep learning is because, in most cases, the more layers we have, i.e. the deeper and more sophisticated CNN architecture we use, the better the performance.
 
-How can we tell? We can inspect a couple metrics produced during the training process to detect whether our model is underfitting or overfitting. To do that, we continue with the next steps in our Deep Learning workflow, **Step 5. Choose a loss function and optimizer** and **Step 6. Train model**. 
+How can we judge a model's performance? We can inspect a couple metrics produced during the training process to detect whether our model is underfitting or overfitting. To do that, we continue with the next steps in our Deep Learning workflow, **Step 5. Choose a loss function and optimizer** and **Step 6. Train model**. 
+
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 

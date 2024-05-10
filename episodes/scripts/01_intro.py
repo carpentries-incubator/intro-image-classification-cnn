@@ -22,7 +22,6 @@ def prepare_dataset(train_images, train_labels):
     
     # normalize the RGB values to be between 0 and 1
     train_images = train_images / 255
-    test_images = test_images / 255
     
     # one hot encode the training labels
     train_labels = keras.utils.to_categorical(train_labels, len(class_names))
@@ -137,6 +136,9 @@ model_intro.fit(train_images, train_labels, epochs = 10,
 
 ### Step 7. Perform a Prediction/Classification
 
+# normalize test dataset RGB values to be between 0 and 1
+test_images = test_images / 255
+    
 # make prediction for the first test image
 result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))
 

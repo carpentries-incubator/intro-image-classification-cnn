@@ -94,12 +94,11 @@ from tensorflow import keras # for neural networks
 from sklearn.model_selection import train_test_split # for splitting data into sets
 import matplotlib.pyplot as plt # for plotting
 
-# create a function to prepare the dataset
+# create a function to prepare the training dataset
 def prepare_dataset(train_images, train_labels):
     
     # normalize the RGB values to be between 0 and 1
     train_images = train_images / 255
-    test_images = test_images / 255
     
     # one hot encode the training labels
     train_labels = keras.utils.to_categorical(train_labels, len(class_names))
@@ -271,9 +270,12 @@ This output printed during the fit phase, i.e. training the model against known 
 
 ### Step 7. Perform a Prediction/Classification
 
-After training the network we can use it to perform predictions. This is how  you would use the network after you have fully trained it to a satisfactory performance. The predictions performed here on a special hold-out set is used in the next step to measure the performance of the network.
+After training the network we can use it to perform predictions. This is how  you would use the network after you have fully trained it to a satisfactory performance. The predictions performed here on a special hold-out set is used in the next step to measure the performance of the network. Make sure the images you use to test are prepared the same way as the training images.
 
 ```python
+# normalize test dataset RGB values to be between 0 and 1
+test_images = test_images / 255
+
 # make prediction for the first test image
 result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))
 

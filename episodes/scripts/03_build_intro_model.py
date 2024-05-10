@@ -30,7 +30,6 @@ def prepare_dataset(train_images, train_labels):
     
     # normalize the RGB values to be between 0 and 1
     train_images = train_images / 255
-    test_images = test_images / 255
     
     # one hot encode the training labels
     train_labels = keras.utils.to_categorical(train_labels, len(class_names))

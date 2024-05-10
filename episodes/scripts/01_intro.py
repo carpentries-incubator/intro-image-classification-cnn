@@ -128,9 +128,10 @@ model_intro.compile(optimizer = keras.optimizers.Adam(),
 ### Step 6. Train the model
 
 # fit model
-model_intro.fit(train_images, train_labels, epochs = 10,
-                validation_data = (val_images, val_labels),
-                batch_size=32)
+history_intro = model_intro.fit(x = train_images, y = train_labels,
+                                batch_size = 32,
+                                epochs = 10, 
+                                validation_data = (val_images, val_labels))
 
 #%%
 

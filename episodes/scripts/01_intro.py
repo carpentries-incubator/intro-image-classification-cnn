@@ -119,7 +119,7 @@ model_intro.summary()
 ### Step 5. Choose a loss function and optimizer and compile model
 
 # compile model
-model_intro.compile(optimizer = keras.optimizers.Adam(learning_rate=1e-3),
+model_intro.compile(optimizer = keras.optimizers.Adam(),
                     loss = keras.losses.CategoricalCrossentropy(),
                     metrics = keras.metrics.Accuracy())
 

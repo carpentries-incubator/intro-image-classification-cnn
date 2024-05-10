@@ -241,9 +241,10 @@ We can now go ahead and start training our neural network. We will probably keep
 
 ```python
 # fit the model
-history_intro = model_intro.fit(train_images, train_labels, epochs = 10, 
-                                validation_data = (val_images, val_labels),
-                                batch_size = 32)
+history_intro = model_intro.fit(x = train_images, y = train_labels,
+                                batch_size = 32,
+                                epochs = 10, 
+                                validation_data = (val_images, val_labels))
 
 ```
 Your output will begin to print similar to the output below:

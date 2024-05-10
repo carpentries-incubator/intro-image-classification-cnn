@@ -230,9 +230,9 @@ The optimizer is responsible for taking the output of the loss function and then
 
 ```python
 # compile the model
-model_intro.compile(optimizer = 'adam',
+model_intro.compile(optimizer = keras.optimizers.Adam(learning_rate=1e-3),
                     loss = keras.losses.CategoricalCrossentropy(),
-                    metrics = ['accuracy'])
+                    metrics = keras.metrics.Accuracy())
 ```
 
 ### Step 6. Train the model

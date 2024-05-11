@@ -317,33 +317,36 @@ consider publishing a file with both the architecture of our network and
 the weights which it has learned (assuming we did not use a pre-trained
 network). This will allow others to use it as as pre-trained network for
 their own purposes and for them to (mostly) reproduce our result.</p>
-<p>Use <code>model.save</code> to save a model:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># save best model</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>model_best.save(<span class="st">'fit_outputs/model_best.keras'</span>)</span></code></pre>
-</div>
-<p>The <code>save</code> method is actually an alias for
-<code>keras.saving.save_model()</code> where the default
-<code>save_format=NONE</code>.</p>
-<p>This saved model can be loaded again by using the
-<code>load_model</code> method:</p>
+<p>The Keras method to save is found in the [Model training APIs]
+‘Saving &amp; serialization’ section of the documentation and has the
+following definition:</p>
+<pre><code>Model.save(filepath, overwrite=True, **kwargs)</code></pre>
+<ul><li>
+<strong>filepath</strong> tells Keras where to save the model</li>
+</ul><p>We can use this method to save out model.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># load a saved model</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>pretrained_model <span class="op">=</span> keras.models.load_model(<span class="st">'fit_outputs/model_best.keras'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># save best model</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>model_best.save(<span class="st">'fit_outputs/model_best.keras'</span>)</span></code></pre>
 </div>
-<p>This loaded model can be used as before to predict.</p>
+<p>This saved model can be loaded again by using the
+<code>load_model</code> method:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># use the pretrained model to predict the class name of the first test image</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>result_pretrained <span class="op">=</span> pretrained_model.predict(test_images[<span class="dv">0</span>].reshape(<span class="dv">1</span>,<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>))</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The predicted probability of each class is: '</span>, result_pretrained.<span class="bu">round</span>(<span class="dv">4</span>))</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The class with the highest predicted probability is: '</span>, class_names[result_pretrained.argmax()])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># load a saved model</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>pretrained_model <span class="op">=</span> keras.models.load_model(<span class="st">'fit_outputs/model_best.keras'</span>)</span></code></pre>
+</div>
+<p>This loaded model can be used as before to predict.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># use the pretrained model to predict the class name of the first test image</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>result_pretrained <span class="op">=</span> pretrained_model.predict(test_images[<span class="dv">0</span>].reshape(<span class="dv">1</span>,<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The predicted probability of each class is: '</span>, result_pretrained.<span class="bu">round</span>(<span class="dv">4</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The class with the highest predicted probability is: '</span>, class_names[result_pretrained.argmax()])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>

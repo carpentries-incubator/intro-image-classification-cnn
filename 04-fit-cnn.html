@@ -584,25 +584,26 @@ the training data</li>
 <strong>y</strong> refers to the target data, which in our case is
 the corresponding image labels</li>
 <li>
-<strong>batch size</strong> is an important hyperparameter that
-determines the number of training samples processed together before
-updating the model’s parameters during each iteration (or mini-batch) of
-training. Choosing the right batch size depends on various factors,
-including your memory constraints, the model complexity, computational
-resources, and trial and error!
-<ul><li>In general, smaller batch sizes may require more iterations to cover
+<strong>batch size</strong> determines the number of training
+samples processed together before updating the model’s parameters during
+each iteration (or mini-batch) of training.
+<ul><li>Choosing the right batch size depends on various factors, including
+your memory constraints, the model complexity, computational resources,
+and trial and error!</li>
+<li>In general, smaller batch sizes may require more iterations to cover
 the entire dataset, which can lead to longer training times. Larger
 batch sizes contribute to a smoother learning process, i.e. more
 consistent updates to the model’s parameters, but might not generalise
-well to new, unseen data.
-<ul><li>In practice, common sizes range from 32 to 256.</li>
-</ul></li>
+well to new, unseen data.</li>
+<li>In practice, common sizes range from 32 to 256.</li>
 </ul></li>
 <li>
-<strong>epochs</strong> An epoch is means that every sample in the
-training data has been given to the neural network and used to update
-its parameters. In general, CNN models improve with more epochs of
-training, but only to a point.</li>
+<strong>epochs</strong> In one epoch, every sample in the training
+data will be given to the neural network and used to update its
+parameters.
+<ul><li>In general, CNN models improve with more epochs of training, but
+only to a point.</li>
+</ul></li>
 <li>
 <strong>validation_data</strong> is the data used to evaluate loss
 and model metrics at the end of each epoch. The model will not be
@@ -625,12 +626,12 @@ method</a>.</p>
 introductory model<a class="anchor" aria-label="anchor" href="#challenge-write-the-code-to-fit-the-introductory-model"></a>
 </h3>
 <div class="callout-content">
-<p>Use the <code>Model.fit</code> function to compile the
+<p>Use the <code>Model.fit</code> function to train (fit) the
 <code>model_intro</code>.</p>
 <p>Hint 1: Use a batch size of 32.</p>
 <p>Hint 2: Train for 10 epochs.</p>
-<p>Hint 3: Use a tuple of the form (x_val, y_val) for the validation
-data using our validation variable names.</p>
+<p>Hint 3: Use a tuple of the form (x_val, y_val) and our validation
+dataset variable names.</p>
 <p>Hint 4: Store the training loss and metrics in a variable call
 ‘history_intro’</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -756,12 +757,13 @@ validation loss and accuracy.</p>
 <div class="callout-content">
 <p>Inspect the training curves we have just made and recall the
 difference between the training and the validation datasets.</p>
-<ol style="list-style-type: decimal"><li>How does the training progress look?</li>
-</ol><ul><li>Does the loss increase or decrease?</li>
+<ol style="list-style-type: decimal"><li>How does the training progress look?  
+<ul><li>Does the loss increase or decrease?</li>
 <li>What about the accuracy?</li>
 <li>Do either change fast or slowly?</li>
-<li>Do the graphs lines fluctuate or go up and down frequently?</li>
-</ul><ol start="2" style="list-style-type: decimal"><li>Do you think the resulting trained network will work well on the
+<li>Do the graphs lines fluctuate or go up and down frequently?  </li>
+</ul></li>
+<li>Do you think the resulting trained network will work well on the
 test set?</li>
 </ol></div>
 </div>
@@ -773,8 +775,8 @@ test set?</li>
 </button>
 <div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<ol style="list-style-type: decimal"><li>Key things to look for for:</li>
-</ol><ul><li>Loss
+<ol style="list-style-type: decimal"><li>Key things to look for for:  
+<ul><li>Loss
 <ul><li>The loss curve should drop quickly in a relatively smooth line with
 little to no fluctuations.</li>
 <li>The val_loss curve should decrease along with the loss.</li>
@@ -782,9 +784,10 @@ little to no fluctuations.</li>
 <li>Accuracy
 <ul><li>The accuracy should increase quickly in a relatively smooth line
 with little to no fluctuations.</li>
-<li>The val_accuracy should behave similarly</li>
+<li>The val_accuracy should behave similarly  <br></li>
 </ul></li>
-</ul><ol start="2" style="list-style-type: decimal"><li>The results of the training give very little information on its
+</ul></li>
+<li>The results of the training give very little information on its
 performance on a test set. You should be careful not to use it as an
 indication of a well trained network.</li>
 </ol></div>
@@ -898,11 +901,15 @@ class and have the following definition:</p>
 <ul><li>The <code>rate</code> parameter is a float between 0 and 1 and
 represents the fraction of the input units to drop.
 <ul><li>Good advice is to begin with a small dropout rate, such as 0.1 or
-0.2, and gradually increase it if necessary. A dropout rate of 0.5 is
-commonly used as a starting point for hidden layers.</li>
+0.2, and gradually increase it if necessary.</li>
+<li>A dropout rate of 0.5 is commonly used as a starting point.</li>
 </ul></li>
-</ul><p>The placement of the dropout layer matters. Adding dropout before or
-after certain layers can have different effects.</p>
+</ul><p>The placement of the dropout layer also matters because adding
+dropout before or after certain layers can have different effects.
+Although dropout layers are commonly added between dense layers, you
+will find network architectures with dropout in just about everywhere.
+Be sure to experiment with different dropout rates and placements to
+find the optimal configuration for your model and dataset.</p>
 <div id="challenge-create-a-function-that-defines-a-cnn-with-dropout" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -913,11 +920,11 @@ with Dropout<a class="anchor" aria-label="anchor" href="#challenge-create-a-func
 </h3>
 <div class="callout-content">
 <p>Use the <code>create_model_intro()</code> definition as the template,
-create a new function called <code>create_model_dropout</code></p>
+create a new function called <code>create_model_dropout()</code></p>
 <p>Hint 1: Add one Dropout Layer that randomly drops 50 per cent of the
-input units</p>
-<p>Hint 2: Use the best practice guidelines above and consider adding
-another one of the four layers we learned.</p>
+input units.</p>
+<p>Hint 2: Consider adding an additional layer(s) from one of the four
+layers we discussed.</p>
 </div>
 </div>
 </div>
@@ -947,7 +954,7 @@ another one of the four layers we learned.</p>
     # Second Pooling layer with input window sized 2x2
     x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout)
     # Third Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-    x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout) # This is     new!
+    x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout) # This is new!
     # Dropout layer andomly drops 50 per cent of the input units
     x_dropout = keras.layers.Dropout(rate=0.5)(x_dropout) # This is new!
     # Flatten layer to convert 2D feature maps into a 1D vector
@@ -1024,7 +1031,7 @@ improved.</p></li>
 <span id="cb14-25"><a href="#cb14-25" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
 <span id="cb14-26"><a href="#cb14-26" tabindex="-1"></a>fig.suptitle(<span class="st">'cifar_model_dropout'</span>)</span>
 <span id="cb14-27"><a href="#cb14-27" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">0</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'loss'</span>, <span class="st">'val_loss'</span>]])</span>
-<span id="cb14-28"><a href="#cb14-28" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'accuracy'</span>, <span class="st">'val_accuracy'</span>]])</span>
+<span id="cb14-28"><a href="#cb14-28" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>axes[<span class="dv">1</span>], data<span class="op">=</span>history_dropout_df[[<span class="st">'categorical_accuracy'</span>, <span class="st">'val_categorical_accuracy'</span>]])</span>
 <span id="cb14-29"><a href="#cb14-29" tabindex="-1"></a></span>
 <span id="cb14-30"><a href="#cb14-30" tabindex="-1"></a>val_loss_dropout, val_acc_dropout <span class="op">=</span> model_dropout.evaluate(val_images, val_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span></code></pre>
 </div>
@@ -1055,10 +1062,11 @@ dropout.</p>
 penalties to the training process, encouraging the model to be simpler
 and less prone to overfitting. Here are some common regularization
 methods for CNNs:</p>
-<p><strong>L1 and L2 Regularization</strong>: L1 and L2 regularization
+<ul><li>
+<strong>L1 and L2 Regularization</strong>: L1 and L2 regularization
 are the two most common regularization techniques used in deep learning.
 They add a penalty term to the loss function during training to restrict
-the model’s weights.</p>
+the model’s weights.
 <ul><li><p>L1 regularization adds the absolute value of the weights to the
 loss function. It tends to produce sparse weight vectors, forcing some
 of the less important features to have exactly zero weights.</p></li>
@@ -1066,33 +1074,34 @@ of the less important features to have exactly zero weights.</p></li>
 function. It encourages the model to have smaller weights overall,
 preventing extreme values and reducing the impact of individual
 features.</p></li>
+</ul></li>
 </ul><p>The regularization strength is controlled by a hyperparameter, often
 denoted as lambda (λ), that determines how much weight should be given
 to the regularization term. A larger λ value increases the impact of
 regularization, making the model simpler and more regularized.</p>
-<p><strong>Dropout</strong>: Involves randomly “dropping out” a fraction
-of neurons during training. This means during each training iteration,
-some neurons are temporarily removed from the network. Dropout
-effectively reduces the interdependence between neurons, preventing the
-network from relying too heavily on specific neurons, and making it more
-robust.</p>
-<p><strong>Batch Normalization</strong>: While not explicitly a
+<ul><li><p><strong>Dropout</strong>: Involves randomly “dropping out” a
+fraction of neurons during training. This means during each training
+iteration, some neurons are temporarily removed from the network.
+Dropout effectively reduces the interdependence between neurons,
+preventing the network from relying too heavily on specific neurons, and
+making it more robust.</p></li>
+<li><p><strong>Batch Normalization</strong>: While not explicitly a
 regularization technique, Batch Normalization has a regularizing effect
 on the model. It normalizes the activations of each layer in the
 network, reducing internal covariate shift. This can improve training
 stability and reduce the need for aggressive dropout or weight
-decay.</p>
-<p><strong>Data Augmentation</strong>: Data augmentation is a technique
-where the training data is artificially augmented by applying various
-transformations like rotation, scaling, flipping, and cropping to create
-new examples. This increases the diversity of the training data and
-helps the model generalize better to unseen data.</p>
-<p><strong>Early Stopping</strong>: Early stopping is a form of
+decay.</p></li>
+<li><p><strong>Data Augmentation</strong>: Data augmentation is a
+technique where the training data is artificially augmented by applying
+various transformations like rotation, scaling, flipping, and cropping
+to create new examples. This increases the diversity of the training
+data and helps the model generalize better to unseen data.</p></li>
+<li><p><strong>Early Stopping</strong>: Early stopping is a form of
 regularization that stops the training process when the model’s
 performance on a validation set starts to degrade. It prevents the model
 from overfitting by avoiding further training after the point of best
-validation performance.</p>
-<p>Using regularization techniques improves the generalization
+validation performance.</p></li>
+</ul><p>Using regularization techniques improves the generalization
 performance of CNNs and reduces the risk of overfitting. It’s essential
 to experiment with different regularization methods and hyperparameters
 to find the optimal combination for your specific CNN architecture and

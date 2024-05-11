@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt # plotting
 def prepare_dataset(train_images, train_labels):
     
     # normalize the RGB values to be between 0 and 1
-    train_images = train_images / 255
+    train_images = train_images / 255.0
     
     # one hot encode the training labels
     train_labels = keras.utils.to_categorical(train_labels, len(class_names))
@@ -82,21 +82,21 @@ def create_model_intro():
     
     # CNN Part 2
     # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
-    # Pooling layer with input window sized 2,2
-    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    x_intro = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_intro)
+    # Pooling layer with input window sized 2x2
+    x_intro = keras.layers.MaxPooling2D(pool_size=(2,2))(x_intro)
     # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
-    # Second Pooling layer with input window sized 2,2
-    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    x_intro = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu')(x_intro)
+    # Second Pooling layer with input window sized 2x2
+    x_intro = keras.layers.MaxPooling2D(pool_size=(2,2))(x_intro)
     # Flatten layer to convert 2D feature maps into a 1D vector
     x_intro = keras.layers.Flatten()(x_intro)
     # Dense layer with 64 neurons and ReLU activation
-    x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
+    x_intro = keras.layers.Dense(units=64, activation='relu')(x_intro)
     
     # CNN Part 3
     # Output layer with 10 units (one for each class) and softmax activation
-    outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
+    outputs_intro = keras.layers.Dense(units=10, activation='softmax')(x_intro)
     
     # create the model
     model_intro = keras.Model(inputs = inputs_intro, 
@@ -121,7 +121,7 @@ model_intro.summary()
 # compile model
 model_intro.compile(optimizer = keras.optimizers.Adam(),
                     loss = keras.losses.CategoricalCrossentropy(),
-                    metrics = keras.metrics.Accuracy())
+                    metrics = keras.metrics.CategoricalAccuracy())
 
 #%%
 
@@ -138,7 +138,7 @@ history_intro = model_intro.fit(x = train_images, y = train_labels,
 ### Step 7. Perform a Prediction/Classification
 
 # normalize test dataset RGB values to be between 0 and 1
-test_images = test_images / 255
+test_images = test_images / 255.0
     
 # make prediction for the first test image
 result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))

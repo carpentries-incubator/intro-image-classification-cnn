@@ -98,7 +98,7 @@ import matplotlib.pyplot as plt # for plotting
 def prepare_dataset(train_images, train_labels):
     
     # normalize the RGB values to be between 0 and 1
-    train_images = train_images / 255
+    train_images = train_images / 255.0
     
     # one hot encode the training labels
     train_labels = keras.utils.to_categorical(train_labels, len(class_names))
@@ -230,9 +230,9 @@ The optimizer is responsible for taking the output of the loss function and then
 
 ```python
 # compile the model
-model_intro.compile(optimizer = keras.optimizers.Adam(learning_rate=1e-3),
+model_intro.compile(optimizer = keras.optimizers.Adam(),
                     loss = keras.losses.CategoricalCrossentropy(),
-                    metrics = keras.metrics.Accuracy())
+                    metrics = keras.metrics.CategoricalAccuracy())
 ```
 
 ### Step 6. Train the model
@@ -275,7 +275,7 @@ After training the network we can use it to perform predictions. This is how  yo
 
 ```python
 # normalize test dataset RGB values to be between 0 and 1
-test_images = test_images / 255
+test_images = test_images / 255.0
 
 # make prediction for the first test image
 result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))

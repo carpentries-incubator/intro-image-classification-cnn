@@ -41,37 +41,21 @@ When creating and using a test set there are a few things to check:
 Check to make sure you have a model in memory and a test dataset:
 
 ```python
-# check correct model is loaded
-model_best = keras.models.load_model('fit_outputs/model_dropout.keras') # pick your best model
-print('We are using', model_best.name)
-
 # load the CIFAR-10 dataset included with the keras library
 (train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
-
-# normalize the RGB values to be between 0 and 1
-train_images = train_images / 255.0
-test_images = test_images / 255.0
 
 # create a list of classnames 
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
-# one-hot encode training labels
-train_labels = keras.utils.to_categorical(train_labels, len(class_names))
-
-# split the training data into training and validation sets
-# NOTE the function is train_test split but we're using it to split train into train and validation
-train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.2, random_state=42)
+# normalize the RGB values to be between 0 and 1
+test_images = test_images / 255.0
 
 # check test image dataset is loaded - images and labels
-print('The number and shape of images in our test dataset is:', test_images.shape)
-print('The number of labels in our test dataset is:', len(test_labels))
+print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
 ```
 ```output
-We are using cifar_model_dropout
-The number and shape of images in our test dataset is:  (10000, 32, 32, 3)
-The number of labels in our test dataset is:  10000
+Test: Images=(10000, 32, 32, 3), Labels=(10000, 1)
 ```
-
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -88,31 +72,38 @@ The test set should be sufficiently large to provide a meaningful evaluation of 
 
 #### Predict
 
-Armed with a test dataset, we will use our CNN to predict their class labels using the `predict` function.
+Armed with a test dataset, we will choose our best performing CNN and use it to predict the class labels.
+
+The Keras method to predict is found in the [Model training APIs] section of the documentation and has the following definition:
+
+```
+Model.predict(x, batch_size=None, verbose="auto", steps=None, callbacks=None)
+```
+
+- *x* refers to the input samples which in our case is an array of images
 
 Recall our model will return a vector of probabilities, one for each class. By finding the class with the highest probability, we can select the most likely class name of the object.
 
-
 ```python
-# use our current best model to predict probability of each class on new test set
-predictions = model_best.predict(test_images)
+# load preferred model
+model_best = keras.models.load_model('fit_outputs/model_dropout.keras')
+print('We are using', model_best.name)
 
-# create a list of classnames
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+# use preferred model to predict probability of each class on new test set
+predictions = model_best.predict(x=test_images)
 
 # convert probability predictions to table using class names for column names
-prediction_df = pd.DataFrame(predictions, columns=class_names)
+prediction_df = pd.DataFrame(data=predictions, columns=class_names)
 
 # inspect 
 print(prediction_df.head())
 
 # convert predictions to class labels
-predicted_labels = np.argmax(predictions, axis=1)
+predicted_labels = np.argmax(a=predictions, axis=1)
 print(predicted_labels)
-
 ```
-
 ```output
+We are using cifar_model_dropout
 airplane  automobile      bird  ...     horse      ship     truck
 0  0.165748   -0.118394  0.062156  ...  0.215477  0.013811 -0.047446
 1  0.213530   -0.126139  0.052813  ...  0.264517  0.009097 -0.091710
@@ -125,25 +116,24 @@ airplane  automobile      bird  ...     horse      ship     truck
 Out  [5]: array([3, 8, 8, ..., 5, 1, 7], dtype=int64)
 ```
 
-
 ### Step 8. Measuring performance
 
-Once we trained the network we want to measure its performance. There are many different methods available for measuring performance and which one to use depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
+After using our preferred model to make predictions on a test dataset of unseen images we want to know how well it performed. There are many different methods available for measuring performance and which one to use depends on the type of task we are attempting.
 
-An easy way to check the accuracy of our model on the test set is to use the `accuracy_score()` from `sklearn.metrics`:
+A quick and easy way to check the accuracy of our model is to use the `accuracy_score()` from `sklearn.metrics`. This function takes as a first parameter the true labels of the test set. The second parameter is the predicted labels from our model.
 
 ```python
 from sklearn.metrics import accuracy_score
 
 # evaluate the model on the test data set
-test_acc = accuracy_score(test_labels, predicted_labels)
+test_acc = accuracy_score(y_true=test_labels, y_pred=predicted_labels)
 print('Accuracy:', round(test_acc,2))
 ```
 ```output
 Accuracy: 0.67
 ```
 
-To understand a bit more about how this accuracy is obtained, we create a confusion matrix.
+To understand a bit more about how this accuracy is obtained, we can create a confusion matrix.
 
 
 #### Confusion matrix
@@ -152,13 +142,13 @@ In the case of multiclass classifications, each cell value (C~i,j~) is equal to 
 
 ![](fig/05_confusion_matrix_explained.png){alt='for ten classes an example confusion matrix has 10 rows and 10 columns where the value in each cell is the number of observations predicted in that class and known to be in that class. The diagonal cells are where the true and predicted classes match.'}
 
-To create a confusion matrix, we use another convenient function from sklearn called `confusion_matrix`. This function takes as a first parameter the true labels of the test set. The second parameter is the predicted labels from our model.
+To create a confusion matrix in python, we use another convenient function from `sklearn.metrics` called `confusion_matrix`. This function takes the same two parameters we just used, the true labels and the predicted labels.
 
 ```python
 from sklearn.metrics import confusion_matrix
 
 # create a confusion matrix
-conf_matrix = confusion_matrix(test_labels, predicted_labels)
+conf_matrix = confusion_matrix(y_true=test_labels, y_pred=predicted_labels)
 print(conf_matrix)
 ```
 ```output
@@ -174,21 +164,21 @@ print(conf_matrix)
  [ 23 118   6  12   6   5  33  15  35 747]]
  ```
 
-Unfortunately, this matrix is kinda hard to read. It's not clear which column and which row corresponds to which class. So let's convert it to a pandas dataframe with its index and columns set to the class labels as follows:
+Unfortunately, this matrix is hard to read. It's not clear which column and which row correspond to which class. We can convert the matrix to a pandas dataframe using the class labels for its index (rows) and columns.
 
 ```python
-# Convert to a pandas dataframe
-confusion_df = pd.DataFrame(conf_matrix, index=class_names, columns=class_names)
+# Convert confustion matrix to a pandas dataframe
+confusion_df = pd.DataFrame(data=conf_matrix, index=class_names, columns=class_names)
 
-# Set the names of the x and y axis, this helps with the readability of the heatmap.
+# Set the names of the x and y axis, this helps with the readability of the heatmap
 confusion_df.index.name = 'True Label'
 confusion_df.columns.name = 'Predicted Label'
 ```
 
-We can then use the `heatmap` function from seaborn to create a nice visualization of the confusion matrix.
+We can then use the `heatmap` function from [seaborn] to create a nice visualization of the confusion matrix.
 
 ```python
-sns.heatmap(confusion_df, annot=True, fmt='3g')
+sns.heatmap(data=confusion_df, annot=True, fmt='3g')
 ```
 
 - The `annot=True` parameter here will put the numbers from the confusion matrix in the heatmap.
@@ -211,11 +201,11 @@ Q3. What could we do to improve the performance?
 
 :::::::::::::::::::::::: solution 
 
-Q1. The confusion matrix illustrates that the predictions are not bad but can be improved.
+A1. The confusion matrix illustrates that the predictions are not bad but can be improved.
 
-Q2. I expected the performance to be better than average because the accuracy of the model I chose was 67 per cent on the validation set.
+A2. I expected the performance to be better than average because the accuracy of the model I chose was 67 per cent on the validation set.
 
-Q3. We can try many things to improve the performance from here. One of the first things we can try is to change the network architecture. However, in the interest of time, and given we already learned how to build a CNN, we will now change the training parameters.
+A3. We can try many things to improve the performance from here. One of the first things we can try is to change the network architecture. However, in the interest of time, and given we already learned how to build a CNN, we will now change the training parameters.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -252,75 +242,94 @@ One common method for hyperparameter tuning is by using a `for` loop to change a
 
 Q1. What do you think would happen if you lower the dropout rate? Write some code to vary the dropout rate and investigate how it affects the model training.
 
+    Hint 1: Modify the 'create_model_dropout()' function and define a `create_model_dropout_vary` function that has `dropout_rate` as its only parameter.
+    
+    Hint 2: Use a for loop to call your function with varying dropout rates
+
 Q2. You are varying the dropout rate and checking its effect on the model performance, what is the term associated to this procedure?
 
 :::::::::::::::::::::::: solution 
 
-Q1. Varying the dropout rate
+A1. Varying the dropout rate
 
 The code below instantiates and trains a model with varying dropout rates. The resulting plot indicates the ideal dropout rate in this case is around 0.45. This is where the validation loss is lowest.
 
-- NB1: It takes a while to train these five networks.
-- NB2: You should do this with a test set and not with the validation set!
+    NB1: It takes a while to train these five networks.
+    NB2: You should do this with a test set and not with the validation set!
 
 ```python
-# specify range of dropout rates
-dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]
-
-# create empty list to hold losses
-val_losses_vary = [] 
-
-for dropout_rate in dropout_rates:
+# define new dropout function that accepts a dropout rate
+def create_model_dropout_vary(dropout_rate):
     
     # Input layer of 32x32 images with three channels (RGB)
     inputs_vary = keras.Input(shape=train_images.shape[1:])
     
     # CNN Part 2
     # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-    x_vary = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_vary)
-    # Pooling layer with input window sized 2,2
-    x_vary = keras.layers.MaxPooling2D((2, 2))(x_vary)
+    x_vary = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_vary)
+    # Pooling layer with input window sized 2x2
+    x_vary = keras.layers.MaxPooling2D(pool_size=(2,2))(x_vary)
     # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-    x_vary = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_vary)
-    # Second Pooling layer with input window sized 2,2
-    x_vary = keras.layers.MaxPooling2D((2, 2))(x_vary)
+    x_vary = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu')(x_vary)
+    # Second Pooling layer with input window sized 2x2
+    x_vary = keras.layers.MaxPooling2D(pool_size=(2,2))(x_vary)
     # Second Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-    x_vary = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_vary)
-    # Dropout layer randomly drops x per cent of the input units
-    x_vary = keras.layers.Dropout(dropout_rate)(x_vary) # This is new!
+    x_vary = keras.layers.Conv2D(filters=64, kernel_size=(3,3), activation='relu')(x_vary)
+    # Dropout layer randomly drops x% of the input units
+    x_vary = keras.layers.Dropout(rate=dropout_rate)(x_vary) # This is new!
     # Flatten layer to convert 2D feature maps into a 1D vector
     x_vary = keras.layers.Flatten()(x_vary)
-    # Dense layer with 128 neurons and ReLU activation
-    x_vary = keras.layers.Dense(128, activation='relu')(x_vary)
     
     # CNN Part 3
     # Output layer with 10 units (one for each class) and softmax activation
-    outputs_vary = keras.layers.Dense(10, activation='softmax')(x_vary)
+    outputs_vary = keras.layers.Dense(units=10, activation='softmax')(x_vary)
 
-    model_vary = keras.Model(inputs = inputs_vary, outputs = outputs_vary, 
-                             name ="cifar_model_vary_dropout")
+    model_vary = keras.Model(inputs = inputs_vary, 
+                             outputs = outputs_vary, 
+                             name ="cifar_model_dropout_vary")
 
-    model_vary.compile(optimizer = 'adam',
-                       loss = keras.losses.CategoricalCrossentropy(),
-                       metrics = ['accuracy'])
+    return model_vary
 
-    model_vary.fit(train_images, train_labels, 
-                   epochs = 20,
-                   validation_data = (val_images, val_labels),
-                   batch_size = 32)
+# specify range of dropout rates
+dropout_rates = [0.15, 0.3, 0.45, 0.6, 0.75]
 
-    val_loss_vary, val_acc_vary = model_vary.evaluate(val_images, val_labels)
-    val_losses_vary.append(val_loss_vary)
+# create empty list to hold losses
+val_losses_vary = [] 
+
+# use for loop to explore varying the dropout rate
+for dropout_rate in dropout_rates:
     
+    # create the model
+    model_vary = create_model_dropout_vary(dropout_rate)
+    
+    # compile the model
+    model_vary.compile(optimizer = keras.optimizers.Adam(),
+                      loss = keras.losses.CategoricalCrossentropy(),
+                      metrics = keras.metrics.CategoricalAccuracy())
+
+    # fit the model
+    model_vary.fit(x = train_images, y = train_labels,
+                   batch_size = 32,
+                   epochs = 10,
+                   validation_data = (val_images, val_labels)))
+    
+    # evaluate the model on the test data set
+    val_loss_vary, val_acc_vary = model_vary.evaluate(val_images, val_labels)
+    
+    # save the evaulation metrics
+    val_losses_vary.append(val_loss_vary)
+
+# convert rates and metrics to dataframe for plotting
 loss_df = pd.DataFrame({'dropout_rate': dropout_rates, 'val_loss_vary': val_losses_vary})
 
+# plot the loss and accuracy from the training process
 sns.lineplot(data=loss_df, x='dropout_rate', y='val_loss_vary')
 ```
 ![](fig/05_vary_dropout_rate.png){alt='test loss plotted against five dropout rates ranging from 0.15 to 0.75 where the minimum test loss appears to occur between 0.4 and 0.5'}
 
-Q2. Term associated to this procedure
+A2. Term associated to this procedure
 
-This is called hyperparameter tuning.
+    This is called hyperparameter tuning.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -343,17 +352,17 @@ For instance, suppose you're tuning two hyperparameters:
 
 ## CHALLENGE Tune Optimizer using Grid Search
 
-In [Episode 04 Compile and Train a Convolutional Neural Network](episodes/04-fit-cnn.md) we talked briefly about the `Adam` optimizer used in our `model.compile` discussion. Recall the optimizer refers to the algorithm with which the model learns to optimize on the provided loss function.
+In [Episode 04 Compile and Train a Convolutional Neural Network](episodes/04-fit-cnn.md) we talked briefly about the `Adam` optimizer used in our `Model.compile` discussion. Recall the **optimizer** refers to the algorithm with which the model learns to optimize on the provided loss function.
 
-Here we will use our introductory model to demonstrate how GridSearch is expressed in code to search for an optimizer.
+Write some code to demonstrate how GridSearch works.
+
+Hint 1: Use the `create_model_intro()` definition as the **build function** to use during GridSearch and modify it to include the 'Model.compile' method call. 
 
 :::::::::::::::::::::::: solution 
 
-First, we will define a **build function** to use during GridSearch. This function will compile the model for each combination of parameters prior to evaluation.
-
 ```python
-# use the intro model for gridsearch
-def create_model():
+# use the intro model for gridsearch and add compile method call
+def create_model_intro():
 
     # CNN Part 1
     # Input layer of 32x32 images with three channels (RGB)
@@ -361,32 +370,32 @@ def create_model():
     
     # CNN Part 2
     # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(16, (3, 3), activation='relu')(inputs_intro)
-    # Pooling layer with input window sized 2,2
-    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    x_intro = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_intro)
+    # Pooling layer with input window sized 2x2
+    x_intro = keras.layers.MaxPooling2D(pool_size=(2,2))(x_intro)
     # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(32, (3, 3), activation='relu')(x_intro)
-    # Second Pooling layer with input window sized 2,2
-    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    x_intro = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu')(x_intro)
+    # Second Pooling layer with input window sized 2x2
+    x_intro = keras.layers.MaxPooling2D(pool_size=(2,2))(x_intro)
     # Flatten layer to convert 2D feature maps into a 1D vector
     x_intro = keras.layers.Flatten()(x_intro)
     # Dense layer with 64 neurons and ReLU activation
-    x_intro = keras.layers.Dense(64, activation='relu')(x_intro)
+    x_intro = keras.layers.Dense(units=64, activation='relu')(x_intro)
     
     # CNN Part 3
     # Output layer with 10 units (one for each class) and softmax activation
-    outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
+    outputs_intro = keras.layers.Dense(units=10, activation='softmax')(x_intro)
     
     # create the model
     model_intro = keras.Model(inputs = inputs_intro, 
                               outputs = outputs_intro, 
-                              name="cifar_model_intro")
+                              name = "cifar_model_intro")
     
     # compile the model
-    model_intro.compile(optimizer = 'adam', 
-                        loss = keras.losses.CategoricalCrossentropy(), 
-                        metrics = ['accuracy'])
-
+    model_intro.compile(optimizer = keras.optimizers.Adam(),
+                      loss = keras.losses.CategoricalCrossentropy(),
+                      metrics = keras.metrics.CategoricalAccuracy())
+    
     return model_intro
 ```
 
@@ -396,14 +405,17 @@ Secondly, we can define our GridSearch parameters and assign fit results to a va
 from scikeras.wrappers import KerasClassifier
 from sklearn.model_selection import GridSearchCV
 
-# Wrap the model
-model = KerasClassifier(build_fn=create_model, epochs=2, batch_size=32, verbose=0)  # epochs, batch_size, verbose can be adjusted as required. Using low epochs to save computation time and demonstration purposes only
+# Instantiate wrapper class for GridSearchCV
+model = KerasClassifier(build_fn=create_model_intro, epochs=2, batch_size=32, verbose=0)  # epochs, batch_size, verbose can be adjusted as required. Using low epochs to save computation time and demonstration purposes only
 
 # Define the grid search parameters
 optimizer = ['SGD', 'RMSprop', 'Adam']
 param_grid = dict(optimizer=optimizer)
 
+# search over specified parameter values for an estimator
 grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=1, cv=3)
+
+# run fit with all parameters
 grid_result = grid.fit(train_images, train_labels)
 
 # Summarize results
@@ -450,68 +462,71 @@ Table 2. Description of each activation function, its benefits, and drawbacks.
 
 ## CHALLENGE Tune Activation Function using For Loop
 
-Write some code to assessing activation function performance.
+Write some code to assess activation function performance.
+
+Hint 1: Use the `create_model_intro()` definition as the **build function** to use during GridSearch. Make modifications to take a single parameter 'activation_function and this time include the 'Model.compile' method call in the definition.
 
 :::::::::::::::::::::::: solution 
 
 The code below serves as a practical means for exploring activation performance on an image dataset.
 
 ```python
-# Define a function to create a model with a given activation function
-def create_model(activation_function):
+# modify the intro model to sample activation functions
+def create_model_act(activation_function):
+
     # CNN Part 1
     # Input layer of 32x32 images with three channels (RGB)
-    inputs_intro = keras.Input(shape=train_images.shape[1:])
+    inputs_act = keras.Input(shape=train_images.shape[1:])
     
     # CNN Part 2
     # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(16, (3, 3), activation=activation_function)(inputs_intro)
-    # Pooling layer with input window sized 2,2
-    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    x_act = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation=activation_function)(inputs_act)
+    # Pooling layer with input window sized 2x2
+    x_act = keras.layers.MaxPooling2D((2, 2))(x_act)
     # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(32, (3, 3), activation=activation_function)(x_intro)
-    # Second Pooling layer with input window sized 2,2
-    x_intro = keras.layers.MaxPooling2D((2, 2))(x_intro)
+    x_act = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation=activation_function)(x_act)
+    # Second Pooling layer with input window sized 2x2
+    x_act = keras.layers.MaxPooling2D(pool_size=(2,2))(x_act)
     # Flatten layer to convert 2D feature maps into a 1D vector
-    x_intro = keras.layers.Flatten()(x_intro)
+    x_act = keras.layers.Flatten()(x_act)
     # Dense layer with 64 neurons and ReLU activation
-    x_intro = keras.layers.Dense(64, activation=activation_function)(x_intro)
+    x_act = keras.layers.Dense(units=64, activation=activation_function)(x_act)
     
     # CNN Part 3
     # Output layer with 10 units (one for each class) and softmax activation
-    outputs_intro = keras.layers.Dense(10, activation='softmax')(x_intro)
+    outputs_act = keras.layers.Dense(units=10, activation='softmax')(x_act)
     
     # create the model
-    model_intro = keras.Model(inputs = inputs_intro, 
-                              outputs = outputs_intro, 
-                              name="cifar_model_intro")
+    model_act = keras.Model(inputs = inputs_act, 
+                              outputs = outputs_act, 
+                              name="cifar_model_activation")
     
     # compile the model
-    model_intro.compile(optimizer = 'adam', 
-                        loss = keras.losses.CategoricalCrossentropy(), 
-                        metrics = ['accuracy'])
+    model_act.compile(optimizer = keras.optimizers.Adam(),
+                      loss = keras.losses.CategoricalCrossentropy(),
+                      metrics = keras.metrics.CategoricalAccuracy())
 
-    return model_intro
+    return model_act
 
-# List of activation functions to try
+# create a ist of activation functions to try
 activations = ['relu', 'sigmoid', 'tanh', 'selu', keras.layers.LeakyReLU()]
 
+# create a dictionary object to store the training history
 history_data = {}
 
-# Train a model with each activation function and store the history
+# train the model with each activation function and store the history
 for activation in activations:
     model = create_model(activation)
-    history = model.fit(train_images, train_labels, 
-                        epochs=10, 
-                        validation_data=(val_images, val_labels),
-                        batch_size = 32)
-    history_data[str(activation)] = history
+    history = model.fit(x = train_images, y = train_labels,
+                        batch_size = 32,
+                        epochs = 10, 
+                        validation_data = (val_images, val_labels))
 
-# Plot the validation accuracy for each activation function
+# plot the validation accuracy for each activation function
 plt.figure(figsize=(12, 6))
 
 for activation, history in history_data.items():
-    plt.plot(history.history['val_accuracy'], label=activation)
+    plt.plot(history.history['val_categorical_accuracy'], label=activation)
 
 plt.title('Validation accuracy for different activation functions')
 plt.xlabel('Epochs')
@@ -566,6 +581,8 @@ By now you should have a well-trained, finely-tuned model that makes accurate pr
 
 <!-- Collect your link references at the bottom of your document -->
 
+[Model training APIs]: https://keras.io/api/models/model_training_apis/
+[seaborn]: https://seaborn.pydata.org/
 [RMSprop in Keras]: https://keras.io/api/optimizers/rmsprop/
 [RMSProp, Cornell University]: https://optimization.cbe.cornell.edu/index.php?title=RMSProp
 

@@ -28,14 +28,19 @@ exercises: 2
 
 We now have a trained network that performs at a level we are happy with and maintains high prediction accuracy on a test dataset. We should consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
-Use `model.save` to save a model:
+The Keras method to save is found in the [Model training APIs] 'Saving & serialization' section of the documentation and has the following definition:
+
+```
+Model.save(filepath, overwrite=True, **kwargs)
+```
+ - **filepath** tells Keras where to save the model
+ 
+We can use this method to save out model.
 
 ```python
 # save best model
 model_best.save('fit_outputs/model_best.keras')
 ```
-
-The `save` method is actually an alias for `keras.saving.save_model()` where the default `save_format=NONE`.
 
 This saved model can be loaded again by using the `load_model` method:
 

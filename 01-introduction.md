@@ -94,12 +94,11 @@ from tensorflow import keras # for neural networks
 from sklearn.model_selection import train_test_split # for splitting data into sets
 import matplotlib.pyplot as plt # for plotting
 
-# create a function to prepare the dataset
+# create a function to prepare the training dataset
 def prepare_dataset(train_images, train_labels):
     
     # normalize the RGB values to be between 0 and 1
-    train_images = train_images / 255
-    test_images = train_labels / 255
+    train_images = train_images / 255.0
     
     # one hot encode the training labels
     train_labels = keras.utils.to_categorical(train_labels, len(class_names))
@@ -231,9 +230,9 @@ The optimizer is responsible for taking the output of the loss function and then
 
 ```python
 # compile the model
-model_intro.compile(optimizer = 'adam',
+model_intro.compile(optimizer = keras.optimizers.Adam(),
                     loss = keras.losses.CategoricalCrossentropy(),
-                    metrics = ['accuracy'])
+                    metrics = keras.metrics.CategoricalAccuracy())
 ```
 
 ### Step 6. Train the model
@@ -242,9 +241,10 @@ We can now go ahead and start training our neural network. We will probably keep
 
 ```python
 # fit the model
-history_intro = model_intro.fit(train_images, train_labels, epochs = 10, 
-                                validation_data = (val_images, val_labels),
-                                batch_size = 32)
+history_intro = model_intro.fit(x = train_images, y = train_labels,
+                                batch_size = 32,
+                                epochs = 10, 
+                                validation_data = (val_images, val_labels))
 
 ```
 Your output will begin to print similar to the output below:
@@ -271,9 +271,12 @@ This output printed during the fit phase, i.e. training the model against known 
 
 ### Step 7. Perform a Prediction/Classification
 
-After training the network we can use it to perform predictions. This is how  you would use the network after you have fully trained it to a satisfactory performance. The predictions performed here on a special hold-out set is used in the next step to measure the performance of the network.
+After training the network we can use it to perform predictions. This is how  you would use the network after you have fully trained it to a satisfactory performance. The predictions performed here on a special hold-out set is used in the next step to measure the performance of the network. Make sure the images you use to test are prepared the same way as the training images.
 
 ```python
+# normalize test dataset RGB values to be between 0 and 1
+test_images = test_images / 255.0
+
 # make prediction for the first test image
 result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))
 

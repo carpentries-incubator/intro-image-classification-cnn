@@ -1,5 +1,5 @@
 ---
-title: 'Conclusion'
+title: 'Share a Convolutional Neural Network and Next Steps'
 teaching: 10
 exercises: 2
 ---

@@ -361,19 +361,17 @@ We performed these operations in **Step 3. Prepare data** of the Introduction bu
 ## CHALLENGE Create a function to prepare the dataset
 
 ```python
-# create a function to prepare the dataset
+# create a function to prepare the training dataset
 
 def prepare_dataset(#blank#, #blank#):
     
     # normalize the RGB values to be between 0 and 1
-    #blank#
     #blank#
     
     # one hot encode the training labels
     #blank#
     
     # split the training data into training and validation set
-    #blank#
     #blank#
 
     return #blank#
@@ -387,7 +385,6 @@ def prepare_dataset(train_images, train_labels):
     
     # normalize the RGB values to be between 0 and 1
     train_images = train_images / 255
-    test_images = train_labels / 255
     
     # one hot encode the training labels
     train_labels = keras.utils.to_categorical(train_labels, len(class_names))

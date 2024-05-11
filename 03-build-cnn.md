@@ -434,7 +434,7 @@ There are several ways of grouping the layers into an object as described in the
 We will use the Functional API to create our model using the inputs and outputs defined in this episode.
 
 ```
-keras.Model(inputs=inputs, outputs=outputs))
+keras.Model(inputs=inputs, outputs=outputs)
 ```
 
 Note that there is additional argument that can be passed to the keras.Model class called 'name' that takes a string. Although it is no longer specified in the documentation, the 'name' argument is useful when deciding among different architectures.
@@ -554,30 +554,26 @@ _________________________________________________________________
 
 The Model.summary() output has three columns:
 
-1. Layer (type) lists the name and type of each layer. 
-
-- Remember the 'name' argument we used to name our model? This argument can also be supplied to each layer. If a name is not provided, Keras will assign a unique identifier starting from 1 and incrementing for each new layer of the same type within the model.
-
-2. Output Shape describes the shape of the output produced by each layer. The shape is represented as (batch_size, height, width, channels).
-
-- Batch size is the number of samples processed in each batch during training or inference. This dimension is often denoted as None in the summary because the batch size can vary and is typically specified during model training or inference
-
-- Height, Width, Channels: The remaining dimensions represent the spatial dimensions and the number of channels in the output tensor. For convolutional layers and pooling layers, the height and width dimensions typically decrease as the network progresses through the layers due to the spatial reduction caused by convolution and pooling operations. The number of channels may change depending on the number of filters in the convolutional layer or the design of the network architecture.
-
-- For example, in a convolutional layer, the output shape (None, 30, 30, 16) means:
-
-    - None: The batch size can vary.
-    - 30: The height and width of the output feature maps are both 30 pixels.
-    - 16: There are 16 channels in the output feature maps, indicating that the layer has 16 filters.
-
+1. Layer (type) lists the name and type of each layer.
+&nbsp;
+    - Remember the 'name' argument we used to name our model? This argument can also be supplied to each layer. If a name is not provided, Keras will assign a unique identifier starting from 1 and incrementing for each new layer of the same type within the model.
+&nbsp;
+2. Output Shape describes the shape of the output produced by each layer as (batch_size, height, width, channels).
+&nbsp;
+    - Batch size is the number of samples processed in each batch during training or inference. This dimension is often denoted as None in the summary because the batch size can vary and is typically specified during model training or inference.
+    - Height, Width, Channels: The remaining dimensions represent the spatial dimensions and the number of channels in the output tensor. For convolutional layers and pooling layers, the height and width dimensions typically decrease as the network progresses through the layers due to the spatial reduction caused by convolution and pooling operations. The number of channels may change depending on the number of filters in the convolutional layer or the design of the network architecture.
+    - For example, in a convolutional layer, the output shape (None, 30, 30, 16) means:
+        - None: The batch size can vary.
+        - 30: The height and width of the output feature maps are both 30 pixels.
+        - 16: There are 16 channels in the output feature maps, indicating that the layer has 16 filters.
+&nbsp;
 3. Param # displays the number of parameters (weights and biases) associated with each layer.
-
-- The total number of parameters in a layer is calculated as follows: 
-    - Total parameters = (number of input units) × (number of output units) + (number of output units)
-
-- Disclaimer: We explicitly decided to focus on building a foundational understanding of convolutional neural networks for this course without delving into the detailed calculation of parameters. However, as your progress on your deep learning journey it will become increasingly important for you to understand parameter calculation in order to optimize model performance, troubleshoot issues, and design efficient CNN architectures.
-
-At the bottom of the Model.summary() you will find the number of Total parameters and their size; the number of Trainable parameters and their size; and the number of Non-trainable parameters and their size. In most cases, the total number of parameters will match the number of trainable parameters. In other cases, such as models using normalization layers, there will be some parameters that are fixed during training and not trainable.
+&nbsp;
+    - The total number of parameters in a layer is calculated as follows: 
+        - Total parameters = (number of input units) × (number of output units) + (number of output units)
+    - At the bottom of the Model.summary() you will find the number of Total parameters and their size; the number of Trainable parameters and their size; and the number of Non-trainable parameters and their size. 
+        - In most cases, the total number of parameters will match the number of trainable parameters. In other cases, such as models using normalization layers, there will be some parameters that are fixed during training and not trainable.
+    - Disclaimer: We explicitly decided to focus on building a foundational understanding of convolutional neural networks for this course without delving into the detailed calculation of parameters. However, as your progress on your deep learning journey it will become increasingly important for you to understand parameter calculation in order to optimize model performance, troubleshoot issues, and design more efficient CNN architectures.
 
 :::::::::::::::::::::::::::::::::::::::::
 

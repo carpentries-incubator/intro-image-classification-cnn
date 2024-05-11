@@ -422,14 +422,7 @@ keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)
 - The `rate` parameter is a float between 0 and 1 and represents the fraction of the input units to drop.
     - Good advice is to begin with a small dropout rate, such as 0.1 or 0.2, and gradually increase it if necessary. A dropout rate of 0.5 is commonly used as a starting point for hidden layers.
 
-While dropout can technically be placed at various points within a neural network architecture, there are common conventions and best practices that guide its placement:
-
-- Between Dense Layers
-    -  most common and widely accepted practice
-- After Convolutional Layers
-    - less common but can still be effective
-- Before the Output Layer
-    - not recommended, especially in classification tasks, as it may reduce the model's confidence in making predictions
+The placement of the dropout layer matters. Adding dropout before or after certain layers can have different effects.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -459,14 +452,12 @@ def create_model_dropout():
     x_dropout = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu')(x_dropout)
     # Second Pooling layer with input window sized 2x2
     x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout)
+    # Third Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
+    x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout) # This is     new!
+    # Dropout layer andomly drops 50 per cent of the input units
+    x_dropout = keras.layers.Dropout(rate=0.5)(x_dropout) # This is new!
     # Flatten layer to convert 2D feature maps into a 1D vector
     x_dropout = keras.layers.Flatten()(x_dropout)
-    # Dense layer with 64 neurons and ReLU activation
-    x_dropout = keras.layers.Dense(units=64, activation='relu')(x_dropout)
-    # Dropout layer randomly drops 50% of the input units
-    x_dropout = keras.layers.Dropout(0.5)(x_dropout) # This is new!
-    # Dense layer with 64 neurons and ReLU activation
-    x_dropout = keras.layers.Dense(units=64, activation='relu')(x_dropout) # This is new!
     
     # CNN Part 3
     # Output layer with 10 units (one for each class) and softmax activation
@@ -506,7 +497,7 @@ model_dropout = create_model_dropout()
 # compile the model
 model_dropout.compile(optimizer = keras.optimizers.Adam(),
                       loss = keras.losses.CategoricalCrossentropy(),
-                      metrics = keras.metrics.Accuracy())
+                      metrics = keras.metrics.CategoricalAccuracy())
 
 # fit the model
 history_dropout = model_dropout.fit(x = train_images, y = train_labels,

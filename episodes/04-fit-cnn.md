@@ -522,7 +522,7 @@ history_dropout_df = pd.DataFrame.from_dict(history_dropout.history)
 fig, axes = plt.subplots(1, 2)
 fig.suptitle('cifar_model_dropout')
 sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
-sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
+sns.lineplot(ax=axes[1], data=history_dropout_df[['categorical_accuracy', 'val_categorical_accuracy']])
 
 val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images, val_labels, verbose=2)
 ```

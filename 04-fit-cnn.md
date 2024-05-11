@@ -227,10 +227,12 @@ For this introductory course, the arguments we will specify are x, y, batch_size
 
 - **x** refers to the input data, which in our case is the training data
 - **y** refers to the target data, which in our case is the corresponding image labels
-- **batch size** is an important hyperparameter that determines the number of training samples processed together before updating the model's parameters during each iteration (or mini-batch) of training. Choosing the right batch size depends on various factors, including your memory constraints, the model complexity, computational resources, and trial and error! 
+- **batch size** determines the number of training samples processed together before updating the model's parameters during each iteration (or mini-batch) of training. 
+    - Choosing the right batch size depends on various factors, including your memory constraints, the model complexity, computational resources, and trial and error! 
     - In general, smaller batch sizes may require more iterations to cover the entire dataset, which can lead to longer training times. Larger batch sizes contribute to a smoother learning process, i.e. more consistent updates to the model's parameters, but might not generalise well to new, unseen data.
-        - In practice, common sizes range from 32 to 256.
-- **epochs** An epoch is means that every sample in the training data has been given to the neural network and used to update its parameters. In general, CNN models improve with more epochs of training, but only to a point.
+    - In practice, common sizes range from 32 to 256.
+- **epochs** In one epoch, every sample in the training data will be given to the neural network and used to update its parameters. 
+    - In general, CNN models improve with more epochs of training, but only to a point.
 - **validation_data** is the data used to evaluate loss and model metrics at the end of each epoch. The model will not be trained on this data.
 
 The `Model.fit` method returns a `History` object that records the training loss values and metrics. If we want to keep this data, we need to create a new variable to capture the return.
@@ -243,13 +245,13 @@ Other parameters used to fit our model can be found in the documentation for the
 
 ## CHALLENGE Write the code to fit the introductory model
 
-Use the `Model.fit` function to compile the `model_intro`.
+Use the `Model.fit` function to train (fit) the `model_intro`.
 
 Hint 1: Use a batch size of 32.
 
 Hint 2: Train for 10 epochs.
 
-Hint 3: Use a tuple of the form (x_val, y_val) for the validation data using our validation variable names.
+Hint 3: Use a tuple of the form (x_val, y_val) and our validation dataset variable names.
 
 Hint 4: Store the training loss and metrics in a variable call 'history_intro'
 
@@ -334,24 +336,25 @@ This plot is used to identify whether the training is well configured or whether
 Inspect the training curves we have just made and recall the difference between the training and the validation datasets.
 
 1. How does the training progress look?
-
-- Does the loss increase or decrease?
-- What about the accuracy?
-- Do either change fast or slowly?
-- Do the graphs lines fluctuate or go up and down frequently?
-
+&nbsp;
+    - Does the loss increase or decrease?
+    - What about the accuracy?
+    - Do either change fast or slowly?
+    - Do the graphs lines fluctuate or go up and down frequently?
+&nbsp;
 2. Do you think the resulting trained network will work well on the test set?
 
 :::::::::::::::::::::::: solution 
 
 1. Key things to look for for:
-- Loss
-    - The loss curve should drop quickly in a relatively smooth line with little to no fluctuations. 
-    - The val_loss curve should decrease along with the loss.
-- Accuracy
-    - The accuracy should increase quickly in a relatively smooth line with little to no fluctuations.
-    - The val_accuracy should behave similarly
-    
+&nbsp;
+    - Loss
+        - The loss curve should drop quickly in a relatively smooth line with little to no fluctuations. 
+        - The val_loss curve should decrease along with the loss.
+    - Accuracy
+        - The accuracy should increase quickly in a relatively smooth line with little to no fluctuations.
+        - The val_accuracy should behave similarly
+&nbsp;    
 2. The results of the training give very little information on its performance on a test set. You should be careful not to use it as an indication of a well trained network.
 
 :::::::::::::::::::::::::::::::::
@@ -420,19 +423,20 @@ keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)
 ```
 
 - The `rate` parameter is a float between 0 and 1 and represents the fraction of the input units to drop.
-    - Good advice is to begin with a small dropout rate, such as 0.1 or 0.2, and gradually increase it if necessary. A dropout rate of 0.5 is commonly used as a starting point for hidden layers.
+    - Good advice is to begin with a small dropout rate, such as 0.1 or 0.2, and gradually increase it if necessary. 
+    - A dropout rate of 0.5 is commonly used as a starting point.
 
-The placement of the dropout layer matters. Adding dropout before or after certain layers can have different effects.
+The placement of the dropout layer also matters because adding dropout before or after certain layers can have different effects. Although dropout layers are commonly added between dense layers, you will find network architectures with dropout in just about everywhere. Be sure to experiment with different dropout rates and placements to find the optimal configuration for your model and dataset.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 ## CHALLENGE Create a function that defines a CNN with Dropout
 
-Use the `create_model_intro()` definition as the template, create a new function called `create_model_dropout`
+Use the `create_model_intro()` definition as the template, create a new function called `create_model_dropout()`
 
-Hint 1: Add one Dropout Layer that randomly drops 50 per cent of the input units
+Hint 1: Add one Dropout Layer that randomly drops 50 per cent of the input units.
 
-Hint 2: Use the best practice guidelines above and consider adding another one of the four layers we learned.
+Hint 2: Consider adding an additional layer(s) from one of the four layers we discussed.
 
 :::::::::::::::::::::::: solution 
 
@@ -453,7 +457,7 @@ def create_model_dropout():
     # Second Pooling layer with input window sized 2x2
     x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout)
     # Third Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-    x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout) # This is     new!
+    x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout) # This is new!
     # Dropout layer andomly drops 50 per cent of the input units
     x_dropout = keras.layers.Dropout(rate=0.5)(x_dropout) # This is new!
     # Flatten layer to convert 2D feature maps into a 1D vector
@@ -518,7 +522,7 @@ history_dropout_df = pd.DataFrame.from_dict(history_dropout.history)
 fig, axes = plt.subplots(1, 2)
 fig.suptitle('cifar_model_dropout')
 sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
-sns.lineplot(ax=axes[1], data=history_dropout_df[['accuracy', 'val_accuracy']])
+sns.lineplot(ax=axes[1], data=history_dropout_df[['categorical_accuracy', 'val_categorical_accuracy']])
 
 val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images, val_labels, verbose=2)
 ```
@@ -542,21 +546,20 @@ ChatGPT
 
 **Regularization** methods introduce constraints or penalties to the training process, encouraging the model to be simpler and less prone to overfitting. Here are some common regularization methods for CNNs:
 
-**L1 and L2 Regularization**: L1 and L2 regularization are the two most common regularization techniques used in deep learning. They add a penalty term to the loss function during training to restrict the model's weights.
+- **L1 and L2 Regularization**: L1 and L2 regularization are the two most common regularization techniques used in deep learning. They add a penalty term to the loss function during training to restrict the model's weights.
+    - L1 regularization adds the absolute value of the weights to the loss function. It tends to produce sparse weight vectors, forcing some of the less important features to have exactly zero weights.
 
-- L1 regularization adds the absolute value of the weights to the loss function. It tends to produce sparse weight vectors, forcing some of the less important features to have exactly zero weights.
-
-- L2 regularization adds the square of the weights to the loss function. It encourages the model to have smaller weights overall, preventing extreme values and reducing the impact of individual features.
+    - L2 regularization adds the square of the weights to the loss function. It encourages the model to have smaller weights overall, preventing extreme values and reducing the impact of individual features.
 
 The regularization strength is controlled by a hyperparameter, often denoted as lambda (λ), that determines how much weight should be given to the regularization term. A larger λ value increases the impact of regularization, making the model simpler and more regularized.
 
-**Dropout**: Involves randomly "dropping out" a fraction of neurons during training. This means during each training iteration, some neurons are temporarily removed from the network. Dropout effectively reduces the interdependence between neurons, preventing the network from relying too heavily on specific neurons, and making it more robust.
+- **Dropout**: Involves randomly "dropping out" a fraction of neurons during training. This means during each training iteration, some neurons are temporarily removed from the network. Dropout effectively reduces the interdependence between neurons, preventing the network from relying too heavily on specific neurons, and making it more robust.
 
-**Batch Normalization**: While not explicitly a regularization technique, Batch Normalization has a regularizing effect on the model. It normalizes the activations of each layer in the network, reducing internal covariate shift. This can improve training stability and reduce the need for aggressive dropout or weight decay.
+- **Batch Normalization**: While not explicitly a regularization technique, Batch Normalization has a regularizing effect on the model. It normalizes the activations of each layer in the network, reducing internal covariate shift. This can improve training stability and reduce the need for aggressive dropout or weight decay.
 
-**Data Augmentation**: Data augmentation is a technique where the training data is artificially augmented by applying various transformations like rotation, scaling, flipping, and cropping to create new examples. This increases the diversity of the training data and helps the model generalize better to unseen data.
+- **Data Augmentation**: Data augmentation is a technique where the training data is artificially augmented by applying various transformations like rotation, scaling, flipping, and cropping to create new examples. This increases the diversity of the training data and helps the model generalize better to unseen data.
 
-**Early Stopping**: Early stopping is a form of regularization that stops the training process when the model's performance on a validation set starts to degrade. It prevents the model from overfitting by avoiding further training after the point of best validation performance.
+- **Early Stopping**: Early stopping is a form of regularization that stops the training process when the model's performance on a validation set starts to degrade. It prevents the model from overfitting by avoiding further training after the point of best validation performance.
 
 Using regularization techniques improves the generalization performance of CNNs and reduces the risk of overfitting. It's essential to experiment with different regularization methods and hyperparameters to find the optimal combination for your specific CNN architecture and dataset.
 

@@ -66,7 +66,7 @@ print(train_images.shape)
 
 # CNN Part 1
 # Input layer of 32x32 images with three channels (RGB)
-inputs_intro = keras.Input(#blank#)
+inputs_intro = keras.Input(_____)
 
 #%%
 
@@ -78,7 +78,7 @@ inputs_intro = keras.Input(#blank#)
 
 # CNN Part 2
 # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(filters=#blank#, kernel_size=#blank#, activation=#blank#)(#blank#)
+x_intro = keras.layers.Conv2D(filters=_____, kernel_size=_____, activation=_____)(_____)
                               
 #%%
 
@@ -87,7 +87,7 @@ x_intro = keras.layers.Conv2D(filters=#blank#, kernel_size=#blank#, activation=#
 ## CHALLENGE Create a Pooling layer for our network
 
 # Pooling layer with input window sized 2,2
-x_intro = keras.layers.MaxPooling2D(pool_size=#blank#)(#blank#)
+x_intro = keras.layers.MaxPooling2D(pool_size=_____)(_____)
                                     
 #%%
 
@@ -96,7 +96,7 @@ x_intro = keras.layers.MaxPooling2D(pool_size=#blank#)(#blank#)
 ## CHALLENGE Create a Dense layer for our network
 
 # Dense layer with 64 neurons and ReLU activation
-x_intro = keras.layers.Dense(units=#hidden#, activation=#hidden#)(#hidden#)
+x_intro = keras.layers.Dense(units=_____, activation=_____)(_____)
 
 #%%
 
@@ -105,7 +105,7 @@ x_intro = keras.layers.Dense(units=#hidden#, activation=#hidden#)(#hidden#)
 ## CHALLENGE Create a Flatten layer for our network
 
 # Flatten layer to convert 2D feature maps into a 1D vector
-x_intro = keras.layers.Flatten()(#hidden#)
+x_intro = keras.layers.Flatten()(_____)
 
 
 #%%
@@ -122,7 +122,7 @@ x_intro = keras.layers.Flatten()(#hidden#)
 
 # CNN Part 3
 # Output layer with 10 units (one for each class) and softmax activation
-outputs_intro = keras.layers.Dense(units=#hidden#, activation=#hidden#)(#hidden#)
+outputs_intro = keras.layers.Dense(units=_____, activation=_____)(_____)
                                    
 #%%                                   
                                    

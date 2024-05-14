@@ -87,18 +87,18 @@ class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', '
 
 ## CHALLENGE Create a function to prepare the dataset
 
-def prepare_dataset(#blank#, #blank#):
+def prepare_dataset(_____, _____):
     
     # normalize the RGB values to be between 0 and 1
-    #blank#
+    _____
     
     # one hot encode the training labels
-    #blank#
+    _____
     
     # split the training data into training and validation set
-    #blank#
+    _____
 
-    return #blank#
+    return _____
 
 #%%
 # create a function to prepare the dataset

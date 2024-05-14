@@ -101,19 +101,19 @@ model_intro.summary()
 ## CHALLENGE Write the code to compile the introductory model
 
 # compile the model
-#hidden#.compile(optimizer = #hidden#, 
-                    loss = #hidden#, 
-                    metrics = #hidden#)
+_____.compile(optimizer = _____, 
+                    loss = _____, 
+                    metrics = _____)
                     
 #%%
                                     
 ### Step 6. Train (Fit) model
 
 # fit the model
-#hidden# = #hidden#.fit(x = #hidden#, y = #hidden#,
-                                batch_size = #hidden#,
-                                epochs = #hidden#, 
-                                validation_data = (#hidden#, #hidden#))
+_____ = _____.fit(x = _____, y = _____,
+                                batch_size = _____,
+                                epochs = _____, 
+                                validation_data = (_____, _____))
 
 #%%
 # save the model

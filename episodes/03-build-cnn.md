@@ -98,7 +98,7 @@ Hint 2: The shape of our input dataset includes the total number of images. We w
 ```python
     # CNN Part 1
     # Input layer of 32x32 images with three channels (RGB)
-   inputs_intro = keras.Input(#blank#)
+   inputs_intro = keras.Input(_____)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -165,7 +165,7 @@ Hint 1: The input to each layer is the output of the previous layer.
 ```python
 # CNN Part 2
 # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-x_intro = keras.layers.Conv2D(filters=#blank#, kernel_size=#blank#, activation=#blank#)(#blank#)
+x_intro = keras.layers.Conv2D(filters=_____, kernel_size=_____, activation=_____)(_____)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -227,7 +227,7 @@ Hint 1: The input to each layer is the output of the previous layer.
 
 ```python
 # Pooling layer with input window sized 2x2
-x_intro = keras.layers.MaxPooling2D(pool_size=#blank#)(#blank#)
+x_intro = keras.layers.MaxPooling2D(pool_size=_____)(_____)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -276,7 +276,7 @@ Hint 1: The input to each layer is the output of the previous layer.
 
 ```python
 # Dense layer with 64 neurons and ReLU activation
-x_intro = keras.layers.Dense(units=#hidden#, activation=#hidden#)(#hidden#)
+x_intro = keras.layers.Dense(units=_____, activation=_____)(_____)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -310,7 +310,7 @@ Hint 1: The input to each layer is the output of the previous layer.
 
 ```python
 # Flatten layer to convert 2D feature maps into a 1D vector
-x_intro = keras.layers.Flatten()(#hidden#)
+x_intro = keras.layers.Flatten()(_____)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -410,7 +410,7 @@ Hint 3: Use softmax activation.
 ```python
 # CNN Part 3
 # Output layer with 10 units (one for each class) and softmax activation
-outputs_intro = keras.layers.Dense(units=#hidden#, activation=#hidden#)(#hidden#)
+outputs_intro = keras.layers.Dense(units=_____, activation=_____)(_____)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -452,18 +452,18 @@ Hint 1: Name the model "cifar_model_intro"
 def create_model_intro():
 
     # CNN Part 1
-    #hidden#
+    _____
     
     # CNN Part 2
-    #hidden#
+    _____
     
     # CNN Part 3
-    #hidden#
+    _____
     
     # create the model
-    model_intro = keras.Model(inputs = #hidden#, 
-                              outputs = #hidden#, 
-                              name = #hidden#)
+    model_intro = keras.Model(inputs = _____, 
+                              outputs = _____, 
+                              name = _____)
     
     return model_intro
 ```

@@ -363,18 +363,18 @@ We performed these operations in **Step 3. Prepare data** of the Introduction bu
 ```python
 # create a function to prepare the training dataset
 
-def prepare_dataset(#blank#, #blank#):
+def prepare_dataset(_____, _____):
     
     # normalize the RGB values to be between 0 and 1
-    #blank#
+    _____
     
     # one hot encode the training labels
-    #blank#
+    _____
     
     # split the training data into training and validation set
-    #blank#
+    _____
 
-    return #blank#
+    return _____
 ```
 
 :::::::::::::::::::::::: solution 
@@ -561,3 +561,7 @@ We now have a function we can use throughout the lesson to preprocess our data w
 [to_categorical]: https://keras.io/api/utils/python_utils/#to_categorical-function
 [Image augmentation layers]: https://keras.io/api/layers/preprocessing_layers/image_augmentation/
 [train_test_split]: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
+
+
+
+

@@ -177,9 +177,9 @@ Hint 3: Use 'CategoricalAccuracy' as the metric.
 
 ```python
 # compile the model
-#hidden#.compile(optimizer = #hidden#, 
-                    loss = #hidden#, 
-                    metrics = #hidden#)
+_____.compile(optimizer = _____, 
+                    loss = _____, 
+                    metrics = _____)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -257,10 +257,10 @@ Hint 4: Store the training loss and metrics in a variable call 'history_intro'
 
 ```python
 # fit the model
-#hidden# = #hidden#.fit(x = #hidden#, y = #hidden#,
-                                batch_size = #hidden#,
-                                epochs = #hidden#, 
-                                validation_data = (#hidden#, #hidden#))
+_____ = _____.fit(x = _____, y = _____,
+                                batch_size = _____,
+                                epochs = _____, 
+                                validation_data = (_____, _____))
 ```
 
 :::::::::::::::::::::::: solution 
@@ -457,7 +457,7 @@ def create_model_dropout():
     # Second Pooling layer with input window sized 2x2
     x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout)
     # Third Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-    x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout) # This is new!
+    x_dropout = keras.layers.Conv2D(filters=64, kernel_size=(3,3), activation='relu')(x_dropout) # This is new!
     # Dropout layer andomly drops 50 per cent of the input units
     x_dropout = keras.layers.Dropout(rate=0.5)(x_dropout) # This is new!
     # Flatten layer to convert 2D feature maps into a 1D vector
@@ -540,26 +540,27 @@ The final accuracy on the validation set is higher than without dropout.
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
-## WANT TO KNOW MORE: Regularization techniques for CNNs
+## WANT TO KNOW MORE: Regularization techniques
 
 ChatGPT
 
-**Regularization** methods introduce constraints or penalties to the training process, encouraging the model to be simpler and less prone to overfitting. Here are some common regularization methods for CNNs:
+Regularization methods introduce constraints or penalties to the training process, encouraging the model to be simpler and less prone to overfitting
 
-- **L1 and L2 Regularization**: L1 and L2 regularization are the two most common regularization techniques used in deep learning. They add a penalty term to the loss function during training to restrict the model's weights.
+Here are some common regularization methods for CNNs:
+
+1. **L1 and L2 Regularization** are the two most common regularization techniques used in deep learning. They add a penalty term to the loss function during training to restrict the model's weights.
     - L1 regularization adds the absolute value of the weights to the loss function. It tends to produce sparse weight vectors, forcing some of the less important features to have exactly zero weights.
-
     - L2 regularization adds the square of the weights to the loss function. It encourages the model to have smaller weights overall, preventing extreme values and reducing the impact of individual features.
+    - The regularization strength is controlled by a hyperparameter, often denoted as lambda (λ), that determines how much weight should be given to the regularization term. A larger λ value increases the impact of regularization, making the model simpler and more regularized.
 
-The regularization strength is controlled by a hyperparameter, often denoted as lambda (λ), that determines how much weight should be given to the regularization term. A larger λ value increases the impact of regularization, making the model simpler and more regularized.
+2. **Dropout**: Involves randomly "dropping out" a fraction of neurons during training. This means during each training iteration, some neurons are temporarily removed from the network. Dropout effectively reduces the interdependence between neurons, preventing the network from relying too heavily on specific neurons, and making it more robust.
 
-- **Dropout**: Involves randomly "dropping out" a fraction of neurons during training. This means during each training iteration, some neurons are temporarily removed from the network. Dropout effectively reduces the interdependence between neurons, preventing the network from relying too heavily on specific neurons, and making it more robust.
+3. **Batch Normalization**: While not explicitly a regularization technique, Batch Normalization has a regularizing effect on the model. It normalizes the activations of each layer in the network, reducing internal covariate shift. This can improve training stability and reduce the need for aggressive dropout or weight decay.
 
-- **Batch Normalization**: While not explicitly a regularization technique, Batch Normalization has a regularizing effect on the model. It normalizes the activations of each layer in the network, reducing internal covariate shift. This can improve training stability and reduce the need for aggressive dropout or weight decay.
+4. **Data Augmentation**: Data augmentation is a technique where the training data is artificially augmented by applying various transformations like rotation, scaling, flipping, and cropping to create new examples. This increases the diversity of the training data and helps the model generalize better to unseen data.
 
-- **Data Augmentation**: Data augmentation is a technique where the training data is artificially augmented by applying various transformations like rotation, scaling, flipping, and cropping to create new examples. This increases the diversity of the training data and helps the model generalize better to unseen data.
+5. **Early Stopping**: Early stopping is a form of regularization that stops the training process when the model's performance on a validation set starts to degrade. It prevents the model from overfitting by avoiding further training after the point of best validation performance.
 
-- **Early Stopping**: Early stopping is a form of regularization that stops the training process when the model's performance on a validation set starts to degrade. It prevents the model from overfitting by avoiding further training after the point of best validation performance.
 
 Using regularization techniques improves the generalization performance of CNNs and reduces the risk of overfitting. It's essential to experiment with different regularization methods and hyperparameters to find the optimal combination for your specific CNN architecture and dataset.
 
@@ -592,3 +593,4 @@ Based on our evaluation of the loss and accuracy metrics, we choose the model th
 [seaborn]: https://seaborn.pydata.org/
 [Google Developers Machine Learning Crash Course]: https://developers.google.com/machine-learning/crash-course/reducing-loss/learning-rate
 [Creative Commons 4.0 Attribution Licence]: https://creativecommons.org/licenses/by/4.0/
+

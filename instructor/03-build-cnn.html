@@ -276,7 +276,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Build a Convolutional Neural Network</h1>
-        <p>Last updated on 2024-05-11 |
+        <p>Last updated on 2024-05-20 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -430,7 +430,7 @@ image to use an input.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>    <span class="co"># CNN Part 1</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   inputs_intro <span class="op">=</span> keras.Input(<span class="co">#blank#)</span></span></code></pre>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   inputs_intro <span class="op">=</span> keras.Input(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -523,7 +523,7 @@ layer.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># CNN Part 2</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(filters<span class="op">=</span><span class="co">#blank#, kernel_size=#blank#, activation=#blank#)(#blank#)</span></span></code></pre>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(filters<span class="op">=</span>_____, kernel_size<span class="op">=</span>_____, activation<span class="op">=</span>_____)(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -623,7 +623,7 @@ layer.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Pooling layer with input window sized 2x2</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D(pool_size<span class="op">=</span><span class="co">#blank#)(#blank#)</span></span></code></pre>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D(pool_size<span class="op">=</span>_____)(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -691,7 +691,7 @@ layer.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span><span class="co">#hidden#, activation=#hidden#)(#hidden#)</span></span></code></pre>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span>_____, activation<span class="op">=</span>_____)(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -741,7 +741,7 @@ layer.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(<span class="co">#hidden#)</span></span></code></pre>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -906,7 +906,7 @@ as our dataset.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># CNN Part 3</span></span>
 <span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span><span class="co">#hidden#, activation=#hidden#)(#hidden#)</span></span></code></pre>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span>_____, activation<span class="op">=</span>_____)(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -965,18 +965,18 @@ from the introduction.</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="kw">def</span> create_model_intro():</span>
 <span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>    <span class="co"># CNN Part 1</span></span>
-<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>    <span class="co">#hidden#</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>    _____</span>
 <span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>    </span>
 <span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>    <span class="co"># CNN Part 2</span></span>
-<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>    <span class="co">#hidden#</span></span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>    _____</span>
 <span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>    </span>
 <span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>    <span class="co"># CNN Part 3</span></span>
-<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>    <span class="co">#hidden#</span></span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>    _____</span>
 <span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a>    </span>
 <span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a>    <span class="co"># create the model</span></span>
-<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a>    model_intro <span class="op">=</span> keras.Model(inputs <span class="op">=</span> <span class="co">#hidden#, </span></span>
-<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a>                              outputs <span class="op">=</span> <span class="co">#hidden#, </span></span>
-<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a>                              name <span class="op">=</span> <span class="co">#hidden#)</span></span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a>    model_intro <span class="op">=</span> keras.Model(inputs <span class="op">=</span> _____, </span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a>                              outputs <span class="op">=</span> _____, </span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a>                              name <span class="op">=</span> _____)</span>
 <span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a>    </span>
 <span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a>    <span class="cf">return</span> model_intro</span></code></pre>
 </div>
@@ -1261,8 +1261,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/instructor/03-build-cnn.html",
   "identifier": "https://.github.io/github.com/instructor/03-build-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-05-11",
-  "datePublished": "2024-05-14"
+  "dateModified": "2024-05-20",
+  "datePublished": "2024-05-20"
 }
 
   </script><script>

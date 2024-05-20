@@ -273,7 +273,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Compile and Train (Fit) a Convolutional Neural Network</h1>
-        <p>Last updated on 2024-05-11 |
+        <p>Last updated on 2024-05-20 |
         
         <a href="https://https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -419,7 +419,7 @@ adaptive learning rate mechanism to address this problem.</li>
   <h3 class="accordion-header" id="headingSpoiler1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Learning Rate</h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p><strong>Learning rate</strong> is a hyperparameter that determines
@@ -520,9 +520,9 @@ introductory model<a class="anchor" aria-label="anchor" href="#challenge-write-t
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># compile the model</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#hidden#.compile(optimizer = #hidden#, </span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                    loss <span class="op">=</span> <span class="co">#hidden#, </span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                    metrics <span class="op">=</span> <span class="co">#hidden#)</span></span></code></pre>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>_____.<span class="bu">compile</span>(optimizer <span class="op">=</span> _____, </span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                    loss <span class="op">=</span> _____, </span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                    metrics <span class="op">=</span> _____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -532,7 +532,7 @@ introductory model<a class="anchor" aria-label="anchor" href="#challenge-write-t
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -638,10 +638,10 @@ dataset variable names.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># fit the model</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co">#hidden# = #hidden#.fit(x = #hidden#, y = #hidden#,</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                                batch_size <span class="op">=</span> <span class="co">#hidden#,</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                                epochs <span class="op">=</span> <span class="co">#hidden#, </span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                                validation_data <span class="op">=</span> (<span class="co">#hidden#, #hidden#))</span></span></code></pre>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>_____ <span class="op">=</span> _____.fit(x <span class="op">=</span> _____, y <span class="op">=</span> _____,</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                                batch_size <span class="op">=</span> _____,</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                                epochs <span class="op">=</span> _____, </span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                                validation_data <span class="op">=</span> (_____, _____))</span></code></pre>
 </div>
 </div>
 </div>
@@ -651,7 +651,7 @@ dataset variable names.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -672,7 +672,7 @@ history_intro = model_intro.fit(x = train_images, y = train_labels,
   <h3 class="accordion-header" id="headingSpoiler2">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Batch size</h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>The choice of batch size can have various implications, and there are
@@ -773,7 +773,7 @@ test set?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>Key things to look for for:  
 <ul><li>Loss
@@ -828,7 +828,7 @@ training data and introduce variability.</li>
   <h3 class="accordion-header" id="headingSpoiler3">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: What is underfitting?</h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>Underfitting occurs when the model is too simple or lacks the
 capacity to capture the underlying patterns and relationships present in
@@ -933,7 +933,7 @@ layers we discussed.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -954,7 +954,7 @@ layers we discussed.</p>
     # Second Pooling layer with input window sized 2x2
     x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout)
     # Third Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-    x_dropout = keras.layers.Conv2D(64, (3, 3), activation='relu')(x_dropout) # This is new!
+    x_dropout = keras.layers.Conv2D(filters=64, kernel_size=(3,3), activation='relu')(x_dropout) # This is new!
     # Dropout layer andomly drops 50 per cent of the input units
     x_dropout = keras.layers.Dropout(rate=0.5)(x_dropout) # This is new!
     # Flatten layer to convert 2D feature maps into a 1D vector
@@ -999,7 +999,7 @@ improved.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1053,33 +1053,33 @@ dropout.</p>
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
   <h3 class="accordion-header" id="headingSpoiler4">
-<div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Regularization techniques for CNNs</h3>
+<div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Regularization techniques</h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
 <div class="accordion-body">
 <p>ChatGPT</p>
-<p><strong>Regularization</strong> methods introduce constraints or
-penalties to the training process, encouraging the model to be simpler
-and less prone to overfitting. Here are some common regularization
-methods for CNNs:</p>
-<ul><li>
-<strong>L1 and L2 Regularization</strong>: L1 and L2 regularization
-are the two most common regularization techniques used in deep learning.
-They add a penalty term to the loss function during training to restrict
-the model’s weights.
-<ul><li><p>L1 regularization adds the absolute value of the weights to the
-loss function. It tends to produce sparse weight vectors, forcing some
-of the less important features to have exactly zero weights.</p></li>
-<li><p>L2 regularization adds the square of the weights to the loss
+<p>Regularization methods introduce constraints or penalties to the
+training process, encouraging the model to be simpler and less prone to
+overfitting</p>
+<p>Here are some common regularization methods for CNNs:</p>
+<ol style="list-style-type: decimal"><li>
+<p><strong>L1 and L2 Regularization</strong> are the two most common
+regularization techniques used in deep learning. They add a penalty term
+to the loss function during training to restrict the model’s
+weights.</p>
+<ul><li>L1 regularization adds the absolute value of the weights to the loss
+function. It tends to produce sparse weight vectors, forcing some of the
+less important features to have exactly zero weights.</li>
+<li>L2 regularization adds the square of the weights to the loss
 function. It encourages the model to have smaller weights overall,
 preventing extreme values and reducing the impact of individual
-features.</p></li>
-</ul></li>
-</ul><p>The regularization strength is controlled by a hyperparameter, often
+features.</li>
+<li>The regularization strength is controlled by a hyperparameter, often
 denoted as lambda (λ), that determines how much weight should be given
 to the regularization term. A larger λ value increases the impact of
-regularization, making the model simpler and more regularized.</p>
-<ul><li><p><strong>Dropout</strong>: Involves randomly “dropping out” a
+regularization, making the model simpler and more regularized.</li>
+</ul></li>
+<li><p><strong>Dropout</strong>: Involves randomly “dropping out” a
 fraction of neurons during training. This means during each training
 iteration, some neurons are temporarily removed from the network.
 Dropout effectively reduces the interdependence between neurons,
@@ -1101,7 +1101,7 @@ regularization that stops the training process when the model’s
 performance on a validation set starts to degrade. It prevents the model
 from overfitting by avoiding further training after the point of best
 validation performance.</p></li>
-</ul><p>Using regularization techniques improves the generalization
+</ol><p>Using regularization techniques improves the generalization
 performance of CNNs and reduces the risk of overfitting. It’s essential
 to experiment with different regularization methods and hyperparameters
 to find the optimal combination for your specific CNN architecture and
@@ -1201,8 +1201,8 @@ any links that you are not going to use.
   "url": "https://.github.io/github.com/04-fit-cnn.html",
   "identifier": "https://.github.io/github.com/04-fit-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-05-11",
-  "datePublished": "2024-05-14"
+  "dateModified": "2024-05-20",
+  "datePublished": "2024-05-20"
 }
 
   </script><script>

@@ -36,7 +36,19 @@ print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
 
 #%%
 
-#### Predict
+#### Step 7. Perform a Prediction/Classification
+
+# ## CHALLENGE Write the code to make class predictions on test data
+
+# # load preferred model
+# _____ = keras.models.load_model(_____)
+
+# # use preferred model to predict
+# _____ = _____.predict(x=_____)
+
+#%%
+
+## SOLUTION
 
 # load preferred model
 model_best = keras.models.load_model('fit_outputs/model_dropout.keras')
@@ -44,6 +56,10 @@ print('We are using', model_best.name)
 
 # use preferred model to predict probability of each class on new test set
 predictions = model_best.predict(x=test_images)
+
+print(predictions)
+
+#%%
 
 # convert probability predictions to table using class names for column names
 prediction_df = pd.DataFrame(data=predictions, columns=class_names)

@@ -10,10 +10,10 @@ Episode 02 Introduction to Image Data
 
 # load the required packages
 
-from keras.utils import img_to_array # image processing
-from keras.utils import load_img # image processing
 from tensorflow import keras # data and neural network
 from sklearn.model_selection import train_test_split # data splitting
+from keras.utils import img_to_array # image processing
+from keras.utils import load_img # image processing
 
 #%%
 
@@ -87,22 +87,24 @@ class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', '
 
 ## CHALLENGE Create a function to prepare the dataset
 
-def prepare_dataset(_____, _____):
+# def prepare_dataset(_____, _____):
     
-    # normalize the RGB values to be between 0 and 1
-    _____
+#     # normalize the RGB values to be between 0 and 1
+#     _____
     
-    # one hot encode the training labels
-    _____
+#     # one hot encode the training labels
+#     _____
     
-    # split the training data into training and validation set
-    _____
+#     # split the training data into training and validation set
+#     _____
 
-    return _____
+#     return _____
 
 #%%
-# create a function to prepare the dataset
 
+## SOLUTION
+
+# function to prepare the dataset
 def prepare_dataset(train_images, train_labels):
     
     # normalize the RGB values to be between 0 and 1

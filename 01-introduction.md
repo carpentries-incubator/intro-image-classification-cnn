@@ -356,7 +356,7 @@ We will return to each of these workflow steps throughout this lesson and discus
 
 [original source]: https://en.wikipedia.org/wiki/File:AI-ML-DL.svg
 [CIFAR-10]: https://www.cs.toronto.edu/~kriz/cifar.html
-[Set the working directory]: https://carpentries-incubator.github.io/intro-image-classification-cnn/index.html/#set-the-working-directory
+[Set the working directory]: https://carpentries-incubator.github.io/intro-image-classification-cnn/#set-the-working-directory
 
 
 

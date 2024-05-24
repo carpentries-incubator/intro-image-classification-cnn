@@ -82,16 +82,56 @@ Model.predict(x, batch_size=None, verbose="auto", steps=None, callbacks=None)
 
 - *x* refers to the input samples which in our case is an array of images
 
-Recall our model will return a vector of probabilities, one for each class. By finding the class with the highest probability, we can select the most likely class name of the object.
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## CHALLENGE Write the code to make classname predictions on test data
+
+Use the `Model.predict` function to predict the classnames of your test data.
+
+Hint 1: If not already in memory, use 'keras.models.load_model()'
+
+Hint 2: Capture the output of the predict method in a variable named 'predictions'.
+
+Question: What did the predict method return?
+
+```python
+# load preferred model
+_____ = keras.models.load_model(_____)
+
+# use preferred model to predict
+_____ = _____.predict(x=_____)
+```
+
+:::::::::::::::::::::::: solution 
 
 ```python
 # load preferred model
 model_best = keras.models.load_model('fit_outputs/model_dropout.keras')
 print('We are using', model_best.name)
 
-# use preferred model to predict probability of each class on new test set
+# use preferred model to predict
 predictions = model_best.predict(x=test_images)
 
+print(predictions)
+```
+```output
+We are using cifar_model_dropout
+313/313 [==============================] - 1s 3ms/step
+[[2.5438464e-03 2.8599051e-04 1.8983794e-02 ... 1.2449322e-03 2.1590138e-02 1.1813908e-03]
+ [1.4163133e-02 3.0712727e-01 6.2913182e-06 ... 7.1710346e-08 6.7631084e-01 2.3808377e-03]
+ [3.7576403e-02 3.7346989e-01 2.7308019e-04 ... 2.1147232e-04 4.7246802e-01 1.1511791e-01]
+ ...
+ [3.6926474e-05 2.6195229e-07 4.9670707e-02 ... 5.6971662e-02 7.5488140e-05 1.2449813e-05]
+ [2.7443832e-02 3.4728521e-01 4.3887336e-02 ... 1.0875220e-01 1.4605661e-03 1.1823817e-02]
+ [6.4299519e-07 1.0424572e-05 6.5142207e-04 ... 9.7329682e-01 4.3226078e-07 5.3953562e-07]]
+```
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+Recall our model will return a vector of probabilities, one for each class. By finding the class with the highest probability, we can select the most likely class name of the object. We will use numpy.argmax() to find the class with the highest probability in each row.
+
+```python
 # convert probability predictions to table using class names for column names
 prediction_df = pd.DataFrame(data=predictions, columns=class_names)
 

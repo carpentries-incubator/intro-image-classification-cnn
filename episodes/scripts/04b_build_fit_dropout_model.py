@@ -59,8 +59,10 @@ train_images, val_images, train_labels, val_labels = prepare_dataset(train_image
 
 ## CHALLENGE Create a function that defines a CNN with Dropout
 
-# function to define the dropout model
+## SOLUTION
 
+
+# function to define the dropout model
 def create_model_dropout():
     
     # CNN Part 1
@@ -97,6 +99,8 @@ def create_model_dropout():
 #%%
 
 ## CHALLENGE Does adding Dropout improve our model?
+
+## SOLUTION
 
 # create the dropout model
 model_dropout = create_model_dropout()

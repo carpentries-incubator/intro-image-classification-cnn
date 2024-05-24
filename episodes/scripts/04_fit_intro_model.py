@@ -96,24 +96,45 @@ model_intro.summary()
 
 #%%
 
-### Step 5. Choose a loss function and optimizer and compile model
+# ### Step 5. Choose a loss function and optimizer and compile model
 
-## CHALLENGE Write the code to compile the introductory model
+# ## CHALLENGE Write the code to compile the introductory model
 
-# compile the model
-_____.compile(optimizer = _____, 
-                    loss = _____, 
-                    metrics = _____)
+# # compile the model
+# _____.compile(optimizer = _____, 
+#                     loss = _____, 
+#                     metrics = _____)
                     
 #%%
+
+## SOLUTION
+
+# compile the model
+model_intro.compile(optimizer = keras.optimizers.Adam(),
+                    loss = keras.losses.CategoricalCrossentropy(),
+                    metrics = keras.metrics.CategoricalAccuracy())
+
+#%%
                                     
-### Step 6. Train (Fit) model
+# ### Step 6. Train (Fit) model
+
+# ## CHALLENGE Write the code to fit the introductory model
+
+# # fit the model
+# _____ = _____.fit(x = _____, y = _____,
+#                                 batch_size = _____,
+#                                 epochs = _____, 
+#                                 validation_data = (_____, _____))
+
+#%%
+
+## SOLUTION
 
 # fit the model
-_____ = _____.fit(x = _____, y = _____,
-                                batch_size = _____,
-                                epochs = _____, 
-                                validation_data = (_____, _____))
+history_intro = model_intro.fit(x = train_images, y = train_labels,
+                                batch_size = 32,
+                                epochs = 10, 
+                                validation_data = (val_images, val_labels))
 
 #%%
 # save the model

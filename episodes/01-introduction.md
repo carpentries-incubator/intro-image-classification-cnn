@@ -88,6 +88,13 @@ For this lesson, we will use an existing image dataset known as [CIFAR-10] (Cana
 
 It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope this code can be used as a "starting point".  We will create an "initial program" for this introduction chapter that will be used as a foundation for the rest of the episodes.
 
+:::::::::::::::::::::::::::::::::::::: callout
+Here's one we prepared earlier!
+
+To follow along in Spyder, [Set the working directory] to the '.../intro-image-classification-cnn/scripts' folder where '...' is your project folder.
+
+:::::::::::::::::::::::::::::::::::::::::::::::
+
 ```python
 # load the required packages
 from tensorflow import keras # for neural networks 
@@ -349,3 +356,8 @@ We will return to each of these workflow steps throughout this lesson and discus
 
 [original source]: https://en.wikipedia.org/wiki/File:AI-ML-DL.svg
 [CIFAR-10]: https://www.cs.toronto.edu/~kriz/cifar.html
+[Set the working directory]: https://carpentries-incubator.github.io/intro-image-classification-cnn/index.html/#set-the-working-directory
+
+
+
+

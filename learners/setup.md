@@ -131,13 +131,13 @@ Creating a MACOS environment requires a different tensorflow package.
 ## Macos - Intel
 
 ```code
-(base) C:\Users\Lab> conda env create --file MACOS_cnn_workshop_environment.yml
+(base) C:\Users\Lab> conda env create --file cnn_workshop_MACOS_environment.yml
 ```
 
 If the yml is not in your current directory, you can specify the full path to the file, eg:
 
 ```code
-(base) C:\Users\Lab> conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\MACOS_cnn_workshop_environment.yml
+(base) C:\Users\Lab> conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_MACOS_environment.yml
 ```
 
 Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.
@@ -210,6 +210,24 @@ Your package versions may vary from the screenshot below but this is similar to 
 ## Download the scripts, files, and model outputs
 
 Download the [scripts, files, and model outputs].
+
+Create a project folder on your local device for this course and move the downloaded materials to the project folder. Extract all of the download contents here. Check your folder and file structures looks like this:
+
+![](fig/00_download_zip_folder_files.png){alt='Screenshot of the contents of the intro-image-classification-cnn.zip folder.'}
+
+:::::::::::::::::::::::::::::::::::::: callout
+
+In Spyder, when you execute a script in its entirety (Run File F5), the working directory will automatically be set to the directory that contains that script file. 
+
+For this lesson, after launching Spyder, make sure to set the working directory to the 'scripts' folder included in the download. This will help to ensure that all of the scripts we provide run as intended.
+
+::::::::::::::::::::::::::::::::::::::::::::::
+
+## Set the working directory
+
+There are a couple different ways to set the working directory in Spyder. The easiest way is to use the folder icon found on the upper right hand side of the toolbar. Click the folder icon and navigate to '.../intro-image-classification-cnn/scripts' where '...' is your project folder. Verify you are in the right place by selecting the 'Files' pane just below the toolbar and verify its contents.
+
+![](fig/00_spyder_workingdir_scripts.png){alt='Screenshot of the contents of the scripts folder in the Files tab of the Spyder window after using the folder icon to set the working directory.'}
 
 
 ## Get the data

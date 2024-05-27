@@ -103,13 +103,15 @@ For this lesson, after launching Spyder, make sure to set the working directory 
 
 Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
 
-
 ::::::::::::::::::::::::::::::::::::::::: challenge
-## Windows
+## Using Conda to install packages
 
-Creating a MACOS environment requires a different tensorflow package.
+[Conda] is the package management system associated with [Anaconda] and runs on Windows, macOS and Linux.
+
+Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
 
 :::::::::::::::::::::::: solution
+## Windows
 
 The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key) or Spotlight on macOS (Command + spacebar).
 

@@ -103,6 +103,7 @@ For this lesson, after launching Spyder, make sure to set the working directory 
 [Conda] is the package management system associated with [Anaconda] and runs on Windows, macOS and Linux.
 
 Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
+::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
 ## Windows
@@ -118,6 +119,8 @@ A terminal window will open with the title 'Anaconda Prompt':
 Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment included with every Anaconda distribution.
 
 To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
+:::::::::::::::::::::::::::::::::: 
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Windows extra
 

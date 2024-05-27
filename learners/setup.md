@@ -97,14 +97,15 @@ For this lesson, after launching Spyder, make sure to set the working directory 
 
 ::::::::::::::::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::: challenge
 ## Install the required packages
 
 [Conda] is the package management system associated with [Anaconda] and runs on Windows, macOS and Linux.
 
 Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
 
-
-### Windows
+:::::::::::::::::::::::: solution
+## Windows
 
 The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key) or Spotlight on macOS (Command + spacebar).
 
@@ -118,7 +119,7 @@ Note the notation of the prompt inside the terminal window. The name inside the 
 
 To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
 
-### Windows
+### Windows extra
 
 ```code
 (base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml

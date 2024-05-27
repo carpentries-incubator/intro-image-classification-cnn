@@ -103,6 +103,9 @@ For this lesson, after launching Spyder, make sure to set the working directory 
 
 Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
 
+
+### Windows
+
 The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key) or Spotlight on macOS (Command + spacebar).
 
 ![](fig/00_anaconda_prompt_search.png){alt='Screenshot of the Anaconda Prompt application'}

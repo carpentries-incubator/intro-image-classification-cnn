@@ -113,7 +113,7 @@ Conda should already be available in your system once you installed Anaconda suc
 :::::::::::::::::::::::: solution
 ## Windows
 
-The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key) or Spotlight on macOS (Command + spacebar).
+The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key).
 
 ![](fig/00_anaconda_prompt_search.png){alt='Screenshot of the Anaconda Prompt application'}
 
@@ -124,10 +124,6 @@ A terminal window will open with the title 'Anaconda Prompt':
 Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment included with every Anaconda distribution.
 
 To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
-
-:::::::::::::::::::::::::::::::::
-:::::::::::::::::::::::: solution
-## Windows extra
 
 ```code
 (base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml
@@ -149,6 +145,15 @@ After the environment is created we tell Anaconda to use the new environment wit
 ```
 
 You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop).
+
+:::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::: solution
+## Mac
+
+
+:::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::: solution
+## Linux
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::

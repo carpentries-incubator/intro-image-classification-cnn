@@ -150,6 +150,53 @@ You will know you are in the right environment because the prompt changes from (
 :::::::::::::::::::::::: solution
 ## Mac
 
+On the Mac, there is no Anaconda Prompt, thus once the anaconda installation is complete, start up a terminal session.
+
+You should get a terminal session looking like:
+
+```code
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+(base):~ $ 
+```
+
+Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment included with every Anaconda distribution.
+
+To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
+
+```code
+(base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml
+```
+
+If the yml is not in your current directory, you can specify the full path to the file, eg:
+
+```code
+(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml
+```
+
+Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.  If it installs correctly, you should get the following output on the screen.
+
+```code
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate cnn_workshop
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+```
+
+After the environment is created we tell Anaconda to use the new environment with the conda keywords `conda activate` followed by the environment name:
+
+```code
+(base) Mac:cnn-workshop ace$ conda activate cnn_workshop
+(cnn_workshop) Mac:cnn-workshop ace$ 
+```
+
+You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop).
 
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::: solution

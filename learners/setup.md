@@ -123,6 +123,7 @@ Note the notation of the prompt inside the terminal window. The name inside the 
 
 To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
 
+:::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::: solution
 ## Windows extra
 

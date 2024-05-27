@@ -81,6 +81,22 @@ If you run into any difficulties, please request help before the workshop begins
 :::::::::::::::::::::::::::::::::: 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Download the scripts, files, and model outputs
+
+Download the [scripts, files, and model outputs].
+
+Create a project folder on your local device for this course and move the downloaded materials to the project folder. Extract all of the download contents here. Check your folder and file structures looks like this:
+
+![](fig/00_download_zip_folder_files.png){alt='Screenshot of the contents of the intro-image-classification-cnn.zip folder.'}
+
+:::::::::::::::::::::::::::::::::::::: callout
+
+In Spyder, when you execute a script in its entirety (Run File F5), the working directory will automatically be set to the directory that contains that script file. 
+
+For this lesson, after launching Spyder, make sure to set the working directory to the 'scripts' folder included in the download. This will help to ensure that all of the scripts we provide run as intended.
+
+::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Install the required packages
 
 [Conda] is the package management system associated with [Anaconda] and runs on Windows, macOS and Linux.
@@ -206,22 +222,6 @@ print('Tensorflow version: ', tensorflow.__version__)
 Your package versions may vary from the screenshot below but this is similar to what your output will look like. The important thing is that there are no errors.
 
 ![](fig/00_package_check_output.png){alt='Screenshot of the IPython Console in Spyder wtih list of package versions and no error messages.'}
-
-## Download the scripts, files, and model outputs
-
-Download the [scripts, files, and model outputs].
-
-Create a project folder on your local device for this course and move the downloaded materials to the project folder. Extract all of the download contents here. Check your folder and file structures looks like this:
-
-![](fig/00_download_zip_folder_files.png){alt='Screenshot of the contents of the intro-image-classification-cnn.zip folder.'}
-
-:::::::::::::::::::::::::::::::::::::: callout
-
-In Spyder, when you execute a script in its entirety (Run File F5), the working directory will automatically be set to the directory that contains that script file. 
-
-For this lesson, after launching Spyder, make sure to set the working directory to the 'scripts' folder included in the download. This will help to ensure that all of the scripts we provide run as intended.
-
-::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Set the working directory
 

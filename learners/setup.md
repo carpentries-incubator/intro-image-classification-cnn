@@ -150,9 +150,7 @@ You will know you are in the right environment because the prompt changes from (
 :::::::::::::::::::::::: solution
 ## Mac
 
-On the Mac, there is no Anaconda Prompt, thus once the anaconda installation is complete, start up a terminal session.
-
-You should get a terminal session looking like:
+On the Mac, there is no Anaconda Prompt application, thus once the anaconda installation has been completed.  Simply start a terminal session and the session should look like:
 
 ```code
 The default interactive shell is now zsh.
@@ -201,6 +199,8 @@ You will know you are in the right environment because the prompt changes from (
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::: solution
 ## Linux
+
+Still to be done!
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::

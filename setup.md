@@ -103,7 +103,13 @@ For this lesson, after launching Spyder, make sure to set the working directory 
 
 Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
 
+
+::::::::::::::::::::::::::::::::::::::::: challenge
 ## Windows
+
+Creating a MACOS environment requires a different tensorflow package.
+
+:::::::::::::::::::::::: solution
 
 The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key) or Spotlight on macOS (Command + spacebar).
 
@@ -117,8 +123,9 @@ Note the notation of the prompt inside the terminal window. The name inside the 
 
 To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
 
-
-### Windows extra
+:::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::: solution
+## Windows extra
 
 ```code
 (base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml
@@ -140,6 +147,9 @@ After the environment is created we tell Anaconda to use the new environment wit
 ```
 
 You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop).
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::: challenge
 ## MacOS

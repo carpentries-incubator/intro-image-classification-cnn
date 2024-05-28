@@ -152,15 +152,7 @@ You will know you are in the right environment because the prompt changes from (
 
 On the Mac, there is no Anaconda Prompt application, thus once the anaconda installation has been completed.  Simply start a terminal session and the session should look like:
 
-![](fig/00_mac-create-cnn-workshop-conda-enviroment.png){alt='Screenshot of create conda enviroment on a Mac.'}
-Screenshot of create conda enviroment on a Mac.
-
-```code
-The default interactive shell is now zsh.
-To update your account to use zsh, please run `chsh -s /bin/zsh`.
-For more details, please visit https://support.apple.com/kb/HT208050.
-(base):~ $ 
-```
+![](fig/00_starting-terminal-on-a-mac.png){alt='Screenshot of starting a new terminal session on a Mac.'}
 
 Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment included with every Anaconda distribution.
 
@@ -176,7 +168,15 @@ If the yml is not in your current directory, you can specify the full path to th
 (base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml
 ```
 
-Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.  If it installs correctly, you should get the following output on the screen.
+![](fig/00_mac-create-cnn-workshop-conda-enviroment.png){alt='Screenshot of create conda enviroment on a Mac.'}
+
+Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.  
+
+![](fig/00_mac-creating-cnn-workshop-conda-enviroment-1.png){alt='Screenshot of creating conda enviroment on a Mac.'}
+
+![](fig/00_mac-creating-cnn-workshop-conda-enviroment-1.png){alt='Screenshot of creating conda enviroment on a Mac.'}
+
+If it installs correctly, you should get the following output on the screen.
 
 ```code
 done
@@ -189,6 +189,8 @@ done
 #
 #     $ conda deactivate
 ```
+
+![](fig/00_mac-cnn-workshop-conda-enviroment-created.png){alt='Screenshot of conda enviroment that has been created on a Mac.'}
 
 After the environment is created we tell Anaconda to use the new environment with the conda keywords `conda activate` followed by the environment name:
 

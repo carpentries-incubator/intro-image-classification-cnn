@@ -12,5 +12,5 @@
 "episodes/06-share-cnn-next-steps.md" "9d3ef211fb71a4c296e9cc0a873831f9" "site/built/06-share-cnn-next-steps.md" "2024-05-11"
 "instructors/instructor-notes.md" "cae72b6712578d74a49fea7513099f8c" "site/built/instructor-notes.md" "2023-08-22"
 "learners/reference.md" "1c7cc4e229304d9806a13f69ca1b8ba4" "site/built/reference.md" "2023-09-25"
-"learners/setup.md" "4dee9f0da0bb9c88ebcb5f5e72235c23" "site/built/setup.md" "2024-05-28"
+"learners/setup.md" "87043b525e5120af53be9ae3a2d3a525" "site/built/setup.md" "2024-05-28"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2023-08-22"

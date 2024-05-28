@@ -203,46 +203,7 @@ You will know you are in the right environment because the prompt changes from (
 
 ![](fig/00_mac-activate-conda-enviroment.png){alt='Screenshot of activate conda enviroment on a Mac.'}
 
-:::::::::::::::::::::::::::::::::
-:::::::::::::::::::::::: solution
-## Linux
-
-Still to be done!
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::: challenge
-## MacOS
-
-Creating a MACOS environment requires a different tensorflow package.
-
-:::::::::::::::::::::::: solution
-## Macos - Intel
-
-```code
-(base) C:\Users\Lab> conda env create --file cnn_workshop_MACOS_environment.yml
-```
-
-If the yml is not in your current directory, you can specify the full path to the file, eg:
-
-```code
-(base) C:\Users\Lab> conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_MACOS_environment.yml
-```
-
-Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.
-
-After the environment is created we tell Anaconda to use the new environment with the conda keywords `conda activate` followed by the environment name:
-
-```code
-(base) C:\Users\Lab> conda activate cnn_workshop_macos
-(cnn_workshop_macos) C:\Users\Lab>
-```
-
-You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop_macos).
-:::::::::::::::::::::::::::::::::
-:::::::::::::::::::::::: solution
-## Macos - Silicon (M1)
+## Macos - Silicon (M1 and M2)
 
 After creating the MACOS environment with the yml, M1 and M2 computers (Apple Silicon) require an additional package to be installed.
 
@@ -251,6 +212,13 @@ TODO check if this is because of the integrated GPU and if so, can Intel version
 ```code
 (cnn_workshop_macos) C:\Users\Lab> pip install tensorflow-metal
 ```
+
+:::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::: solution
+## Linux
+
+Still to be done!
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

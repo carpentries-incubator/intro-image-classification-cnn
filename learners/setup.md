@@ -152,6 +152,8 @@ You will know you are in the right environment because the prompt changes from (
 
 On the Mac, there is no Anaconda Prompt application, thus once the anaconda installation has been completed.  Simply start a terminal session and the session should look like:
 
+![](fig/00_mac-create-cnn-workshop-conda-enviroment.png){alt='Screenshot of create conda enviroment on a Mac.'}
+
 ```code
 The default interactive shell is now zsh.
 To update your account to use zsh, please run `chsh -s /bin/zsh`.

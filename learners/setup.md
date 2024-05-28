@@ -203,7 +203,7 @@ You will know you are in the right environment because the prompt changes from (
 
 ![](fig/00_mac-activate-conda-enviroment.png){alt='Screenshot of activate conda enviroment on a Mac.'}
 
-## Macos - Silicon (M1 and M2)
+## Macos - Silicon (M1 and M2) - This sections needs to be tested and confirmed
 
 After creating the MACOS environment with the yml, M1 and M2 computers (Apple Silicon) require an additional package to be installed.
 

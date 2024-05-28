@@ -201,6 +201,8 @@ After the environment is created we tell Anaconda to use the new environment wit
 
 You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop).
 
+![](fig/00_mac-activate-conda-enviroment.png){alt='Screenshot of activate conda enviroment on a Mac.'}
+
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::: solution
 ## Linux

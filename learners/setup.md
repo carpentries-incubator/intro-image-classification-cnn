@@ -81,13 +81,39 @@ If you run into any difficulties, please request help before the workshop begins
 :::::::::::::::::::::::::::::::::: 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Download the scripts, files, and model outputs
+
+Download the [scripts, files, and model outputs].
+
+Create a project folder on your local device for this course and move the downloaded materials to the project folder. Extract all of the download contents here. Check your folder and file structures looks like this:
+
+![](fig/00_download_zip_folder_files.png){alt='Screenshot of the contents of the intro-image-classification-cnn.zip folder.'}
+
+:::::::::::::::::::::::::::::::::::::: callout
+
+In Spyder, when you execute a script in its entirety (Run File F5), the working directory will automatically be set to the directory that contains that script file. 
+
+For this lesson, after launching Spyder, make sure to set the working directory to the 'scripts' folder included in the download. This will help to ensure that all of the scripts we provide run as intended.
+
+::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Install the required packages
 
 [Conda] is the package management system associated with [Anaconda] and runs on Windows, macOS and Linux.
 
 Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
 
-The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key) or Spotlight on macOS (Command + spacebar).
+::::::::::::::::::::::::::::::::::::::::: challenge
+## Using Conda to install packages
+
+[Conda] is the package management system associated with [Anaconda] and runs on Windows, macOS and Linux.
+
+Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
+
+:::::::::::::::::::::::: solution
+## Windows
+
+The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key).
 
 ![](fig/00_anaconda_prompt_search.png){alt='Screenshot of the Anaconda Prompt application'}
 
@@ -98,8 +124,6 @@ A terminal window will open with the title 'Anaconda Prompt':
 Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment included with every Anaconda distribution.
 
 To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
-
-### Windows
 
 ```code
 (base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml
@@ -122,37 +146,64 @@ After the environment is created we tell Anaconda to use the new environment wit
 
 You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop).
 
-::::::::::::::::::::::::::::::::::::::::: challenge
-## MacOS
-
-Creating a MACOS environment requires a different tensorflow package.
-
+:::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::: solution
-## Macos - Intel
+## Mac
+
+On the Mac, there is no Anaconda Prompt application, thus once the anaconda installation has been completed.  Simply start a terminal session and the session should look like:
+
+![](fig/00_starting-terminal-on-a-mac.png){alt='Screenshot of starting a new terminal session on a Mac.'}
+
+Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment included with every Anaconda distribution.
+
+To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
 
 ```code
-(base) C:\Users\Lab> conda env create --file cnn_workshop_MACOS_environment.yml
+(base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml
 ```
 
 If the yml is not in your current directory, you can specify the full path to the file, eg:
 
 ```code
-(base) C:\Users\Lab> conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_MACOS_environment.yml
+(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml
 ```
 
-Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.
+![](fig/00_mac-create-cnn-workshop-conda-enviroment.png){alt='Screenshot of create conda enviroment on a Mac.'}
+
+Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.  
+
+![](fig/00_mac-creating-cnn-workshop-conda-enviroment-1.png){alt='Screenshot of creating conda enviroment on a Mac.'}
+
+![](fig/00_mac-creating-cnn-workshop-conda-enviroment-1.png){alt='Screenshot of creating conda enviroment on a Mac.'}
+
+If it installs correctly, you should get the following output on the screen.
+
+```code
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate cnn_workshop
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+```
+
+![](fig/00_mac-cnn-workshop-conda-enviroment-created.png){alt='Screenshot of conda enviroment that has been created on a Mac.'}
 
 After the environment is created we tell Anaconda to use the new environment with the conda keywords `conda activate` followed by the environment name:
 
 ```code
-(base) C:\Users\Lab> conda activate cnn_workshop_macos
-(cnn_workshop_macos) C:\Users\Lab>
+(base) Mac:cnn-workshop ace$ conda activate cnn_workshop
+(cnn_workshop) Mac:cnn-workshop ace$ 
 ```
 
-You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop_macos).
-:::::::::::::::::::::::::::::::::
-:::::::::::::::::::::::: solution
-## Macos - Silicon (M1)
+You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop).
+
+![](fig/00_mac-activate-conda-enviroment.png){alt='Screenshot of activate conda enviroment on a Mac.'}
+
+## Macos - Silicon (M1 and M2) - This sections needs to be tested and confirmed
 
 After creating the MACOS environment with the yml, M1 and M2 computers (Apple Silicon) require an additional package to be installed.
 
@@ -161,6 +212,13 @@ TODO check if this is because of the integrated GPU and if so, can Intel version
 ```code
 (cnn_workshop_macos) C:\Users\Lab> pip install tensorflow-metal
 ```
+
+:::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::: solution
+## Linux
+
+Still to be done!
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -206,22 +264,6 @@ print('Tensorflow version: ', tensorflow.__version__)
 Your package versions may vary from the screenshot below but this is similar to what your output will look like. The important thing is that there are no errors.
 
 ![](fig/00_package_check_output.png){alt='Screenshot of the IPython Console in Spyder wtih list of package versions and no error messages.'}
-
-## Download the scripts, files, and model outputs
-
-Download the [scripts, files, and model outputs].
-
-Create a project folder on your local device for this course and move the downloaded materials to the project folder. Extract all of the download contents here. Check your folder and file structures looks like this:
-
-![](fig/00_download_zip_folder_files.png){alt='Screenshot of the contents of the intro-image-classification-cnn.zip folder.'}
-
-:::::::::::::::::::::::::::::::::::::: callout
-
-In Spyder, when you execute a script in its entirety (Run File F5), the working directory will automatically be set to the directory that contains that script file. 
-
-For this lesson, after launching Spyder, make sure to set the working directory to the 'scripts' folder included in the download. This will help to ensure that all of the scripts we provide run as intended.
-
-::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Set the working directory
 

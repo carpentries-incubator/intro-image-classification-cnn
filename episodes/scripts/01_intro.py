@@ -57,16 +57,17 @@ print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
 
 #### Visualise a subset of the CIFAR-10 dataset
 
-plt.figure(figsize=(10,10)) # create a plot
+# set up plot region, including width, height in inches
+fig, axes = plt.subplots(nrows=5, ncols=5, figsize=(10,10))
 
 # add images to plot
-for i in range(25):
-    plt.subplot(5,5,i+1)
-    plt.imshow(train_images[i])
-    plt.axis('off')
-    plt.title(class_names[train_labels[i,].argmax()])
+for i,ax in enumerate(axes.flat):
+    ax.imshow(train_images[i])
+    ax.axis('off')
+    ax.set_title(class_names[train_labels[i,].argmax()])
     
-plt.show() # view plot
+# view plot
+plt.show() 
 
 #%%
 
@@ -142,21 +143,24 @@ test_images = test_images / 255.0
     
 # make prediction for the first test image
 result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))
+print(result_intro)
 
-# extract class for prediction with highest probability
-class_names[result_intro.argmax()]
+# extract class with highest probability
+print(class_names[result_intro.argmax()])
 
 #%%
 
 # plot the first test image with its true label
 
-plt.figure() # create a plot
+# create a plot
+plt.figure()
 
 # display image
 plt.imshow(test_images[0])
 plt.title('True class:' + class_names[result_intro.argmax()])
 
-plt.show() # view plot
+# view plot
+plt.show() 
 
 #%%
 

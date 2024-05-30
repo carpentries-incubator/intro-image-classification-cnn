@@ -24,23 +24,25 @@ exercises: 2
 
 A **neural network** is an artificial intelligence technique loosely based on the way neurons in the brain work. 
 
-### A single nueron
-A neural network consists of connected computational units called **neurons**. Each neuron will:
+### A single neuron
 
-- Take one or more inputs ($x_1, x_2, ...$), e.g., input data expressed as floating point numbers.
-- Conduct three main operations most of the time:
-    - Calculate the weighted sum of the inputs where ($w_1, w_2, ... $) indicate weights
-    - Add an extra constant weight (i.e. a bias term) to this weighted sum
-    - Apply a non-linear function to the output so far (using a predefined activation function such as the ReLU function)
+Each **neuron** will:
+
+- Take one or more inputs ($x_1, x_2, ...$), e.g., floating point numbers, each with a corresponding weight.
+- Calculate the weighted sum of the inputs where ($w_1, w_2, ... $) indicate weights.
+- Add an extra constant weight (i.e. a bias term) to this weighted sum.
+- Apply a non-linear function to the bias-adjusted weighted sum.
 - Return one output value, again a floating point number.
 
-One example equation to calculate the output for a neuron is: $output=ReLU(∑i(xi∗wi)+bias)$
+One example equation to calculate the output for a neuron is:
+
+$output=ReLU(∑i(xi∗wi)+bias)$
 
 ![](fig/03_neuron.png){alt='diagram of a single neuron taking multiple inputs and their associated weights in and then applying an activation function to predict a single output'}
 
 ### Combining multiple neurons into a network
 
-Multiple neurons can be joined together by connecting the output of one to the input of another. These connections are associated with weights that determine the 'strength' of the connection, and the weights are adjusted during training. In this way, the combination of neurons and connections describe a computational graph, an example can be seen in the image below. 
+Multiple neurons can be joined together by connecting the output of one to the input of another. These connections are also associated with weights that determine the 'strength' of the connection, and these weights are also adjusted during training. In this way, the combination of neurons and connections describe a computational graph, an example can be seen in the image below. 
 
 In most neural networks neurons are aggregated into layers. Signals travel from the input layer to the output layer, possibly through one or more intermediate layers called hidden layers. The image below illustrates an example of a neural network with three layers, each circle is a neuron, each line is an edge and the arrows indicate the direction data moves in.
 
@@ -50,7 +52,7 @@ Neural networks aren't a new technique, they have been around since the late 194
 
 ## Convolutional Neural Networks
 
-A convolutional neural network (CNN) is a type of artificial neural network (ANN) most commonly applied to analyze visual imagery. They are designed to recognize the spatial structure of images when extracting features.
+A convolutional neural network (CNN) is a type of artificial neural network (ANN) most commonly applied to analyze visual imagery. They are specifically designed for processing grid-like data, such as images, by leveraging convolutional layers that preserve spatial relationships, when extracting features.
 
 ### Step 4. Build an architecture from scratch or choose a pretrained model
 
@@ -68,7 +70,7 @@ The output from each layer becomes the input to the next layer.
 
 #### CNN Part 1. Input Layer
 
-The Input in Keras gets special treatment when images are used. Keras automatically calculates the number of inputs and outputs a specific layer needs and therefore how many edges need to be created. This means we must let Keras know how big our input is going to be. We do this by instantiating a `keras.Input` class and passing it a tuple to indicate the dimensionality of the input data.
+The Input in Keras gets special treatment when images are used. Keras automatically calculates the number of inputs and outputs a specific layer needs and therefore how many edges need to be created. This means we just need to let Keras know how big our input is going to be. We do this by instantiating a `keras.Input` class and passing it a tuple to indicate the dimensionality of the input data. In Python, a **tuple** is a data type used to store collections of data. It is similar to a list, but tuples are immutable, meaning once they are created, their contents cannot be changed.
 
 The input layer is created with the `keras.Input` function and its first parameter is the expected shape of the input:
 
@@ -96,9 +98,9 @@ Hint 2: The shape of our input dataset includes the total number of images. We w
 
 
 ```python
-    # CNN Part 1
-    # Input layer of 32x32 images with three channels (RGB)
-   inputs_intro = keras.Input(_____)
+# CNN Part 1
+# Input layer of 32x32 images with three channels (RGB)
+inputs_intro = keras.Input(_____)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -115,7 +117,7 @@ inputs_intro = keras.Input(shape=train_images.shape[1:])
 
 #### CNN Part 2. Hidden Layers
 
-The next component consists of the so-called hidden layers of the network. The reason they are referred to as hidden is because they are not directly observable from the input or the output of the network. 
+The next component consists of the so-called hidden layers of the network.
 
 In a neural network, the input layer receives the raw data, and the output layer produces the final predictions or classifications. These layers' contents are directly observable because you can see the input data and the network's output predictions.
 
@@ -152,6 +154,16 @@ There are several types of convolutional layers available in Keras depending on 
 ```
 keras.layers.Conv2D(filters, kernel_size, strides=(1, 1), padding="valid", activation=None, **kwargs)
 ```
+- `filters` is the number of filters in this layer. 
+    - This is one of the hyperparameters of our system and should be chosen carefully.
+    - Good practice is to start with a relatively small number of filters in the first layer to prevent overfitting.
+    - Choosing a number of filters as a power of two (e.g., 32, 64, 128) is common.
+- `kernel size` is the size of the convolution matrix which we already discussed.     - Smaller kernels are often used to capture fine-grained features and odd-sized filters are preferred because they have a centre pixel which helps maintain spatial symmetry during convolutions.
+- `activation` specifies which activation function to use.
+
+When specifying layers, remember each layer's output is the input to the next layer. We must create a variable to store a reference to the output so we can pass it to the next layer. The basic format for doing this is:
+
+output_variable = layer_name(layer_arguments)(input_variable)
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -159,8 +171,9 @@ keras.layers.Conv2D(filters, kernel_size, strides=(1, 1), padding="valid", activ
 
 Create a Conv2D layer with 16 filters, a 3x3 kernel size, and the 'relu' activation function.
 
-Hint 1: The input to each layer is the output of the previous layer.
+Here we choose **relu** which is one of the most commonly used in deep neural networks that is proven to work well. We will discuss activation functions later in **Step 9. Tune hyperparameters** but to satisfy your curiosity, `ReLU` stands for Rectified Linear Unit (ReLU).
 
+Hint 1: The input to each layer is the output of the previous layer.
 
 ```python
 # CNN Part 2
@@ -178,20 +191,6 @@ x_intro = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-The instantiation here has three parameters and a seemingly strange combination of parentheses, so let us break it down.
-
-- The first parameter is the number of filters in this layer. This is one of the hyperparameters of our system and should be chosen carefully.
-    - Good practice is to start with a relatively small number of filters in the first layer to prevent overfitting.
-    - Choosing a number of filters as a power of two (e.g., 32, 64, 128) is common.
-- The second parameter is the kernel size which we already discussed. Smaller kernels are often used to capture fine-grained features and odd-sized filters are preferred because they have a centre pixel which helps maintain spatial symmetry during convolutions.
-- The third parameter is the activation function to use.
-    - Here we choose **relu** which is one of the most commonly used in deep neural networks that is proven to work well. 
-    - We will discuss activation functions later in **Step 9. Tune hyperparameters** but to satisfy your curiosity, `ReLU` stands for Rectified Linear Unit (ReLU).
-- Next is an extra set of parenthenses with inputs in them that means after an instance of the Conv2D layer is created, it can be called as if it was a function. This tells the Conv2D layer to connect the layer passed as a parameter, in this case the inputs.
-- Finally, we store a reference to the output so we can pass it to the next layer.
-
 
 :::::::::::::::::::::::::::::::::::::: callout
 
@@ -216,6 +215,12 @@ Similar to convolutional layers, Keras offers several pooling layers and one use
 ```
 keras.layers.MaxPooling2D(pool_size=(2, 2), strides=None, padding="valid", data_format=None, name=None, **kwargs)
 ```
+- `pool_size`, i.e., the size of the pooling window
+    - In Keras, the default is usually (2, 2)
+
+The function downsamples the input along its spatial dimensions (height and width) by taking the **maximum** value over an input window (of size defined by pool_size) for each channel of the input. By taking the maximum instead of the average, the most prominent features in the window are emphasized.
+
+For example, a 2x2 pooling size reduces the width and height of the input by a factor of 2. Empirically, a 2x2 pooling size has been found to work well in various for image classification tasks and also strikes a balance between down-sampling for computational efficiency and retaining important spatial information.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -240,20 +245,13 @@ x_intro = keras.layers.MaxPooling2D(pool_size=(2,2))(x_intro)
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-The instantiation here has a single parameter, pool_size.
-
-The function downsamples the input along its spatial dimensions (height and width) by taking the **maximum** value over an input window (of size defined by pool_size) for each channel of the input. By taking the maximum instead of the average, the most prominent features in the window are emphasized.
-
-A 2x2 pooling size reduces the width and height of the input by a factor of 2. Empirically, a 2x2 pooling size has been found to work well in various for image classification tasks and also strikes a balance between down-sampling for computational efficiency and retaining important spatial information.
-
-
 ##### **Dense layers**
 
-A **dense** layer has a number of neurons, which is a parameter you choose when you create the layer. When connecting the layer to its input and output layers every neuron in the dense layer gets an edge (i.e. connection) to **all** of the input neurons and **all** of the output neurons.
+A **dense** layer is a fully connected layer where each neuron receives input from every neuron in the previous layer. When connecting the layer to its input and output layers every neuron in the dense layer gets an edge (i.e. connection) to **all** of the input neurons and **all** of the output neurons.
 
 ![](fig/03-neural_network_sketch_dense.png){alt='diagram of a neural network with multiple inputs feeding into to two seperate dense layers with connections between all the inputs and outputs'}
 
-This layer is called fully connected because all input neurons are taken into account by each output neuron. It aggregates global information about the features learned in previous layers to make a decision about the class of the input.
+This layer aggregates global information about the features learned in previous layers to make a decision about the class of the input.
 
 In Keras, a densely-connected layer is defined:
 
@@ -261,7 +259,7 @@ In Keras, a densely-connected layer is defined:
 keras.layers.Dense(units, activation=None, **kwargs)
 ```
 
-Units in this case refers to the number of neurons.
+- `units in this case refers to the number of neurons.
 
 The choice of how many neurons to specify is often determined through experimentation and can impact the performance of our CNN. Too few neurons may not capture complex patterns in the data but too many neurons may lead to overfitting.
 
@@ -344,7 +342,7 @@ Not for complex data!
 
 A typical architecture for image classification is likely to include at least one convolutional layer, one pooling layer, one or more dense layers, and possibly a flatten layer.
 
-Convolutional and Pooling layers are often used together in multipe sets to capture a wider range of features and learn more complex representations of the input data. Using this technique, the network can learn a hierarchical representation of features, where simple features detected in early layers are combined to form more complex features in deeper layers.
+Convolutional and Pooling layers are often used together in multiple sets to capture a wider range of features and learn more complex representations of the input data. Using this technique, the network can learn a hierarchical representation of features, where simple features detected in early layers are combined to form more complex features in deeper layers.
 
 There isn't a strict rule of thumb for the number of sets of convolutional and pooling layers to start with, however, there are some guidelines.
 
@@ -581,13 +579,13 @@ The Model.summary() output has three columns:
 
 ## How to choose an architecture?
 
-For this neural network, we had to make many choices, including the number of hidden neurons. Other choices to be made are the number of layers and type of layers. You might wonder how you should make these architectural choices. Unfortunately, there are no clear rules to follow here, and it often boils down to a lot of trial and error. It is recommended to explore what others have done with similar datasets and problems. Another best practice is to start with a relatively simple architecture and then add layers and tweak the network to test if performance increases. 
+For this neural network, we had to make many choices, including the number of hidden neurons. Other choices to be made are the number of layers and type of layers. You might wonder how you should make these architectural choices. Unfortunately, there are no clear rules to follow here, and it often boils down to a lot of trial and error. It is recommended to explore what others have done with similar data sets and problems. Another best practice is to start with a relatively simple architecture and then add layers and tweak the network to test if performance increases. 
 
 ::::::::::::::::::::::::::::::::::::::::::::::
 
 ## We have a model now what?
 
-This CNN should be able to run with the CIFAR-10 dataset and provide reasonable results for basic classification tasks. However, do keep in mind this model is relatively simple, and its performance may not be as high as more complex architectures. The reason it's called deep learning is because, in most cases, the more layers we have, i.e. the deeper and more sophisticated CNN architecture we use, the better the performance.
+This CNN should be able to run with the CIFAR-10 data set and provide reasonable results for basic classification tasks. However, do keep in mind this model is relatively simple, and its performance may not be as high as more complex architectures. The reason it's called deep learning is because, in most cases, the more layers we have, i.e. the deeper and more sophisticated CNN architecture we use, the better the performance.
 
 How can we judge a model's performance? We can inspect a couple metrics produced during the training process to detect whether our model is underfitting or overfitting. To do that, we continue with the next steps in our Deep Learning workflow, **Step 5. Choose a loss function and optimizer** and **Step 6. Train model**. 
 

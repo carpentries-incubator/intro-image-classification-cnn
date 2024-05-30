@@ -5,22 +5,17 @@ exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
-
 - How much data do you need for Deep Learning?
-- Where can I find image data to train my model?
-- How do I plot image data in python?
 - How do I prepare image data for use in a convolutional neural network (CNN)?
-- Know the difference between training, testing, and validation datasets.
-
+- How do I work with image data in python?
+- Where can I find image data to train my model?
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
-
-- Identify sources of image data.
 - Understand the properties of image data.
-- Write code to plot image data.
-- Prepare an image dataset to train a convolutional neural network (CNN).
-
+- Write code to prepare an image dataset to train a CNN.
+- Know the difference between training, testing, and validation datasets.
+- Identify sources of image data.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Deep Learning Workflow
@@ -39,24 +34,18 @@ We are performing a classification problem and we want to output one category fo
 
 ### Step 3. Prepare data
 
-Deep Learning requires extensive training using example data which tells the network what output it should produce for a given input. In this workshop, our network will be trained on a series of images and told what they contain. Once the network is trained, it should be able to take another image and correctly classify its contents.
+Deep Learning requires extensive training data which tells the network what output it should produce for a given input. In this workshop, our network will be trained on a series of images and told what they contain. Once the network is trained, it should be able to take another image and correctly classify its contents.
 
-Depending on your situation, you will prepare your own custom data for training or use pre-existing data.
-
-:::::::::::::::::::::::::::::::::::::: challenge
-
-## CHALLENGE How much data do you need for Deep Learning?
-
-The rise of Deep Learning is partially due to the increased availability of very large datasets. But how much data do you actually need to train a Deep Learning model?
-
-:::::::::::::::::::::::: solution 
+:::::::::::::::::::::::::::::::::::::: callout
+How much data do you need for Deep Learning?
 
 Unfortunately, this question is not easy to answer. It depends, among other things, on the complexity of the task (which you often do not know beforehand), the quality of the available dataset and the complexity of the network. For complex tasks with large neural networks, adding more data often improves performance. However, this is also not a generic truth: if the data you add is too similar to the data you already have, it will not give much new information to the neural network.
 
 In case you have too little data available to train a complex network from scratch, it is sometimes possible to use a pretrained network that was trained on a similar problem. Another trick is data augmentation, where you expand the dataset with artificial data points that could be real. An example of this is mirroring images when trying to classify cats and dogs. An horizontally mirrored animal retains the label, but exposes a different view.
-:::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
+
+Depending on your situation, you will prepare your own custom data for training or use pre-existing data.
 
 ## Custom image data
 
@@ -106,26 +95,19 @@ Note each square in the enlarged image area (i.e. each pixel) is all one colour,
 
 ### Working with Pixels
 
-As noted, in practice, real world images will typically be made up of a vast number of pixels, and each of these pixels will be one of potentially millions of colours. 
-
-In python, an image can represented as a 2- or 3-dimensional array, where each element corresponds to a pixel value in the image. In the context of images, these arrays often have dimensions for height, width, and colour channels (if applicable).
-
+In python, an image can represented as a 2- or 3-dimensional array. An **array** is used to store multiple values or elements of the same datatype in a single variable. In the context of images, arrays have dimensions for height, width, and colour channels (if applicable) and each element corresponds to a pixel value in the image. 
 Let us start with the Jabiru image.
 
 ```python
-# load the required packages
-from keras.utils import img_to_array
-from keras.utils import load_img
-
 # specify the image path
 new_img_path = "../data/Jabiru_TGS.JPG"
 
 # read in the image with default arguments
-new_img_pil = load_img(new_img_path)
+new_img_pil = keras.utils.load_img(path=new_img_path)
 
 # check the image class and size
 print('Image class :', new_img_pil.__class__)
-print('Image size', new_img_pil.size)
+print('Image size:', new_img_pil.size)
 ```
 ```output
 Image class : <class 'PIL.JpegImagePlugin.JpegImageFile'>
@@ -134,17 +116,17 @@ Image size (552, 573)
 
 ### Image Dimensions - Resizing
 
-The new image has shape `(573, 552, 3)`, meaning it is much larger in size, 573x552 pixels; a rectangle instead of a square; and consists of three colour channels (RGB).
+The new image has shape `(573, 552)`, meaning it is much larger in size, 573x552 pixels and is a rectangle instead of a square.
 
-Recall from the introduction that our training data set consists of 50000 images of 32x32 pixels and three channels. 
+Recall from the introduction that our training data set consists of 50000 images of 32x32 pixels. 
 
-To reduce the computational load and ensure all of our images have a uniform size, we need to choose an image resolution (or size in pixels) and ensure all of the images we use are resized to that shape to be consistent.
+To reduce the computational load and ensure all of our images have a uniform size, we need to choose an image resolution (or size in pixels) and ensure all of the images we use are resized to be consistent.
 
-There are a couple of ways to do this in python but one way is to specify the size you want using an argument to the `load_img()` function from `keras.utils`.
+There are a couple of ways to do this in python but one way is to specify the size you want using the `target_size` argument to the `keras.utils.load_img()` function.
 
 ```python
 # read in the image and specify the target size
-new_img_pil_small = load_img(new_img_path, target_size=(32,32))
+new_img_pil_small = keras.utils.load_img(path=new_img_path, target_size=(32,32))
 
 # confirm the image class and size
 print('Resized image class :', new_img_pil_small.__class__)
@@ -155,7 +137,7 @@ Resized image class : <class 'PIL.Image.Image'>
 Resized image size (32, 32)
 ```
 
-Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, Keras has a solution: [keras.utils.image_dataset_from_directory]
+Of course, if there are a large number of images to preprocess you do not want to copy and paste these steps for each image! Fortunately, Keras has a solution: [keras.utils.image_dataset_from_directory()]
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
@@ -196,15 +178,15 @@ Information about these operations are included in the Keras document for [Image
 
 ### Normalisation
 
-Image RGB values are between 0 and 255. As input for neural networks, it is better to have small input values. The process of converting the RGB values to be between 0 and 1 is called **normalization**.
+Image RGB values are between 0 and 255. As input for neural networks, it is better to have small input values. The process of converting the RGB values to be between 0 and 1 is called **normalisation**.
 
-Before we can normalize our image values we must convert the image to an numpy array.
+Before we can normalise our image values we must convert the image to an numpy array.
 
-We introduced how to do this in [Episode 01 Introduction to Deep Learning](episodes/01-introduction.md) but what you may not have noticed is that the `keras.datasets.cifar10.load_data` function did the conversion for us whereas now we will do it ourselves.
+We introduced how to do this in [Episode 01 Introduction to Deep Learning](episodes/01-introduction.md) but what you may not have noticed is that the `keras.datasets.cifar10.load_data()` function did the conversion for us whereas now we will do it ourselves.
 
 ```python
-# first convert the image into an array for normalization
-new_img_arr = img_to_array(new_img_pil_small)
+# first convert the image into an array for normalisation
+new_img_arr = keras.utils.img_to_array(new_img_pil_small)
 
 # confirm the image class and shape
 print('Converted image class  :', new_img_arr.__class__)
@@ -215,32 +197,32 @@ Converted image class  : <class 'numpy.ndarray'>
 Converted image shape (32, 32, 3)
 ```
 
-Now that the image is an array, we can normalize the values. Let us also investigate the image values before and after we normalize them.
+Now that the image is an array, we can normalise the values. Let us also investigate the image values before and after we normalise them.
 
 ```python
 # inspect pixel values before and after normalisation
 
 # extract the min, max, and mean pixel values BEFORE
-print('BEFORE normalization')
+print('BEFORE normalisation')
 print('Min pixel value ', new_img_arr.min()) 
 print('Max pixel value ', new_img_arr.max())
 print('Mean pixel value ', new_img_arr.mean().round())
 
-# normalize the RGB values to be between 0 and 1
+# normalise the RGB values to be between 0 and 1
 new_img_arr_norm = new_img_arr / 255.0
 
 # extract the min, max, and mean pixel values AFTER
-print('AFTER normalization') 
+print('AFTER normalisation') 
 print('Min pixel value ', new_img_arr_norm.min()) 
 print('Max pixel value ', new_img_arr_norm.max())
 print('Mean pixel value ', new_img_arr_norm.mean().round())
 ```
 ```output
-BEFORE normalization
+BEFORE normalisation
 Min pixel value  0.0
 Max pixel value  255.0
 Mean pixel value  87.0
-AFTER normalization
+AFTER normalisation
 Min pixel value  0.0
 Max pixel value  1.0
 Mean pixel value  0.0
@@ -248,27 +230,27 @@ Mean pixel value  0.0
 
 ::::::::::::::::::::::::::::::::::::::::: spoiler
 
-## WANT TO KNOW MORE: Why Normalize?
+## WANT TO KNOW MORE: Why normalise?
 
 ChatGPT
 
-Normalizing the RGB values to be between 0 and 1 is a common pre-processing step in machine learning tasks, especially when dealing with image data. This normalization has several benefits:
+Normalizing the RGB values to be between 0 and 1 is a common pre-processing step in machine learning tasks, especially when dealing with image data. This normalisation has several benefits:
 
 1. **Numerical Stability**: By scaling the RGB values to a range between 0 and 1, you avoid potential numerical instability issues that can arise when working with large values. Neural networks and many other machine learning algorithms are sensitive to the scale of input features, and normalizing helps to keep the values within a manageable range.
 
-2. **Faster Convergence**: Normalizing the RGB values often helps in faster convergence during the training process. Neural networks and other optimization algorithms rely on gradient descent techniques, and having inputs in a consistent range aids in smoother and faster convergence.
+2. **Faster Convergence**: Normalizing the RGB values often helps in faster convergence during the training process. Neural networks and other optimisation algorithms rely on gradient descent techniques, and having inputs in a consistent range aids in smoother and faster convergence.
 
 3. **Equal Weightage for All Channels**: In RGB images, each channel (Red, Green, Blue) represents different colour intensities. By normalizing to the range [0, 1], you ensure that each channel is treated with equal weightage during training. This is important because some machine learning algorithms could assign more importance to larger values.
 
-4. **Generalization**: Normalization helps the model to generalize better to unseen data. When the input features are in the same range, the learned weights and biases can be more effectively applied to new examples, making the model more robust.
+4. **Generalisation**: Normalisation helps the model to generalize better to unseen data. When the input features are in the same range, the learned weights and biases can be more effectively applied to new examples, making the model more robust.
 
 5. **Compatibility**: Many image-related libraries, algorithms, and models expect pixel values to be in the range of [0, 1]. By normalizing the RGB values, you ensure compatibility and seamless integration with these tools.
 
-The normalization process is typically done by dividing each RGB value (ranging from 0 to 255) by 255, which scales the values to the range [0, 1].
+The normalisation process is typically done by dividing each RGB value (ranging from 0 to 255) by 255, which scales the values to the range [0, 1].
 
-For example, if you have an RGB image with pixel values (100, 150, 200), after normalization, the pixel values would become (100/255, 150/255, 200/255) ≈ (0.39, 0.59, 0.78).
+For example, if you have an RGB image with pixel values (100, 150, 200), after normalisation, the pixel values would become (100/255, 150/255, 200/255) ≈ (0.39, 0.59, 0.78).
 
-Remember that normalization is not always mandatory, and there could be cases where other scaling techniques might be more suitable based on the specific problem and data distribution. However, for most image-related tasks in machine learning, normalizing RGB values to [0, 1] is a good starting point.
+Remember that normalisation is not always mandatory, and there could be cases where other scaling techniques might be more suitable based on the specific problem and data distribution. However, for most image-related tasks in machine learning, normalizing RGB values to [0, 1] is a good starting point.
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -310,7 +292,7 @@ The Keras function for one_hot encoding is called [to_categorical]:
 
 ### Data Splitting
 
-The typical practice in machine learning is to split your data into two subsets: a **training** set and a **test** set. This initial split separates the data you will use to train your model from the data you will use to evaluate its performance.
+The typical practice in machine learning is to split your data into two subsets: a **training** set and a **test** set. This initial split separates the data you will use to train your model (Step 6) from the data you will use to evaluate its performance (Step 8).
 
 After this initial split, you can choose to further split the training set into a training set and a **validation set**. This is often done when you are fine-tuning hyperparameters, selecting the best model from a set of candidate models, or preventing overfitting.
 
@@ -319,10 +301,10 @@ To split a dataset into training and test sets there is a very convenient functi
 `sklearn.model_selection.train_test_split(*arrays, test_size=None, train_size=None, random_state=None, shuffle=True, stratify=None)`
 
 - The first two parameters are the dataset (X) and the corresponding targets (y) (i.e. class labels).
-- Next is the named parameter `test_size`. This is the fraction of the dataset used for testing and in this case `0.2` means 20 per cent of the data will be used for testing.
+- `test_size` is the fraction of the dataset used for testing
 - `random_state` controls the shuffling of the dataset, setting this value will reproduce the same results (assuming you give the same integer) every time it is called.
-- `shuffle` which can be either `True` or `False`, it controls whether the order of the rows of the dataset is shuffled before splitting. It defaults to `True`.
-- `stratify` is a more advanced parameter that controls how the split is done. By setting it to `target` the train and test sets the function will return will have roughly the same proportions (with regards to the number of images of a certain class) as the dataset.
+- `shuffle` controls whether the order of the rows of the dataset is shuffled before splitting and can be either `True` or `False`.
+- `stratify` is a more advanced parameter that controls how the split is done.
 
 
 ## Pre-existing image data
@@ -348,11 +330,11 @@ class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', '
 
 In this instance the data is likely already prepared for use in a CNN. However, it is always a good idea to first read any associated documentation to find out what steps the data providers took to prepare the images and second to take a closer at the images once loaded and query their attributes.
 
-In our case, we still want prepare the datset with these steps:
+In our case, we still want prepare the dataset with these steps:
 
 - normalise the image pixel values to be between 0 and 1
 - one-hot encode the training image labels
-- divide the data into **training**, **validation**, and **test** subsets 
+- divide the **training data** into **training** and **validation** sets
 
 We performed these operations in **Step 3. Prepare data** of the Introduction but let us create the function to prepare the dataset again knowing what we know now.
 
@@ -360,12 +342,16 @@ We performed these operations in **Step 3. Prepare data** of the Introduction bu
 
 ## CHALLENGE Create a function to prepare the dataset
 
+Hint 1: Your function should accept the training images and labels as arguments
+
+Hint 2: Use 20% split for validation and a random state of '42'
+
 ```python
 # create a function to prepare the training dataset
 
 def prepare_dataset(_____, _____):
     
-    # normalize the RGB values to be between 0 and 1
+    # normalise the RGB values to be between 0 and 1
     _____
     
     # one hot encode the training labels
@@ -383,7 +369,7 @@ def prepare_dataset(_____, _____):
 
 def prepare_dataset(train_images, train_labels):
     
-    # normalize the RGB values to be between 0 and 1
+    # normalise the RGB values to be between 0 and 1
     train_images = train_images / 255
     
     # one hot encode the training labels
@@ -400,15 +386,15 @@ def prepare_dataset(train_images, train_labels):
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-Inspect the labels before and after one-hot encoding.
+Inspect the labels before and after data preparation to visualise one-hot encoding.
 
 ```python
 print()
 print('train_labels before one hot encoding')
 print(train_labels)
 
-# one-hot encode labels
-train_labels = keras.utils.to_categorical(train_labels, len(class_names))
+# prepare the dataset for training
+train_images, val_images, train_labels, val_labels = prepare_dataset(train_images, train_labels)
 
 print()
 print('train_labels after one hot encoding')
@@ -557,7 +543,7 @@ We now have a function we can use throughout the lesson to preprocess our data w
 [COCO Annotator]: https://github.com/jsbroks/coco-annotator
 [PIL Image Module]: https://pillow.readthedocs.io/en/latest/reference/Image.html
 [image preprocessing]: https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image
-[keras.utils.image_dataset_from_directory]:  https://keras.io/api/data_loading/image/
+[keras.utils.image_dataset_from_directory()]:  https://keras.io/api/data_loading/image/
 [to_categorical]: https://keras.io/api/utils/python_utils/#to_categorical-function
 [Image augmentation layers]: https://keras.io/api/layers/preprocessing_layers/image_augmentation/
 [train_test_split]: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html

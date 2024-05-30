@@ -1784,7 +1784,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Build a Convolutional Neural Network</a></p>
 <hr>
-<p>Last updated on 2024-05-20 |
+<p>Last updated on 2024-05-30 |
         
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -1829,38 +1829,33 @@ dense.</li>
 <p>A <strong>neural network</strong> is an artificial intelligence
 technique loosely based on the way neurons in the brain work.</p>
 <div class="section level3">
-<h3 id="a-single-nueron">A single nueron<a class="anchor" aria-label="anchor" href="#a-single-nueron"></a>
+<h3 id="a-single-neuron">A single neuron<a class="anchor" aria-label="anchor" href="#a-single-neuron"></a>
 </h3>
-<p>A neural network consists of connected computational units called
-<strong>neurons</strong>. Each neuron will:</p>
+<p>Each <strong>neuron</strong> will:</p>
 <ul>
 <li>Take one or more inputs (<span class="math inline">\(x_1, x_2,
-...\)</span>), e.g., input data expressed as floating point
-numbers.</li>
-<li>Conduct three main operations most of the time:
-<ul>
+...\)</span>), e.g., floating point numbers, each with a corresponding
+weight.</li>
 <li>Calculate the weighted sum of the inputs where ($w_1, w_2, … $)
-indicate weights</li>
+indicate weights.</li>
 <li>Add an extra constant weight (i.e. a bias term) to this weighted
-sum</li>
-<li>Apply a non-linear function to the output so far (using a predefined
-activation function such as the ReLU function)</li>
-</ul>
-</li>
+sum.</li>
+<li>Apply a non-linear function to the bias-adjusted weighted sum.</li>
 <li>Return one output value, again a floating point number.</li>
 </ul>
-<p>One example equation to calculate the output for a neuron is: <span class="math inline">\(output=ReLU(∑i(xi∗wi)+bias)\)</span></p>
+<p>One example equation to calculate the output for a neuron is:</p>
+<p><span class="math inline">\(output=ReLU(∑i(xi∗wi)+bias)\)</span></p>
 <figure><img src="../fig/03_neuron.png" alt="diagram of a single neuron taking multiple inputs and their associated weights in and then applying an activation function to predict a single output" class="figure mx-auto d-block"></figure>
 </div>
 <div class="section level3">
 <h3 id="combining-multiple-neurons-into-a-network">Combining multiple neurons into a network<a class="anchor" aria-label="anchor" href="#combining-multiple-neurons-into-a-network"></a>
 </h3>
 <p>Multiple neurons can be joined together by connecting the output of
-one to the input of another. These connections are associated with
-weights that determine the ‘strength’ of the connection, and the weights
-are adjusted during training. In this way, the combination of neurons
-and connections describe a computational graph, an example can be seen
-in the image below.</p>
+one to the input of another. These connections are also associated with
+weights that determine the ‘strength’ of the connection, and these
+weights are also adjusted during training. In this way, the combination
+of neurons and connections describe a computational graph, an example
+can be seen in the image below.</p>
 <p>In most neural networks neurons are aggregated into layers. Signals
 travel from the input layer to the output layer, possibly through one or
 more intermediate layers called hidden layers. The image below
@@ -1884,8 +1879,9 @@ neural networks or Deep Learning.</p>
 <hr class="half-width">
 <p>A convolutional neural network (CNN) is a type of artificial neural
 network (ANN) most commonly applied to analyze visual imagery. They are
-designed to recognize the spatial structure of images when extracting
-features.</p>
+specifically designed for processing grid-like data, such as images, by
+leveraging convolutional layers that preserve spatial relationships,
+when extracting features.</p>
 <div class="section level3">
 <h3 id="step-4--build-an-architecture-from-scratch-or-choose-a-pretrained-model">Step 4. Build an architecture from scratch or choose a pretrained
 model<a class="anchor" aria-label="anchor" href="#step-4--build-an-architecture-from-scratch-or-choose-a-pretrained-model"></a>
@@ -1911,9 +1907,12 @@ layers and linking them together.</p>
 <p>The Input in Keras gets special treatment when images are used. Keras
 automatically calculates the number of inputs and outputs a specific
 layer needs and therefore how many edges need to be created. This means
-we must let Keras know how big our input is going to be. We do this by
-instantiating a <code>keras.Input</code> class and passing it a tuple to
-indicate the dimensionality of the input data.</p>
+we just need to let Keras know how big our input is going to be. We do
+this by instantiating a <code>keras.Input</code> class and passing it a
+tuple to indicate the dimensionality of the input data. In Python, a
+<strong>tuple</strong> is a data type used to store collections of data.
+It is similar to a list, but tuples are immutable, meaning once they are
+created, their contents cannot be changed.</p>
 <p>The input layer is created with the <code>keras.Input</code> function
 and its first parameter is the expected shape of the input:</p>
 <pre><code><span><span class="fu">keras.Input</span><span class="op">(</span>shape<span class="op">=</span><span class="va">None</span>, batch_size<span class="op">=</span><span class="va">None</span>, dtype<span class="op">=</span><span class="va">None</span>, sparse<span class="op">=</span><span class="va">None</span>, batch_shape<span class="op">=</span><span class="va">None</span>, name<span class="op">=</span><span class="va">None</span>, tensor<span class="op">=</span><span class="va">None</span><span class="op">)</span></span></code></pre>
@@ -1947,9 +1946,9 @@ image to use an input.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>    <span class="co"># CNN Part 1</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   inputs_intro <span class="op">=</span> keras.Input(_____)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># CNN Part 1</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>inputs_intro <span class="op">=</span> keras.Input(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1977,8 +1976,7 @@ inputs_intro = keras.Input(shape=train_images.shape[1:])</code></pre>
 <h4 id="cnn-part-2--hidden-layers">CNN Part 2. Hidden Layers<a class="anchor" aria-label="anchor" href="#cnn-part-2--hidden-layers"></a>
 </h4>
 <p>The next component consists of the so-called hidden layers of the
-network. The reason they are referred to as hidden is because they are
-not directly observable from the input or the output of the network.</p>
+network.</p>
 <p>In a neural network, the input layer receives the raw data, and the
 output layer produces the final predictions or classifications. These
 layers’ contents are directly observable because you can see the input
@@ -2027,6 +2025,33 @@ demonstrates it does indeed detect horizontal edges.</p>
 depending on your application. We use the two-dimensional layer
 typically used for images:</p>
 <pre><code>keras.layers.Conv2D(filters, kernel_size, strides=(1, 1), padding="valid", activation=None, **kwargs)</code></pre>
+<ul>
+<li>
+<code>filters</code> is the number of filters in this layer.
+<ul>
+<li>This is one of the hyperparameters of our system and should be
+chosen carefully.</li>
+<li>Good practice is to start with a relatively small number of filters
+in the first layer to prevent overfitting.</li>
+<li>Choosing a number of filters as a power of two (e.g., 32, 64, 128)
+is common.</li>
+</ul>
+</li>
+<li>
+<code>kernel size</code> is the size of the convolution matrix which
+we already discussed. - Smaller kernels are often used to capture
+fine-grained features and odd-sized filters are preferred because they
+have a centre pixel which helps maintain spatial symmetry during
+convolutions.</li>
+<li>
+<code>activation</code> specifies which activation function to
+use.</li>
+</ul>
+<p>When specifying layers, remember each layer’s output is the input to
+the next layer. We must create a variable to store a reference to the
+output so we can pass it to the next layer. The basic format for doing
+this is:</p>
+<p>output_variable = layer_name(layer_arguments)(input_variable)</p>
 <div id="challenge-create-a-2d-convolutional-layer-for-our-network" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -2038,6 +2063,11 @@ our network<a class="anchor" aria-label="anchor" href="#challenge-create-a-2d-co
 <div class="callout-content">
 <p>Create a Conv2D layer with 16 filters, a 3x3 kernel size, and the
 ‘relu’ activation function.</p>
+<p>Here we choose <strong>relu</strong> which is one of the most
+commonly used in deep neural networks that is proven to work well. We
+will discuss activation functions later in <strong>Step 9. Tune
+hyperparameters</strong> but to satisfy your curiosity,
+<code>ReLU</code> stands for Rectified Linear Unit (ReLU).</p>
 <p>Hint 1: The input to each layer is the output of the previous
 layer.</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -2068,38 +2098,6 @@ x_intro = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(
 </div>
 </div>
 </div>
-<p>The instantiation here has three parameters and a seemingly strange
-combination of parentheses, so let us break it down.</p>
-<ul>
-<li>The first parameter is the number of filters in this layer. This is
-one of the hyperparameters of our system and should be chosen carefully.
-<ul>
-<li>Good practice is to start with a relatively small number of filters
-in the first layer to prevent overfitting.</li>
-<li>Choosing a number of filters as a power of two (e.g., 32, 64, 128)
-is common.</li>
-</ul>
-</li>
-<li>The second parameter is the kernel size which we already discussed.
-Smaller kernels are often used to capture fine-grained features and
-odd-sized filters are preferred because they have a centre pixel which
-helps maintain spatial symmetry during convolutions.</li>
-<li>The third parameter is the activation function to use.
-<ul>
-<li>Here we choose <strong>relu</strong> which is one of the most
-commonly used in deep neural networks that is proven to work well.</li>
-<li>We will discuss activation functions later in <strong>Step 9. Tune
-hyperparameters</strong> but to satisfy your curiosity,
-<code>ReLU</code> stands for Rectified Linear Unit (ReLU).</li>
-</ul>
-</li>
-<li>Next is an extra set of parenthenses with inputs in them that means
-after an instance of the Conv2D layer is created, it can be called as if
-it was a function. This tells the Conv2D layer to connect the layer
-passed as a parameter, in this case the inputs.</li>
-<li>Finally, we store a reference to the output so we can pass it to the
-next layer.</li>
-</ul>
 <div id="playing-with-convolutions" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -2139,6 +2137,24 @@ original image.</p>
 <p>Similar to convolutional layers, Keras offers several pooling layers
 and one used for images (2D spatial data):</p>
 <pre><code>keras.layers.MaxPooling2D(pool_size=(2, 2), strides=None, padding="valid", data_format=None, name=None, **kwargs)</code></pre>
+<ul>
+<li>
+<code>pool_size</code>, i.e., the size of the pooling window
+<ul>
+<li>In Keras, the default is usually (2, 2)</li>
+</ul>
+</li>
+</ul>
+<p>The function downsamples the input along its spatial dimensions
+(height and width) by taking the <strong>maximum</strong> value over an
+input window (of size defined by pool_size) for each channel of the
+input. By taking the maximum instead of the average, the most prominent
+features in the window are emphasized.</p>
+<p>For example, a 2x2 pooling size reduces the width and height of the
+input by a factor of 2. Empirically, a 2x2 pooling size has been found
+to work well in various for image classification tasks and also strikes
+a balance between down-sampling for computational efficiency and
+retaining important spatial information.</p>
 <div id="challenge-create-a-pooling-layer-for-our-network" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -2177,34 +2193,23 @@ x_intro = keras.layers.MaxPooling2D(pool_size=(2,2))(x_intro)</code></pre>
 </div>
 </div>
 </div>
-<p>The instantiation here has a single parameter, pool_size.</p>
-<p>The function downsamples the input along its spatial dimensions
-(height and width) by taking the <strong>maximum</strong> value over an
-input window (of size defined by pool_size) for each channel of the
-input. By taking the maximum instead of the average, the most prominent
-features in the window are emphasized.</p>
-<p>A 2x2 pooling size reduces the width and height of the input by a
-factor of 2. Empirically, a 2x2 pooling size has been found to work well
-in various for image classification tasks and also strikes a balance
-between down-sampling for computational efficiency and retaining
-important spatial information.</p>
 </div>
 <div class="section level5">
 <h5 id="dense-layers">
 <strong>Dense layers</strong><a class="anchor" aria-label="anchor" href="#dense-layers"></a>
 </h5>
-<p>A <strong>dense</strong> layer has a number of neurons, which is a
-parameter you choose when you create the layer. When connecting the
-layer to its input and output layers every neuron in the dense layer
-gets an edge (i.e. connection) to <strong>all</strong> of the input
-neurons and <strong>all</strong> of the output neurons.</p>
-<figure><img src="../fig/03-neural_network_sketch_dense.png" alt="diagram of a neural network with multiple inputs feeding into to two seperate dense layers with connections between all the inputs and outputs" class="figure mx-auto d-block"></figure><p>This layer is called fully connected because all input neurons are
-taken into account by each output neuron. It aggregates global
-information about the features learned in previous layers to make a
-decision about the class of the input.</p>
+<p>A <strong>dense</strong> layer is a fully connected layer where each
+neuron receives input from every neuron in the previous layer. When
+connecting the layer to its input and output layers every neuron in the
+dense layer gets an edge (i.e. connection) to <strong>all</strong> of
+the input neurons and <strong>all</strong> of the output neurons.</p>
+<figure><img src="../fig/03-neural_network_sketch_dense.png" alt="diagram of a neural network with multiple inputs feeding into to two seperate dense layers with connections between all the inputs and outputs" class="figure mx-auto d-block"></figure><p>This layer aggregates global information about the features learned
+in previous layers to make a decision about the class of the input.</p>
 <p>In Keras, a densely-connected layer is defined:</p>
 <pre><code>keras.layers.Dense(units, activation=None, **kwargs)</code></pre>
-<p>Units in this case refers to the number of neurons.</p>
+<ul>
+<li>`units in this case refers to the number of neurons.</li>
+</ul>
 <p>The choice of how many neurons to specify is often determined through
 experimentation and can impact the performance of our CNN. Too few
 neurons may not capture complex patterns in the data but too many
@@ -2339,7 +2344,7 @@ a suitable format for the fully connected layers to process.</p>
 <p>A typical architecture for image classification is likely to include
 at least one convolutional layer, one pooling layer, one or more dense
 layers, and possibly a flatten layer.</p>
-<p>Convolutional and Pooling layers are often used together in multipe
+<p>Convolutional and Pooling layers are often used together in multiple
 sets to capture a wider range of features and learn more complex
 representations of the input data. Using this technique, the network can
 learn a hierarchical representation of features, where simple features
@@ -2702,7 +2707,7 @@ number of hidden neurons. Other choices to be made are the number of
 layers and type of layers. You might wonder how you should make these
 architectural choices. Unfortunately, there are no clear rules to follow
 here, and it often boils down to a lot of trial and error. It is
-recommended to explore what others have done with similar datasets and
+recommended to explore what others have done with similar data sets and
 problems. Another best practice is to start with a relatively simple
 architecture and then add layers and tweak the network to test if
 performance increases.</p>
@@ -2712,7 +2717,7 @@ performance increases.</p>
 </section><section id="we-have-a-model-now-what"><h2 class="section-heading">We have a model now what?<a class="anchor" aria-label="anchor" href="#we-have-a-model-now-what"></a>
 </h2>
 <hr class="half-width">
-<p>This CNN should be able to run with the CIFAR-10 dataset and provide
+<p>This CNN should be able to run with the CIFAR-10 data set and provide
 reasonable results for basic classification tasks. However, do keep in
 mind this model is relatively simple, and its performance may not be as
 high as more complex architectures. The reason it’s called deep learning
@@ -2913,7 +2918,7 @@ adaptive learning rate mechanism to address this problem.</li>
   <h3 class="accordion-header" id="headingSpoiler1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Learning Rate</h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p><strong>Learning rate</strong> is a hyperparameter that determines
@@ -3028,7 +3033,7 @@ introductory model<a class="anchor" aria-label="anchor" href="#challenge-write-t
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3154,7 +3159,7 @@ dataset variable names.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3175,7 +3180,7 @@ history_intro = model_intro.fit(x = train_images, y = train_labels,
   <h3 class="accordion-header" id="headingSpoiler2">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Batch size</h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>The choice of batch size can have various implications, and there are
@@ -3281,7 +3286,7 @@ test set?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Key things to look for for:  
@@ -3349,7 +3354,7 @@ training data and introduce variability.</li>
   <h3 class="accordion-header" id="headingSpoiler3">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: What is underfitting?</h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <p>Underfitting occurs when the model is too simple or lacks the
 capacity to capture the underlying patterns and relationships present in
@@ -3464,7 +3469,7 @@ layers we discussed.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3532,7 +3537,7 @@ improved.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3588,7 +3593,7 @@ dropout.</p>
   <h3 class="accordion-header" id="headingSpoiler4">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>WANT TO KNOW MORE: Regularization techniques</h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Regularization methods introduce constraints or penalties to the

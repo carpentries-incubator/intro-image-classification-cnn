@@ -20,10 +20,21 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## What is machine learning?
-Machine learning is a set of tools and techniques which let us find patterns in data. This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural Network**, abbreviated as **CNN**, but there are many more.
+## Deep Learning, Machine Learning and Artificial Intelligence
 
-The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs whereas classifiers try to classify data into different categories, or assign a label.
+Artificial Intelligence (AI) is the broad field that involves creating machines capable of performing tasks that typically require human intelligence. This includes everything from recognizing speech and images to making decisions and translating languages. Within AI, Machine Learning (ML) is a subset focused on the development of algorithms that allow computers to learn and improve from experience without being explicitly programmed.
+
+Deep Learning (DL), a further subset of ML, utilizes neural networks with many layers (hence "deep") to model complex patterns in large amounts of data. This technique has led to significant advances in various fields, such as image and speech recognition.
+
+Since the 1950s, the idea of AI has captured the imagination of many, often depicted in science fiction as machines with human-like or even superior intelligence. While recent advancements in AI and ML have been remarkable, we are currently capable of achieving human-like intelligence only in specific areas. The goal of creating a general-purpose AI, one that can perform any intellectual task a human can, remains a long-term challenge.
+
+The image below illustrates some differences between artificial intelligence, machine learning and deep learning.
+
+![The image above is by Tukijaaliwa, CC BY-SA 4.0, via Wikimedia Commons, [original source]](fig/01_AI_ML_DL_differences.png){alt='Three nested circles defining deep learning as a subset of machine learning which is a subset of artifical intelligence'}
+
+## What is machine learning?
+
+Machine learning is a set of tools and techniques which let us find patterns in data. The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs whereas classifiers try to classify data into different categories, or assign a label.
 
 Many, but not all, machine learning systems “learn” by taking a series of input data and output data and using it to form a model. The maths behind the machine learning doesn’t care what the data is as long as it can represented numerically or categorised. Some examples might include:
 
@@ -34,27 +45,16 @@ Many, but not all, machine learning systems “learn” by taking a series of in
 
 Typically we train our models with hundreds, thousands or even millions of examples before they work well enough to do any useful predictions or classifications with them.
 
+This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural Network**, abbreviated as **CNN**, but there are many more.
 
-## Deep Learning, Machine Learning and Artificial Intelligence
-
-Deep Learning (DL) is just one of many machine learning techniques, in which people often talk about machine learning being a form of artificial intelligence (AI). Definitions of artificial intelligence vary, but usually involve having computers mimic the behaviour of intelligent biological systems. Since the 1950s many works of science fiction have dealt with the idea of an artificial intelligence which matches, or exceeds, human intelligence in all areas. Although there have been great advances in AI and ML research recently, we can only come close to human like intelligence in a few specialist areas and are still a long way from a general purpose AI. The image below illustrates some differences between artificial intelligence, machine learning and deep learning.
-
-![The image above is by Tukijaaliwa, CC BY-SA 4.0, via Wikimedia Commons, [original source]](fig/01_AI_ML_DL_differences.png){alt='Three nested circles defining deep learning as a subset of machine learning which is a subset of artifical intelligence'}
-
-::::::::::::::::::::::::::::::::::::::::: callout
-Concept: Differentiation between traditional Machine Learning models and Deep Learning models:
-
-**Traditional ML algorithms**, known as shallow models, are limited to just one or maybe two layers of data transformation to generate an output. When dealing with complex data featuring high dimensions and growing feature space (i.e. many attributes and an expanding set of potential values for each feature), these shallow models become limited in their ability to compute accurate outputs.
-
-**Deep neural networks** are the extension of shallow models with three layers: input, hidden, and outputs layers. The hidden layer(s) is where learning takes place. As a result, deep learning is best applied to large datasets for training and prediction. As observations and feature inputs decrease, shallow ML approaches begin to perform noticeably better. 
-:::::::::::::::::::::::::::::::::::::::::::::::::
-
+A CNN is a DL algorithm that has become a cornerstone in image classification due to its ability to automatically learn features from images in a hierarchical fashion (i.e. each layer builds upon what was learned by the previous layer). It can achieve remarkable performance on a wide range of tasks.
 
 ## What is image classification?
 
-Image classification is a fundamental task in computer vision, which is a field of artificial intelligence focused on teaching computers to interpret and understand visual information from the world. Image classification specifically involves the process of assigning a label or category to an input image. The goal is to enable computers to recognise and categorise objects, scenes, or patterns within images, just as a human would. Image classification can refer to one of several tasks:
+Image classification is a fundamental task in computer vision, which is a field of artificial intelligence focused on teaching computers to interpret and understand visual information from the world. Image classification specifically involves the process of assigning a label or category to an input image. The goal is to enable computers to recognise and categorise objects, scenes, or patterns within images, just as a human would. Image classification can refer to one of several computer vision tasks:
 
-![](fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png){alt='Four types of image classification tasks include semantic segmentation to label every pixel; classification and localisation to detect a single object like a cat; object detection to detect multiple objects like cats and dogs; and instance segmentation to detect each pixel of multiple objects'}
+![The image above is by Li, Johnson, & Yeung, Stanford University CS231n: Deep Learning for Computer Vision, 2017](fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png){alt='Four types of image classification tasks include semantic segmentation to label every pixel; classification and localisation to detect a single object like a cat; object detection to detect multiple objects like cats and dogs; and instance segmentation to detect each pixel of multiple objects'}
+
 
 Image classification has numerous practical applications, including:
 
@@ -64,7 +64,8 @@ Image classification has numerous practical applications, including:
 - **Autonomous Vehicles**: Identifying pedestrians, traffic signs, and other vehicles in self-driving cars.
 - **Security and Surveillance**: Detecting anomalies or unauthorised objects in security footage.
 
-A Convolutional Neural Networks (CNN) is a Deep Learning algorithm that has become a cornerstone in image classification due to its ability to automatically learn features from images in a hierarchical fashion (i.e. each layer builds upon what was learned by the previous layer). It can achieve remarkable performance on a wide range of tasks.
+
+
 
 ## Deep Learning Workflow
 To apply Deep Learning to a problem there are several steps to go through:
@@ -164,15 +165,16 @@ The test set consists of 10000 images of 32x32 pixels and three channels (RGB va
 #### Visualise a subset of the CIFAR-10 dataset
 
 ```python
-# create a figure object and specify width, height in inches
-plt.figure(figsize=(10,10))
+# set up plot region, including width, height in inches
+fig, axes = plt.subplots(nrows=5, ncols=5, figsize=(10,10))
 
-# plot a subset of the images 
-for i in range(25):
-    plt.subplot(5,5,i+1)
-    plt.imshow(train_images[i])
-    plt.axis('off')
-    plt.title(class_names[train_labels[i,].argmax()])
+# add images to plot
+for i,ax in enumerate(axes.flat):
+    ax.imshow(train_images[i])
+    ax.axis('off')
+    ax.set_title(class_names[train_labels[i,].argmax()])
+    
+# view plot
 plt.show()
 ```
 
@@ -266,14 +268,15 @@ Epoch 1/10
 This output printed during the fit phase, i.e. training the model against known image labels, can be broken down as follows:
 
 - `Epoch` describes the number of full passes over all *training data*. 
-- In the output above, there are **1250** batches (steps) to complete each epoch. This number is calculated as the total number of images used as input divided by the batch size (40000/32). After 1250 batches, all training images will have been seen once and the model moves on to the next epoch.
+- `In the output above, there are **1250** batches (steps) to complete each epoch. 
+    - This number is calculated as the total number of images used as input divided by the batch size (40000/32). After 1250 batches, all training images will have been seen once and the model moves on to the next epoch.
 
 - `loss` is a value the model will attempt to minimise and is a measure of the dissimilarity or error between the true label of an image and the model prediction. Minimising this distance is where *learning* occurs to adjust weights and bias which reduce `loss`. 
 - `val_loss` is a value calculated against the validation data and is a measure of the model's performance against unseen data. 
-- Both values are a summation of errors made during each epoch.
+    - Both values are a summation of errors made during each epoch.
 
 - `accuracy` and `val_accuracy` values are a percentage and are only revelant to **classification problems**. 
-- The `val_accuracy` score can be used to communicate a model's effectiveness on unseen data.
+    - The `val_accuracy` score can be used to communicate a model's effectiveness on unseen data.
 
 
 ### Step 7. Perform a Prediction/Classification
@@ -286,40 +289,50 @@ test_images = test_images / 255.0
 
 # make prediction for the first test image
 result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))
+print(result_intro)
 
-# extract class for prediction with highest probability
-class_names[result_intro.argmax()]
+# extract class with highest probability
+print(class_names[result_intro.argmax()])
+```
+```output
+1/1 [==============================] - 0s 93ms/step
+[[0.00896197 0.00345764 0.20091638 0.3295959 0.3042777 0.03966621 0.06654432 0.00352677 0.03928733 0.00376582]]
+cat
+```
 
+Congratulations, you just created your first image classification model and used it to classify an image! 
+
+Was the classification correct? 
+
+```python
 # plot the first test image with its true label
 
-plt.figure() # create a plot
+# create a plot
+plt.figure()
 
 # display image
 plt.imshow(test_images[0])
 plt.title('True class:' + class_names[result_intro.argmax()])
 
-plt.show() # view plot
+# view plot
+plt.show() 
 ```
 
-```output
-The predicted probability of each class is:  [[0.0074 0.0006 0.0456 0.525  0.0036 0.1062 0.0162 0.0006 0.2908 0.004 ]]
-The class with the highest predicted probability is:  cat
-```
 ![](fig/01_test_image.png){alt='poor resolution image of a cat'}
 
-Congratulations, you just created your first image classification model and used it to classify an image! 
-
-Was the classification correct? Why might it be incorrect and what can we do about? 
-
-There are many ways to try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
 
 ::::::::::::::::::::::::::::::::::::::::: callout
-My result is different!
+My result is different! Why? What can I do about?
 
-While the neural network itself is deterministic (ie without randomness), various factors in the training process, system setup, and data variability can lead to small variations in the output. These variations are usually minor and should not significantly impact the overall performance or behavior of the model.
+This is actually not surprising. The architecture we are using is shallow and the model only trained for 10 epochs. 
 
-If you are finding significant differences in the model predictions, this could be a sign the model is not fully converged. "Convergence" refers to the point where the model has reached an optimal or near-optimal state in terms of learning from the training data.
+Training a model for more epochs (longer time) and using a deeper model (more layers) usually helps it learn better and give more accurate predictions. When a model has learned well and its performance doesn't change much with more training, we say it has 'converged.' **Convergence** refers to the point where the model has reached an optimal or near-optimal state in terms of learning from the training data. If you are finding significant differences in the model predictions, this could be a sign the model is not fully converged. 
+
+You may even find you get a different answer if you run this model again. Although the neural network itself is deterministic (ie without randomness), various factors in the training process, system setup, and hardware configurations can lead to small variations in the output. These variations are usually minor and should not significantly impact the overall performance of the model, _if it has fully converged_.
+
+There are many ways to try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
 :::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ### Step 8. Measure Performance
 
@@ -329,11 +342,11 @@ Once we trained the network we want to measure its performance. To do this, we u
 
 When building image recognition models in Python, especially using libraries like TensorFlow or Keras, the process involves not only designing a neural network but also choosing the best values for various hyperparameters that govern the training process.
 
-**Hyperparameters** are all the parameters set by the person configuring the model as opposed to those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimise the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](episodes/05-evaluate-predict-cnn.md)
+**Hyperparameters** are all the parameters set by the person configuring the model as opposed to those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimise the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](episodes/05-evaluate-predict-cnn.md).
 
 ### Step 10. Share Model
 
-Now that we have a trained network that performs at a level we are happy with we can go and use it on real live data to perform a prediction. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
+Once we have a trained network that performs at a level we are happy with we can use it to predict on real-world data. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
 
 To share the model we must save it first:
 

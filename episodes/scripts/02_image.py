@@ -61,7 +61,7 @@ print('Converted image shape', new_img_arr.shape)
 print('BEFORE normalization')
 print('Min pixel value ', new_img_arr.min()) 
 print('Max pixel value ', new_img_arr.max())
-print('Mean pixel value ', new_img_arr.mean().round())
+print('Mean pixel value ', round(new_img_arr.mean(), 2))
 
 # normalize the RGB values to be between 0 and 1
 new_img_arr_norm = new_img_arr / 255.0
@@ -70,7 +70,7 @@ new_img_arr_norm = new_img_arr / 255.0
 print('AFTER normalization') 
 print('Min pixel value ', new_img_arr_norm.min()) 
 print('Max pixel value ', new_img_arr_norm.max())
-print('Mean pixel value ', new_img_arr_norm.mean().round())
+print('Mean pixel value ', round(new_img_arr_norm.mean(), 2))
 
 
 #%%

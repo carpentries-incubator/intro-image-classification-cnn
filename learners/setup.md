@@ -269,13 +269,13 @@ Within Linux, there is no Anaconda Prompt application, thus once the anaconda in
 To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install.  To make things easier, inside the unziped intro-image-classification-cnn  folder, we have given you an environment.yml file to use instead. (See download link above if you haven't already.)
 
 ```code
-(base) Mac$ conda env create --file cnn_workshop_environment.yml
+$ conda env create --file cnn_workshop_environment.yml
 ```
 
 If the yml is not in your current directory, you can specify the full path to the file, eg:
 
 ```code
-(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml
+$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml
 ```
 Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.  
 

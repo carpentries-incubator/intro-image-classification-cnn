@@ -83,7 +83,7 @@ If you run into any difficulties, please request help before the workshop begins
 	installed anaconda in your home directory):
 	
 	```code
-    $ mv ./anaconda3/bin/conda init 
+    $ ./anaconda3/bin/conda init 
 	```
     ![](fig/00_linux-conda-init.png){alt='Screenshot of initialising conda on a bash shell.'}
 

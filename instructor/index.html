@@ -461,7 +461,7 @@ assistance so you are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -482,7 +482,7 @@ the <strong>Make Anaconda the default Python</strong> option.</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -502,7 +502,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Note the following installation steps require you to work from the
 shell. If you run into any difficulties, please request help before the
@@ -568,7 +568,7 @@ this:</p>
   Linux
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>You can move the downloaded workshop zipped file to your home
 directory and unzip it using the unzip command.</p>
@@ -652,7 +652,7 @@ instructions</a> for updating Conda if required.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The easiest way to create a conda environment for this lesson is to
 use the Anaconda Prompt. You can search for “anaconda prompt” using the
@@ -692,7 +692,7 @@ changes from (base) to (cnn_workshop).</p>
   Mac
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>On the Mac, there is no Anaconda Prompt application, thus once the
 anaconda installation has been completed, simply start a terminal
@@ -753,7 +753,7 @@ Intel version also use the graphics card and how?</p>
   Linux
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <p>Within Linux, there is no Anaconda Prompt application, thus once the
 anaconda installation has been completed, simply start a terminal
@@ -787,6 +787,14 @@ screen.</p>
 <span><span class="co">#     $ conda deactivate</span></span></code></pre>
 <p><strong><em>Note you will need to initialise conda to be able to
 activate the conda enviroment.</em></strong></p>
+<p>Additonally, you will need to install scikeras and tensorflow within
+the conda environment to get everything working.</p>
+<p>To do this, issue the following commands:</p>
+<pre class="code"><code>
+$ conda activate cnn_workshop
+
+(base) $ pip install scikeras tensorflow
+</code></pre>
 </div>
 </div>
 </div>
@@ -821,29 +829,29 @@ root):</p>
 <hr class="half-width"><p>To check that all packages installed correctly, go to the interactive
 <code>IPython Console</code> in Spyder (lower right hand side panel) and
 type in the following commands:</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a><span class="im">import</span> scikeras</span>
-<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
-<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a></span>
-<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a><span class="im">import</span> scikeras</span>
+<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
+<span id="cb18-18"><a href="#cb18-18" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb18-20"><a href="#cb18-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
 <p>Your package versions may vary from the screenshot below but this is
 similar to what your output will look like. The important thing is that

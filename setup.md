@@ -83,11 +83,49 @@ If you run into any difficulties, please request help before the workshop begins
 
 ## Download the scripts, files, and model outputs
 
+::::::::::::::::::::::::::::::::::::: challenge
+## Download workshop files
+
 Download the [scripts, files, and model outputs].
 
 Create a project folder on your local device for this course and move the downloaded materials to the project folder. Extract all of the download contents here. Check your folder and file structures looks like this:
 
 ![](fig/00_download_zip_folder_files.png){alt='Screenshot of the contents of the intro-image-classification-cnn.zip folder.'}
+
+:::::::::::::::::::::::: solution
+### Linux
+
+You can move the downloaded workshop zipped file to your home directory and unzip it using the unzip command.
+
+For example:
+
+```code
+[ace@rocky8-cnn-test ~]$ mv ./Downloads/intro-image-classification-cnn.zip .
+[ace@rocky8-cnn-test ~]$ unzip intro-image-classification-cnn.zip 
+Archive:  intro-image-classification-cnn.zip
+   creating: intro-image-classification-cnn/data/
+  inflating: intro-image-classification-cnn/data/Jabiru_TGS.JPG  
+  inflating: intro-image-classification-cnn/data/model_dropout.keras  
+  inflating: intro-image-classification-cnn/data/model_intro.keras  
+   creating: intro-image-classification-cnn/files/
+  inflating: intro-image-classification-cnn/files/cnn_workshop_environment.yml  
+  inflating: intro-image-classification-cnn/files/cnn_workshop_MACOS_environment.yml  
+   creating: intro-image-classification-cnn/scripts/
+  inflating: intro-image-classification-cnn/scripts/01_intro.py  
+  inflating: intro-image-classification-cnn/scripts/02_image.py  
+  inflating: intro-image-classification-cnn/scripts/03_build_intro_model.py  
+  inflating: intro-image-classification-cnn/scripts/04_fit_intro_model.py  
+  inflating: intro-image-classification-cnn/scripts/04b_build_fit_dropout_model.py  
+  inflating: intro-image-classification-cnn/scripts/05_predict_ep_best_model.py  
+  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_activation.py  
+  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_dropout.py  
+  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_optimizer.py  
+   creating: intro-image-classification-cnn/scripts/fit_outputs/
+[ace@rocky8-cnn-test ~]$ 
+```
+
+:::::::::::::::::::::::::::::::::: 
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::: callout
 

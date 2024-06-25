@@ -389,7 +389,7 @@ assistance so you are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -410,7 +410,7 @@ the <strong>Make Anaconda the default Python</strong> option.</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -430,7 +430,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Note the following installation steps require you to work from the
 shell. If you run into any difficulties, please request help before the
@@ -464,7 +464,7 @@ the default Python).</p></li>
 <p>You may wish to initialise conda, so it configures the path and
 sets the required variables. To do this, execute the following command
 (if you have installed anaconda in your home directory):</p>
-<pre class="code"><code>$ mv ./anaconda3/bin/conda init </code></pre>
+<pre class="code"><code>$ ./anaconda3/bin/conda init </code></pre>
 <figure><img src="fig/00_linux-conda-init.png" alt="Screenshot of initialising conda on a bash shell." class="figure mx-auto d-block"></figure></li>
 </ol></div>
 </div>
@@ -496,7 +496,7 @@ this:</p>
   Linux
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>You can move the downloaded workshop zipped file to your home
 directory and unzip it using the unzip command.</p>
@@ -580,7 +580,7 @@ instructions</a> for updating Conda if required.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>The easiest way to create a conda environment for this lesson is to
 use the Anaconda Prompt. You can search for “anaconda prompt” using the
@@ -620,10 +620,10 @@ changes from (base) to (cnn_workshop).</p>
   Mac
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>On the Mac, there is no Anaconda Prompt application, thus once the
-anaconda installation has been completed. Simply start a terminal
+anaconda installation has been completed, simply start a terminal
 session and the session should look like:</p>
 <figure><img src="fig/00_starting-terminal-on-a-mac.png" alt="Screenshot of starting a new terminal session on a Mac." class="figure mx-auto d-block"></figure><p>Note the notation of the prompt inside the terminal window. The name
 inside the parentheses refers to which conda environment you are working
@@ -631,11 +631,12 @@ inside of, and ‘base’ is the name given to the default environment
 included with every Anaconda distribution.</p>
 <p>To create a new environment for this lesson, the command starts with
 the conda keywords <code>conda create</code>. This command can be
-followed by a name for the new environment and the package(s) to install
-but to make things easier, inside the script download folder, we have
-given you an environment.yml file to use instead. (See download link
-below if you haven’t already.)</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file cnn_workshop_environment.yml</code></pre>
+followed by a name for the new environment and the package(s) to
+install. To make things easier, inside the unziped
+intro-image-classification-cnn folder, we have given you an
+environment.yml file to use instead. (See download link above if you
+haven’t already.)</p>
+<pre class="code"><code>(base) Mac$ conda env create --file cnn_workshop_environment.yml</code></pre>
 <p>If the yml is not in your current directory, you can specify the full
 path to the file, eg:</p>
 <pre class="code"><code>(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml</code></pre>
@@ -680,9 +681,38 @@ Intel version also use the graphics card and how?</p>
   Linux
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <p>Still to be done!</p>
+<p>Within Linux, there is no Anaconda Prompt application, thus once the
+anaconda installation has been completed, simply start a terminal
+session.</p>
+<p>To create a new environment for this lesson, the command starts with
+the conda keywords <code>conda create</code>. This command can be
+followed by a name for the new environment and the package(s) to
+install. To make things easier, inside the unziped
+intro-image-classification-cnn folder, we have given you an
+environment.yml file to use instead. (See download link above if you
+haven’t already.)</p>
+<pre class="code"><code>(base) Mac$ conda env create --file cnn_workshop_environment.yml</code></pre>
+<p>If the yml is not in your current directory, you can specify the full
+path to the file, eg:</p>
+<pre class="code"><code>(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml</code></pre>
+<p>Be patient because it might take a while (15-20 min) for conda to
+work out all of the dependencies.</p>
+<p>Note, in the screen shots below, I haven’t initilised conda, so I had
+to give it the path to where anaconda was installed.</p>
+<figure><img src="fig/00_linux-create-conda-enviroment-using-yml-file-1.png" alt="Screenshot of creating conda enviroment on a Linux." class="figure mx-auto d-block"></figure><figure><img src="fig/00_linux-create-conda-enviroment-using-yml-file-2.png" alt="Screenshot of creating conda enviroment on a Linux." class="figure mx-auto d-block"></figure><figure><img src="fig/00_linux-create-conda-enviroment-using-yml-file-3.png" alt="Screenshot of creating conda enviroment on a Linux." class="figure mx-auto d-block"></figure><figure><img src="fig/00_linux-create-conda-enviroment-using-yml-file-4.png" alt="Screenshot of creating conda enviroment on a Linux." class="figure mx-auto d-block"></figure><figure><img src="fig/00_linux-create-conda-enviroment-using-yml-file-5.png" alt="Screenshot of creating conda enviroment on a Linux." class="figure mx-auto d-block"></figure><p>If it installs correctly, you should get the following output on the
+screen.</p>
+<pre class="code"><code><span><span class="va">done</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># To activate this environment, use</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#     $ conda activate cnn_workshop</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># To deactivate an active environment, use</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#     $ conda deactivate</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -701,29 +731,29 @@ you are still in the workshop environment:</p>
 <hr class="half-width"><p>To check that all packages installed correctly, go to the interactive
 <code>IPython Console</code> in Spyder (lower right hand side panel) and
 type in the following commands:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="im">import</span> scikeras</span>
-<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
-<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a></span>
-<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a><span class="im">import</span> scikeras</span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
 <p>Your package versions may vary from the screenshot below but this is
 similar to what your output will look like. The important thing is that

@@ -322,6 +322,16 @@ To start Spyder, type the command `spyder`, making sure you are still in the wor
 
 ![](fig/00_spyder_ide_layout.png){alt='Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas'}
 
+::::::::::::::::::::::::::::::::::::::::: callout
+If you are using Linux, you might need to install qt5-qtbase and qt5-qtbase-gui for spyder to work.
+
+On the Rocky 8 Distro, this can be done by issuing the command (as root):
+
+```code
+yum install qt5-qtbase qt5-qtbase-gui
+```
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Check your setup
 
 To check that all packages installed correctly, go to the interactive `IPython Console` in Spyder (lower right hand side panel) and type in the following commands:

@@ -379,7 +379,6 @@ There are a couple different ways to set the working directory in Spyder. The ea
 
 ![](fig/00_spyder_workingdir_scripts.png){alt='Screenshot of the contents of the scripts folder in the Files tab of the Spyder window after using the folder icon to set the working directory.'}
 
-
 ## Get the data
 
 This lesson uses the CIFAR-10 image dataset that comes prepackaged with Keras. There are no additional steps needed to access the data.

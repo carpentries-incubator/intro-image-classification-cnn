@@ -312,11 +312,9 @@ Additonally, you will need to install scikeras and tensorflow within the conda e
 To do this, issue the following commands:
 
 ```code
-
 $ conda activate cnn_workshop
 
 (base) $ pip install scikeras tensorflow
-
 ```
 
 :::::::::::::::::::::::::::::::::

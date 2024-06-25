@@ -264,8 +264,6 @@ TODO check if this is because of the integrated GPU and if so, can Intel version
 :::::::::::::::::::::::: solution
 ## Linux
 
-Still to be done!
-
 Within Linux, there is no Anaconda Prompt application, thus once the anaconda installation has been completed, simply start a terminal session.
 
 To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install.  To make things easier, inside the unziped intro-image-classification-cnn  folder, we have given you an environment.yml file to use instead. (See download link above if you haven't already.)
@@ -279,10 +277,9 @@ If the yml is not in your current directory, you can specify the full path to th
 ```code
 (base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml
 ```
-
 Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.  
 
-Note, in the screen shots below, I haven't initilised conda, so I had to give it the path to where anaconda was installed.
+***Note, in the screen shots below, I haven't initilised conda, so I had to give it the path to where anaconda was installed.***
 
 ![](fig/00_linux-create-conda-enviroment-using-yml-file-1.png){alt='Screenshot of creating conda enviroment on a Linux.'}
 
@@ -307,6 +304,8 @@ done
 #
 #     $ conda deactivate
 ```
+
+***Note you will need to initialise conda to be able to activate the conda enviroment.***
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::

@@ -389,7 +389,7 @@ assistance so you are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
 tutorial</a> or:</p>
@@ -410,7 +410,7 @@ the <strong>Make Anaconda the default Python</strong> option.</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
 tutorial</a> or:</p>
@@ -430,7 +430,7 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Note the following installation steps require you to work from the
 shell. If you run into any difficulties, please request help before the
@@ -466,13 +466,62 @@ the default Python).</p></li>
 </div>
 </section><section id="download-the-scripts-files-and-model-outputs"><h2 class="section-heading">Download the scripts, files, and model outputs<a class="anchor" aria-label="anchor" href="#download-the-scripts-files-and-model-outputs"></a>
 </h2>
-<hr class="half-width"><p>Download the <a href="https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link" class="external-link">scripts,
+<hr class="half-width"><div id="download-workshop-files" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="download-workshop-files" class="callout-inner">
+<h3 class="callout-title">Download workshop files<a class="anchor" aria-label="anchor" href="#download-workshop-files"></a>
+</h3>
+<div class="callout-content">
+<p>Download the <a href="https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link" class="external-link">scripts,
 files, and model outputs</a>.</p>
 <p>Create a project folder on your local device for this course and move
 the downloaded materials to the project folder. Extract all of the
 download contents here. Check your folder and file structures looks like
 this:</p>
-<figure><img src="fig/00_download_zip_folder_files.png" alt="Screenshot of the contents of the intro-image-classification-cnn.zip folder." class="figure mx-auto d-block"></figure><div id="callout2" class="callout">
+<figure><img src="fig/00_download_zip_folder_files.png" alt="Screenshot of the contents of the intro-image-classification-cnn.zip folder." class="figure mx-auto d-block"></figure></div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">
+  Linux
+  </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<p>You can move the downloaded workshop zipped file to your home
+directory and unzip it using the unzip command.</p>
+<p>For example:</p>
+<pre class="code"><code>[ace@rocky8-cnn-test ~]$ mv ./Downloads/intro-image-classification-cnn.zip .
+[ace@rocky8-cnn-test ~]$ unzip intro-image-classification-cnn.zip 
+Archive:  intro-image-classification-cnn.zip
+   creating: intro-image-classification-cnn/data/
+  inflating: intro-image-classification-cnn/data/Jabiru_TGS.JPG  
+  inflating: intro-image-classification-cnn/data/model_dropout.keras  
+  inflating: intro-image-classification-cnn/data/model_intro.keras  
+   creating: intro-image-classification-cnn/files/
+  inflating: intro-image-classification-cnn/files/cnn_workshop_environment.yml  
+  inflating: intro-image-classification-cnn/files/cnn_workshop_MACOS_environment.yml  
+   creating: intro-image-classification-cnn/scripts/
+  inflating: intro-image-classification-cnn/scripts/01_intro.py  
+  inflating: intro-image-classification-cnn/scripts/02_image.py  
+  inflating: intro-image-classification-cnn/scripts/03_build_intro_model.py  
+  inflating: intro-image-classification-cnn/scripts/04_fit_intro_model.py  
+  inflating: intro-image-classification-cnn/scripts/04b_build_fit_dropout_model.py  
+  inflating: intro-image-classification-cnn/scripts/05_predict_ep_best_model.py  
+  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_activation.py  
+  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_dropout.py  
+  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_optimizer.py  
+   creating: intro-image-classification-cnn/scripts/fit_outputs/
+[ace@rocky8-cnn-test ~]$ </code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -518,14 +567,14 @@ instructions</a> for updating Conda if required.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5">
   Windows
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The easiest way to create a conda environment for this lesson is to
 use the Anaconda Prompt. You can search for “anaconda prompt” using the
@@ -558,14 +607,14 @@ changes from (base) to (cnn_workshop).</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6">
   Mac
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>On the Mac, there is no Anaconda Prompt application, thus once the
 anaconda installation has been completed. Simply start a terminal
@@ -618,14 +667,14 @@ Intel version also use the graphics card and how?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7">
   Linux
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <p>Still to be done!</p>
 </div>
@@ -646,29 +695,29 @@ you are still in the workshop environment:</p>
 <hr class="half-width"><p>To check that all packages installed correctly, go to the interactive
 <code>IPython Console</code> in Spyder (lower right hand side panel) and
 type in the following commands:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="im">import</span> scikeras</span>
-<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
-<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="im">import</span> scikeras</span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
 <p>Your package versions may vary from the screenshot below but this is
 similar to what your output will look like. The important thing is that

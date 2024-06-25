@@ -307,6 +307,18 @@ done
 
 ***Note you will need to initialise conda to be able to activate the conda enviroment.***
 
+Additonally, you will need to install scikeras and tensorflow within the conda environment to get everything working.  
+
+To do this, issue the following commands:
+
+```code
+
+$ conda activate cnn_workshop
+
+(base) $ pip install scikeras tensorflow
+
+```
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

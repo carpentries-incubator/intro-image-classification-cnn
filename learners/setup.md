@@ -124,6 +124,9 @@ Archive:  intro-image-classification-cnn.zip
 [ace@rocky8-cnn-test ~]$ 
 ```
 
+:::::::::::::::::::::::::::::::::: 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::: callout
 
 In Spyder, when you execute a script in its entirety (Run File F5), the working directory will automatically be set to the directory that contains that script file. 

@@ -83,7 +83,7 @@ If you run into any difficulties, please request help before the workshop begins
 	installed anaconda in your home directory):
 	
 	```code
-    $ mv ./anaconda3/bin/conda init 
+    $ ./anaconda3/bin/conda init 
 	```
     ![](fig/00_linux-conda-init.png){alt='Screenshot of initialising conda on a bash shell.'}
 
@@ -197,16 +197,16 @@ You will know you are in the right environment because the prompt changes from (
 :::::::::::::::::::::::: solution
 ## Mac
 
-On the Mac, there is no Anaconda Prompt application, thus once the anaconda installation has been completed.  Simply start a terminal session and the session should look like:
+On the Mac, there is no Anaconda Prompt application, thus once the anaconda installation has been completed, simply start a terminal session and the session should look like:
 
 ![](fig/00_starting-terminal-on-a-mac.png){alt='Screenshot of starting a new terminal session on a Mac.'}
 
 Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment included with every Anaconda distribution.
 
-To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
+To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install.  To make things easier, inside the unziped intro-image-classification-cnn  folder, we have given you an environment.yml file to use instead. (See download link above if you haven't already.)
 
 ```code
-(base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml
+(base) Mac$ conda env create --file cnn_workshop_environment.yml
 ```
 
 If the yml is not in your current directory, you can specify the full path to the file, eg:
@@ -265,6 +265,48 @@ TODO check if this is because of the integrated GPU and if so, can Intel version
 ## Linux
 
 Still to be done!
+
+Within Linux, there is no Anaconda Prompt application, thus once the anaconda installation has been completed, simply start a terminal session.
+
+To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install.  To make things easier, inside the unziped intro-image-classification-cnn  folder, we have given you an environment.yml file to use instead. (See download link above if you haven't already.)
+
+```code
+(base) Mac$ conda env create --file cnn_workshop_environment.yml
+```
+
+If the yml is not in your current directory, you can specify the full path to the file, eg:
+
+```code
+(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml
+```
+
+Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.  
+
+Note, in the screen shots below, I haven't initilised conda, so I had to give it the path to where anaconda was installed.
+
+![](fig/00_linux-create-conda-enviroment-using-yml-file-1.png){alt='Screenshot of creating conda enviroment on a Linux.'}
+
+![](fig/00_linux-create-conda-enviroment-using-yml-file-2.png){alt='Screenshot of creating conda enviroment on a Linux.'}
+
+![](fig/00_linux-create-conda-enviroment-using-yml-file-3.png){alt='Screenshot of creating conda enviroment on a Linux.'}
+
+![](fig/00_linux-create-conda-enviroment-using-yml-file-4.png){alt='Screenshot of creating conda enviroment on a Linux.'}
+
+![](fig/00_linux-create-conda-enviroment-using-yml-file-5.png){alt='Screenshot of creating conda enviroment on a Linux.'}
+
+If it installs correctly, you should get the following output on the screen.
+
+```code
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate cnn_workshop
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+```
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::

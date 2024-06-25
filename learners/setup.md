@@ -78,6 +78,15 @@ If you run into any difficulties, please request help before the workshop begins
         press enter to prepend Anaconda to your `PATH` (this makes the Anaconda
         distribution the default Python).
 
+4.	You may wish to initialise conda, so it configures the path and sets the
+    required variables.  To do this, execute the following command (if you have 
+	installed anaconda in your home directory):
+	
+	```code
+    $ mv ./anaconda3/bin/conda init 
+	```
+    ![](fig/00_linux-conda-init.png){alt='Screenshot of initialising conda on a bash shell.'}
+
 :::::::::::::::::::::::::::::::::: 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

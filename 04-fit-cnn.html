@@ -27,7 +27,7 @@
             <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
           </abbr>
         </span>
-        
+
       </div>
     </div>
     <div class="selector-container">
@@ -56,7 +56,7 @@
             </li>
           </ul></li>
       </div>
-      
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Learner View <i data-feather="chevron-down"></i>
@@ -180,7 +180,7 @@
                 </div><!--/div.accordion-flush-->
               </div><!--div.sidenav-view-selector -->
             </div><!--/div.col -->
-      
+
             <hr></div><!--/div.mobile-row -->
 
           <div class="accordion accordion-flush" id="accordionFlush11">
@@ -199,7 +199,7 @@
     <div class="accordion-header" id="flush-heading1">
         <a href="index.html">Summary and Setup</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -208,7 +208,7 @@
     <div class="accordion-header" id="flush-heading2">
         <a href="01-introduction.html">1. Introduction to Deep Learning</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -217,7 +217,7 @@
     <div class="accordion-header" id="flush-heading3">
         <a href="02-image-data.html">2. Introduction to Image Data</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -226,7 +226,7 @@
     <div class="accordion-header" id="flush-heading4">
         <a href="03-build-cnn.html">3. Build a Convolutional Neural Network</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -240,13 +240,13 @@
         </span>
       </button>
     </div><!--/div.accordion-header-->
-        
+
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#choose-the-best-model-and-use-it-to-predict">Choose the best model and use it to predict</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -255,7 +255,7 @@
     <div class="accordion-header" id="flush-heading6">
         <a href="05-evaluate-predict-cnn.html">5. Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -264,7 +264,7 @@
     <div class="accordion-header" id="flush-heading7">
         <a href="06-share-cnn-next-steps.html">6. Share a Convolutional Neural Network and Next Steps</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -296,10 +296,10 @@
               </div>
             </div>
             <hr class="half-width resources"><a href="aio.html">See all in one page</a>
-            
+
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
-            
+
             </div>
           </div><!-- /div.accordion -->
         </div><!-- /div.sidebar-inner -->
@@ -320,18 +320,18 @@
           Previous: Build a
         </a>
         <a class="chapter-link float-end" href="05-evaluate-predict-cnn.html" rel="next">
-          Next: Evaluate a... 
+          Next: Evaluate a...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Compile and Train (Fit) a Convolutional Neural Network</h1>
         <p>Last updated on 2024-05-20 |
-        
+
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-        
-        
-        
+
+
+
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -709,7 +709,7 @@ dataset variable names.</p>
 <pre class="output" tabindex="0"><code># fit the model
 history_intro = model_intro.fit(x = train_images, y = train_labels,
                                 batch_size = 32,
-                                epochs = 10, 
+                                epochs = 10,
                                 validation_data = (val_images, val_labels))</code></pre>
 </div>
 </div>
@@ -986,11 +986,11 @@ layers we discussed.</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>def create_model_dropout():
-    
+
     # CNN Part 1
     # Input layer of 32x32 images with three channels (RGB)
     inputs_dropout = keras.Input(shape=train_images.shape[1:])
-    
+
     # CNN Part 2
     # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
     x_dropout = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_dropout)
@@ -1006,16 +1006,16 @@ layers we discussed.</p>
     x_dropout = keras.layers.Dropout(rate=0.5)(x_dropout) # This is new!
     # Flatten layer to convert 2D feature maps into a 1D vector
     x_dropout = keras.layers.Flatten()(x_dropout)
-    
+
     # CNN Part 3
     # Output layer with 10 units (one for each class) and softmax activation
     outputs_dropout = keras.layers.Dense(units=10, activation='softmax')(x_dropout)
-    
+
     # create the model
-    model_dropout = keras.Model(inputs = inputs_dropout, 
-                              outputs = outputs_dropout, 
+    model_dropout = keras.Model(inputs = inputs_dropout,
+                              outputs = outputs_dropout,
                               name = "cifar_model_dropout")
-    
+
     return model_dropout</code></pre>
 </div>
 </div>
@@ -1157,8 +1157,8 @@ dataset.</p>
 </div>
 </div>
 </div>
-<section id="choose-the-best-model-and-use-it-to-predict"><h2 class="section-heading">Choose the best model and use it to predict<a class="anchor" aria-label="anchor" href="#choose-the-best-model-and-use-it-to-predict"></a>
-</h2>
+<section><h2 class="section-heading" id="choose-the-best-model-and-use-it-to-predict">Choose the best model and use it to predict<a class="anchor" aria-label="anchor" href="#choose-the-best-model-and-use-it-to-predict"></a>
+<a class="anchor" aria-label="anchor" href="#choose-the-best-model-and-use-it-to-predict"></a></h2>
 <hr class="half-width"><p>Based on our evaluation of the loss and accuracy metrics, we choose
 the model that appears to have the best performance <strong>of the
 models we have examined thus far</strong>. The next step is to use this
@@ -1184,9 +1184,9 @@ overfitting.</li>
 </div>
 </div>
 <!-- Collect your link references at the bottom of your document -->
-<!-- 
+<!--
 Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use. 
+any links that you are not going to use.
  -->
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
@@ -1200,7 +1200,7 @@ any links that you are not going to use.
           Previous: Build a
         </a>
         <a class="chapter-link float-end" href="05-evaluate-predict-cnn.html" rel="next">
-          Next: Evaluate a... 
+          Next: Evaluate a...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -1211,18 +1211,18 @@ any links that you are not going to use.
       		<footer class="row footer mx-md-3"><hr><div class="col-md-6">
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
-        
+
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.md" class="external-link">Edit on GitHub</a>
-        
+
 	
         | <a href="https://github.com/erinmgraham/icwithcnn/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
         | <a href="https://github.com/erinmgraham/icwithcnn/" class="external-link">Source</a></p>
 				<p><a href="https://github.com/erinmgraham/icwithcnn/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:erin.graham@jcu.edu.au">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
-        
+
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
-        
+
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.5" class="external-link">sandpaper (0.16.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
@@ -1247,7 +1247,7 @@ any links that you are not going to use.
   "identifier": "https://erinmgraham.github.io/icwithcnn/04-fit-cnn.html",
   "dateCreated": "2023-05-03",
   "dateModified": "2024-05-20",
-  "datePublished": "2024-07-03"
+  "datePublished": "2024-07-09"
 }
 
   </script><script>

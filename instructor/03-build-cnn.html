@@ -27,7 +27,7 @@
             <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
           </abbr>
         </span>
-        
+
       </div>
     </div>
     <div class="selector-container">
@@ -56,7 +56,7 @@
             </li>
           </ul></li>
       </div>
-      
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Instructor View <i data-feather="chevron-down"></i>
@@ -180,7 +180,7 @@
                 </div><!--/div.accordion-flush-->
               </div><!--div.sidenav-view-selector -->
             </div><!--/div.col -->
-      
+
             <hr></div><!--/div.mobile-row -->
 
           <div class="accordion accordion-flush" id="accordionFlush11">
@@ -199,7 +199,7 @@
     <div class="accordion-header" id="flush-heading1">
         <a href="index.html">Summary and Schedule</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -208,7 +208,7 @@
     <div class="accordion-header" id="flush-heading2">
         <a href="01-introduction.html">1. Introduction to Deep Learning</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -217,7 +217,7 @@
     <div class="accordion-header" id="flush-heading3">
         <a href="02-image-data.html">2. Introduction to Image Data</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -231,7 +231,7 @@
         </span>
       </button>
     </div><!--/div.accordion-header-->
-        
+
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#neural-networks">Neural Networks</a></li>
@@ -240,7 +240,7 @@
 <li><a href="#we-have-a-model-now-what">We have a model now what?</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -249,7 +249,7 @@
     <div class="accordion-header" id="flush-heading5">
         <a href="04-fit-cnn.html">4. Compile and Train (Fit) a Convolutional Neural Network</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -258,7 +258,7 @@
     <div class="accordion-header" id="flush-heading6">
         <a href="05-evaluate-predict-cnn.html">5. Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -267,7 +267,7 @@
     <div class="accordion-header" id="flush-heading7">
         <a href="06-share-cnn-next-steps.html">6. Share a Convolutional Neural Network and Next Steps</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -299,10 +299,10 @@
               </div>
             </div>
             <hr class="half-width resources"><a href="../instructor/aio.html">See all in one page</a>
-            
+
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
-            
+
             </div>
           </div><!-- /div.accordion -->
         </div><!-- /div.sidebar-inner -->
@@ -323,20 +323,20 @@
           Previous: Introduction to
         </a>
         <a class="chapter-link float-end" href="../instructor/04-fit-cnn.html" rel="next">
-          Next: Compile and Train... 
+          Next: Compile and Train...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Build a Convolutional Neural Network</h1>
         <p>Last updated on 2024-05-30 |
-        
+
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-        
-        
-        
+
+
+
         <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
-        
+
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -371,8 +371,8 @@ dense.</li>
 </div>
 </div>
 </div>
-<section id="neural-networks"><h2 class="section-heading">Neural Networks<a class="anchor" aria-label="anchor" href="#neural-networks"></a>
-</h2>
+<section><h2 class="section-heading" id="neural-networks">Neural Networks<a class="anchor" aria-label="anchor" href="#neural-networks"></a>
+<a class="anchor" aria-label="anchor" href="#neural-networks"></a></h2>
 <hr class="half-width"><p>A <strong>neural network</strong> is an artificial intelligence
 technique loosely based on the way neurons in the brain work.</p>
 <div class="section level3">
@@ -416,8 +416,8 @@ computing power and the algorithms for training the networks made much
 larger and more powerful networks practical. These are known as deep
 neural networks or Deep Learning.</p>
 </div>
-</section><section id="convolutional-neural-networks"><h2 class="section-heading">Convolutional Neural Networks<a class="anchor" aria-label="anchor" href="#convolutional-neural-networks"></a>
-</h2>
+</section><section><h2 class="section-heading" id="convolutional-neural-networks">Convolutional Neural Networks<a class="anchor" aria-label="anchor" href="#convolutional-neural-networks"></a>
+<a class="anchor" aria-label="anchor" href="#convolutional-neural-networks"></a></h2>
 <hr class="half-width"><p>A convolutional neural network (CNN) is a type of artificial neural
 network (ANN) most commonly applied to analyze visual imagery. They are
 specifically designed for processing grid-like data, such as images, by
@@ -493,7 +493,7 @@ image to use an input.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -612,7 +612,7 @@ layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -699,7 +699,7 @@ layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -753,7 +753,7 @@ layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -802,7 +802,7 @@ layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -819,7 +819,7 @@ layer.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> What does Flatten mean exactly? </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>A flatten layer function is typically used to transform the
 two-dimensional arrays (matrices) generated by the convolutional and
@@ -894,7 +894,7 @@ layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -964,7 +964,7 @@ as our dataset.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -979,8 +979,8 @@ as our dataset.</p>
 </div>
 </div>
 </div>
-</section><section id="putting-it-all-together"><h2 class="section-heading">Putting it all together<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a>
-</h2>
+</section><section><h2 class="section-heading" id="putting-it-all-together">Putting it all together<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a>
+<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a></h2>
 <hr class="half-width"><p>Once you decide on the initial architecture of your CNN, the last
 step to create the model is to bring all of the parts together using the
 <code>keras.Model</code> class.</p>
@@ -1035,17 +1035,17 @@ from the introduction.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>def create_model_intro():
-    
+
     # CNN Part 1
     # Input layer of 32x32 images with three channels (RGB)
     inputs_intro = keras.Input(shape=train_images.shape[1:])
-    
+
     # CNN Part 2
     # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
     x_intro = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_intro)
@@ -1059,16 +1059,16 @@ from the introduction.</p>
     x_intro = keras.layers.Flatten()(x_intro)
     # Dense layer with 64 neurons and ReLU activation
     x_intro = keras.layers.Dense(units=64, activation='relu')(x_intro)
-    
+
     # CNN Part 3
     # Output layer with 10 units (one for each class) and softmax activation
     outputs_intro = keras.layers.Dense(units=10, activation='softmax')(x_intro)
-    
+
     # create the model
-    model_intro = keras.Model(inputs = inputs_intro, 
-                              outputs = outputs_intro, 
+    model_intro = keras.Model(inputs = inputs_intro,
+                              outputs = outputs_intro,
                               name = "cifar_model_intro")
-    
+
     return model_intro</code></pre>
 </div>
 </div>
@@ -1093,26 +1093,26 @@ method.</p>
 </h3>
 <pre class="output" tabindex="0"><code>Model: "cifar_model_intro"
 _________________________________________________________________
- Layer (type)                Output Shape              Param #   
+ Layer (type)                Output Shape              Param #
 =================================================================
- input_1 (InputLayer)        [(None, 32, 32, 3)]       0         
-                                                                 
- conv2d (Conv2D)             (None, 30, 30, 16)        448       
-                                                                 
- max_pooling2d (MaxPooling2  (None, 15, 15, 16)        0         
- D)                                                              
-                                                                 
- conv2d_1 (Conv2D)           (None, 13, 13, 32)        4640      
-                                                                 
- max_pooling2d_1 (MaxPoolin  (None, 6, 6, 32)          0         
- g2D)                                                            
-                                                                 
- flatten (Flatten)           (None, 1152)              0         
-                                                                 
- dense (Dense)               (None, 64)                73792     
-                                                                 
- dense_1 (Dense)             (None, 10)                650       
-                                                                 
+ input_1 (InputLayer)        [(None, 32, 32, 3)]       0
+
+ conv2d (Conv2D)             (None, 30, 30, 16)        448
+
+ max_pooling2d (MaxPooling2  (None, 15, 15, 16)        0
+ D)
+
+ conv2d_1 (Conv2D)           (None, 13, 13, 32)        4640
+
+ max_pooling2d_1 (MaxPoolin  (None, 6, 6, 32)          0
+ g2D)
+
+ flatten (Flatten)           (None, 1152)              0
+
+ dense (Dense)               (None, 64)                73792
+
+ dense_1 (Dense)             (None, 10)                650
+
 =================================================================
 Total params: 79530 (310.66 KB)
 Trainable params: 79530 (310.66 KB)
@@ -1124,7 +1124,7 @@ _________________________________________________________________</code></pre>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Explain the summary output </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>The Model.summary() output has three columns:</p>
 <ol style="list-style-type: decimal"><li>Layer (type) lists the name and type of each layer.  
@@ -1201,8 +1201,8 @@ performance increases.</p>
 </div>
 </div>
 </div>
-</section><section id="we-have-a-model-now-what"><h2 class="section-heading">We have a model now what?<a class="anchor" aria-label="anchor" href="#we-have-a-model-now-what"></a>
-</h2>
+</section><section><h2 class="section-heading" id="we-have-a-model-now-what">We have a model now what?<a class="anchor" aria-label="anchor" href="#we-have-a-model-now-what"></a>
+<a class="anchor" aria-label="anchor" href="#we-have-a-model-now-what"></a></h2>
 <hr class="half-width"><p>This CNN should be able to run with the CIFAR-10 data set and provide
 reasonable results for basic classification tasks. However, do keep in
 mind this model is relatively simple, and its performance may not be as
@@ -1245,9 +1245,9 @@ previous layers to perform the final classification.</li>
 </div>
 </div>
 <!-- Collect your link references at the bottom of your document -->
-<!-- 
+<!--
 Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use. 
+any links that you are not going to use.
  -->
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
@@ -1261,7 +1261,7 @@ any links that you are not going to use.
           Previous: Introduction to
         </a>
         <a class="chapter-link float-end" href="../instructor/04-fit-cnn.html" rel="next">
-          Next: Compile and Train... 
+          Next: Compile and Train...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -1272,18 +1272,18 @@ any links that you are not going to use.
       		<footer class="row footer mx-md-3"><hr><div class="col-md-6">
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
-        
+
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.md" class="external-link">Edit on GitHub</a>
-        
+
 	
         | <a href="https://github.com/erinmgraham/icwithcnn/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
         | <a href="https://github.com/erinmgraham/icwithcnn/" class="external-link">Source</a></p>
 				<p><a href="https://github.com/erinmgraham/icwithcnn/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:erin.graham@jcu.edu.au">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
-        
+
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
-        
+
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.5" class="external-link">sandpaper (0.16.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
@@ -1308,7 +1308,7 @@ any links that you are not going to use.
   "identifier": "https://erinmgraham.github.io/icwithcnn/instructor/03-build-cnn.html",
   "dateCreated": "2023-05-03",
   "dateModified": "2024-05-30",
-  "datePublished": "2024-07-03"
+  "datePublished": "2024-07-09"
 }
 
   </script><script>

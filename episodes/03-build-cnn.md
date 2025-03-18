@@ -158,7 +158,9 @@ keras.layers.Conv2D(filters, kernel_size, strides=(1, 1), padding="valid", activ
     - This is one of the hyperparameters of our system and should be chosen carefully.
     - Good practice is to start with a relatively small number of filters in the first layer to prevent overfitting.
     - Choosing a number of filters as a power of two (e.g., 32, 64, 128) is common.
-- `kernel size` is the size of the convolution matrix which we already discussed.     - Smaller kernels are often used to capture fine-grained features and odd-sized filters are preferred because they have a centre pixel which helps maintain spatial symmetry during convolutions.
+- `kernel size` is the size of the convolution matrix which we already discussed.     
+	- Smaller kernels are often used to capture fine-grained features.
+	- Odd-sized filters are preferred because they have a centre pixel which helps maintain spatial symmetry during convolutions.
 - `activation` specifies which activation function to use.
 
 When specifying layers, remember each layer's output is the input to the next layer. We must create a variable to store a reference to the output so we can pass it to the next layer. The basic format for doing this is:
@@ -215,8 +217,8 @@ Similar to convolutional layers, Keras offers several pooling layers and one use
 ```
 keras.layers.MaxPooling2D(pool_size=(2, 2), strides=None, padding="valid", data_format=None, name=None, **kwargs)
 ```
-- `pool_size`, i.e., the size of the pooling window
-    - In Keras, the default is usually (2, 2)
+- `pool_size` is the size of the pooling window.
+    - In Keras, the default is usually (2, 2).
 
 The function downsamples the input along its spatial dimensions (height and width) by taking the **maximum** value over an input window (of size defined by pool_size) for each channel of the input. By taking the maximum instead of the average, the most prominent features in the window are emphasized.
 
@@ -259,7 +261,7 @@ In Keras, a densely-connected layer is defined:
 keras.layers.Dense(units, activation=None, **kwargs)
 ```
 
-- `units in this case refers to the number of neurons.
+- `units` in this case refers to the number of neurons.
 
 The choice of how many neurons to specify is often determined through experimentation and can impact the performance of our CNN. Too few neurons may not capture complex patterns in the data but too many neurons may lead to overfitting.
 
@@ -435,7 +437,7 @@ We will use the Functional API to create our model using the inputs and outputs 
 keras.Model(inputs=inputs, outputs=outputs)
 ```
 
-Note that there is additional argument that can be passed to the keras.Model class called 'name' that takes a string. Although it is no longer specified in the documentation, the 'name' argument is useful when deciding among different architectures.
+Note that there is additional argument that can be passed to the keras.Model class called `name` that takes a string. Although it is no longer specified in the documentation, the `name` argument is useful when deciding among different architectures.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 

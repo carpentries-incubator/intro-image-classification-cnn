@@ -38,13 +38,8 @@ The Keras method to compile a model is found in the [Model training APIs] sectio
 Model.compile(
     optimizer="rmsprop",
     loss=None,
-    loss_weights=None,
     metrics=None,
-    weighted_metrics=None,
-    run_eagerly=False,
-    steps_per_execution=1,
-    jit_compile="auto",
-    auto_scale_loss=True,
+	...
 )
 ```
 
@@ -208,18 +203,8 @@ Model.fit(
     y=None,
     batch_size=None,
     epochs=1,
-    verbose="auto",
-    callbacks=None,
-    validation_split=0.0,
     validation_data=None,
-    shuffle=True,
-    class_weight=None,
-    sample_weight=None,
-    initial_epoch=0,
-    steps_per_epoch=None,
-    validation_steps=None,
-    validation_batch_size=None,
-    validation_freq=1,
+	...
 )
 ```
 
@@ -419,7 +404,7 @@ Dropout layers will only randomly silence nodes during training! During the pred
 Dropout layers are defined by the `keras.layers.Dropout` class and have the following definition:
 
 ```
-keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)
+keras.layers.Dropout(rate, ...)
 ```
 
 - The `rate` parameter is a float between 0 and 1 and represents the fraction of the input units to drop.

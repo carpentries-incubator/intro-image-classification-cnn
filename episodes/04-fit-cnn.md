@@ -55,30 +55,7 @@ We need to choose an optimizer and, if this optimizer has parameters, decide wha
 
 Here we picked one of the most common optimizers demonstrated to work well for most tasks, the **Adam** optimizer, as our starting point.
 
-In Keras, Adam is defined by the `keras.optimizers.Adam` class:
-
-```
-keras.optimizers.Adam(
-    learning_rate=0.001,
-    beta_1=0.9,
-    beta_2=0.999,
-    epsilon=1e-07,
-    amsgrad=False,
-    weight_decay=None,
-    clipnorm=None,
-    clipvalue=None,
-    global_clipnorm=None,
-    use_ema=False,
-    ema_momentum=0.99,
-    ema_overwrite_frequency=None,
-    loss_scale_factor=None,
-    gradient_accumulation_steps=None,
-    name="adam",
-    **kwargs
-)
-```
-
-As you can see, the Adam optimizer defines many parameters. For this introductory course, we will accept the default arguments but we highly recommend you investigate all of them if you decide to use this optimizer for your project.
+In Keras, Adam is defined by the `keras.optimizers.Adam` class and it has many parameters. For this introductory course, we will accept the default arguments but we highly recommend you investigate all of them if you decide to use this optimizer for your project.
 
 For now, though, we do want to highlight the first parameter.
 
@@ -125,17 +102,7 @@ The **loss function** tells the training algorithm how wrong, or how 'far away' 
 
 For classification purposes, there are a number of probabilistic losses to choose from. Here we chose `CategoricalCrossentropy` because we want to compute the difference between our one-hot encoded class labels and the model predictions and this loss function is appropriate when the data has two or more label classes.
 
-It is defined by the `keras.losses.CategoricalCrossentropy` class:
-
-```
-keras.losses.CategoricalCrossentropy(
-    from_logits=False,
-    label_smoothing=0.0,
-    axis=-1,
-    reduction="sum_over_batch_size",
-    name="categorical_crossentropy",
-)
-```
+It is defined by the `keras.losses.CategoricalCrossentropy` class.
 
 More information about loss functions can be found in the [Keras loss documentation].
 
@@ -146,11 +113,7 @@ After we select the desired optimizer and loss function we specify the metric(s)
 
 Metric functions are similar to loss functions, except the results from evaluating a metric are not used when training the model. Note you can also use any loss function as a metric. The [Keras metrics] documentation provides a list of potential metrics.
 
-Typically, for classification problems, you will use `CategoricalAccuracy`, which calculates how often the model predictions match the true labels, and in Keras is defined as:
-
-```
-keras.metrics.CategoricalAccuracy(name="categorical_accuracy", dtype=None)
-```
+Typically, for classification problems, you will use `keras.metrics.CategoricalAccuracy`, which calculates how often the model predictions match the true labels.
 
 The accuracy function creates two local variables, total and count, that it uses to compute the frequency with which predictions matches labels. This frequency is ultimately returned as accuracy: an operation that divides the  total by count.
 
@@ -172,9 +135,9 @@ Hint 3: Use 'CategoricalAccuracy' as the metric.
 
 ```python
 # compile the model
-_____.compile(optimizer = _____, 
-                    loss = _____, 
-                    metrics = _____)
+_____.compile(optimizer = _____,
+			  loss = _____, 
+			  metrics = _____)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -242,10 +205,11 @@ Hint 4: Store the training loss and metrics in a variable call 'history_intro'
 
 ```python
 # fit the model
-_____ = _____.fit(x = _____, y = _____,
-                                batch_size = _____,
-                                epochs = _____, 
-                                validation_data = (_____, _____))
+_____ = _____.fit(x = _____, 
+				  y = _____,
+				  batch_size = _____,
+				  epochs = _____,
+				  validation_data = (_____, _____))
 ```
 
 :::::::::::::::::::::::: solution 

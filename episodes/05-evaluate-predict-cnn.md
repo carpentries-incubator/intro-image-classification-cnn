@@ -77,7 +77,7 @@ Armed with a test dataset, we will choose our best performing CNN and use it to 
 The Keras method to predict is found in the [Model training APIs] section of the documentation and has the following definition:
 
 ```
-Model.predict(x, batch_size=None, verbose="auto", steps=None, callbacks=None)
+Model.predict(x, ...)
 ```
 
 - *x* refers to the input samples which in our case is an array of images

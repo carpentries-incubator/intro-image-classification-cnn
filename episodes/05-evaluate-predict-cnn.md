@@ -282,9 +282,9 @@ One common method for hyperparameter tuning is by using a `for` loop to change a
 
 Q1. What do you think would happen if you lower the dropout rate? Write some code to vary the dropout rate and investigate how it affects the model training.
 
-    Hint 1: Modify the 'create_model_dropout()' function and define a `create_model_dropout_vary` function that has `dropout_rate` as its only parameter.
+Hint 1: Modify the 'create_model_dropout()' function and define a `create_model_dropout_vary` function that has `dropout_rate` as its only parameter.
     
-    Hint 2: Use a for loop to call your function with varying dropout rates
+Hint 2: Use a for loop to call your function with varying dropout rates
 
 Q2. You are varying the dropout rate and checking its effect on the model performance, what is the term associated to this procedure?
 
@@ -294,8 +294,8 @@ A1. Varying the dropout rate
 
 The code below instantiates and trains a model with varying dropout rates. The resulting plot indicates the ideal dropout rate in this case is around 0.45. This is where the validation loss is lowest.
 
-    NB1: It takes a while to train these five networks.
-    NB2: You should do this with a test set and not with the validation set!
+NB1: It takes a while to train these five networks.
+NB2: You should do this with a test set and not with the validation set!
 
 ```python
 # define new dropout function that accepts a dropout rate
@@ -504,7 +504,9 @@ Table 2. Description of each activation function, its benefits, and drawbacks.
 
 Write some code to assess activation function performance.
 
-Hint 1: Use the `create_model_intro()` definition as the **build function** to use during GridSearch. Make modifications to take a single parameter 'activation_function and this time include the 'Model.compile' method call in the definition.
+Hint 1: Modify the 'create_model_intro()' function and define a `create_model_act()` function that has `activation_function` as its only parameter.
+
+Hint 2: Use a for loop to call your function with varying activation functions
 
 :::::::::::::::::::::::: solution 
 

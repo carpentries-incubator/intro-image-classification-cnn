@@ -80,17 +80,15 @@ ChatGPT
 
 The figure below illustrates how a small learning rate will not traverse toward the minima of the gradient descent algorithm in a timely manner, i.e. number of epochs.
 
-![Small learning rate leads to inefficient approach to loss minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg "Small learning rate leads to inefficient approach to loss minima"){alt='Plot of loss over weight value illustrating how a small learning rate takes a long time to reach the optimal solution.'}
+![Small learning rate leads to inefficient approach to loss minima](fig/04_learning_rate_low.png){alt='Plot of loss over weight value illustrating how a small learning rate takes a long time to reach the optimal solution.'}
 
 On the other hand, specifying a learning rate that is *too high* will result in a loss value that never approaches the minima. That is, 'bouncing between the sides', thus never reaching a minima to cease learning.
 
-![A large learning rate results in overshooting the gradient descent minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg){alt='Plot of loss over weight value illustrating how a large learning rate never approaches the optimal solution because it bounces between the sides.'}
+![A large learning rate results in overshooting the gradient descent minima](fig/04_learning_rate_high.png){alt='Plot of loss over weight value illustrating how a large learning rate never approaches the optimal solution because it bounces between the sides.'}
 
 Finally, a modest learning rate will ensure that the product of multiplying the scalar gradient value and the learning rate does not result in too small steps, nor a chaotic bounce between sides of the gradient where steepness is greatest.
 
-![An optimal learning rate supports a gradual approach to the minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg){alt='Plot of loss over weight value illustrating how a good learning rate gets to optimal solution gradually.'}
-
-These images were obtained from [Google Developers Machine Learning Crash Course] and is licenced under the [Creative Commons 4.0 Attribution Licence].
+![An optimal learning rate supports a gradual approach to the minima](fig/04_learning_rate_optimal.png){alt='Plot of loss over weight value illustrating how a good learning rate gets to optimal solution gradually.'}
 
 ::::::::::::::::::::::::::::::::::::::::::::::
 

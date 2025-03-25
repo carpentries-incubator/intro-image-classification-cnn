@@ -165,7 +165,9 @@ keras.layers.Conv2D(filters, kernel_size, strides=(1, 1), padding="valid", activ
 
 When specifying layers, remember each layer's output is the input to the next layer. We must create a variable to store a reference to the output so we can pass it to the next layer. The basic format for doing this is:
 
+```
 output_variable = layer_name(layer_arguments)(input_variable)
+```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -295,7 +297,8 @@ x_intro = keras.layers.Dense(units=64, activation='relu')(x_intro)
 The next type of hidden layer used in our introductory model is a type of reshaping layer defined in Keras by the `keras.layers.Flatten` class. It is necessary when transitioning from convolutional and pooling layers to fully connected layers.
 
 ```
-keras.layers.Flatten(data_format=None, **kwargs)
+keras.layers.Flatten( ... ))
+
 ```
 
 The **Flatten** layer converts the output of the previous layer into a single one-dimensional vector that can be used as input for a dense layer.

@@ -345,7 +345,7 @@ How to address underfitting:
 
 ### Improve Model Generalization (avoid Overfitting)
 
-Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques**. A short list of some of these include batch normalization, data augmentation, and dropout. 
+Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques**. A short list of some of these include data augmentation and dropout. 
 
 #### Dropout
 
@@ -371,9 +371,9 @@ keras.layers.Dropout(rate, ...)
 
 - The `rate` parameter is a float between 0 and 1 and represents the fraction of the input units to drop.
     - Good advice is to begin with a small dropout rate, such as 0.1 or 0.2, and gradually increase it if necessary. 
-    - A dropout rate of 0.5 is commonly used as a starting point.
+    - However, a dropout rate of 0.5 is also commonly used and can be a good starting point for many models.
 
-The placement of the dropout layer also matters because adding dropout before or after certain layers can have different effects. Although dropout layers are commonly added between dense layers, you will find network architectures with dropout in just about everywhere. Be sure to experiment with different dropout rates and placements to find the optimal configuration for your model and dataset.
+The placement of the dropout layer also matters because adding dropout before or after certain layers can have different effects. Although dropout layers are commonly added between dense layers, you will find network architectures with dropout just about everywhere. Be sure to experiment with different dropout rates and placements to find the optimal configuration for your model and dataset.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -389,31 +389,36 @@ Hint 2: Consider adding an additional layer(s) from one of the four layers we di
 
 ```output
 def create_model_dropout():
-    
-    # CNN Part 1
-    # Input layer of 32x32 images with three channels (RGB)
-    inputs_dropout = keras.Input(shape=train_images.shape[1:])
-    
-    # CNN Part 2
-    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-    x_dropout = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_dropout)
-    # Pooling layer with input window sized 2x2
-    x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout)
-    # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-    x_dropout = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu')(x_dropout)
-    # Second Pooling layer with input window sized 2x2
-    x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout)
-    # Third Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-    x_dropout = keras.layers.Conv2D(filters=64, kernel_size=(3,3), activation='relu')(x_dropout) # This is new!
-    # Dropout layer andomly drops 50 per cent of the input units
-    x_dropout = keras.layers.Dropout(rate=0.5)(x_dropout) # This is new!
-    # Flatten layer to convert 2D feature maps into a 1D vector
-    x_dropout = keras.layers.Flatten()(x_dropout)
-    
-    # CNN Part 3
-    # Output layer with 10 units (one for each class) and softmax activation
-    outputs_dropout = keras.layers.Dense(units=10, activation='softmax')(x_dropout)
-    
+    """
+    Dropout Model Definition
+
+    INPUT: 32x32 images with three channels (RGB)
+    Layer 1: convolutional, 16 filters, 3x3 kernel, ReLU activation
+    Layer 2: max pooling, 2x2 window
+    Layer 3: convolutional, 32 filters, 3x3 kernel, ReLU activation
+    Layer 4: max pooling, 2x2 window
+    Layer 5: convolutional, 64 filters, 3x3 kernel, ReLU activation
+    Layer 6: dropout layer, 50% of input units
+    Layer 7: flatten to 1D
+    Layer 8: dense layer, 64 units, ReLU activation
+    OUTPUT: dense layer, 10 units (one per class), softmax activation
+    """
+    # CNN Part 1 INPUT LAYER
+    inputs_dropout = keras.Input(shape=train_images.shape[1:]) # INPUT LAYER
+
+    # CNN Part 2 HIDDEN LAYERS
+    x_dropout = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_dropout) # Layer 1
+    x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout) # Layer 2
+    x_dropout = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu')(x_dropout) # Layer 3
+    x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout) # Layer 4
+      x_dropout = keras.layers.Conv2D(filters=64, kernel_size=(3,3), activation='relu')(x_dropout) # Layer 5  # This is new!
+    x_dropout = keras.layers.Dropout(rate=0.5)(x_dropout) # Layer 6 # This is new!
+    x_dropout = keras.layers.Flatten()(x_dropout) # Layer 7
+    x_dropout = keras.layers.Dense(units=64, activation='relu')(x_dropout) # Layer 8
+
+    # CNN Part 3 OUTPUT LAYER
+    outputs_intro = keras.layers.Dense(units=10, activation='softmax')(x_dropout) # OUTPUT LAYER
+   
     # create the model
     model_dropout = keras.Model(inputs = inputs_dropout, 
                               outputs = outputs_dropout, 
@@ -471,7 +476,6 @@ fig.suptitle('cifar_model_dropout')
 sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
 sns.lineplot(ax=axes[1], data=history_dropout_df[['categorical_accuracy', 'val_categorical_accuracy']])
 
-val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images, val_labels, verbose=2)
 ```
 
 ![](fig/04_model_dropout_accuracy_loss.png){alt='two panel figure; the figure on the left illustrates the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right illustrates the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67'}

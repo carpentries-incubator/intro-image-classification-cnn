@@ -19,7 +19,7 @@ exercises: 2
 - Explain how to measure the performance of a CNN.
 - Know what steps to take to improve model accuracy.
 - Explain hyperparameter tuning.
-- Be familiar with advantages and disadvantages of different optimizers.
+- Be aware of the advantages and disadvantages of different optimizers.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -29,7 +29,7 @@ After you fully train the network to a satisfactory performance on the training 
 
 #### Prepare test dataset
 
-Recall in [Episode 02 Introduction to Image Data](episodes/02-image-data.md) we discussed how to split your data into training and test datasets and why. In most cases, that means you already have a test set on hand. For example, we are using `keras.models.load_model` to create a training and test set.
+Recall in [Episode 02 Introduction to Image Data](episodes/02-image-data.md) we discussed how to split your data into training and test datasets and why. In most cases, that means you already have a test set on hand. For example, we used `keras.datasets.cifar10.load_data()` to create a training and test set.
 
 When creating and using a test set there are a few things to check:
 

@@ -426,6 +426,21 @@ The Spyder IDE uses the '...' notation when it "hides" some of the data for disp
 
 To view the entire array, go the Variable Explorer in the upper right hand corner of your Spyder IDE and double click on the 'train_labels' object. This will open a new window that shows all of the columns.
 
+You can also view the array programatically:
+
+- Use a function in numpy called `array2string()` and set a very high threshold for how many items to display:
+```python
+import numpy as np
+print(np.array2string(train_labels, threshold=np.inf))
+```
+
+Alternatively, use slices:
+
+```python
+# display all columns for the first 3 rows
+print(arr[:3, :])
+```
+
 ![](fig/02_spyder_onehot_train_labels_inFULL.png){alt='Screenshot of Spyder window displaying the entire train_labels array.'}
 ::::::::::::::::::::::::::::::::::::::::::::::
 

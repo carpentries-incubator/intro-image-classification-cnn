@@ -106,7 +106,7 @@ _____ = _____.predict(x=_____)
 
 ```python
 # load preferred model
-model_best = keras.models.load_model('fit_outputs/model_dropout.keras')
+model_best = keras.models.load_model('model_dropout.keras')
 print('We are using', model_best.name)
 
 # use preferred model to predict

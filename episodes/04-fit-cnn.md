@@ -249,7 +249,7 @@ We will discuss this method in more detail in [Episode 6 Share a Convolutional N
 
 ```python
 # save the model
-model_intro.save('fit_outputs/model_intro.keras')
+model_intro.save('model_intro.keras')
 ```
 
 #### Monitor Training Progress (aka Model Evaluation during Training)
@@ -463,7 +463,7 @@ history_dropout = model_dropout.fit(x = train_images, y = train_labels,
 
 
 # save dropout model
-model_dropout.save('fit_outputs/model_dropout.keras')
+model_dropout.save('model_dropout.keras')
 
 # inspect the training results
 

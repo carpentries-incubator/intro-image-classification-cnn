@@ -322,7 +322,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Build a Convolutional Neural Network</h1>
-        <p>Last updated on 2024-05-30 |
+        <p>Last updated on 2026-06-09 |
 
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -485,7 +485,7 @@ image to use an input.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -560,10 +560,12 @@ is common.</li>
 </ul></li>
 <li>
 <code>kernel size</code> is the size of the convolution matrix which
-we already discussed. - Smaller kernels are often used to capture
-fine-grained features and odd-sized filters are preferred because they
-have a centre pixel which helps maintain spatial symmetry during
-convolutions.</li>
+we already discussed.
+<ul><li>Smaller kernels are often used to capture fine-grained
+features.</li>
+<li>Odd-sized filters are preferred because they have a centre pixel
+which helps maintain spatial symmetry during convolutions.</li>
+</ul></li>
 <li>
 <code>activation</code> specifies which activation function to
 use.</li>
@@ -571,7 +573,7 @@ use.</li>
 the next layer. We must create a variable to store a reference to the
 output so we can pass it to the next layer. The basic format for doing
 this is:</p>
-<p>output_variable = layer_name(layer_arguments)(input_variable)</p>
+<pre><code><span><span class="va">output_variable</span> <span class="op">=</span> <span class="fu">layer_name</span><span class="op">(</span><span class="va">layer_arguments</span><span class="op">)</span><span class="op">(</span><span class="va">input_variable</span><span class="op">)</span></span></code></pre>
 <div id="challenge-create-a-2d-convolutional-layer-for-our-network" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -590,12 +592,12 @@ hyperparameters</strong> but to satisfy your curiosity,
 <code>ReLU</code> stands for Rectified Linear Unit (ReLU).</p>
 <p>Hint 1: The input to each layer is the output of the previous
 layer.</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="co"># CNN Part 2</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(filters<span class="op">=</span>_____, kernel_size<span class="op">=</span>_____, activation<span class="op">=</span>_____)(_____)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="co"># CNN Part 2</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="co"># Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a>x_intro <span class="op">=</span> keras.layers.Conv2D(filters<span class="op">=</span>_____, kernel_size<span class="op">=</span>_____, activation<span class="op">=</span>_____)(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -605,7 +607,7 @@ layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -654,8 +656,8 @@ original image.</p>
 and one used for images (2D spatial data):</p>
 <pre><code>keras.layers.MaxPooling2D(pool_size=(2, 2), strides=None, padding="valid", data_format=None, name=None, **kwargs)</code></pre>
 <ul><li>
-<code>pool_size</code>, i.e., the size of the pooling window
-<ul><li>In Keras, the default is usually (2, 2)</li>
+<code>pool_size</code> is the size of the pooling window.
+<ul><li>In Keras, the default is usually (2, 2).</li>
 </ul></li>
 </ul><p>The function downsamples the input along its spatial dimensions
 (height and width) by taking the <strong>maximum</strong> value over an
@@ -679,11 +681,11 @@ network</h3>
 <p>Create a pooling layer with input window sized 2x2.</p>
 <p>Hint 1: The input to each layer is the output of the previous
 layer.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="co"># Pooling layer with input window sized 2x2</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D(pool_size<span class="op">=</span>_____)(_____)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="co"># Pooling layer with input window sized 2x2</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a>x_intro <span class="op">=</span> keras.layers.MaxPooling2D(pool_size<span class="op">=</span>_____)(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -693,7 +695,7 @@ layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -717,7 +719,9 @@ the input neurons and <strong>all</strong> of the output neurons.</p>
 in previous layers to make a decision about the class of the input.</p>
 <p>In Keras, a densely-connected layer is defined:</p>
 <pre><code>keras.layers.Dense(units, activation=None, **kwargs)</code></pre>
-<ul><li>`units in this case refers to the number of neurons.</li>
+<ul><li>
+<code>units</code> in this case refers to the number of
+neurons.</li>
 </ul><p>The choice of how many neurons to specify is often determined through
 experimentation and can impact the performance of our CNN. Too few
 neurons may not capture complex patterns in the data but too many
@@ -734,11 +738,11 @@ network</h3>
 <p>Create a dense layer with 64 neurons and ‘relu’ activation.</p>
 <p>Hint 1: The input to each layer is the output of the previous
 layer.</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a>x_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span>_____, activation<span class="op">=</span>_____)(_____)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="co"># Dense layer with 64 neurons and ReLU activation</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1" aria-label="code-block-15-2"></a>x_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span>_____, activation<span class="op">=</span>_____)(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -748,7 +752,7 @@ layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -768,7 +772,8 @@ type of reshaping layer defined in Keras by the
 <code>keras.layers.Flatten</code> class. It is necessary when
 transitioning from convolutional and pooling layers to fully connected
 layers.</p>
-<pre><code>keras.layers.Flatten(data_format=None, **kwargs)</code></pre>
+<pre><code>keras.layers.Flatten( ... ))
+</code></pre>
 <p>The <strong>Flatten</strong> layer converts the output of the
 previous layer into a single one-dimensional vector that can be used as
 input for a dense layer.</p>
@@ -784,11 +789,11 @@ network</h3>
 <p>Create a flatten layer.</p>
 <p>Hint 1: The input to each layer is the output of the previous
 layer.</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(_____)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="co"># Flatten layer to convert 2D feature maps into a 1D vector</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1" aria-label="code-block-18-2"></a>x_intro <span class="op">=</span> keras.layers.Flatten()(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -798,7 +803,7 @@ layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -815,7 +820,7 @@ layer.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> What does Flatten mean exactly? </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>A flatten layer function is typically used to transform the
 two-dimensional arrays (matrices) generated by the convolutional and
@@ -891,7 +896,7 @@ layer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -947,12 +952,12 @@ layer.</p>
 <p>Hint 2: The units (neurons) should be the same as number of classes
 as our dataset.</p>
 <p>Hint 3: Use softmax activation.</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="co"># CNN Part 3</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1" aria-label="code-block-20-2"></a><span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1" aria-label="code-block-20-3"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span>_____, activation<span class="op">=</span>_____)(_____)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="co"># CNN Part 3</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1" aria-label="code-block-21-2"></a><span class="co"># Output layer with 10 units (one for each class) and softmax activation</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1" aria-label="code-block-21-3"></a>outputs_intro <span class="op">=</span> keras.layers.Dense(units<span class="op">=</span>_____, activation<span class="op">=</span>_____)(_____)</span></code></pre>
 </div>
 </div>
 </div>
@@ -962,7 +967,7 @@ as our dataset.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -988,9 +993,9 @@ API</a>.</p>
 and outputs defined in this episode.</p>
 <pre><code><span><span class="fu">keras.Model</span><span class="op">(</span>inputs<span class="op">=</span><span class="va">inputs</span>, outputs<span class="op">=</span><span class="va">outputs</span><span class="op">)</span></span></code></pre>
 <p>Note that there is additional argument that can be passed to the
-keras.Model class called ‘name’ that takes a string. Although it is no
-longer specified in the documentation, the ‘name’ argument is useful
-when deciding among different architectures.</p>
+keras.Model class called <code>name</code> that takes a string. Although
+it is no longer specified in the documentation, the <code>name</code>
+argument is useful when deciding among different architectures.</p>
 <div id="challenge-create-a-function-that-defines-an-introductory-cnn" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1004,26 +1009,26 @@ introductory CNN</h3>
 from the previous challenges, create a function that returns the CNN
 from the introduction.</p>
 <p>Hint 1: Name the model “cifar_model_intro”</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="kw">def</span> create_model_intro():</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1" aria-label="code-block-23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1" aria-label="code-block-23-3"></a>    <span class="co"># CNN Part 1</span></span>
-<span id="cb23-4"><a href="#cb23-4" tabindex="-1" aria-label="code-block-23-4"></a>    _____</span>
-<span id="cb23-5"><a href="#cb23-5" tabindex="-1" aria-label="code-block-23-5"></a>    </span>
-<span id="cb23-6"><a href="#cb23-6" tabindex="-1" aria-label="code-block-23-6"></a>    <span class="co"># CNN Part 2</span></span>
-<span id="cb23-7"><a href="#cb23-7" tabindex="-1" aria-label="code-block-23-7"></a>    _____</span>
-<span id="cb23-8"><a href="#cb23-8" tabindex="-1" aria-label="code-block-23-8"></a>    </span>
-<span id="cb23-9"><a href="#cb23-9" tabindex="-1" aria-label="code-block-23-9"></a>    <span class="co"># CNN Part 3</span></span>
-<span id="cb23-10"><a href="#cb23-10" tabindex="-1" aria-label="code-block-23-10"></a>    _____</span>
-<span id="cb23-11"><a href="#cb23-11" tabindex="-1" aria-label="code-block-23-11"></a>    </span>
-<span id="cb23-12"><a href="#cb23-12" tabindex="-1" aria-label="code-block-23-12"></a>    <span class="co"># create the model</span></span>
-<span id="cb23-13"><a href="#cb23-13" tabindex="-1" aria-label="code-block-23-13"></a>    model_intro <span class="op">=</span> keras.Model(inputs <span class="op">=</span> _____, </span>
-<span id="cb23-14"><a href="#cb23-14" tabindex="-1" aria-label="code-block-23-14"></a>                              outputs <span class="op">=</span> _____, </span>
-<span id="cb23-15"><a href="#cb23-15" tabindex="-1" aria-label="code-block-23-15"></a>                              name <span class="op">=</span> _____)</span>
-<span id="cb23-16"><a href="#cb23-16" tabindex="-1" aria-label="code-block-23-16"></a>    </span>
-<span id="cb23-17"><a href="#cb23-17" tabindex="-1" aria-label="code-block-23-17"></a>    <span class="cf">return</span> model_intro</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="kw">def</span> create_model_intro():</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1" aria-label="code-block-24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1" aria-label="code-block-24-3"></a>    <span class="co"># CNN Part 1</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1" aria-label="code-block-24-4"></a>    _____</span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1" aria-label="code-block-24-5"></a>    </span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1" aria-label="code-block-24-6"></a>    <span class="co"># CNN Part 2</span></span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1" aria-label="code-block-24-7"></a>    _____</span>
+<span id="cb24-8"><a href="#cb24-8" tabindex="-1" aria-label="code-block-24-8"></a>    </span>
+<span id="cb24-9"><a href="#cb24-9" tabindex="-1" aria-label="code-block-24-9"></a>    <span class="co"># CNN Part 3</span></span>
+<span id="cb24-10"><a href="#cb24-10" tabindex="-1" aria-label="code-block-24-10"></a>    _____</span>
+<span id="cb24-11"><a href="#cb24-11" tabindex="-1" aria-label="code-block-24-11"></a>    </span>
+<span id="cb24-12"><a href="#cb24-12" tabindex="-1" aria-label="code-block-24-12"></a>    <span class="co"># create the model</span></span>
+<span id="cb24-13"><a href="#cb24-13" tabindex="-1" aria-label="code-block-24-13"></a>    model_intro <span class="op">=</span> keras.Model(inputs <span class="op">=</span> _____, </span>
+<span id="cb24-14"><a href="#cb24-14" tabindex="-1" aria-label="code-block-24-14"></a>                              outputs <span class="op">=</span> _____, </span>
+<span id="cb24-15"><a href="#cb24-15" tabindex="-1" aria-label="code-block-24-15"></a>                              name <span class="op">=</span> _____)</span>
+<span id="cb24-16"><a href="#cb24-16" tabindex="-1" aria-label="code-block-24-16"></a>    </span>
+<span id="cb24-17"><a href="#cb24-17" tabindex="-1" aria-label="code-block-24-17"></a>    <span class="cf">return</span> model_intro</span></code></pre>
 </div>
 </div>
 </div>
@@ -1033,7 +1038,7 @@ from the introduction.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1077,14 +1082,14 @@ from the introduction.</p>
 <p>We can use this function to create the introduction model and and
 view a summary of its structure using the <code>Model.summary</code>
 method.</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="co"># create the introduction model</span></span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a>model_intro <span class="op">=</span> create_model_intro()</span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1" aria-label="code-block-25-3"></a></span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1" aria-label="code-block-25-4"></a><span class="co"># view model summary</span></span>
-<span id="cb25-5"><a href="#cb25-5" tabindex="-1" aria-label="code-block-25-5"></a>model_intro.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" tabindex="-1" aria-label="code-block-26-1"></a><span class="co"># create the introduction model</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1" aria-label="code-block-26-2"></a>model_intro <span class="op">=</span> create_model_intro()</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1" aria-label="code-block-26-3"></a></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1" aria-label="code-block-26-4"></a><span class="co"># view model summary</span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1" aria-label="code-block-26-5"></a>model_intro.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1122,7 +1127,7 @@ _________________________________________________________________</code></pre>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Explain the summary output </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>The Model.summary() output has three columns:</p>
 <ol style="list-style-type: decimal"><li>Layer (type) lists the name and type of each layer.  
@@ -1283,7 +1288,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.2)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.1)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.2" class="external-link">sandpaper (0.20.2)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.1.1" class="external-link">varnish (1.1.1)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1305,7 +1310,7 @@ any links that you are not going to use.
   "url": "https://erinmgraham.github.io/icwithcnn/instructor/03-build-cnn.html",
   "identifier": "https://erinmgraham.github.io/icwithcnn/instructor/03-build-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2024-05-30",
+  "dateModified": "2026-06-09",
   "datePublished": "2026-06-09"
 }
 

@@ -19,7 +19,7 @@ exercises: 2
 - Explain how to measure the performance of a CNN.
 - Know what steps to take to improve model accuracy.
 - Explain hyperparameter tuning.
-- Be familiar with advantages and disadvantages of different optimizers.
+- Be aware of the advantages and disadvantages of different optimizers.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -29,7 +29,7 @@ After you fully train the network to a satisfactory performance on the training 
 
 #### Prepare test dataset
 
-Recall in [Episode 02 Introduction to Image Data](episodes/02-image-data.md) we discussed how to split your data into training and test datasets and why. In most cases, that means you already have a test set on hand. For example, we are using `keras.models.load_model` to create a training and test set.
+Recall in [Episode 02 Introduction to Image Data](episodes/02-image-data.md) we discussed how to split your data into training and test datasets and why. In most cases, that means you already have a test set on hand. For example, we used `keras.datasets.cifar10.load_data()` to create a training and test set.
 
 When creating and using a test set there are a few things to check:
 
@@ -77,7 +77,7 @@ Armed with a test dataset, we will choose our best performing CNN and use it to 
 The Keras method to predict is found in the [Model training APIs] section of the documentation and has the following definition:
 
 ```
-Model.predict(x, batch_size=None, verbose="auto", steps=None, callbacks=None)
+Model.predict(x, ...)
 ```
 
 - *x* refers to the input samples which in our case is an array of images
@@ -106,7 +106,7 @@ _____ = _____.predict(x=_____)
 
 ```python
 # load preferred model
-model_best = keras.models.load_model('fit_outputs/model_dropout.keras')
+model_best = keras.models.load_model('model_dropout.keras')
 print('We are using', model_best.name)
 
 # use preferred model to predict
@@ -282,9 +282,9 @@ One common method for hyperparameter tuning is by using a `for` loop to change a
 
 Q1. What do you think would happen if you lower the dropout rate? Write some code to vary the dropout rate and investigate how it affects the model training.
 
-    Hint 1: Modify the 'create_model_dropout()' function and define a `create_model_dropout_vary` function that has `dropout_rate` as its only parameter.
+Hint 1: Modify the 'create_model_dropout()' function and define a `create_model_dropout_vary` function that has `dropout_rate` as its only parameter.
     
-    Hint 2: Use a for loop to call your function with varying dropout rates
+Hint 2: Use a for loop to call your function with varying dropout rates
 
 Q2. You are varying the dropout rate and checking its effect on the model performance, what is the term associated to this procedure?
 
@@ -294,8 +294,8 @@ A1. Varying the dropout rate
 
 The code below instantiates and trains a model with varying dropout rates. The resulting plot indicates the ideal dropout rate in this case is around 0.45. This is where the validation loss is lowest.
 
-    NB1: It takes a while to train these five networks.
-    NB2: You should do this with a test set and not with the validation set!
+NB1: It takes a while to train these five networks.
+NB2: You should do this with a test set and not with the validation set!
 
 ```python
 # define new dropout function that accepts a dropout rate
@@ -504,7 +504,9 @@ Table 2. Description of each activation function, its benefits, and drawbacks.
 
 Write some code to assess activation function performance.
 
-Hint 1: Use the `create_model_intro()` definition as the **build function** to use during GridSearch. Make modifications to take a single parameter 'activation_function and this time include the 'Model.compile' method call in the definition.
+Hint 1: Modify the 'create_model_intro()' function and define a `create_model_act()` function that has `activation_function` as its only parameter.
+
+Hint 2: Use a for loop to call your function with varying activation functions
 
 :::::::::::::::::::::::: solution 
 

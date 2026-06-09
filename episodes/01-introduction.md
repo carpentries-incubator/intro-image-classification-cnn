@@ -352,7 +352,7 @@ To share the model we must save it first:
 
 ```python
 # save  model
-model_intro.save('fit_outputs/model_intro.keras')
+model_intro.save('model_intro.keras')
 ```
 
 We will return to each of these workflow steps throughout this lesson and discuss each component in more detail.

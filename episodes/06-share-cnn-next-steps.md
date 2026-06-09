@@ -39,14 +39,14 @@ We can use this method to save out model.
 
 ```python
 # save best model
-model_best.save('fit_outputs/model_best.keras')
+model_best.save('model_best.keras')
 ```
 
 This saved model can be loaded again by using the `load_model` method:
 
 ```python
 # load a saved model
-pretrained_model = keras.models.load_model('fit_outputs/model_best.keras')
+pretrained_model = keras.models.load_model('model_best.keras')
 ```
 
 This loaded model can be used as before to predict.

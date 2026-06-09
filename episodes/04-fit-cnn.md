@@ -38,13 +38,8 @@ The Keras method to compile a model is found in the [Model training APIs] sectio
 Model.compile(
     optimizer="rmsprop",
     loss=None,
-    loss_weights=None,
     metrics=None,
-    weighted_metrics=None,
-    run_eagerly=False,
-    steps_per_execution=1,
-    jit_compile="auto",
-    auto_scale_loss=True,
+	...
 )
 ```
 
@@ -60,30 +55,7 @@ We need to choose an optimizer and, if this optimizer has parameters, decide wha
 
 Here we picked one of the most common optimizers demonstrated to work well for most tasks, the **Adam** optimizer, as our starting point.
 
-In Keras, Adam is defined by the `keras.optimizers.Adam` class:
-
-```
-keras.optimizers.Adam(
-    learning_rate=0.001,
-    beta_1=0.9,
-    beta_2=0.999,
-    epsilon=1e-07,
-    amsgrad=False,
-    weight_decay=None,
-    clipnorm=None,
-    clipvalue=None,
-    global_clipnorm=None,
-    use_ema=False,
-    ema_momentum=0.99,
-    ema_overwrite_frequency=None,
-    loss_scale_factor=None,
-    gradient_accumulation_steps=None,
-    name="adam",
-    **kwargs
-)
-```
-
-As you can see, the Adam optimizer defines many parameters. For this introductory course, we will accept the default arguments but we highly recommend you investigate all of them if you decide to use this optimizer for your project.
+In Keras, Adam is defined by the `keras.optimizers.Adam` class and it has many parameters. For this introductory course, we will accept the default arguments but we highly recommend you investigate all of them if you decide to use this optimizer for your project.
 
 For now, though, we do want to highlight the first parameter.
 
@@ -108,17 +80,15 @@ ChatGPT
 
 The figure below illustrates how a small learning rate will not traverse toward the minima of the gradient descent algorithm in a timely manner, i.e. number of epochs.
 
-![Small learning rate leads to inefficient approach to loss minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg "Small learning rate leads to inefficient approach to loss minima"){alt='Plot of loss over weight value illustrating how a small learning rate takes a long time to reach the optimal solution.'}
+![Small learning rate leads to inefficient approach to loss minima](fig/04_learning_rate_low.png){alt='Plot of loss over weight value illustrating how a small learning rate takes a long time to reach the optimal solution.'}
 
 On the other hand, specifying a learning rate that is *too high* will result in a loss value that never approaches the minima. That is, 'bouncing between the sides', thus never reaching a minima to cease learning.
 
-![A large learning rate results in overshooting the gradient descent minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg){alt='Plot of loss over weight value illustrating how a large learning rate never approaches the optimal solution because it bounces between the sides.'}
+![A large learning rate results in overshooting the gradient descent minima](fig/04_learning_rate_high.png){alt='Plot of loss over weight value illustrating how a large learning rate never approaches the optimal solution because it bounces between the sides.'}
 
 Finally, a modest learning rate will ensure that the product of multiplying the scalar gradient value and the learning rate does not result in too small steps, nor a chaotic bounce between sides of the gradient where steepness is greatest.
 
-![An optimal learning rate supports a gradual approach to the minima](https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg){alt='Plot of loss over weight value illustrating how a good learning rate gets to optimal solution gradually.'}
-
-These images were obtained from [Google Developers Machine Learning Crash Course] and is licenced under the [Creative Commons 4.0 Attribution Licence].
+![An optimal learning rate supports a gradual approach to the minima](fig/04_learning_rate_optimal.png){alt='Plot of loss over weight value illustrating how a good learning rate gets to optimal solution gradually.'}
 
 ::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -130,17 +100,7 @@ The **loss function** tells the training algorithm how wrong, or how 'far away' 
 
 For classification purposes, there are a number of probabilistic losses to choose from. Here we chose `CategoricalCrossentropy` because we want to compute the difference between our one-hot encoded class labels and the model predictions and this loss function is appropriate when the data has two or more label classes.
 
-It is defined by the `keras.losses.CategoricalCrossentropy` class:
-
-```
-keras.losses.CategoricalCrossentropy(
-    from_logits=False,
-    label_smoothing=0.0,
-    axis=-1,
-    reduction="sum_over_batch_size",
-    name="categorical_crossentropy",
-)
-```
+It is defined by the `keras.losses.CategoricalCrossentropy` class.
 
 More information about loss functions can be found in the [Keras loss documentation].
 
@@ -151,11 +111,7 @@ After we select the desired optimizer and loss function we specify the metric(s)
 
 Metric functions are similar to loss functions, except the results from evaluating a metric are not used when training the model. Note you can also use any loss function as a metric. The [Keras metrics] documentation provides a list of potential metrics.
 
-Typically, for classification problems, you will use `CategoricalAccuracy`, which calculates how often the model predictions match the true labels, and in Keras is defined as:
-
-```
-keras.metrics.CategoricalAccuracy(name="categorical_accuracy", dtype=None)
-```
+Typically, for classification problems, you will use `keras.metrics.CategoricalAccuracy`, which calculates how often the model predictions match the true labels.
 
 The accuracy function creates two local variables, total and count, that it uses to compute the frequency with which predictions matches labels. This frequency is ultimately returned as accuracy: an operation that divides the  total by count.
 
@@ -177,9 +133,9 @@ Hint 3: Use 'CategoricalAccuracy' as the metric.
 
 ```python
 # compile the model
-_____.compile(optimizer = _____, 
-                    loss = _____, 
-                    metrics = _____)
+_____.compile(optimizer = _____,
+			  loss = _____, 
+			  metrics = _____)
 ```
 
 :::::::::::::::::::::::: solution 
@@ -208,18 +164,8 @@ Model.fit(
     y=None,
     batch_size=None,
     epochs=1,
-    verbose="auto",
-    callbacks=None,
-    validation_split=0.0,
     validation_data=None,
-    shuffle=True,
-    class_weight=None,
-    sample_weight=None,
-    initial_epoch=0,
-    steps_per_epoch=None,
-    validation_steps=None,
-    validation_batch_size=None,
-    validation_freq=1,
+	...
 )
 ```
 
@@ -257,10 +203,11 @@ Hint 4: Store the training loss and metrics in a variable call 'history_intro'
 
 ```python
 # fit the model
-_____ = _____.fit(x = _____, y = _____,
-                                batch_size = _____,
-                                epochs = _____, 
-                                validation_data = (_____, _____))
+_____ = _____.fit(x = _____, 
+				  y = _____,
+				  batch_size = _____,
+				  epochs = _____,
+				  validation_data = (_____, _____))
 ```
 
 :::::::::::::::::::::::: solution 
@@ -302,7 +249,7 @@ We will discuss this method in more detail in [Episode 6 Share a Convolutional N
 
 ```python
 # save the model
-model_intro.save('fit_outputs/model_intro.keras')
+model_intro.save('model_intro.keras')
 ```
 
 #### Monitor Training Progress (aka Model Evaluation during Training)
@@ -398,7 +345,7 @@ How to address underfitting:
 
 ### Improve Model Generalization (avoid Overfitting)
 
-Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques**. A short list of some of these include batch normalization, data augmentation, and dropout. 
+Techniques to avoid overfitting, or to improve model generalization, are termed **regularization techniques**. A short list of some of these include data augmentation and dropout. 
 
 #### Dropout
 
@@ -419,14 +366,14 @@ Dropout layers will only randomly silence nodes during training! During the pred
 Dropout layers are defined by the `keras.layers.Dropout` class and have the following definition:
 
 ```
-keras.layers.Dropout(rate, noise_shape=None, seed=None, **kwargs)
+keras.layers.Dropout(rate, ...)
 ```
 
 - The `rate` parameter is a float between 0 and 1 and represents the fraction of the input units to drop.
     - Good advice is to begin with a small dropout rate, such as 0.1 or 0.2, and gradually increase it if necessary. 
-    - A dropout rate of 0.5 is commonly used as a starting point.
+    - However, a dropout rate of 0.5 is also commonly used and can be a good starting point for many models.
 
-The placement of the dropout layer also matters because adding dropout before or after certain layers can have different effects. Although dropout layers are commonly added between dense layers, you will find network architectures with dropout in just about everywhere. Be sure to experiment with different dropout rates and placements to find the optimal configuration for your model and dataset.
+The placement of the dropout layer also matters because adding dropout before or after certain layers can have different effects. Although dropout layers are commonly added between dense layers, you will find network architectures with dropout just about everywhere. Be sure to experiment with different dropout rates and placements to find the optimal configuration for your model and dataset.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -442,31 +389,36 @@ Hint 2: Consider adding an additional layer(s) from one of the four layers we di
 
 ```output
 def create_model_dropout():
-    
-    # CNN Part 1
-    # Input layer of 32x32 images with three channels (RGB)
-    inputs_dropout = keras.Input(shape=train_images.shape[1:])
-    
-    # CNN Part 2
-    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-    x_dropout = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_dropout)
-    # Pooling layer with input window sized 2x2
-    x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout)
-    # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-    x_dropout = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu')(x_dropout)
-    # Second Pooling layer with input window sized 2x2
-    x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout)
-    # Third Convolutional layer with 64 filters, 3x3 kernel size, and ReLU activation
-    x_dropout = keras.layers.Conv2D(filters=64, kernel_size=(3,3), activation='relu')(x_dropout) # This is new!
-    # Dropout layer andomly drops 50 per cent of the input units
-    x_dropout = keras.layers.Dropout(rate=0.5)(x_dropout) # This is new!
-    # Flatten layer to convert 2D feature maps into a 1D vector
-    x_dropout = keras.layers.Flatten()(x_dropout)
-    
-    # CNN Part 3
-    # Output layer with 10 units (one for each class) and softmax activation
-    outputs_dropout = keras.layers.Dense(units=10, activation='softmax')(x_dropout)
-    
+    """
+    Dropout Model Definition
+
+    INPUT: 32x32 images with three channels (RGB)
+    Layer 1: convolutional, 16 filters, 3x3 kernel, ReLU activation
+    Layer 2: max pooling, 2x2 window
+    Layer 3: convolutional, 32 filters, 3x3 kernel, ReLU activation
+    Layer 4: max pooling, 2x2 window
+    Layer 5: convolutional, 64 filters, 3x3 kernel, ReLU activation
+    Layer 6: dropout layer, 50% of input units
+    Layer 7: flatten to 1D
+    Layer 8: dense layer, 64 units, ReLU activation
+    OUTPUT: dense layer, 10 units (one per class), softmax activation
+    """
+    # CNN Part 1 INPUT LAYER
+    inputs_dropout = keras.Input(shape=train_images.shape[1:]) # INPUT LAYER
+
+    # CNN Part 2 HIDDEN LAYERS
+    x_dropout = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_dropout) # Layer 1
+    x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout) # Layer 2
+    x_dropout = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu')(x_dropout) # Layer 3
+    x_dropout = keras.layers.MaxPooling2D(pool_size=(2,2))(x_dropout) # Layer 4
+      x_dropout = keras.layers.Conv2D(filters=64, kernel_size=(3,3), activation='relu')(x_dropout) # Layer 5  # This is new!
+    x_dropout = keras.layers.Dropout(rate=0.5)(x_dropout) # Layer 6 # This is new!
+    x_dropout = keras.layers.Flatten()(x_dropout) # Layer 7
+    x_dropout = keras.layers.Dense(units=64, activation='relu')(x_dropout) # Layer 8
+
+    # CNN Part 3 OUTPUT LAYER
+    outputs_intro = keras.layers.Dense(units=10, activation='softmax')(x_dropout) # OUTPUT LAYER
+   
     # create the model
     model_dropout = keras.Model(inputs = inputs_dropout, 
                               outputs = outputs_dropout, 
@@ -511,7 +463,7 @@ history_dropout = model_dropout.fit(x = train_images, y = train_labels,
 
 
 # save dropout model
-model_dropout.save('fit_outputs/model_dropout.keras')
+model_dropout.save('model_dropout.keras')
 
 # inspect the training results
 
@@ -524,7 +476,6 @@ fig.suptitle('cifar_model_dropout')
 sns.lineplot(ax=axes[0], data=history_dropout_df[['loss', 'val_loss']])
 sns.lineplot(ax=axes[1], data=history_dropout_df[['categorical_accuracy', 'val_categorical_accuracy']])
 
-val_loss_dropout, val_acc_dropout = model_dropout.evaluate(val_images, val_labels, verbose=2)
 ```
 
 ![](fig/04_model_dropout_accuracy_loss.png){alt='two panel figure; the figure on the left illustrates the training loss starting at 1.7 and decreasing to 1.0 and the validation loss decreasing from 1.4 to 0.9 before leveling out; the figure on the right illustrates the training accuracy increasing from 0.40 to 0.65 and the validation accuracy increasing from 0.5 to 0.67'}

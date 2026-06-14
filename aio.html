@@ -922,15 +922,14 @@ classification model.</p>
 <p>In this episode, we’ll take a closer look at how image datasets are
 organised and loaded into Python.</p>
 <p>Depending on your situation, you will either use a pre-existing
-dataset, prepare your own data for training or some combination of the
-two. In most cases, however, you will need to take some steps to prepare
-your data for training.</p>
+dataset, prepare your own data for training, or some combination of the
+two.</p>
 <p>In this workshop, we’ll use a prepared dataset so we can focus on the
 deep learning workflow but in real-world projects, you may need to
 collect, label, resize, and split your own images.</p>
 <p>Before jumping into more specific tasks, it’s important to understand
-thatmages on a computer are stored as numbers. For colour images, these
-numbers represent red, green, and blue (RGB) values.</p>
+that images on a computer are stored as numbers. For colour images,
+these numbers represent red, green, and blue (RGB) values.</p>
 <div class="section level3">
 <h3 id="images-are-data">Images are data<a class="anchor" aria-label="anchor" href="#images-are-data"></a>
 </h3>
@@ -960,7 +959,7 @@ containing images from five classes:</p>
 <li>truck</li>
 </ul>
 <p>For learning purposes, and to make computation faster, a much
-smaller, random selection of images from the full dataset was used</p>
+smaller, random selection of images from the full dataset was used.</p>
 <p>Most importantly, the data was split it into three distinct subsets:
 train, validation and test.</p>
 <div id="callout1" class="callout">
@@ -998,12 +997,14 @@ packaged with Tensorflow, we use folder names to indicate which split
 the data belongs to and what class name to use as the label. This saves
 us from having to label each image individually.</p>
 <div class="section level4">
-<h4 id="how-the-images-are-organised">How the images are organised<a class="anchor" aria-label="anchor" href="#how-the-images-are-organised"></a>
+<h4 id="how-our-images-are-organised">How our images are organised<a class="anchor" aria-label="anchor" href="#how-our-images-are-organised"></a>
 </h4>
-<p>Our images are stored in folders. Each class has its own folder, and
-the data is already split into training, validation, and test sets.</p>
-<p>For example:</p>
-<pre class="data/"><code>├── train/
+<p>Our images are stored in folders; each class has its own folder and
+the data is split into training, validation, and test sets. For
+example:</p>
+<pre><code>cifar10_images_small/
+|
+├── train/
 │   ├── airplane/
 │   ├── bird/
 │   ├── cat/
@@ -1060,11 +1061,12 @@ the data is already split into training, validation, and test sets.</p>
 <div id="understanding-the-dataset-contents" class="callout-inner">
 <h3 class="callout-title">Understanding the dataset contents</h3>
 <div class="callout-content">
-<p>The dataset contains 1500 images across 5 classes, split into
-training (1000), validation (250), and test (250).</p>
+<p>The dataset contains 1500 images across 5 classes and randomly split
+into training, validation, and test sets.</p>
 <ul>
 <li>How many images would you expect in each split?</li>
-<li>How many images per class would you expect in the training set?</li>
+<li>How many images per class would you expect in the training set if it
+was balanced?</li>
 </ul>
 </div>
 </div>
@@ -1076,13 +1078,16 @@ training (1000), validation (250), and test (250).</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
+<p>Answers may vary. For a 60:20:20 split you might expect:</p>
 <ul>
-<li><p>Training: 900 images<br></p></li>
-<li><p>Validation: 250 images<br></p></li>
-<li><p>Test: 300 images</p></li>
-<li><p>Each class has 250 images total, so 150 per class in the training
-set</p></li>
+<li>Training: 900 images<br>
+</li>
+<li>Validation: 300 images<br>
+</li>
+<li>Test: 300 images</li>
 </ul>
+<p>If training set had 900 images, you would expect 180 images per class
+in a well-balanced set.</p>
 </div>
 </div>
 </div>
@@ -1092,16 +1097,16 @@ set</p></li>
 <div class="section level3">
 <h3 id="load-the-datasets">Load the datasets<a class="anchor" aria-label="anchor" href="#load-the-datasets"></a>
 </h3>
-<p>In the last episode, we used one of the helper functions in
-<code>icwithcnn_functions.py</code> to prepare our datasets:
-<code>icfn.prepare_datasets()</code></p>
+<p>In the last episode, we used the <code>icfn.prepare_datasets()</code>
+helper function in <code>icwithcnn_functions.py</code> to prepare our
+datasets:</p>
 <p>Let us now see how to write the code inside that helper function.
 This is the same type of dataset we used in Episode 1 — here we’re just
 seeing how it is created.</p>
-<p>We’ll start with the training dataset since the other two will be
-very similar and we’ll use the
-<code>tf.keras.utils.image_dataset_from_directory()</code> function.</p>
-<p>We want to specify:</p>
+<p>We’ll start by preparing the training dataset with the understanding
+that the The other two splits sets will be prepared similarly.</p>
+<p>Using the <code>tf.keras.utils.image_dataset_from_directory()</code>
+function, we specify:</p>
 <ul>
 <li>the file path to the top level folder for the data</li>
 <li>the size of the images in pixels (<code>image_size</code>)</li>
@@ -1134,10 +1139,11 @@ images (<code>seed</code>)</li>
 <pre class="output" tabindex="0"><code>Found 1000 files belonging to 5 classes.
 Train_ds: &lt;_PrefetchDataset element_spec=(TensorSpec(shape=(None, 32, 32, 3), dtype=tf.float32, name=None), TensorSpec(shape=(None,), dtype=tf.int32, name=None))&gt;</code></pre>
 </div>
-<p>The object returned by this function might look unfamiliar. Instead
-of loading all images at once, it loads them in batches as needed.</p>
+<p>The object returned by this function might look unfamiliar. That’s
+because, instead of loading all the images at once, it loads them in
+batches as needed.</p>
 <p>How do we inspect what was loaded?</p>
-<p>Let us first extract class names directly from the dataset:</p>
+<p>We can extract class names directly from the dataset:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1150,8 +1156,8 @@ of loading all images at once, it loads them in batches as needed.</p>
 </h3>
 <pre class="output" tabindex="0"><code>['airplane', 'bird', 'cat', 'dog', 'truck']</code></pre>
 </div>
-<p>Then we can look at a single batch to find information about the
-training images and labels.</p>
+<p>We can look at a single batch to find information about the training
+images and labels.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1213,8 +1219,9 @@ training.</p>
 <div id="on-your-own---prepare-the-test-dataset" class="callout-inner">
 <h3 class="callout-title">On your own - prepare the Test dataset</h3>
 <div class="callout-content">
-<p>Using what we’ve learned in this lesson with the training dataset,
-perform the same steps for the test dataset.</p>
+<p>Using what we’ve learned in this lesson with the
+<strong>training</strong> dataset, perform the same steps for the
+<strong>test</strong> dataset.</p>
 <ol style="list-style-type: decimal">
 <li>Write the code to load the test data</li>
 </ol>
@@ -1245,7 +1252,7 @@ perform the same steps for the test dataset.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="co"># create test dataeset from folder of cifar images</span></span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="co"># create test dataset from folder of cifar images</span></span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a>test_ds <span class="op">=</span> tf.keras.utils.image_dataset_from_directory(</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a>    <span class="st">"../data/cifar10_images_small/test"</span>,</span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a>    image_size <span class="op">=</span> (<span class="dv">32</span>, <span class="dv">32</span>),</span>
@@ -1271,8 +1278,8 @@ perform the same steps for the test dataset.</p>
 </div>
 </div>
 </div>
-<p>We now understand how the function we use to prepare our data works
-which means we are ready to learn how to build a CNN.</p>
+<p>Now we understand how to prepare our data works we are ready to learn
+how to build a CNN.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1296,8 +1303,6 @@ models.</li>
 </div>
 </div>
 <!-- Collect your link references at the bottom of your document -->
-<p><a href="https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image" class="external-link uri">https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image</a>
-[keras.utils.image_dataset_from_directory()]: <a href="https://keras.io/api/data_loading/image/" class="external-link uri">https://keras.io/api/data_loading/image/</a></p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -2414,7 +2419,7 @@ adaptive learning rate mechanism to address this problem.</li>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> WANT TO KNOW MORE: Learning Rate </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p><strong>Learning rate</strong> is a hyperparameter that determines
@@ -2518,7 +2523,7 @@ introductory model</h3>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2635,7 +2640,7 @@ dataset variable names.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2655,7 +2660,7 @@ history_intro = model_intro.fit(x = train_images, y = train_labels,
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> WANT TO KNOW MORE: Batch size </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>The choice of batch size can have various implications, and there are
@@ -2761,7 +2766,7 @@ test set?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Key things to look for for:  
@@ -2828,7 +2833,7 @@ training data and introduce variability.</li>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
   <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> WANT TO KNOW MORE: What is underfitting? </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>Underfitting occurs when the model is too simple or lacks the
 capacity to capture the underlying patterns and relationships present in
@@ -2942,7 +2947,7 @@ layers we discussed.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3015,7 +3020,7 @@ improved.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3068,7 +3073,7 @@ dropout.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
   <h3 class="accordion-header" id="headingSpoiler4">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> WANT TO KNOW MORE: Regularization techniques </h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p>Regularization methods introduce constraints or penalties to the

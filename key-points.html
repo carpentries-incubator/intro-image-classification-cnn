@@ -362,28 +362,27 @@
 <section id="01-introduction"><h2 class="section-heading"><a href="01-introduction.html">Introduction to Deep Learning</a></h2>
 <hr class="half-width">
 <ul>
-<li>Machine learning is the process where computers learn to recognise
-patterns of data.</li>
-<li>Deep learning is a subset of machine learning, which is a subset of
-artificial intelligence.</li>
-<li>Convolutional neural networks are well suited for image
+<li>Deep learning uses neural networks to learn patterns directly from
+data.</li>
+<li>Convolutional neural networks (CNNs) are commonly used for image
 classification.</li>
-<li>To use Deep Learning effectively we follow a workflow of: defining
-the problem, identifying inputs and outputs, preparing data, choosing
-the type of network, training the model, tuning hyperparameters, and
-measuring performance before we can classify data.</li>
+<li>Training a model involves compiling it, fitting it to data, and
+making predictions.</li>
+<li>Model performance may be imperfect at first and can be improved with
+further training and tuning.</li>
 </ul></section><section id="02-image-data"><h2 class="section-heading"><a href="02-image-data.html">Introduction to Image Data</a></h2>
 <hr class="half-width">
 <ul>
-<li>Image datasets can be found online or created uniquely for your
-research question.</li>
 <li>Images consist of pixels arranged in a particular order.</li>
-<li>Image data is usually preprocessed before use in a CNN for
-efficiency, consistency, and robustness.</li>
-<li>Input data generally consists of three sets: a training set used to
-fit model parameters; a validation set used to evaluate the model fit on
-training data; a test set used to evaluate the final model
-performance.</li>
+<li>Image datasets can be organised into folders where each folder
+represents a class.</li>
+<li>
+<code>image_dataset_from_directory()</code> lets us load images
+without writing custom data preparation code.</li>
+<li>Images are loaded in batches and represented as numerical
+arrays.</li>
+<li>Training, validation, and test sets are used to build and evaluate
+models.</li>
 </ul></section><section id="03-build-cnn"><h2 class="section-heading"><a href="03-build-cnn.html">Build a Convolutional Neural Network</a></h2>
 <hr class="half-width">
 <ul>
@@ -491,8 +490,8 @@ variable sized input data.</li>
   "url": "https://erinmgraham.github.io/icwithcnn/key-points.html",
   "identifier": "https://erinmgraham.github.io/icwithcnn/key-points.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2026-06-10",
-  "datePublished": "2026-06-10"
+  "dateModified": "2026-06-14",
+  "datePublished": "2026-06-14"
 }
 
   </script><script>

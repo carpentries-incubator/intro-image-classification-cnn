@@ -198,7 +198,7 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#software-setup">Software Setup</a></li>
-<li><a href="#download-the-scripts-files-and-model-outputs">Download the scripts, files, and model outputs</a></li>
+<li><a href="#download-workshop-files">Download workshop files</a></li>
 <li><a href="#install-the-required-packages">Install the required packages</a></li>
 <li><a href="#start-spyder">Start Spyder</a></li>
 <li><a href="#check-your-setup">Check your setup</a></li>
@@ -329,44 +329,24 @@ and Programming in Python</a> and want to jump straight into image
 classification. We recognize this jump is quite large and have done our
 best to provide the content and code to perform these types of
 analyses.</p>
-<p>It uses the Anaconda package manager to install the required python
-packages, including the Spyder IDE.</p>
+<p>It uses the <a href="https://conda-forge.org/download/" class="external-link">Miniforge</a>
+software installer and conda-forge package repository to download the
+required Python packages, including the Spyder IDE.</p>
 <p>These instructions are for setting up tensorflow in a
 <strong>CPU</strong> only environment.</p>
-<div id="callout1" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div class="callout-inner">
-<div class="callout-content">
-<p>Please note this lesson is designed to work with CPU only
-environments. This was an intentional decision to avoid the difficulties
-in setting up GPU environments. If you are an advanced user and choose
-to set up a GPU environment, you are on your own. We will not be able to
-troubleshoot any issues with GPU set up on the day of the workshop.</p>
-</div>
-</div>
-</div>
 <section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
-<hr class="half-width"><div id="install-python-using-anaconda" class="callout challenge">
+<hr class="half-width"><div id="install-python-using-miniforge" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="install-python-using-anaconda" class="callout-inner">
-<h3 class="callout-title">Install Python Using Anaconda</h3>
+<div id="install-python-using-miniforge" class="callout-inner">
+<h3 class="callout-title">Install Python Using Miniforge</h3>
 <div class="callout-content">
 <p><a href="https://python.org" class="external-link">Python</a> is a popular language for
-scientific computing, and a frequent choice for machine learning as
-well. Installing all of its scientific packages individually can be a
-bit difficult, however, so we recommend the installer <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> which
-includes most (but not all) of the software you need. Make sure you
-install the latest Python version 3.xx.</p>
-<p>Also, please set up your python environment <strong>at least</strong>
-a day in advance of the workshop. If you encounter problems with the
-installation procedure, ask your workshop organizers via e-mail for
-assistance so you are ready to go as soon as the workshop begins.</p>
+research computing, and a frequent choice for machine learning as well.
+Installing multiple scientific packages into a single environment
+individually can be difficult, however, so we recommend using the <a href="https://conda-forge.org/download/" class="external-link">Miniforge</a> installer.</p>
 </div>
 </div>
 </div>
@@ -377,13 +357,12 @@ assistance so you are ready to go as soon as the workshop begins.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>Check out the <a href="https://www.youtube.com/watch?v=xxQ0mzZ8UvA" class="external-link">Windows - Video
-tutorial</a> or:</p>
-<ol style="list-style-type: decimal"><li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
-your web browser.</p></li>
-<li><p>Download the Python 3.xx installer for Windows.</p></li>
+<ol style="list-style-type: decimal"><li><p>Open [<a href="https://conda-forge.org/download/" class="external-link uri">https://conda-forge.org/download/</a>] with your web
+browser.</p></li>
+<li><p>Download the latest release of the Miniforge for Windows
+Installer.</p></li>
 <li><p>Double-click the executable and install Python 3 using
 <em>MOST</em> of the default settings. The only exception is to check
 the <strong>Make Anaconda the default Python</strong> option.</p></li>
@@ -398,13 +377,17 @@ the <strong>Make Anaconda the default Python</strong> option.</p></li>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>Check out the <a href="https://www.youtube.com/watch?v=TcSAln46u9U" class="external-link">Mac OS X - Video
-tutorial</a> or:</p>
-<ol style="list-style-type: decimal"><li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
-your web browser.</p></li>
-<li><p>Download the Python 3 installer for Mac.</p></li>
+<ol style="list-style-type: decimal"><li><p>Open [<a href="https://conda-forge.org/download/" class="external-link uri">https://conda-forge.org/download/</a>] with your web
+browser.</p></li>
+<li><p>Download the appropriate Miniforge installer for macOS.</p></li>
+<li><p>Open a terminal window and navigate to the directory where the
+executable is downloaded (e.g., cd ~/Downloads).</p></li>
+<li><p>Type <code>bash Miniforge3-</code> and then press
+<code>Tab</code> to autocomplete the full file name. The name of file
+you just downloaded should appear. Press <code>Enter</code> (or
+<code>Return</code> depending on your keyboard).</p></li>
 <li><p>Install Python 3 using all of the defaults for
 installation.</p></li>
 </ol></div>
@@ -418,103 +401,31 @@ installation.</p></li>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<p>Note the following installation steps require you to work from the
-shell. If you run into any difficulties, please request help before the
-workshop begins.</p>
-<ol style="list-style-type: decimal"><li><p>Open [<a href="https://www.anaconda.com/products/distribution" class="external-link uri">https://www.anaconda.com/products/distribution</a>] with
-your web browser.</p></li>
-<li><p>Download the Python 3 installer for Linux.</p></li>
-<li>
-<p>Install Python 3 using all of the defaults for installation.</p>
-<ol style="list-style-type: lower-alpha"><li><p>Open a terminal window.</p></li>
-<li><p>Navigate to the folder where you downloaded the
-installer</p></li>
-<li><p>Type</p></li>
-</ol><div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">bash</span> Anaconda3-</span></code></pre>
-</div>
-<p>and press tab. The name of the file you just downloaded should
-appear.</p>
-<ol start="4" style="list-style-type: lower-alpha"><li><p>Press enter.</p></li>
-<li><p>Follow the text-only prompts. When the license agreement appears
-(a colon will be present at the bottom of the screen) hold the down
-arrow until the bottom of the text. Type <code>yes</code> and press
-enter to approve the license. Press enter again to approve the default
-location for the files. Type <code>yes</code> and press enter to prepend
-Anaconda to your <code>PATH</code> (this makes the Anaconda distribution
-the default Python).</p></li>
-</ol></li>
-<li>
-<p>You may wish to initialise conda, so it configures the path and
-sets the required variables. To do this, execute the following command
-(if you have installed anaconda in your home directory):</p>
-<pre class="code"><code>$ ./anaconda3/bin/conda init </code></pre>
-<figure><img src="fig/00_linux-conda-init.png" alt="Screenshot of initialising conda on a bash shell." class="figure mx-auto d-block"></figure></li>
+<ol style="list-style-type: decimal"><li><p>Open [<a href="https://conda-forge.org/download/" class="external-link uri">https://conda-forge.org/download/</a>] with your web
+browser.</p></li>
+<li><p>Download the appropriate Miniforge installer for Linux.</p></li>
+<li><p>Open a terminal window and navigate to the directory where the
+executable is downloaded (e.g., cd ~/Downloads).</p></li>
+<li><p>Type <code>bash Miniforge3-</code> and then press
+<code>Tab</code> to autocomplete the full file name. The name of file
+you just downloaded should appear. Press <code>Enter</code> (or
+<code>Return</code> depending on your keyboard).</p></li>
+<li><p>Install Python 3 using all of the defaults for
+installation.</p></li>
 </ol></div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="download-the-scripts-files-and-model-outputs">Download the scripts, files, and model outputs<a class="anchor" aria-label="anchor" href="#download-the-scripts-files-and-model-outputs"></a></h2>
-<hr class="half-width"><div id="download-workshop-files" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="download-workshop-files" class="callout-inner">
-<h3 class="callout-title">Download workshop files</h3>
-<div class="callout-content">
-<p>Download the <a href="https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link" class="external-link">scripts,
-files, and model outputs</a>.</p>
+</section><section><h2 class="section-heading" id="download-workshop-files">Download workshop files<a class="anchor" aria-label="anchor" href="#download-workshop-files"></a></h2>
+<hr class="half-width"><p>Download the <a href="https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link" class="external-link">data,
+files, and scripts</a>.</p>
 <p>Create a project folder on your local device for this course and move
 the downloaded materials to the project folder. Extract all of the
-download contents here. Check your folder and file structures looks like
-this:</p>
-<figure><img src="fig/00_download_zip_folder_files.png" alt="Screenshot of the contents of the intro-image-classification-cnn.zip folder." class="figure mx-auto d-block"></figure></div>
-</div>
-</div>
-<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4">
-  Linux
-  </h4>
-</button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
-<div class="accordion-body">
-<p>You can move the downloaded workshop zipped file to your home
-directory and unzip it using the unzip command.</p>
-<p>For example:</p>
-<pre class="code"><code>[ace@rocky8-cnn-test ~]$ mv ./Downloads/intro-image-classification-cnn.zip .
-[ace@rocky8-cnn-test ~]$ unzip intro-image-classification-cnn.zip
-Archive:  intro-image-classification-cnn.zip
-   creating: intro-image-classification-cnn/data/
-  inflating: intro-image-classification-cnn/data/Jabiru_TGS.JPG
-  inflating: intro-image-classification-cnn/data/model_dropout.keras
-  inflating: intro-image-classification-cnn/data/model_intro.keras
-   creating: intro-image-classification-cnn/files/
-  inflating: intro-image-classification-cnn/files/cnn_workshop_environment.yml
-  inflating: intro-image-classification-cnn/files/cnn_workshop_MACOS_environment.yml
-   creating: intro-image-classification-cnn/scripts/
-  inflating: intro-image-classification-cnn/scripts/01_intro.py
-  inflating: intro-image-classification-cnn/scripts/02_image.py
-  inflating: intro-image-classification-cnn/scripts/03_build_intro_model.py
-  inflating: intro-image-classification-cnn/scripts/04_fit_intro_model.py
-  inflating: intro-image-classification-cnn/scripts/04b_build_fit_dropout_model.py
-  inflating: intro-image-classification-cnn/scripts/05_predict_ep_best_model.py
-  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_activation.py
-  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_dropout.py
-  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_optimizer.py
-   creating: intro-image-classification-cnn/scripts/fit_outputs/
-[ace@rocky8-cnn-test ~]$ </code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="callout2" class="callout">
+download contents here.</p>
+<p>Check your folder and file structures looks like this:</p>
+<figure><img src="fig/00_download_zip_folder_files.png" alt="Screenshot of the contents of the intro-image-classification-cnn.zip folder." class="figure mx-auto d-block"></figure><div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -531,15 +442,7 @@ help to ensure that all of the scripts we provide run as intended.</p>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="install-the-required-packages">Install the required packages<a class="anchor" aria-label="anchor" href="#install-the-required-packages"></a></h2>
-<hr class="half-width"><p><a href="https://docs.conda.io/projects/conda/en/latest/" class="external-link">Conda</a>
-is the package management system associated with <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> and
-runs on Windows, macOS and Linux.</p>
-<p>Conda should already be available in your system once you installed
-Anaconda successfully. Conda thus works regardless of the operating
-system. Make sure you have an up-to-date version of Conda running. See
-<a href="https://docs.anaconda.com/anaconda/install/update-version/" class="external-link">these
-instructions</a> for updating Conda if required.</p>
-<div id="using-conda-to-install-packages" class="callout challenge">
+<hr class="half-width"><div id="using-conda-to-install-packages" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -548,13 +451,49 @@ instructions</a> for updating Conda if required.</p>
 <h3 class="callout-title">Using Conda to install packages</h3>
 <div class="callout-content">
 <p><a href="https://docs.conda.io/projects/conda/en/latest/" class="external-link">Conda</a>
-is the package management system associated with <a href="https://www.anaconda.com/products/individual" class="external-link">Anaconda</a> and
-runs on Windows, macOS and Linux.</p>
-<p>Conda should already be available in your system once you installed
-Anaconda successfully. Conda thus works regardless of the operating
-system. Make sure you have an up-to-date version of Conda running. See
-<a href="https://docs.anaconda.com/anaconda/install/update-version/" class="external-link">these
-instructions</a> for updating Conda if required.</p>
+is an open-source package and environment manager that runs on Windows,
+macOS and Linux.</p>
+<p>If you installed Miniforge successfully, Conda should already be
+available in your system.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">
+  Windows
+  </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<p>From the Start menu, search for “Miniforge Prompt” using the Windows
+search function (Windows Logo Key) and a terminal window will open with
+the title <code>Miniforge Prompt</code>:</p>
+<figure><img src="fig/00_miniforge_prompt_search.png" alt="Screenshot of the Miniforge Prompt application" class="figure mx-auto d-block"></figure><figure><img src="fig/00_miniforge_prompt_window.png" alt="Screenshot of the terminal window that opens when you launch the Miniforge Prompt application" class="figure mx-auto d-block"></figure><p>Note the prompt notation inside the terminal window. The name inside
+the parentheses refers to which conda environment you are working in.
+<code>base</code> is the name given to the default environment included
+with every conda distribution.</p>
+<p>To create a new environment, the command starts with the conda
+keywords <code>conda env create</code> followed by a name for the new
+environment and the package(s) to install.</p>
+<p>To make things easier for this lesson, use the
+<code>cnn_workshop_environment.yml</code> file inside the
+<code>files</code> folder of the <a href="#download-workshop-files">workshop files</a>.</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; miniforge env create --file cnn_workshop_environment.yml</code></pre>
+<p>If the yml is not in your current directory, you can specify the full
+path to the file, eg:</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_environment.yml</code></pre>
+<p>Be patient because it might take a while (15-20 min) for conda to
+work out all of the dependencies.</p>
+<p>After the environment is created we tell Conda to use the new
+environment with the keywords <code>conda activate</code> followed by
+the name of the environment:</p>
+<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop
+(cnn_workshop) C:\Users\Lab&gt;</code></pre>
+<p>You will know you are in the right environment because the prompt
+changes from <code>(base)</code> to <code>(cnn_workshop)</code>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -562,69 +501,26 @@ instructions</a> for updating Conda if required.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">
-  Windows
+  MacOS
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
-<p>The easiest way to create a conda environment for this lesson is to
-use the Anaconda Prompt. You can search for “anaconda prompt” using the
-Windows search function (Windows Logo Key).</p>
-<figure><img src="fig/00_anaconda_prompt_search.png" alt="Screenshot of the Anaconda Prompt application" class="figure mx-auto d-block"></figure><p>A terminal window will open with the title ‘Anaconda Prompt’:</p>
-<figure><img src="fig/00_anaconda_prompt_window.png" alt="Screenshot of the terminal window that opens when you launch the Anaconda Prompt application" class="figure mx-auto d-block"></figure><p>Note the notation of the prompt inside the terminal window. The name
-inside the parentheses refers to which conda environment you are working
-inside of, and ‘base’ is the name given to the default environment
-included with every Anaconda distribution.</p>
-<p>To create a new environment for this lesson, the command starts with
-the conda keywords <code>conda create</code>. This command can be
-followed by a name for the new environment and the package(s) to install
-but to make things easier, inside the script download folder, we have
-given you an environment.yml file to use instead. (See download link
-below if you haven’t already.)</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file cnn_workshop_environment.yml</code></pre>
+<p>Start a terminal session:</p>
+<figure><img src="fig/00_starting-terminal-on-a-mac.png" alt="Screenshot of starting a new terminal session on a Mac." class="figure mx-auto d-block"></figure><p>Note the prompt notation inside the terminal window. The name inside
+the parentheses refers to which conda environment you are working in.
+<code>base</code> is the name given to the default environment included
+with every conda distribution.</p>
+<p>To create a new environment, the command starts with the conda
+keywords <code>conda env create</code> followed by a name for the new
+environment and the package(s) to install.</p>
+<p>To make things easier for this lesson, use the
+<code>cnn_workshop_MACOS_environment.yml</code> file inside the
+<code>files</code> folder of the <a href="#download-workshop-files">workshop files</a>.</p>
+<pre class="code"><code>(base) Mac$ conda env create --file cnn_workshop_MACOS_environment.yml</code></pre>
 <p>If the yml is not in your current directory, you can specify the full
 path to the file, eg:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_environment.yml</code></pre>
-<p>Be patient because it might take a while (15-20 min) for conda to
-work out all of the dependencies.</p>
-<p>After the environment is created we tell Anaconda to use the new
-environment with the conda keywords <code>conda activate</code> followed
-by the environment name:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop
-(cnn_workshop) C:\Users\Lab&gt;</code></pre>
-<p>You will know you are in the right environment because the prompt
-changes from (base) to (cnn_workshop).</p>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6">
-  Mac
-  </h4>
-</button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
-<div class="accordion-body">
-<p>On the Mac, there is no Anaconda Prompt application, thus once the
-anaconda installation has been completed, simply start a terminal
-session and the session should look like:</p>
-<figure><img src="fig/00_starting-terminal-on-a-mac.png" alt="Screenshot of starting a new terminal session on a Mac." class="figure mx-auto d-block"></figure><p>Note the notation of the prompt inside the terminal window. The name
-inside the parentheses refers to which conda environment you are working
-inside of, and ‘base’ is the name given to the default environment
-included with every Anaconda distribution.</p>
-<p>To create a new environment for this lesson, the command starts with
-the conda keywords <code>conda create</code>. This command can be
-followed by a name for the new environment and the package(s) to
-install. To make things easier, inside the unziped
-intro-image-classification-cnn folder, we have given you an
-environment.yml file to use instead. (See download link above if you
-haven’t already.)</p>
-<pre class="code"><code>(base) Mac$ conda env create --file cnn_workshop_environment.yml</code></pre>
-<p>If the yml is not in your current directory, you can specify the full
-path to the file, eg:</p>
-<pre class="code"><code>(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml</code></pre>
+<pre class="code"><code>(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_MACOS_environment.yml</code></pre>
 <figure><img src="fig/00_mac-create-cnn-workshop-conda-enviroment.png" alt="Screenshot of create conda enviroment on a Mac." class="figure mx-auto d-block"></figure><p>Be patient because it might take a while (15-20 min) for conda to
 work out all of the dependencies.</p>
 <figure><img src="fig/00_mac-creating-cnn-workshop-conda-enviroment-1.png" alt="Screenshot of creating conda enviroment on a Mac." class="figure mx-auto d-block"></figure><figure><img src="fig/00_mac-creating-cnn-workshop-conda-enviroment-1.png" alt="Screenshot of creating conda enviroment on a Mac." class="figure mx-auto d-block"></figure><p>If it installs correctly, you should get the following output on the
@@ -638,13 +534,13 @@ screen.</p>
 <span><span class="co"># To deactivate an active environment, use</span></span>
 <span><span class="co">#</span></span>
 <span><span class="co">#     $ conda deactivate</span></span></code></pre>
-<figure><img src="fig/00_mac-cnn-workshop-conda-enviroment-created.png" alt="Screenshot of conda enviroment that has been created on a Mac." class="figure mx-auto d-block"></figure><p>After the environment is created we tell Anaconda to use the new
-environment with the conda keywords <code>conda activate</code> followed
-by the environment name:</p>
+<figure><img src="fig/00_mac-cnn-workshop-conda-enviroment-created.png" alt="Screenshot of conda enviroment that has been created on a Mac." class="figure mx-auto d-block"></figure><p>After the environment is created we tell Conda to use the new
+environment with the keywords <code>conda activate</code> followed by
+the name of the environment:</p>
 <pre class="code"><code>(base) Mac:cnn-workshop ace$ conda activate cnn_workshop
 (cnn_workshop) Mac:cnn-workshop ace$ </code></pre>
 <p>You will know you are in the right environment because the prompt
-changes from (base) to (cnn_workshop).</p>
+changes from <code>(base)</code> to <code>(cnn_workshop)</code>.</p>
 <figure><img src="fig/00_mac-activate-conda-enviroment.png" alt="Screenshot of activate conda enviroment on a Mac." class="figure mx-auto d-block"></figure><div class="section level2">
 <h2 id="macos---silicon-m1-and-m2---this-sections-needs-to-be-tested-and-confirmed">Macos - Silicon (M1 and M2) - This sections needs to be tested and
 confirmed<a class="anchor" aria-label="anchor" href="#macos---silicon-m1-and-m2---this-sections-needs-to-be-tested-and-confirmed"></a></h2>
@@ -659,25 +555,26 @@ Intel version also use the graphics card and how?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
-  <h4 class="accordion-header" id="headingSolution7">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6">
   Linux
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
-<p>Within Linux, there is no Anaconda Prompt application, thus once the
-anaconda installation has been completed, simply start a terminal
-session.</p>
-<p>To create a new environment for this lesson, the command starts with
-the conda keywords <code>conda create</code>. This command can be
-followed by a name for the new environment and the package(s) to
-install. To make things easier, inside the unziped
-intro-image-classification-cnn folder, we have given you an
-environment.yml file to use instead. (See download link above if you
-haven’t already.)</p>
+<p>Start a terminal session:</p>
+<p>Note the prompt notation inside the terminal window. The name inside
+the parentheses refers to which conda environment you are working in.
+<code>base</code> is the name given to the default environment included
+with every conda distribution.</p>
+<p>To create a new environment, the command starts with the conda
+keywords <code>conda env create</code> followed by a name for the new
+environment and the package(s) to install.</p>
+<p>To make things easier for this lesson, use the
+<code>cnn_workshop_MACOS_environment.yml</code> file inside the
+<code>files</code> folder of the <a href="#download-workshop-files">workshop files</a>.</p>
 <pre class="code"><code>$ conda env create --file cnn_workshop_environment.yml</code></pre>
 <p>If the yml is not in your current directory, you can specify the full
 path to the file, eg:</p>
@@ -685,7 +582,7 @@ path to the file, eg:</p>
 <p>Be patient because it might take a while (15-20 min) for conda to
 work out all of the dependencies.</p>
 <p><strong><em>Note, in the screen shots below, I haven’t initilised
-conda, so I had to give it the path to where anaconda was
+conda, so I had to give it the path to where Miniforge was
 installed.</em></strong></p>
 <figure><img src="fig/00_linux-create-conda-enviroment-using-yml-file-1.png" alt="Screenshot of creating conda enviroment on a Linux." class="figure mx-auto d-block"></figure><figure><img src="fig/00_linux-create-conda-enviroment-using-yml-file-2.png" alt="Screenshot of creating conda enviroment on a Linux." class="figure mx-auto d-block"></figure><figure><img src="fig/00_linux-create-conda-enviroment-using-yml-file-3.png" alt="Screenshot of creating conda enviroment on a Linux." class="figure mx-auto d-block"></figure><figure><img src="fig/00_linux-create-conda-enviroment-using-yml-file-4.png" alt="Screenshot of creating conda enviroment on a Linux." class="figure mx-auto d-block"></figure><figure><img src="fig/00_linux-create-conda-enviroment-using-yml-file-5.png" alt="Screenshot of creating conda enviroment on a Linux." class="figure mx-auto d-block"></figure><p>If it installs correctly, you should get the following output on the
 screen.</p>
@@ -713,12 +610,14 @@ the conda environment to get everything working.</p>
 </section><section><h2 class="section-heading" id="start-spyder">Start Spyder<a class="anchor" aria-label="anchor" href="#start-spyder"></a></h2>
 <hr class="half-width"><p>We teach this lesson using Python in <a href="https://www.spyder-ide.org/" class="external-link">Spyder</a> (Scientific Python
 Development Environment), a free integrated development environment
-(IDE) included with Anaconda. Editing, interactive testing, debugging,
-and introspection tools are all included in Spyder.</p>
+(IDE) and offers code development, interactive testing, debugging, and
+introspection tools.</p>
 <p>To start Spyder, type the command <code>spyder</code>, making sure
 you are still in the workshop environment:</p>
-<pre class="conda"><code>(cnn_workshop) C:\Users\Lab&gt; spyder</code></pre>
-<figure><img src="fig/00_spyder_ide_layout.png" alt="Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas" class="figure mx-auto d-block"></figure><div id="callout3" class="callout">
+<pre><code>(cnn_workshop) C:\Users\Lab&gt; spyder</code></pre>
+<div class="section level3">
+<h3 id="spyder-ide-components">Spyder IDE components<a class="anchor" aria-label="anchor" href="#spyder-ide-components"></a></h3>
+<figure><img src="fig/00_spyder_ide_layout.png" alt="Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas" class="figure mx-auto d-block"></figure><div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -733,47 +632,49 @@ root):</p>
 </div>
 </div>
 </div>
+</div>
 </section><section><h2 class="section-heading" id="check-your-setup">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a></h2>
 <hr class="half-width"><p>To check that all packages installed correctly, go to the interactive
 <code>IPython Console</code> in Spyder (lower right hand side panel) and
 type in the following commands:</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1" aria-label="code-block-18-2"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1" aria-label="code-block-18-3"></a></span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1" aria-label="code-block-18-4"></a><span class="im">import</span> numpy</span>
-<span id="cb18-5"><a href="#cb18-5" tabindex="-1" aria-label="code-block-18-5"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
-<span id="cb18-6"><a href="#cb18-6" tabindex="-1" aria-label="code-block-18-6"></a></span>
-<span id="cb18-7"><a href="#cb18-7" tabindex="-1" aria-label="code-block-18-7"></a><span class="im">import</span> pandas</span>
-<span id="cb18-8"><a href="#cb18-8" tabindex="-1" aria-label="code-block-18-8"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb18-9"><a href="#cb18-9" tabindex="-1" aria-label="code-block-18-9"></a></span>
-<span id="cb18-10"><a href="#cb18-10" tabindex="-1" aria-label="code-block-18-10"></a><span class="im">import</span> seaborn</span>
-<span id="cb18-11"><a href="#cb18-11" tabindex="-1" aria-label="code-block-18-11"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb18-12"><a href="#cb18-12" tabindex="-1" aria-label="code-block-18-12"></a></span>
-<span id="cb18-13"><a href="#cb18-13" tabindex="-1" aria-label="code-block-18-13"></a><span class="im">import</span> sklearn</span>
-<span id="cb18-14"><a href="#cb18-14" tabindex="-1" aria-label="code-block-18-14"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb18-15"><a href="#cb18-15" tabindex="-1" aria-label="code-block-18-15"></a></span>
-<span id="cb18-16"><a href="#cb18-16" tabindex="-1" aria-label="code-block-18-16"></a><span class="im">import</span> scikeras</span>
-<span id="cb18-17"><a href="#cb18-17" tabindex="-1" aria-label="code-block-18-17"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
-<span id="cb18-18"><a href="#cb18-18" tabindex="-1" aria-label="code-block-18-18"></a></span>
-<span id="cb18-19"><a href="#cb18-19" tabindex="-1" aria-label="code-block-18-19"></a><span class="im">import</span> tensorflow</span>
-<span id="cb18-20"><a href="#cb18-20" tabindex="-1" aria-label="code-block-18-20"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1" aria-label="code-block-15-2"></a><span class="bu">print</span>(<span class="st">'matplotlib version: '</span>, matplotlib.__version__)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1" aria-label="code-block-15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1" aria-label="code-block-15-4"></a><span class="im">import</span> numpy</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1" aria-label="code-block-15-5"></a><span class="bu">print</span>(<span class="st">'numpy version: '</span>, numpy.__version__)</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1" aria-label="code-block-15-6"></a></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1" aria-label="code-block-15-7"></a><span class="im">import</span> pandas</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1" aria-label="code-block-15-8"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1" aria-label="code-block-15-9"></a></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1" aria-label="code-block-15-10"></a><span class="im">import</span> seaborn</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1" aria-label="code-block-15-11"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1" aria-label="code-block-15-12"></a></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1" aria-label="code-block-15-13"></a><span class="im">import</span> sklearn</span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1" aria-label="code-block-15-14"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1" aria-label="code-block-15-15"></a></span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1" aria-label="code-block-15-16"></a><span class="im">import</span> scikeras</span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1" aria-label="code-block-15-17"></a><span class="bu">print</span>(<span class="st">'scikeras version: '</span>, scikeras.__version__)</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1" aria-label="code-block-15-18"></a></span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1" aria-label="code-block-15-19"></a><span class="im">import</span> tensorflow</span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1" aria-label="code-block-15-20"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
 <p>Your package versions may vary from the screenshot below but this is
 similar to what your output will look like. The important thing is that
 there are no errors.</p>
 <figure><img src="fig/00_package_check_output.png" alt="Screenshot of the IPython Console in Spyder wtih list of package versions and no error messages." class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="set-the-working-directory">Set the working directory<a class="anchor" aria-label="anchor" href="#set-the-working-directory"></a></h2>
-<hr class="half-width"><p>There are a couple different ways to set the working directory in
-Spyder. The easiest way is to use the folder icon found on the upper
-right hand side of the toolbar. Click the folder icon and navigate to
-‘…/intro-image-classification-cnn/scripts’ where ‘…’ is your project
-folder. Verify you are in the right place by selecting the ‘Files’ pane
-just below the toolbar and verify its contents.</p>
+<hr class="half-width"><p>To set the working directory in Spyder, click on the folder icon
+(upper right hand side of the toolbar) and navigate to
+<code>.../intro-image-classification-cnn/scripts</code> where ‘…’ is
+your project folder.</p>
+<p>Verify you are in the right place by selecting the <code>Files</code>
+pane just below the toolbar and check its contents.</p>
 <figure><img src="fig/00_spyder_workingdir_scripts.png" alt="Screenshot of the contents of the scripts folder in the Files tab of the Spyder window after using the folder icon to set the working directory." class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="get-the-data">Get the data<a class="anchor" aria-label="anchor" href="#get-the-data"></a></h2>
-<hr class="half-width"><p>This lesson uses the CIFAR-10 image dataset that comes prepackaged
-with Keras. There are no additional steps needed to access the data.</p>
+<hr class="half-width"><p>This lesson uses a subset of the CIFAR-10 image dataset. The data is
+included in the <a href="#download-workshop-files">workshop
+files</a>.</p>
 <!-- Collect your link references at the bottom of your document -->
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
@@ -830,8 +731,8 @@ any links that you are not going to use.
   "url": "https://erinmgraham.github.io/icwithcnn/index.html",
   "identifier": "https://erinmgraham.github.io/icwithcnn/index.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2026-06-10",
-  "datePublished": "2026-06-10"
+  "dateModified": "2026-06-14",
+  "datePublished": "2026-06-14"
 }
 
   </script><script>

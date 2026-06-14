@@ -11,7 +11,7 @@ Episode 01 Introduction to Deep Learning
 # load the required packages
 import tensorflow as tf # neural network
 import matplotlib.pyplot as plt # plotting
-import icwithcnn_functions as icfn # pre-defined helpers
+import icwcnn_functions as icfn # pre-defined helpers
 
 
 #%%

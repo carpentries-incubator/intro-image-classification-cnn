@@ -8,74 +8,45 @@ Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classif
 #%%
 
 # load the required packages
-
-from tensorflow import keras # data and neural network
-import seaborn as sns # specialised plotting
-import pandas as pd # handles dataframes
+import tensorflow as tf # neural network
+import matplotlib.pyplot as plt # plotting
+import icwcnn_functions as icfn # pre-defined helpers
 import numpy as np # for argmax
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
+import seaborn as sns # specialised plotting
 
 #%%
 
-### Step 7. Perform a Prediction/Classification
+### Step 3. Prepare data
 
-#### Prepare test dataset
+# create a list of class names associated with each CIFAR-10 label
+class_names = ['airplane', 'bird', 'cat', 'dog', 'truck']
 
-# load the CIFAR-10 dataset included with the keras library
-(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
+# load the data
+train_ds, val_ds, test_ds = icfn.prepare_datasets()
 
-# create a list of classnames 
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+#%%
 
-# normalize the RGB values to be between 0 and 1
-test_images = test_images / 255.0
+# load pre-trained model
+model_intro = tf.keras.models.load_model('../models/cifar_model_intro.keras')
 
-# check test image dataset is loaded - images and labels
-print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
 
 #%%
 
 #### Step 7. Perform a Prediction/Classification
 
-# ## CHALLENGE Write the code to make class predictions on test data
-
-# # load preferred model
-# _____ = keras.models.load_model(_____)
-
-# # use preferred model to predict
-# _____ = _____.predict(x=_____)
-
-#%%
-
-## SOLUTION
-
-# load preferred model
-model_best = keras.models.load_model('models/model_dropout.keras')
-print('We are using', model_best.name)
-
-# use preferred model to predict probability of each class on new test set
-predictions = model_best.predict(x=test_images)
-
-print(predictions)
-
-#%%
-
-# convert probability predictions to table using class names for column names
-prediction_df = pd.DataFrame(data=predictions, columns=class_names)
-
-# inspect 
-print(prediction_df.head())
+# make predictions
+predictions = model_intro.predict(x = test_ds)
 
 # convert predictions to class labels
-predicted_labels = np.argmax(a=predictions, axis=1)
-print(predicted_labels)
+predicted_labels = tf.argmax(predictions, axis=1)
 
 #%%
 
 ### Step 8. Measuring performance
 
-# evaluate the model on the test data set
+test_labels = np.concatenate([y for x, y in test_ds], axis=0)
 test_acc = accuracy_score(y_true=test_labels, y_pred=predicted_labels)
 print('Accuracy:', round(test_acc,2))
 
@@ -89,12 +60,10 @@ print(conf_matrix)
 
 #%%
 
-# Convert confustion matrix to a pandas dataframe
-confusion_df = pd.DataFrame(data=conf_matrix, index=class_names, columns=class_names)
-
-# Set the names of the x and y axis, this helps with the readability of the heatmap
-confusion_df.index.name = 'True Label'
-confusion_df.columns.name = 'Predicted Label'
-
 # heatmap visualization of the confusion matrix
-sns.heatmap(data=confusion_df, annot=True, fmt='3g')
+sns.heatmap(data=conf_matrix, annot=True, fmt='d', 
+            xticklabels=class_names,
+            yticklabels=class_names)
+plt.xlabel('Predicted label')
+plt.ylabel('True label')
+

@@ -1,16 +1,16 @@
 name: cnn_workshop
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - python=3.11
   - matplotlib
-  - numpy
+  - numpy<2          # Prevents breaking changes from NumPy 2.0+
   - pandas
   - pip
   - scikit-learn
   - seaborn
   - spyder
+  - tensorflow-deps # Required for macOS TensorFlow installation
   - pip:
-      - scikeras
-      - tensorflow-macos==2.12
+    - scikeras==0.12.*
+    - tensorflow==2.14.0

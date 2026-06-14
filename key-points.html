@@ -386,45 +386,42 @@ models.</li>
 </ul></section><section id="03-build-cnn"><h2 class="section-heading"><a href="03-build-cnn.html">Build a Convolutional Neural Network</a></h2>
 <hr class="half-width">
 <ul>
-<li>Artificial neural networks (ANN) are a machine learning technique
-based on a model inspired by groups of neurons in the brain.</li>
-<li>Convolution neural networks (CNN) are a type of ANN designed for
-image classification and object detection.</li>
-<li>The number of filters corresponds to the number of distinct features
-the layer is learning to recognise whereas the kernel size determines
-the level of features being captured.</li>
-<li>A CNN can consist of many types of layers including convolutional,
-pooling, flatten, and dense (fully connected) layers</li>
-<li>Convolutional layers are responsible for learning features from the
-input data.</li>
-<li>Pooling layers are often used to reduce the spatial dimensions of
-the data.</li>
-<li>The flatten layer is used to convert the multi-dimensional output of
-the convolutional and pooling layers into a flat vector.</li>
-<li>Dense layers are responsible for combining features learned by the
-previous layers to perform the final classification.</li>
+<li>Convolutional neural networks (CNNs) are designed for working with
+image data.</li>
+<li>CNNs are built by stacking layers, where each layer transforms the
+data and passes it to the next layer.</li>
+<li>Convolutional layers look for simple patterns in images (e.g. edges
+and textures).</li>
+<li>Pooling layers reduce the size of the data, helping the model focus
+on important features.</li>
+<li>The Flatten layer converts image data into a format suitable for
+classification.</li>
+<li>Dense layers are used to produce the final prediction.</li>
 </ul></section><section id="04-fit-cnn"><h2 class="section-heading"><a href="04-fit-cnn.html">Compile and Train (Fit) a Convolutional Neural Network</a></h2>
 <hr class="half-width">
 <ul>
-<li>Use Model.compile() to compile a CNN.</li>
-<li>The choice of optimizer often depends on experimentation and
-empirical evaluation.</li>
-<li>The choice of loss function will depend on your data and aim.</li>
-<li>Use Model.fit() to make a train (fit) a CNN.</li>
-<li>Training/validation loss and accuracy can be used to evaluate a
-model during training.</li>
-<li>Dropout is one way regularization technique to prevent
-overfitting.</li>
+<li>Use <code>Model.compile()</code> to set how a model will learn.</li>
+<li>The optimizer controls how the model updates its weights.</li>
+<li>The loss function measures how wrong the model’s predictions
+are.</li>
+<li>Metrics such as accuracy tell us how well the model is
+performing.</li>
+<li>Use <code>Model.fit()</code> to train the model on data.</li>
+<li>Training and validation loss and accuracy help us monitor
+learning.</li>
+<li>Overfitting occurs when a model performs well on training data but
+less well on new data.</li>
 </ul></section><section id="05-evaluate-predict-cnn"><h2 class="section-heading"><a href="05-evaluate-predict-cnn.html">Evaluate a Convolutional Neural Network and Make Predictions (Classifications)</a></h2>
 <hr class="half-width">
 <ul>
-<li>Model accuracy must be measured on a test dataset with images your
-model has not seen before.</li>
-<li>Use Model.predict() to make a prediction with your model.</li>
-<li>There are many hyperparameters to choose from to improve model
-performance.</li>
-<li>Fitting separate models with different hyperparameters and comparing
-their performance is a common and good practice in deep learning.</li>
+<li>Use <code>Model.predict()</code> to make predictions with a trained
+model.</li>
+<li>Model outputs represent confidence values for each class.</li>
+<li>Use <code>argmax</code> to convert model outputs into predicted
+class labels.</li>
+<li>Accuracy measures how often predictions are correct.</li>
+<li>Confusion matrices help identify which classes are predicted
+correctly and where errors occur.</li>
 </ul></section><section id="06-share-cnn-next-steps"><h2 class="section-heading"><a href="06-share-cnn-next-steps.html">Share a Convolutional Neural Network and Next Steps</a></h2>
 <hr class="half-width">
 <ul>

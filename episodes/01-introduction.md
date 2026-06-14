@@ -85,7 +85,7 @@ In Python, we can use functions in a few different ways:
 # load the required packages
 import tensorflow as tf # neural network 
 import matplotlib.pyplot as plt # for plotting
-import icwithcnn_functions as icfn # pre-defined helpers
+import icwcnn_functions as icfn # pre-defined helpers
 
 ### Step 3. Prepare data
 

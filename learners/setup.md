@@ -98,7 +98,7 @@ To create a new environment, the command starts with the conda keywords `conda e
 To make things easier for this lesson, use the `cnn_workshop_environment.yml` file inside the `files` folder of the [workshop files](#download-workshop-files).
 
 ```code
-(base) C:\Users\Lab> miniforge env create --file cnn_workshop_environment.yml
+(base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml
 ```
 
 If the yml is not in your current directory, you can specify the full path to the file, eg:

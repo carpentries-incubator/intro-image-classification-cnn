@@ -100,6 +100,10 @@ plt.show()
 ### Step 10. Share Model
 
 # save model
+
+import os
+os.makedirs("../models", exist_ok=True)
+
 model_intro.save('../models/cifar_model_intro.keras')
 
 

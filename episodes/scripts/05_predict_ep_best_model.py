@@ -51,7 +51,7 @@ print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
 ## SOLUTION
 
 # load preferred model
-model_best = keras.models.load_model('fit_outputs/model_dropout.keras')
+model_best = keras.models.load_model('models/model_dropout.keras')
 print('We are using', model_best.name)
 
 # use preferred model to predict probability of each class on new test set

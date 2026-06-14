@@ -60,7 +60,7 @@ Build a Convolutional Neural Network
 # The line of code below can be run and uncommented after the intro model
 # has been saved from the "Introduction to Deep Learning" episode.
 
-model_intro = keras.models.load_model('fit_outputs/01_intro_model.h5')
+model_intro = keras.models.load_model('models/01_intro_model.h5')
 
 ### Number of parameters ###
 # https://carpentries-incubator.github.io/intro-image-classification-cnn/03-build-cnn.html#number-of-parameters

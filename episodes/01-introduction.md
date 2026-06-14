@@ -6,370 +6,333 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What is machine learning and what is it used for?
-- What is deep learning?
-- How do I use a neural network for image classification?
+
+- What is deep learning and how is it used for images?
+- How can I train a simple model to classify images?
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the difference between artificial intelligence, machine learning and deep learning.
-- Understand the different types of computer vision tasks.
-- Perform an image classification using a convolutional neural network (CNN).
+- Describe what deep learning is and how it can be used for image classification
+- Train a simple convolutional neural network (CNN) to classify images
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Deep Learning, Machine Learning and Artificial Intelligence
+## Deep learning for image classification
 
-Artificial Intelligence (AI) is the broad field that involves creating machines capable of performing tasks that typically require human intelligence. This includes everything from recognizing speech and images to making decisions and translating languages. Within AI, Machine Learning (ML) is a subset focused on the development of algorithms that allow computers to learn and improve from experience without being explicitly programmed.
+In this lesson, we will use **deep learning** to classify images.
 
-Deep Learning (DL), a further subset of ML, utilizes neural networks with many layers (hence "deep") to model complex patterns in large amounts of data. This technique has led to significant advances in various fields, such as image and speech recognition.
+Deep learning is a type of machine learning that uses structures called **neural networks**. These networks learn patterns directly from data by adjusting their internal settings during training.
 
-Since the 1950s, the idea of AI has captured the imagination of many, often depicted in science fiction as machines with human-like or even superior intelligence. While recent advancements in AI and ML have been remarkable, we are currently capable of achieving human-like intelligence only in specific areas. The goal of creating a general-purpose AI, one that can perform any intellectual task a human can, remains a long-term challenge.
+For image data, deep learning models can learn to recognise shapes, colours, and textures. By combining these simple patterns, they can identify more complex features such as objects in an image.
 
-The image below illustrates some differences between artificial intelligence, machine learning and deep learning.
+We will focus on a specific type of model called a **Convolutional Neural Network (CNN)**. CNNs are designed for working with images and are widely used for tasks such as:
 
-![The image above is by Tukijaaliwa, CC BY-SA 4.0, via Wikimedia Commons, [original source]](fig/01_AI_ML_DL_differences.png){alt='Three nested circles defining deep learning as a subset of machine learning which is a subset of artifical intelligence'}
+- recognising objects in photos
+- identifying medical images
+- classifying plants, animals, or other categories
 
-## What is machine learning?
+In this lesson, we will train a CNN to classify images into different categories.
 
-Machine learning is a set of tools and techniques which let us find patterns in data. The techniques break down into two broad categories, predictors and classifiers. Predictors are used to predict a value (or set of values) given a set of inputs whereas classifiers try to classify data into different categories, or assign a label.
-
-Many, but not all, machine learning systems “learn” by taking a series of input data and output data and using it to form a model. The maths behind the machine learning doesn’t care what the data is as long as it can represented numerically or categorised. Some examples might include:
-
-- Predicting a person’s weight based on their height.
-- Predicting house prices given stock market prices.
-- Classifying an email as spam or not.
-- Classifying an image as, e.g., a person, place, or particular object.
-
-Typically we train our models with hundreds, thousands or even millions of examples before they work well enough to do any useful predictions or classifications with them.
-
-This lesson will introduce you to only one of these techniques, **Deep Learning** with **Convolutional Neural Network**, abbreviated as **CNN**, but there are many more.
-
-A CNN is a DL algorithm that has become a cornerstone in image classification due to its ability to automatically learn features from images in a hierarchical fashion (i.e. each layer builds upon what was learned by the previous layer). It can achieve remarkable performance on a wide range of tasks.
 
 ## What is image classification?
 
-Image classification is a fundamental task in computer vision, which is a field of artificial intelligence focused on teaching computers to interpret and understand visual information from the world. Image classification specifically involves the process of assigning a label or category to an input image. The goal is to enable computers to recognise and categorise objects, scenes, or patterns within images, just as a human would. Image classification can refer to one of several computer vision tasks:
+Image classification is one of the most common tasks in deep learning and involves assigning a label to an image.
 
-![The image above is by Li, Johnson, & Yeung, Stanford University CS231n: Deep Learning for Computer Vision, 2017](fig/01_Fei-Fei_Li_Justin_Johnson_Serena_Young__CS231N_2017.png){alt='Four types of image classification tasks include semantic segmentation to label every pixel; classification and localisation to detect a single object like a cat; object detection to detect multiple objects like cats and dogs; and instance segmentation to detect each pixel of multiple objects'}
+For example, a model might look at an image and decide whether it shows a:
 
+- car or bicycle
+- cat or dog
+- healthy or diseased plant
 
-Image classification has numerous practical applications, including:
+In this lesson, we will train a CNN to look at images and predict the correct category for each one.
 
-- **Object Recognition**: Identifying objects within images, such as cars, animals, or household items.
-- **Medical Imaging**: Diagnosing diseases from medical images like X-rays or MRIs.
-- **Quality Control**: Inspecting products for defects on manufacturing lines.
-- **Autonomous Vehicles**: Identifying pedestrians, traffic signs, and other vehicles in self-driving cars.
-- **Security and Surveillance**: Detecting anomalies or unauthorised objects in security footage.
+## What we’ll do in this lesson
 
+When working with programming problems, it’s useful to follow a series of steps or a workflow.
+Some workflows are very simple, while others — like deep learning — involve a few more stages.
 
-
-
-## Deep Learning Workflow
-To apply Deep Learning to a problem there are several steps to go through:
+In this lesson, we’ll follow a simplified version of a deep learning workflow to train and use an image classification model.
 
 ### Step 1. Formulate / Outline the problem
-Firstly we must decide what it is we want our Deep Learning system to do. This lesson is all about image classification so our aim is to put an image into one of a few categories. Specifically in our case, we have 10 categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck
+First we must decide what we want our Deep Learning system to do. This lesson is about image classification and our aim is to put an image into one of a few categories. Specifically, in our case, we have 5 categories: ['airplane', 'bird', 'cat', 'dog', 'truck']
 
 ### Step 2. Identify inputs and outputs
-Next identify what the inputs and outputs of the neural network will be. In our case, the data is images and the inputs could be the individual pixels of the images. We are performing a classification problem and we will have one output for each potential class.
+Next identify what the inputs and outputs of the neural network. In our case, the data is images and the inputs could be the individual pixels of the images. We want one output prediction for each potential image.
 
 ### Step 3. Prepare data
-Many datasets are not ready for immediate use in a neural network and will require some preparation. Neural networks can only really deal with numerical data, so any non-numerical data (e.g., images) will have to be somehow converted to numerical data. Information on how this is done and the data structure will be explored in [Episode 02 Introduction to Image Data](episodes/02-image-data).
+Many datasets are not ready for immediate use in a deep learning and require some preparation. Neural networks can really only deal with numerical data, so any non-numerical data (e.g., images) have to be converted to numerical data.
 
-For this lesson, we will use an existing image dataset known as [CIFAR-10] (Canadian Institute for Advanced Research). We will introduce the different data preparation tasks in more detail in the next episode but for this introduction, we will prepare the datset with these steps:
+For this lesson, we use an existing image dataset known as [CIFAR-10] (Canadian Institute for Advanced Research).
 
-- normalise the image pixel values to be between 0 and 1
-- one-hot encode the training image labels
-- divide the data into **training**, **validation**, and **test** subsets
-
-#### Preparing the code
-
-It is the goal of this training workshop to produce a Deep Learning program, using a Convolutional Neural Network.  At the end of this workshop, we hope this code can be used as a "starting point".  We will create an "initial program" for this introduction chapter that will be used as a foundation for the rest of the episodes.
+More information on preparing data is explored in [Episode 02 Introduction to Image Data](episodes/02-image-data) but for now we'll use a custom-defined function.
 
 :::::::::::::::::::::::::::::::::::::: callout
-Here's one we prepared earlier!
+Python reminder: functions and methods
 
-To follow along in Spyder, [Set the working directory] to the '.../intro-image-classification-cnn/scripts' folder where '...' is your project folder.
+In Python, we can use functions in a few different ways:
+
+- Built-in functions available by default: `print()` or `len()`
+- Functions from libraries we import: `tf.keras.layers.Conv2D()`
+- Functions we write ourselves: `def`
 
 :::::::::::::::::::::::::::::::::::::::::::::::
 
 ```python
 # load the required packages
-from tensorflow import keras # for neural networks 
-from sklearn.model_selection import train_test_split # for splitting data into sets
+import tensorflow as tf # neural network 
 import matplotlib.pyplot as plt # for plotting
-
-# create a function to prepare the training dataset
-def prepare_dataset(train_images, train_labels):
-    
-    # normalize the RGB values to be between 0 and 1
-    train_images = train_images / 255.0
-    
-    # one hot encode the training labels
-    train_labels = keras.utils.to_categorical(train_labels, len(class_names))
-    
-    # split the training data into training and validation set
-    train_images, val_images, train_labels, val_labels = train_test_split(
-    train_images, train_labels, test_size = 0.2, random_state=42)
-
-    return train_images, val_images, train_labels, val_labels
-
-# load the data
-(train_images, train_labels), (test_images, test_labels) = keras.datasets.cifar10.load_data()
-
-# create a list of class names associated with each CIFAR-10 label
-class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+import icwithcnn_functions as icfn # pre-defined helpers
 
 ### Step 3. Prepare data
 
-# prepare the dataset for training
-train_images, val_images, train_labels, val_labels = prepare_dataset(train_images, train_labels)
+# create a list of class names associated with each CIFAR-10 label
+class_names = ['airplane', 'bird', 'cat', 'dog', 'truck']
 
+# load the data
+train_ds, val_ds, test_ds = icfn.prepare_datasets()
 ```
-
-::::::::::::::::::::::::::::::::::::: challenge 
-
-## CHALLENGE Examine the CIFAR-10 dataset
-
-Explain the output of these commands?
-
-```python
-print('Train: Images=%s, Labels=%s' % (train_images.shape, train_labels.shape))
-print('Validate: Images=%s, Labels=%s' % (val_images.shape, val_labels.shape))
-print('Test: Images=%s, Labels=%s' % (test_images.shape, test_labels.shape))
-
-```
-
-:::::::::::::::::::::::: solution 
-
-## Output
- 
 ```output
-Train: Images=(40000, 32, 32, 3), Labels=(40000, 10)
-Validate: Images=(10000, 32, 32, 3), Labels=(10000, 10)
-Test: Images=(10000, 32, 32, 3), Labels=(10000, 1)
+Found 1000 files belonging to 5 classes.
+Found 250 files belonging to 5 classes.
+Found 250 files belonging to 5 classes.
 ```
-The training set consists of 40000 images of 32x32 pixels and three channels (RGB values) and one-hot encoded labels.
 
-The validation set consist of 10000 images of 32x32 pixels and three channels (RGB values) and one-hot encoded labels.
-
-The test set consists of 10000 images of 32x32 pixels and three channels (RGB values) and labels.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
+Before starting any analysis, it’s important to check that your data looks the way you expect. Let's do that now:
 
 
 #### Visualise a subset of the CIFAR-10 dataset
 
 ```python
 # set up plot region, including width, height in inches
-fig, axes = plt.subplots(nrows=5, ncols=5, figsize=(10,10))
+fig, axes = plt.subplots(figsize=(5,5))
 
 # add images to plot
-for i,ax in enumerate(axes.flat):
-    ax.imshow(train_images[i])
-    ax.axis('off')
-    ax.set_title(class_names[train_labels[i,].argmax()])
+for images, labels in train_ds.take(1):
+    for i in range(9):
+        
+        ax = plt.subplot(3, 3, i + 1)
+        plt.imshow(images[i].numpy().astype("uint8"))
+        plt.title(class_names[labels[i]])
+        plt.axis("off")
     
 # view plot
 plt.show()
 ```
 
-![](fig/01_cifar10_plot_subset.png){alt='Subset of 25 CIFAR-10 images representing different object classes'}
+![](fig/01_cifar10_plot_subset.png){alt='Subset of 9 CIFAR-10 images representing different object classes'}
+
+::::::::::::::::::::::::::::::::::::: challenge 
+## Inspect the dataset
+
+Looking at the images above, and knowing you will be asking a computer to label them, what kinds of questions might you ask yourself about this dataset?
+
+:::::::::::::::::::::::: solution
+
+Answers will vary.
+
+- Are the images clear and easy to interpret?
+- Do the labels seem correct?
+- Are the images all the same size?
+- Do the images look similar within each category?
+- Are there any unusual or unexpected images?
+
+::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::: 
+
 
 ### Step 4. Choose a pre-trained model or build a new architecture from scratch
 
-Often we can use an existing neural network instead of designing one from scratch. Training a network can take a lot of time and computational resources. There are a number of well publicised networks which have been demonstrated to perform well at certain tasks. If you know of one which already does a similar task well, then it makes sense to use one of these.
+Often we can use an existing neural network instead of designing one from scratch because training a network can take a lot of time and computational resources. There are a number of well publicised networks which have been demonstrated to perform well at certain tasks. If you know of one which already does a similar task well, then it makes sense to use one of these.
 
-If instead we decide to design our own network, then we need to think about how many input neurons it will have, how many hidden layers and how many outputs, and what types of layers to use. This will require some experimentation and tweaking of the network design a few times before achieving acceptable results.
+If instead we decide to design our own network, then there a lot of decisions that have to be made. Model selection will require iterative experimentation and tweaking before acceptable results can be achieved.
 
-Here we present an initial model to be explained in detail later on:
-
-#### Define the Model
+In today's workshop we want to build an architecture for training purpurses. For now, similar to dataset preparation, we'll use a function already prepared, `create_model_intro()`, and save the details for [Episode 03 Build a Convolutional Neural Network](episodes/03-build-cnn.md).
 
 ```python
-def create_model_intro():
-    
-    # CNN Part 1
-    # Input layer of 32x32 images with three channels (RGB)
-    inputs_intro = keras.Input(shape=train_images.shape[1:])
-    
-    # CNN Part 2
-    # Convolutional layer with 16 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu')(inputs_intro)
-    # Pooling layer with input window sized 2x2
-    x_intro = keras.layers.MaxPooling2D(pool_size=(2,2))(x_intro)
-    # Second Convolutional layer with 32 filters, 3x3 kernel size, and ReLU activation
-    x_intro = keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu')(x_intro)
-    # Second Pooling layer with input window sized 2x2
-    x_intro = keras.layers.MaxPooling2D(pool_size=(2,2))(x_intro)
-    # Flatten layer to convert 2D feature maps into a 1D vector
-    x_intro = keras.layers.Flatten()(x_intro)
-    # Dense layer with 64 neurons and ReLU activation
-    x_intro = keras.layers.Dense(units=64, activation='relu')(x_intro)
-    
-    # CNN Part 3
-    # Output layer with 10 units (one for each class) and softmax activation
-    outputs_intro = keras.layers.Dense(units=10, activation='softmax')(x_intro)
-    
-    # create the model
-    model_intro = keras.Model(inputs = inputs_intro, 
-                              outputs = outputs_intro, 
-                              name = "cifar_model_intro")
-    
-    return model_intro
-
-# create the introduction model
+# create the introduction model using pre-defined function
 model_intro = create_model_intro()
-
-# view model summary
-model_intro.summary()
 ```
 
 ### Step 5. Choose a loss function and optimizer and compile model
 
 To set up a model for training we need to compile it. This is when you set up the rules and strategies for how your network is going to learn.
 
-The loss function tells the training algorithm how far away the predicted value was from the true value. We will learn how to choose a loss function in more detail in [Episode 4 Compile and Train (Fit) a Convolutional Neural Network](episodes/04-fit-cnn.md).
+The loss function tells the training algorithm how far away the predicted value was from the true value. 
 
-The optimizer is responsible for taking the output of the loss function and then applying some changes to the weights within the network. It is through this process that “learning” (adjustment of the weights) is achieved.
+The optimizer takes information from the loss function and applys some changes to the weights within the network to try to do better. It is through this process that “learning” (adjustment of the weights) is achieved.
+
+We will learn how to choose a loss function and optimizer in more detail in [Episode 4 Compile and Train (Fit) a Convolutional Neural Network](episodes/04-fit-cnn.md).
+
+For now, let's use options that have been proven to work well for image classfiication tasks.
 
 ```python
 # compile the model
-model_intro.compile(optimizer = keras.optimizers.Adam(),
-                    loss = keras.losses.CategoricalCrossentropy(),
-                    metrics = keras.metrics.CategoricalAccuracy())
+model_intro.compile(optimizer = "adam",
+                    loss = "sparse_categorical_crossentropy",
+                    metrics =["accuracy"])
 ```
 
 ### Step 6. Train the model
 
-We can now go ahead and start training our neural network. We will probably keep doing this for a given number of iterations through our training dataset (referred to as epochs) or until the loss function gives a value under a certain threshold.
+Now we can start training our neural network. Typically, we train the model by looping over the training data multiple times (called epochs) until performance improves or reaches a stable level.
 
 ```python
 # fit the model
-history_intro = model_intro.fit(x = train_images, y = train_labels,
-                                batch_size = 32,
-                                epochs = 10, 
-                                validation_data = (val_images, val_labels))
+history_intro = model_intro.fit(x = train_ds)
 
 ```
 Your output will begin to print similar to the output below:
 ```output
-Epoch 1/10
-
-1250/1250 [==============================] - 15s 12ms/step - loss: 1.4651 - accuracy: 0.4738 - val_loss: 1.2736 - val_accuracy: 0.5507
+32/32 [==============================] - 0s 5ms/step - loss: 58.7726 - accuracy: 0.2690
 ```
 
 #### What does this output mean?
 
-This output printed during the fit phase, i.e. training the model against known image labels, can be broken down as follows:
+This output is printed during the fit phase, i.e. training the model against known image labels:
 
-- `Epoch` describes the number of full passes over all *training data*. 
-- `In the output above, there are **1250** batches (steps) to complete each epoch. 
-    - This number is calculated as the total number of images used as input divided by the batch size (40000/32). After 1250 batches, all training images will have been seen once and the model moves on to the next epoch.
+- It took **32** steps to look at all of the training images once (called an `epoch`)
+- `loss` shows how wrong the model’s predictions are (lower is better)
+- `accuracy` shows how often the model is correct (higher is better)
 
-- `loss` is a value the model will attempt to minimise and is a measure of the dissimilarity or error between the true label of an image and the model prediction. Minimising this distance is where *learning* occurs to adjust weights and bias which reduce `loss`. 
-- `val_loss` is a value calculated against the validation data and is a measure of the model's performance against unseen data. 
-    - Both values are a summation of errors made during each epoch.
+::::::::::::::::::::::::::::::::::::: challenge 
+## Is our model doing well?
 
-- `accuracy` and `val_accuracy` values are a percentage and are only revelant to **classification problems**. 
-    - The `val_accuracy` score can be used to communicate a model's effectiveness on unseen data.
+Considering the `loss` and `accuracy` values from the training above:
 
+- What do these values tell you about how well the model is performing?
+- Is this what you would expect at this stage?
+- Can you think of any ways that might help improve these values?
+
+:::::::::::::::::::::::: solution
+
+Answers may vary.
+
+- The accuracy is quite low, so the model is not making many correct predictions yet  
+- The loss is high, which suggests the model’s predictions are still far from the true labels  
+- This is expected, since the model has only just started training and is very simple 
+- Train for longer, use a more complex model, use more data
+
+::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::: 
 
 ### Step 7. Perform a Prediction/Classification
 
-After training the network we can use it to perform predictions. This is how  you would use the network after you have fully trained it to a satisfactory performance. The predictions performed here on a special hold-out set is used in the next step to measure the performance of the network. Make sure the images you use to test are prepared the same way as the training images.
+After training the network we can use it to perform predictions. This is how you would use the network after you have fully trained it to a satisfactory performance. The predictions performed here on a special hold-out set is used in the next step to measure the performance of the network. Make sure the images you use to test are prepared the same way as the training images.
+
+To make a single prediction we need to first extract a single image and its associated label from our test dataset and then use our model to predict the class of that image.
 
 ```python
-# normalize test dataset RGB values to be between 0 and 1
-test_images = test_images / 255.0
+# extract image and label for first image
+for images, labels in test_ds.take(1):
+    first_image = images[0]
+    first_label = labels[0]
+    
+# use the model to predict class
+prediction = model_intro.predict(tf.expand_dims(first_image, axis=0))
+print("Predict:", prediction)
 
-# make prediction for the first test image
-result_intro = model_intro.predict(test_images[0].reshape(1,32,32,3))
-print(result_intro)
+# extract class name with highest probability
+predicted_label = tf.argmax(prediction[0])
 
-# extract class with highest probability
-print(class_names[result_intro.argmax()])
+print("Predicted class:", class_names[predicted_label])
+print("True class:", class_names[first_label])
 ```
 ```output
-1/1 [==============================] - 0s 93ms/step
-[[0.00896197 0.00345764 0.20091638 0.3295959 0.3042777 0.03966621 0.06654432 0.00352677 0.03928733 0.00376582]]
-cat
+1/1 [==============================] - 0s 11ms/step
+Predict: [[3.0071956e-01 9.7787231e-20 6.9927925e-01 5.2796623e-32 1.1614857e-06]]
+Predicted class: cat
+True class: airplane
 ```
 
-Congratulations, you just created your first image classification model and used it to classify an image! 
+Congratulations, you just created your first image classification model! 
+Notice that the model doesn’t just give one answer — it assigns a probability to each class. The class with the highest probability becomes the prediction.
 
-Was the classification correct? 
+Was the classification correct? Let's plot the first test image with its true label:
 
 ```python
-# plot the first test image with its true label
-
-# create a plot
-plt.figure()
-
 # display image
 plt.imshow(test_images[0])
-plt.title('True class:' + class_names[result_intro.argmax()])
-
-# view plot
+plt.title('Predicted:' + class_names[predicted_label])
+plt.axis("off")
 plt.show() 
 ```
 
-![](fig/01_test_image.png){alt='poor resolution image of a cat'}
+![](fig/01_test_image.png){alt='poor resolution image of an dog'}
 
 
-::::::::::::::::::::::::::::::::::::::::: callout
-My result is different! Why? What can I do about?
+::::::::::::::::::::::::::::::::::::: challenge 
+## Interpreting the prediction
 
-This is actually not surprising. The architecture we are using is shallow and the model only trained for 10 epochs. 
+Compare the model prediction with the true class name.
 
-Training a model for more epochs (longer time) and using a deeper model (more layers) usually helps it learn better and give more accurate predictions. When a model has learned well and its performance doesn't change much with more training, we say it has 'converged.' **Convergence** refers to the point where the model has reached an optimal or near-optimal state in terms of learning from the training data. If you are finding significant differences in the model predictions, this could be a sign the model is not fully converged. 
+- What does this tell you about the model’s performance?
+- Why might the model have made this mistake?
 
-You may even find you get a different answer if you run this model again. Although the neural network itself is deterministic (ie without randomness), various factors in the training process, system setup, and hardware configurations can lead to small variations in the output. These variations are usually minor and should not significantly impact the overall performance of the model, _if it has fully converged_.
+:::::::::::::::::::::::: solution
 
-There are many ways to try to improve the accuracy of our model, such as adding or removing layers to the model definition and fine-tuning the hyperparameters, which takes us to the next steps in our workflow.
-:::::::::::::::::::::::::::::::::::::::::::::::::
+Answers may vary.
+
+- The model made an incorrect prediction  
+- This shows the model has not yet learned enough to reliably distinguish between classes  
+- This is expected, since the model is simple and has only trained for a short time  
+- The image itself may also be unclear or difficult to classify  
+
+::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::: 
+
+Clearly, our model can be improved — we’ll look at ways to do this later.
+
+For now, we’ve trained a model and used it to make a prediction. The next step is to see how well it performs on data it hasn’t seen before. 
 
 
 ### Step 8. Measure Performance
 
-Once we trained the network we want to measure its performance. To do this, we use additional data that was **not** part of the training, called a test dataset. There are many different methods available for measuring performance and which one is best depends on the type of task we are attempting. These metrics are often published as an indication of how well our network performs.
+Once we trained the network we want to measure its performance on data that was **not** part of the training process, called a **test dataset**. Although there are many indicators of how well our network performs - called metrics - often the chosen metric(s) will depend on the type of task.
 
 ### Step 9. Tune Hyperparameters
 
-When building image recognition models in Python, especially using libraries like TensorFlow or Keras, the process involves not only designing a neural network but also choosing the best values for various hyperparameters that govern the training process.
-
-**Hyperparameters** are all the parameters set by the person configuring the model as opposed to those learned by the algorithm itself. These hyperparameters can include the learning rate, the number of layers in the network, the number of neurons per layer, and many more. Hyperparameter tuning refers to the process of systematically searching for the best combination of hyperparameters that will optimise the model's performance. This concept will be continued, with practical examples, in [Episode 05 Evaluate a Convolutional Neural Network and Make Predictions (Classifications)](episodes/05-evaluate-predict-cnn.md).
+When building image classification models in Python, especially using libraries like TensorFlow or Keras, the process involves not only designing a neural network but also choosing the best values for various parameters set by the person configuring the model - these are known as **hyperparameters**. Searching for the best options for your dataset can enhance model performance.
 
 ### Step 10. Share Model
 
-Once we have a trained network that performs at a level we are happy with we can use it to predict on real-world data. At this point we might want to consider publishing a file with both the architecture of our network and the weights which it has learned (assuming we did not use a pre-trained network). This will allow others to use it as as pre-trained network for their own purposes and for them to (mostly) reproduce our result.
+Once we’re happy with how our model performs, we can save it and share it with others. This includes both the model structure and what it has learned, so others can use it, with or without retraining.
 
-To share the model we must save it first:
+To share the model we must save it.
 
 ```python
 # save  model
-model_intro.save('model_intro.keras')
+model_intro.save('models/model_intro.keras')
 ```
+
+::::::::::::::::::::::::::::::::::::::::: callout
+Create the output folder if needed
+
+If the `models` folder does not already exist, Python will return an error when trying to save the model.
+
+You can create it first with:
+
+```python
+import os
+os.makedirs("models", exist_ok=True)
+```
+::::::::::::::::::::::::::::::::::::::::: 
 
 We will return to each of these workflow steps throughout this lesson and discuss each component in more detail.
 
 ::::::::::::::::::::::::::::::::::::: keypoints
-
-- Machine learning is the process where computers learn to recognise patterns of data.
-- Deep learning is a subset of machine learning, which is a subset of artificial intelligence.
-- Convolutional neural networks are well suited for image classification.
-- To use Deep Learning effectively we follow a workflow of: defining the problem, identifying inputs and outputs, preparing data, choosing the type of network, training the model, tuning hyperparameters, and measuring performance before we can classify data.
+- Deep learning uses neural networks to learn patterns directly from data.
+- Convolutional neural networks (CNNs) are commonly used for image classification.
+- Training a model involves compiling it, fitting it to data, and making predictions.
+- Model performance may be imperfect at first and can be improved with further training and tuning.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- Collect your link references at the bottom of your document -->
-
-[original source]: https://en.wikipedia.org/wiki/File:AI-ML-DL.svg
 [CIFAR-10]: https://www.cs.toronto.edu/~kriz/cifar.html
-[Set the working directory]: https://carpentries-incubator.github.io/intro-image-classification-cnn/#set-the-working-directory
+
 
 
 

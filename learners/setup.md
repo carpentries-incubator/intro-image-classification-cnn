@@ -4,31 +4,23 @@ title: "Setup - CPU"
 
 This lesson is designed for Software Carpentry users who have completed [Plotting and Programming in Python] and want to jump straight into image classification. We recognize this jump is quite large and have done our best to provide the content and code to perform these types of analyses.
 
-It uses the Anaconda package manager to install the required python packages, including the Spyder IDE. 
+It uses the [Miniforge] software installer and conda-forge package repository to download the required Python packages, including the Spyder IDE. 
 
 These instructions are for setting up tensorflow in a **CPU** only environment.
-
-::::::::::::::::::::::::::::::::::::::::: callout
-Please note this lesson is designed to work with CPU only environments. This was an intentional decision to avoid the difficulties in setting up GPU environments. If you are an advanced user and choose to set up a GPU environment, you are on your own. We will not be able to troubleshoot any issues with GPU set up on the day of the workshop.
-:::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Software Setup
 
 ::::::::::::::::::::::::::::::::::::: challenge
-## Install Python Using Anaconda
+## Install Python Using Miniforge
 
-[Python] is a popular language for scientific computing, and a frequent choice for machine learning as well. Installing all of its scientific packages individually can be a bit difficult, however, so we recommend the installer [Anaconda] which includes most (but not all) of the software you need. Make sure you install the latest Python version 3.xx.
-
-Also, please set up your python environment **at least** a day in advance of the workshop. If you encounter problems with the installation procedure, ask your workshop organizers via e-mail for assistance so you are ready to go as soon as the workshop begins.
+[Python] is a popular language for research computing, and a frequent choice for machine learning as well. Installing multiple scientific packages into a single environment individually can be difficult, however, so we recommend using the [Miniforge] installer. 
 
 :::::::::::::::::::::::: solution
 ### Windows
 
-Check out the [Windows - Video tutorial] or:
+1. Open [https://conda-forge.org/download/] with your web browser.
 
-1. Open [https://www.anaconda.com/products/distribution] with your web browser.
-
-2. Download the Python 3.xx installer for Windows.
+2. Download the latest release of the Miniforge for Windows Installer.
 
 3. Double-click the executable and install Python 3 using _MOST_ of the default settings. The only exception is to check the **Make Anaconda the default Python** option.
 ::::::::::::::::::::::::::::::::::
@@ -36,105 +28,42 @@ Check out the [Windows - Video tutorial] or:
 :::::::::::::::::::::::: solution
 ### MacOS
 
-Check out the [Mac OS X - Video tutorial] or:
+1. Open [https://conda-forge.org/download/] with your web browser.
 
-1. Open [https://www.anaconda.com/products/distribution] with your web browser.
+1. Download the appropriate Miniforge installer for macOS.
 
-2. Download the Python 3 installer for Mac.
+1. Open a terminal window and navigate to the directory where the executable is downloaded (e.g., cd ~/Downloads).
 
-3. Install Python 3 using all of the defaults for installation.
+1. Type `bash Miniforge3-` and then press `Tab` to autocomplete the full file name. The name of file you just downloaded should appear. Press `Enter` (or `Return` depending on your keyboard).
+
+1. Install Python 3 using all of the defaults for installation.
 ::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution 
 ### Linux
 
-Note the following installation steps require you to work from the shell.
-If you run into any difficulties, please request help before the workshop begins.
+1. Open [https://conda-forge.org/download/] with your web browser.
 
-1.  Open [https://www.anaconda.com/products/distribution] with your web browser.
+2. Download the appropriate Miniforge installer for Linux.
 
-2.  Download the Python 3 installer for Linux.
+3. Open a terminal window and navigate to the directory where the executable is downloaded (e.g., cd ~/Downloads).
 
-3.  Install Python 3 using all of the defaults for installation.
+4. Type `bash Miniforge3-` and then press `Tab` to autocomplete the full file name. The name of file you just downloaded should appear. Press `Enter` (or `Return` depending on your keyboard).
 
-    a.  Open a terminal window.
-
-    b.  Navigate to the folder where you downloaded the installer
-
-    c.  Type
-
-    ```bash
-    bash Anaconda3-
-    ```
-
-    and press tab.  The name of the file you just downloaded should appear.
-
-    d.  Press enter.
-
-    e.  Follow the text-only prompts.  When the license agreement appears (a colon
-        will be present at the bottom of the screen) hold the down arrow until the
-        bottom of the text. Type `yes` and press enter to approve the license. Press
-        enter again to approve the default location for the files. Type `yes` and
-        press enter to prepend Anaconda to your `PATH` (this makes the Anaconda
-        distribution the default Python).
-
-4.	You may wish to initialise conda, so it configures the path and sets the
-    required variables.  To do this, execute the following command (if you have 
-	installed anaconda in your home directory):
+5. Install Python 3 using all of the defaults for installation.
 	
-	```code
-    $ ./anaconda3/bin/conda init 
-	```
-    ![](fig/00_linux-conda-init.png){alt='Screenshot of initialising conda on a bash shell.'}
-
 :::::::::::::::::::::::::::::::::: 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Download the scripts, files, and model outputs
-
-::::::::::::::::::::::::::::::::::::: challenge
 ## Download workshop files
 
-Download the [scripts, files, and model outputs].
+Download the [data, files, and scripts].
 
-Create a project folder on your local device for this course and move the downloaded materials to the project folder. Extract all of the download contents here. Check your folder and file structures looks like this:
+Create a project folder on your local device for this course and move the downloaded materials to the project folder. Extract all of the download contents here. 
+
+Check your folder and file structures looks like this:
 
 ![](fig/00_download_zip_folder_files.png){alt='Screenshot of the contents of the intro-image-classification-cnn.zip folder.'}
-
-:::::::::::::::::::::::: solution
-### Linux
-
-You can move the downloaded workshop zipped file to your home directory and unzip it using the unzip command.
-
-For example:
-
-```code
-[ace@rocky8-cnn-test ~]$ mv ./Downloads/intro-image-classification-cnn.zip .
-[ace@rocky8-cnn-test ~]$ unzip intro-image-classification-cnn.zip 
-Archive:  intro-image-classification-cnn.zip
-   creating: intro-image-classification-cnn/data/
-  inflating: intro-image-classification-cnn/data/Jabiru_TGS.JPG  
-  inflating: intro-image-classification-cnn/data/model_dropout.keras  
-  inflating: intro-image-classification-cnn/data/model_intro.keras  
-   creating: intro-image-classification-cnn/files/
-  inflating: intro-image-classification-cnn/files/cnn_workshop_environment.yml  
-  inflating: intro-image-classification-cnn/files/cnn_workshop_MACOS_environment.yml  
-   creating: intro-image-classification-cnn/scripts/
-  inflating: intro-image-classification-cnn/scripts/01_intro.py  
-  inflating: intro-image-classification-cnn/scripts/02_image.py  
-  inflating: intro-image-classification-cnn/scripts/03_build_intro_model.py  
-  inflating: intro-image-classification-cnn/scripts/04_fit_intro_model.py  
-  inflating: intro-image-classification-cnn/scripts/04b_build_fit_dropout_model.py  
-  inflating: intro-image-classification-cnn/scripts/05_predict_ep_best_model.py  
-  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_activation.py  
-  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_dropout.py  
-  inflating: intro-image-classification-cnn/scripts/05_step_9_tune_optimizer.py  
-   creating: intro-image-classification-cnn/scripts/fit_outputs/
-[ace@rocky8-cnn-test ~]$ 
-```
-
-:::::::::::::::::::::::::::::::::: 
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::: callout
 
@@ -146,34 +75,30 @@ For this lesson, after launching Spyder, make sure to set the working directory 
 
 ## Install the required packages
 
-[Conda] is the package management system associated with [Anaconda] and runs on Windows, macOS and Linux.
-
-Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
-
 ::::::::::::::::::::::::::::::::::::::::: challenge
 ## Using Conda to install packages
 
-[Conda] is the package management system associated with [Anaconda] and runs on Windows, macOS and Linux.
+[Conda] is an open-source package and environment manager that runs on Windows, macOS and Linux.
 
-Conda should already be available in your system once you installed Anaconda successfully. Conda thus works regardless of the operating system. Make sure you have an up-to-date version of Conda running. See [these instructions] for updating Conda if required.
+If you installed Miniforge successfully, Conda should already be available in your system.
 
 :::::::::::::::::::::::: solution
 ## Windows
 
-The easiest way to create a conda environment for this lesson is to use the Anaconda Prompt. You can search for "anaconda prompt" using the Windows search function (Windows Logo Key).
+From the Start menu, search for "Miniforge Prompt" using the Windows search function (Windows Logo Key) and a terminal window will open with the title `Miniforge Prompt`: 
 
-![](fig/00_anaconda_prompt_search.png){alt='Screenshot of the Anaconda Prompt application'}
+![](fig/00_miniforge_prompt_search.png){alt='Screenshot of the Miniforge Prompt application'}
 
-A terminal window will open with the title 'Anaconda Prompt':
+![](fig/00_miniforge_prompt_window.png){alt='Screenshot of the terminal window that opens when you launch the Miniforge Prompt application'}
 
-![](fig/00_anaconda_prompt_window.png){alt='Screenshot of the terminal window that opens when you launch the Anaconda Prompt application'}
+Note the prompt notation inside the terminal window. The name inside the parentheses refers to which conda environment you are working in. `base` is the name given to the default environment included with every conda distribution.
 
-Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment included with every Anaconda distribution.
+To create a new environment, the command starts with the conda keywords `conda env create` followed by a name for the new environment and the package(s) to install.
 
-To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install but to make things easier, inside the script download folder, we have given you an environment.yml file to use instead. (See download link below if you haven't already.)
+To make things easier for this lesson, use the `cnn_workshop_environment.yml` file inside the `files` folder of the [workshop files](#download-workshop-files).
 
 ```code
-(base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml
+(base) C:\Users\Lab> miniforge env create --file cnn_workshop_environment.yml
 ```
 
 If the yml is not in your current directory, you can specify the full path to the file, eg:
@@ -184,35 +109,36 @@ If the yml is not in your current directory, you can specify the full path to th
 
 Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.
 
-After the environment is created we tell Anaconda to use the new environment with the conda keywords `conda activate` followed by the environment name:
+After the environment is created we tell Conda to use the new environment with the keywords `conda activate` followed by the name of the environment:
 
 ```code
 (base) C:\Users\Lab> conda activate cnn_workshop
 (cnn_workshop) C:\Users\Lab>
 ```
 
-You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop).
+You will know you are in the right environment because the prompt changes from `(base)` to `(cnn_workshop)`.
 
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::: solution
-## Mac
-
-On the Mac, there is no Anaconda Prompt application, thus once the anaconda installation has been completed, simply start a terminal session and the session should look like:
+## MacOS
+Start a terminal session:
 
 ![](fig/00_starting-terminal-on-a-mac.png){alt='Screenshot of starting a new terminal session on a Mac.'}
 
-Note the notation of the prompt inside the terminal window. The name inside the parentheses refers to which conda environment you are working inside of, and 'base' is the name given to the default environment included with every Anaconda distribution.
+Note the prompt notation inside the terminal window. The name inside the parentheses refers to which conda environment you are working in. `base` is the name given to the default environment included with every conda distribution.
 
-To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install.  To make things easier, inside the unziped intro-image-classification-cnn  folder, we have given you an environment.yml file to use instead. (See download link above if you haven't already.)
+To create a new environment, the command starts with the conda keywords `conda env create` followed by a name for the new environment and the package(s) to install.
+
+To make things easier for this lesson, use the `cnn_workshop_MACOS_environment.yml` file inside the `files` folder of the [workshop files](#download-workshop-files).
 
 ```code
-(base) Mac$ conda env create --file cnn_workshop_environment.yml
+(base) Mac$ conda env create --file cnn_workshop_MACOS_environment.yml
 ```
 
 If the yml is not in your current directory, you can specify the full path to the file, eg:
 
 ```code
-(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml
+(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_MACOS_environment.yml
 ```
 
 ![](fig/00_mac-create-cnn-workshop-conda-enviroment.png){alt='Screenshot of create conda enviroment on a Mac.'}
@@ -239,14 +165,14 @@ done
 
 ![](fig/00_mac-cnn-workshop-conda-enviroment-created.png){alt='Screenshot of conda enviroment that has been created on a Mac.'}
 
-After the environment is created we tell Anaconda to use the new environment with the conda keywords `conda activate` followed by the environment name:
+After the environment is created we tell Conda to use the new environment with the keywords `conda activate` followed by the name of the environment:
 
 ```code
 (base) Mac:cnn-workshop ace$ conda activate cnn_workshop
 (cnn_workshop) Mac:cnn-workshop ace$ 
 ```
 
-You will know you are in the right environment because the prompt changes from (base) to (cnn_workshop).
+You will know you are in the right environment because the prompt changes from `(base)` to `(cnn_workshop)`.
 
 ![](fig/00_mac-activate-conda-enviroment.png){alt='Screenshot of activate conda enviroment on a Mac.'}
 
@@ -264,9 +190,13 @@ TODO check if this is because of the integrated GPU and if so, can Intel version
 :::::::::::::::::::::::: solution
 ## Linux
 
-Within Linux, there is no Anaconda Prompt application, thus once the anaconda installation has been completed, simply start a terminal session.
+Start a terminal session:
 
-To create a new environment for this lesson, the command starts with the conda keywords `conda create`. This command can be followed by a name for the new environment and the package(s) to install.  To make things easier, inside the unziped intro-image-classification-cnn  folder, we have given you an environment.yml file to use instead. (See download link above if you haven't already.)
+Note the prompt notation inside the terminal window. The name inside the parentheses refers to which conda environment you are working in. `base` is the name given to the default environment included with every conda distribution.
+
+To create a new environment, the command starts with the conda keywords `conda env create` followed by a name for the new environment and the package(s) to install.
+
+To make things easier for this lesson, use the `cnn_workshop_MACOS_environment.yml` file inside the `files` folder of the [workshop files](#download-workshop-files).
 
 ```code
 $ conda env create --file cnn_workshop_environment.yml
@@ -279,7 +209,7 @@ $ conda env create --file intro-image-classification-cnn/files/cnn_workshop_envi
 ```
 Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.  
 
-***Note, in the screen shots below, I haven't initilised conda, so I had to give it the path to where anaconda was installed.***
+***Note, in the screen shots below, I haven't initilised conda, so I had to give it the path to where Miniforge was installed.***
 
 ![](fig/00_linux-create-conda-enviroment-using-yml-file-1.png){alt='Screenshot of creating conda enviroment on a Linux.'}
 
@@ -322,13 +252,15 @@ $ conda activate cnn_workshop
 
 ## Start Spyder
 
-We teach this lesson using Python in [Spyder] (Scientific Python Development Environment), a free integrated development environment (IDE) included with Anaconda. Editing, interactive testing, debugging, and introspection tools are all included in Spyder.
+We teach this lesson using Python in [Spyder] (Scientific Python Development Environment), a free integrated development environment (IDE) and offers code development, interactive testing, debugging, and introspection tools.
 
 To start Spyder, type the command `spyder`, making sure you are still in the workshop environment:
 
-```conda
+```
 (cnn_workshop) C:\Users\Lab> spyder
 ```
+
+### Spyder IDE components
 
 ![](fig/00_spyder_ide_layout.png){alt='Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas'}
 
@@ -375,26 +307,27 @@ Your package versions may vary from the screenshot below but this is similar to 
 
 ## Set the working directory
 
-There are a couple different ways to set the working directory in Spyder. The easiest way is to use the folder icon found on the upper right hand side of the toolbar. Click the folder icon and navigate to '.../intro-image-classification-cnn/scripts' where '...' is your project folder. Verify you are in the right place by selecting the 'Files' pane just below the toolbar and verify its contents.
+To set the working directory in Spyder, click on the folder icon (upper right hand side of the toolbar) and navigate to `.../intro-image-classification-cnn/scripts` where '...' is your project folder. 
+
+Verify you are in the right place by selecting the `Files` pane just below the toolbar and check its contents.
 
 ![](fig/00_spyder_workingdir_scripts.png){alt='Screenshot of the contents of the scripts folder in the Files tab of the Spyder window after using the folder icon to set the working directory.'}
 
 ## Get the data
 
-This lesson uses the CIFAR-10 image dataset that comes prepackaged with Keras. There are no additional steps needed to access the data.
-
+This lesson uses a subset of the CIFAR-10 image dataset. The data is included in the [workshop files](#download-workshop-files).
 
 <!-- Collect your link references at the bottom of your document -->
-
 [Plotting and Programming in Python]: https://swcarpentry.github.io/python-novice-gapminder/
+[Miniforge]: https://conda-forge.org/download/
 [Conda]: https://docs.conda.io/projects/conda/en/latest/
 [Python]: https://python.org
 [Anaconda]: https://www.anaconda.com/products/individual
 [Windows - Video tutorial]: https://www.youtube.com/watch?v=xxQ0mzZ8UvA
 [Mac OS X - Video tutorial]: https://www.youtube.com/watch?v=TcSAln46u9U
 [these instructions]: https://docs.anaconda.com/anaconda/install/update-version/
-[pip]: (https://pip.pypa.io/en/stable/)
+[pip]: https://pip.pypa.io/en/stable/
 [Spyder]: https://www.spyder-ide.org/
-[scripts, files, and model outputs]: https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link
+[data, files, and scripts]: https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link
 
 

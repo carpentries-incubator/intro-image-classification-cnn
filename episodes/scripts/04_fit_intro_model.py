@@ -138,7 +138,7 @@ history_intro = model_intro.fit(x = train_images, y = train_labels,
 
 #%%
 # save the model
-model_intro.save('fit_outputs/model_intro.keras')
+model_intro.save('models/model_intro.keras')
 
 #%%
 

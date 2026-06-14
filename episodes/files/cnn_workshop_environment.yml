@@ -1,11 +1,10 @@
 name: cnn_workshop
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - python=3.11
   - matplotlib
-  - numpy
+  - numpy<2
   - pandas
   - pip
   - scikit-learn

@@ -50,5 +50,8 @@ docs/
 po/*~
 
 # outputs from running code
-episodes/scripts/fit_outputs/*
+episodes/scripts/models/*
 episodes/scripts/__pycache__/*
+
+# cifar images
+.png

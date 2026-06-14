@@ -118,7 +118,7 @@ history_dropout = model_dropout.fit(x = train_images, y = train_labels,
 
 
 # save dropout model
-model_dropout.save('fit_outputs/model_dropout.keras')
+model_dropout.save('models/model_dropout.keras')
 
 # inspect the training results
 

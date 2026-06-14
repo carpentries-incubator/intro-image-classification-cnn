@@ -1,7 +1,7 @@
 ---
 title: 'Introduction to Image Data'
-teaching: 10
-exercises: 2
+teaching: 30
+exercises: 3
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -21,11 +21,11 @@ In Episode 1, we used prepared data to train a simple image classification model
 
 In this episode, we’ll take a closer look at how image datasets are organised and loaded into Python.
 
-Depending on your situation, you will either use a pre-existing dataset, prepare your own data for training or some combination of the two. In most cases, however, you will need to take some steps to prepare your data for training.
+Depending on your situation, you will either use a pre-existing dataset, prepare your own data for training, or some combination of the two.
 
 In this workshop, we’ll use a prepared dataset so we can focus on the deep learning workflow but in real-world projects, you may need to collect, label, resize, and split your own images.
 
-Before jumping into more specific tasks, it's important to understand thatmages on a computer are stored as numbers. For colour images, these numbers represent red, green, and blue (RGB) values.
+Before jumping into more specific tasks, it's important to understand that images on a computer are stored as numbers. For colour images, these numbers represent red, green, and blue (RGB) values.
 
 
 ### Images are data
@@ -53,12 +53,11 @@ In this workshop, we use a small subset of the CIFAR-10 dataset containing image
 - dog
 - truck
 
-For learning purposes, and to make computation faster, a much smaller, random selection of images from the full dataset was used
+For learning purposes, and to make computation faster, a much smaller, random selection of images from the full dataset was used.
 
 Most importantly, the data was split it into three distinct subsets: train, validation and test.
 
 ::::::::::::::::::::::::::::::::::::::::: callout
-
 We use different parts of the dataset for different purposes:
 
 - **Training set**: used to teach the model
@@ -75,13 +74,13 @@ The way your data is organised matters - it affects whether and how easily it ca
 For example, to use the `tf.keras.utils.image_dataset_from_directory()` function packaged with Tensorflow, we use folder names to indicate which split the data belongs to and what class name to use as the label. This saves us from having to label each image individually.
 
 
-#### How the images are organised
+#### How our images are organised
 
-Our images are stored in folders. Each class has its own folder, and the data is already split into training, validation, and test sets.
+Our images are stored in folders; each class has its own folder and the data is split into training, validation, and test sets. For example:
 
-For example:
-
-```data/
+```
+cifar10_images_small/
+|
 ├── train/
 │   ├── airplane/
 │   ├── bird/
@@ -111,42 +110,39 @@ Look at the folder structure for the dataset.
 - How does Keras know which label belongs to each image?
 
 :::::::::::::::::::::::: solution
-
 - There are five classes.
 - Keras uses the folder names as the class labels.
-
 ::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
-
 ## Understanding the dataset contents
 
-The dataset contains 1500 images across 5 classes, split into training (1000), validation (250), and test (250).
+The dataset contains 1500 images across 5 classes and randomly split into training, validation, and test sets.
 
 - How many images would you expect in each split?
-- How many images per class would you expect in the training set?
+- How many images per class would you expect in the training set if it was balanced?
 
 :::::::::::::::::::::::: solution
+Answers may vary. For a 60:20:20 split you might expect: 
 
 - Training: 900 images  
-- Validation: 250 images  
+- Validation: 300 images  
 - Test: 300 images  
 
-- Each class has 250 images total, so 150 per class in the training set
-
+If training set had 900 images, you would expect 180 images per class in a well-balanced set.
 ::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Load the datasets
 
-In the last episode, we used one of the helper functions in `icwithcnn_functions.py` to prepare our datasets: `icfn.prepare_datasets()`
+In the last episode, we used the `icfn.prepare_datasets()` helper function in `icwithcnn_functions.py` to prepare our datasets: 
 
 Let us now see how to write the code inside that helper function. This is the same type of dataset we used in Episode 1 — here we’re just seeing how it is created.  
 
-We'll start with the training dataset since the other two will be very similar and we'll use the `tf.keras.utils.image_dataset_from_directory()` function. 
+We'll start by preparing the training dataset with the understanding that the The other two splits sets will be prepared similarly.
 
-We want to specify:
+Using the `tf.keras.utils.image_dataset_from_directory()` function, we specify:
 
 - the file path to the top level folder for the data
 - the size of the images in pixels (`image_size`)
@@ -173,11 +169,11 @@ Found 1000 files belonging to 5 classes.
 Train_ds: <_PrefetchDataset element_spec=(TensorSpec(shape=(None, 32, 32, 3), dtype=tf.float32, name=None), TensorSpec(shape=(None,), dtype=tf.int32, name=None))>
 ```
 
-The object returned by this function might look unfamiliar. Instead of loading all images at once, it loads them in batches as needed.
+The object returned by this function might look unfamiliar. That's because, instead of loading all the images at once, it loads them in batches as needed.
 
 How do we inspect what was loaded?
 
-Let us first extract class names directly from the dataset:
+We can extract class names directly from the dataset:
 
 ```python
 # extract the list of class names
@@ -188,7 +184,7 @@ print(class_names)
 ['airplane', 'bird', 'cat', 'dog', 'truck']
 ```
 
-Then we can look at a single batch to find information about the training images and labels.
+We can look at a single batch to find information about the training images and labels.
 
 ```python
 # inspect one batch of images and labels
@@ -220,7 +216,6 @@ Data type:  <dtype: 'float32'>
 Pixel value range: 15.0 253.0
 ```
 ::::::::::::::::::::::::::::::::::::::::: callout
-
 A note about pixel values
 
 The images are loaded with pixel values between 0 and 255.
@@ -231,10 +226,9 @@ In this workshop, we will do this inside the model before training.
 :::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
-
 ## On your own - prepare the Test dataset
 
-Using what we've learned in this lesson with the training dataset, perform the same steps for the test dataset.
+Using what we've learned in this lesson with the **training** dataset, perform the same steps for the **test** dataset.
 
 1) Write the code to load the test data 
 
@@ -250,7 +244,7 @@ Using what we've learned in this lesson with the training dataset, perform the s
 
 :::::::::::::::::::::::: solution
 ```python
-# create test dataeset from folder of cifar images
+# create test dataset from folder of cifar images
 test_ds = tf.keras.utils.image_dataset_from_directory(
     "../data/cifar10_images_small/test",
     image_size = (32, 32),
@@ -275,11 +269,10 @@ for images, labels in test_ds.take(1):
 ::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-We now understand how the function we use to prepare our data works which means we are ready to learn how to build a CNN.
+Now we understand how to prepare our data works we are ready to learn how to build a CNN.
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
-
 - Images consist of pixels arranged in a particular order.
 - Image datasets can be organised into folders where each folder represents a class.
 - `image_dataset_from_directory()` lets us load images without writing custom data preparation code.
@@ -289,6 +282,5 @@ We now understand how the function we use to prepare our data works which means 
 
 <!-- Collect your link references at the bottom of your document -->
 [CIFAR-10]: https://www.cs.toronto.edu/~kriz/cifar.html
- https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image
 [keras.utils.image_dataset_from_directory()]:  https://keras.io/api/data_loading/image/
 

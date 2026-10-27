@@ -14,7 +14,7 @@ import tensorflow as tf # neural network
 #%%
 # create training dataset from folder of cifar images
 train_ds = tf.keras.utils.image_dataset_from_directory(
-    "../data/cifar10_images_small/train",
+    directory = "../data/cifar10_images_small/train",
     image_size = (32, 32),
     batch_size = 32,
     shuffle = True,
@@ -35,23 +35,25 @@ for images, labels in train_ds.take(1):
     print("Train images batch shape:", images.shape)
     print("Train labels batch shape:", labels.shape)
     
- #%%
- # inspect image data types and pixel values
+#%%
+# inspect image data types and pixel values
 for images, labels in train_ds.take(1):
     print("Data type: ", images.dtype)
     print("Pixel value range:", images[0].numpy().min(), images[0].numpy().max())
 
 
 #%%
- # CHALLENGE Inspect the `test` dataset
+# CHALLENGE Inspect the `test` dataset
  
 # create test dataeset from folder of cifar images
 test_ds = tf.keras.utils.image_dataset_from_directory(
-    "../data/cifar10_images_small/test",
+    directory = "../data/cifar10_images_small/test",
     image_size = (32, 32),
     batch_size = 32,
-    shuffle = False,
+    shuffle = False
 )
+
+print("Test_ds:", test_ds)
 
 # class names
 print("Test class names: ", test_ds.class_names)
@@ -60,9 +62,3 @@ print("Test class names: ", test_ds.class_names)
 for images, labels in test_ds.take(1):
     print("Test images batch shape:", images.shape)
     print("Test labels batch shape:", labels.shape)
-
-# total number of images
-# 250 as noted previously
-
-# images in each class
-# ????

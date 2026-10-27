@@ -154,7 +154,7 @@ In today's workshop we want to build an architecture for training purpurses. For
 
 ```python
 # create the introduction model using pre-defined function
-model_intro = create_model_intro()
+model_intro = icfn.create_model_intro()
 ```
 
 ### Step 5. Choose a loss function and optimizer and compile model
@@ -230,10 +230,20 @@ To make a single prediction we need to first extract a single image and its asso
 for images, labels in test_ds.take(1):
     first_image = images[0]
     first_label = labels[0]
-    
+   
+# display image
+plt.imshow(first_image.numpy().astype("uint8"))
+plt.title('Predicted:' + class_names[predicted_label])
+plt.axis("off")
+plt.show() 
+```
+
+![](fig/01_test_image.png){alt='poor resolution image of an dog'}
+
+
+```python
 # use the model to predict class
 prediction = model_intro.predict(tf.expand_dims(first_image, axis=0))
-print("Predict:", prediction)
 
 # extract class name with highest probability
 predicted_label = tf.argmax(prediction[0])
@@ -243,26 +253,22 @@ print("True class:", class_names[first_label])
 ```
 ```output
 1/1 [==============================] - 0s 11ms/step
-Predict: [[3.0071956e-01 9.7787231e-20 6.9927925e-01 5.2796623e-32 1.1614857e-06]]
 Predicted class: cat
 True class: airplane
 ```
 
 Congratulations, you just created your first image classification model! 
-Notice that the model doesn’t just give one answer — it assigns a probability to each class. The class with the highest probability becomes the prediction.
 
-Was the classification correct? Let's plot the first test image with its true label:
+Notice that the model doesn’t just give one answer — it assigns a probability to each class and `argmax` returns the class with the highest probability.
 
-```python
-# display image
-plt.imshow(test_images[0])
-plt.title('Predicted:' + class_names[predicted_label])
-plt.axis("off")
-plt.show() 
 ```
-
-![](fig/01_test_image.png){alt='poor resolution image of an dog'}
-
+# inspect predictions
+print("Predict:", prediction)
+```
+```output
+Predict: [[5.02035176e-12 1.04303834e-13 2.50770455e-07 9.99999762e-01
+  4.40039845e-11]]
+```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 ## Interpreting the prediction

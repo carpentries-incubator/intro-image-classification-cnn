@@ -66,7 +66,7 @@ Next identify what the inputs and outputs of the neural network. In our case, th
 ### Step 3. Prepare data
 Many datasets are not ready for immediate use in a deep learning and require some preparation. Neural networks can really only deal with numerical data, so any non-numerical data (e.g., images) have to be converted to numerical data.
 
-For this lesson, we use an existing image dataset known as [CIFAR-10] (Canadian Institute for Advanced Research).
+For this lesson, we use an existing image dataset known as [CIFAR-10][CIFAR-10]{target="_blank"} (Canadian Institute for Advanced Research).
 
 More information on preparing data is explored in [Episode 02 Introduction to Image Data](episodes/02-image-data) but for now we'll use a custom-defined function.
 

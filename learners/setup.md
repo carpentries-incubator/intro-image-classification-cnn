@@ -274,6 +274,18 @@ To start Spyder, type the command `spyder`, making sure you are still in the wor
 
 Be patient! It can take a long time for the Spyder application to launch.
 
+::::::::::::::::::::::::::::::::::::::::: callout
+Do not update Spyder
+
+If you get a pop-up advising you to upgrade spyder, **do not update it**.
+
+The version of Spyder installed in this environment has been tested with the Python, TensorFlow, and other package versions used in this workshop. Updating Spyder may change package dependencies and could cause compatibility problems later in the workshop.
+
+Simply close the update notification and continue with the workshop.
+
+![](fig/00_spyder_ide_upgrade_warning.png){alt='Screenshot of the Spyder IDE warning advising you to update the version.'}
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
 ### Spyder IDE components
 
 ![](fig/00_spyder_ide_layout.png){alt='Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas'}

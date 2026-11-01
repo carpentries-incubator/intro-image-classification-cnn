@@ -230,19 +230,8 @@ To make a single prediction we need to first extract a single image and its asso
 for images, labels in test_ds.take(1):
     first_image = images[0]
     first_label = labels[0]
-   
-# display image
-plt.imshow(first_image.numpy().astype("uint8"))
-plt.title('Predicted:' + class_names[predicted_label])
-plt.axis("off")
-plt.show() 
-```
-
-![](fig/01_test_image.png){alt='poor resolution image of an dog'}
-
-
-```python
-# use the model to predict class
+  
+  # use the model to predict class
 prediction = model_intro.predict(tf.expand_dims(first_image, axis=0))
 
 # extract class name with highest probability
@@ -256,6 +245,19 @@ print("True class:", class_names[first_label])
 Predicted class: cat
 True class: airplane
 ```
+
+Let's check it visually!
+
+```python
+# display image
+plt.imshow(first_image.numpy().astype("uint8"))
+plt.title('Predicted:' + class_names[predicted_label])
+plt.axis("off")
+plt.show() 
+```
+
+![](fig/01_test_image.png){alt='poor resolution image of an dog'}
+
 
 Congratulations, you just created your first image classification model! 
 

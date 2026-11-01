@@ -222,7 +222,7 @@ There are several ways to reduce overfitting. Common approaches include:
 - simplifying the model (fewer layers or parameters)  
 - adding techniques that help the model generalise better  
 
-These approaches aim to help the model focus on general patterns rather than memorising the training data. In a later episode, we’ll look at one of these techniques: **dropout**.
+These approaches aim to help the model focus on general patterns rather than memorising the training data.
 
 
 ## What did we do?

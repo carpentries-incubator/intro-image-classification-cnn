@@ -354,6 +354,6 @@ This lesson uses a subset of the CIFAR-10 image dataset. The data is included in
 [these instructions]: https://docs.anaconda.com/anaconda/install/update-version/
 [pip]: https://pip.pypa.io/en/stable/
 [Spyder]: https://www.spyder-ide.org/
-[data, files, and scripts]: https://drive.google.com/file/d/1SpcusVYomhukFKWuUcK7LwF7RtrKB8Z_/view?usp=drive_link
+[data, files, and scripts]: https://drive.google.com/file/d/18U-RGwVBpKCsSG2hJqv29QKAhs6MCGL9/view?usp=drive_link
 
 

@@ -87,31 +87,7 @@ x_intro = tf.keras.layers.Conv2D(filters=16,
                                  kernel_size=(3,3),
                                  activation='relu')(inputs_intro)
 ```
-
-::::::::::::::::::::::::::::::::::::: challenge 
-## Create a convolutional layer
-
-Create a Conv2D layer with:
-- 16 filters
-- a 3x3 kernel size
-- 'relu' activation function.
-
-Use `inputs_intro` as the input.
-```python
-x_intro = tf.keras.layers.Conv2D(filters=_____, 
-                                 kernel_size=_____, 
-                                 activation=_____)(inputs_intro)
-```
-
-:::::::::::::::::::::::: solution 
-```python
-x_intro = tf.keras.layers.Conv2D(
-    filters=16,
-    kernel_size=(3, 3),
-    activation='relu')(inputs_intro)
-```
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::                              
+                        
 
 #### **Pooling Layers**
 

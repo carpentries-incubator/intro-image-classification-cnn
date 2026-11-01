@@ -259,13 +259,15 @@ print("Test class names: ", test_ds.class_names)
 for images, labels in test_ds.take(1):
     print("Test images batch shape:", images.shape)
     print("Test labels batch shape:", labels.shape)
-
-# total number of images
-# 250 as noted previously
-
-# images in each class
-# ????
 ```
+```output
+Found 250 files belonging to 5 classes.
+Test_ds: <_PrefetchDataset element_spec=(TensorSpec(shape=(None, 32, 32, 3), dtype=tf.float32, name=None), TensorSpec(shape=(None,), dtype=tf.int32, name=None))>
+Test class names:  ['airplane', 'bird', 'cat', 'dog', 'truck']
+Test images batch shape: (32, 32, 32, 3)
+Test labels batch shape: (32,)
+```
+
 ::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

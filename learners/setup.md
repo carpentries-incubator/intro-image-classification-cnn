@@ -98,22 +98,26 @@ To create a new environment, the command starts with the conda keywords `conda e
 To make things easier for this lesson, use the `cnn_workshop_environment.yml` file inside the `files` folder of the [workshop files](#download-workshop-files).
 
 ```code
-(base) C:\Users\Lab> conda env create --file cnn_workshop_environment.yml
+(base) C:\Users\Lab> cd "C:\Users\Lab\intro-image-classification-cnn"
+(base) C:\Users\Lab\intro-image-classification-cnn> conda env create --file files/cnn_workshop_environment.yml
 ```
 
+::::::::::::::::::::::::::::::::::::::::: callout
 If the yml is not in your current directory, you can specify the full path to the file, eg:
 
 ```code
-(base) C:\Users\Lab> conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_environment.yml
+(base) C:\Users\Lab> cd "C:\Users\Lab\intro-image-classification-cnn"
+(base) C:\Users\Lab\intro-image-classification-cnn> conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_environment.yml
 ```
+:::::::::::::::::::::::::::::::::::::::::::::::::
 
 Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.
 
 After the environment is created we tell Conda to use the new environment with the keywords `conda activate` followed by the name of the environment:
 
 ```code
-(base) C:\Users\Lab> conda activate cnn_workshop
-(cnn_workshop) C:\Users\Lab>
+(base) C:\Users\Lab\intro-image-classification-cnn> conda activate cnn_workshop
+(cnn_workshop) C:\Users\Lab\intro-image-classification-cnn>
 ```
 
 You will know you are in the right environment because the prompt changes from `(base)` to `(cnn_workshop)`.
@@ -132,14 +136,18 @@ To create a new environment, the command starts with the conda keywords `conda e
 To make things easier for this lesson, use the `cnn_workshop_MACOS_environment.yml` file inside the `files` folder of the [workshop files](#download-workshop-files).
 
 ```code
+(base) Mac$ cd "C:\Users\Lab\intro-image-classification-cnn"
 (base) Mac$ conda env create --file cnn_workshop_MACOS_environment.yml
 ```
 
+::::::::::::::::::::::::::::::::::::::::: callout
 If the yml is not in your current directory, you can specify the full path to the file, eg:
 
 ```code
+(base) Mac$ cd "C:\Users\Lab\intro-image-classification-cnn"
 (base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_MACOS_environment.yml
 ```
+:::::::::::::::::::::::::::::::::::::::::::::::::
 
 ![](fig/00_mac-create-cnn-workshop-conda-enviroment.png){alt='Screenshot of create conda enviroment on a Mac.'}
 
@@ -199,14 +207,18 @@ To create a new environment, the command starts with the conda keywords `conda e
 To make things easier for this lesson, use the `cnn_workshop_MACOS_environment.yml` file inside the `files` folder of the [workshop files](#download-workshop-files).
 
 ```code
+$ cd "C:\Users\Lab\intro-image-classification-cnn"
 $ conda env create --file cnn_workshop_environment.yml
 ```
-
+::::::::::::::::::::::::::::::::::::::::: callout
 If the yml is not in your current directory, you can specify the full path to the file, eg:
 
 ```code
+$ cd "C:\Users\Lab\intro-image-classification-cnn"
 $ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml
 ```
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
 Be patient because it might take a while (15-20 min) for conda to work out all of the dependencies.  
 
 ***Note, in the screen shots below, I haven't initilised conda, so I had to give it the path to where Miniforge was installed.***
@@ -257,8 +269,22 @@ We teach this lesson using Python in [Spyder] (Scientific Python Development Env
 To start Spyder, type the command `spyder`, making sure you are still in the workshop environment:
 
 ```
-(cnn_workshop) C:\Users\Lab> spyder
+(cnn_workshop) C:\Users\Lab\intro-image-classification-cnn> spyder
 ```
+
+Be patient! It can take a long time for the Spyder application to launch.
+
+::::::::::::::::::::::::::::::::::::::::: callout
+Do not update Spyder
+
+If you get a pop-up advising you to upgrade spyder, **do not update it**.
+
+The version of Spyder installed in this environment has been tested with the Python, TensorFlow, and other package versions used in this workshop. Updating Spyder may change package dependencies and could cause compatibility problems later in the workshop.
+
+Simply close the update notification and continue with the workshop.
+
+![](fig/00_spyder_ide_upgrade_warning.png){alt='Screenshot of the Spyder IDE warning advising you to update the version.'}
+:::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Spyder IDE components
 

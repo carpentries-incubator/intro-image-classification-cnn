@@ -75,17 +75,16 @@ history_intro = model_intro.fit(x = train_ds)
 for images, labels in test_ds.take(1):
     first_image = images[0]
     first_label = labels[0]
-    
+
+   
 # use the model to predict class
 prediction = model_intro.predict(tf.expand_dims(first_image, axis=0))
-print("Predict:", prediction)
 
 # extract class name with highest probability
 predicted_label = tf.argmax(prediction[0])
 
 print("Predicted:", class_names[predicted_label])
 print("True:", class_names[first_label])
-
 
 #%%
 
@@ -94,6 +93,12 @@ plt.imshow(first_image.numpy().astype("uint8"))
 plt.title('Predicted:' + class_names[predicted_label])
 plt.axis("off")
 plt.show() 
+
+
+#%%
+
+# inspect prediction
+print("Predict:", prediction)
 
 #%%
 

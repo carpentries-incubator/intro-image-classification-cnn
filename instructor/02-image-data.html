@@ -335,7 +335,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Image Data</h1>
-        <p>Last updated on 2026-06-14 |
+        <p>Last updated on 2026-11-01 |
 
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -695,13 +695,16 @@ training.</p>
 <span id="cb10-12"><a href="#cb10-12" tabindex="-1" aria-label="code-block-10-12"></a><span class="co"># dimensions of the images and labels</span></span>
 <span id="cb10-13"><a href="#cb10-13" tabindex="-1" aria-label="code-block-10-13"></a><span class="cf">for</span> images, labels <span class="kw">in</span> test_ds.take(<span class="dv">1</span>):</span>
 <span id="cb10-14"><a href="#cb10-14" tabindex="-1" aria-label="code-block-10-14"></a>    <span class="bu">print</span>(<span class="st">"Test images batch shape:"</span>, images.shape)</span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1" aria-label="code-block-10-15"></a>    <span class="bu">print</span>(<span class="st">"Test labels batch shape:"</span>, labels.shape)</span>
-<span id="cb10-16"><a href="#cb10-16" tabindex="-1" aria-label="code-block-10-16"></a></span>
-<span id="cb10-17"><a href="#cb10-17" tabindex="-1" aria-label="code-block-10-17"></a><span class="co"># total number of images</span></span>
-<span id="cb10-18"><a href="#cb10-18" tabindex="-1" aria-label="code-block-10-18"></a><span class="co"># 250 as noted previously</span></span>
-<span id="cb10-19"><a href="#cb10-19" tabindex="-1" aria-label="code-block-10-19"></a></span>
-<span id="cb10-20"><a href="#cb10-20" tabindex="-1" aria-label="code-block-10-20"></a><span class="co"># images in each class</span></span>
-<span id="cb10-21"><a href="#cb10-21" tabindex="-1" aria-label="code-block-10-21"></a><span class="co"># ????</span></span></code></pre>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1" aria-label="code-block-10-15"></a>    <span class="bu">print</span>(<span class="st">"Test labels batch shape:"</span>, labels.shape)</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Found 250 files belonging to 5 classes.
+Test_ds: &lt;_PrefetchDataset element_spec=(TensorSpec(shape=(None, 32, 32, 3), dtype=tf.float32, name=None), TensorSpec(shape=(None,), dtype=tf.int32, name=None))&gt;
+Test class names:  ['airplane', 'bird', 'cat', 'dog', 'truck']
+Test images batch shape: (32, 32, 32, 3)
+Test labels batch shape: (32,)</code></pre>
 </div>
 </div>
 </div>
@@ -798,8 +801,8 @@ any links that you are not going to use.
   "url": "https://erinmgraham.github.io/icwithcnn/instructor/02-image-data.html",
   "identifier": "https://erinmgraham.github.io/icwithcnn/instructor/02-image-data.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2026-06-14",
-  "datePublished": "2026-10-27"
+  "dateModified": "2026-11-01",
+  "datePublished": "2026-11-01"
 }
 
   </script><script>

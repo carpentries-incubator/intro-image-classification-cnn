@@ -344,7 +344,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Deep Learning</h1>
-        <p>Last updated on 2026-06-14 |
+        <p>Last updated on 2026-11-01 |
 
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -435,8 +435,8 @@ image.</p>
 require some preparation. Neural networks can really only deal with
 numerical data, so any non-numerical data (e.g., images) have to be
 converted to numerical data.</p>
-<p>For this lesson, we use an existing image dataset known as <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link">CIFAR-10</a>
-(Canadian Institute for Advanced Research).</p>
+<p>For this lesson, we use an existing image dataset known as <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" class="external-link">CIFAR-10</a> (Canadian Institute for Advanced
+Research).</p>
 <p>More information on preparing data is explored in <a href="02-image-data">Episode 02 Introduction to Image Data</a> but for
 now we’ll use a custom-defined function.</p>
 <div id="callout1" class="callout">
@@ -523,7 +523,7 @@ about this dataset?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Answers will vary.</p>
 <ul><li>Are the images clear and easy to interpret?</li>
@@ -559,7 +559,7 @@ Neural Network</a>.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="co"># create the introduction model using pre-defined function</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>model_intro <span class="op">=</span> create_model_intro()</span></code></pre>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>model_intro <span class="op">=</span> icfn.create_model_intro()</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -638,7 +638,7 @@ performing?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Answers may vary.</p>
 <ul><li>The accuracy is quite low, so the model is not making many correct
@@ -672,41 +672,47 @@ predict the class of that image.</p>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="cf">for</span> images, labels <span class="kw">in</span> test_ds.take(<span class="dv">1</span>):</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>    first_image <span class="op">=</span> images[<span class="dv">0</span>]</span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a>    first_label <span class="op">=</span> labels[<span class="dv">0</span>]</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a>    </span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a><span class="co"># use the model to predict class</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a>  </span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a>  <span class="co"># use the model to predict class</span></span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a>prediction <span class="op">=</span> model_intro.predict(tf.expand_dims(first_image, axis<span class="op">=</span><span class="dv">0</span>))</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a><span class="bu">print</span>(<span class="st">"Predict:"</span>, prediction)</span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a><span class="co"># extract class name with highest probability</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1" aria-label="code-block-8-11"></a>predicted_label <span class="op">=</span> tf.argmax(prediction[<span class="dv">0</span>])</span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1" aria-label="code-block-8-12"></a></span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1" aria-label="code-block-8-13"></a><span class="bu">print</span>(<span class="st">"Predicted class:"</span>, class_names[predicted_label])</span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1" aria-label="code-block-8-14"></a><span class="bu">print</span>(<span class="st">"True class:"</span>, class_names[first_label])</span></code></pre>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a><span class="co"># extract class name with highest probability</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a>predicted_label <span class="op">=</span> tf.argmax(prediction[<span class="dv">0</span>])</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1" aria-label="code-block-8-11"></a></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1" aria-label="code-block-8-12"></a><span class="bu">print</span>(<span class="st">"Predicted class:"</span>, class_names[predicted_label])</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1" aria-label="code-block-8-13"></a><span class="bu">print</span>(<span class="st">"True class:"</span>, class_names[first_label])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>1/1 [==============================] - 0s 11ms/step
-Predict: [[3.0071956e-01 9.7787231e-20 6.9927925e-01 5.2796623e-32 1.1614857e-06]]
 Predicted class: cat
 True class: airplane</code></pre>
 </div>
-<p>Congratulations, you just created your first image classification
-model! Notice that the model doesn’t just give one answer — it assigns a
-probability to each class. The class with the highest probability
-becomes the prediction.</p>
-<p>Was the classification correct? Let’s plot the first test image with
-its true label:</p>
+<p>Let’s check it visually!</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="co"># display image</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a>plt.imshow(test_images[<span class="dv">0</span>])</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a>plt.imshow(first_image.numpy().astype(<span class="st">"uint8"</span>))</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a>plt.title(<span class="st">'Predicted:'</span> <span class="op">+</span> class_names[predicted_label])</span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a>plt.axis(<span class="st">"off"</span>)</span>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a>plt.show() </span></code></pre>
 </div>
-<figure><img src="fig/01_test_image.png" alt="poor resolution image of an dog" class="figure mx-auto d-block"></figure><div id="interpreting-the-prediction" class="callout challenge">
+<figure><img src="fig/01_test_image.png" alt="poor resolution image of an dog" class="figure mx-auto d-block"></figure><p>Congratulations, you just created your first image classification
+model!</p>
+<p>Notice that the model doesn’t just give one answer — it assigns a
+probability to each class and <code>argmax</code> returns the class with
+the highest probability.</p>
+<pre><code><span><span class="co"># inspect predictions</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="st">"Predict:"</span>, <span class="va">prediction</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Predict: [[5.02035176e-12 1.04303834e-13 2.50770455e-07 9.99999762e-01
+  4.40039845e-11]]</code></pre>
+</div>
+<div id="interpreting-the-prediction" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -725,7 +731,7 @@ its true label:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Answers may vary.</p>
 <ul><li>The model made an incorrect prediction<br></li>
@@ -767,11 +773,11 @@ your dataset can enhance model performance.</p>
 share it with others. This includes both the model structure and what it
 has learned, so others can use it, with or without retraining.</p>
 <p>To share the model we must save it.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="co"># save  model</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a>model_intro.save(<span class="st">'models/model_intro.keras'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="co"># save  model</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a>model_intro.save(<span class="st">'../models/model_intro.keras'</span>)</span></code></pre>
 </div>
 <div id="callout2" class="callout">
 <div class="callout-square">
@@ -784,11 +790,11 @@ has learned, so others can use it, with or without retraining.</p>
 <p>If the <code>models</code> folder does not already exist, Python will
 return an error when trying to save the model.</p>
 <p>You can create it first with:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="im">import</span> os</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a>os.makedirs(<span class="st">"models"</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="im">import</span> os</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a>os.makedirs(<span class="st">"../models"</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -879,8 +885,8 @@ any links that you are not going to use.
   "url": "https://erinmgraham.github.io/icwithcnn/01-introduction.html",
   "identifier": "https://erinmgraham.github.io/icwithcnn/01-introduction.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2026-06-14",
-  "datePublished": "2026-10-27"
+  "dateModified": "2026-11-01",
+  "datePublished": "2026-11-01"
 }
 
   </script><script>

@@ -344,7 +344,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Build a Convolutional Neural Network</h1>
-        <p>Last updated on 2026-06-14 |
+        <p>Last updated on 2026-11-01 |
 
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -457,46 +457,6 @@ layer as its input.</p>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>                                 kernel_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>),</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>                                 activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span></code></pre>
 </div>
-<div id="create-a-convolutional-layer" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="create-a-convolutional-layer" class="callout-inner">
-<h3 class="callout-title">Create a convolutional layer</h3>
-<div class="callout-content">
-<p>Create a Conv2D layer with: - 16 filters - a 3x3 kernel size - ‘relu’
-activation function.</p>
-<p>Use <code>inputs_intro</code> as the input.</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(filters<span class="op">=</span>_____, </span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a>                                 kernel_size<span class="op">=</span>_____, </span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a>                                 activation<span class="op">=</span>_____)(inputs_intro)</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
-<div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>    filters<span class="op">=</span><span class="dv">16</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a>    kernel_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a>    activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="section level4">
 <h4 id="pooling-layers"><strong>Pooling Layers</strong><a class="anchor" aria-label="anchor" href="#pooling-layers"></a></h4>
@@ -505,10 +465,10 @@ on the most important features.</p>
 <p>To create a pooling layer, we need to specify how much to reduce the
 image by using <code>pool_size</code>. A pool size of (2, 2) reduces the
 width and height of the image by half.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span></code></pre>
 </div>
 <div id="deep-learning" class="callout">
 <div class="callout-square">
@@ -520,14 +480,14 @@ width and height of the image by half.</p>
 <div class="callout-content">
 <p>We often repeat this two-layer pattern to learn more complex features
 by, e.g. increasing the number of filters:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>,<span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D((<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>,<span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D((<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span></code></pre>
 </div>
 </div>
 </div>
@@ -539,10 +499,10 @@ by, e.g. increasing the number of filters:</p>
 <h4 id="reshaping-layers-flatten">Reshaping Layers: <strong>Flatten</strong>
 <a class="anchor" aria-label="anchor" href="#reshaping-layers-flatten"></a></h4>
 <p>Flatten turns our 2D feature maps into a single list of numbers.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Flatten()(x_intro)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Flatten()(x_intro)</span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -562,22 +522,22 @@ input.</p>
 classes<br>
 - <code>softmax</code> converts the outputs into probabilities that add
 up to 1</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a>outputs_intro <span class="op">=</span> tf.keras.layers.Dense(units<span class="op">=</span><span class="dv">5</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>outputs_intro <span class="op">=</span> tf.keras.layers.Dense(units<span class="op">=</span><span class="dv">5</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span></code></pre>
 </div>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="putting-it-all-together">Putting it all together<a class="anchor" aria-label="anchor" href="#putting-it-all-together"></a></h2>
 <hr class="half-width"><p>Once you decide on the initial architecture of your CNN, the last
 step to create the model is to bring all of the parts together:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a>model_intro <span class="op">=</span> tf.keras.Model(inputs <span class="op">=</span> inputs_intro,</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>                             outputs <span class="op">=</span> outputs_intro, </span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a>                             name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>model_intro <span class="op">=</span> tf.keras.Model(inputs <span class="op">=</span> inputs_intro,</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a>                             outputs <span class="op">=</span> outputs_intro, </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a>                             name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span></code></pre>
 </div>
 <p>We now have a simple convolutional neural network!</p>
 <p>We can put this code inside a function definition like we used in
@@ -599,41 +559,41 @@ Episode 1.</p>
 </ul></div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="co"># function that defines an introductory convolutional neural network</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="kw">def</span> create_model_intro(input_shape<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>), num_classes<span class="op">=</span><span class="dv">5</span>):</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a>    </span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a>    <span class="co"># CNN Part 1</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1" aria-label="code-block-10-6"></a>    inputs_intro <span class="op">=</span> tf.keras.Input(shape<span class="op">=</span>input_shape)</span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1" aria-label="code-block-10-7"></a>    </span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1" aria-label="code-block-10-8"></a>    <span class="co"># CNN Part 2</span></span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1" aria-label="code-block-10-9"></a>    x_intro <span class="op">=</span> tf.keras.layers.Conv2D(filters<span class="op">=</span><span class="dv">16</span>, </span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1" aria-label="code-block-10-10"></a>                                     kernel_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>), </span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1" aria-label="code-block-10-11"></a>                                     activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1" aria-label="code-block-10-12"></a>    x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span>
-<span id="cb10-13"><a href="#cb10-13" tabindex="-1" aria-label="code-block-10-13"></a>    x_intro <span class="op">=</span> tf.keras.layers.Flatten()(x_intro)</span>
-<span id="cb10-14"><a href="#cb10-14" tabindex="-1" aria-label="code-block-10-14"></a>    </span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1" aria-label="code-block-10-15"></a>    <span class="co"># CNN Part 3</span></span>
-<span id="cb10-16"><a href="#cb10-16" tabindex="-1" aria-label="code-block-10-16"></a>    <span class="co"># Output layer with one unit for each class and softmax activation</span></span>
-<span id="cb10-17"><a href="#cb10-17" tabindex="-1" aria-label="code-block-10-17"></a>    outputs_intro <span class="op">=</span> tf.keras.layers.Dense(units<span class="op">=</span>num_classes,</span>
-<span id="cb10-18"><a href="#cb10-18" tabindex="-1" aria-label="code-block-10-18"></a>                                          activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
-<span id="cb10-19"><a href="#cb10-19" tabindex="-1" aria-label="code-block-10-19"></a>    </span>
-<span id="cb10-20"><a href="#cb10-20" tabindex="-1" aria-label="code-block-10-20"></a>    <span class="co"># create the model</span></span>
-<span id="cb10-21"><a href="#cb10-21" tabindex="-1" aria-label="code-block-10-21"></a>    model_intro <span class="op">=</span> tf.keras.Model(inputs <span class="op">=</span> inputs_intro,</span>
-<span id="cb10-22"><a href="#cb10-22" tabindex="-1" aria-label="code-block-10-22"></a>                                 outputs <span class="op">=</span> outputs_intro, </span>
-<span id="cb10-23"><a href="#cb10-23" tabindex="-1" aria-label="code-block-10-23"></a>                                 name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span>
-<span id="cb10-24"><a href="#cb10-24" tabindex="-1" aria-label="code-block-10-24"></a>    </span>
-<span id="cb10-25"><a href="#cb10-25" tabindex="-1" aria-label="code-block-10-25"></a>    <span class="cf">return</span> model_intro</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="co"># function that defines an introductory convolutional neural network</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="kw">def</span> create_model_intro(input_shape<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>), num_classes<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>    </span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a>    <span class="co"># CNN Part 1</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a>    inputs_intro <span class="op">=</span> tf.keras.Input(shape<span class="op">=</span>input_shape)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a>    </span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a>    <span class="co"># CNN Part 2</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a>    x_intro <span class="op">=</span> tf.keras.layers.Conv2D(filters<span class="op">=</span><span class="dv">16</span>, </span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a>                                     kernel_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>), </span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1" aria-label="code-block-8-11"></a>                                     activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1" aria-label="code-block-8-12"></a>    x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1" aria-label="code-block-8-13"></a>    x_intro <span class="op">=</span> tf.keras.layers.Flatten()(x_intro)</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1" aria-label="code-block-8-14"></a>    </span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1" aria-label="code-block-8-15"></a>    <span class="co"># CNN Part 3</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1" aria-label="code-block-8-16"></a>    <span class="co"># Output layer with one unit for each class and softmax activation</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1" aria-label="code-block-8-17"></a>    outputs_intro <span class="op">=</span> tf.keras.layers.Dense(units<span class="op">=</span>num_classes,</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1" aria-label="code-block-8-18"></a>                                          activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1" aria-label="code-block-8-19"></a>    </span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1" aria-label="code-block-8-20"></a>    <span class="co"># create the model</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1" aria-label="code-block-8-21"></a>    model_intro <span class="op">=</span> tf.keras.Model(inputs <span class="op">=</span> inputs_intro,</span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1" aria-label="code-block-8-22"></a>                                 outputs <span class="op">=</span> outputs_intro, </span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1" aria-label="code-block-8-23"></a>                                 name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1" aria-label="code-block-8-24"></a>    </span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1" aria-label="code-block-8-25"></a>    <span class="cf">return</span> model_intro</span></code></pre>
 </div>
 </div>
 </div>
@@ -643,14 +603,14 @@ Episode 1.</p>
 <h3 id="viewing-the-model">Viewing the model<a class="anchor" aria-label="anchor" href="#viewing-the-model"></a></h3>
 <p>Once a model is created, we can look at a summary of its
 structure.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="co"># create the introduction model</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a>model_intro <span class="op">=</span> create_model_intro()</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1" aria-label="code-block-11-4"></a><span class="co"># view model summary</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1" aria-label="code-block-11-5"></a>model_intro.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="co"># create the introduction model</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>model_intro <span class="op">=</span> create_model_intro()</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1" aria-label="code-block-9-4"></a><span class="co"># view model summary</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1" aria-label="code-block-9-5"></a>model_intro.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -800,8 +760,8 @@ any links that you are not going to use.
   "url": "https://erinmgraham.github.io/icwithcnn/instructor/03-build-cnn.html",
   "identifier": "https://erinmgraham.github.io/icwithcnn/instructor/03-build-cnn.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2026-06-14",
-  "datePublished": "2026-10-27"
+  "dateModified": "2026-11-01",
+  "datePublished": "2026-11-01"
 }
 
   </script><script>

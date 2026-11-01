@@ -575,17 +575,29 @@ environment and the package(s) to install.</p>
 <p>To make things easier for this lesson, use the
 <code>cnn_workshop_environment.yml</code> file inside the
 <code>files</code> folder of the <a href="#download-workshop-files">workshop files</a>.</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file cnn_workshop_environment.yml</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab&gt; cd "C:\Users\Lab\intro-image-classification-cnn"
+(base) C:\Users\Lab\intro-image-classification-cnn&gt; conda env create --file files/cnn_workshop_environment.yml</code></pre>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
 <p>If the yml is not in your current directory, you can specify the full
 path to the file, eg:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_environment.yml</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab&gt; cd "C:\Users\Lab\intro-image-classification-cnn"
+(base) C:\Users\Lab\intro-image-classification-cnn&gt; conda env create --file C:\Users\Lab\intro-image-classification-cnn\files\cnn_workshop_environment.yml</code></pre>
+</div>
+</div>
+</div>
 <p>Be patient because it might take a while (15-20 min) for conda to
 work out all of the dependencies.</p>
 <p>After the environment is created we tell Conda to use the new
 environment with the keywords <code>conda activate</code> followed by
 the name of the environment:</p>
-<pre class="code"><code>(base) C:\Users\Lab&gt; conda activate cnn_workshop
-(cnn_workshop) C:\Users\Lab&gt;</code></pre>
+<pre class="code"><code>(base) C:\Users\Lab\intro-image-classification-cnn&gt; conda activate cnn_workshop
+(cnn_workshop) C:\Users\Lab\intro-image-classification-cnn&gt;</code></pre>
 <p>You will know you are in the right environment because the prompt
 changes from <code>(base)</code> to <code>(cnn_workshop)</code>.</p>
 </div>
@@ -612,10 +624,22 @@ environment and the package(s) to install.</p>
 <p>To make things easier for this lesson, use the
 <code>cnn_workshop_MACOS_environment.yml</code> file inside the
 <code>files</code> folder of the <a href="#download-workshop-files">workshop files</a>.</p>
-<pre class="code"><code>(base) Mac$ conda env create --file cnn_workshop_MACOS_environment.yml</code></pre>
+<pre class="code"><code>(base) Mac$ cd "C:\Users\Lab\intro-image-classification-cnn"
+(base) Mac$ conda env create --file cnn_workshop_MACOS_environment.yml</code></pre>
+<div id="callout3" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
 <p>If the yml is not in your current directory, you can specify the full
 path to the file, eg:</p>
-<pre class="code"><code>(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_MACOS_environment.yml</code></pre>
+<pre class="code"><code>(base) Mac$ cd "C:\Users\Lab\intro-image-classification-cnn"
+(base) Mac$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_MACOS_environment.yml</code></pre>
+</div>
+</div>
+</div>
 <figure><img src="../fig/00_mac-create-cnn-workshop-conda-enviroment.png" alt="Screenshot of create conda enviroment on a Mac." class="figure mx-auto d-block"></figure><p>Be patient because it might take a while (15-20 min) for conda to
 work out all of the dependencies.</p>
 <figure><img src="../fig/00_mac-creating-cnn-workshop-conda-enviroment-1.png" alt="Screenshot of creating conda enviroment on a Mac." class="figure mx-auto d-block"></figure><figure><img src="../fig/00_mac-creating-cnn-workshop-conda-enviroment-1.png" alt="Screenshot of creating conda enviroment on a Mac." class="figure mx-auto d-block"></figure><p>If it installs correctly, you should get the following output on the
@@ -670,10 +694,22 @@ environment and the package(s) to install.</p>
 <p>To make things easier for this lesson, use the
 <code>cnn_workshop_MACOS_environment.yml</code> file inside the
 <code>files</code> folder of the <a href="#download-workshop-files">workshop files</a>.</p>
-<pre class="code"><code>$ conda env create --file cnn_workshop_environment.yml</code></pre>
+<pre class="code"><code>$ cd "C:\Users\Lab\intro-image-classification-cnn"
+$ conda env create --file cnn_workshop_environment.yml</code></pre>
+<div id="callout4" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
 <p>If the yml is not in your current directory, you can specify the full
 path to the file, eg:</p>
-<pre class="code"><code>$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml</code></pre>
+<pre class="code"><code>$ cd "C:\Users\Lab\intro-image-classification-cnn"
+$ conda env create --file intro-image-classification-cnn/files/cnn_workshop_environment.yml</code></pre>
+</div>
+</div>
+</div>
 <p>Be patient because it might take a while (15-20 min) for conda to
 work out all of the dependencies.</p>
 <p><strong><em>Note, in the screen shots below, I haven’t initilised
@@ -709,10 +745,31 @@ Development Environment), a free integrated development environment
 introspection tools.</p>
 <p>To start Spyder, type the command <code>spyder</code>, making sure
 you are still in the workshop environment:</p>
-<pre><code>(cnn_workshop) C:\Users\Lab&gt; spyder</code></pre>
+<pre><code>(cnn_workshop) C:\Users\Lab\intro-image-classification-cnn&gt; spyder</code></pre>
+<p>Be patient! It can take a long time for the Spyder application to
+launch.</p>
+<div id="callout5" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>Do not update Spyder</p>
+<p>If you get a pop-up advising you to upgrade spyder, <strong>do not
+update it</strong>.</p>
+<p>The version of Spyder installed in this environment has been tested
+with the Python, TensorFlow, and other package versions used in this
+workshop. Updating Spyder may change package dependencies and could
+cause compatibility problems later in the workshop.</p>
+<p>Simply close the update notification and continue with the
+workshop.</p>
+<figure><img src="../fig/00_spyder_ide_upgrade_warning.png" alt="Screenshot of the Spyder IDE warning advising you to update the version." class="figure mx-auto d-block"></figure></div>
+</div>
+</div>
 <div class="section level3">
 <h3 id="spyder-ide-components">Spyder IDE components<a class="anchor" aria-label="anchor" href="#spyder-ide-components"></a></h3>
-<figure><img src="../fig/00_spyder_ide_layout.png" alt="Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas" class="figure mx-auto d-block"></figure><div id="callout2" class="callout">
+<figure><img src="../fig/00_spyder_ide_layout.png" alt="Screenshot of the Spyder IDE annotated with boxes and labels for the Editor; Help, Variable Explorer, Plots, Files; and IPython Console areas" class="figure mx-auto d-block"></figure><div id="callout6" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -826,8 +883,8 @@ any links that you are not going to use.
   "url": "https://erinmgraham.github.io/icwithcnn/instructor/index.html",
   "identifier": "https://erinmgraham.github.io/icwithcnn/instructor/index.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2026-10-27",
-  "datePublished": "2026-10-27"
+  "dateModified": "2026-11-01",
+  "datePublished": "2026-11-01"
 }
 
   </script><script>

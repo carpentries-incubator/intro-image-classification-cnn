@@ -390,7 +390,7 @@
         
 <section id="aio-01-introduction"><p>Content from <a href="01-introduction.html">Introduction to Deep Learning</a></p>
 <hr>
-<p>Last updated on 2026-06-14 |
+<p>Last updated on 2026-11-01 |
 
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/01-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -493,8 +493,8 @@ image.</p>
 require some preparation. Neural networks can really only deal with
 numerical data, so any non-numerical data (e.g., images) have to be
 converted to numerical data.</p>
-<p>For this lesson, we use an existing image dataset known as <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link">CIFAR-10</a>
-(Canadian Institute for Advanced Research).</p>
+<p>For this lesson, we use an existing image dataset known as <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" class="external-link">CIFAR-10</a> (Canadian Institute for Advanced
+Research).</p>
 <p>More information on preparing data is explored in <a href="02-image-data">Episode 02 Introduction to Image Data</a> but for
 now we’ll use a custom-defined function.</p>
 <div id="callout1" class="callout">
@@ -584,7 +584,7 @@ about this dataset?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Answers will vary.</p>
 <ul>
@@ -623,7 +623,7 @@ Neural Network</a>.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="co"># create the introduction model using pre-defined function</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>model_intro <span class="op">=</span> create_model_intro()</span></code></pre>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>model_intro <span class="op">=</span> icfn.create_model_intro()</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -709,7 +709,7 @@ performing?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Answers may vary.</p>
 <ul>
@@ -748,41 +748,47 @@ predict the class of that image.</p>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="cf">for</span> images, labels <span class="kw">in</span> test_ds.take(<span class="dv">1</span>):</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>    first_image <span class="op">=</span> images[<span class="dv">0</span>]</span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a>    first_label <span class="op">=</span> labels[<span class="dv">0</span>]</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a>    </span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a><span class="co"># use the model to predict class</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a>  </span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a>  <span class="co"># use the model to predict class</span></span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a>prediction <span class="op">=</span> model_intro.predict(tf.expand_dims(first_image, axis<span class="op">=</span><span class="dv">0</span>))</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a><span class="bu">print</span>(<span class="st">"Predict:"</span>, prediction)</span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a><span class="co"># extract class name with highest probability</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1" aria-label="code-block-8-11"></a>predicted_label <span class="op">=</span> tf.argmax(prediction[<span class="dv">0</span>])</span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1" aria-label="code-block-8-12"></a></span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1" aria-label="code-block-8-13"></a><span class="bu">print</span>(<span class="st">"Predicted class:"</span>, class_names[predicted_label])</span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1" aria-label="code-block-8-14"></a><span class="bu">print</span>(<span class="st">"True class:"</span>, class_names[first_label])</span></code></pre>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a><span class="co"># extract class name with highest probability</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a>predicted_label <span class="op">=</span> tf.argmax(prediction[<span class="dv">0</span>])</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1" aria-label="code-block-8-11"></a></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1" aria-label="code-block-8-12"></a><span class="bu">print</span>(<span class="st">"Predicted class:"</span>, class_names[predicted_label])</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1" aria-label="code-block-8-13"></a><span class="bu">print</span>(<span class="st">"True class:"</span>, class_names[first_label])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>1/1 [==============================] - 0s 11ms/step
-Predict: [[3.0071956e-01 9.7787231e-20 6.9927925e-01 5.2796623e-32 1.1614857e-06]]
 Predicted class: cat
 True class: airplane</code></pre>
 </div>
-<p>Congratulations, you just created your first image classification
-model! Notice that the model doesn’t just give one answer — it assigns a
-probability to each class. The class with the highest probability
-becomes the prediction.</p>
-<p>Was the classification correct? Let’s plot the first test image with
-its true label:</p>
+<p>Let’s check it visually!</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="co"># display image</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a>plt.imshow(test_images[<span class="dv">0</span>])</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a>plt.imshow(first_image.numpy().astype(<span class="st">"uint8"</span>))</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a>plt.title(<span class="st">'Predicted:'</span> <span class="op">+</span> class_names[predicted_label])</span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a>plt.axis(<span class="st">"off"</span>)</span>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a>plt.show() </span></code></pre>
 </div>
-<figure><img src="../fig/01_test_image.png" alt="poor resolution image of an dog" class="figure mx-auto d-block"></figure><div id="interpreting-the-prediction" class="callout challenge">
+<figure><img src="../fig/01_test_image.png" alt="poor resolution image of an dog" class="figure mx-auto d-block"></figure><p>Congratulations, you just created your first image classification
+model!</p>
+<p>Notice that the model doesn’t just give one answer — it assigns a
+probability to each class and <code>argmax</code> returns the class with
+the highest probability.</p>
+<pre><code><span><span class="co"># inspect predictions</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="st">"Predict:"</span>, <span class="va">prediction</span><span class="op">)</span></span></code></pre>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Predict: [[5.02035176e-12 1.04303834e-13 2.50770455e-07 9.99999762e-01
+  4.40039845e-11]]</code></pre>
+</div>
+<div id="interpreting-the-prediction" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -803,7 +809,7 @@ its true label:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Answers may vary.</p>
 <ul>
@@ -853,11 +859,11 @@ your dataset can enhance model performance.</p>
 share it with others. This includes both the model structure and what it
 has learned, so others can use it, with or without retraining.</p>
 <p>To share the model we must save it.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="co"># save  model</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a>model_intro.save(<span class="st">'models/model_intro.keras'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="co"># save  model</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a>model_intro.save(<span class="st">'../models/model_intro.keras'</span>)</span></code></pre>
 </div>
 <div id="callout2" class="callout">
 <div class="callout-square">
@@ -870,11 +876,11 @@ has learned, so others can use it, with or without retraining.</p>
 <p>If the <code>models</code> folder does not already exist, Python will
 return an error when trying to save the model.</p>
 <p>You can create it first with:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="im">import</span> os</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a>os.makedirs(<span class="st">"models"</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="im">import</span> os</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a>os.makedirs(<span class="st">"../models"</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -909,7 +915,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-02-image-data"><p>Content from <a href="02-image-data.html">Introduction to Image Data</a></p>
 <hr>
-<p>Last updated on 2026-06-14 |
+<p>Last updated on 2026-11-01 |
 
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/02-image-data.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 33 minutes</p>
@@ -1297,13 +1303,16 @@ training.</p>
 <span id="cb10-12"><a href="#cb10-12" tabindex="-1" aria-label="code-block-10-12"></a><span class="co"># dimensions of the images and labels</span></span>
 <span id="cb10-13"><a href="#cb10-13" tabindex="-1" aria-label="code-block-10-13"></a><span class="cf">for</span> images, labels <span class="kw">in</span> test_ds.take(<span class="dv">1</span>):</span>
 <span id="cb10-14"><a href="#cb10-14" tabindex="-1" aria-label="code-block-10-14"></a>    <span class="bu">print</span>(<span class="st">"Test images batch shape:"</span>, images.shape)</span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1" aria-label="code-block-10-15"></a>    <span class="bu">print</span>(<span class="st">"Test labels batch shape:"</span>, labels.shape)</span>
-<span id="cb10-16"><a href="#cb10-16" tabindex="-1" aria-label="code-block-10-16"></a></span>
-<span id="cb10-17"><a href="#cb10-17" tabindex="-1" aria-label="code-block-10-17"></a><span class="co"># total number of images</span></span>
-<span id="cb10-18"><a href="#cb10-18" tabindex="-1" aria-label="code-block-10-18"></a><span class="co"># 250 as noted previously</span></span>
-<span id="cb10-19"><a href="#cb10-19" tabindex="-1" aria-label="code-block-10-19"></a></span>
-<span id="cb10-20"><a href="#cb10-20" tabindex="-1" aria-label="code-block-10-20"></a><span class="co"># images in each class</span></span>
-<span id="cb10-21"><a href="#cb10-21" tabindex="-1" aria-label="code-block-10-21"></a><span class="co"># ????</span></span></code></pre>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1" aria-label="code-block-10-15"></a>    <span class="bu">print</span>(<span class="st">"Test labels batch shape:"</span>, labels.shape)</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Found 250 files belonging to 5 classes.
+Test_ds: &lt;_PrefetchDataset element_spec=(TensorSpec(shape=(None, 32, 32, 3), dtype=tf.float32, name=None), TensorSpec(shape=(None,), dtype=tf.int32, name=None))&gt;
+Test class names:  ['airplane', 'bird', 'cat', 'dog', 'truck']
+Test images batch shape: (32, 32, 32, 3)
+Test labels batch shape: (32,)</code></pre>
 </div>
 </div>
 </div>
@@ -1340,7 +1349,7 @@ any links that you are not going to use.
  -->
 </div></section><section id="aio-03-build-cnn"><p>Content from <a href="03-build-cnn.html">Build a Convolutional Neural Network</a></p>
 <hr>
-<p>Last updated on 2026-06-14 |
+<p>Last updated on 2026-11-01 |
 
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/03-build-cnn.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 47 minutes</p>
@@ -1463,46 +1472,6 @@ layer as its input.</p>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>                                 kernel_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>),</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>                                 activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span></code></pre>
 </div>
-<div id="create-a-convolutional-layer" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="create-a-convolutional-layer" class="callout-inner">
-<h3 class="callout-title">Create a convolutional layer</h3>
-<div class="callout-content">
-<p>Create a Conv2D layer with: - 16 filters - a 3x3 kernel size - ‘relu’
-activation function.</p>
-<p>Use <code>inputs_intro</code> as the input.</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(filters<span class="op">=</span>_____, </span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a>                                 kernel_size<span class="op">=</span>_____, </span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a>                                 activation<span class="op">=</span>_____)(inputs_intro)</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
-<div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>    filters<span class="op">=</span><span class="dv">16</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a>    kernel_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a>    activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="section level4">
 <h4 id="pooling-layers">
@@ -1513,10 +1482,10 @@ on the most important features.</p>
 <p>To create a pooling layer, we need to specify how much to reduce the
 image by using <code>pool_size</code>. A pool size of (2, 2) reduces the
 width and height of the image by half.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span></code></pre>
 </div>
 <div id="deep-learning" class="callout">
 <div class="callout-square">
@@ -1528,14 +1497,14 @@ width and height of the image by half.</p>
 <div class="callout-content">
 <p>We often repeat this two-layer pattern to learn more complex features
 by, e.g. increasing the number of filters:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>,<span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D((<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">16</span>, (<span class="dv">3</span>,<span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D((<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a>x_intro <span class="op">=</span> tf.keras.layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>)(x_intro)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a>x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>))(x_intro)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1548,10 +1517,10 @@ by, e.g. increasing the number of filters:</p>
 <a class="anchor" aria-label="anchor" href="#reshaping-layers-flatten"></a>
 </h4>
 <p>Flatten turns our 2D feature maps into a single list of numbers.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Flatten()(x_intro)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>x_intro <span class="op">=</span> tf.keras.layers.Flatten()(x_intro)</span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -1576,10 +1545,10 @@ input.</p>
 classes<br>
 - <code>softmax</code> converts the outputs into probabilities that add
 up to 1</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a>outputs_intro <span class="op">=</span> tf.keras.layers.Dense(units<span class="op">=</span><span class="dv">5</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>outputs_intro <span class="op">=</span> tf.keras.layers.Dense(units<span class="op">=</span><span class="dv">5</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1588,12 +1557,12 @@ up to 1</p>
 <hr class="half-width">
 <p>Once you decide on the initial architecture of your CNN, the last
 step to create the model is to bring all of the parts together:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a>model_intro <span class="op">=</span> tf.keras.Model(inputs <span class="op">=</span> inputs_intro,</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>                             outputs <span class="op">=</span> outputs_intro, </span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a>                             name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>model_intro <span class="op">=</span> tf.keras.Model(inputs <span class="op">=</span> inputs_intro,</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a>                             outputs <span class="op">=</span> outputs_intro, </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a>                             name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span></code></pre>
 </div>
 <p>We now have a simple convolutional neural network!</p>
 <p>We can put this code inside a function definition like we used in
@@ -1617,41 +1586,41 @@ Episode 1.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="co"># function that defines an introductory convolutional neural network</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="kw">def</span> create_model_intro(input_shape<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>), num_classes<span class="op">=</span><span class="dv">5</span>):</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a>    </span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a>    <span class="co"># CNN Part 1</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1" aria-label="code-block-10-6"></a>    inputs_intro <span class="op">=</span> tf.keras.Input(shape<span class="op">=</span>input_shape)</span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1" aria-label="code-block-10-7"></a>    </span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1" aria-label="code-block-10-8"></a>    <span class="co"># CNN Part 2</span></span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1" aria-label="code-block-10-9"></a>    x_intro <span class="op">=</span> tf.keras.layers.Conv2D(filters<span class="op">=</span><span class="dv">16</span>, </span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1" aria-label="code-block-10-10"></a>                                     kernel_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>), </span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1" aria-label="code-block-10-11"></a>                                     activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1" aria-label="code-block-10-12"></a>    x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span>
-<span id="cb10-13"><a href="#cb10-13" tabindex="-1" aria-label="code-block-10-13"></a>    x_intro <span class="op">=</span> tf.keras.layers.Flatten()(x_intro)</span>
-<span id="cb10-14"><a href="#cb10-14" tabindex="-1" aria-label="code-block-10-14"></a>    </span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1" aria-label="code-block-10-15"></a>    <span class="co"># CNN Part 3</span></span>
-<span id="cb10-16"><a href="#cb10-16" tabindex="-1" aria-label="code-block-10-16"></a>    <span class="co"># Output layer with one unit for each class and softmax activation</span></span>
-<span id="cb10-17"><a href="#cb10-17" tabindex="-1" aria-label="code-block-10-17"></a>    outputs_intro <span class="op">=</span> tf.keras.layers.Dense(units<span class="op">=</span>num_classes,</span>
-<span id="cb10-18"><a href="#cb10-18" tabindex="-1" aria-label="code-block-10-18"></a>                                          activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
-<span id="cb10-19"><a href="#cb10-19" tabindex="-1" aria-label="code-block-10-19"></a>    </span>
-<span id="cb10-20"><a href="#cb10-20" tabindex="-1" aria-label="code-block-10-20"></a>    <span class="co"># create the model</span></span>
-<span id="cb10-21"><a href="#cb10-21" tabindex="-1" aria-label="code-block-10-21"></a>    model_intro <span class="op">=</span> tf.keras.Model(inputs <span class="op">=</span> inputs_intro,</span>
-<span id="cb10-22"><a href="#cb10-22" tabindex="-1" aria-label="code-block-10-22"></a>                                 outputs <span class="op">=</span> outputs_intro, </span>
-<span id="cb10-23"><a href="#cb10-23" tabindex="-1" aria-label="code-block-10-23"></a>                                 name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span>
-<span id="cb10-24"><a href="#cb10-24" tabindex="-1" aria-label="code-block-10-24"></a>    </span>
-<span id="cb10-25"><a href="#cb10-25" tabindex="-1" aria-label="code-block-10-25"></a>    <span class="cf">return</span> model_intro</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="co"># function that defines an introductory convolutional neural network</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="kw">def</span> create_model_intro(input_shape<span class="op">=</span>(<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">3</span>), num_classes<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>    </span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a>    <span class="co"># CNN Part 1</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a>    <span class="co"># Input layer of 32x32 images with three channels (RGB)</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a>    inputs_intro <span class="op">=</span> tf.keras.Input(shape<span class="op">=</span>input_shape)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a>    </span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a>    <span class="co"># CNN Part 2</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a>    x_intro <span class="op">=</span> tf.keras.layers.Conv2D(filters<span class="op">=</span><span class="dv">16</span>, </span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a>                                     kernel_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>), </span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1" aria-label="code-block-8-11"></a>                                     activation<span class="op">=</span><span class="st">'relu'</span>)(inputs_intro)</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1" aria-label="code-block-8-12"></a>    x_intro <span class="op">=</span> tf.keras.layers.MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">2</span>))(x_intro)</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1" aria-label="code-block-8-13"></a>    x_intro <span class="op">=</span> tf.keras.layers.Flatten()(x_intro)</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1" aria-label="code-block-8-14"></a>    </span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1" aria-label="code-block-8-15"></a>    <span class="co"># CNN Part 3</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1" aria-label="code-block-8-16"></a>    <span class="co"># Output layer with one unit for each class and softmax activation</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1" aria-label="code-block-8-17"></a>    outputs_intro <span class="op">=</span> tf.keras.layers.Dense(units<span class="op">=</span>num_classes,</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1" aria-label="code-block-8-18"></a>                                          activation<span class="op">=</span><span class="st">'softmax'</span>)(x_intro)</span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1" aria-label="code-block-8-19"></a>    </span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1" aria-label="code-block-8-20"></a>    <span class="co"># create the model</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1" aria-label="code-block-8-21"></a>    model_intro <span class="op">=</span> tf.keras.Model(inputs <span class="op">=</span> inputs_intro,</span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1" aria-label="code-block-8-22"></a>                                 outputs <span class="op">=</span> outputs_intro, </span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1" aria-label="code-block-8-23"></a>                                 name <span class="op">=</span> <span class="st">"cifar_model_intro"</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1" aria-label="code-block-8-24"></a>    </span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1" aria-label="code-block-8-25"></a>    <span class="cf">return</span> model_intro</span></code></pre>
 </div>
 </div>
 </div>
@@ -1662,14 +1631,14 @@ Episode 1.</p>
 </h3>
 <p>Once a model is created, we can look at a summary of its
 structure.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="co"># create the introduction model</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a>model_intro <span class="op">=</span> create_model_intro()</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1" aria-label="code-block-11-4"></a><span class="co"># view model summary</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1" aria-label="code-block-11-5"></a>model_intro.summary()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="co"># create the introduction model</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>model_intro <span class="op">=</span> create_model_intro()</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1" aria-label="code-block-9-4"></a><span class="co"># view model summary</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1" aria-label="code-block-9-5"></a>model_intro.summary()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1774,7 +1743,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-04-fit-cnn"><p>Content from <a href="04-fit-cnn.html">Compile and Train (Fit) a Convolutional Neural Network</a></p>
 <hr>
-<p>Last updated on 2026-06-14 |
+<p>Last updated on 2026-11-01 |
 
         <a href="https://github.com/erinmgraham/icwithcnn/edit/main/episodes/04-fit-cnn.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 47 minutes</p>
@@ -1845,7 +1814,7 @@ values here.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> WANT TO KNOW MORE: Learning Rate </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>ChatGPT</p>
 <p><strong>Learning rate</strong> is a hyperparameter that determines
@@ -1926,7 +1895,7 @@ they don’t directly affect how the model learns.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2049,7 +2018,7 @@ data?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ul>
 <li>Loss decreases over time, which shows the model is improving<br>
@@ -2102,8 +2071,7 @@ include:</p>
 <li>adding techniques that help the model generalise better</li>
 </ul>
 <p>These approaches aim to help the model focus on general patterns
-rather than memorising the training data. In a later episode, we’ll look
-at one of these techniques: <strong>dropout</strong>.</p>
+rather than memorising the training data.</p>
 </div>
 <section><h2 class="section-heading" id="what-did-we-do">What did we do?<a class="anchor" aria-label="anchor" href="#what-did-we-do"></a>
 </h2>
@@ -2739,8 +2707,8 @@ any links that you are not going to use.
   "url": "https://erinmgraham.github.io/icwithcnn/instructor/aio.html",
   "identifier": "https://erinmgraham.github.io/icwithcnn/instructor/aio.html",
   "dateCreated": "2023-05-03",
-  "dateModified": "2026-10-27",
-  "datePublished": "2026-10-27"
+  "dateModified": "2026-11-01",
+  "datePublished": "2026-11-01"
 }
 
   </script><script>

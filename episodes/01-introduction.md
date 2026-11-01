@@ -311,7 +311,7 @@ To share the model we must save it.
 
 ```python
 # save  model
-model_intro.save('models/model_intro.keras')
+model_intro.save('../models/model_intro.keras')
 ```
 
 ::::::::::::::::::::::::::::::::::::::::: callout
@@ -323,7 +323,7 @@ You can create it first with:
 
 ```python
 import os
-os.makedirs("models", exist_ok=True)
+os.makedirs("../models", exist_ok=True)
 ```
 ::::::::::::::::::::::::::::::::::::::::: 
 
